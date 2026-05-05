@@ -1,0 +1,11 @@
+{
+  "mid_career": {
+    "display": "₹25,000",
+    "label": "Mid-career professionals"
+  },
+  "students": {
+    "display": "₹15,000",
+    "label": "College and school students",
+    "note": "College or student ID required at enrollment."
+  }
+}

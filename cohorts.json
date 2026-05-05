@@ -1,0 +1,52 @@
+{
+  "cohorts": [
+    {
+      "id": "cohort-001",
+      "name": "Bangalore — Mid-career",
+      "city": "Bangalore",
+      "country": "India",
+      "audience": "mid_career",
+      "weekend_start": "2026-08-15",
+      "weekend_end": "2026-08-16",
+      "build_month_end": "2026-09-13",
+      "format": "In-person weekend. Online Build Month.",
+      "status": "open"
+    },
+    {
+      "id": "cohort-002",
+      "name": "Bangalore — Students",
+      "city": "Bangalore",
+      "country": "India",
+      "audience": "students",
+      "weekend_start": "2026-08-15",
+      "weekend_end": "2026-08-16",
+      "build_month_end": "2026-09-13",
+      "format": "In-person weekend. Online Build Month.",
+      "status": "open"
+    },
+    {
+      "id": "cohort-003",
+      "name": "Online — Mid-career",
+      "city": "Online",
+      "country": "",
+      "audience": "mid_career",
+      "weekend_start": "2026-08-22",
+      "weekend_end": "2026-08-23",
+      "build_month_end": "2026-09-20",
+      "format": "Online via Zoom. Build Month online.",
+      "status": "open"
+    },
+    {
+      "id": "cohort-004",
+      "name": "Online — Students",
+      "city": "Online",
+      "country": "",
+      "audience": "students",
+      "weekend_start": "2026-08-22",
+      "weekend_end": "2026-08-23",
+      "build_month_end": "2026-09-20",
+      "format": "Online via Zoom. Build Month online.",
+      "status": "open"
+    }
+  ]
+}

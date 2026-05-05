@@ -1098,8 +1098,10 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
 
     <!-- FEEDBACK -->
     <div class="feedback-block" id="feedback-block">
-      <div class="eyebrow">A quick reading on the reading</div>
-      <p class="prose prose-italic">Three short questions. Optional. We use this to keep sharpening SWISH.</p>
+      <div id="feedback-intro">
+        <div class="eyebrow">A quick reading on the reading</div>
+        <p class="prose prose-italic">Three short questions. Optional. We use this to keep sharpening SWISH.</p>
+      </div>
 
       <div id="feedback-form">
 
@@ -1605,6 +1607,7 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
         console.info('EmailJS feedback template not configured. Feedback data:', params);
         await new Promise(r => setTimeout(r, 300));
       }
+      $('#feedback-intro').classList.add('hidden');
       $('#feedback-form').classList.add('hidden');
       $('#feedback-thanks').classList.remove('hidden');
     } catch (err) {

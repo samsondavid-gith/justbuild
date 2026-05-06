@@ -1,20 +1,14 @@
 {
-  "midcareer_in_person": {
-    "amount": 29500,
+  "inperson_all": {
+    "amount": 28500,
     "currency": "INR",
-    "label": "Mid-career, in-person",
-    "display": "₹29,500"
-  },
-  "students_in_person": {
-    "amount": 19500,
-    "currency": "INR",
-    "label": "College students, in-person",
-    "display": "₹19,500"
+    "label": "In-person (all)",
+    "display": "₹28,500"
   },
   "online_all": {
-    "amount": 24500,
+    "amount": 23500,
     "currency": "INR",
     "label": "Online (all)",
-    "display": "₹24,500"
+    "display": "₹23,500"
   }
 }

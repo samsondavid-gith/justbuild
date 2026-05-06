@@ -14,7 +14,7 @@
     {
       "id": "cohort-002",
       "city": "Online",
-      "country": "Online",
+      "country": "",
       "weekend_start": "2026-07-18",
       "weekend_end": "2026-07-19",
       "build_month_end": "2026-08-18",
@@ -36,7 +36,7 @@
     {
       "id": "cohort-004",
       "city": "Online",
-      "country": "Online",
+      "country": "",
       "weekend_start": "2026-08-01",
       "weekend_end": "2026-08-02",
       "build_month_end": "2026-09-01",

@@ -1294,7 +1294,7 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
     };
     const targetAudience = audienceForPersona[selectedPersona];
     if (!targetAudience) return visible;
-    return visible.filter(c => c.audience === targetAudience);
+    return visible.filter(c => !c.audience || c.audience === targetAudience);
   }
 
   function renderCohorts() {
@@ -1343,8 +1343,9 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
       const name = document.createElement('div');
       name.className = 'cohort-name';
       const cityCountry = c.country ? `${c.city}, ${c.country}` : c.city;
-      const audienceLabel = c.audience === 'mid_career' ? 'Mid-career' : 'Students';
-      name.innerHTML = `<span>${escapeHtml(c.name || (cityCountry + ' — ' + audienceLabel))}</span>`;
+      const audienceLabel = c.audience === 'mid_career' ? 'Mid-career' : (c.audience === 'students' ? 'Students' : '');
+      const fallbackName = c.audience ? `${cityCountry} — ${audienceLabel}` : cityCountry;
+      name.innerHTML = `<span>${escapeHtml(c.name || fallbackName)}</span>`;
       if (c.status === 'filling') {
         const tag = document.createElement('span');
         tag.className = 'cohort-status';
@@ -1375,10 +1376,12 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
         card.appendChild(fmt);
       }
 
-      const aud = document.createElement('div');
-      aud.className = 'cohort-audience';
-      aud.textContent = c.audience === 'mid_career' ? 'For mid-career and early-career professionals' : 'For college and school students';
-      card.appendChild(aud);
+      if (c.audience) {
+        const aud = document.createElement('div');
+        aud.className = 'cohort-audience';
+        aud.textContent = c.audience === 'mid_career' ? 'For mid-career and early-career professionals' : 'For college and school students';
+        card.appendChild(aud);
+      }
 
       container.appendChild(card);
     });

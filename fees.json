@@ -1,11 +1,20 @@
 {
-  "mid_career": {
-    "display": "₹25,000",
-    "label": "Mid-career professionals"
+  "midcareer_in_person": {
+    "amount": 29500,
+    "currency": "INR",
+    "label": "Mid-career, in-person",
+    "display": "₹29,500"
   },
-  "students": {
-    "display": "₹15,000",
-    "label": "College and school students",
-    "note": "College or student ID required at enrollment."
+  "students_in_person": {
+    "amount": 19500,
+    "currency": "INR",
+    "label": "College students, in-person",
+    "display": "₹19,500"
+  },
+  "online_all": {
+    "amount": 24500,
+    "currency": "INR",
+    "label": "Online (all)",
+    "display": "₹24,500"
   }
 }

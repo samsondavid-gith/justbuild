@@ -4,19 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Just Build — Stop learning AI. Start building with it.</title>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-1PXYFN65T8"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-1PXYFN65T8');
-</script>
 <meta name="description" content="A two-day in-person weekend in Bangalore followed by four weeks of structured online build support. By Orange Caterpillar.">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="shortcut icon" href="/favicon.ico">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -874,13 +862,7 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
       <p class="prose center">Why would anyone pay.</p>
       <p class="prose prose-italic" style="margin-top:1.5rem;">Not taught as theory. Applied at every decision. By the end it becomes how you think. Not just for this build but for every one after.</p>
     </div>
-   
-    <!-- CREDIBILITY -->
-    <div class="divider-block">
-      <p class="prose">Just Build has been designed by people who have built and led at the highest levels of AI and business.</p>
-      <p class="prose">Not designed in theory. Designed from the inside of what it actually takes to build something real with AI and to lead organisations through what that change demands.</p>
-      <p class="prose">The framework you learn here is the one that was actually used.</p>
-    </div>
+
     <!-- WHAT YOU LEAVE WITH -->
     <div class="divider-block">
       <div class="eyebrow">What you leave with</div>
@@ -1116,10 +1098,8 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
 
     <!-- FEEDBACK -->
     <div class="feedback-block" id="feedback-block">
-      <div id="feedback-intro">
-        <div class="eyebrow">A quick reading on the reading</div>
-        <p class="prose prose-italic">Three short questions. Optional. We use this to keep sharpening SWISH.</p>
-      </div>
+      <div class="eyebrow">A quick reading on the reading</div>
+      <p class="prose prose-italic">Three short questions. Optional. We use this to keep sharpening SWISH.</p>
 
       <div id="feedback-form">
 
@@ -1155,7 +1135,7 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
       </div>
 
       <div class="feedback-thanks hidden" id="feedback-thanks">
-        Thank you. Sam reads every one of these. They genuinely shape what comes next.
+        Thanks. That is recorded.
       </div>
     </div>
 
@@ -1175,10 +1155,10 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
   // Set these four constants when you have your EmailJS account ready.
   // Until then the form will display the confirmation screen without
   // attempting to send any email — useful for testing visually.
-  const EMAILJS_PUBLIC_KEY = '4oFdVRvbVQ8mQHUnZ';
-  const EMAILJS_SERVICE_ID = 'service_w32avyy';
-  const EMAILJS_APPLICATION_TEMPLATE_ID = 'template_dxrfj69';
-  const EMAILJS_FEEDBACK_TEMPLATE_ID = 'template_kbr9wtj';
+  const EMAILJS_PUBLIC_KEY = '';
+  const EMAILJS_SERVICE_ID = '';
+  const EMAILJS_APPLICATION_TEMPLATE_ID = '';
+  const EMAILJS_FEEDBACK_TEMPLATE_ID = '';
 
   function isEmailJSConfigured() {
     return !!(EMAILJS_PUBLIC_KEY && EMAILJS_SERVICE_ID && EMAILJS_APPLICATION_TEMPLATE_ID);
@@ -1304,7 +1284,7 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
     };
     const targetAudience = audienceForPersona[selectedPersona];
     if (!targetAudience) return visible;
-    return visible.filter(c => !c.audience || c.audience === targetAudience);
+    return visible.filter(c => c.audience === targetAudience);
   }
 
   function renderCohorts() {
@@ -1353,9 +1333,8 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
       const name = document.createElement('div');
       name.className = 'cohort-name';
       const cityCountry = c.country ? `${c.city}, ${c.country}` : c.city;
-      const audienceLabel = c.audience === 'mid_career' ? 'Mid-career' : (c.audience === 'students' ? 'Students' : '');
-      const fallbackName = c.audience ? `${cityCountry} — ${audienceLabel}` : cityCountry;
-      name.innerHTML = `<span>${escapeHtml(c.name || fallbackName)}</span>`;
+      const audienceLabel = c.audience === 'mid_career' ? 'Mid-career' : 'Students';
+      name.innerHTML = `<span>${escapeHtml(c.name || (cityCountry + ' — ' + audienceLabel))}</span>`;
       if (c.status === 'filling') {
         const tag = document.createElement('span');
         tag.className = 'cohort-status';
@@ -1386,12 +1365,10 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
         card.appendChild(fmt);
       }
 
-      if (c.audience) {
-        const aud = document.createElement('div');
-        aud.className = 'cohort-audience';
-        aud.textContent = c.audience === 'mid_career' ? 'For mid-career and early-career professionals' : 'For college and school students';
-        card.appendChild(aud);
-      }
+      const aud = document.createElement('div');
+      aud.className = 'cohort-audience';
+      aud.textContent = c.audience === 'mid_career' ? 'For mid-career and early-career professionals' : 'For college and school students';
+      card.appendChild(aud);
 
       container.appendChild(card);
     });
@@ -1628,7 +1605,6 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
         console.info('EmailJS feedback template not configured. Feedback data:', params);
         await new Promise(r => setTimeout(r, 300));
       }
-      $('#feedback-intro').classList.add('hidden');
       $('#feedback-form').classList.add('hidden');
       $('#feedback-thanks').classList.remove('hidden');
     } catch (err) {

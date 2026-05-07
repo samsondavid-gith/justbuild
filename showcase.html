@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Just Build — Showcase</title>
+<meta name="description" content="Real products built by Just Build participants. Live URLs. Two days. By Orange Caterpillar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Inter:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+<style>
+  /* ========================================
+     Just Build — Showcase
+     Light. Editorial. A gallery, not a list.
+     ======================================== */
+
+  :root {
+    --bg:           #F5F0E8;
+    --bg-soft:      #EDE6D9;
+    --bg-card:     #FFFFFF;
+    --line:         rgba(26, 26, 26, 0.10);
+    --line-strong:  rgba(26, 26, 26, 0.20);
+    --text:         #1A1A1A;
+    --text-soft:    #4A4A4A;
+    --text-muted:   #888888;
+    --accent:       #C17D2A;
+    --accent-soft:  rgba(193, 125, 42, 0.08);
+    --serif:        'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --sans:         'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    min-height: 100vh;
+  }
+
+  /* Subtle paper grain on the cream background */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image: radial-gradient(rgba(26,26,26,0.018) 1px, transparent 1px);
+    background-size: 3px 3px;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 32px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ----- Top brand strip ----- */
+  .brand-strip {
+    padding: 28px 0 0;
+  }
+  .brand-mark {
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    text-decoration: none;
+  }
+  .brand-mark:hover { opacity: 0.7; }
+
+  /* ----- Hero ----- */
+  .hero {
+    padding: 56px 0 72px;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 32px;
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(48px, 7.5vw, 108px);
+    font-weight: 300;
+    line-height: 0.96;
+    letter-spacing: -0.035em;
+    margin-bottom: 32px;
+    max-width: 18ch;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 400;
+  }
+  .hero-sub {
+    font-family: var(--serif);
+    font-size: clamp(20px, 2.2vw, 28px);
+    color: var(--text-soft);
+    font-weight: 300;
+    font-style: italic;
+    letter-spacing: -0.005em;
+    max-width: 36ch;
+    line-height: 1.4;
+  }
+  .hero-rule {
+    width: 56px;
+    height: 1px;
+    background: var(--accent);
+    border: none;
+    margin: 40px 0 0;
+  }
+
+  /* ----- Filter bar ----- */
+  .filters {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 32px 0;
+    border-bottom: 1px solid var(--line);
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 10;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    background: rgba(245, 240, 232, 0.88);
+  }
+  .filter-label {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-right: 12px;
+    font-weight: 500;
+  }
+  .filter-btn {
+    padding: 8px 18px;
+    background: transparent;
+    color: var(--text-soft);
+    border: 1px solid var(--line);
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    border-radius: 999px;
+    transition: all 0.18s ease;
+  }
+  .filter-btn:hover {
+    border-color: var(--text);
+    color: var(--text);
+  }
+  .filter-btn.active {
+    background: var(--text);
+    color: var(--bg);
+    border-color: var(--text);
+  }
+  .filter-count {
+    margin-left: auto;
+    font-size: 13px;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+  }
+
+  /* ----- Grid ----- */
+  .wall {
+    padding: 56px 0 96px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  @media (max-width: 980px) { .wall { grid-template-columns: repeat(2, 1fr); gap: 20px; } }
+  @media (max-width: 640px) { .wall { grid-template-columns: 1fr; padding: 40px 0 64px; } }
+
+  /* ----- Card ----- */
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 32px 28px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    min-height: 280px;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 48px -20px rgba(193, 125, 42, 0.32), 0 1px 0 var(--line);
+    border-color: var(--line-strong);
+  }
+  .card:hover::before { opacity: 1; }
+
+  .card-cohort {
+    font-size: 10px;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .card-name {
+    font-family: var(--serif);
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+  .card-participant {
+    font-size: 13px;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+  }
+  .card-participant strong {
+    font-weight: 500;
+    color: var(--text-soft);
+  }
+  .card-description {
+    color: var(--text-soft);
+    font-size: 15.5px;
+    line-height: 1.55;
+    flex-grow: 1;
+  }
+  .card-rule {
+    height: 1px;
+    background: var(--accent);
+    width: 32px;
+    margin-top: 4px;
+  }
+  .card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding-top: 4px;
+  }
+  .card-cta svg {
+    transition: transform 0.2s ease;
+  }
+  .card:hover .card-cta svg { transform: translate(2px, -2px); }
+
+  /* ----- Empty / loading / error ----- */
+  .placeholder {
+    padding: 96px 0;
+    text-align: center;
+    border: 1px dashed var(--line-strong);
+    border-radius: 4px;
+    background: var(--accent-soft);
+    margin: 56px 0 96px;
+  }
+  .placeholder-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 24px;
+  }
+  .placeholder h2 {
+    font-family: var(--serif);
+    font-size: clamp(32px, 4.5vw, 56px);
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+    max-width: 18ch;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.1;
+  }
+  .placeholder p {
+    color: var(--text-soft);
+    font-family: var(--serif);
+    font-size: 18px;
+    font-style: italic;
+    max-width: 40ch;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+
+  .loading-state, .error-state {
+    padding: 80px 32px;
+    text-align: center;
+    color: var(--text-muted);
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 18px;
+  }
+  .error-state code {
+    font-family: 'SF Mono', Menlo, monospace;
+    background: var(--bg-soft);
+    padding: 2px 8px;
+    border-radius: 2px;
+    font-size: 14px;
+    font-style: normal;
+    color: var(--accent);
+  }
+
+  /* ----- Footer ----- */
+  footer {
+    padding: 48px 0 64px;
+    border-top: 1px solid var(--line);
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 14px;
+    letter-spacing: 0.02em;
+  }
+  footer a {
+    color: var(--text-soft);
+    text-decoration: none;
+    border-bottom: 1px solid var(--line);
+    transition: border-color 0.18s ease, color 0.18s ease;
+  }
+  footer a:hover { color: var(--accent); border-color: var(--accent); }
+  .footer-rule {
+    width: 32px;
+    height: 1px;
+    background: var(--accent);
+    margin: 0 auto 24px;
+    border: none;
+  }
+
+  /* ----- Stagger reveal ----- */
+  .card { animation: cardIn 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) backwards; }
+  .card:nth-child(1) { animation-delay: 0.04s; }
+  .card:nth-child(2) { animation-delay: 0.10s; }
+  .card:nth-child(3) { animation-delay: 0.16s; }
+  .card:nth-child(4) { animation-delay: 0.22s; }
+  .card:nth-child(5) { animation-delay: 0.28s; }
+  .card:nth-child(6) { animation-delay: 0.34s; }
+  .card:nth-child(n+7) { animation-delay: 0.4s; }
+  @keyframes cardIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 640px) {
+    .container { padding: 0 22px; }
+    .hero { padding: 40px 0 48px; }
+    .filters { padding: 22px 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="brand-strip">
+    <a href="https://justbuild.orangecaterpillar.com" class="brand-mark">Just Build &middot; by Orange Caterpillar</a>
+  </div>
+
+  <section class="hero">
+    <div class="hero-eyebrow">The Showcase</div>
+    <h1 id="hero-title">What Just Build participants <em>built</em>.</h1>
+    <p class="hero-sub" id="hero-sub">Real products. Real people. Built in two days.</p>
+    <hr class="hero-rule">
+  </section>
+
+  <section class="filters" id="filters">
+    <span class="filter-label">Cohort</span>
+    <button class="filter-btn active" data-cohort="all">All</button>
+    <span class="filter-count" id="filter-count"></span>
+  </section>
+
+  <section id="content">
+    <div class="loading-state">Loading the wall…</div>
+  </section>
+
+  <footer>
+    <hr class="footer-rule">
+    Built at Just Build, by <a href="https://justbuild.orangecaterpillar.com">Orange Caterpillar</a>.
+  </footer>
+
+</div>
+
+<script>
+let DATA = null;
+let activeCohort = "all";
+
+async function loadShowcase() {
+  try {
+    const res = await fetch("./showcase.json", { cache: "no-cache" });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    DATA = await res.json();
+    if (DATA.showcase) {
+      if (DATA.showcase.title) {
+        document.getElementById("hero-title").innerHTML = formatTitle(DATA.showcase.title);
+      }
+      if (DATA.showcase.subtitle) {
+        document.getElementById("hero-sub").textContent = DATA.showcase.subtitle;
+      }
+    }
+    buildFilters();
+    render();
+  } catch (err) {
+    document.getElementById("content").innerHTML = `
+      <div class="error-state">
+        <p>Could not load <code>showcase.json</code>.</p>
+        <p style="margin-top:12px; font-size:14px; opacity:0.7;">${escapeHtml(err.message)}</p>
+      </div>`;
+  }
+}
+
+function formatTitle(title) {
+  // Italicise the last word in the title for a small editorial flourish
+  const words = title.split(" ");
+  if (words.length < 2) return escapeHtml(title);
+  const last = words.pop();
+  return `${escapeHtml(words.join(" "))} <em>${escapeHtml(last)}</em>.`;
+}
+
+function buildFilters() {
+  const builds = DATA.builds || [];
+  const cohorts = [...new Set(builds.map(b => b.cohort_number))].sort((a, b) => a - b);
+  const filterBar = document.getElementById("filters");
+  // Remove existing dynamic filter buttons (keep label, "All", and count span)
+  filterBar.querySelectorAll(".filter-btn[data-cohort]:not([data-cohort='all'])").forEach(b => b.remove());
+  const countSpan = filterBar.querySelector(".filter-count");
+  cohorts.forEach(c => {
+    const btn = document.createElement("button");
+    btn.className = "filter-btn";
+    btn.dataset.cohort = c;
+    btn.textContent = `Cohort ${c}`;
+    filterBar.insertBefore(btn, countSpan);
+  });
+  filterBar.querySelectorAll(".filter-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      activeCohort = btn.dataset.cohort;
+      filterBar.querySelectorAll(".filter-btn").forEach(b => b.classList.toggle("active", b === btn));
+      render();
+    });
+  });
+  // Hide entire filter bar if no builds
+  filterBar.style.display = (builds.length === 0) ? "none" : "flex";
+}
+
+function render() {
+  const builds = DATA.builds || [];
+  const filtered = activeCohort === "all"
+    ? builds
+    : builds.filter(b => String(b.cohort_number) === String(activeCohort));
+
+  const content = document.getElementById("content");
+  const countSpan = document.getElementById("filter-count");
+
+  countSpan.textContent = filtered.length === 1
+    ? "1 build"
+    : `${filtered.length} builds`;
+
+  if (builds.length === 0) {
+    content.innerHTML = `
+      <div class="placeholder">
+        <div class="placeholder-eyebrow">In Progress</div>
+        <h2>Something is being built here.</h2>
+        <p>After the first demo day this wall fills with real products. Check back soon.</p>
+      </div>`;
+    return;
+  }
+
+  if (filtered.length === 0) {
+    content.innerHTML = `
+      <div class="placeholder">
+        <div class="placeholder-eyebrow">Empty</div>
+        <h2>No builds in this cohort yet.</h2>
+        <p>Try a different cohort, or come back after the next demo day.</p>
+      </div>`;
+    return;
+  }
+
+  // Sort by cohort descending (newest first), then by name
+  const sorted = [...filtered].sort((a, b) => {
+    if (a.cohort_number !== b.cohort_number) return b.cohort_number - a.cohort_number;
+    return (a.product_name || "").localeCompare(b.product_name || "");
+  });
+
+  const cardsHtml = sorted.map(b => `
+    <a class="card" href="${escapeAttr(b.url)}" target="_blank" rel="noopener noreferrer">
+      <div class="card-cohort">Cohort ${escapeHtml(String(b.cohort_number))}${b.cohort_location ? " &middot; " + escapeHtml(b.cohort_location) : ""}</div>
+      <h3 class="card-name">${escapeHtml(b.product_name)}</h3>
+      <div class="card-participant">Built by <strong>${escapeHtml(b.participant_name)}</strong></div>
+      <p class="card-description">${escapeHtml(b.description)}</p>
+      <div class="card-rule"></div>
+      <span class="card-cta">
+        Visit product
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+          <path d="M3.5 8.5 L8.5 3.5 M4 3.5 H8.5 V8"></path>
+        </svg>
+      </span>
+    </a>
+  `).join("");
+
+  content.innerHTML = `<div class="wall">${cardsHtml}</div>`;
+}
+
+function escapeHtml(str) {
+  if (str === null || str === undefined) return "";
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+function escapeAttr(str) {
+  return escapeHtml(str);
+}
+
+loadShowcase();
+</script>
+
+</body>
+</html>

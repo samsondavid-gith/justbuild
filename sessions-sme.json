@@ -1,0 +1,1181 @@
+{
+  "workshop": {
+    "title": "Just Build",
+    "subtitle": "Builderator Edition · For operators inside SMEs",
+    "session_count": 11
+  },
+  "sessions": [
+    {
+      "id": 1,
+      "number": 1,
+      "title": "Ideation",
+      "day": 1,
+      "start_time": "10:00",
+      "end_time": "11:30",
+      "duration_minutes": 75,
+      "set_the_stage": "Open the room with one question on screen.\n\nWhat is the one strategic initiative you would drive inside your company if you had the tools and the time?\n\nFive minutes of silence. Everyone writes something down.\n\nThen two things only.\n\nThe Builderator frame. You are not an attendee today. You are not a manager. You are a Builderator. You build with your own hands. You ship to real people in your company. You own whether they actually use it. You have an initiative, real AI tools, and a deadline. Everything that happens from this moment lives inside that frame.\n\nThe HMV lens. Three questions demonstrated live on one initiative from the room. Fast. Visceral. Show what the lens does to a half-formed idea before a single word is explained.",
+      "questions": [
+        {
+          "title": "What is the initiative?",
+          "body": "Every participant reads what they wrote on their card. The facilitator listens for one thing — is this an initiative or a tool? Most people write tools. Push them back to the initiative the tool would serve. Describe the initiative — the change you are trying to drive in your company — without mentioning the specific tool you would build for it."
+        },
+        {
+          "title": "Is this a real organisational problem?",
+          "body": "Have you personally felt this problem inside your role? Have you watched a colleague or your team struggle with it? Or does it just seem like something the company should be doing? Three levels of problem reality. Level 1, you have personally felt this pain in your role, is the strongest signal. Level 2, you have watched someone in your team or function struggle with it, is a strong signal. Level 3, you think the org probably needs this, is the weakest signal and needs validation before building."
+        },
+        {
+          "title": "Who specifically inside the organisation has this problem?",
+          "body": "Not 'the org.' Not 'the team.' Not 'everyone in HR.' One specific role, one specific function, one specific situation. The test is whether you could name the actual person at your company who has this problem on Monday morning. If yes, specific enough. If no, keep going."
+        },
+        {
+          "title": "How often does this problem occur?",
+          "body": "Does this person experience this problem daily, weekly, monthly, or at specific moments in a cycle — every quarter close, every hiring round, every campaign launch? Frequency alone does not determine value. Frequency multiplied by cost does."
+        },
+        {
+          "title": "What does it cost the organisation?",
+          "body": "Not just time. What does it cost in capacity, in errors, in slow decisions, in opportunities missed? What does the person who has this problem feel when it happens? What does the company lose because the problem is not solved? The combination of business cost and human friction is what makes an initiative worth driving."
+        },
+        {
+          "title": "What has been tried already?",
+          "body": "If this initiative is needed, someone has probably tried something. What tools, processes, working groups, or attempts already exist? Why are they not good enough? This question reveals what the initiative must be better than, and what political or operational landscape it is landing in."
+        },
+        {
+          "title": "Will leadership support this?",
+          "body": "Be honest. If you walked into your manager or sponsor's office today and said you were going to ship this initiative in four weeks, would they back you? Would they fund it? Would they get out of your way? An initiative without sponsorship dies in the four-week phase no matter how good the prototype is."
+        }
+      ],
+      "hmv": [
+        {
+          "dimension": "Humanics",
+          "techniques": [
+            "Start with a real internal human, not an abstract role.",
+            "Ask participants to close their eyes and picture the specific colleague who has this problem.",
+            "Where are they sitting? What time of week is it? What just triggered the problem?",
+            "What are they feeling in that moment — frustration, embarrassment, fatigue?"
+          ]
+        },
+        {
+          "dimension": "Mechanics",
+          "techniques": [
+            "The question is not can AI solve this — it is should AI solve this, and will it run inside how our company operates.",
+            "Watch for the AI-for-the-sake-of-AI initiative — wanting to use AI and finding a problem to justify it.",
+            "Watch for the spreadsheet problem — solvable with a form, a Notion page, or a clearer process.",
+            "Watch for the human judgement problem — every step needs empathy, ethics, or political navigation AI cannot do."
+          ]
+        },
+        {
+          "dimension": "Valuenomics",
+          "techniques": [
+            "The org currently spends measurable time or money on this problem.",
+            "The problem currently produces a painful consequence — errors, delays, churn, missed revenue, low engagement — someone is held accountable for.",
+            "A specific person in leadership would write a sentence of credit for the Builderator if this initiative succeeded."
+          ]
+        }
+      ],
+      "prompts": [
+        {
+          "title": "Stress Test Through HMV",
+          "tool": "Claude",
+          "content": "I am a Builderator inside an SME. I am exploring a strategic initiative I want to drive in my company. I need you to stress test it honestly.\n\nMy initiative: [one sentence]\nMy role and function: [your title and function]\nMy company size and industry: [headcount and sector]\nThe internal user this initiative serves: [specific person/role inside the org]\nThe problem they experience: [specific problem, not the solution]\nHow often they experience it: [frequency]\nWhat it costs the org: [time, capacity, errors, revenue, decision quality]\nWhat has been tried before: [existing efforts or workarounds]\nWhy those have not worked: [the gap]\n\nRun this through three lenses and be direct.\n\nHumanics — is my internal user specific enough? Is the problem I described genuinely felt by a real person inside my company, or am I building for a role I imagine?\n\nMechanics — is AI genuinely useful here? Should AI solve this or am I forcing it? Will whatever I build actually run inside how my company operates? Name the failure mode if you see one.\n\nValuenomics — is there a real value exchange the org will recognise? Will a specific leader in my company care if this works? Would they fund a v2?\n\nEnd with three hard questions I should be able to answer before I start building."
+        },
+        {
+          "title": "Validate the Initiative",
+          "tool": "Perplexity",
+          "content": "Find evidence that other companies have tried initiatives like the one I am describing.\n\nMy initiative: [their initiative statement]\nIndustry: [their sector]\nCompany size context: [SME, 50–250 people]\n\nSearch for case studies, LinkedIn posts, blog articles, conference talks, and HBR-style write-ups where people inside SMEs describe driving similar internal initiatives. Give me five specific examples with quotes where possible. Tell me what worked, what failed, and what the most common adoption barrier was."
+        }
+      ],
+      "build": [
+        {
+          "title": "Run both prompts simultaneously",
+          "instructions": "Ten to fifteen minutes. Claude in one tab, Perplexity in the other. Pasted with all the bracketed details filled in from the questions."
+        },
+        {
+          "title": "Answer Claude's three hard questions",
+          "instructions": "Claude ends with three questions the participant must answer. Some answers reveal weaknesses. Strengthen the initiative or pivot to a sharper one before moving on."
+        },
+        {
+          "title": "Read Perplexity's evidence",
+          "instructions": "Real operators describing real initiatives in their own words. Read it carefully — feel the confirmation or correction. Note any patterns in adoption barriers."
+        }
+      ],
+      "test_output": [
+        {
+          "title": "The Specificity Test",
+          "description": "Can you describe the internal user this initiative serves in enough detail that someone in this room could recognise them at your company?"
+        },
+        {
+          "title": "The Reality Test",
+          "description": "Can you name one specific real colleague at your company who has this problem right now?"
+        },
+        {
+          "title": "The Pain Test",
+          "description": "Can you describe what your internal user feels emotionally when this problem occurs — frustration, embarrassment, panic, fatigue?"
+        },
+        {
+          "title": "The Gap Test",
+          "description": "Can you explain specifically why existing efforts or workarounds are not good enough?"
+        },
+        {
+          "title": "The Sponsorship Test",
+          "description": "Can you name one specific person in leadership at your company who would back this initiative if you walked into their office tomorrow?"
+        }
+      ],
+      "break_after": false
+    },
+    {
+      "id": 2,
+      "number": 2,
+      "title": "Design",
+      "day": 1,
+      "start_time": "11:30",
+      "end_time": "12:00",
+      "duration_minutes": 30,
+      "set_the_stage": "You now have a real initiative with a real internal user at its centre.\n\nMost people at this point make one mistake. They open a tool and start building immediately. They figure out what they are building as they go.\n\nThat is how you waste four hours and end up with something that does not work, which nobody trusts, and which nobody adopts.\n\nA Builderator who has shipped before does something different. They spend thirty minutes designing before they touch a single tool. Not a detailed specification. Not a project plan. Just enough clarity to know exactly what the core artefact of this initiative is before they start.\n\nThree things. What is the simplest possible version of the core tool that would make this initiative real? What does the internal user put in and what do they get out? What does the AI do and what does it never do?\n\nAnswer those three questions in the next thirty minutes and you will build twice as fast and twice as well.",
+      "questions": [
+        {
+          "title": "What is the simplest possible version of the core tool?",
+          "body": "Describe the tool at the heart of your initiative in one sentence. Not the full vision. Not the ideal version. The minimum version that still creates real value for your internal user. Push until it is one thing that does one job well."
+        },
+        {
+          "title": "What does the internal user put in?",
+          "body": "What is the minimum information your internal user needs to provide for the tool to work? Every field you add is friction. Friction reduces adoption. Internal users have higher friction tolerance than customers but they also have more meetings — what is the absolute minimum?"
+        },
+        {
+          "title": "What does the internal user get out?",
+          "body": "What exactly appears when the tool runs? The output format must serve the internal user not the builder. A busy manager needs something they can read in two minutes and forward. An analyst needs something they can paste into a deck. Connect the output format to how the internal user will actually consume it."
+        },
+        {
+          "title": "What does the AI do at each step?",
+          "body": "Walk through what the AI is actually doing. Step one, it receives this. Step two, it does this. Step three, it produces this. The facilitator listens for magical thinking and pushes back toward reality."
+        },
+        {
+          "title": "Where does the human step in?",
+          "body": "At what point does a human need to review the AI output before it reaches the internal user, or before action is taken on it? Every internal AI tool has a human handoff point. Design it deliberately, not accidentally — internal trust collapses fast when AI output reaches a stakeholder unreviewed and is wrong."
+        },
+        {
+          "title": "What should the AI never do?",
+          "body": "Name three things your AI must never do regardless of what the user asks. Constraints are not limitations. They are trust builders. Inside a company, the constraints are even more important — touching salary data, naming individual employees in negative ways, making policy commitments. Pick three."
+        }
+      ],
+      "hmv": [
+        {
+          "dimension": "Humanics",
+          "techniques": [
+            "Confusion test — would your user understand what to do without an email explaining it?",
+            "Relief test — at what moment does the user feel 'this just saved me an hour'?",
+            "Trust test — at what moment could the user feel uncertain whether the output is reliable enough to act on?"
+          ]
+        },
+        {
+          "dimension": "Mechanics",
+          "techniques": [
+            "Reliability — can the AI handle the full range of real inputs colleagues will give it?",
+            "Failure — when the AI gets it wrong, is the failure visible enough that the user catches it before acting?",
+            "Constraint — are the constraints specific enough to actually constrain behaviour, especially around sensitive internal data?"
+          ]
+        },
+        {
+          "dimension": "Valuenomics",
+          "techniques": [
+            "Clarity — does the user immediately understand what they received and why it is valuable?",
+            "Action — does the output tell the user what to do next, or fit cleanly into a step they were already taking?",
+            "Case — could a leader look at this output and immediately understand the time or quality lift it represents?"
+          ]
+        }
+      ],
+      "prompts": [
+        {
+          "title": "Define the Minimum Solution",
+          "tool": "Claude",
+          "content": "I am a Builderator designing the core tool of a strategic initiative I am driving inside my SME.\n\nMy initiative: [from Session 1]\nMy internal user: [from Session 1]\nThe value the initiative delivers to the org: [from Session 1]\n\nHelp me define the minimum viable version of the core tool. Then give me the tool in one sentence and the three-step user flow.\n\nStep 1 — the user inputs [what].\nStep 2 — the AI does [what].\nStep 3 — the user receives [what in what format].\n\nBe specific. Be simple. Push back if I am making this more complex than it needs to be. The tool must be buildable and deployable in 90 minutes."
+        },
+        {
+          "title": "Write the System Prompt",
+          "tool": "Claude",
+          "content": "I am building the core AI tool for my initiative.\n\nTool in one sentence: [from Prompt 1]\nInternal user: [from Session 1]\nWhat the user inputs: [from Prompt 1]\nWhat the AI produces: [from Prompt 1]\nThree things the AI must never do: [from Question 6]\n\nWrite me a system prompt with seven elements.\n\nRole — who the AI is and what it exists to do for this internal user.\nContext — what the AI needs to know about the organisation, the function, and the situation.\nInstructions — step by step what the AI does when triggered.\nTone — how the AI communicates, calibrated to my company's culture.\nOutput format — exactly how the AI structures its output for an internal audience.\nConstraints — the three things the AI never does.\nEscalation — when the AI should stop and tell the user to consult a human."
+        },
+        {
+          "title": "Test the System Prompt",
+          "tool": "Claude",
+          "content": "Read the system prompt you just wrote. Now play the role of my internal user.\n\nMy internal user is: [role, function, seniority, context]\n\nGive me three inputs this user might realistically provide, including one messy or half-formed one of the kind a busy colleague actually types between meetings. For each input, run the system prompt mentally and tell me what output it would produce. Is that output genuinely useful and trustworthy?\n\nThen give me one edge-case input — something the user might paste in by accident or out of curiosity. What happens? Does the system prompt handle it gracefully or does it break in a way that would damage trust internally?"
+        }
+      ],
+      "build": [
+        {
+          "title": "Define the minimum tool",
+          "instructions": "Run Prompt 1. Confirm the tool is simple and specific. Make one or two edits. The tool must be buildable in 90 minutes."
+        },
+        {
+          "title": "Write the system prompt",
+          "instructions": "Run Prompt 2. Read every element. Make two or three specific edits — particularly tone (does this sound like my company?) and constraints (are these the right three for my company?)."
+        },
+        {
+          "title": "Test against real inputs",
+          "instructions": "Run Prompt 3. Test against three realistic inputs and one edge case. If the edge case breaks the prompt, ask Claude to fix it before moving on."
+        }
+      ],
+      "test_output": [
+        {
+          "title": "The Simplicity Test",
+          "description": "Can you explain what the core tool does in one sentence?"
+        },
+        {
+          "title": "The Flow Test",
+          "description": "Can you describe the three-step user flow without hesitation?"
+        },
+        {
+          "title": "The System Prompt Test",
+          "description": "Does your system prompt have all seven elements — role, context, instructions, tone, output format, constraints, escalation?"
+        },
+        {
+          "title": "The Edge Case Test",
+          "description": "Has your system prompt been tested against at least one unexpected input? Does it handle it gracefully and protect the trustworthiness of the tool?"
+        },
+        {
+          "title": "The HMV Test",
+          "description": "Can you answer all three HMV questions without hesitation? Humanics — does the output serve the internal user? Mechanics — does the architecture reflect what AI can actually do reliably? Valuenomics — would a leader look at the output and immediately recognise the value?"
+        }
+      ],
+      "break_after": true,
+      "break_label": "Lunch",
+      "break_duration_minutes": 60,
+      "break_note": "Eat. Talk to other Builderators about their initiatives. Hear at least three other people's ideas before you come back."
+    },
+    {
+      "id": 3,
+      "number": 3,
+      "title": "Build the Core Tool",
+      "day": 1,
+      "start_time": "13:00",
+      "end_time": "14:30",
+      "duration_minutes": 90,
+      "set_the_stage": "You have an initiative. You have a design. You have a system prompt. Now you build the core tool.\n\nThis is the central artefact of your initiative. The thing that makes it real. Without this, the initiative is a deck. With this, the initiative has a heartbeat.\n\nToday a Builderator with a clear initiative and the right prompts can have a working tool with a live URL in ninety minutes. Not a mockup. Not a wireframe. Something real that a colleague three desks away can open on their phone and use right now.\n\nOne HTML file. No code knowledge required. No API. No backend. Everything runs in the browser. You will build it with Claude, customise it until it feels like yours, and deploy it to the internet before this session ends. The link will be a public URL that you share internally — no IT ticket, no security review for a prototype, no enterprise plumbing.",
+      "questions": [
+        {
+          "title": "What does the user see first?",
+          "body": "When your internal user opens the tool for the first time, what is the first impression? Not the design. The feeling. Is it 'this is for me,' 'this is from a colleague,' 'this is something my company built'? Does that feeling match the initiative you are driving?"
+        },
+        {
+          "title": "What is the tool called and what does it say it does?",
+          "body": "Your tool needs a name and a one-line description. The name should say something true about what it does or which initiative it belongs to. Avoid acronyms unless your company already uses them. The description should tell the internal user exactly what they will get and that it is sanctioned (or at least sponsored) work."
+        },
+        {
+          "title": "How does the user interact with it?",
+          "body": "Walk through the user's physical interaction. What do they paste? What do they type? What do they click? What do they see changing on screen? Internal users tolerate slightly more friction than external customers but they have less attention because they are between meetings. Every extra click is a reason to close the tab and forget."
+        },
+        {
+          "title": "What does the output look like?",
+          "body": "When the tool produces its result, what does the user actually see? A wall of text? A structured summary they can copy-paste? A numbered list with a clear next action? A scorecard? Connect the output format to what the internal user will do next with it. If they will paste it into a deck, give them paste-ready text. If they will forward it, give them an email-ready format."
+        },
+        {
+          "title": "What makes it feel trustworthy enough to act on?",
+          "body": "Internal trust is different from external trust. The user is not asking 'is this product credible.' They are asking 'if I act on this output, will I look stupid in front of my manager next week?' The three trust signals for internal AI tools are specificity (the output names real things, not generalities), restraint (the AI flags when it does not know rather than hallucinating), and source visibility (the user can see what the AI was working from)."
+        },
+        {
+          "title": "What happens after the output?",
+          "body": "When the user has their result, what do you want them to do next? Forward it? Use it in a meeting? Save it? Run it again with different inputs? The next step must be obvious. Internal tools that produce great output but leave the user unsure what to do with it die of confusion."
+        }
+      ],
+      "hmv": [
+        {
+          "dimension": "Humanics",
+          "techniques": [
+            "Colleague test — would the colleague three desks away complete the journey without you walking them through it?",
+            "Language test — read every label and button out loud. Does it sound like a real person at your company, or SaaS marketing copy?",
+            "Completion test — would a real colleague finish in their first attempt, or get stuck halfway and never come back?"
+          ]
+        },
+        {
+          "dimension": "Mechanics",
+          "techniques": [
+            "Real input test — run the tool with a real input from your actual work, not a perfect test input.",
+            "Edge case test — run an input it was not designed for. Does it fail gracefully or produce confidently wrong output?",
+            "Consistency test — run the same input twice. Same quality of output? Internal users will run it twice if they are not sure they trust it."
+          ]
+        },
+        {
+          "dimension": "Valuenomics",
+          "techniques": [
+            "First-glance test — look at the output for three seconds and look away. Could you describe it to your manager?",
+            "Case test — if a leader saw this output, would they immediately understand the time or quality lift it represents?",
+            "Forward test — would a real internal user forward this output, or hide that they used an AI tool to produce it?"
+          ]
+        }
+      ],
+      "prompts": [
+        {
+          "title": "Build the Core Tool",
+          "tool": "Claude",
+          "content": "I am a Builderator inside an SME building the core tool of a strategic initiative. I need you to build me a complete single-page HTML app.\n\nTool name: [from Question 2]\nOne-line description: [from Question 2]\nInitiative this tool belongs to: [from Session 1]\nInternal user: [from Session 1]\nFirst-impression feeling: [from Question 1]\nWhat the user inputs: [from Session 2]\nHow the user interacts: [from Question 3]\nWhat the output looks like: [from Question 4]\nWhat makes it trustworthy enough to act on: [from Question 5]\nWhat happens after the output: [from Question 6]\nSystem prompt for the logic: [from Session 2]\n\nBuild me a complete single-page HTML app. No external API calls. Everything runs in the browser. The design should feel professional and trustworthy — appropriate for a tool a colleague might forward to their manager. After you build it, explain each section in plain language so I understand exactly what you built and why. I will read it carefully and ask you to make specific changes."
+        },
+        {
+          "title": "Refine and Personalise",
+          "tool": "Claude",
+          "content": "Read the HTML app you just built. I want to make the following specific changes.\n\nChange 1: [specific change]\nChange 2: [specific change]\nChange 3: [specific change]\n\nMake these changes and show me the updated file. Explain what you changed and why the change improves the tool for my internal user inside my company."
+        }
+      ],
+      "build": [
+        {
+          "title": "Claude builds (15 min)",
+          "instructions": "Paste Prompt 1. Claude produces the complete HTML file with a plain-language explanation of every section. Read every section carefully. Do not rush. Understand what each part does before moving on."
+        },
+        {
+          "title": "Builderator directs (20 min)",
+          "instructions": "Identify two or three specific changes — not vague feedback. Specific changes that match how your colleagues actually work and what your company actually says. Paste Prompt 2. Claude updates the file. Review again."
+        },
+        {
+          "title": "Deploy (15 min)",
+          "instructions": "Go to netlify.com. Create a free account. Drag the HTML file into the browser. Netlify generates a live URL in two minutes. Open the URL on your phone. Test with one real input. Identify one thing that needs improving. Fix it. Redeploy."
+        }
+      ],
+      "test_output": [
+        {
+          "title": "The Live URL Test",
+          "description": "Does your tool have a live URL that works on a phone browser without any explanation from you?"
+        },
+        {
+          "title": "The Colleague Test",
+          "description": "Open the tool as if you have never seen it. Is it immediately obvious what to do without reading any instructions?"
+        },
+        {
+          "title": "The Real Input Test",
+          "description": "Run the tool with a real input from your actual work. Does the output serve a real internal user genuinely?"
+        },
+        {
+          "title": "The Trust Test",
+          "description": "Does the output look like something a colleague produced, or like raw AI output?"
+        },
+        {
+          "title": "The Forward Test",
+          "description": "Would your internal user feel comfortable forwarding this output to their manager or pasting it into a deck without hiding that AI was involved?"
+        }
+      ],
+      "break_after": true,
+      "break_label": "Coffee",
+      "break_duration_minutes": 15,
+      "break_note": "Stand up. Walk to a window. The next session is the launch page — start thinking about the first thing your colleague should feel when they land on your page."
+    },
+    {
+      "id": 4,
+      "number": 4,
+      "title": "Build the Internal Launch Page",
+      "day": 1,
+      "start_time": "14:45",
+      "end_time": "15:45",
+      "duration_minutes": 60,
+      "set_the_stage": "You have a working tool. It lives at a real URL. But right now, only you know it exists.\n\nA Builderator without an internal launch page is an operator dropping a Slack message and hoping. Most internal initiatives die at this exact moment — the build is real but the launch is a single sentence in a channel, and three days later nobody remembers it exists.\n\nYour launch page is a thirty-second conversation with a colleague who has never heard of this initiative. A conversation that has to answer three questions before they decide whether to click through to the tool.\n\nWhat is this initiative? Is this for me? What do I do next?\n\nIf your launch page answers those three questions clearly, the colleague clicks through and uses the tool. If it does not, they close the tab and the initiative dies on impact. You have sixty minutes to build that conversation.",
+      "questions": [
+        {
+          "title": "What is the one thing your launch page must make a colleague feel?",
+          "body": "Not what it must say. What it must make them feel. In the first three seconds before they have read a single word. Connect the feeling to the internal user portrait — relief, recognition, mild curiosity, a sense that someone in the company finally took this on."
+        },
+        {
+          "title": "What is the headline?",
+          "body": "One line. Maximum ten words. Initiative headlines describe the programme. User headlines describe what changes for the colleague. Which type is yours? If it is an initiative headline, rewrite it as a user headline. 'Grassroots Innovation Programme' is an initiative headline. 'Get your idea in front of leadership in two weeks' is a user headline."
+        },
+        {
+          "title": "Why would your colleague hesitate?",
+          "body": "Before clicking and trying the tool, what is the one thing that makes them pause? The three most common hesitations for internal AI tools are whether it is officially sanctioned, whether the output can be trusted in front of their manager, and whether using it will create more work than it saves."
+        },
+        {
+          "title": "What is the one action you want them to take?",
+          "body": "Not two actions. Not a menu of options. One. What is the single most important thing a colleague should do? Almost always, the answer is try the tool with one real input."
+        },
+        {
+          "title": "Why should a colleague trust this is real?",
+          "body": "Internal trust comes from sponsorship, specificity, and clarity. Sponsorship — does the page indicate this is sanctioned, supported, or at least visible to leadership? Specificity — does the page name the specific function, role, or workflow this is for? Clarity — is the language plain and the next step obvious? Generic claims create generic trust which is no trust at all."
+        },
+        {
+          "title": "How does it work in three steps?",
+          "body": "Describe how the tool works in three steps. One sentence each. Simple enough that a busy colleague can understand it immediately. Every piece of jargon is a barrier — and your colleagues already use enough jargon at work without you adding more."
+        }
+      ],
+      "hmv": [
+        {
+          "dimension": "Humanics",
+          "techniques": [
+            "Pronoun test — count 'you' versus 'I' or 'we'. You should appear far more.",
+            "Recognition test — would your internal user read the headline and think 'this is for me, in my role'?",
+            "Conversation test — read the copy out loud as if speaking to your colleague. Colleague voice or corporate intranet?"
+          ]
+        },
+        {
+          "dimension": "Mechanics",
+          "techniques": [
+            "Accuracy — does the page describe what the tool actually does, not what you wish it did or plan in v2?",
+            "Clarity — does 'how it works' describe what the AI does in plain language, including its limits?",
+            "Expectation — after reading, does the colleague have an accurate expectation of what will happen?"
+          ]
+        },
+        {
+          "dimension": "Valuenomics",
+          "techniques": [
+            "Thirty-second test — after thirty seconds, can a colleague say what the initiative is, who it is for, what the tool does?",
+            "Specificity — does the page name a specific outcome, not 'improve productivity' but 'save thirty minutes of QBR prep per customer'?",
+            "Comparison — does the page help the colleague understand why this is better than what they currently do?"
+          ]
+        }
+      ],
+      "prompts": [
+        {
+          "title": "Write the Launch Page Copy",
+          "tool": "Claude",
+          "content": "I am a Builderator inside an SME launching an internal initiative with a working tool. Write the copy for six sections of an internal launch page. Final words ready to paste. No explanations. Just the best version.\n\nMy initiative: [from Session 1]\nMy core tool: [one sentence from Session 2]\nMy internal user: [from Session 1]\nMy value to the org: [from Session 1]\nThe feeling the page must create: [from Question 1]\nMy tool's URL: [Netlify URL]\nMy colleague's primary hesitation: [from Question 3]\nSponsorship signal I can credibly use: [name of sponsor or function backing this]\n\nSection 1 — Headline. One line. Maximum ten words. A user headline, not an initiative headline.\nSection 2 — Subheadline. Two sentences. Who this is for and what specifically changes for them.\nSection 3 — How it works. Three steps. One sentence each. No jargon.\nSection 4 — Trust statement. Directly addresses the primary hesitation. Honest. Specific. Names the sponsor or function backing this where credible.\nSection 5 — Call to action. One button label that describes the action and hints at value.\nSection 6 — Credibility line. One sentence. Why I am the right person to have built this and what's in scope versus future versions."
+        },
+        {
+          "title": "Test and Refine",
+          "tool": "Claude",
+          "content": "Read the copy you just wrote as if you are my colleague seeing this for the first time, between two meetings, with twenty seconds of attention.\n\nMy colleague is: [role and context]\n\nAsk yourself three questions.\n\nDoes the headline stop me and make me think this is for me?\nDoes the copy speak to me directly or could it apply to anyone in the company?\nAfter reading everything, do I know exactly what to do next and do I want to do it?\n\nFor any section where the answer is no, rewrite that section. Tell me what you changed and why."
+        }
+      ],
+      "build": [
+        {
+          "title": "Claude writes the copy (10 min)",
+          "instructions": "Paste Prompt 1. Read every section. Identify any section that feels generic, off-tone, or not-like-our-company."
+        },
+        {
+          "title": "Claude tests and refines (10 min)",
+          "instructions": "Paste Prompt 2. Claude reads as the colleague and rewrites weak sections. Make one final edit, particularly to anything that sounds like SaaS marketing instead of internal communication."
+        },
+        {
+          "title": "Build on Carrd (40 min)",
+          "instructions": "Go to carrd.co. Open a blank canvas. Build section by section. Paste each piece of Claude's copy. Link the CTA button to the tool URL. Add one visual — a screenshot of the tool running with a real input. Publish. Test on phone. Fix one thing. Republish."
+        }
+      ],
+      "test_output": [
+        {
+          "title": "The Thirty-Second Test",
+          "description": "Show the page to someone in the room. After thirty seconds ask what does this initiative do and who is it for? Did they answer accurately?"
+        },
+        {
+          "title": "The Pronoun Test",
+          "description": "Count 'you' versus 'I' or 'we'. You should appear significantly more. If not, rewrite toward the colleague."
+        },
+        {
+          "title": "The Hesitation Test",
+          "description": "Does the page directly address the primary hesitation from Question 3?"
+        },
+        {
+          "title": "The Link Test",
+          "description": "Does the CTA button work and link to the correct tool URL? Open on a phone and tap the button."
+        },
+        {
+          "title": "The Sanction Test",
+          "description": "After reading the page, would a colleague feel comfortable trying the tool, or would they suspect this is a personal side project they should not engage with on company time?"
+        }
+      ],
+      "break_after": false
+    },
+    {
+      "id": 5,
+      "number": 5,
+      "title": "Build the Help Layer",
+      "day": 1,
+      "start_time": "15:45",
+      "end_time": "16:45",
+      "duration_minutes": 60,
+      "set_the_stage": "You have a tool. You have a launch page. But not every colleague who lands on your page is ready to try the tool immediately. Some have questions. Some have doubts. Some want to know whether their manager already knows about this.\n\nA help layer is your always-on conversation partner. It handles the questions while you sleep, while you are in your day job, while you are not on Slack. It addresses doubts before they become reasons to close the tab. It guides the curious colleague toward becoming an actual user — and it stops you from becoming the personal support desk for everyone in the company who has a question about your initiative.\n\nA good help layer does not feel like a robot. It feels like a knowledgeable colleague who genuinely understands the initiative and cares whether the visitor gets what they need.",
+      "questions": [
+        {
+          "title": "What are the three questions your colleague most wants answered?",
+          "body": "Before they try the tool, before they tell their manager, before they share the link, what three questions are sitting in their head? The most common are: is this officially sanctioned, can I trust the output, and what happens to the data I paste in?"
+        },
+        {
+          "title": "What is the personality of your help layer in three words?",
+          "body": "Direct. Generous. Honest. Or — efficient, sanctioned, plain. Or — warm, knowledgeable, careful. Pick three words and write them down. Every response from the help layer must be consistent with those three words."
+        },
+        {
+          "title": "What does the help layer say when it does not know?",
+          "body": "The single most important behaviour. When asked something it was not designed to handle, what does it say? 'I do not know — please reach out to [name] in [function]' is far better than a wrong answer that damages trust and propagates inside the company."
+        },
+        {
+          "title": "How does every conversation end?",
+          "body": "Every conversation, regardless of which path the colleague took, ends with one specific invitation. Try the tool with one real input. Forward the page to a colleague who would benefit. Reach out to you with a specific question. Pick the one ending and engineer every path toward it."
+        },
+        {
+          "title": "What does the help layer never say?",
+          "body": "Three things. The help layer must never make policy commitments on behalf of the company. Must never name individual employees in negative ways. Must never produce confidence about something it cannot actually verify. Pick the three relevant to your initiative and write them down explicitly."
+        }
+      ],
+      "hmv": [
+        {
+          "dimension": "Humanics",
+          "techniques": [
+            "Colleague test — read every response out loud. Knowledgeable colleague, or chatbot trained on a marketing site?",
+            "Honesty test — when the help layer does not know, does it say so without padding?",
+            "Respect test — does it respect the colleague's time and treat them as a competent professional?"
+          ]
+        },
+        {
+          "dimension": "Mechanics",
+          "techniques": [
+            "Path test — every reasonable conversation reaches a useful outcome, not a dead end.",
+            "Edge case test — what happens when a colleague asks something politically sensitive about the initiative?",
+            "Loop test — can the colleague ask a follow-up question after receiving an answer?"
+          ]
+        },
+        {
+          "dimension": "Valuenomics",
+          "techniques": [
+            "Conversion — does every conversation end with a genuine invitation to try the tool, forward the page, or reach out?",
+            "Qualification — does the help layer help colleagues understand if this initiative is for them or not?",
+            "Trust — after a conversation, does the colleague trust the initiative more than before, or less?"
+          ]
+        }
+      ],
+      "prompts": [
+        {
+          "title": "Design the Conversation Flow",
+          "tool": "Claude",
+          "content": "I am building a help layer for the internal launch page of my strategic initiative. I am using Voiceflow. Design the complete conversation flow.\n\nMy initiative: [one sentence]\nMy core tool: [one sentence]\nMy internal user: [role and context]\nMy company size and culture: [headcount and brief tone description]\nHelp-layer personality in three words: [from Question 2]\nThe three questions my colleagues most want answered: [from Question 1]\nWhat the help layer never says: [from Question 5]\nHow every conversation ends: [from Question 4]\nWhat happens when the help layer does not know: [from Question 3]\n\nDesign the complete conversation flow structured as follows.\n\nOpening message — acknowledges what the colleague is here for, invites a specific response.\nThree question-answer pairs — for each of the three colleague questions. Each answer honest, specific, brief, written in colleague-voice not chatbot-voice.\nOne edge case — a question the help layer was not designed to handle, perhaps something politically sensitive about the initiative. Show the honest response that points to a human.\nClosing invitation — the natural, genuine invitation to try the tool that ends every conversation.\n\nFormat as a clear conversation script I can build in Voiceflow."
+        },
+        {
+          "title": "Test the Conversation",
+          "tool": "Claude",
+          "content": "Read the conversation flow you just designed. Now play the role of three different colleagues.\n\nColleague 1 — a curious first-time visitor who has one specific question about whether this initiative applies to their function.\nColleague 2 — a sceptical visitor who pushes back on one of the answers and asks a follow-up question the help layer was not designed for.\nColleague 3 — a visitor who is wondering whether their manager has signed off on them using this and is hesitant for political reasons.\n\nFor each colleague, tell me honestly whether the help layer served them well. Where does it break? Where does it lose them? What needs to change?"
+        }
+      ],
+      "build": [
+        {
+          "title": "Claude designs the conversation (15 min)",
+          "instructions": "Paste Prompt 1. Read the full script out loud quietly — fastest way to identify unnatural language. Then paste Prompt 2. Claude tests against three colleague types and identifies weaknesses."
+        },
+        {
+          "title": "Build in Voiceflow (35 min)",
+          "instructions": "Go to voiceflow.com. Open a new project. Build the conversation block by block following Claude's script. Opening message block. Three question buttons. Three response blocks. Edge case response block. Closing invitation block. Publish. Get embed code. Paste into the Carrd page."
+        },
+        {
+          "title": "Test and refine (10 min)",
+          "instructions": "Open the launch page on phone. The help layer appears. Go through every path as a real colleague would. Fix one thing in Voiceflow. Republish. Reload page. Test again."
+        }
+      ],
+      "test_output": [
+        {
+          "title": "The Live Test",
+          "description": "Open the help layer on the launch page. Go through every conversation path. Does every path reach the closing invitation without hitting a dead end?"
+        },
+        {
+          "title": "The Natural Language Test",
+          "description": "Read every response out loud. Does every response sound like a real, knowledgeable colleague?"
+        },
+        {
+          "title": "The Edge Case Test",
+          "description": "Type something completely unexpected — including something mildly political about your initiative's standing in the company. Does it respond gracefully and point to a human where appropriate?"
+        },
+        {
+          "title": "The Trust Test",
+          "description": "Ask someone in the room to try the help layer. After the conversation, do they trust the initiative more than before?"
+        },
+        {
+          "title": "The Conversion Test",
+          "description": "Does every conversation, regardless of which path, end with a genuine invitation to try the tool?"
+        }
+      ],
+      "break_after": false
+    },
+    {
+      "id": 6,
+      "number": 6,
+      "title": "Build the Audio Brief",
+      "day": 2,
+      "start_time": "10:30",
+      "end_time": "11:00",
+      "duration_minutes": 30,
+      "set_the_stage": "Last night you wrote something real. A script that captures your problem, your initiative, and your invitation in sixty seconds. This morning you give it a voice.\n\nElevenLabs is one of the most remarkable tools in the no-code AI landscape. You paste in text. You choose a voice. You press generate. In thirty seconds you have professional-quality audio that sounds like it was recorded in a studio.\n\nInternal initiatives almost never have audio. A short voice brief makes your launch land differently from every other Slack-message-and-deck launch your colleagues are used to ignoring. It makes the initiative feel like something a real person built, with conviction, and not like a corporate communications drop.\n\nTen minutes to generate. Ten minutes to embed. Ten minutes to test. By 11am your launch page has a voice that none of your colleagues' other internal initiatives have.",
+      "questions": [
+        {
+          "title": "What does your initiative sound like?",
+          "body": "Name a public figure, a podcaster, a presenter, or a type of voice that matches how you want the initiative to sound. Calm authority. Friendly colleague. Energetic operator. Trusted senior leader. This primes your ear before opening ElevenLabs."
+        },
+        {
+          "title": "Where on your launch page does the audio live?",
+          "body": "One specific place. The most effective placements are below the headline as an immediate human signal that this is real, or below the 'how it works' section as a confirmation of what the visitor just read."
+        }
+      ],
+      "hmv": [
+        {
+          "dimension": "Humanics",
+          "techniques": [
+            "Spoken test — read the script out loud before generating. Anything unnatural to say will sound unnatural when generated.",
+            "Breath test — are there natural pause points? Audio without breathing space is exhausting and signals corporate-comms.",
+            "Specificity — does the audio describe the specific problem and the specific colleague, not abstract organisational benefits?"
+          ]
+        },
+        {
+          "dimension": "Mechanics",
+          "techniques": [
+            "Length — read at a natural pace. Should land between 55–65 seconds.",
+            "Clarity — any words that will sound unclear when spoken? Replace with clearer alternatives.",
+            "ElevenLabs — listen to the first five seconds. If it does not sound natural, try a different voice."
+          ]
+        },
+        {
+          "dimension": "Valuenomics",
+          "techniques": [
+            "Placement — launch page only, or also in the launch email and the Slack post?",
+            "Memorability — after listening once, can the listener remember the problem, the initiative, and where to find the tool?",
+            "Shareability — would a colleague who heard this and found it interesting send it to a peer?"
+          ]
+        }
+      ],
+      "prompts": [
+        {
+          "title": "Write the Audio Script (Overnight)",
+          "tool": "Claude",
+          "content": "I am a Builderator writing a sixty-second audio brief for the launch of a strategic initiative inside my SME. This is the voice of my initiative.\n\nMy initiative: [one sentence]\nMy core tool: [one sentence]\nMy internal user: [role and context]\nMy value to the org: [from Session 1]\nWhose voice this is: [Builderator, initiative, or sponsor]\nThe problem in my own words: [spoken aloud]\nHow I explained it to a colleague: [casual explanation]\nThe one thing I want the listener to do: [one action]\nThe feeling I want them to carry: [one emotion]\n\nWrite me a sixty-second audio script structured in three beats.\n\nBeat 1 — fifteen seconds. The problem. In the words my colleagues would actually use, including the unspoken frustration. Specific. Felt. Not generic.\n\nBeat 2 — thirty seconds. The initiative and what it does. Conversational. Clear. No deck-speak. Names the tool by name and where to find it.\n\nBeat 3 — fifteen seconds. The invitation. Natural. Specific. Names one action.\n\nWrite for the ear, not for the page. Short sentences. Conversational rhythm. Natural pause points marked with [pause]. After the script, tell me the total word count and approximate speaking time at a natural pace.",
+          "facilitator_instruction": "This prompt is given as an overnight assignment at the end of Day 1. Participants arrive Day 2 with a final script. This session focuses on generation and embedding."
+        }
+      ],
+      "build": [
+        {
+          "title": "Generate on ElevenLabs (10 min)",
+          "instructions": "Go to elevenlabs.io. Create a free account or log in. Go to Text to Speech. Paste the script. Browse the voice library. Select a voice matching the feeling from Question 1. Generate. Listen to the full sixty seconds. Identify one moment that sounds unnatural. Edit that moment. Regenerate. Download the MP3 file."
+        },
+        {
+          "title": "Embed on launch page (10 min)",
+          "instructions": "Go to your Carrd page. Open the editor. Add an audio element at the placement identified in Question 2. Upload the MP3. Set it to play on click, not autoplay. Add a one-line label above it: 'Hear what this is and why now. Sixty seconds.' Publish the updated page."
+        },
+        {
+          "title": "Test (10 min)",
+          "instructions": "Open the page on phone. Navigate to the audio element. Press play. Listen as a colleague would. Identify one moment where attention drifts. Edit that moment. Regenerate. Re-embed. Test again."
+        }
+      ],
+      "test_output": [
+        {
+          "title": "The Natural Speech Test",
+          "description": "Listen to the entire sixty seconds without reading the script. Does every sentence sound like something a real person would genuinely say?"
+        },
+        {
+          "title": "The Timing Test",
+          "description": "Does the audio land between 55–65 seconds at a natural listening pace?"
+        },
+        {
+          "title": "The Live Embed Test",
+          "description": "Open the page on a phone. Navigate to the audio element. Does it play when clicked?"
+        },
+        {
+          "title": "The Retention Test",
+          "description": "After listening once, can you name the problem, the initiative, and the next step without looking at the script?"
+        },
+        {
+          "title": "The Colleague Test",
+          "description": "Play the audio to someone in the room who has not heard it before. After listening, ask what does this initiative do and who is it for? If they answer accurately, pass."
+        }
+      ],
+      "break_after": false
+    },
+    {
+      "id": 7,
+      "number": 7,
+      "title": "Build the Explainer Video",
+      "day": 2,
+      "start_time": "11:00",
+      "end_time": "12:00",
+      "duration_minutes": 60,
+      "set_the_stage": "You have a tool. A page. A help layer. A voice. Now you need video.\n\nText tells someone what your initiative is. Audio lets them hear conviction. Video shows them the tool working in real time. No description. No imagination required. They see it happen. They see what their work could look like.\n\nA ninety-second screen recording of your tool doing its job, with you narrating over it, is the most powerful piece of content you will produce in this workshop. It travels. People share videos. A demo video is what gets your initiative discussed in someone else's 1:1, in a leadership meeting, in a Slack channel two functions over.\n\nProduction quality does not matter. What matters is authenticity. A polished corporate video creates distance. A real Builderator showing a real tool doing something genuinely useful for a real workflow creates connection — and credibility.",
+      "questions": [
+        {
+          "title": "What is the most impressive moment in your tool?",
+          "body": "If you could show a sceptical colleague one thing, what would it be? The most impressive moment is almost never the homepage of the tool. It is the output. The moment the result appears. That moment is the centrepiece of the video."
+        },
+        {
+          "title": "What does the viewer need to believe before they see that moment?",
+          "body": "Before the impressive moment lands, what does the viewer need to understand or feel? The setup is showing the viewer that the problem is real, the current way of doing this is painful or slow, and what they are about to see addresses both. A magic trick without setup is just a trick. With setup, it is a revelation."
+        },
+        {
+          "title": "What do you say while the screen is showing?",
+          "body": "Not a script yet. Just the feeling. Excited? Calm and confident? Quietly proud? Conversational? The tone of narration should match what your colleague needs to feel to trust what they are seeing — and to want to try it themselves."
+        },
+        {
+          "title": "What is the one sentence that describes the problem?",
+          "body": "Say it out loud. Right now. The problem your initiative addresses in one sentence spoken the way you would say it to a colleague at lunch. This sentence opens the video. It must be said, not read. The viewer hears immediately whether the narrator genuinely understands the problem."
+        },
+        {
+          "title": "Where does this video live after you record it?",
+          "body": "Not just the launch page. Where else? In the email to your sponsor? In the Slack channel for your function? Pinned in the cross-functional channel where this initiative would matter? Posted on LinkedIn for external credibility, with the specific colleagues you want to see it in mind?"
+        },
+        {
+          "title": "What do you want the viewer to do in the thirty seconds after the video ends?",
+          "body": "Not eventually. In the thirty seconds immediately after, while the impression is still fresh, what one action do you want them to take? Open the tool. Forward the link. Add it to their next 1:1 agenda. Reach out to you with a specific use case."
+        }
+      ],
+      "hmv": [
+        {
+          "dimension": "Humanics",
+          "techniques": [
+            "Authenticity — watch the video back with the sound off. Does the narrator look like someone who built the tool themselves?",
+            "Pacing — is the narration rushing? Slow down. Pause after the impressive moment. Let the viewer absorb it.",
+            "Specificity — does the video show a real input from a real workflow, even if it is the Builderator's own?"
+          ]
+        },
+        {
+          "dimension": "Mechanics",
+          "techniques": [
+            "Clarity — is the text on screen large enough to read on a phone? Zoom the browser to 125% before recording.",
+            "Reliability — run through the demo once before recording. Make sure the tool works exactly as expected.",
+            "Distraction — clean screen, notifications off, Slack closed, browser tabs minimised, no other people's names visible in test data."
+          ]
+        },
+        {
+          "dimension": "Valuenomics",
+          "techniques": [
+            "Show-not-tell — does the video spend more time showing the tool working than talking about it?",
+            "Outcome — does the video show the output in enough detail that the viewer can evaluate its quality and imagine using it?",
+            "Action — after watching, is the next step obvious and accessible?"
+          ]
+        }
+      ],
+      "prompts": [
+        {
+          "title": "Write the Narration Script",
+          "tool": "Claude",
+          "content": "I am recording a ninety-second screen recording demo of the core tool of my initiative, using Loom. Write me the narration script.\n\nMy initiative: [one sentence]\nMy core tool: [one sentence]\nMy internal user: [role and context]\nThe problem in one sentence spoken: [from Question 4]\nThe most impressive moment in my tool: [from Question 1]\nWhat the viewer needs to believe before that moment: [from Question 2]\nNarration tone: [from Question 3]\nWhat I want the viewer to do immediately after watching: [from Question 6]\nWhere the link to my tool lives: [page URL]\n\nWrite the narration script in three beats.\n\nBeat 1 — thirty seconds. The problem. Spoken in the words my colleagues would use. Sets up the impressive moment.\n\nBeat 2 — forty-five seconds. The demonstration. What I am showing on screen. Written so it sounds natural when spoken over a live screen recording.\n\nBeat 3 — fifteen seconds. The invitation. Natural. Specific. Names the one action and where to take it.\n\nMark each beat clearly. Mark any moments where I should pause and let the screen speak for itself. After the script, give me five specific things to show on screen during Beat 2 in the exact order to show them."
+        }
+      ],
+      "build": [
+        {
+          "title": "Prepare (10 min)",
+          "instructions": "Read the script out loud twice. Edit anything unnatural to speak. Do not memorise — keep the script visible while recording. Clean the browser. Close unnecessary tabs. Zoom to 125%. Notifications off. Sign out of any Slack on the recording screen. Open the tool. Prepare a real input from your actual work. Open Loom. Set to record screen and camera simultaneously."
+        },
+        {
+          "title": "Record (20 min)",
+          "instructions": "One take. Not perfect. Real. Speak from the script but do not read word for word. Pause after the impressive moment. Let the output sit on screen for three full seconds in silence. That silence is more powerful than anything the narrator could say. End with the page URL spoken out loud."
+        },
+        {
+          "title": "Post and embed (30 min)",
+          "instructions": "Loom generates a shareable link immediately. Post to your function's Slack channel with a one-paragraph caption — the problem in two sentences and the invitation in one. Take the embed code from Loom and embed the video on the Carrd launch page below 'how it works'. Open the page on phone. Confirm the video works. Optional but high-leverage — also post to LinkedIn for external visibility."
+        }
+      ],
+      "test_output": [
+        {
+          "title": "The Live Post Test",
+          "description": "Is the video posted in your function's Slack channel (or wherever your colleagues actually are) with a caption? Open the channel and confirm the post is live and the video plays."
+        },
+        {
+          "title": "The Embed Test",
+          "description": "Open the launch page on a phone. Navigate to the video. Does it play without needing to leave the page?"
+        },
+        {
+          "title": "The Impressive Moment Test",
+          "description": "Watch the video back. Does the impressive moment appear clearly on screen? Does the narrator pause long enough for the viewer to absorb it?"
+        },
+        {
+          "title": "The Colleague Test",
+          "description": "Show the video to someone in the room who has not seen the tool. After watching, ask what does this initiative do and what would you do next? If they answer both accurately, pass."
+        },
+        {
+          "title": "The Action Test",
+          "description": "After the video ends, is the next step obvious and accessible to a colleague watching on a phone between meetings?"
+        }
+      ],
+      "break_after": true,
+      "break_label": "Lunch & Validation",
+      "break_duration_minutes": 60,
+      "break_note": "Use this hour for your validation conversation. One real internal stakeholder. Not a peer Builderator. Someone who genuinely has the problem and has no reason to soften feedback. Five questions ready on your phone. Take verbatim notes."
+    },
+    {
+      "id": 8,
+      "number": 8,
+      "title": "Build the Workflow Agent",
+      "day": 2,
+      "start_time": "13:00",
+      "end_time": "13:45",
+      "duration_minutes": 45,
+      "set_the_stage": "Look at everything you have built. A tool that works. A page that explains it. A help layer that handles questions. A voice that introduces it. A video that shows it.\n\nAll of it is visible. All of it requires a colleague to find it, open it, and engage with it. Now you build the invisible layer. The thing that runs while you sleep. While you are in meetings. While you are on holiday. While the initiative quietly compounds into the way your team works.\n\nThat is what an agent is. Not a chatbot. Not a tool feature. An automated workflow that takes one trigger and produces one action, reliably, repeatedly, without you.\n\nOne trigger. One action. Real and live before this session ends. For some Builderators this is supporting infrastructure that lets the initiative scale without your hands on it. For others — those whose initiatives are fundamentally about automating a recurring process — this agent IS the central artefact, and the HTML tool earlier was the manual interface that lets the team monitor or override it.",
+      "questions": [
+        {
+          "title": "What is the one thing you would most want to happen automatically in your initiative?",
+          "body": "Not a list. One thing. The thing that, if it happened without you every time, would make the biggest difference to whether the initiative actually runs week after week. Two categories: colleague-facing automations that improve the experience for the person engaging with the initiative, and Builderator-facing automations that make your life easier and let you focus on driving adoption rather than chasing."
+        },
+        {
+          "title": "What triggers it?",
+          "body": "Something has to start the automation. The most reliable triggers for SME builds are a form submission (someone uses your tool), a scheduled time (every Monday at 8am), a new row in a Google Sheet, a new email in a shared inbox, or a webhook. Which trigger makes sense for your specific automation?"
+        },
+        {
+          "title": "What is the one action that follows?",
+          "body": "When the trigger fires, what happens? One action. Not a sequence of five steps. The most common mistake is making it too complex. A trigger that fires and sends one personalised email is powerful. One trigger and one action. That is the brief."
+        },
+        {
+          "title": "Who benefits from this automation and how?",
+          "body": "When this agent runs, who notices? Who benefits? What changes for them? The best automations are invisible to the colleague in the right way. They do not think 'this was automated.' They think 'that was fast' or 'that felt personal.'"
+        },
+        {
+          "title": "How do you know it is working?",
+          "body": "After you build this and turn it on, how do you know it fired? The simplest confirmation is a notification to yourself. An email. A Slack DM. You cannot trust an agent you cannot verify, and a silent agent that has been broken for a week is the fastest way to lose internal credibility for your initiative."
+        }
+      ],
+      "hmv": [
+        {
+          "dimension": "Humanics",
+          "techniques": [
+            "Personal — does the automated message feel written for this specific colleague or like a mass email with a name token inserted?",
+            "Timing — does the agent fire at the right moment in the colleague's day, not at 3am or during their All Hands?",
+            "Tone — does the automated message sound like the same person who wrote the launch page and narrated the video?"
+          ]
+        },
+        {
+          "dimension": "Mechanics",
+          "techniques": [
+            "Reliability — test the trigger three times before turning the agent on for real.",
+            "Failure — what happens when the trigger fires with incomplete data? Does the agent fail loud (so you notice) or silent?",
+            "Permission — does the agent have the correct permissions without violating any company-data norms?"
+          ]
+        },
+        {
+          "dimension": "Valuenomics",
+          "techniques": [
+            "Time — how much time does this save per week across the team? Less than thirty minutes a week and it is a nice-to-have.",
+            "Compounding — does this become more valuable as the initiative scales?",
+            "Leverage — does this free you to do something more valuable as the Builderator driving the initiative?"
+          ]
+        }
+      ],
+      "prompts": [
+        {
+          "title": "Design the Agent",
+          "tool": "Claude",
+          "content": "I am a Builderator inside an SME building my first automated agent for my strategic initiative, using Make.com. Help me design a simple, reliable one-trigger one-action automation.\n\nMy initiative: [one sentence]\nMy core tool URL: [from Session 3]\nMy launch page URL: [from Session 4]\n\nThe automation I want to build: [from Question 1]\nThe trigger: [from Question 2]\nThe action: [from Question 3]\nWho benefits and how: [from Question 4]\nHow I know it is working: [from Question 5]\n\nDo three things.\n\nFirst, tell me honestly whether this is achievable in Make.com on a free account in thirty minutes. If not, suggest a simpler version that delivers 80% of the value.\n\nSecond, give me a step-by-step description of how to build this in Make.com. What modules to use. What to connect. What to configure. Simple enough for someone who has never used Make.com.\n\nThird, write the content of the automated action. If it is an email, write the subject line and body. Write it so it sounds personal and human and like a colleague. Not automated. Not templated. Aware that a real person at my company will read it."
+        }
+      ],
+      "build": [
+        {
+          "title": "Claude designs the automation (10 min)",
+          "instructions": "Paste the prompt. Read the response carefully. Two things to check immediately: is this achievable on Make.com free tier in thirty minutes, and is the automated message genuinely personal and colleague-shaped?"
+        },
+        {
+          "title": "Build in Make.com (25 min)",
+          "instructions": "Go to make.com. Create a free account or log in. Create a new scenario. Follow Claude's step-by-step. One module at a time. Trigger configured. Action connected. Test using Make.com's built-in test function before going live. Run the test three times. Confirm the action fires correctly each time. Turn the scenario on."
+        },
+        {
+          "title": "Confirm and verify (10 min)",
+          "instructions": "Trigger the automation manually one final time. Confirm the action completed. Confirm the confirmation notification reached you. Take a screenshot of the Make.com scenario showing it is active."
+        }
+      ],
+      "test_output": [
+        {
+          "title": "The Live Test",
+          "description": "Trigger the automation manually right now. Does the action complete within the expected timeframe?"
+        },
+        {
+          "title": "The Personal Test",
+          "description": "Read the automated message or action output. Does it feel written for a specific colleague at your company or like mass communication?"
+        },
+        {
+          "title": "The Reliability Test",
+          "description": "Trigger the automation three times in a row. Does it fire correctly all three times?"
+        },
+        {
+          "title": "The Verification Test",
+          "description": "Do you receive confirmation when the agent fires? Can you tell from your own inbox or Slack that the automation ran?"
+        },
+        {
+          "title": "The Value Test",
+          "description": "What specifically changes for a real person every time this agent fires? Can you name it in one sentence?"
+        }
+      ],
+      "break_after": false
+    },
+    {
+      "id": 9,
+      "number": 9,
+      "title": "Validation Synthesis",
+      "day": 2,
+      "start_time": "13:45",
+      "end_time": "14:00",
+      "duration_minutes": 15,
+      "set_the_stage": "You have built six things. Every single one was built on assumptions. You assumed you understood the problem your colleague faces. You assumed your internal user would find the tool clear and trustworthy. You assumed the output was useful enough to act on. You assumed the language sounded like your company.\n\nSome of those assumptions are right. Some are wrong.\n\nDuring lunch you had one conversation with one real internal stakeholder. Not a peer Builderator who wants to support you. Not your manager who is being polite because they sponsored this. Someone who genuinely has the problem your initiative addresses and has no reason to be kind.\n\nYou wrote down what they said in their words, not yours. You listened without defending. Now you synthesise — what did this conversation reveal that you did not know before?",
+      "questions": [
+        {
+          "title": "What is the most surprising thing you heard?",
+          "body": "Write it down before sharing. The surprises across the cohort are the most important learnings of the entire program. Three people share."
+        },
+        {
+          "title": "What did your validation target say in their exact words?",
+          "body": "Three specific words or phrases your validation target used to describe the problem that were different from the words you have been using. These words belong in your launch page copy, your help layer, and your video."
+        },
+        {
+          "title": "What are you changing because of this conversation?",
+          "body": "Three specific changes you will make based on what you heard, prioritised. Not 'more features.' Specific. The more specific the change, the more actionable the Build Month."
+        }
+      ],
+      "hmv": [
+        {
+          "dimension": "Humanics",
+          "techniques": [
+            "Listen to the language. Their exact words are your next iteration brief.",
+            "Watch for the emotional response. Did they lean in? Did they look surprised?",
+            "Ask about the experience not the tool. 'Walk me through what happened' produces more than 'what do you think?'"
+          ]
+        },
+        {
+          "dimension": "Mechanics",
+          "techniques": [
+            "What did this reveal about how the tool actually works for someone other than you, versus how you assumed it worked?",
+            "Where did they hesitate? Where did they get stuck? Where did the experience break?",
+            "Show first, explain second. Did you learn more from their reaction or from your explanation?"
+          ]
+        },
+        {
+          "dimension": "Valuenomics",
+          "techniques": [
+            "Current cost — how do they currently handle this? How long does it take? What does it cost the team?",
+            "Output value — after they saw the output, what would they actually do with it tomorrow?",
+            "Adoption answer — did they say they would actually use this if rolled out next week?"
+          ]
+        }
+      ],
+      "prompts": [
+        {
+          "title": "Synthesise What You Heard",
+          "tool": "Claude",
+          "content": "I just had a validation conversation with an internal colleague. Here is what I heard.\n\nWhat they said about the problem: [verbatim notes]\nWhat they said about the current way of doing this: [verbatim notes]\nTheir reaction when they saw the tool: [what they did and said]\nWhat they said about the output: [verbatim notes]\nTheir answer to the adoption question: [verbatim notes]\nThe one thing they said that I did not expect: [verbatim notes]\n\nAnalyse what I heard through three lenses.\n\nHumanics — what did this conversation reveal about my internal user that I did not know before?\n\nMechanics — what did this reveal about how the tool actually works for someone other than me, versus how I assumed it worked?\n\nValuenomics — what did this reveal about the real value of the initiative inside my company, and the gap between intended and felt value?\n\nEnd with three specific changes I should make based on what I heard, prioritised."
+        }
+      ],
+      "build": [
+        {
+          "title": "Run the synthesis prompt",
+          "instructions": "Paste your verbatim notes into Claude with the synthesis prompt. Read the analysis carefully — particularly the gap between intended and felt value."
+        },
+        {
+          "title": "Map the cohort patterns",
+          "instructions": "Three people share each question. The facilitator names patterns across the cohort — what multiple Builderators heard about trust, output quality, adoption barriers. These patterns are the most important learnings of the program."
+        }
+      ],
+      "test_output": [
+        {
+          "title": "The Conversation Test",
+          "description": "Did you have a real conversation with a real colleague who genuinely has the problem? Not a peer Builderator. Someone with no personal reason to soften feedback."
+        },
+        {
+          "title": "The Language Test",
+          "description": "Can you name three specific words or phrases your validation target used that were different from the words you have been using?"
+        },
+        {
+          "title": "The Surprise Test",
+          "description": "Can you name one specific thing your validation target said that genuinely surprised you? If no, the conversation was too comfortable."
+        },
+        {
+          "title": "The Adoption Test",
+          "description": "Did you ask whether they would actually use this in their work next week? What did they say?"
+        },
+        {
+          "title": "The Change Test",
+          "description": "Can you name three specific changes you will make based on what you heard?"
+        }
+      ],
+      "break_after": true,
+      "break_label": "Coffee",
+      "break_duration_minutes": 15,
+      "break_note": "Stand up. Walk somewhere with a window. Demo Day starts in fifteen minutes. Use this break to read your validation notes one more time and pick the one phrase you will quote in your demo close."
+    },
+    {
+      "id": 10,
+      "number": 10,
+      "title": "Internal Demo Day",
+      "day": 2,
+      "start_time": "14:15",
+      "end_time": "15:45",
+      "duration_minutes": 90,
+      "set_the_stage": "Look at this room. It looks different from this morning. That is intentional.\n\nWhat is about to happen is different from everything that came before it. For the last two days you have been building. Heads down. Focused on the artefacts. Now you shift. From Builderator to advocate.\n\nA Builderator does not just build things. A Builderator can stand in front of people who do not know the initiative, who have not been on this journey, who have no reason to be impressed, and make them understand in four minutes why what they built matters and why their company should care.\n\nThat is what Demo Day is. Not a show and tell. Not a status update. A demonstration to real human beings that something real exists, that it creates real value for a specific colleague, and that it is ready to roll into the next four weeks of adoption work.\n\nThe cohort in this room is your first real audience. You have fifteen minutes to prepare. Then you present.",
+      "questions": [
+        {
+          "title": "What is the problem in one sentence — spoken as if to a stranger?",
+          "body": "Not the version you have been saying in this room all day. The version a colleague from another function would understand in ten seconds. Write it down. Say it out loud to yourself. The facilitator circulates and identifies any problem statement that is too technical, too long, or still sounds like a tool description."
+        },
+        {
+          "title": "What is the sequence of your six modalities?",
+          "body": "You have six things to show. The recommended sequence moves from artefact to ecosystem. Core tool first. Launch page second. Help layer embedded on the page third. Audio fourth. Video fifth. Agent sixth. By the end, the cohort sees not just a tool but a complete launched initiative."
+        },
+        {
+          "title": "What is your impressive moment?",
+          "body": "The single moment during the four minutes when you want the room to feel 'that is genuinely useful.' Do not say 'and here is the impressive part.' Just show it. Pause. Let the room react. The pause is the framing. Trust it."
+        },
+        {
+          "title": "What do you say when something does not work?",
+          "body": "Something will not work perfectly. Two acceptable responses. Narrate it: 'in the deployed version this will produce a specific output, what you are seeing is a limitation I identified during validation.' Or pivot: move to the next modality without dwelling, come back to it in 'what is next.' What is not acceptable is apologising repeatedly or abandoning the demo structure."
+        },
+        {
+          "title": "What is the one specific next action you commit to in the Build Month?",
+          "body": "Not three things. Not a plan. One thing. The specificity of this commitment is one of the things the cohort will evaluate. A vague commitment signals unclear thinking. A specific commitment signals genuine learning from validation."
+        }
+      ],
+      "hmv": [
+        {
+          "dimension": "Humanics",
+          "techniques": [
+            "Speak to the problem before showing the tool. The audience needs to feel the colleague's frustration before evaluating the solution.",
+            "Make eye contact during the impressive moment. Not at the screen. At the audience.",
+            "Tell the truth about what is not working. Honesty about limitations makes everything else more credible."
+          ]
+        },
+        {
+          "dimension": "Mechanics",
+          "techniques": [
+            "Use a real input. Not a perfect test case. A real input from your actual work.",
+            "Test before presenting. Every modality. Every link. Every embed. Every trigger.",
+            "Have a phone backup. If the laptop fails, the page, help layer, audio, and video all exist on the phone."
+          ]
+        },
+        {
+          "dimension": "Valuenomics",
+          "techniques": [
+            "Let the output speak. After the impressive moment, do not immediately start talking. Let the audience read.",
+            "Name the specific colleague this is for. Not 'professionals.' The specific role from the internal user portrait.",
+            "Connect the agent to the initiative's sustainability. Show that the initiative will keep running after Demo Day."
+          ]
+        }
+      ],
+      "prompts": [
+        {
+          "title": "Structure the Demo",
+          "tool": "Claude",
+          "content": "I am about to present at Builderator Demo Day. I have four minutes. I have six modalities to show. Help me structure the presentation.\n\nMy initiative: [one sentence]\nMy internal user: [from Session 1]\nMy problem statement for the demo: [from Question 1]\nMy impressive moment: [from Question 3]\nWhat did not work perfectly today: [from Question 4]\nMy one specific next action for the Build Month: [from Question 5]\n\nGive me the exact structure for my four-minute demo.\n\nOpening — thirty seconds. The problem statement. Spoken directly to the audience. No tool yet.\n\nModality sequence — three minutes. Six modalities in order. For each one, one sentence of narration before showing it. What to say during the impressive moment. What to say if something does not work.\n\nClosing — thirty seconds. What I learned from validation. My one specific next action. Said as a commitment not a plan.\n\nMake the opening and closing memorable. The audience will remember the first thing they hear and the last thing they hear."
+        }
+      ],
+      "build": [
+        {
+          "title": "The Problem (30 sec)",
+          "instructions": "Spoken directly to the audience. Not read from notes. One sentence on the problem. One sentence on who has it inside the company. One specific number — what it costs in hours, errors, or capacity. Then silence. Two seconds. Let the problem land before showing the solution."
+        },
+        {
+          "title": "The Live Initiative (3 min)",
+          "instructions": "Open the tool. Enter a real input. Show the output. Pause on the impressive moment. Move to the launch page. Show the headline. Click through to the tool from the CTA. Show the help layer. Type one real question. Show the response. Play the audio for fifteen seconds. Play the first fifteen seconds of the video. Show the Make.com scenario. Trigger it. Show the confirmation."
+        },
+        {
+          "title": "What Is Next (30 sec)",
+          "instructions": "One thing learned from validation, spoken in the validation target's exact words. One specific change committed to for the Build Month, named precisely. One sentence close — not a thank you, a statement of intent."
+        },
+        {
+          "title": "The cohort responds (60 sec)",
+          "instructions": "After each demo, every participant writes one word or one short phrase. Simultaneously. Then shares. Not feedback. An impression. Useful. Wanted. Confused. Will-borrow-this. The facilitator reads the pattern across responses and names what the room agreed on, what divided the room, what surprised the room."
+        }
+      ],
+      "test_output": [
+        {
+          "title": "The Live Initiative Test",
+          "description": "Did every modality work during the demo? Did the tool produce a real output? Did the launch page CTA link work? Did the help layer respond? Did the audio play? Did the video play? Did the agent fire?"
+        },
+        {
+          "title": "The Stranger Test",
+          "description": "Could someone who knew nothing about your initiative before the demo describe what it does, who it is for, and what makes it valuable using only what they saw and heard?"
+        },
+        {
+          "title": "The Impressive Moment Test",
+          "description": "Did you pause after the impressive moment? Did the room react? If you rushed through it without pausing, the next demo should correct this."
+        },
+        {
+          "title": "The Honesty Test",
+          "description": "Did you acknowledge at least one thing that is not yet perfect? Did you connect it to what you learned from validation?"
+        },
+        {
+          "title": "The Commitment Test",
+          "description": "Did you name one specific next action? Was it specific enough that the cohort could hold you accountable in four weeks? Vague: 'I will improve the tool.' Specific: 'I will rewrite the output section using the three phrases my validation target used, then send it to her by Friday for a second look.'"
+        }
+      ],
+      "break_after": false
+    },
+    {
+      "id": 11,
+      "number": 11,
+      "title": "Close & Four-Week Brief",
+      "day": 2,
+      "start_time": "15:45",
+      "end_time": "17:00",
+      "duration_minutes": 75,
+      "set_the_stage": "Stop for a moment. Look at what you have in front of you right now. Forty-eight hours ago this did not exist. None of it. Not the tool. Not the launch page. Not the help layer. Not the audio. Not the video. Not the agent.\n\nYou came in with an initiative on a card. You leave with six live things in the world. Things a colleague can find, open, hear, watch, and use without you being present to walk them through it.\n\nBut here is the thing most workshops get wrong at this moment. They call it a celebration. They hand out certificates. They send people home with the feeling that something is complete. Nothing is complete.\n\nWhat happened this weekend is the beginning, not the end. The next four weeks are harder than this weekend. This weekend you had structure. The next four weeks you have your day job, organisational politics, competing priorities, and the slow gravity of 'we have always done it this way.'\n\nThat is what makes the Build Month the real test. Not whether you could build six modalities in two days. Whether you can take what you built, drive adoption among real colleagues, learn from how they actually use it, change something substantial based on that learning, and come back to Demo Day with an initiative that is genuinely embedded in how your team works.",
+      "questions": [
+        {
+          "title": "What is the one thing you learned this weekend that you did not expect to learn?",
+          "body": "Not what you expected to learn. The one thing that surprised you. Every Builderator answers. Not three people. Everyone. In sequence around the room. One sentence each. The facilitator listens for patterns — the surprises that appear across multiple Builderators are the most important learnings from the program."
+        },
+        {
+          "title": "What is the gap between what you built and what your validation target needed?",
+          "body": "Be specific. Not 'they wanted more features.' What specifically was different between what you built and what they actually needed in their daily work? The more specific the gap, the more actionable the Build Month."
+        },
+        {
+          "title": "What is the one thing you will change first?",
+          "body": "Of everything you could improve, what is the one change that would make the biggest difference to your internal user in the next week? The facilitator applies the HMV lens to each answer. Is this a Humanics change (closer to the colleague), a Mechanics change (more reliable, more durable), or a Valuenomics change (clearer value, easier to make the case for)?"
+        },
+        {
+          "title": "Who are the next three real colleagues you will show this to?",
+          "body": "Not after you improve it. Now. This week. Before anything changes. Three specific people who have the problem and have no reason to be kind. Anyone who cannot name three specific colleagues before leaving this room is at risk of spending Week 1 improving in isolation rather than testing against reality."
+        },
+        {
+          "title": "What would Demo Day success look like for you specifically?",
+          "body": "Not the program's definition of success. Yours. What would you need to have built, learned, adopted, or proven in four weeks for you personally to feel this was worth the time and commitment? The answer is almost always about adoption — how many colleagues are using it, what they are saying about it, what your sponsor noticed."
+        }
+      ],
+      "hmv": [
+        {
+          "dimension": "Humanics",
+          "techniques": [
+            "One real internal user conversation per week. Minimum. Not a survey. A live conversation where you can hear the hesitations and watch them try the tool.",
+            "Every change made to the initiative must be traceable to something a real colleague said.",
+            "If you improve the initiative based on your own ideas for more than two days without checking against a real colleague, stop. Book a conversation before continuing."
+          ]
+        },
+        {
+          "dimension": "Mechanics",
+          "techniques": [
+            "Most common Build Month failure mode: the tool quietly breaking. API key expires. Voiceflow runs out of free credits. Make.com scenario disconnects.",
+            "Build a five-minute Friday ritual: open every modality, click through, confirm everything still runs.",
+            "An initiative that breaks in week two and you do not notice until week four is dead."
+          ]
+        },
+        {
+          "dimension": "Valuenomics",
+          "techniques": [
+            "Week 1 — get one real colleague to use the tool unsupervised. Sit with them for five minutes after.",
+            "Week 2 — get three more real colleagues. Verbatim quotes. Look for a pattern.",
+            "Week 3 — make the most important change. Begin a one-page brief for your sponsor.",
+            "Week 4 — Demo Day. A clear, honest answer to whether real colleagues are using this in their actual work."
+          ]
+        }
+      ],
+      "prompts": [
+        {
+          "title": "Build the Four-Week Plan",
+          "tool": "Claude",
+          "content": "I have just completed a two-day Builderator Just Build workshop. I have built six modalities of a strategic initiative inside my SME. I now have four weeks to drive adoption and prepare for Demo Day.\n\nMy initiative: [one sentence]\nWhat I learned from validation: [the key insight from Session 9]\nThe gap between what I built and what my colleague needed: [from Question 2]\nThe first change I will make: [from Question 3]\nThe three colleagues I will show it to this week: [from Question 4]\nWhat Demo Day success looks like for me: [from Question 5]\nMy sponsor or backer at the company: [name and role]\n\nBuild me a four-week plan. Structured and specific. One primary goal per week. Three specific actions per week. One checkpoint question that tells me whether I am on track.\n\nWeek 1 — Refine. Based on validation. One specific change. Three specific colleague conversations. Mechanics check (everything still runs).\n\nWeek 2 — Validate deeper. More real colleagues. Clearer pattern of adoption signals. First conversation with my sponsor.\n\nWeek 3 — Iterate substantially. One meaningful change to the initiative based on what Weeks 1 and 2 revealed. Begin the sponsor brief.\n\nWeek 4 — Demo Day prep. Initiative polished enough to show confidently with real adoption data. Sponsor brief complete.\n\nFor each week, give me the one question I should be able to answer by Friday that tells me the week was not wasted."
+        }
+      ],
+      "build": [
+        {
+          "title": "Build the four-week plan (20 min)",
+          "instructions": "Run the prompt. Read the plan Claude produces. Make two specific edits where the generic plan needs to be adapted to your specific initiative and company context. Save it. This document is the operating brief for the next four weeks."
+        },
+        {
+          "title": "Public commitments (20 min)",
+          "instructions": "Every Builderator stands. States three things to the room. The one specific change committed to in Week 1 — named precisely. The three specific colleagues to show the initiative to before next Friday — named by first name and role. What Demo Day success looks like for them specifically — said as a personal commitment. The cohort witnesses each commitment. Vague commitments are gently pushed back on in real time."
+        },
+        {
+          "title": "Certificate moment & alumni launch (10 min)",
+          "instructions": "The OC Just Build Builderator Certificate marks completion of something real inside a real company — not attendance at a workshop. It is awarded at Demo Day, four weeks from now, when the Builderator stands in front of a real audience and demonstrates an initiative that real colleagues are actually using. The WhatsApp group changes name from cohort to alumni. Permanently. The people in this room are the people who understand what you went through this weekend and what you are about to attempt."
+        }
+      ],
+      "test_output": [
+        {
+          "title": "The Plan Test",
+          "description": "Do you have a specific four-week plan with one primary goal per week, three specific actions per week, and one checkpoint question per week?"
+        },
+        {
+          "title": "The Commitment Test",
+          "description": "Did you state three specific public commitments to the room? Are they specific enough that the cohort could evaluate whether you kept them at Demo Day?"
+        },
+        {
+          "title": "The People Test",
+          "description": "Can you name three specific real colleagues you will show the initiative to before next Friday?"
+        },
+        {
+          "title": "The Success Test",
+          "description": "Can you complete this sentence without hesitation? 'Demo Day success for me looks like — [specific, personal, measurable, almost always about adoption inside the company].'"
+        },
+        {
+          "title": "The Group Test",
+          "description": "Are you in the Builderator alumni WhatsApp group? Have you saved the weekly session date and time? Do you know how to book office hours?"
+        }
+      ],
+      "break_after": false
+    }
+  ]
+}

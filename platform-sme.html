@@ -2,2435 +2,1608 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Just Build · Builderator Edition · Facilitator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Just Build — Builderator Edition · Facilitator</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,0..100,0..1&family=DM+Sans:opsz,wght@9..40,300..700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Inter:ital,wght@0,300..700;1,300..700&family=JetBrains+Mono:wght@400..600&display=swap" rel="stylesheet">
 <style>
+  /* ========================================
+     Just Build — Facilitator Platform
+     Builderator Edition · For SME operators
+     Dark mode. Optimised for projection.
+     ======================================== */
+
   :root {
-    --bg: #0a0908;
-    --bg-elevated: #14110f;
-    --bg-card: #1a1614;
-    --border: #2a2520;
-    --border-strong: #3d352e;
-    --text: #efeae2;
-    --text-dim: #a39d92;
-    --text-muted: #6b665e;
-    --accent: #ff6b35;
-    --accent-dim: #c8512a;
-    --accent-faint: rgba(255, 107, 53, 0.12);
-    --success: #7fb069;
-    --warning: #e0a458;
-    --display: 'Fraunces', Georgia, serif;
-    --body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-    --mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+    --bg:            #0A0A0A;
+    --bg-elev-1:    #141414;
+    --bg-elev-2:    #1C1C1C;
+    --line:          rgba(255,255,255,0.08);
+    --line-strong:   rgba(255,255,255,0.16);
+    --text:          #FFFFFF;
+    --text-soft:     #C8C8C8;
+    --text-muted:    #8A8A8A;
+    --text-faint:    #5A5A5A;
+    --accent:        #C17D2A;
+    --accent-soft:   rgba(193, 125, 42, 0.18);
+    --accent-glow:   rgba(193, 125, 42, 0.35);
+    --warning:       #E8B53A;
+    --danger:        #D7553A;
+    --serif:         'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --sans:          'Inter', system-ui, -apple-system, sans-serif;
+    --mono:          'JetBrains Mono', 'SF Mono', Menlo, monospace;
   }
 
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
   html, body {
     height: 100%;
     background: var(--bg);
     color: var(--text);
-    font-family: var(--body);
-    font-size: 16px;
+    font-family: var(--sans);
+    font-size: 18px;
     line-height: 1.55;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
+    overflow: hidden;
   }
 
   body {
-    overflow-x: hidden;
-    background-image:
-      radial-gradient(ellipse at top right, rgba(255, 107, 53, 0.04) 0%, transparent 50%),
-      radial-gradient(ellipse at bottom left, rgba(127, 176, 105, 0.02) 0%, transparent 50%);
-  }
-
-  ::selection {
-    background: var(--accent);
-    color: var(--bg);
-  }
-
-  /* === LOGIN === */
-  .login-wrap {
-    min-height: 100vh;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-    position: relative;
-  }
-
-  .login-wrap::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 800px;
-    height: 800px;
-    background: radial-gradient(circle, rgba(255, 107, 53, 0.06) 0%, transparent 60%);
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  .login-card {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    max-width: 480px;
-    padding: 4rem 3rem;
-    background: var(--bg-elevated);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    text-align: center;
-  }
-
-  .brand-mark {
-    font-family: var(--display);
-    font-weight: 300;
-    font-size: 0.75rem;
-    letter-spacing: 0.4em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 2.5rem;
-    font-variation-settings: "opsz" 14;
-  }
-
-  .brand-title {
-    font-family: var(--display);
-    font-weight: 400;
-    font-size: clamp(2.5rem, 5vw, 3.5rem);
-    line-height: 1;
-    letter-spacing: -0.02em;
-    margin-bottom: 0.75rem;
-    font-variation-settings: "opsz" 144, "SOFT" 50;
-  }
-
-  .brand-edition {
-    font-family: var(--display);
-    font-style: italic;
-    font-weight: 300;
-    font-size: 1.125rem;
-    color: var(--text-dim);
-    margin-bottom: 0.5rem;
-    font-variation-settings: "opsz" 30;
-  }
-
-  .brand-tagline {
-    font-size: 0.8125rem;
-    color: var(--text-muted);
-    letter-spacing: 0.05em;
-    margin-bottom: 3rem;
-  }
-
-  .password-input {
-    width: 100%;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    color: var(--text);
-    padding: 1rem 1.25rem;
-    font-family: var(--mono);
-    font-size: 0.9375rem;
-    border-radius: 2px;
-    outline: none;
-    transition: border-color 0.15s ease;
-    text-align: center;
-    letter-spacing: 0.1em;
-  }
-
-  .password-input:focus {
-    border-color: var(--accent);
-  }
-
-  .password-input::placeholder {
-    color: var(--text-muted);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    font-size: 0.75rem;
-  }
-
-  .login-btn {
-    width: 100%;
-    margin-top: 1rem;
-    background: var(--accent);
-    color: var(--bg);
-    border: none;
-    padding: 1rem;
-    font-family: var(--body);
-    font-weight: 500;
-    font-size: 0.875rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    cursor: pointer;
-    border-radius: 2px;
-    transition: background 0.15s ease;
-  }
-
-  .login-btn:hover {
-    background: var(--accent-dim);
-  }
-
-  .login-error {
-    color: var(--accent);
-    font-size: 0.8125rem;
-    margin-top: 1rem;
-    min-height: 1.2em;
-    letter-spacing: 0.05em;
-  }
-
-  .login-footer {
-    margin-top: 2.5rem;
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    letter-spacing: 0.1em;
-  }
-
-  /* === SHELL === */
-  .app {
-    display: none;
-    min-height: 100vh;
     flex-direction: column;
+    min-height: 100vh;
   }
 
-  .app.active {
-    display: flex;
-  }
-
+  /* ----- Top bar ----- */
   .topbar {
-    border-bottom: 1px solid var(--border);
-    padding: 1rem 2rem;
-    display: flex;
+    flex: 0 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    justify-content: space-between;
+    gap: 32px;
+    padding: 18px 40px;
+    border-bottom: 1px solid var(--line);
     background: var(--bg);
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    backdrop-filter: blur(8px);
+    z-index: 5;
   }
+  .topbar.hidden { display: none; }
 
   .topbar-left {
     display: flex;
     align-items: baseline;
-    gap: 1.5rem;
+    gap: 16px;
+    flex-wrap: wrap;
   }
-
-  .topbar-brand {
-    font-family: var(--display);
-    font-weight: 400;
-    font-size: 1.125rem;
-    letter-spacing: -0.01em;
-    font-variation-settings: "opsz" 30;
-  }
-
-  .topbar-brand .accent {
+  .topbar-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
     color: var(--accent);
+    font-weight: 500;
   }
-
-  .topbar-edition {
-    font-family: var(--display);
-    font-style: italic;
-    font-size: 0.8125rem;
-    color: var(--text-dim);
-    font-variation-settings: "opsz" 14;
+  .topbar-title {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
   }
-
-  .topbar-progress {
-    font-family: var(--mono);
-    font-size: 0.75rem;
+  .topbar-section {
+    font-size: 13px;
     color: var(--text-muted);
-    letter-spacing: 0.1em;
+    letter-spacing: 0.04em;
+  }
+
+  .topbar-center {
+    display: flex;
+    justify-content: center;
+  }
+
+  .timer {
+    font-family: var(--mono);
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--text);
+    padding: 6px 18px;
+    border: 1px solid var(--line-strong);
+    border-radius: 4px;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.2s ease;
+    min-width: 130px;
+    text-align: center;
+  }
+  .timer:hover { border-color: var(--accent); }
+  .timer.paused { color: var(--text-muted); border-style: dashed; }
+  .timer.warning { color: var(--warning); border-color: rgba(232, 181, 58, 0.4); }
+  .timer.danger { color: var(--danger); border-color: rgba(215, 85, 58, 0.5); }
+  .timer.expired { animation: pulse 2s ease-in-out infinite; color: var(--danger); }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.55; }
   }
 
   .topbar-right {
     display: flex;
+    justify-content: flex-end;
     align-items: center;
-    gap: 1.5rem;
+    gap: 12px;
+    color: var(--text-muted);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+  }
+  .progress {
+    display: flex;
+    gap: 4px;
+  }
+  .progress-dot {
+    width: 18px;
+    height: 3px;
+    background: var(--line-strong);
+    border-radius: 1px;
+    transition: background 0.3s ease;
+  }
+  .progress-dot.done { background: var(--text-faint); }
+  .progress-dot.active { background: var(--accent); }
+
+  /* ----- Stage / main area ----- */
+  .stage {
+    flex: 1 1 auto;
+    display: flex;
+    padding: 56px 80px;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 
-  .icon-btn {
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--text-dim);
-    padding: 0.5rem 0.875rem;
-    font-family: var(--body);
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    cursor: pointer;
-    border-radius: 2px;
-    transition: all 0.15s ease;
-  }
-
-  .icon-btn:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-  }
-
-  /* === DASHBOARD === */
-  .dashboard {
-    flex: 1;
-    padding: 4rem 2rem;
-    max-width: 1400px;
-    margin: 0 auto;
+  .screen {
     width: 100%;
+    max-width: 1100px;
+    margin: auto;
+    animation: fadeUp 0.42s cubic-bezier(0.2, 0.7, 0.2, 1);
   }
-
-  .dash-header {
-    margin-bottom: 4rem;
-    max-width: 800px;
-  }
-
-  .dash-eyebrow {
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    letter-spacing: 0.2em;
-    color: var(--accent);
-    text-transform: uppercase;
-    margin-bottom: 1.5rem;
-  }
-
-  .dash-title {
-    font-family: var(--display);
-    font-weight: 300;
-    font-size: clamp(2.5rem, 5vw, 3.75rem);
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    margin-bottom: 1.5rem;
-    font-variation-settings: "opsz" 144, "SOFT" 30;
-  }
-
-  .dash-subtitle {
-    font-family: var(--display);
-    font-style: italic;
-    font-weight: 300;
-    font-size: 1.25rem;
-    color: var(--text-dim);
-    margin-bottom: 1rem;
-    font-variation-settings: "opsz" 30;
-  }
-
-  .dash-tagline {
-    font-size: 0.9375rem;
-    color: var(--text-muted);
-    line-height: 1.7;
-    max-width: 60ch;
-  }
-
-  .day-section {
-    margin-bottom: 4rem;
-  }
-
-  .day-label {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .day-num {
-    font-family: var(--display);
-    font-size: 2.5rem;
-    font-weight: 300;
-    color: var(--accent);
-    line-height: 1;
-    font-variation-settings: "opsz" 144, "WONK" 1;
-  }
-
-  .day-text {
-    font-family: var(--display);
-    font-style: italic;
-    font-size: 1.125rem;
-    color: var(--text-dim);
-    font-variation-settings: "opsz" 30;
-  }
-
-  .session-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-  }
-
-  .session-card {
-    background: var(--bg);
-    padding: 2rem 1.75rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    min-height: 200px;
-  }
-
-  .session-card:hover {
-    background: var(--bg-elevated);
-  }
-
-  .session-card:hover .session-num {
-    color: var(--accent);
-  }
-
-  .session-card:hover .session-arrow {
-    opacity: 1;
-    transform: translateX(0);
-  }
-
-  .session-num {
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    letter-spacing: 0.2em;
-    color: var(--text-muted);
-    margin-bottom: 1rem;
-    transition: color 0.2s ease;
-  }
-
-  .session-name {
-    font-family: var(--display);
-    font-weight: 400;
-    font-size: 1.5rem;
-    line-height: 1.15;
-    letter-spacing: -0.01em;
-    margin-bottom: auto;
-    padding-bottom: 1.5rem;
-    font-variation-settings: "opsz" 30;
-  }
-
-  .session-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    letter-spacing: 0.05em;
-  }
-
-  .session-time {
-    color: var(--text-dim);
-  }
-
-  .session-arrow {
-    position: absolute;
-    top: 2rem;
-    right: 1.75rem;
-    color: var(--accent);
-    opacity: 0;
-    transform: translateX(-4px);
-    transition: all 0.2s ease;
-    font-size: 1.125rem;
-  }
-
-  /* === SESSION VIEW === */
-  .session-view {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    max-width: 1400px;
-    margin: 0 auto;
-    width: 100%;
-    padding: 0 2rem;
-  }
-
-  .sv-header {
-    padding: 3rem 0 2rem;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 3rem;
-  }
-
-  .sv-title-block {
-    flex: 1;
-  }
-
-  .sv-eyebrow {
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    letter-spacing: 0.2em;
-    color: var(--accent);
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-  }
-
-  .sv-title {
-    font-family: var(--display);
-    font-weight: 400;
-    font-size: clamp(2.5rem, 4.5vw, 3.5rem);
-    line-height: 1;
-    letter-spacing: -0.02em;
-    margin-bottom: 0.75rem;
-    font-variation-settings: "opsz" 144;
-  }
-
-  .sv-meta {
-    font-family: var(--display);
-    font-style: italic;
-    font-size: 1rem;
-    color: var(--text-dim);
-    font-variation-settings: "opsz" 14;
-  }
-
-  /* === TIMER === */
-  .timer {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 0.75rem;
-    min-width: 220px;
-  }
-
-  .timer-display {
-    font-family: var(--mono);
-    font-size: 2.5rem;
-    font-weight: 500;
-    line-height: 1;
-    color: var(--text);
-    letter-spacing: -0.02em;
-    font-variant-numeric: tabular-nums;
-  }
-
-  .timer-display.warning {
-    color: var(--warning);
-  }
-
-  .timer-display.over {
-    color: var(--accent);
-  }
-
-  .timer-label {
-    font-family: var(--mono);
-    font-size: 0.6875rem;
-    letter-spacing: 0.2em;
-    color: var(--text-muted);
-    text-transform: uppercase;
-  }
-
-  .timer-controls {
-    display: flex;
-    gap: 0.5rem;
-    margin-top: 0.25rem;
-  }
-
-  .timer-btn {
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--text-dim);
-    padding: 0.4rem 0.75rem;
-    font-family: var(--mono);
-    font-size: 0.6875rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    cursor: pointer;
-    border-radius: 2px;
-    transition: all 0.15s ease;
-  }
-
-  .timer-btn:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-  }
-
-  .timer-btn.active {
-    background: var(--accent);
-    color: var(--bg);
-    border-color: var(--accent);
-  }
-
-  /* === SECTION TABS === */
-  .section-tabs {
-    display: flex;
-    gap: 0;
-    padding: 1.5rem 0;
-    border-bottom: 1px solid var(--border);
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-
-  .section-tabs::-webkit-scrollbar {
-    display: none;
-  }
-
-  .section-tab {
-    flex-shrink: 0;
-    background: transparent;
-    border: none;
-    color: var(--text-muted);
-    padding: 0.75rem 1.25rem;
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    cursor: pointer;
-    border-bottom: 2px solid transparent;
-    transition: all 0.15s ease;
-    margin-bottom: -1.5rem;
-    padding-bottom: 1.5rem;
-  }
-
-  .section-tab:hover {
-    color: var(--text-dim);
-  }
-
-  .section-tab.active {
-    color: var(--accent);
-    border-bottom-color: var(--accent);
-  }
-
-  .section-tab .tab-num {
-    color: var(--text-muted);
-    margin-right: 0.5rem;
-  }
-
-  .section-tab.active .tab-num {
-    color: var(--accent);
-  }
-
-  /* === SECTION CONTENT === */
-  .section-content {
-    padding: 3rem 0 4rem;
-    max-width: 880px;
-  }
-
-  .section-content.wide {
-    max-width: none;
-  }
-
-  .content-section {
-    display: none;
-  }
-
-  .content-section.active {
-    display: block;
-    animation: fadeIn 0.3s ease;
-  }
-
-  @keyframes fadeIn {
+  @keyframes fadeUp {
     from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: translateY(0); }
+    to   { opacity: 1; transform: translateY(0); }
   }
 
-  /* Set The Stage */
-  .stage-paragraph {
-    font-family: var(--display);
+  .label {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 22px;
+  }
+
+  /* ----- Welcome / session-start / session-end ----- */
+  .hero {
+    text-align: center;
+    padding: 24px 0;
+  }
+  .hero-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 28px;
+    font-weight: 500;
+  }
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(64px, 9vw, 132px);
     font-weight: 300;
-    font-size: 1.5rem;
-    line-height: 1.5;
-    color: var(--text);
-    margin-bottom: 1.75rem;
-    letter-spacing: -0.005em;
-    font-variation-settings: "opsz" 30, "SOFT" 30;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin-bottom: 24px;
   }
-
-  .stage-paragraph:last-child {
-    margin-bottom: 0;
+  .hero-title.brand {
+    color: var(--accent);
+    font-weight: 400;
   }
-
-  .stage-paragraph em {
+  .hero-sub {
+    font-family: var(--serif);
+    font-size: clamp(20px, 2.4vw, 32px);
+    color: var(--text-soft);
     font-style: italic;
-    color: var(--text-dim);
-  }
-
-  /* Questions */
-  .question {
-    padding: 2rem 0;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .question:last-child {
-    border-bottom: none;
-  }
-
-  .question-header {
-    display: flex;
-    align-items: baseline;
-    gap: 1.5rem;
-    margin-bottom: 1.25rem;
-  }
-
-  .question-num {
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    letter-spacing: 0.2em;
-    color: var(--accent);
-    flex-shrink: 0;
-    padding-top: 0.4rem;
-  }
-
-  .question-title {
-    font-family: var(--display);
-    font-weight: 400;
-    font-size: 1.625rem;
-    line-height: 1.25;
-    letter-spacing: -0.01em;
-    color: var(--text);
-    font-variation-settings: "opsz" 30;
-  }
-
-  .question-body {
-    font-size: 1.0625rem;
-    line-height: 1.7;
-    color: var(--text-dim);
-    margin-left: calc(0.75rem * 4 + 1.5rem);
-  }
-
-  .question-body em {
-    color: var(--text);
-    font-style: italic;
-    font-family: var(--display);
-    display: block;
-    margin-top: 1rem;
-    font-size: 1.125rem;
-    font-variation-settings: "opsz" 30;
-  }
-
-  /* HMV */
-  .hmv-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    margin-top: 1rem;
-  }
-
-  .hmv-card {
-    background: var(--bg);
-    padding: 2rem;
-  }
-
-  .hmv-label {
-    font-family: var(--mono);
-    font-size: 0.6875rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 0.75rem;
-  }
-
-  .hmv-name {
-    font-family: var(--display);
-    font-weight: 400;
-    font-size: 1.5rem;
-    margin-bottom: 1.25rem;
-    letter-spacing: -0.01em;
-    font-variation-settings: "opsz" 30;
-  }
-
-  .hmv-body {
-    font-size: 0.9375rem;
-    line-height: 1.7;
-    color: var(--text-dim);
-  }
-
-  .hmv-body p {
-    margin-bottom: 0.75rem;
-  }
-
-  .hmv-body ul {
-    list-style: none;
-    padding: 0;
-    margin: 0.75rem 0;
-  }
-
-  .hmv-body li {
-    padding-left: 1.25rem;
-    position: relative;
-    margin-bottom: 0.625rem;
-    line-height: 1.6;
-  }
-
-  .hmv-body li::before {
-    content: '—';
-    position: absolute;
-    left: 0;
-    color: var(--accent);
-  }
-
-  /* Prompts */
-  .prompt-block {
-    margin-bottom: 2.5rem;
-  }
-
-  .prompt-block:last-child {
-    margin-bottom: 0;
-  }
-
-  .prompt-header {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  .prompt-label {
-    font-family: var(--mono);
-    font-size: 0.6875rem;
-    letter-spacing: 0.2em;
-    color: var(--accent);
-    text-transform: uppercase;
-  }
-
-  .prompt-title {
-    font-family: var(--display);
-    font-weight: 400;
-    font-size: 1.375rem;
+    font-weight: 300;
     letter-spacing: -0.005em;
-    font-variation-settings: "opsz" 30;
+    margin-bottom: 12px;
   }
-
-  .prompt-box {
-    background: var(--bg-elevated);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--accent);
-    padding: 2rem;
-    font-family: var(--mono);
-    font-size: 0.875rem;
-    line-height: 1.75;
-    color: var(--text);
-    border-radius: 2px;
-    position: relative;
-    white-space: pre-wrap;
-  }
-
-  .prompt-box::before {
-    content: 'PROMPT';
-    position: absolute;
-    top: -0.5rem;
-    left: 1rem;
-    background: var(--bg);
-    padding: 0 0.5rem;
-    font-family: var(--mono);
-    font-size: 0.625rem;
-    letter-spacing: 0.25em;
-    color: var(--accent);
-  }
-
-  .copy-btn {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    color: var(--text-dim);
-    padding: 0.4rem 0.75rem;
-    font-family: var(--mono);
-    font-size: 0.6875rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    cursor: pointer;
-    border-radius: 2px;
-    transition: all 0.15s ease;
-  }
-
-  .copy-btn:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-  }
-
-  .copy-btn.copied {
-    background: var(--accent);
-    color: var(--bg);
-    border-color: var(--accent);
-  }
-
-  /* Build */
-  .build-stage {
-    padding: 1.5rem 0;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .build-stage:last-child {
-    border-bottom: none;
-  }
-
-  .build-stage-header {
-    display: flex;
-    align-items: baseline;
-    gap: 1rem;
-    margin-bottom: 0.875rem;
-  }
-
-  .build-stage-label {
-    font-family: var(--mono);
-    font-size: 0.6875rem;
-    letter-spacing: 0.2em;
-    color: var(--accent);
-    text-transform: uppercase;
-  }
-
-  .build-stage-title {
-    font-family: var(--display);
-    font-weight: 400;
-    font-size: 1.25rem;
-    letter-spacing: -0.005em;
-    font-variation-settings: "opsz" 30;
-  }
-
-  .build-stage-time {
-    font-family: var(--mono);
-    font-size: 0.75rem;
+  .hero-meta {
     color: var(--text-muted);
-    margin-left: auto;
+    font-size: 15px;
+    letter-spacing: 0.04em;
+    margin-top: 8px;
   }
-
-  .build-stage-body {
-    font-size: 1rem;
-    line-height: 1.7;
-    color: var(--text-dim);
-  }
-
-  .build-prose {
-    font-size: 1.0625rem;
-    line-height: 1.75;
-    color: var(--text-dim);
-  }
-
-  .build-prose p {
-    margin-bottom: 1.25rem;
-  }
-
-  /* Test Output */
-  .test-block {
-    padding: 1.75rem 0;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    gap: 2rem;
-  }
-
-  .test-block:last-child {
-    border-bottom: none;
-  }
-
-  .test-num {
-    font-family: var(--display);
-    font-weight: 300;
-    font-size: 2.25rem;
-    color: var(--accent);
-    line-height: 1;
-    flex-shrink: 0;
-    width: 3rem;
-    font-variation-settings: "opsz" 144;
-  }
-
-  .test-content {
-    flex: 1;
-  }
-
-  .test-title {
-    font-family: var(--display);
-    font-weight: 400;
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
-    letter-spacing: -0.005em;
-    font-variation-settings: "opsz" 30;
-  }
-
-  .test-body {
-    font-size: 0.9375rem;
-    line-height: 1.7;
-    color: var(--text-dim);
-  }
-
-  .test-checkbox {
-    width: 28px;
-    height: 28px;
-    border: 1px solid var(--border-strong);
-    border-radius: 2px;
-    cursor: pointer;
-    flex-shrink: 0;
-    background: transparent;
-    transition: all 0.15s ease;
-    align-self: center;
-    position: relative;
-  }
-
-  .test-checkbox:hover {
-    border-color: var(--accent);
-  }
-
-  .test-checkbox.checked {
+  .hero-rule {
+    width: 64px;
+    height: 1px;
     background: var(--accent);
-    border-color: var(--accent);
+    margin: 40px auto;
+    border: none;
   }
+  .hero-rule.thin { width: 40px; opacity: 0.6; }
 
-  .test-checkbox.checked::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -55%) rotate(45deg);
-    width: 7px;
-    height: 13px;
-    border: solid var(--bg);
-    border-width: 0 2px 2px 0;
-  }
-
-  /* === FOOTER NAV === */
-  .session-footer {
-    border-top: 1px solid var(--border);
-    padding: 1.5rem 0;
+  .button-row {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: auto;
-    gap: 1rem;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 16px;
     flex-wrap: wrap;
   }
 
-  .nav-btn {
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--text-dim);
-    padding: 0.875rem 1.5rem;
-    font-family: var(--body);
-    font-size: 0.8125rem;
-    letter-spacing: 0.05em;
-    cursor: pointer;
-    border-radius: 2px;
-    transition: all 0.15s ease;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    text-decoration: none;
+  /* ----- Stage (set the stage) ----- */
+  .stage-text {
+    font-family: var(--serif);
+    font-size: clamp(22px, 2.2vw, 30px);
+    line-height: 1.5;
+    color: var(--text);
+    font-weight: 300;
+    letter-spacing: -0.005em;
+    max-width: 56ch;
+  }
+  .stage-text p {
+    margin: 0 0 1.1em 0;
+  }
+  .stage-text p:last-child {
+    margin-bottom: 0;
+  }
+  .facilitator-note {
+    margin-top: 40px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+    color: var(--text-muted);
+    font-size: 14px;
+    font-style: italic;
+    letter-spacing: 0.01em;
+    max-width: 56ch;
   }
 
-  .nav-btn:hover {
+  /* ----- Question ----- */
+  .question-title {
+    font-family: var(--serif);
+    font-size: clamp(40px, 5.5vw, 76px);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 28px;
+  }
+  .question-body {
+    font-size: clamp(18px, 1.6vw, 22px);
+    color: var(--text-soft);
+    line-height: 1.6;
+    max-width: 56ch;
+    margin-bottom: 28px;
+  }
+
+  /* ----- HMV ----- */
+  .hmv-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+  .hmv-panel {
+    background: var(--bg-elev-1);
+    border: 1px solid var(--line);
+    border-top: 2px solid var(--accent);
+    padding: 28px 24px;
+    border-radius: 2px;
+  }
+  .hmv-name {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--accent);
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+  }
+  .hmv-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .hmv-list li {
+    font-size: 15px;
+    color: var(--text-soft);
+    line-height: 1.55;
+    padding-left: 18px;
+    position: relative;
+  }
+  .hmv-list li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 500;
+  }
+  @media (max-width: 1000px) {
+    .hmv-grid { grid-template-columns: 1fr; gap: 16px; }
+  }
+
+  /* ----- Prompt ----- */
+  .prompt-title {
+    font-family: var(--serif);
+    font-size: clamp(28px, 3.4vw, 44px);
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    margin-bottom: 8px;
+  }
+  .prompt-tool {
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+  }
+  .prompt-tool strong {
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .prompt-box {
+    background: #050505;
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    padding: 28px 32px;
+    font-family: var(--mono);
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--text-soft);
+    white-space: pre-wrap;
+    word-break: break-word;
+    border-radius: 2px;
+    margin-bottom: 18px;
+    max-height: 48vh;
+    overflow-y: auto;
+  }
+  .prompt-box::-webkit-scrollbar { width: 8px; }
+  .prompt-box::-webkit-scrollbar-track { background: transparent; }
+  .prompt-box::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 4px; }
+
+  .copy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--accent);
+    color: #FFFFFF;
+    border: none;
+    padding: 14px 28px;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.18s ease;
+  }
+  .copy-btn:hover { background: #D08A33; transform: translateY(-1px); }
+  .copy-btn.copied { background: #2C8A4F; pointer-events: none; }
+
+  /* ----- Build ----- */
+  .build-list {
+    list-style: none;
+    counter-reset: build;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    margin-bottom: 32px;
+  }
+  .build-item {
+    counter-increment: build;
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 20px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--line);
+  }
+  .build-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .build-item::before {
+    content: counter(build, decimal-leading-zero);
+    font-family: var(--serif);
+    font-size: 32px;
+    color: var(--accent);
+    font-weight: 400;
+    line-height: 1;
+    padding-top: 4px;
+  }
+  .build-item h3 {
+    font-family: var(--serif);
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .build-item p {
+    color: var(--text-soft);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  /* ----- Test Output ----- */
+  .test-intro {
+    color: var(--text-soft);
+    font-size: 17px;
+    margin-bottom: 28px;
+  }
+  .test-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+  .test-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 18px 22px;
+    background: var(--bg-elev-1);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .test-item:hover { border-color: var(--line-strong); }
+  .test-item.checked {
+    background: rgba(193, 125, 42, 0.08);
+    border-color: var(--accent);
+  }
+  .checkbox {
+    flex: 0 0 24px;
+    width: 24px;
+    height: 24px;
+    border: 1.5px solid var(--text-muted);
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+    transition: all 0.2s ease;
+  }
+  .test-item.checked .checkbox {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+  .checkbox svg {
+    width: 14px;
+    height: 14px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  .test-item.checked .checkbox svg { opacity: 1; }
+  .test-content h4 {
+    font-family: var(--serif);
+    font-size: 19px;
+    font-weight: 500;
+    margin-bottom: 4px;
+    color: var(--text);
+  }
+  .test-content p {
+    color: var(--text-soft);
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  .all-checked-banner {
+    display: none;
+    text-align: center;
+    padding: 28px;
+    border: 1px solid var(--accent);
+    background: var(--accent-soft);
+    border-radius: 2px;
+    animation: fadeUp 0.4s ease;
+  }
+  .all-checked-banner.show { display: block; }
+
+  /* ----- Break ----- */
+  .break {
+    text-align: center;
+  }
+  .break-timer {
+    font-family: var(--mono);
+    font-size: clamp(120px, 22vw, 280px);
+    color: var(--accent);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    margin-bottom: 32px;
+  }
+  .break-label {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--text-soft);
+    font-style: italic;
+  }
+  .break-next {
+    color: var(--text-muted);
+    margin-top: 16px;
+    font-size: 14px;
+    letter-spacing: 0.04em;
+  }
+  .break-over {
+    font-family: var(--serif);
+    font-size: clamp(48px, 7vw, 96px);
+    font-weight: 400;
+  }
+
+  /* ----- Buttons ----- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 36px;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s ease;
+    border: none;
+    text-decoration: none;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #FFFFFF;
+  }
+  .btn-primary:hover { background: #D08A33; transform: translateY(-1px); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--text-soft);
+    border: 1px solid var(--line-strong);
+  }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ----- Bottom bar ----- */
+  .bottombar {
+    flex: 0 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 24px;
+    padding: 16px 40px;
+    border-top: 1px solid var(--line);
+    background: var(--bg);
+  }
+  .bottombar.hidden { display: none; }
+
+  .nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 22px;
+    background: transparent;
+    color: var(--text-soft);
+    border: 1px solid var(--line-strong);
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s ease;
+  }
+  .nav-btn:hover:not(:disabled) {
     border-color: var(--accent);
     color: var(--accent);
   }
+  .nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+  .nav-prev { justify-self: start; }
+  .nav-next { justify-self: end; }
 
-  .nav-btn:disabled {
-    opacity: 0.3;
-    cursor: not-allowed;
-  }
-
-  .nav-btn.primary {
-    background: var(--accent);
-    color: var(--bg);
-    border-color: var(--accent);
-    font-weight: 500;
-  }
-
-  .nav-btn.primary:hover {
-    background: var(--accent-dim);
-    border-color: var(--accent-dim);
-    color: var(--bg);
-  }
-
-  .nav-btn-arrow {
-    font-size: 1rem;
-    line-height: 1;
-  }
-
-  .nav-btn-meta {
-    font-family: var(--mono);
-    font-size: 0.6875rem;
+  .hmv-reminder {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--serif);
+    font-size: 14px;
+    font-style: italic;
     color: var(--text-muted);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    line-height: 1;
-    margin-bottom: 0.25rem;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    user-select: none;
   }
-
-  .nav-btn-text {
-    text-align: left;
+  .hmv-reminder .letter {
+    color: var(--accent);
+    font-weight: 500;
+    font-style: normal;
+    font-family: var(--sans);
+    letter-spacing: 0.32em;
   }
-
-  .nav-btn.next .nav-btn-text {
-    text-align: right;
+  .hmv-reminder .full {
+    color: var(--text-muted);
+    transition: opacity 0.2s ease;
   }
-
-  .nav-btn-label {
-    font-size: 0.875rem;
-    line-height: 1.2;
-  }
+  .hmv-reminder.collapsed .full { display: none; }
 
   .keyboard-hint {
-    font-family: var(--mono);
-    font-size: 0.6875rem;
-    color: var(--text-muted);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    font-size: 11px;
+    color: var(--text-faint);
+    letter-spacing: 0.04em;
+    margin-top: 4px;
+    text-align: center;
   }
-
   .keyboard-hint kbd {
-    background: var(--bg-elevated);
-    border: 1px solid var(--border);
-    padding: 0.2rem 0.4rem;
-    border-radius: 2px;
-    margin: 0 0.15rem;
     font-family: var(--mono);
+    background: var(--bg-elev-1);
+    padding: 1px 6px;
+    border-radius: 2px;
+    border: 1px solid var(--line);
+    font-size: 10px;
+    color: var(--text-muted);
   }
 
-  /* Responsive */
-  @media (max-width: 768px) {
-    .topbar {
-      padding: 0.75rem 1rem;
-    }
-    .topbar-edition, .topbar-progress {
-      display: none;
-    }
-    .dashboard {
-      padding: 2rem 1rem;
-    }
-    .session-view {
-      padding: 0 1rem;
-    }
-    .sv-header {
-      flex-direction: column;
-      gap: 1.5rem;
-      padding: 2rem 0 1.5rem;
-    }
-    .timer {
-      align-items: flex-start;
-      flex-direction: row;
-      gap: 1rem;
-      align-items: center;
-    }
-    .question-body {
-      margin-left: 0;
-    }
-    .session-footer {
-      flex-direction: column-reverse;
-      align-items: stretch;
-    }
-    .nav-btn {
-      justify-content: center;
-    }
+  /* ----- Loading / error ----- */
+  .loading, .error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    padding: 40px;
   }
+  .loading p, .error p {
+    color: var(--text-muted);
+    font-style: italic;
+    font-family: var(--serif);
+    font-size: 18px;
+  }
+  .error h2 {
+    font-family: var(--serif);
+    color: var(--danger);
+    margin-bottom: 16px;
+    font-weight: 400;
+    font-size: 28px;
+  }
+  .error code {
+    font-family: var(--mono);
+    background: var(--bg-elev-1);
+    padding: 2px 8px;
+    border-radius: 2px;
+    font-size: 13px;
+    color: var(--accent);
+  }
+
+  /* ----- Responsive ----- */
+  @media (max-width: 800px) {
+    .topbar, .bottombar { padding: 14px 20px; }
+    .stage { padding: 32px 24px; }
+    .topbar { grid-template-columns: 1fr auto; gap: 16px; }
+    .topbar-right { display: none; }
+    .keyboard-hint { display: none; }
+  }
+
+  /* Subtle grain to add atmosphere on projection */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image: radial-gradient(rgba(255,255,255,0.012) 1px, transparent 1px);
+    background-size: 3px 3px;
+    z-index: 1;
+  }
+
+  /* ========================================
+     Login Gate
+     ======================================== */
+  .login-overlay {
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .login-overlay.hidden { display: none; }
+
+  .login-card {
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+  }
+  .login-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+  .login-title {
+    font-family: var(--font-display);
+    font-size: 56px;
+    line-height: 0.95;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+  .login-subtitle {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 36px;
+  }
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .login-input {
+    width: 100%;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    padding: 14px 16px;
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 15px;
+    transition: border-color 160ms ease, background 160ms ease;
+  }
+  .login-input:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: rgba(255,255,255,0.06);
+  }
+  .login-input::placeholder { color: rgba(255,255,255,0.3); }
+
+  .login-submit {
+    margin-top: 8px;
+    background: var(--accent);
+    color: var(--bg);
+    border: none;
+    border-radius: 8px;
+    padding: 14px 20px;
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: opacity 160ms ease, transform 160ms ease;
+  }
+  .login-submit:hover { opacity: 0.9; }
+  .login-submit:active { transform: scale(0.98); }
+  .login-submit:disabled { opacity: 0.5; cursor: wait; }
+
+  .login-error {
+    color: #E07B6E;
+    font-size: 13px;
+    margin-top: 12px;
+    min-height: 18px;
+    opacity: 0;
+    transition: opacity 160ms ease;
+  }
+  .login-error.show { opacity: 1; }
+
+  @keyframes login-shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-6px); }
+    40%, 80% { transform: translateX(6px); }
+  }
+  .login-card.shake { animation: login-shake 320ms ease; }
 </style>
 </head>
 <body>
 
-<!-- LOGIN -->
-<div id="login" class="login-wrap">
-  <div class="login-card">
-    <div class="brand-mark">Orange Caterpillar</div>
-    <h1 class="brand-title">Just Build</h1>
-    <p class="brand-edition">Builderator Edition</p>
-    <p class="brand-tagline">Facilitator Console</p>
-    <form id="login-form">
-      <input type="text" id="username" class="password-input" placeholder="Login ID" autocomplete="off" autofocus style="margin-bottom: 0.75rem;">
-      <input type="password" id="password" class="password-input" placeholder="Password" autocomplete="off">
-      <button type="submit" class="login-btn">Enter</button>
-      <div class="login-error" id="login-error"></div>
+<div class="login-overlay" id="login-overlay">
+  <div class="login-card" id="login-card">
+    <div class="login-eyebrow">Facilitator Platform · Builderator Edition</div>
+    <h1 class="login-title">Just<br>Build</h1>
+    <p class="login-subtitle">Sign in to continue</p>
+    <form class="login-form" id="login-form" autocomplete="off">
+      <input class="login-input" type="text" id="login-id" placeholder="ID" autocapitalize="off" autocorrect="off" spellcheck="false" required>
+      <input class="login-input" type="password" id="login-pw" placeholder="Password" required>
+      <button class="login-submit" type="submit" id="login-submit">Enter</button>
+      <div class="login-error" id="login-error">Incorrect ID or password.</div>
     </form>
-    <div class="login-footer">11 Sessions · Two Days · Four Weeks · One Real Initiative</div>
   </div>
 </div>
 
-<!-- APP -->
-<div id="app" class="app">
-  <header class="topbar">
-    <div class="topbar-left">
-      <div class="topbar-brand">Just <span class="accent">Build</span></div>
-      <div class="topbar-edition">Builderator Edition</div>
+<header class="topbar hidden" id="topbar">
+  <div class="topbar-left">
+    <span class="topbar-eyebrow" id="topbar-eyebrow">Session 1</span>
+    <span class="topbar-title" id="topbar-title">Ideation</span>
+    <span class="topbar-section" id="topbar-section"></span>
+  </div>
+  <div class="topbar-center">
+    <div class="timer" id="timer" title="Click or press T to pause/resume">--:--</div>
+  </div>
+  <div class="topbar-right">
+    <div class="progress" id="progress"></div>
+  </div>
+</header>
+
+<main class="stage" id="stage">
+  <div class="loading">
+    <p>Loading workshop…</p>
+  </div>
+</main>
+
+<footer class="bottombar hidden" id="bottombar">
+  <button class="nav-btn nav-prev" id="prev-btn">← Previous</button>
+  <div style="display:flex; flex-direction:column; align-items:center; gap:6px;">
+    <div class="hmv-reminder" id="hmv-reminder" title="Press H to toggle">
+      <span class="letter">H&middot;M&middot;V</span>
+      <span class="full">Humanics &middot; Mechanics &middot; Valuenomics</span>
     </div>
-    <div class="topbar-progress" id="topbar-progress"></div>
-    <div class="topbar-right">
-      <button class="icon-btn" id="dashboard-btn">All Sessions</button>
-      <button class="icon-btn" id="logout-btn">Sign Out</button>
+    <div class="keyboard-hint">
+      <kbd>←</kbd> Prev &middot; <kbd>Space</kbd>/<kbd>→</kbd> Next &middot; <kbd>T</kbd> Timer &middot; <kbd>F</kbd> Fullscreen &middot; <kbd>H</kbd> HMV
     </div>
-  </header>
-
-  <!-- DASHBOARD -->
-  <main class="dashboard" id="dashboard">
-    <div class="dash-header">
-      <div class="dash-eyebrow">Two-Day Workshop</div>
-      <h1 class="dash-title">Eleven sessions to ship one real initiative.</h1>
-      <p class="dash-subtitle">For operators inside SMEs driving strategic change.</p>
-      <p class="dash-tagline">You are not an attendee today. You are not a manager. You are a Builderator. You build with your own hands. You ship to real people in your company. You own whether they actually use it.</p>
-    </div>
-    <div id="day1-section"></div>
-    <div id="day2-section"></div>
-  </main>
-
-  <!-- SESSION VIEW -->
-  <section class="session-view" id="session-view" style="display:none;">
-    <header class="sv-header">
-      <div class="sv-title-block">
-        <div class="sv-eyebrow" id="sv-eyebrow"></div>
-        <h1 class="sv-title" id="sv-title"></h1>
-        <div class="sv-meta" id="sv-meta"></div>
-      </div>
-      <div class="timer">
-        <div class="timer-label">Session Timer</div>
-        <div class="timer-display" id="timer-display">00:00</div>
-        <div class="timer-controls">
-          <button class="timer-btn" id="timer-start">Start</button>
-          <button class="timer-btn" id="timer-pause">Pause</button>
-          <button class="timer-btn" id="timer-reset">Reset</button>
-        </div>
-      </div>
-    </header>
-
-    <nav class="section-tabs" id="section-tabs"></nav>
-
-    <div class="section-content" id="section-content"></div>
-
-    <footer class="session-footer">
-      <button class="nav-btn" id="prev-btn">
-        <span class="nav-btn-arrow">←</span>
-        <span class="nav-btn-text">
-          <span class="nav-btn-meta">Previous</span>
-          <span class="nav-btn-label" id="prev-label">—</span>
-        </span>
-      </button>
-      <div class="keyboard-hint">
-        <kbd>←</kbd><kbd>→</kbd> sections · <kbd>Esc</kbd> dashboard
-      </div>
-      <button class="nav-btn primary next" id="next-btn">
-        <span class="nav-btn-text">
-          <span class="nav-btn-meta">Next</span>
-          <span class="nav-btn-label" id="next-label">—</span>
-        </span>
-        <span class="nav-btn-arrow">→</span>
-      </button>
-    </footer>
-  </section>
-</div>
+  </div>
+  <button class="nav-btn nav-next" id="next-btn">Next →</button>
+</footer>
 
 <script>
-// ============================================================================
-// SESSION DATA
-// ============================================================================
-const SESSIONS = [
-  {
-    n: 1, name: "Ideation", day: 1, time: "10:00 — 11:30", duration: 75,
-    setStage: [
-      "The room opens with one question on the screen.",
-      "<em>What is the one strategic initiative you would drive inside your company if you had the tools and the time?</em>",
-      "Five minutes of silence. Everyone writes something down.",
-      "Then two things only.",
-      "The Builderator frame. You are not an attendee today. You are not a manager. You are a Builderator. You build with your own hands. You ship to real people in your company. You own whether they actually use it. You have an initiative, real AI tools, and a deadline. Everything that happens from this moment lives inside that frame.",
-      "The HMV lens. Three questions demonstrated live on one initiative from the room. Fast. Visceral. Shows what the lens does to a half-formed idea before a single word is explained."
-    ],
-    questions: [
-      { n: 1, title: "What is the initiative?", body: "Every participant reads what they wrote on their card. The facilitator listens for one thing. Is this an initiative or a tool? Most people write tools. Push them back to the initiative the tool would serve.<em>That is what you want to build. What initiative does it serve? Describe the initiative — the change you are trying to drive in your company — without mentioning the specific tool you would build for it.</em>" },
-      { n: 2, title: "Is this a real organisational problem?", body: "Have you personally felt this problem inside your role? Have you watched a colleague or your team struggle with it? Or does it just seem like something the company should be doing?<br><br>Three levels of problem reality. Level 1, you have personally felt this pain in your role, is the strongest signal. Level 2, you have watched someone in your team or function struggle with it, is a strong signal. Level 3, you think the org probably needs this, is the weakest signal and needs validation before building." },
-      { n: 3, title: "Who specifically inside the organisation has this problem?", body: "Not 'the org.' Not 'the team.' Not 'everyone in HR.' One specific role, one specific function, one specific situation. The test is whether you could name the actual person at your company who has this problem on Monday morning. If yes, specific enough. If no, keep going." },
-      { n: 4, title: "How often does this problem occur?", body: "Does this person experience this problem daily, weekly, monthly, or at specific moments in a cycle (every quarter close, every hiring round, every campaign launch)? Frequency alone does not determine value. Frequency multiplied by cost does." },
-      { n: 5, title: "What does it cost the organisation?", body: "Not just time. What does it cost in capacity, in errors, in slow decisions, in opportunities missed? What does the person who has this problem feel when it happens? What does the company lose because the problem is not solved? The combination of business cost and human friction is what makes an initiative worth driving." },
-      { n: 6, title: "What has been tried already?", body: "If this initiative is needed, someone has probably tried something. What tools, processes, working groups, or attempts already exist? Why are they not good enough? This question reveals what the initiative must be better than, and what political or operational landscape it is landing in." },
-      { n: 7, title: "Will leadership support this?", body: "Be honest. If you walked into your manager or sponsor's office today and said you were going to ship this initiative in four weeks, would they back you? Would they fund it? Would they get out of your way? An initiative without sponsorship dies in the four-week phase no matter how good the prototype is." }
-    ],
-    hmv: {
-      humanics: "<p>The question is not what should I build. The question is who am I building for inside my company and what do they actually feel? Every initiative must start with a real internal human the participant can describe in enough detail that the room could recognise them.</p><p><strong>Technique.</strong> The facilitator asks participants to close their eyes and picture the specific colleague who has this problem. Where are they in the building or on their screen? What time of week is it? What just happened that triggered the problem? What are they feeling in that moment?</p>",
-      mechanics: "<p>The question is not can AI solve this. The question is should AI solve this, and will what gets built actually run inside the way our company operates. Three failure modes to watch for.</p><ul><li>The AI-for-the-sake-of-AI initiative. The participant wants to use AI and is finding an organisational problem to justify it.</li><li>The spreadsheet problem. The problem could be solved adequately with a well-designed form, a Notion page, or a clearer process.</li><li>The human judgement problem. Every step of the initiative requires genuine human empathy, ethical reasoning, or political navigation that AI cannot do.</li></ul>",
-      valuenomics: "<p>The question is not is this interesting. The question is is there a real value exchange the company will measure and recognise? Three signals that an initiative is fundable beyond the workshop.</p><ul><li>The org currently spends measurable time or money on this problem.</li><li>The problem currently produces a painful consequence (errors, delays, churn, missed revenue, low engagement) that someone is being held accountable for.</li><li>A specific person in leadership would write a sentence of credit for the Builderator if this initiative succeeded.</li></ul>"
-    },
-    prompts: [
-      {
-        title: "Claude Prompt — Stress Test Through HMV",
-        body: `I am a Builderator inside an SME. I am exploring a strategic initiative I want to drive in my company. I need you to stress test it honestly.
-
-My initiative: [one sentence]
-My role and function: [your title and function]
-My company size and industry: [headcount and sector]
-The internal user this initiative serves: [specific person/role inside the org]
-The problem they experience: [specific problem, not the solution]
-How often they experience it: [frequency]
-What it costs the org: [time, capacity, errors, revenue, decision quality]
-What has been tried before: [existing efforts or workarounds]
-Why those have not worked: [the gap]
-
-Run this through three lenses and be direct.
-
-Humanics — is my internal user specific enough? Is the problem I described genuinely felt by a real person inside my company, or am I building for a role I imagine?
-
-Mechanics — is AI genuinely useful here? Should AI solve this or am I forcing it? Will whatever I build actually run inside how my company operates? Name the failure mode if you see one.
-
-Valuenomics — is there a real value exchange the org will recognise? Will a specific leader in my company care if this works? Would they fund a v2?
-
-End with three hard questions I should be able to answer before I start building.`
-      },
-      {
-        title: "Perplexity Prompt — Validate the Initiative",
-        body: `Find evidence that other companies have tried initiatives like the one I am describing.
-
-My initiative: [their initiative statement]
-Industry: [their sector]
-Company size context: [SME, 50–250 people]
-
-Search for case studies, LinkedIn posts, blog articles, conference talks, and HBR-style write-ups where people inside SMEs describe driving similar internal initiatives. Give me five specific examples with quotes where possible. Tell me what worked, what failed, and what the most common adoption barrier was.`
-      }
-    ],
-    build: "<p>Both prompts run simultaneously. Ten to fifteen minutes.</p><p>Claude asks three hard questions at the end of its response. The participant must answer them. Some answers reveal a weakness in the initiative. The participant strengthens the initiative or pivots to a sharper one.</p><p>Perplexity returns real evidence. Real operators describing real initiatives in their own words. The participant reads it and feels confirmation or correction.</p>",
-    tests: [
-      { n: 1, title: "The Specificity Test", body: "Can you describe the internal user this initiative serves in enough detail that someone in this room could recognise them at your company? If yes, pass. If no, return to Question 3." },
-      { n: 2, title: "The Reality Test", body: "Can you name one specific real colleague at your company who has this problem right now? If yes, pass. If no, the problem may not be real enough." },
-      { n: 3, title: "The Pain Test", body: "Can you describe what your internal user feels emotionally when this problem occurs? Frustration, embarrassment, panic, fatigue? If yes, pass. If no, return to Question 5." },
-      { n: 4, title: "The Gap Test", body: "Can you explain specifically why existing efforts or workarounds are not good enough? If yes, pass. If no, the opportunity may not be real." },
-      { n: 5, title: "The Sponsorship Test", body: "Can you name one specific person in leadership at your company who would back this initiative if you walked into their office tomorrow? If yes, pass. If no, return to Question 7 before going further." }
-    ]
-  },
-  {
-    n: 2, name: "Design", day: 1, time: "11:30 — 12:00", duration: 30,
-    setStage: [
-      "The facilitator opens with this.",
-      "<em>You now have a real initiative with a real internal user at its centre.</em>",
-      "<em>Most people at this point make one mistake. They open a tool and start building immediately. They figure out what they are building as they go.</em>",
-      "<em>That is how you waste four hours and end up with something that does not work, which nobody trusts, and which nobody adopts.</em>",
-      "<em>A Builderator who has shipped before does something different. They spend thirty minutes designing before they touch a single tool. Not a detailed specification. Not a project plan. Just enough clarity to know exactly what the core artefact of this initiative is before they start.</em>",
-      "<em>Three things. What is the simplest possible version of the core tool that would make this initiative real? What does the internal user put in and what do they get out? What does the AI do and what does it never do?</em>",
-      "<em>Answer those three questions in the next thirty minutes and you will build twice as fast and twice as well.</em>"
-    ],
-    questions: [
-      { n: 1, title: "What is the simplest possible version of the core tool?", body: "Describe the tool at the heart of your initiative in one sentence. Not the full vision. Not the ideal version. The minimum version that still creates real value for your internal user. Push until it is one thing that does one job well." },
-      { n: 2, title: "What does the internal user put in?", body: "What is the minimum information your internal user needs to provide for the tool to work? Every field you add is friction. Friction reduces adoption. Internal users have higher friction tolerance than customers but they also have more meetings — what is the absolute minimum?" },
-      { n: 3, title: "What does the internal user get out?", body: "What exactly appears when the tool runs? The output format must serve the internal user not the builder. A busy manager needs something they can read in two minutes and forward. An analyst needs something they can paste into a deck. Connect the output format to how the internal user will actually consume it." },
-      { n: 4, title: "What does the AI do at each step?", body: "Walk through what the AI is actually doing. Step one, it receives this. Step two, it does this. Step three, it produces this. The facilitator listens for magical thinking and pushes back toward reality." },
-      { n: 5, title: "Where does the human step in?", body: "At what point does a human need to review the AI output before it reaches the internal user, or before action is taken on it? Every internal AI tool has a human handoff point. Design it deliberately, not accidentally — internal trust collapses fast when AI output reaches a stakeholder unreviewed and is wrong." },
-      { n: 6, title: "What should the AI never do?", body: "Name three things your AI must never do regardless of what the user asks. Constraints are not limitations. They are trust builders. Inside a company, the constraints are even more important — touching salary data, naming individual employees in negative ways, making policy commitments. Pick three." }
-    ],
-    hmv: {
-      humanics: "<ul><li>The confusion test — would your internal user immediately understand what to do when they open the tool, without an email from you explaining it?</li><li>The relief test — at what moment does the user feel 'this just saved me an hour'?</li><li>The trust test — at what moment could the user feel uncertain whether the output is reliable enough to act on? Design to address it.</li></ul>",
-      mechanics: "<ul><li>The reliability test — can the AI produce consistently good output for the full range of real inputs your colleagues will give it (including the messy ones)?</li><li>The failure test — what happens when the AI gets it wrong? Is the failure visible enough that the user catches it before acting?</li><li>The constraint test — are the constraints specific enough to actually constrain behaviour, especially around sensitive internal data?</li></ul>",
-      valuenomics: "<ul><li>The clarity test — does the user immediately understand what they received and why it is valuable?</li><li>The action test — does the output tell the user what to do next, or fit cleanly into a step they were already going to take?</li><li>The case test — could a leader in your company look at this output and immediately understand the time or quality improvement it represents?</li></ul>"
-    },
-    prompts: [
-      {
-        title: "Prompt 1 — Define the Minimum Solution",
-        body: `I am a Builderator designing the core tool of a strategic initiative I am driving inside my SME.
-
-My initiative: [from Session 1]
-My internal user: [from Session 1]
-The value the initiative delivers to the org: [from Session 1]
-
-Help me define the minimum viable version of the core tool. Then give me the tool in one sentence and the three-step user flow.
-
-Step 1 — the user inputs [what].
-Step 2 — the AI does [what].
-Step 3 — the user receives [what in what format].
-
-Be specific. Be simple. Push back if I am making this more complex than it needs to be. The tool must be buildable and deployable in 90 minutes.`
-      },
-      {
-        title: "Prompt 2 — Write the System Prompt",
-        body: `I am building the core AI tool for my initiative.
-
-Tool in one sentence: [from Prompt 1]
-Internal user: [from Session 1]
-What the user inputs: [from Prompt 1]
-What the AI produces: [from Prompt 1]
-Three things the AI must never do: [from Question 6]
-
-Write me a system prompt with seven elements.
-
-Role — who the AI is and what it exists to do for this internal user.
-Context — what the AI needs to know about the organisation, the function, and the situation.
-Instructions — step by step what the AI does when triggered.
-Tone — how the AI communicates, calibrated to my company's culture.
-Output format — exactly how the AI structures its output for an internal audience.
-Constraints — the three things the AI never does.
-Escalation — when the AI should stop and tell the user to consult a human.`
-      },
-      {
-        title: "Prompt 3 — Test the System Prompt",
-        body: `Read the system prompt you just wrote. Now play the role of my internal user.
-
-My internal user is: [role, function, seniority, context]
-
-Give me three inputs this user might realistically provide, including one messy or half-formed one of the kind a busy colleague actually types between meetings. For each input, run the system prompt mentally and tell me what output it would produce. Is that output genuinely useful and trustworthy?
-
-Then give me one edge-case input — something the user might paste in by accident or out of curiosity. What happens? Does the system prompt handle it gracefully or does it break in a way that would damage trust internally?`
-      }
-    ],
-    build: "<p>Three prompts run in sequence. Approximately fifteen minutes total.</p><p>Prompt 1 produces the minimum tool definition and three-step user flow. Participant confirms it is simple and specific. Makes one or two edits.</p><p>Prompt 2 produces the system prompt. Participant reads every element. Makes two or three specific edits — particularly to tone (does this sound like my company?) and constraints (are these the right three for my company?).</p><p>Prompt 3 tests the system prompt against three realistic inputs and one edge case. If the edge case breaks the prompt, the participant asks Claude to fix it.</p>",
-    tests: [
-      { n: 1, title: "The Simplicity Test", body: "Can you explain what the core tool does in one sentence? If yes, pass. If no, the tool is still too complex." },
-      { n: 2, title: "The Flow Test", body: "Can you describe the three-step user flow without hesitation? If yes, pass. If no, the flow is not clear enough." },
-      { n: 3, title: "The System Prompt Test", body: "Does your system prompt have all seven elements? If yes, pass. If any element is missing, complete it before moving on." },
-      { n: 4, title: "The Edge Case Test", body: "Has your system prompt been tested against at least one unexpected input? Does it handle it gracefully and protect the trustworthiness of the tool? If yes, pass." },
-      { n: 5, title: "The HMV Test", body: "Can you answer all three HMV questions without hesitation? Humanics — does the output serve the internal user? Mechanics — does the architecture reflect what AI can actually do reliably? Valuenomics — would a leader at your company look at the output and immediately recognise the value?" }
-    ]
-  },
-  {
-    n: 3, name: "Build the Core Tool", day: 1, time: "13:00 — 14:30", duration: 90,
-    setStage: [
-      "You have an initiative. You have a design. You have a system prompt. Now you build the core tool.",
-      "This is the central artefact of your initiative. The thing that makes it real. Without this, the initiative is a deck. With this, the initiative has a heartbeat.",
-      "Today a Builderator with a clear initiative and the right prompts can have a working tool with a live URL in ninety minutes. Not a mockup. Not a wireframe. Something real that a colleague three desks away can open on their phone and use right now.",
-      "One HTML file. No code knowledge required. No API. No backend. Everything runs in the browser. You will build it with Claude, customise it until it feels like yours, and deploy it to the internet before this session ends. The link will be a public URL that you share internally — no IT ticket, no security review for a prototype, no enterprise plumbing."
-    ],
-    questions: [
-      { n: 1, title: "What does the user see first?", body: "When your internal user opens the tool for the first time, what is the first impression? Not the design. The feeling. Is it 'this is for me,' 'this is from a colleague,' 'this is something my company built'? Does that feeling match the initiative you are driving?" },
-      { n: 2, title: "What is the tool called and what does it say it does?", body: "Your tool needs a name and a one-line description. The name should say something true about what it does or which initiative it belongs to. Avoid acronyms unless your company already uses them. The description should tell the internal user exactly what they will get and that it is sanctioned (or at least sponsored) work." },
-      { n: 3, title: "How does the user interact with it?", body: "Walk through the user's physical interaction. What do they paste? What do they type? What do they click? What do they see changing on screen? Internal users tolerate slightly more friction than external customers but they have less attention because they are between meetings. Every extra click is a reason to close the tab and forget." },
-      { n: 4, title: "What does the output look like?", body: "When the tool produces its result, what does the user actually see? A wall of text? A structured summary they can copy-paste? A numbered list with a clear next action? A scorecard? Connect the output format to what the internal user will do next with it. If they will paste it into a deck, give them paste-ready text. If they will forward it, give them an email-ready format." },
-      { n: 5, title: "What makes it feel trustworthy enough to act on?", body: "Internal trust is different from external trust. The user is not asking 'is this product credible.' They are asking 'if I act on this output, will I look stupid in front of my manager next week?' The three trust signals for internal AI tools are specificity (the output names real things, not generalities), restraint (the AI flags when it does not know rather than hallucinating), and source visibility (the user can see what the AI was working from)." },
-      { n: 6, title: "What happens after the output?", body: "When the user has their result, what do you want them to do next? Forward it? Use it in a meeting? Save it? Run it again with different inputs? The next step must be obvious. Internal tools that produce great output but leave the user unsure what to do with it die of confusion." }
-    ],
-    hmv: {
-      humanics: "<ul><li>The colleague test — would the colleague three desks away open this and complete the full journey without you walking them through it?</li><li>The language test — read every label and button out loud. Does it sound like something a real person at your company would say, or does it sound like SaaS marketing copy?</li><li>The completion test — would a real colleague complete the full journey in their first attempt, or would they get stuck halfway and never come back?</li></ul>",
-      mechanics: "<ul><li>The real input test — run the tool with a real input from your actual work, not a perfect test input. What happens?</li><li>The edge case test — run the tool with an input it was not designed for. Does it fail gracefully or does it produce confidently wrong output that would damage trust?</li><li>The consistency test — run the same input twice. Do you get the same quality of output? Internal users will run the same input twice if they are not sure they trust it.</li></ul>",
-      valuenomics: "<ul><li>The first-glance test — look at the output for three seconds and look away. What did you retain? Could you describe it to your manager?</li><li>The case test — if a leader saw this output, would they immediately understand the time or quality lift it represents?</li><li>The forward test — would a real internal user forward this output to a colleague, or would they hide that they used an AI tool to produce it? If they would hide it, the output is not trustworthy enough yet.</li></ul>"
-    },
-    prompts: [
-      {
-        title: "Prompt 1 — Build the Core Tool",
-        body: `I am a Builderator inside an SME building the core tool of a strategic initiative. I need you to build me a complete single-page HTML app.
-
-Tool name: [from Question 2]
-One-line description: [from Question 2]
-Initiative this tool belongs to: [from Session 1]
-Internal user: [from Session 1]
-First-impression feeling: [from Question 1]
-What the user inputs: [from Session 2]
-How the user interacts: [from Question 3]
-What the output looks like: [from Question 4]
-What makes it trustworthy enough to act on: [from Question 5]
-What happens after the output: [from Question 6]
-System prompt for the logic: [from Session 2]
-
-Build me a complete single-page HTML app. No external API calls. Everything runs in the browser. The design should feel professional and trustworthy — appropriate for a tool a colleague might forward to their manager. After you build it, explain each section in plain language so I understand exactly what you built and why. I will read it carefully and ask you to make specific changes.`
-      },
-      {
-        title: "Prompt 2 — Refine and Personalise",
-        body: `Read the HTML app you just built. I want to make the following specific changes.
-
-Change 1: [specific change]
-Change 2: [specific change]
-Change 3: [specific change]
-
-Make these changes and show me the updated file. Explain what you changed and why the change improves the tool for my internal user inside my company.`
-      }
-    ],
-    buildStages: [
-      { label: "Stage 1", title: "Claude Builds", time: "15 minutes", body: "Participant pastes Prompt 1 into Claude. Claude produces the complete HTML file with a plain-language explanation of every section. Participant reads every section carefully. Does not rush. Understands what each part does before moving on." },
-      { label: "Stage 2", title: "Builderator Directs", time: "20 minutes", body: "Participant identifies two or three specific things to change. Not vague feedback. Specific changes that match how their colleagues actually work and what their company actually says. They paste Prompt 2 with their specific changes. Claude updates the file. Participant reviews again." },
-      { label: "Stage 3", title: "Deploy", time: "15 minutes", body: "Participant goes to netlify.com. Creates a free account. Drags the HTML file into the browser. Netlify generates a live URL in two minutes. Opens the URL on their phone. Tests with one real input from their actual work. Identifies one thing that needs improving. Fixes it. Redeploys." }
-    ],
-    tests: [
-      { n: 1, title: "The Live URL Test", body: "Does your tool have a live URL that works on a phone browser without any explanation from you? If yes, pass." },
-      { n: 2, title: "The Colleague Test", body: "Open the tool as if you have never seen it. Is it immediately obvious what to do without reading any instructions? If yes, pass." },
-      { n: 3, title: "The Real Input Test", body: "Run the tool with a real input from your actual work. Does the output serve a real internal user genuinely? If yes, pass." },
-      { n: 4, title: "The Trust Test", body: "Does the output look like something a colleague produced or like raw AI output? If it looks colleague-produced, pass." },
-      { n: 5, title: "The Forward Test", body: "Would your internal user feel comfortable forwarding this output to their manager or pasting it into a deck without hiding that AI was involved? If yes, pass." }
-    ]
-  },
-  {
-    n: 4, name: "Build the Internal Launch Page", day: 1, time: "14:45 — 15:45", duration: 60,
-    setStage: [
-      "You have a working tool. It lives at a real URL. But right now, only you know it exists.",
-      "A Builderator without an internal launch page is an operator dropping a Slack message and hoping. Most internal initiatives die at this exact moment — the build is real but the launch is a single sentence in a channel, and three days later nobody remembers it exists.",
-      "Your launch page is a thirty-second conversation with a colleague who has never heard of this initiative. A conversation that has to answer three questions before they decide whether to click through to the tool.",
-      "What is this initiative? Is this for me? What do I do next?",
-      "If your launch page answers those three questions clearly, the colleague clicks through and uses the tool. If it does not, they close the tab and the initiative dies on impact. You have sixty minutes to build that conversation."
-    ],
-    questions: [
-      { n: 1, title: "What is the one thing your launch page must make a colleague feel?", body: "Not what it must say. What it must make them feel. In the first three seconds before they have read a single word. Connect the feeling to the internal user portrait — relief, recognition, mild curiosity, a sense that someone in the company finally took this on." },
-      { n: 2, title: "What is the headline?", body: "One line. Maximum ten words. Initiative headlines describe the programme. User headlines describe what changes for the colleague. Which type is yours? If it is an initiative headline, rewrite it as a user headline. 'Grassroots Innovation Programme' is an initiative headline. 'Get your idea in front of leadership in two weeks' is a user headline." },
-      { n: 3, title: "Why would your colleague hesitate?", body: "Before clicking and trying the tool, what is the one thing that makes them pause? The three most common hesitations for internal AI tools are whether it is officially sanctioned, whether the output can be trusted in front of their manager, and whether using it will create more work than it saves." },
-      { n: 4, title: "What is the one action you want them to take?", body: "Not two actions. Not a menu of options. One. What is the single most important thing a colleague should do? Almost always, the answer is try the tool with one real input." },
-      { n: 5, title: "Why should a colleague trust this is real?", body: "Internal trust comes from sponsorship, specificity, and clarity. Sponsorship — does the page indicate this is sanctioned, supported, or at least visible to leadership? Specificity — does the page name the specific function, role, or workflow this is for? Clarity — is the language plain and the next step obvious? Generic claims create generic trust which is no trust at all." },
-      { n: 6, title: "How does it work in three steps?", body: "Describe how the tool works in three steps. One sentence each. Simple enough that a busy colleague can understand it immediately. Every piece of jargon is a barrier — and your colleagues already use enough jargon at work without you adding more." }
-    ],
-    hmv: {
-      humanics: "<ul><li>The pronoun test — count 'you' versus 'I' or 'we.' You should appear far more than I or we.</li><li>The recognition test — would your internal user read the headline and think 'this is written for me, in my role, for my situation'?</li><li>The conversation test — read the copy out loud as if speaking directly to your colleague. Does it sound like a colleague speaking, or like a corporate intranet?</li></ul>",
-      mechanics: "<ul><li>The accuracy test — does the page describe what the tool actually does, not what you wish it did or plan it to do in v2?</li><li>The clarity test — does the 'how it works' section describe what the AI does in plain language, including its limits?</li><li>The expectation test — after reading, does the colleague have an accurate expectation of what will happen when they try the tool?</li></ul>",
-      valuenomics: "<ul><li>The thirty-second test — after thirty seconds, can a colleague say what the initiative is, who it is for, and what the tool does?</li><li>The specificity test — does the page name a specific outcome, not 'improve productivity' but 'save thirty minutes of QBR prep per customer'?</li><li>The comparison test — does the page help the colleague understand why this is better than what they currently do?</li></ul>"
-    },
-    prompts: [
-      {
-        title: "Prompt 1 — Write the Launch Page Copy",
-        body: `I am a Builderator inside an SME launching an internal initiative with a working tool. Write the copy for six sections of an internal launch page. Final words ready to paste. No explanations. Just the best version.
-
-My initiative: [from Session 1]
-My core tool: [one sentence from Session 2]
-My internal user: [from Session 1]
-My value to the org: [from Session 1]
-The feeling the page must create: [from Question 1]
-My tool's URL: [Netlify URL]
-My colleague's primary hesitation: [from Question 3]
-Sponsorship signal I can credibly use: [name of sponsor or function backing this]
-
-Section 1 — Headline. One line. Maximum ten words. A user headline, not an initiative headline.
-Section 2 — Subheadline. Two sentences. Who this is for and what specifically changes for them.
-Section 3 — How it works. Three steps. One sentence each. No jargon.
-Section 4 — Trust statement. Directly addresses the primary hesitation. Honest. Specific. Names the sponsor or function backing this where credible.
-Section 5 — Call to action. One button label that describes the action and hints at value.
-Section 6 — Credibility line. One sentence. Why I am the right person to have built this and what's in scope versus future versions.`
-      },
-      {
-        title: "Prompt 2 — Test and Refine",
-        body: `Read the copy you just wrote as if you are my colleague seeing this for the first time, between two meetings, with twenty seconds of attention.
-
-My colleague is: [role and context]
-
-Ask yourself three questions.
-
-Does the headline stop me and make me think this is for me?
-Does the copy speak to me directly or could it apply to anyone in the company?
-After reading everything, do I know exactly what to do next and do I want to do it?
-
-For any section where the answer is no, rewrite that section. Tell me what you changed and why.`
-      }
-    ],
-    buildStages: [
-      { label: "Stage 1", title: "Claude Writes the Copy", time: "10 minutes", body: "Participant pastes Prompt 1 into Claude. Claude produces all six sections. Participant reads every section and checks against the questions. Identifies any section that feels generic, off-tone, or not-like-our-company." },
-      { label: "Stage 2", title: "Claude Tests and Refines", time: "10 minutes", body: "Participant pastes Prompt 2. Claude reads the copy as the colleague and identifies weaknesses. Rewrites weak sections. Participant makes one final edit, particularly to anything that sounds like SaaS marketing instead of internal communication." },
-      { label: "Stage 3", title: "Build on Carrd", time: "40 minutes", body: "Participant goes to carrd.co. Opens a blank canvas. Builds the page section by section. Pastes each piece of Claude's copy. Links the CTA button to the tool URL. Adds one visual — a screenshot of the tool running with a real input. Publishes. Tests on phone. Fixes one thing. Republishes." }
-    ],
-    tests: [
-      { n: 1, title: "The Thirty-Second Test", body: "Show the page to someone in the room. After thirty seconds ask what does this initiative do and who is it for? If they answer accurately, pass." },
-      { n: 2, title: "The Pronoun Test", body: "Count the number of times the page says 'you' versus 'I' or 'we.' You should appear significantly more. If not, rewrite toward the colleague." },
-      { n: 3, title: "The Hesitation Test", body: "Does the page directly address the primary hesitation from Question 3? If yes, pass. If no, add the trust statement." },
-      { n: 4, title: "The Link Test", body: "Does the CTA button work and link to the correct tool URL? Open on a phone and tap the button. If yes, pass." },
-      { n: 5, title: "The Sanction Test", body: "After reading the page, would a colleague feel comfortable trying the tool, or would they suspect this is a personal side project they should not engage with on company time? If sanctioned-feeling, pass." }
-    ]
-  },
-  {
-    n: 5, name: "Build the Help Layer", day: 1, time: "15:45 — 16:45", duration: 60,
-    setStage: [
-      "You have a tool. You have a launch page. But not every colleague who lands on your page is ready to try the tool immediately. Some have questions. Some have doubts. Some want to know whether their manager already knows about this.",
-      "A help layer is your always-on conversation partner. It handles the questions while you sleep, while you are in your day job, while you are not on Slack. It addresses doubts before they become reasons to close the tab. It guides the curious colleague toward becoming an actual user — and it stops you from becoming the personal support desk for everyone in the company who has a question about your initiative.",
-      "A good help layer does not feel like a robot. It feels like a knowledgeable colleague who genuinely understands the initiative and cares whether the visitor gets what they need."
-    ],
-    questions: [
-      { n: 1, title: "What are the three questions your colleague most wants answered?", body: "Before they try the tool, before they tell their manager, before they share the link, what three questions are sitting in their head? The most common are: is this officially sanctioned, can I trust the output, and what happens to the data I paste in?" },
-      { n: 2, title: "What is the personality of your help layer in three words?", body: "Direct. Generous. Honest. Or — efficient, sanctioned, plain. Or — warm, knowledgeable, careful. Pick three words and write them down. Every response from the help layer must be consistent with those three words." },
-      { n: 3, title: "What does the help layer say when it does not know?", body: "The single most important behaviour. When asked something it was not designed to handle, what does it say? 'I do not know — please reach out to [name] in [function]' is far better than a wrong answer that damages trust and propagates inside the company." },
-      { n: 4, title: "How does every conversation end?", body: "Every conversation, regardless of which path the colleague took, ends with one specific invitation. Try the tool with one real input. Forward the page to a colleague who would benefit. Reach out to you with a specific question. Pick the one ending and engineer every path toward it." },
-      { n: 5, title: "What does the help layer never say?", body: "Three things. The help layer must never make policy commitments on behalf of the company. Must never name individual employees in negative ways. Must never produce confidence about something it cannot actually verify. Pick the three relevant to your initiative and write them down explicitly." }
-    ],
-    hmv: {
-      humanics: "<ul><li>The colleague test — read every response out loud. Does it sound like a knowledgeable colleague or like a chatbot trained on a marketing site?</li><li>The honesty test — when the help layer does not know, does it say so without padding? Internal users have low tolerance for chatbot evasion.</li><li>The respect test — does the help layer respect the colleague's time and treat them as a competent professional?</li></ul>",
-      mechanics: "<ul><li>The path test — every reasonable conversation path reaches a useful outcome, not a dead end.</li><li>The edge case test — what happens when a colleague says something completely unexpected, or asks something sensitive about the initiative's politics?</li><li>The loop test — can the colleague ask a follow-up question after receiving an answer?</li></ul>",
-      valuenomics: "<ul><li>The conversion test — does every conversation end with a genuine invitation to try the tool, forward the page, or reach out to you?</li><li>The qualification test — does the help layer help colleagues understand if this initiative is for them or not?</li><li>The trust test — after a conversation, does the colleague trust the initiative more than before, or less?</li></ul>"
-    },
-    prompts: [
-      {
-        title: "Prompt 1 — Design the Conversation Flow",
-        body: `I am building a help layer for the internal launch page of my strategic initiative. I am using Voiceflow. Design the complete conversation flow.
-
-My initiative: [one sentence]
-My core tool: [one sentence]
-My internal user: [role and context]
-My company size and culture: [headcount and brief tone description]
-Help-layer personality in three words: [from Question 2]
-The three questions my colleagues most want answered: [from Question 1]
-What the help layer never says: [from Question 5]
-How every conversation ends: [from Question 4]
-What happens when the help layer does not know: [from Question 3]
-
-Design the complete conversation flow structured as follows.
-
-Opening message — acknowledges what the colleague is here for, invites a specific response.
-Three question-answer pairs — for each of the three colleague questions. Each answer honest, specific, brief, written in colleague-voice not chatbot-voice.
-One edge case — a question the help layer was not designed to handle, perhaps something politically sensitive about the initiative. Show the honest response that points to a human.
-Closing invitation — the natural, genuine invitation to try the tool that ends every conversation.
-
-Format as a clear conversation script I can build in Voiceflow.`
-      },
-      {
-        title: "Prompt 2 — Test the Conversation",
-        body: `Read the conversation flow you just designed. Now play the role of three different colleagues.
-
-Colleague 1 — a curious first-time visitor who has one specific question about whether this initiative applies to their function.
-Colleague 2 — a sceptical visitor who pushes back on one of the answers and asks a follow-up question the help layer was not designed for.
-Colleague 3 — a visitor who is wondering whether their manager has signed off on them using this and is hesitant for political reasons.
-
-For each colleague, tell me honestly whether the help layer served them well. Where does it break? Where does it lose them? What needs to change?`
-      }
-    ],
-    buildStages: [
-      { label: "Stage 1", title: "Claude Designs the Conversation", time: "15 minutes", body: "Participant pastes Prompt 1 into Claude. Claude produces the complete conversation script. Participant reads the full script out loud quietly. Reading out loud is the fastest way to identify unnatural language. Then pastes Prompt 2. Claude tests against three colleague types and identifies weaknesses." },
-      { label: "Stage 2", title: "Build in Voiceflow", time: "35 minutes", body: "Participant goes to voiceflow.com. Opens a new project. Builds the conversation block by block following Claude's script. Opening message block. Three question buttons. Three response blocks. Edge case response block. Closing invitation block. Publishes. Gets embed code. Pastes embed code into Carrd page." },
-      { label: "Stage 3", title: "Test and Refine", time: "10 minutes", body: "Participant opens the launch page on phone. The help layer appears. Goes through every path in the conversation as a real colleague would. Fixes one thing in Voiceflow. Republishes. Reloads page. Tests again." }
-    ],
-    tests: [
-      { n: 1, title: "The Live Test", body: "Open the help layer on the launch page. Go through every conversation path. Does every path reach the closing invitation without hitting a dead end? If yes, pass." },
-      { n: 2, title: "The Natural Language Test", body: "Read every response out loud. Does every response sound like a real, knowledgeable colleague? If yes, pass." },
-      { n: 3, title: "The Edge Case Test", body: "Type something completely unexpected into the help layer — including something mildly political about your initiative's standing in the company. Does it respond gracefully, honestly, and point to a human where appropriate? If yes, pass." },
-      { n: 4, title: "The Trust Test", body: "Ask someone in the room to try the help layer. After the conversation, do they trust the initiative more than before? If yes, pass." },
-      { n: 5, title: "The Conversion Test", body: "Does every conversation, regardless of which path, end with a genuine invitation to try the tool? If yes, pass." }
-    ]
-  },
-  {
-    n: 6, name: "Build the Audio Brief", day: 1, time: "16:45 — 17:00 (overnight) · Day 2 10:30 — 11:00", duration: 30,
-    setStage: [
-      "Last night you wrote something real. A script that captures your problem, your initiative, and your invitation in sixty seconds. This morning you give it a voice.",
-      "ElevenLabs is one of the most remarkable tools in the no-code AI landscape. You paste in text. You choose a voice. You press generate. In thirty seconds you have professional-quality audio that sounds like it was recorded in a studio.",
-      "Internal initiatives almost never have audio. A short voice brief makes your launch land differently from every other Slack-message-and-deck launch your colleagues are used to ignoring. It makes the initiative feel like something a real person built, with conviction, and not like a corporate communications drop.",
-      "Ten minutes to generate. Ten minutes to embed. Ten minutes to test. By 11am your launch page has a voice that none of your colleagues' other internal initiatives have."
-    ],
-    questions: [
-      { n: 1, title: "What does your initiative sound like?", body: "Name a public figure, a podcaster, a presenter, or a type of voice that matches how you want the initiative to sound. Calm authority. Friendly colleague. Energetic operator. Trusted senior leader. This primes your ear before opening ElevenLabs." },
-      { n: 2, title: "Where on your launch page does the audio live?", body: "One specific place. The most effective placements are below the headline as an immediate human signal that this is real, or below the 'how it works' section as a confirmation of what the visitor just read." }
-    ],
-    hmv: {
-      humanics: "<ul><li>The spoken test — read the script out loud before generating. Every sentence that feels unnatural to say will sound unnatural when generated.</li><li>The breath test — are there natural pause points? Audio without breathing space is exhausting to listen to and signals corporate-comms.</li><li>The specificity test — does the audio describe the specific problem and the specific colleague, not abstract organisational benefits?</li></ul>",
-      mechanics: "<ul><li>The length test — time the script. Read at a natural pace. It should land between fifty-five and sixty-five seconds.</li><li>The clarity test — are there any words that will sound unclear when spoken? Replace with clearer alternatives.</li><li>The ElevenLabs test — after generating, listen to the first five seconds. If it does not sound natural, try a different voice.</li></ul>",
-      valuenomics: "<ul><li>The placement test — where will this audio be embedded? On the launch page only, or also in your launch email and the Slack post?</li><li>The memorability test — after listening once, can the listener remember the problem, the initiative, and where to find the tool?</li><li>The shareability test — would a colleague who heard this and found it interesting send it to a peer?</li></ul>"
-    },
-    prompts: [
-      {
-        title: "The Overnight Prompt — Write the Audio Script",
-        body: `I am a Builderator writing a sixty-second audio brief for the launch of a strategic initiative inside my SME. This is the voice of my initiative.
-
-My initiative: [one sentence]
-My core tool: [one sentence]
-My internal user: [role and context]
-My value to the org: [from Session 1]
-Whose voice this is: [Builderator, initiative, or sponsor]
-The problem in my own words: [spoken aloud]
-How I explained it to a colleague: [casual explanation]
-The one thing I want the listener to do: [one action]
-The feeling I want them to carry: [one emotion]
-
-Write me a sixty-second audio script structured in three beats.
-
-Beat 1 — fifteen seconds. The problem. In the words my colleagues would actually use, including the unspoken frustration. Specific. Felt. Not generic.
-
-Beat 2 — thirty seconds. The initiative and what it does. Conversational. Clear. No deck-speak. Names the tool by name and where to find it.
-
-Beat 3 — fifteen seconds. The invitation. Natural. Specific. Names one action.
-
-Write for the ear, not for the page. Short sentences. Conversational rhythm. Natural pause points marked with [pause]. After the script, tell me the total word count and approximate speaking time at a natural pace.`
-      }
-    ],
-    buildStages: [
-      { label: "Stage 1", title: "Generate on ElevenLabs", time: "10 minutes", body: "Go to elevenlabs.io. Create a free account or log in. Go to Text to Speech. Paste the script. Browse the voice library. Select a voice matching the feeling from Question 1. Generate. Listen to the full sixty seconds. Identify one moment that sounds unnatural. Edit that moment. Regenerate. Download the MP3 file." },
-      { label: "Stage 2", title: "Embed on Launch Page", time: "10 minutes", body: "Go to Carrd page. Open the editor. Add an audio element at the placement identified in Question 2. Upload the MP3. Set it to play on click, not autoplay. Add a one-line label above it. Something like: Hear what this is and why now. Sixty seconds. Publish the updated page." },
-      { label: "Stage 3", title: "Test", time: "10 minutes", body: "Open the page on phone. Navigate to the audio element. Press play. Listen as a colleague would listen. Identify one moment where attention drifts. Edit that moment. Regenerate. Re-embed. Test again." }
-    ],
-    tests: [
-      { n: 1, title: "The Natural Speech Test", body: "Listen to the entire sixty seconds without reading the script. Does every sentence sound like something a real person would genuinely say? If yes, pass." },
-      { n: 2, title: "The Timing Test", body: "Does the audio land between fifty-five and sixty-five seconds at a natural listening pace? If yes, pass." },
-      { n: 3, title: "The Live Embed Test", body: "Open the page on a phone. Navigate to the audio element. Does it play when clicked? If yes, pass." },
-      { n: 4, title: "The Retention Test", body: "After listening once, can you name the problem, the initiative, and the next step without looking at the script? If yes, pass." },
-      { n: 5, title: "The Colleague Test", body: "Play the audio to someone in the room who has not heard it before. After listening, ask what does this initiative do and who is it for? If they answer accurately, pass." }
-    ]
-  },
-  {
-    n: 7, name: "Build the Explainer Video", day: 2, time: "11:00 — 12:00", duration: 60,
-    setStage: [
-      "You have a tool. A page. A help layer. A voice. Now you need video.",
-      "Text tells someone what your initiative is. Audio lets them hear conviction. Video shows them the tool working in real time. No description. No imagination required. They see it happen. They see what their work could look like.",
-      "A ninety-second screen recording of your tool doing its job, with you narrating over it, is the most powerful piece of content you will produce in this workshop. It travels. People share videos. A demo video is what gets your initiative discussed in someone else's 1:1, in a leadership meeting, in a Slack channel two functions over.",
-      "Production quality does not matter. What matters is authenticity. A polished corporate video creates distance. A real Builderator showing a real tool doing something genuinely useful for a real workflow creates connection — and credibility."
-    ],
-    questions: [
-      { n: 1, title: "What is the most impressive moment in your tool?", body: "If you could show a sceptical colleague one thing, what would it be? The most impressive moment is almost never the homepage of the tool. It is the output. The moment the result appears. That moment is the centrepiece of the video." },
-      { n: 2, title: "What does the viewer need to believe before they see that moment?", body: "Before the impressive moment lands, what does the viewer need to understand or feel? The setup is showing the viewer that the problem is real, the current way of doing this is painful or slow, and what they are about to see addresses both. A magic trick without setup is just a trick. With setup, it is a revelation." },
-      { n: 3, title: "What do you say while the screen is showing?", body: "Not a script yet. Just the feeling. Excited? Calm and confident? Quietly proud? Conversational? The tone of narration should match what your colleague needs to feel to trust what they are seeing — and to want to try it themselves." },
-      { n: 4, title: "What is the one sentence that describes the problem?", body: "Say it out loud. Right now. The problem your initiative addresses in one sentence spoken the way you would say it to a colleague at lunch. This sentence opens the video. It must be said, not read. The viewer hears immediately whether the narrator genuinely understands the problem." },
-      { n: 5, title: "Where does this video live after you record it?", body: "Not just the launch page. Where else? In the email to your sponsor? In the Slack channel for your function? Pinned in the cross-functional channel where this initiative would matter? Posted on LinkedIn for external credibility, with the specific colleagues you want to see it in mind? A video posted in only one place reaches a fraction of its potential audience." },
-      { n: 6, title: "What do you want the viewer to do in the thirty seconds after the video ends?", body: "Not eventually. In the thirty seconds immediately after, while the impression is still fresh, what one action do you want them to take? Open the tool. Forward the link. Add it to their next 1:1 agenda. Reach out to you with a specific use case. The closing of the video must name that action explicitly and make it feel natural." }
-    ],
-    hmv: {
-      humanics: "<ul><li>The authenticity test — watch the video back with the sound off. Does the narrator look like someone who genuinely cares about the problem and built the tool themselves?</li><li>The pacing test — is the narration rushing? Slow down. Pause after the impressive moment. Let the viewer absorb it.</li><li>The specificity test — does the video show a real input from a real workflow, even if that workflow is the Builderator's own?</li></ul>",
-      mechanics: "<ul><li>The clarity test — is the text on screen large enough to read on a phone? Zoom the browser to 125 percent before recording.</li><li>The reliability test — run through the demo once before recording. Make sure the tool works exactly as expected.</li><li>The distraction test — is the screen clean? Notifications off? Slack closed? Browser tabs minimised? Other people's names not visible in test data?</li></ul>",
-      valuenomics: "<ul><li>The show-not-tell test — does the video spend more time showing the tool working than talking about it?</li><li>The outcome test — does the video show the output in enough detail that the viewer can evaluate its quality and imagine using it?</li><li>The action test — after watching, is the next step obvious and accessible?</li></ul>"
-    },
-    prompts: [
-      {
-        title: "Prompt 1 — Write the Narration Script",
-        body: `I am recording a ninety-second screen recording demo of the core tool of my initiative, using Loom. Write me the narration script.
-
-My initiative: [one sentence]
-My core tool: [one sentence]
-My internal user: [role and context]
-The problem in one sentence spoken: [from Question 4]
-The most impressive moment in my tool: [from Question 1]
-What the viewer needs to believe before that moment: [from Question 2]
-Narration tone: [from Question 3]
-What I want the viewer to do immediately after watching: [from Question 6]
-Where the link to my tool lives: [page URL]
-
-Write the narration script in three beats.
-
-Beat 1 — thirty seconds. The problem. Spoken in the words my colleagues would use. Sets up the impressive moment.
-
-Beat 2 — forty-five seconds. The demonstration. What I am showing on screen. Written so it sounds natural when spoken over a live screen recording.
-
-Beat 3 — fifteen seconds. The invitation. Natural. Specific. Names the one action and where to take it.
-
-Mark each beat clearly. Mark any moments where I should pause and let the screen speak for itself. After the script, give me five specific things to show on screen during Beat 2 in the exact order to show them.`
-      }
-    ],
-    buildStages: [
-      { label: "Stage 1", title: "Prepare", time: "10 minutes", body: "Read the script out loud twice. Make any edits that feel unnatural to speak. Do not memorise. Keep the script visible while recording. Clean the browser screen. Close unnecessary tabs. Zoom to 125 percent. Turn off notifications. Sign out of any Slack on the recording screen. Open the tool. Prepare a real input from your actual work. Open Loom. Set to record screen and camera simultaneously." },
-      { label: "Stage 2", title: "Record", time: "20 minutes", body: "One take. Not perfect. Real. Speak from the script but do not read word for word. Pause after the impressive moment. Let the output sit on screen for three full seconds in silence. That silence is more powerful than anything the narrator could say. End with the page URL spoken out loud." },
-      { label: "Stage 3", title: "Post and Embed", time: "30 minutes", body: "Loom generates a shareable link immediately after recording. Post to your function's Slack channel with a one-paragraph caption — the problem in two sentences and the invitation in one. Take the embed code from Loom and embed the video on the Carrd launch page below the 'how it works' section. Open the page on phone. Confirm the video works. Optional but high-leverage — also post to LinkedIn for external visibility." }
-    ],
-    tests: [
-      { n: 1, title: "The Live Post Test", body: "Is the video posted in your function's Slack channel (or wherever your colleagues actually are) with a caption? Open the channel and confirm the post is live and the video plays. If yes, pass." },
-      { n: 2, title: "The Embed Test", body: "Open the launch page on a phone. Navigate to the video. Does it play without needing to leave the page? If yes, pass." },
-      { n: 3, title: "The Impressive Moment Test", body: "Watch the video back. Does the impressive moment appear clearly on screen? Does the narrator pause long enough for the viewer to absorb it? If yes, pass." },
-      { n: 4, title: "The Colleague Test", body: "Show the video to someone in the room who has not seen the tool. After watching, ask what does this initiative do and what would you do next? If they answer both accurately, pass." },
-      { n: 5, title: "The Action Test", body: "After the video ends, is the next step obvious and accessible to a colleague watching on a phone between meetings? If yes, pass." }
-    ]
-  },
-  {
-    n: 8, name: "Build the Workflow Agent", day: 2, time: "13:00 — 13:45", duration: 45,
-    setStage: [
-      "Look at everything you have built. A tool that works. A page that explains it. A help layer that handles questions. A voice that introduces it. A video that shows it.",
-      "All of it is visible. All of it requires a colleague to find it, open it, and engage with it. Now you build the invisible layer. The thing that runs while you sleep. While you are in meetings. While you are on holiday. While the initiative quietly compounds into the way your team works.",
-      "That is what an agent is. Not a chatbot. Not a tool feature. An automated workflow that takes one trigger and produces one action, reliably, repeatedly, without you.",
-      "One trigger. One action. Real and live before this session ends. For some Builderators this is supporting infrastructure that lets the initiative scale without your hands on it. For others — those whose initiatives are fundamentally about automating a recurring process — this agent IS the central artefact, and the HTML tool earlier was the manual interface that lets the team monitor or override it."
-    ],
-    questions: [
-      { n: 1, title: "What is the one thing you would most want to happen automatically in your initiative?", body: "Not a list. One thing. The thing that, if it happened without you every time, would make the biggest difference to whether the initiative actually runs week after week. Two categories: colleague-facing automations that improve the experience for the person engaging with the initiative, and Builderator-facing automations that make your life easier and let you focus on driving adoption rather than chasing." },
-      { n: 2, title: "What triggers it?", body: "Something has to start the automation. The most reliable triggers for SME builds are a form submission (someone uses your tool), a scheduled time (every Monday at 8am), a new row in a Google Sheet, a new email in a shared inbox, or a webhook. Which trigger makes sense for your specific automation?" },
-      { n: 3, title: "What is the one action that follows?", body: "When the trigger fires, what happens? One action. Not a sequence of five steps. The most common mistake is making it too complex. A trigger that fires and sends one personalised email is powerful. One trigger and one action. That is the brief." },
-      { n: 4, title: "Who benefits from this automation and how?", body: "When this agent runs, who notices? Who benefits? What changes for them? The best automations are invisible to the colleague in the right way. They do not think 'this was automated.' They think 'that was fast' or 'that felt personal.'" },
-      { n: 5, title: "How do you know it is working?", body: "After you build this and turn it on, how do you know it fired? The simplest confirmation is a notification to yourself. An email. A Slack DM. You cannot trust an agent you cannot verify, and a silent agent that has been broken for a week is the fastest way to lose internal credibility for your initiative." }
-    ],
-    hmv: {
-      humanics: "<ul><li>The personal test — does the automated message feel written for this specific colleague or like a mass email with a name token inserted?</li><li>The timing test — does the agent fire at the right moment in the colleague's day, not at 3am or during their All Hands?</li><li>The tone test — does the automated message sound like the same person who wrote the launch page and narrated the video?</li></ul>",
-      mechanics: "<ul><li>The reliability test — test the trigger three times before turning the agent on for real.</li><li>The failure test — what happens when the trigger fires with incomplete or unexpected data? Does the agent fail loud (so you notice) or silent (so it dies in the dark)?</li><li>The permission test — does the agent have the correct permissions to perform its action without violating any company-data norms?</li></ul>",
-      valuenomics: "<ul><li>The time test — how much time does this automation save per week across the team? If less than thirty minutes a week, it is a nice-to-have, not the core value of the initiative.</li><li>The compounding test — does this automation become more valuable as the initiative scales (more users, more uses)?</li><li>The leverage test — does this automation free you to do something more valuable with your time as the Builderator driving the initiative?</li></ul>"
-    },
-    prompts: [
-      {
-        title: "Prompt 1 — Design the Agent",
-        body: `I am a Builderator inside an SME building my first automated agent for my strategic initiative, using Make.com. Help me design a simple, reliable one-trigger one-action automation.
-
-My initiative: [one sentence]
-My core tool URL: [from Session 3]
-My launch page URL: [from Session 4]
-
-The automation I want to build: [from Question 1]
-The trigger: [from Question 2]
-The action: [from Question 3]
-Who benefits and how: [from Question 4]
-How I know it is working: [from Question 5]
-
-Do three things.
-
-First, tell me honestly whether this is achievable in Make.com on a free account in thirty minutes. If not, suggest a simpler version that delivers 80% of the value.
-
-Second, give me a step-by-step description of how to build this in Make.com. What modules to use. What to connect. What to configure. Simple enough for someone who has never used Make.com.
-
-Third, write the content of the automated action. If it is an email, write the subject line and body. Write it so it sounds personal and human and like a colleague. Not automated. Not templated. Aware that a real person at my company will read it.`
-      }
-    ],
-    buildStages: [
-      { label: "Stage 1", title: "Claude Designs the Automation", time: "10 minutes", body: "Participant pastes the prompt into Claude. Reads the response carefully. Two things to check immediately. Is this achievable on Make.com free tier in thirty minutes? Is the automated message genuinely personal and colleague-shaped?" },
-      { label: "Stage 2", title: "Build in Make.com", time: "25 minutes", body: "Participant goes to make.com. Creates a free account or logs in. Creates a new scenario. Follows Claude's step-by-step instructions. One module at a time. The trigger module configured. The action module connected. Tests using Make.com's built-in test function before going live. Runs the test three times. Confirms the action fires correctly each time. Turns the scenario on." },
-      { label: "Stage 3", title: "Confirm and Verify", time: "10 minutes", body: "Participant triggers the automation manually one final time. Confirms the action completed. Confirms the confirmation notification reached them. Takes a screenshot of the Make.com scenario showing it is active." }
-    ],
-    tests: [
-      { n: 1, title: "The Live Test", body: "Trigger the automation manually right now. Does the action complete within the expected timeframe? If yes, pass." },
-      { n: 2, title: "The Personal Test", body: "Read the automated message or action output. Does it feel written for a specific colleague at your company or like mass communication? If personal, pass." },
-      { n: 3, title: "The Reliability Test", body: "Trigger the automation three times in a row. Does it fire correctly all three times? If yes, pass." },
-      { n: 4, title: "The Verification Test", body: "Do you receive confirmation when the agent fires? Can you tell from your own inbox or Slack that the automation ran? If yes, pass." },
-      { n: 5, title: "The Value Test", body: "What specifically changes for a real person every time this agent fires? Can you name it in one sentence? If yes, the automation creates real value. If you cannot name what changes, reconsider the trigger or action." }
-    ]
-  },
-  {
-    n: 9, name: "Validation", day: 2, time: "Lunch + 13:45 — 14:00", duration: 75,
-    setStage: [
-      "You have built six things. Every single one of them was built on assumptions. You assumed you understood the problem your colleague faces. You assumed your internal user would find the tool clear and trustworthy. You assumed the output was useful enough to act on. You assumed the language sounded like your company.",
-      "Some of those assumptions are right. Some are wrong. And right now you do not know which are which.",
-      "The only way to find out is to put what you built in front of a real colleague who has the problem. Not a peer Builderator who wants to support you. Not your manager who is being polite because they sponsored this. Someone who genuinely has the problem your initiative addresses and has no reason to be kind.",
-      "You have sixty minutes during lunch to have one conversation with one real internal stakeholder. Not a presentation. A conversation. You show them what you built. You ask five specific questions. You listen without defending. You write down exactly what they say in their words, not yours."
-    ],
-    questions: [
-      { n: 1, title: "Who are you talking to?", body: "Name one specific colleague you can reach in the next sixty minutes who genuinely has the problem your initiative addresses. Not a peer in the workshop. Not a friend at work who will just be encouraging. Someone who has the problem and has no personal reason to soften their feedback. If you cannot name a real person, ask the cohort for help." },
-      { n: 2, title: "How do you open the conversation?", body: "The problem-curiosity approach works better than the show-and-tell approach. Instead of 'I built something and would love your feedback,' try: 'I have been working on something related to [the problem]. Before I show you what I built, can I ask you about your experience with it?' This puts the colleague in reflector mode rather than evaluator mode, and you learn more." },
-      { n: 3, title: "What are you listening for?", body: "Three most valuable signals. Language signals — the specific words they use to describe the problem, which often differ from the words you have been using. Hesitation signals — the moment they pause before answering, or look away. Adoption signals — whether they ask follow-up questions, ask for the link, or ask whether they can share it with someone else." },
-      { n: 4, title: "What will you do when they say something that challenges your assumptions?", body: "Not if. When. You do not defend. You do not explain. You do not say 'yes, but what I meant was.' You write it down exactly as they said it. You ask 'can you tell me more about that?' You listen. The instinct to defend is the enemy of validation, especially inside your own company where defensiveness is doubly costly." },
-      { n: 5, title: "What is the one question you are most afraid to ask?", body: "The question that would be most valuable to have answered but that you have been avoiding. For internal initiatives, the question is almost always: 'Would you actually use this if it were officially rolled out tomorrow, or would you forget about it within a week?' Or: 'If I disappeared and stopped pushing this, would you still use it?' Ask the question you are most afraid to ask. That is where the most important information lives." }
-    ],
-    hmv: {
-      humanics: "<ul><li>Listen to the language. Write down their exact words. These are your next iteration brief and your launch page rewrite.</li><li>Watch for the emotional response. When they see the output for the first time, what do they do? Do they lean in? Do they look surprised?</li><li>Ask about the experience not the tool. 'Walk me through what happened when you used it' produces more than 'what do you think of this?'</li></ul>",
-      mechanics: "<ul><li>Test before calling. Run the tool with a real input before the conversation starts so you do not start on a failure.</li><li>Show first, explain second. Do not explain what the tool does before showing it. Let them experience it before you frame it.</li><li>Do not apologise for limitations. Note them, thank them, and move on. Apologising for things they did not notice planted seeds of doubt.</li></ul>",
-      valuenomics: "<ul><li>Ask about the current cost. How do they currently handle this? How long does it take? What does it cost the team or the org?</li><li>Ask about the output value. After they see the output, what would they actually do with it tomorrow?</li><li>Ask the adoption question directly. 'Would you use this if I rolled it out next week?' 'Would you tell your manager about this?' 'What would have to be different for you to use this every week?'</li></ul>"
-    },
-    prompts: [
-      {
-        title: "Prompt 1 — Prepare the Five Validation Questions",
-        body: `I am about to have a validation conversation with a real internal colleague who has the problem my initiative addresses. Give me five specific questions to ask in the right order.
-
-My initiative: [one sentence]
-My internal user: [role and context]
-My primary assumption about the problem: [the core belief the initiative is built on]
-The question I am most afraid to ask: [from Question 5]
-What I most need to learn: [one specific thing]
-
-Give me five questions ordered for a natural conversation flow, suitable for a colleague between meetings.
-
-Question 1 — opens on the problem before showing the tool.
-Question 2 — explores the current way of doing this and its cost.
-Question 3 — follows after showing the tool. Asks about experience, not rating.
-Question 4 — explores the specific value of the output for their actual work.
-Question 5 — the question I am most afraid to ask, worded to invite honest reflection. The adoption question.
-
-After each question, give me one follow-up probe that goes deeper when the colleague gives a surface-level answer.`
-      },
-      {
-        title: "Prompt 2 — Synthesise What You Heard",
-        body: `I just had a validation conversation with an internal colleague. Here is what I heard.
-
-What they said about the problem: [verbatim notes]
-What they said about the current way of doing this: [verbatim notes]
-Their reaction when they saw the tool: [what they did and said]
-What they said about the output: [verbatim notes]
-Their answer to the adoption question: [verbatim notes]
-The one thing they said that I did not expect: [verbatim notes]
-
-Analyse what I heard through three lenses.
-
-Humanics — what did this conversation reveal about my internal user that I did not know before?
-
-Mechanics — what did this reveal about how the tool actually works for someone other than me, versus how I assumed it worked?
-
-Valuenomics — what did this reveal about the real value of the initiative inside my company, and the gap between intended and felt value?
-
-End with three specific changes I should make based on what I heard, prioritised.`
-      }
-    ],
-    buildStages: [
-      { label: "Stage 1", title: "The Conversation", time: "During Lunch", body: "Participant identifies their validation target before leaving the room. Has the five questions ready on their phone. During lunch, makes the call, sets up a quick desk-side conversation, or sends the WhatsApp/Slack message to set one up. Takes verbatim notes. Writes down exact words. After the conversation, pastes Prompt 2 into Claude. Reads the synthesis before returning to the room." },
-      { label: "Stage 2", title: "The Synthesis", time: "13:45 — 14:00", body: "After the agent session, the room comes together for fifteen minutes. Facilitator asks three questions simultaneously. Everyone writes their answer before sharing. What is the most surprising thing you heard? What did your validation target say that you wrote down in their exact words? What are you changing because of this conversation? Three people share each answer. Facilitator maps patterns across the cohort." }
-    ],
-    tests: [
-      { n: 1, title: "The Conversation Test", body: "Did you have a real conversation with a real colleague who genuinely has the problem? Not a peer Builderator. Someone who has the problem and no personal reason to soften feedback. If yes, pass." },
-      { n: 2, title: "The Language Test", body: "Can you name three specific words or phrases your validation target used to describe the problem that were different from the words you have been using? If yes, pass. These words belong in your launch page copy, your help layer, and your video." },
-      { n: 3, title: "The Surprise Test", body: "Can you name one specific thing your validation target said that genuinely surprised you? If yes, pass. If no, the conversation was too comfortable." },
-      { n: 4, title: "The Adoption Test", body: "Did you ask whether they would actually use this in their work next week? What did they say? If you asked and got a clear answer, pass. If you did not ask, schedule the next conversation and ask it then." },
-      { n: 5, title: "The Change Test", body: "Can you name three specific changes you will make based on what you heard? If yes, the validation produced actionable intelligence. If no, return to your notes and Claude's synthesis." }
-    ]
-  },
-  {
-    n: 10, name: "Internal Demo Day", day: 2, time: "14:15 — 15:45", duration: 90,
-    setStage: [
-      "Look at this room. It looks different from this morning. That is intentional.",
-      "What is about to happen is different from everything that came before it. For the last two days you have been building. Heads down. Focused on the artefacts. Now you shift. From Builderator to advocate.",
-      "A Builderator does not just build things. A Builderator can stand in front of people who do not know the initiative, who have not been on this journey, who have no reason to be impressed, and make them understand in four minutes why what they built matters and why their company should care.",
-      "That is what Demo Day is. Not a show and tell. Not a status update. A demonstration to real human beings that something real exists, that it creates real value for a specific colleague, and that it is ready to roll into the next four weeks of adoption work.",
-      "The cohort in this room is your first real audience. You have fifteen minutes to prepare. Then you present."
-    ],
-    questions: [
-      { n: 1, title: "What is the problem in one sentence — spoken as if to a stranger?", body: "Not the version you have been saying in this room all day. The version a colleague from another function would understand in ten seconds. Write it down. Say it out loud to yourself. The facilitator circulates and identifies any problem statement that is too technical, too long, or still sounds like a tool description." },
-      { n: 2, title: "What is the sequence of your six modalities?", body: "You have six things to show. The recommended sequence moves from artefact to ecosystem. Core tool first. Launch page second. Help layer embedded on the page third. Audio fourth. Video fifth. Agent sixth. By the end, the cohort sees not just a tool but a complete launched initiative." },
-      { n: 3, title: "What is your impressive moment?", body: "The single moment during the four minutes when you want the room to feel 'that is genuinely useful.' Do not say 'and here is the impressive part.' Just show it. Pause. Let the room react. The pause is the framing. Trust it." },
-      { n: 4, title: "What do you say when something does not work?", body: "Something will not work perfectly. Two acceptable responses. Narrate it: 'in the deployed version this will produce a specific output, what you are seeing is a limitation I identified during validation.' Or pivot: move to the next modality without dwelling, come back to it in 'what is next.' What is not acceptable is apologising repeatedly or abandoning the demo structure." },
-      { n: 5, title: "What is the one specific next action you commit to in the Build Month?", body: "Not three things. Not a plan. One thing. The specificity of this commitment is one of the things the cohort will evaluate. A vague commitment signals unclear thinking. A specific commitment signals genuine learning from validation." }
-    ],
-    hmv: {
-      humanics: "<ul><li>Speak to the problem before showing the tool. The audience needs to feel the colleague's frustration before evaluating the solution.</li><li>Make eye contact during the impressive moment. Not at the screen. At the audience.</li><li>Tell the truth about what is not working. Honesty about limitations makes everything else more credible.</li></ul>",
-      mechanics: "<ul><li>Use a real input. Not a perfect test case. A real input from your actual work.</li><li>Test before presenting. Every modality. Every link. Every embed. Every trigger.</li><li>Have a phone backup. If the laptop fails, the page, help layer, audio, and video all exist on the phone.</li></ul>",
-      valuenomics: "<ul><li>Let the output speak. After the impressive moment, do not immediately start talking. Let the audience read.</li><li>Name the specific colleague this is for. Not 'professionals' or 'the team.' The specific role from the internal user portrait.</li><li>Connect the agent to the initiative's sustainability. Show that the initiative will keep running after Demo Day, not just on Demo Day.</li></ul>"
-    },
-    prompts: [
-      {
-        title: "Prompt 1 — Structure the Demo",
-        body: `I am about to present at Builderator Demo Day. I have four minutes. I have six modalities to show. Help me structure the presentation.
-
-My initiative: [one sentence]
-My internal user: [from Session 1]
-My problem statement for the demo: [from Question 1]
-My impressive moment: [from Question 3]
-What did not work perfectly today: [from Question 4]
-My one specific next action for the Build Month: [from Question 5]
-
-Give me the exact structure for my four-minute demo.
-
-Opening — thirty seconds. The problem statement. Spoken directly to the audience. No tool yet.
-
-Modality sequence — three minutes. Six modalities in order. For each one, one sentence of narration before showing it. What to say during the impressive moment. What to say if something does not work.
-
-Closing — thirty seconds. What I learned from validation. My one specific next action. Said as a commitment not a plan.
-
-Make the opening and closing memorable. The audience will remember the first thing they hear and the last thing they hear.`
-      }
-    ],
-    buildStages: [
-      { label: "Section 1", title: "The Problem", time: "30 seconds", body: "Spoken directly to the audience. Not read from notes. One sentence on the problem. One sentence on who has it inside the company. One specific number — what it costs in hours, errors, or capacity. Then silence. Two seconds. Let the problem land before showing the solution." },
-      { label: "Section 2", title: "The Live Initiative", time: "3 minutes", body: "Open the tool. Enter a real input. Show the output. Pause on the impressive moment. Move to the launch page. Show the headline. Click through to the tool from the CTA button. Show the help layer. Type one real question. Show the response. Play the audio for fifteen seconds. Play the first fifteen seconds of the video. Show the Make.com scenario. Trigger it. Show the confirmation." },
-      { label: "Section 3", title: "What Is Next", time: "30 seconds", body: "One thing learned from validation. Spoken in the validation target's exact words. One specific change committed to for the Build Month. Named precisely. One sentence close. Not a thank you. A statement of intent." }
-    ],
-    tests: [
-      { n: 1, title: "The Live Initiative Test", body: "Did every modality work during the demo? Did the tool produce a real output? Did the launch page CTA link work? Did the help layer respond? Did the audio play? Did the video play? Did the agent fire? If all six worked, pass." },
-      { n: 2, title: "The Stranger Test", body: "Could someone who knew nothing about your initiative before the demo describe what it does, who it is for, and what makes it valuable using only what they saw and heard? If yes, pass." },
-      { n: 3, title: "The Impressive Moment Test", body: "Did you pause after the impressive moment? Did the room react? If yes, pass. If you rushed through it without pausing, the next demo should correct this." },
-      { n: 4, title: "The Honesty Test", body: "Did you acknowledge at least one thing that is not yet perfect? Did you connect it to what you learned from validation? If yes, pass." },
-      { n: 5, title: "The Commitment Test", body: "Did you name one specific next action? Was it specific enough that the cohort could hold you accountable in four weeks? Vague: 'I will improve the tool.' Specific: 'I will rewrite the output section using the three phrases my validation target used, then send it to her by Friday for a second look.' If specific, pass." }
-    ]
-  },
-  {
-    n: 11, name: "Close & Four-Week Brief", day: 2, time: "15:45 — 17:00", duration: 75,
-    setStage: [
-      "Stop for a moment. Look at what you have in front of you right now. Forty-eight hours ago this did not exist. None of it. Not the tool. Not the launch page. Not the help layer. Not the audio. Not the video. Not the agent.",
-      "You came in with an initiative on a card. You leave with six live things in the world. Things a colleague can find, open, hear, watch, and use without you being present to walk them through it.",
-      "But here is the thing most workshops get wrong at this moment. They call it a celebration. They hand out certificates. They send people home with the feeling that something is complete. Nothing is complete.",
-      "What happened this weekend is the beginning, not the end. The next four weeks are harder than this weekend. This weekend you had structure. The next four weeks you have your day job, organisational politics, competing priorities, and the slow gravity of 'we have always done it this way.'",
-      "That is what makes the Build Month the real test. Not whether you could build six modalities in two days. Whether you can take what you built, drive adoption among real colleagues, learn from how they actually use it, change something substantial based on that learning, and come back to Demo Day with an initiative that is genuinely embedded in how your team works."
-    ],
-    questions: [
-      { n: 1, title: "What is the one thing you learned this weekend that you did not expect to learn?", body: "Not what you expected to learn. The one thing that surprised you. Every Builderator answers. Not three people. Everyone. In sequence around the room. One sentence each. The facilitator listens for patterns. The surprises that appear across multiple Builderators are the most important learnings from the program." },
-      { n: 2, title: "What is the gap between what you built and what your validation target needed?", body: "Be specific. Not 'they wanted more features.' What specifically was different between what you built and what they actually needed in their daily work? The more specific the gap, the more actionable the Build Month." },
-      { n: 3, title: "What is the one thing you will change first?", body: "Of everything you could improve, what is the one change that would make the biggest difference to your internal user in the next week? The facilitator applies the HMV lens to each answer. Is this a Humanics change (closer to the colleague), a Mechanics change (more reliable, more durable, more end-to-end), or a Valuenomics change (clearer value, easier to make the case for)?" },
-      { n: 4, title: "Who are the next three real colleagues you will show this to?", body: "Not after you improve it. Now. This week. Before anything changes. Three specific people who have the problem and have no reason to be kind. Anyone who cannot name three specific colleagues before leaving this room is at risk of spending Week 1 improving in isolation rather than testing against reality." },
-      { n: 5, title: "What would Demo Day success look like for you specifically?", body: "Not the program's definition of success. Yours. What would you need to have built, learned, adopted, or proven in four weeks for you personally to feel this was worth the time and commitment? The answer is almost always about adoption — how many colleagues are using it, what they are saying about it, what your sponsor noticed." }
-    ],
-    hmv: {
-      humanics: "<p>One real internal user conversation per week. Minimum. Not a survey. Not a Slack message. A conversation, synchronous, live, where you can hear the hesitations and watch them try the tool. Every change made to the initiative must be traceable to something a real colleague said. If you find yourself improving the initiative based on your own ideas for more than two days without checking against a real colleague, stop. Book a conversation before continuing.</p>",
-      mechanics: "<p>The most common failure mode in the Build Month for internal initiatives is the tool quietly breaking. The API key expires. Voiceflow runs out of free credits. The Make.com scenario disconnects because Slack rotated tokens. The Netlify URL stops serving the latest version. Build a five-minute Friday ritual: open every modality, click through, confirm everything still runs. An initiative that breaks in week two and you do not notice until week four is dead.</p>",
-      valuenomics: "<ul><li>Week 1 — get one real colleague to use the tool unsupervised. Sit with them for five minutes after, hear what happened.</li><li>Week 2 — get three more real colleagues to use it. Capture verbatim quotes. Look for a pattern.</li><li>Week 3 — make the most important change based on Weeks 1 and 2. Send the updated tool to your validation set. Begin a one-page brief for your sponsor.</li><li>Week 4 — come to Demo Day with a clear, honest answer to whether real colleagues are using this in their actual work, and what your sponsor said when you showed them the brief.</li></ul>"
-    },
-    prompts: [
-      {
-        title: "Prompt 1 — Build the Four-Week Plan",
-        body: `I have just completed a two-day Builderator Just Build workshop. I have built six modalities of a strategic initiative inside my SME. I now have four weeks to drive adoption and prepare for Demo Day.
-
-My initiative: [one sentence]
-What I learned from validation: [the key insight from Session 9]
-The gap between what I built and what my colleague needed: [from Question 2]
-The first change I will make: [from Question 3]
-The three colleagues I will show it to this week: [from Question 4]
-What Demo Day success looks like for me: [from Question 5]
-My sponsor or backer at the company: [name and role]
-
-Build me a four-week plan. Structured and specific. One primary goal per week. Three specific actions per week. One checkpoint question that tells me whether I am on track.
-
-Week 1 — Refine. Based on validation. One specific change. Three specific colleague conversations. Mechanics check (everything still runs).
-
-Week 2 — Validate deeper. More real colleagues. Clearer pattern of adoption signals. First conversation with my sponsor.
-
-Week 3 — Iterate substantially. One meaningful change to the initiative based on what Weeks 1 and 2 revealed. Begin the sponsor brief.
-
-Week 4 — Demo Day prep. Initiative polished enough to show confidently with real adoption data. Sponsor brief complete.
-
-For each week, give me the one question I should be able to answer by Friday that tells me the week was not wasted.`
-      }
-    ],
-    buildStages: [
-      { label: "Stage 1", title: "The Four-Week Plan", time: "20 minutes", body: "Every Builderator runs the prompt. Reads the plan Claude produces. Makes two specific edits where Claude's generic plan needs to be adapted to their specific initiative and company context. Saves the plan. This document is the operating brief for the next four weeks." },
-      { label: "Stage 2", title: "The Public Commitments", time: "20 minutes", body: "Every Builderator stands. States three things to the room. The one specific change they commit to making in Week 1. The three specific colleagues they will show the initiative to before next Friday. What Demo Day success looks like for them specifically. The cohort witnesses each commitment. The WhatsApp group captures them. In four weeks on Demo Day, every Builderator is held to what they said in this room." },
-      { label: "Stage 3", title: "Certificate Moment & Alumni Launch", time: "10 minutes", body: "The OC Just Build Builderator Certificate marks completion of something real inside a real company — not attendance at a workshop. It is awarded at Demo Day, four weeks from now, when the Builderator stands in front of a real audience and demonstrates an initiative that real colleagues are actually using. The WhatsApp group changes name from cohort to alumni. The group is yours. Permanently. The people in this room are the people who understand what you went through this weekend and what you are about to attempt." }
-    ],
-    tests: [
-      { n: 1, title: "The Plan Test", body: "Do you have a specific four-week plan with one primary goal per week, three specific actions per week, and one checkpoint question per week? If yes, pass. If no, complete the prompt before leaving." },
-      { n: 2, title: "The Commitment Test", body: "Did you state three specific public commitments to the room? Are they specific enough that the cohort could evaluate whether you kept them at Demo Day? If yes, pass." },
-      { n: 3, title: "The People Test", body: "Can you name three specific real colleagues you will show the initiative to before next Friday? If yes, pass. If you cannot name them, name them now before leaving the room." },
-      { n: 4, title: "The Success Test", body: "Can you complete this sentence without hesitation? 'Demo Day success for me looks like — [specific, personal, measurable, almost always about adoption inside the company].' If yes, pass." },
-      { n: 5, title: "The Group Test", body: "Are you in the Builderator alumni WhatsApp group? Have you saved the weekly session date and time in your calendar? Do you know how to book office hours? If yes to all three, pass." }
-    ]
-  }
-];
-
-const SECTIONS = [
-  { key: 'stage', label: 'Set the Stage' },
-  { key: 'questions', label: 'Questions' },
-  { key: 'hmv', label: 'HMV' },
-  { key: 'prompt', label: 'Prompt' },
-  { key: 'build', label: 'Build' },
-  { key: 'tests', label: 'Test Output' }
-];
-
-const USERNAME = 'Mufasa';
-const PASSWORD = 'Phantom@6869';
-const STORAGE_KEY = 'jb_builderator_session';
-
-// ============================================================================
-// STATE
-// ============================================================================
-let state = {
-  view: 'login',
-  sessionIndex: -1,
-  sectionIndex: 0,
-  testsChecked: {},
-  timer: { seconds: 0, running: false, sessionDuration: 0 }
+/* ============================================
+   Just Build — Facilitator Platform
+   Builderator Edition
+   ============================================ */
+
+let WORKSHOP = null;          // sessions-sme.json content
+let SESSIONS = [];            // sessions array
+let SCREENS = [];             // flat array of all screens with metadata
+
+let currentScreenIdx = 0;
+let testsChecked = {};        // { sessionId: [bool, bool, ...] }
+let hmvCollapsed = false;
+
+let timer = {
+  totalSeconds: 0,
+  remainingSeconds: 0,
+  running: false,
+  paused: false,
+  intervalId: null,
+  sessionId: null,
 };
 
-let timerInterval = null;
+let breakTimer = {
+  remainingSeconds: 0,
+  intervalId: null,
+  finished: false,
+};
 
-// ============================================================================
-// PERSISTENCE
-// ============================================================================
-function saveState() {
+const $ = (sel) => document.querySelector(sel);
+const fmt = (s) => {
+  const sign = s < 0 ? "-" : "";
+  s = Math.abs(s);
+  const m = Math.floor(s / 60);
+  const sec = s % 60;
+  return `${sign}${String(m).padStart(2, "0")}:${String(sec).padStart(2, "0")}`;
+};
+
+/* ----- Load sessions-sme.json ----- */
+async function loadSessions() {
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify({
-      authenticated: true,
-      sessionIndex: state.sessionIndex,
-      testsChecked: state.testsChecked
-    }));
-  } catch (e) {}
-}
-
-function loadState() {
-  try {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored) {
-      const data = JSON.parse(stored);
-      if (data.authenticated) {
-        state.testsChecked = data.testsChecked || {};
-        return true;
-      }
-    }
-  } catch (e) {}
-  return false;
-}
-
-function clearState() {
-  try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
-}
-
-// ============================================================================
-// LOGIN
-// ============================================================================
-document.getElementById('login-form').addEventListener('submit', (e) => {
-  e.preventDefault();
-  const user = document.getElementById('username').value.trim();
-  const pw = document.getElementById('password').value;
-  const errEl = document.getElementById('login-error');
-  if (user === USERNAME && pw === PASSWORD) {
-    saveState();
-    enterApp();
-  } else {
-    errEl.textContent = 'Incorrect login ID or password';
-    document.getElementById('password').value = '';
-    setTimeout(() => { errEl.textContent = ''; }, 2500);
-  }
-});
-
-document.getElementById('logout-btn').addEventListener('click', () => {
-  clearState();
-  document.getElementById('app').classList.remove('active');
-  document.getElementById('login').style.display = 'flex';
-  document.getElementById('username').value = '';
-  document.getElementById('password').value = '';
-  document.getElementById('username').focus();
-});
-
-document.getElementById('dashboard-btn').addEventListener('click', () => {
-  showDashboard();
-});
-
-function enterApp() {
-  document.getElementById('login').style.display = 'none';
-  document.getElementById('app').classList.add('active');
-  showDashboard();
-}
-
-// ============================================================================
-// DASHBOARD
-// ============================================================================
-function showDashboard() {
-  state.view = 'dashboard';
-  state.sessionIndex = -1;
-  stopTimer();
-  document.getElementById('dashboard').style.display = 'block';
-  document.getElementById('session-view').style.display = 'none';
-  document.getElementById('topbar-progress').textContent = '';
-  renderDashboard();
-}
-
-function renderDashboard() {
-  const day1 = SESSIONS.filter(s => s.day === 1);
-  const day2 = SESSIONS.filter(s => s.day === 2);
-
-  document.getElementById('day1-section').innerHTML = `
-    <div class="day-section">
-      <div class="day-label">
-        <span class="day-num">01</span>
-        <span class="day-text">Day One — Build the Six Modalities</span>
-      </div>
-      <div class="session-grid">
-        ${day1.map(s => sessionCard(s)).join('')}
-      </div>
-    </div>
-  `;
-
-  document.getElementById('day2-section').innerHTML = `
-    <div class="day-section">
-      <div class="day-label">
-        <span class="day-num">02</span>
-        <span class="day-text">Day Two — Validate, Demo, Set the Build Month</span>
-      </div>
-      <div class="session-grid">
-        ${day2.map(s => sessionCard(s)).join('')}
-      </div>
-    </div>
-  `;
-
-  document.querySelectorAll('.session-card').forEach(card => {
-    card.addEventListener('click', () => {
-      const idx = parseInt(card.dataset.index);
-      openSession(idx);
-    });
-  });
-}
-
-function sessionCard(s) {
-  const idx = SESSIONS.indexOf(s);
-  return `
-    <div class="session-card" data-index="${idx}">
-      <div class="session-num">Session ${String(s.n).padStart(2, '0')}</div>
-      <div class="session-name">${s.name}</div>
-      <div class="session-meta">
-        <span class="session-time">${s.time}</span>
-        <span>${s.duration} min</span>
-      </div>
-      <span class="session-arrow">→</span>
-    </div>
-  `;
-}
-
-// ============================================================================
-// SESSION VIEW
-// ============================================================================
-function openSession(idx) {
-  state.view = 'session';
-  state.sessionIndex = idx;
-  state.sectionIndex = 0;
-  document.getElementById('dashboard').style.display = 'none';
-  document.getElementById('session-view').style.display = 'flex';
-  resetTimer();
-  renderSession();
-}
-
-function renderSession() {
-  const s = SESSIONS[state.sessionIndex];
-
-  document.getElementById('topbar-progress').textContent =
-    `Session ${String(s.n).padStart(2, '0')} / 11 · Day ${s.day}`;
-
-  document.getElementById('sv-eyebrow').textContent =
-    `Session ${String(s.n).padStart(2, '0')} · Day ${s.day}`;
-  document.getElementById('sv-title').textContent = s.name;
-  document.getElementById('sv-meta').textContent = `${s.time} · ${s.duration} minutes`;
-
-  state.timer.sessionDuration = s.duration * 60;
-  if (!state.timer.running) {
-    state.timer.seconds = state.timer.sessionDuration;
-    updateTimerDisplay();
-  }
-
-  renderSectionTabs();
-  renderSectionContent();
-  renderFooterNav();
-}
-
-function renderSectionTabs() {
-  const tabsEl = document.getElementById('section-tabs');
-  tabsEl.innerHTML = SECTIONS.map((sec, i) => `
-    <button class="section-tab ${i === state.sectionIndex ? 'active' : ''}" data-index="${i}">
-      <span class="tab-num">${String(i+1).padStart(2,'0')}</span>${sec.label}
-    </button>
-  `).join('');
-  tabsEl.querySelectorAll('.section-tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      state.sectionIndex = parseInt(tab.dataset.index);
-      renderSectionTabs();
-      renderSectionContent();
-      renderFooterNav();
-    });
-  });
-}
-
-function renderSectionContent() {
-  const s = SESSIONS[state.sessionIndex];
-  const sec = SECTIONS[state.sectionIndex];
-  const contentEl = document.getElementById('section-content');
-  contentEl.classList.remove('wide');
-
-  let html = '';
-
-  if (sec.key === 'stage') {
-    html = `<div class="content-section active">
-      ${s.setStage.map(p => `<p class="stage-paragraph">${p}</p>`).join('')}
-    </div>`;
-  }
-
-  if (sec.key === 'questions') {
-    html = `<div class="content-section active">
-      ${s.questions.map(q => `
-        <div class="question">
-          <div class="question-header">
-            <div class="question-num">Q${String(q.n).padStart(2,'0')}</div>
-            <div class="question-title">${q.title}</div>
-          </div>
-          <div class="question-body">${q.body}</div>
-        </div>
-      `).join('')}
-    </div>`;
-  }
-
-  if (sec.key === 'hmv') {
-    contentEl.classList.add('wide');
-    html = `<div class="content-section active">
-      <div class="hmv-grid">
-        <div class="hmv-card">
-          <div class="hmv-label">H</div>
-          <div class="hmv-name">Humanics</div>
-          <div class="hmv-body">${s.hmv.humanics}</div>
-        </div>
-        <div class="hmv-card">
-          <div class="hmv-label">M</div>
-          <div class="hmv-name">Mechanics</div>
-          <div class="hmv-body">${s.hmv.mechanics}</div>
-        </div>
-        <div class="hmv-card">
-          <div class="hmv-label">V</div>
-          <div class="hmv-name">Valuenomics</div>
-          <div class="hmv-body">${s.hmv.valuenomics}</div>
-        </div>
-      </div>
-    </div>`;
-  }
-
-  if (sec.key === 'prompt') {
-    html = `<div class="content-section active">
-      ${s.prompts.map((p, i) => `
-        <div class="prompt-block">
-          <div class="prompt-header">
-            <div class="prompt-label">${String(i+1).padStart(2,'0')}</div>
-            <div class="prompt-title">${p.title}</div>
-          </div>
-          <div class="prompt-box" data-prompt-idx="${i}">
-            <button class="copy-btn" data-copy-idx="${i}">Copy</button>
-${escapeHtml(p.body)}</div>
-        </div>
-      `).join('')}
-    </div>`;
-  }
-
-  if (sec.key === 'build') {
-    if (s.buildStages) {
-      html = `<div class="content-section active">
-        ${s.buildStages.map(stage => `
-          <div class="build-stage">
-            <div class="build-stage-header">
-              <span class="build-stage-label">${stage.label}</span>
-              <span class="build-stage-title">${stage.title}</span>
-              <span class="build-stage-time">${stage.time}</span>
-            </div>
-            <div class="build-stage-body">${stage.body}</div>
-          </div>
-        `).join('')}
+    const res = await fetch("./sessions-sme.json", { cache: "no-cache" });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    WORKSHOP = data.workshop;
+    SESSIONS = data.sessions;
+    buildScreenSequence();
+    renderCurrent();
+  } catch (err) {
+    $("#stage").innerHTML = `
+      <div class="error">
+        <h2>Could not load sessions-sme.json</h2>
+        <p>Make sure <code>sessions-sme.json</code> sits next to <code>platform-sme.html</code>.</p>
+        <p style="margin-top:16px; font-size:14px;">If you opened this file directly with a double-click, your browser blocks local fetches. Run a local server with <code>python3 -m http.server</code> in the same folder, then open <code>http://localhost:8000/platform-sme.html</code>.</p>
+        <p style="margin-top:24px; opacity:0.5; font-size:12px;">${err.message}</p>
       </div>`;
-    } else {
-      html = `<div class="content-section active">
-        <div class="build-prose">${s.build}</div>
-      </div>`;
-    }
   }
+}
 
-  if (sec.key === 'tests') {
-    const checkedKey = `s${s.n}`;
-    if (!state.testsChecked[checkedKey]) state.testsChecked[checkedKey] = {};
-    html = `<div class="content-section active">
-      ${s.tests.map(t => `
-        <div class="test-block">
-          <div class="test-num">${String(t.n).padStart(2,'0')}</div>
-          <div class="test-content">
-            <div class="test-title">${t.title}</div>
-            <div class="test-body">${t.body}</div>
-          </div>
-          <button class="test-checkbox ${state.testsChecked[checkedKey][t.n] ? 'checked' : ''}" data-test-n="${t.n}"></button>
-        </div>
-      `).join('')}
-    </div>`;
-  }
+/* ----- Build the flat screen sequence ----- */
+function buildScreenSequence() {
+  SCREENS = [];
 
-  contentEl.innerHTML = html;
+  // Welcome
+  SCREENS.push({ type: "welcome" });
 
-  // Attach event handlers
-  contentEl.querySelectorAll('.copy-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const idx = parseInt(btn.dataset.copyIdx);
-      const text = SESSIONS[state.sessionIndex].prompts[idx].body;
-      navigator.clipboard.writeText(text).then(() => {
-        btn.textContent = 'Copied';
-        btn.classList.add('copied');
-        setTimeout(() => {
-          btn.textContent = 'Copy';
-          btn.classList.remove('copied');
-        }, 1500);
+  SESSIONS.forEach((session, idx) => {
+    SCREENS.push({ type: "session-start", session });
+    SCREENS.push({ type: "stage", session });
+
+    (session.questions || []).forEach((q, qIdx) => {
+      SCREENS.push({
+        type: "question",
+        session,
+        question: q,
+        questionIndex: qIdx,
+        questionTotal: session.questions.length,
       });
     });
-  });
 
-  contentEl.querySelectorAll('.test-checkbox').forEach(cb => {
-    cb.addEventListener('click', () => {
-      const sessionKey = `s${SESSIONS[state.sessionIndex].n}`;
-      const testN = cb.dataset.testN;
-      if (!state.testsChecked[sessionKey]) state.testsChecked[sessionKey] = {};
-      state.testsChecked[sessionKey][testN] = !state.testsChecked[sessionKey][testN];
-      cb.classList.toggle('checked');
-      saveState();
+    if (session.hmv && session.hmv.length) {
+      SCREENS.push({ type: "hmv", session });
+    }
+
+    (session.prompts || []).forEach((p, pIdx) => {
+      SCREENS.push({
+        type: "prompt",
+        session,
+        prompt: p,
+        promptIndex: pIdx,
+        promptTotal: session.prompts.length,
+      });
     });
+
+    if (session.build && session.build.length) {
+      SCREENS.push({ type: "build", session });
+    }
+
+    if (session.test_output && session.test_output.length) {
+      SCREENS.push({ type: "test-output", session });
+    }
+
+    SCREENS.push({ type: "session-end", session });
+
+    if (session.break_after) {
+      SCREENS.push({
+        type: "break",
+        afterSession: session,
+        nextSession: SESSIONS[idx + 1] || null,
+      });
+    }
   });
+
+  // Workshop complete (Day 2 close)
+  SCREENS.push({ type: "workshop-complete" });
 }
 
-function escapeHtml(s) {
-  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+/* ----- Navigation ----- */
+function next() {
+  if (currentScreenIdx < SCREENS.length - 1) {
+    currentScreenIdx++;
+    renderCurrent();
+  }
+}
+function prev() {
+  if (currentScreenIdx > 0) {
+    currentScreenIdx--;
+    renderCurrent();
+  }
 }
 
-function renderFooterNav() {
-  const isFirstSection = state.sectionIndex === 0;
-  const isLastSection = state.sectionIndex === SECTIONS.length - 1;
-  const isFirstSession = state.sessionIndex === 0;
-  const isLastSession = state.sessionIndex === SESSIONS.length - 1;
+/* ----- Render current screen ----- */
+function renderCurrent() {
+  const screen = SCREENS[currentScreenIdx];
+  const stage = $("#stage");
+  const topbar = $("#topbar");
+  const bottombar = $("#bottombar");
 
-  let prevLabel, nextLabel;
+  // Stop break timer if leaving break
+  if (screen.type !== "break" && breakTimer.intervalId) {
+    clearInterval(breakTimer.intervalId);
+    breakTimer.intervalId = null;
+  }
 
-  if (isFirstSection) {
-    if (isFirstSession) {
-      prevLabel = 'Dashboard';
-    } else {
-      prevLabel = `Session ${SESSIONS[state.sessionIndex - 1].n} · ${SESSIONS[state.sessionIndex - 1].name}`;
+  // Top/bottom bars hidden on welcome and complete
+  const noChrome = screen.type === "welcome" || screen.type === "workshop-complete" || screen.type === "break";
+  topbar.classList.toggle("hidden", noChrome);
+  bottombar.classList.toggle("hidden", screen.type === "welcome");
+
+  // Update topbar context
+  if (screen.session) {
+    $("#topbar-eyebrow").textContent = `Session ${screen.session.number}`;
+    $("#topbar-title").textContent = screen.session.title;
+    $("#topbar-section").textContent = sectionLabel(screen);
+    updateProgress();
+  }
+
+  // Reset/start timer for sessions
+  if (screen.session && screen.type === "session-start") {
+    setupTimer(screen.session);
+  } else if (screen.type === "welcome" || screen.type === "workshop-complete") {
+    stopTimer();
+  }
+
+  // Render content
+  let html = "";
+  switch (screen.type) {
+    case "welcome":            html = renderWelcome(); break;
+    case "session-start":      html = renderSessionStart(screen.session); break;
+    case "stage":              html = renderStage(screen.session); break;
+    case "question":           html = renderQuestion(screen); break;
+    case "hmv":                html = renderHMV(screen.session); break;
+    case "prompt":             html = renderPrompt(screen); break;
+    case "build":              html = renderBuild(screen.session); break;
+    case "test-output":        html = renderTestOutput(screen.session); break;
+    case "session-end":        html = renderSessionEnd(screen); break;
+    case "break":              html = renderBreak(screen); break;
+    case "workshop-complete":  html = renderWorkshopComplete(); break;
+  }
+  stage.innerHTML = `<div class="screen">${html}</div>`;
+
+  // Wire up dynamic handlers per screen
+  attachHandlers(screen);
+
+  // Prev/next state
+  $("#prev-btn").disabled = currentScreenIdx === 0;
+  $("#next-btn").disabled = currentScreenIdx >= SCREENS.length - 1;
+}
+
+function sectionLabel(screen) {
+  switch (screen.type) {
+    case "session-start":  return "Begin";
+    case "stage":          return "Set the Stage";
+    case "question":       return `Question ${screen.questionIndex + 1} of ${screen.questionTotal}`;
+    case "hmv":            return "HMV Techniques";
+    case "prompt":         return screen.promptTotal > 1
+                            ? `Prompt ${screen.promptIndex + 1} of ${screen.promptTotal}`
+                            : "The Prompt";
+    case "build":          return "Build";
+    case "test-output":    return "Test Output";
+    case "session-end":    return "Complete";
+    default:               return "";
+  }
+}
+
+function updateProgress() {
+  const screen = SCREENS[currentScreenIdx];
+  if (!screen.session) return;
+  const sessionId = screen.session.id;
+  const sessionScreens = SCREENS.filter(s => s.session && s.session.id === sessionId);
+  const indices = SCREENS
+    .map((s, i) => (s.session && s.session.id === sessionId) ? i : -1)
+    .filter(i => i !== -1);
+  const localIdx = indices.indexOf(currentScreenIdx);
+  const total = sessionScreens.length;
+
+  let dotsHtml = "";
+  for (let i = 0; i < total; i++) {
+    const cls = i < localIdx ? "done" : (i === localIdx ? "active" : "");
+    dotsHtml += `<div class="progress-dot ${cls}"></div>`;
+  }
+  $("#progress").innerHTML = dotsHtml;
+}
+
+/* ============================================
+   SCREEN RENDERERS
+   ============================================ */
+
+function renderWelcome() {
+  return `
+    <div class="hero">
+      <div class="hero-eyebrow">Facilitator Platform · Builderator Edition</div>
+      <h1 class="hero-title brand">JUST<br>BUILD</h1>
+      <hr class="hero-rule">
+      <p class="hero-sub">${WORKSHOP.subtitle || "For operators inside SMEs"}</p>
+      <p class="hero-meta">${WORKSHOP.session_count || SESSIONS.length} sessions &middot; Two days &middot; One real initiative</p>
+      <div class="button-row" style="margin-top: 56px;">
+        <button class="btn btn-primary" id="start-btn">Start Workshop →</button>
+      </div>
+    </div>
+  `;
+}
+
+function renderSessionStart(s) {
+  const dayLabel = `Day ${s.day} &middot; ${s.start_time} to ${s.end_time} &middot; ${s.duration_minutes} minutes`;
+  return `
+    <div class="hero">
+      <div class="hero-eyebrow">Session ${String(s.number).padStart(2, "0")}</div>
+      <h1 class="hero-title">${escapeHtml(s.title)}</h1>
+      <hr class="hero-rule">
+      <p class="hero-meta">${dayLabel}</p>
+      <div class="button-row" style="margin-top: 56px;">
+        <button class="btn btn-primary" id="begin-btn">Begin Session →</button>
+      </div>
+    </div>
+  `;
+}
+
+function renderStage(s) {
+  // Split on double-newline so paragraph breaks in set_the_stage render as <p>s
+  const paragraphs = (s.set_the_stage || "")
+    .split(/\n\n+/)
+    .map(p => `<p>${escapeHtml(p.trim())}</p>`)
+    .join("");
+  return `
+    <div class="label">Set the Stage</div>
+    <div class="stage-text">${paragraphs}</div>
+    <div class="facilitator-note">Read this aloud to the room. Speak slowly. Do not rush the opening.</div>
+  `;
+}
+
+function renderQuestion(screen) {
+  const q = screen.question;
+  return `
+    <div class="label">Question ${screen.questionIndex + 1} of ${screen.questionTotal}</div>
+    <h2 class="question-title">${escapeHtml(q.title)}</h2>
+    <p class="question-body">${escapeHtml(q.body)}</p>
+    ${q.facilitator_note ? `<div class="facilitator-note">${escapeHtml(q.facilitator_note)}</div>` : ""}
+  `;
+}
+
+function renderHMV(s) {
+  const panels = (s.hmv || []).map(panel => `
+    <div class="hmv-panel">
+      <div class="hmv-name">${escapeHtml(panel.dimension)}</div>
+      <ul class="hmv-list">
+        ${panel.techniques.map(t => `<li>${escapeHtml(t)}</li>`).join("")}
+      </ul>
+    </div>
+  `).join("");
+  return `
+    <div class="label">HMV Techniques</div>
+    <div class="hmv-grid">${panels}</div>
+    <div class="facilitator-note">Apply these lenses to what participants share. Name the lens when you use it.</div>
+  `;
+}
+
+function renderPrompt(screen) {
+  const p = screen.prompt;
+  const counter = screen.promptTotal > 1 ? `Prompt ${screen.promptIndex + 1} of ${screen.promptTotal}` : "The Prompt";
+  const toolLine = p.tool ? `<div class="prompt-tool">For <strong>${escapeHtml(p.tool)}</strong></div>` : "";
+  return `
+    <div class="label">${counter}</div>
+    <h2 class="prompt-title">${escapeHtml(p.title)}</h2>
+    ${toolLine}
+    <div class="prompt-box" id="prompt-box">${escapeHtml(p.content)}</div>
+    <button class="copy-btn" id="copy-btn" data-prompt="${encodeURIComponent(p.content)}">
+      Copy Prompt
+    </button>
+    ${p.facilitator_instruction ? `<div class="facilitator-note">${escapeHtml(p.facilitator_instruction)}</div>` : ""}
+  `;
+}
+
+function renderBuild(s) {
+  const items = (s.build || []).map(b => `
+    <li class="build-item">
+      <div>
+        <h3>${escapeHtml(b.title)}</h3>
+        <p>${escapeHtml(b.instructions)}</p>
+      </div>
+    </li>
+  `).join("");
+  return `
+    <div class="label">Build</div>
+    <ul class="build-list">${items}</ul>
+    <div class="facilitator-note">Circulate during this time. Ask these three questions at every desk: What did Claude produce that surprised you? What did you change and why? What does your internal user see at each touchpoint?</div>
+  `;
+}
+
+function renderTestOutput(s) {
+  const sessionId = s.id;
+  if (!testsChecked[sessionId]) {
+    testsChecked[sessionId] = (s.test_output || []).map(() => false);
+  }
+  const items = (s.test_output || []).map((t, i) => {
+    const checked = testsChecked[sessionId][i];
+    return `
+      <li class="test-item ${checked ? "checked" : ""}" data-idx="${i}" data-session="${sessionId}">
+        <div class="checkbox">
+          <svg viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="3,8 7,12 13,4"></polyline>
+          </svg>
+        </div>
+        <div class="test-content">
+          <h4>${escapeHtml(t.title)}</h4>
+          <p>${escapeHtml(t.description)}</p>
+        </div>
+      </li>
+    `;
+  }).join("");
+  const allChecked = testsChecked[sessionId].every(Boolean);
+  const testCount = (s.test_output || []).length;
+  const numWord = testCount === 1 ? "One question" : `${testCount} questions`;
+  const allWord = testCount === 1 ? "It must" : "All must";
+  return `
+    <div class="label">Test Output</div>
+    <p class="test-intro">${numWord}. ${allWord} be yes before moving to the next session.</p>
+    <ul class="test-list">${items}</ul>
+    <div class="all-checked-banner ${allChecked ? "show" : ""}" id="all-checked">
+      <button class="btn btn-primary" id="advance-btn">Move to next session →</button>
+    </div>
+  `;
+}
+
+function renderSessionEnd(screen) {
+  const s = screen.session;
+  const isLastSession = SESSIONS.indexOf(s) === SESSIONS.length - 1;
+  const breakInfo = s.break_after ? `<p class="hero-meta">${s.break_label || "Break"} &middot; ${s.break_duration_minutes} minutes next</p>` : "";
+  return `
+    <div class="hero">
+      <div class="hero-eyebrow">Complete</div>
+      <h1 class="hero-title" style="font-size: clamp(48px, 7vw, 96px);">Session ${String(s.number).padStart(2, "0")}<br><span style="font-style: italic; font-weight: 300;">complete</span></h1>
+      <hr class="hero-rule">
+      <p class="hero-sub">${escapeHtml(s.title)}</p>
+      ${breakInfo}
+      ${!isLastSession ? `<div class="button-row" style="margin-top: 48px;"><button class="btn btn-ghost" id="continue-btn">${s.break_after ? "Begin break" : "Next session"} →</button></div>` : ""}
+    </div>
+  `;
+}
+
+function renderBreak(screen) {
+  const after = screen.afterSession;
+  const next = screen.nextSession;
+  const duration = after.break_duration_minutes;
+  const label = after.break_label || "Break";
+  // Initialise break timer on first render
+  if (breakTimer.intervalId === null && !breakTimer.finished) {
+    breakTimer.remainingSeconds = duration * 60;
+    breakTimer.finished = false;
+    startBreakTimer();
+  }
+  const minsRemaining = Math.floor(breakTimer.remainingSeconds / 60);
+  const secsRemaining = breakTimer.remainingSeconds % 60;
+
+  if (breakTimer.finished) {
+    return `
+      <div class="break">
+        <h1 class="break-over">Break over.</h1>
+        <p class="break-next" style="margin-top: 32px;">Click anywhere or press Next to continue${next ? ` to <strong style="color: var(--accent);">${escapeHtml(next.title)}</strong>` : ""}.</p>
+      </div>
+    `;
+  }
+  return `
+    <div class="break">
+      <p class="hero-eyebrow" style="margin-bottom: 24px;">${escapeHtml(label)}</p>
+      <div class="break-timer" id="break-display">${String(minsRemaining).padStart(2, "0")}:${String(secsRemaining).padStart(2, "0")}</div>
+      <p class="break-label">${escapeHtml(label)} time</p>
+      ${next ? `<p class="break-next">After the break — <strong style="color: var(--accent);">${escapeHtml(next.title)}</strong></p>` : ""}
+      ${after.break_note ? `<p class="break-next" style="margin-top: 32px; font-style: italic; max-width: 56ch; margin-left: auto; margin-right: auto;">${escapeHtml(after.break_note)}</p>` : ""}
+    </div>
+  `;
+}
+
+function renderWorkshopComplete() {
+  const builds = `
+    <li>A core tool at a live URL</li>
+    <li>An internal launch page</li>
+    <li>A help layer that handles questions</li>
+    <li>Sixty seconds of audio</li>
+    <li>A ninety-second explainer video</li>
+    <li>An automated workflow agent running in the background</li>
+    <li>One real validation conversation with an internal stakeholder</li>
+    <li>A four-week plan to Demo Day and adoption</li>
+  `;
+  return `
+    <div class="hero">
+      <div class="hero-eyebrow">Workshop Complete</div>
+      <h1 class="hero-title">Day 2<br><span style="font-style: italic; font-weight: 300;">complete</span></h1>
+      <hr class="hero-rule">
+      <p class="hero-sub" style="margin-bottom: 32px;">What you have built</p>
+      <ul style="list-style: none; max-width: 520px; margin: 0 auto; text-align: left; color: var(--text-soft); font-size: 18px; line-height: 2;">
+        ${builds}
+      </ul>
+      <hr class="hero-rule" style="margin-top: 56px;">
+      <h2 style="font-family: var(--serif); font-size: clamp(56px, 9vw, 128px); color: var(--accent); font-weight: 400; letter-spacing: -0.03em; line-height: 1; margin-top: 32px;">
+        Go build.
+      </h2>
+    </div>
+  `;
+}
+
+/* ============================================
+   HANDLERS
+   ============================================ */
+
+function attachHandlers(screen) {
+  // Welcome
+  const startBtn = $("#start-btn");
+  if (startBtn) startBtn.onclick = next;
+
+  // Session start
+  const beginBtn = $("#begin-btn");
+  if (beginBtn) beginBtn.onclick = () => {
+    startTimer();
+    next();
+  };
+
+  // Continue from session-end
+  const continueBtn = $("#continue-btn");
+  if (continueBtn) continueBtn.onclick = next;
+
+  // Copy prompt
+  const copyBtn = $("#copy-btn");
+  if (copyBtn) copyBtn.onclick = async () => {
+    const text = decodeURIComponent(copyBtn.dataset.prompt);
+    try {
+      await navigator.clipboard.writeText(text);
+      copyBtn.textContent = "Copied ✓";
+      copyBtn.classList.add("copied");
+      setTimeout(() => {
+        copyBtn.textContent = "Copy Prompt";
+        copyBtn.classList.remove("copied");
+      }, 2000);
+    } catch (err) {
+      // Fallback: select the prompt box
+      const sel = window.getSelection();
+      const range = document.createRange();
+      range.selectNodeContents($("#prompt-box"));
+      sel.removeAllRanges();
+      sel.addRange(range);
+      copyBtn.textContent = "Selected — press Cmd/Ctrl+C";
+      setTimeout(() => { copyBtn.textContent = "Copy Prompt"; }, 3000);
     }
+  };
+
+  // Test output checkboxes
+  document.querySelectorAll(".test-item").forEach(el => {
+    el.onclick = () => {
+      const idx = parseInt(el.dataset.idx, 10);
+      const sid = parseInt(el.dataset.session, 10);
+      testsChecked[sid][idx] = !testsChecked[sid][idx];
+      el.classList.toggle("checked", testsChecked[sid][idx]);
+      const allDone = testsChecked[sid].every(Boolean);
+      const banner = $("#all-checked");
+      if (banner) banner.classList.toggle("show", allDone);
+    };
+  });
+  const advanceBtn = $("#advance-btn");
+  if (advanceBtn) advanceBtn.onclick = next;
+
+  // Break — click anywhere when over
+  if (screen && screen.type === "break" && breakTimer.finished) {
+    document.body.onclick = (e) => {
+      if (e.target.closest(".bottombar")) return;
+      breakTimer.finished = false;
+      document.body.onclick = null;
+      next();
+    };
   } else {
-    prevLabel = SECTIONS[state.sectionIndex - 1].label;
-  }
-
-  if (isLastSection) {
-    if (isLastSession) {
-      nextLabel = 'Dashboard';
-    } else {
-      nextLabel = `Session ${SESSIONS[state.sessionIndex + 1].n} · ${SESSIONS[state.sessionIndex + 1].name}`;
-    }
-  } else {
-    nextLabel = SECTIONS[state.sectionIndex + 1].label;
-  }
-
-  document.getElementById('prev-label').textContent = prevLabel;
-  document.getElementById('next-label').textContent = nextLabel;
-}
-
-document.getElementById('prev-btn').addEventListener('click', goPrev);
-document.getElementById('next-btn').addEventListener('click', goNext);
-
-function goPrev() {
-  if (state.sectionIndex > 0) {
-    state.sectionIndex--;
-    renderSectionTabs();
-    renderSectionContent();
-    renderFooterNav();
-  } else if (state.sessionIndex > 0) {
-    state.sessionIndex--;
-    state.sectionIndex = SECTIONS.length - 1;
-    resetTimer();
-    renderSession();
-  } else {
-    showDashboard();
+    document.body.onclick = null;
   }
 }
 
-function goNext() {
-  if (state.sectionIndex < SECTIONS.length - 1) {
-    state.sectionIndex++;
-    renderSectionTabs();
-    renderSectionContent();
-    renderFooterNav();
-  } else if (state.sessionIndex < SESSIONS.length - 1) {
-    state.sessionIndex++;
-    state.sectionIndex = 0;
-    resetTimer();
-    renderSession();
-  } else {
-    showDashboard();
-  }
+/* ============================================
+   TIMER
+   ============================================ */
+
+function setupTimer(session) {
+  stopTimer();
+  timer.totalSeconds = session.duration_minutes * 60;
+  timer.remainingSeconds = timer.totalSeconds;
+  timer.sessionId = session.id;
+  timer.running = false;
+  timer.paused = false;
+  updateTimerDisplay();
 }
-
-// ============================================================================
-// TIMER
-// ============================================================================
-document.getElementById('timer-start').addEventListener('click', () => {
-  if (!state.timer.running) startTimer();
-});
-
-document.getElementById('timer-pause').addEventListener('click', () => {
-  if (state.timer.running) pauseTimer();
-});
-
-document.getElementById('timer-reset').addEventListener('click', resetTimer);
 
 function startTimer() {
-  state.timer.running = true;
-  document.getElementById('timer-start').classList.add('active');
-  document.getElementById('timer-pause').classList.remove('active');
-  if (timerInterval) clearInterval(timerInterval);
-  timerInterval = setInterval(() => {
-    state.timer.seconds--;
-    updateTimerDisplay();
-  }, 1000);
+  if (timer.running) return;
+  timer.running = true;
+  timer.paused = false;
+  timer.intervalId = setInterval(tickTimer, 1000);
+  updateTimerDisplay();
 }
 
 function pauseTimer() {
-  state.timer.running = false;
-  document.getElementById('timer-start').classList.remove('active');
-  document.getElementById('timer-pause').classList.add('active');
-  if (timerInterval) clearInterval(timerInterval);
+  if (!timer.running) return;
+  timer.paused = !timer.paused;
+  updateTimerDisplay();
 }
 
 function stopTimer() {
-  state.timer.running = false;
-  if (timerInterval) clearInterval(timerInterval);
-  document.getElementById('timer-start').classList.remove('active');
-  document.getElementById('timer-pause').classList.remove('active');
+  if (timer.intervalId) clearInterval(timer.intervalId);
+  timer.intervalId = null;
+  timer.running = false;
+  timer.paused = false;
+  $("#timer").textContent = "--:--";
+  $("#timer").className = "timer";
 }
 
-function resetTimer() {
-  stopTimer();
-  state.timer.seconds = state.timer.sessionDuration;
+function tickTimer() {
+  if (timer.paused) return;
+  timer.remainingSeconds--;
   updateTimerDisplay();
 }
 
 function updateTimerDisplay() {
-  const display = document.getElementById('timer-display');
-  if (!display) return;
-  const sec = state.timer.seconds;
-  const isOver = sec < 0;
-  const abs = Math.abs(sec);
-  const h = Math.floor(abs / 3600);
-  const m = Math.floor((abs % 3600) / 60);
-  const s = abs % 60;
-  let text;
-  if (h > 0) {
-    text = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
-  } else {
-    text = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+  const el = $("#timer");
+  if (!timer.running && !timer.totalSeconds) {
+    el.textContent = "--:--";
+    el.className = "timer";
+    return;
   }
-  if (isOver) text = '+' + text;
-  display.textContent = text;
-  display.classList.remove('warning', 'over');
-  if (isOver) {
-    display.classList.add('over');
-  } else if (sec < 300) {
-    display.classList.add('warning');
-  }
+  el.textContent = fmt(timer.remainingSeconds);
+  el.className = "timer";
+  if (timer.paused) el.classList.add("paused");
+  if (timer.remainingSeconds <= 0) el.classList.add("expired");
+  else if (timer.remainingSeconds <= 5 * 60) el.classList.add("danger");
+  else if (timer.remainingSeconds <= 10 * 60) el.classList.add("warning");
 }
 
-// ============================================================================
-// KEYBOARD
-// ============================================================================
-document.addEventListener('keydown', (e) => {
-  if (state.view === 'login') return;
-  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-  if (state.view === 'session') {
-    if (e.key === 'ArrowRight') { e.preventDefault(); goNext(); }
-    if (e.key === 'ArrowLeft') { e.preventDefault(); goPrev(); }
-    if (e.key === 'Escape') { e.preventDefault(); showDashboard(); }
+/* ----- Break timer ----- */
+function startBreakTimer() {
+  if (breakTimer.intervalId) clearInterval(breakTimer.intervalId);
+  breakTimer.intervalId = setInterval(() => {
+    breakTimer.remainingSeconds--;
+    const display = $("#break-display");
+    if (display) {
+      const m = Math.floor(breakTimer.remainingSeconds / 60);
+      const s = breakTimer.remainingSeconds % 60;
+      display.textContent = `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+    }
+    if (breakTimer.remainingSeconds <= 0) {
+      clearInterval(breakTimer.intervalId);
+      breakTimer.intervalId = null;
+      breakTimer.finished = true;
+      playChime();
+      renderCurrent();
+    }
+  }, 1000);
+}
+
+function playChime() {
+  try {
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return;
+    const ctx = new AC();
+    const playTone = (freq, start, dur) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.frequency.value = freq;
+      osc.type = "sine";
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      gain.gain.setValueAtTime(0, ctx.currentTime + start);
+      gain.gain.linearRampToValueAtTime(0.18, ctx.currentTime + start + 0.05);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + start + dur);
+      osc.start(ctx.currentTime + start);
+      osc.stop(ctx.currentTime + start + dur);
+    };
+    playTone(880, 0, 0.6);    // A5
+    playTone(1318, 0.18, 0.7); // E6
+    setTimeout(() => ctx.close(), 1500);
+  } catch (e) { /* silent */ }
+}
+
+/* ============================================
+   KEYBOARD SHORTCUTS
+   ============================================ */
+
+document.addEventListener("keydown", (e) => {
+  // Don't intercept when typing in inputs
+  if (e.target.matches("input, textarea, [contenteditable]")) return;
+
+  switch (e.key) {
+    case "ArrowRight":
+    case " ":
+      e.preventDefault();
+      next();
+      break;
+    case "ArrowLeft":
+      e.preventDefault();
+      prev();
+      break;
+    case "t": case "T":
+      e.preventDefault();
+      pauseTimer();
+      break;
+    case "f": case "F":
+      e.preventDefault();
+      toggleFullscreen();
+      break;
+    case "h": case "H":
+      e.preventDefault();
+      toggleHMV();
+      break;
   }
 });
 
-// ============================================================================
-// INIT
-// ============================================================================
-if (loadState()) {
-  enterApp();
+function toggleFullscreen() {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen?.();
+  } else {
+    document.exitFullscreen?.();
+  }
 }
+
+function toggleHMV() {
+  hmvCollapsed = !hmvCollapsed;
+  $("#hmv-reminder").classList.toggle("collapsed", hmvCollapsed);
+}
+
+$("#hmv-reminder").addEventListener("click", toggleHMV);
+
+/* Timer click to pause/resume */
+$("#timer").addEventListener("click", pauseTimer);
+
+/* Prev/Next buttons */
+$("#prev-btn").addEventListener("click", prev);
+$("#next-btn").addEventListener("click", next);
+
+/* ============================================
+   UTILS
+   ============================================ */
+
+function escapeHtml(str) {
+  if (!str) return "";
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+/* ============================================
+   AUTH GATE
+   ============================================ */
+/*
+  Same credentials as the solopreneur platform: Mufasa / Phantom@6869
+  Stored as SHA-256 hashes below. This is a soft gate — the JS file is
+  publicly readable, so a determined visitor can still extract the hashes
+  and brute-force. For real security, move to Render-level Basic Auth.
+
+  Session key is "jb-platform-sme-auth" so it doesn't collide with the
+  solopreneur platform's session on the same domain.
+*/
+const AUTH_ID_HASH = "de83276e6b45237548b7d6c990b6fe6fd55de68a725e9ddeaf35666f7d93c475";
+const AUTH_PW_HASH = "f181008ea04c7c3d9734a4b9d87e48df67970972a43641bb0608b0e1e91c6c1b";
+const AUTH_SESSION_KEY = "jb-platform-sme-auth";
+
+async function sha256Hex(text) {
+  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, "0")).join("");
+}
+
+function dismissLogin() {
+  $("#login-overlay").classList.add("hidden");
+  loadSessions();
+}
+
+async function tryLogin(id, pw) {
+  const [idHash, pwHash] = await Promise.all([sha256Hex(id), sha256Hex(pw)]);
+  return idHash === AUTH_ID_HASH && pwHash === AUTH_PW_HASH;
+}
+
+function initAuth() {
+  // Already authenticated this session?
+  try {
+    if (sessionStorage.getItem(AUTH_SESSION_KEY) === "1") {
+      dismissLogin();
+      return;
+    }
+  } catch (_) { /* sessionStorage may be unavailable; fall through to form */ }
+
+  const form = $("#login-form");
+  const errEl = $("#login-error");
+  const card = $("#login-card");
+  const submit = $("#login-submit");
+  const idInput = $("#login-id");
+  const pwInput = $("#login-pw");
+
+  // Focus the ID field on load
+  setTimeout(() => idInput.focus(), 50);
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const id = idInput.value.trim();
+    const pw = pwInput.value;
+    if (!id || !pw) return;
+
+    submit.disabled = true;
+    errEl.classList.remove("show");
+
+    const ok = await tryLogin(id, pw);
+    submit.disabled = false;
+
+    if (ok) {
+      try { sessionStorage.setItem(AUTH_SESSION_KEY, "1"); } catch (_) {}
+      dismissLogin();
+    } else {
+      errEl.classList.add("show");
+      card.classList.remove("shake");
+      // Force reflow so the animation re-triggers
+      void card.offsetWidth;
+      card.classList.add("shake");
+      pwInput.value = "";
+      pwInput.focus();
+    }
+  });
+}
+
+initAuth();
 </script>
 </body>
 </html>

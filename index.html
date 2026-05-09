@@ -12,7 +12,7 @@
   gtag('js', new Date());
   gtag('config', 'G-1PXYFN65T8');
 </script>
-<meta name="description" content="A two-day in-person weekend in Bangalore followed by four weeks of structured online build support. By Orange Caterpillar.">
+<meta name="description" content="A two-day weekend in Bangalore or online, followed by four weeks of structured online build support. By Orange Caterpillar.">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="shortcut icon" href="/favicon.ico">
@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<!-- EmailJS will be loaded here when configured -->
+<!-- EmailJS -->
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
 <style>
@@ -31,8 +31,8 @@
    ================================================================ */
 :root {
   --bg-primary: #F5F0E8;
-  --bg-secondary: #EFE7DA;       /* slightly darker for Phase 2 transition */
-  --accent: #C17D2A;             /* primary orange */
+  --bg-secondary: #EFE7DA;
+  --accent: #C17D2A;
   --accent-soft: rgba(193, 125, 42, 0.08);
   --accent-line: rgba(193, 125, 42, 0.35);
   --text-primary: #1A1A1A;
@@ -286,210 +286,10 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
 }
 
 /* ================================================================
-   APPLY SECTION HEADER
+   APPLY/WAITLIST SECTION HEADER
    ================================================================ */
 .apply-intro {
   margin-bottom: 3rem;
-}
-
-/* ================================================================
-   PERSONA RADIO CARDS (8A — WHO ARE YOU)
-   ================================================================ */
-.persona-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.65rem;
-  margin: 1rem 0 0.5rem;
-}
-
-.persona-card {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 1.1rem 1.4rem;
-  background: var(--bg-primary);
-  border: 1.5px solid rgba(0, 0, 0, 0.08);
-  border-radius: 6px;
-  cursor: pointer;
-  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
-  font-size: 1rem;
-  line-height: 1.4;
-  user-select: none;
-}
-.persona-card:hover {
-  border-color: var(--accent);
-  transform: translateY(-1px);
-  box-shadow: 0 2px 10px rgba(193, 125, 42, 0.08);
-}
-.persona-card input[type="radio"] {
-  position: absolute;
-  opacity: 0;
-  pointer-events: none;
-}
-.persona-card.is-selected {
-  border-color: var(--accent);
-  background: var(--accent-soft);
-  box-shadow: 0 2px 14px rgba(193, 125, 42, 0.15);
-}
-.persona-card .persona-label {
-  font-weight: 500;
-  color: var(--text-primary);
-  flex: 1;
-}
-
-/* Custom radio indicator on the right of each card */
-.persona-radio-visual {
-  width: 20px;
-  height: 20px;
-  border: 1.75px solid rgba(0, 0, 0, 0.2);
-  border-radius: 50%;
-  flex-shrink: 0;
-  position: relative;
-  transition: border-color 0.18s ease, background 0.18s ease;
-}
-.persona-card:hover .persona-radio-visual {
-  border-color: var(--accent);
-}
-.persona-card.is-selected .persona-radio-visual {
-  border-color: var(--accent);
-}
-.persona-card.is-selected .persona-radio-visual::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 10px;
-  height: 10px;
-  background: var(--accent);
-  border-radius: 50%;
-}
-
-/* ================================================================
-   COHORT CARDS (8B)
-   ================================================================ */
-.cohort-prompt {
-  font-style: italic;
-  color: var(--text-secondary);
-  margin: 0 0 1.25rem 0;
-  font-size: 0.95rem;
-}
-
-.cohort-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.85rem;
-  margin: 1rem 0;
-}
-
-.cohort-card {
-  position: relative;
-  display: block;
-  padding: 1.25rem 3.4rem 1.25rem 1.5rem;
-  background: var(--bg-primary);
-  border: 1.5px solid rgba(0, 0, 0, 0.08);
-  border-radius: 6px;
-  cursor: pointer;
-  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
-  user-select: none;
-}
-.cohort-card:hover {
-  border-color: var(--accent);
-  transform: translateY(-1px);
-  box-shadow: 0 2px 10px rgba(193, 125, 42, 0.08);
-}
-.cohort-card.is-selected {
-  border-color: var(--accent);
-  background: var(--accent-soft);
-  box-shadow: 0 2px 14px rgba(193, 125, 42, 0.15);
-}
-.cohort-card input[type="radio"] {
-  position: absolute;
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* Radio visual — absolute top-right because cohort cards are multi-line */
-.cohort-radio-visual {
-  position: absolute;
-  top: 1.4rem;
-  right: 1.4rem;
-  width: 20px;
-  height: 20px;
-  border: 1.75px solid rgba(0, 0, 0, 0.2);
-  border-radius: 50%;
-  transition: border-color 0.18s ease;
-}
-.cohort-card:hover .cohort-radio-visual { border-color: var(--accent); }
-.cohort-card.is-selected .cohort-radio-visual { border-color: var(--accent); }
-.cohort-card.is-selected .cohort-radio-visual::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 10px;
-  height: 10px;
-  background: var(--accent);
-  border-radius: 50%;
-}
-
-.cohort-name {
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 1.0625rem;
-  color: var(--text-primary);
-  margin: 0 0 0.25rem 0;
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.cohort-status {
-  display: inline-block;
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 0.2rem 0.55rem;
-  border-radius: 2px;
-  background: var(--accent);
-  color: #fff;
-  vertical-align: middle;
-}
-
-.cohort-meta {
-  font-size: 0.95rem;
-  color: var(--text-secondary);
-  margin: 0.15rem 0;
-  line-height: 1.45;
-}
-
-.cohort-format {
-  font-size: 0.95rem;
-  color: var(--text-secondary);
-  font-style: italic;
-  margin: 0.15rem 0;
-}
-
-.cohort-audience {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  margin-top: 0.4rem;
-}
-
-.student-id-note {
-  font-size: 0.95rem;
-  color: var(--text-secondary);
-  font-style: italic;
-  margin-top: 1rem;
-  padding: 0.75rem 1rem;
-  background: var(--accent-soft);
-  border-left: 3px solid var(--accent);
-  border-radius: 2px;
 }
 
 /* ================================================================
@@ -499,12 +299,30 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
   margin: 1.5rem 0;
 }
 
+/* Two-column row for first/last name on wider screens */
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+.field-row .field {
+  margin: 0;
+}
+
 .field-label {
   display: block;
   font-weight: 600;
   font-size: 1rem;
   color: var(--text-primary);
   margin-bottom: 0.25rem;
+}
+
+.field-label-optional {
+  color: var(--text-muted);
+  font-weight: 400;
+  font-size: 0.9rem;
+  margin-left: 0.4rem;
 }
 
 .field-hint {
@@ -537,12 +355,8 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
 
 .field-textarea {
   resize: vertical;
-  min-height: 120px;
+  min-height: 100px;
   line-height: 1.5;
-}
-
-.field-textarea.large {
-  min-height: 160px;
 }
 
 .field-input.has-error,
@@ -563,43 +377,6 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
   font-style: italic;
   color: var(--text-secondary);
   margin: 0.4rem 0 0 0;
-}
-
-/* ================================================================
-   FEES BLOCK (8E)
-   ================================================================ */
-.fees-list {
-  margin: 0.5rem 0 1rem 0;
-}
-.fee-row {
-  padding: 0.85rem 0;
-  border-bottom: 1px solid var(--accent-line);
-}
-.fee-row:last-child { border-bottom: 0; }
-.fee-label {
-  font-weight: 500;
-  color: var(--text-primary);
-  font-size: 1rem;
-}
-.fee-amount {
-  font-family: var(--font-display);
-  font-weight: 600;
-  color: var(--accent);
-  font-size: 1.2rem;
-  margin-left: 0.4rem;
-}
-.fee-note {
-  display: block;
-  font-style: italic;
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  margin-top: 0.25rem;
-}
-.fees-disclaimer {
-  font-style: italic;
-  font-size: 0.95rem;
-  color: var(--text-secondary);
-  margin: 1rem 0 0 0;
 }
 
 /* ================================================================
@@ -677,116 +454,6 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
 }
 
 /* ================================================================
-   FEEDBACK SECTION
-   ================================================================ */
-.feedback-block {
-  margin-top: 4rem;
-  padding-top: 2rem;
-  border-top: 1px solid var(--accent-line);
-}
-
-.feedback-q {
-  margin: 1.5rem 0;
-}
-
-.feedback-q-label {
-  font-family: var(--font-body);
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-primary);
-  margin-bottom: 0.85rem;
-}
-
-.feedback-scale {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
-.feedback-scale-btn,
-.feedback-choice-btn {
-  flex: 1 1 auto;
-  min-width: 110px;
-  padding: 0.75rem 0.6rem;
-  background: var(--bg-primary);
-  border: 1.5px solid rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.15s ease;
-  font-family: var(--font-body);
-  font-size: 0.85rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.2rem;
-  color: var(--text-primary);
-}
-
-.feedback-scale-btn:hover,
-.feedback-choice-btn:hover {
-  border-color: var(--accent);
-}
-
-.feedback-scale-btn.is-selected,
-.feedback-choice-btn.is-selected {
-  background: var(--accent-soft);
-  border-color: var(--accent);
-  color: var(--accent);
-}
-
-.fb-num {
-  font-family: var(--font-display);
-  font-size: 1rem;
-  font-weight: 600;
-}
-.fb-word {
-  font-size: 0.78rem;
-  color: var(--text-secondary);
-}
-.feedback-scale-btn.is-selected .fb-word { color: var(--accent); }
-
-.feedback-choices {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-.feedback-choice-btn { padding: 0.85rem 1rem; }
-
-.feedback-comment {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  background: var(--bg-primary);
-  border: 1.5px solid rgba(0, 0, 0, 0.12);
-  border-radius: 4px;
-  font-size: 1rem;
-  font-family: var(--font-body);
-  color: var(--text-primary);
-  resize: vertical;
-  min-height: 90px;
-  line-height: 1.5;
-}
-.feedback-comment:focus {
-  outline: none;
-  border-color: var(--accent);
-  background: #fff;
-}
-
-.feedback-submit {
-  margin-top: 1rem;
-}
-.feedback-thanks {
-  margin-top: 1.5rem;
-  padding: 1rem 1.25rem;
-  background: var(--accent-soft);
-  border-radius: 4px;
-  font-style: italic;
-  color: var(--text-primary);
-}
-
-/* ================================================================
    UTILITY
    ================================================================ */
 .hidden { display: none !important; }
@@ -809,8 +476,12 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
   .subhead { font-size: 1.3rem; }
   .trinity { font-size: 1.4rem; }
   .onething-line { font-size: 1.4rem; }
-  .feedback-scale-btn, .feedback-choice-btn {
-    min-width: calc(50% - 0.25rem);
+  .field-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .field-row .field {
+    margin: 1.5rem 0;
   }
 }
 
@@ -819,7 +490,7 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
 <body>
 
 <!-- ============================================================
-     PHASE 1 — INFORMATION
+     PHASE 1 — INFORMATION (UNCHANGED)
      ============================================================ -->
 <section class="section-info">
   <div class="container">
@@ -874,13 +545,14 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
       <p class="prose center">Why would anyone pay.</p>
       <p class="prose prose-italic" style="margin-top:1.5rem;">Not taught as theory. Applied at every decision. By the end it becomes how you think. Not just for this build but for every one after.</p>
     </div>
-   
+
     <!-- CREDIBILITY -->
     <div class="divider-block">
       <p class="prose">Just Build has been designed by people who have built and led at the highest levels of AI and business.</p>
       <p class="prose">Not designed in theory. Designed from the inside of what it actually takes to build something real with AI and to lead organisations through what that change demands.</p>
       <p class="prose">The framework you learn here is the one that was actually used.</p>
     </div>
+
     <!-- WHAT YOU LEAVE WITH -->
     <div class="divider-block">
       <div class="eyebrow">What you leave with</div>
@@ -941,6 +613,7 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
       <p class="prose">Something real on your laptop that did not exist before.</p>
       <p class="prose">Everything else is in service of that.</p>
     </div>
+
     <!-- DAVID FOUNDATION -->
     <div class="divider-block">
       <p class="prose">A meaningful share of every Just Build cohort fee flows into The David Foundation, which works to widen access to opportunity for those who begin life with less.</p>
@@ -950,152 +623,69 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
 </section>
 
 <!-- ============================================================
-     PHASE 2 — APPLICATION
+     PHASE 2 — WAITLIST (REPLACES OLD APPLICATION FORM)
      ============================================================ -->
 <section class="section-apply" id="section-apply">
   <div class="container">
 
     <div class="apply-intro">
-      <div class="eyebrow">Apply to Just Build</div>
-      <h2 class="headline">You have read what <span class="hl-jb">Just Build</span> is. If it feels right, this is where it starts.</h2>
-      <p class="prose">Fill in your details and answer three questions. That is the entire application.</p>
-      <p class="prose prose-italic">We read every application personally. You will hear back within 48 hours.</p>
+      <div class="eyebrow">Waitlist · 2026</div>
+      <h2 class="headline">Enrolment for the 2026 cohorts is not open yet.</h2>
+      <p class="prose">We will announce dates, location, and fees for the 2026 Build Months in the coming weeks. If you want to be considered before public enrolment opens, leave your information here. When the cohorts go live, you will hear from us first.</p>
       <hr class="section-rule">
     </div>
 
-    <form id="apply-form" novalidate>
+    <form id="waitlist-form" novalidate>
 
-      <!-- 8A — WHO ARE YOU -->
-      <div class="field">
-        <div class="eyebrow">Who are you</div>
-        <p class="field-hint">Select one.</p>
-        <div class="persona-list" id="persona-list">
-          <label class="persona-card">
-            <input type="radio" name="persona" value="midcareer">
-            <span class="persona-label">Mid-career professional.</span>
-            <span class="persona-radio-visual"></span>
-          </label>
-          <label class="persona-card">
-            <input type="radio" name="persona" value="college">
-            <span class="persona-label">College student.</span>
-            <span class="persona-radio-visual"></span>
-          </label>
-          <label class="persona-card">
-            <input type="radio" name="persona" value="early">
-            <span class="persona-label">Early career professional (1 to 5 years).</span>
-            <span class="persona-radio-visual"></span>
-          </label>
-          <label class="persona-card">
-            <input type="radio" name="persona" value="school">
-            <span class="persona-label">School student.</span>
-            <span class="persona-radio-visual"></span>
-          </label>
-          <label class="persona-card">
-            <input type="radio" name="persona" value="other">
-            <span class="persona-label">Something else.</span>
-            <span class="persona-radio-visual"></span>
-          </label>
+      <!-- NAME (first + last side by side on wider screens) -->
+      <div class="field-row">
+        <div class="field">
+          <label for="apply-firstname" class="field-label">First name</label>
+          <input type="text" id="apply-firstname" name="firstname" class="field-input" required autocomplete="given-name">
+          <p class="field-error hidden" data-error-for="apply-firstname">Please tell us your first name.</p>
         </div>
-        <p class="field-error hidden" data-error-for="persona">Please tell us who you are.</p>
-      </div>
-
-      <!-- 8B — CHOOSE YOUR COHORT -->
-      <div class="field">
-        <div class="eyebrow">Choose your cohort</div>
-        <p class="field-hint">Select the cohort you are applying for.</p>
-        <p class="cohort-prompt hidden" id="cohort-prompt">Select who you are above to see the cohorts that match you.</p>
-        <div class="cohort-list" id="cohort-list">
-          <p class="prose">Loading cohorts…</p>
+        <div class="field">
+          <label for="apply-lastname" class="field-label">Last name</label>
+          <input type="text" id="apply-lastname" name="lastname" class="field-input" required autocomplete="family-name">
+          <p class="field-error hidden" data-error-for="apply-lastname">Please tell us your last name.</p>
         </div>
-        <p class="student-id-note hidden" id="student-id-note">You will be asked to provide your college or student ID when you receive your selection email.</p>
-        <p class="field-error hidden" data-error-for="cohort">Please select a cohort.</p>
       </div>
 
-      <!-- 8C — YOUR DETAILS -->
-      <div class="field">
-        <div class="eyebrow">Your details</div>
-      </div>
-
-      <div class="field">
-        <label for="apply-name" class="field-label">Full name</label>
-        <p class="field-hint">Your name as you would like to be addressed.</p>
-        <input type="text" id="apply-name" name="name" class="field-input" required>
-        <p class="field-error hidden" data-error-for="apply-name">Please tell us your name.</p>
-      </div>
-
+      <!-- EMAIL -->
       <div class="field">
         <label for="apply-email" class="field-label">Email address</label>
-        <p class="field-hint">We will send our response here. Check it carefully.</p>
-        <input type="email" id="apply-email" name="email" class="field-input" required>
-        <p class="field-prefill-note hidden" id="email-prefill-note">Is this the right email? We will send our response here.</p>
+        <p class="field-hint">When 2026 enrolment opens, we will write to you here.</p>
+        <input type="email" id="apply-email" name="email" class="field-input" required autocomplete="email">
+        <p class="field-prefill-note hidden" id="email-prefill-note">Is this the right email?</p>
         <p class="field-error hidden" data-error-for="apply-email">Please enter a valid email address.</p>
       </div>
 
+      <!-- PHONE (optional) -->
       <div class="field">
-        <label for="apply-whatsapp" class="field-label">WhatsApp number</label>
-        <p class="field-hint">We add you to the cohort WhatsApp group before the weekend starts. Include country code, like +91 9845112345.</p>
-        <input type="tel" id="apply-whatsapp" name="whatsapp" class="field-input" placeholder="+91 9845112345" required>
-        <p class="field-error hidden" data-error-for="apply-whatsapp">Please enter a valid number with country code, starting with +.</p>
+        <label for="apply-phone" class="field-label">Phone<span class="field-label-optional">(optional)</span></label>
+        <p class="field-hint">Include country code, like +91 9845112345.</p>
+        <input type="tel" id="apply-phone" name="phone" class="field-input" placeholder="+91 9845112345" autocomplete="tel">
+        <p class="field-error hidden" data-error-for="apply-phone">Please enter a valid number with country code, starting with +.</p>
       </div>
 
+      <!-- ABOUT YOU (optional) -->
       <div class="field">
-        <label for="apply-city" class="field-label">City you are based in</label>
-        <p class="field-hint">So we can confirm the cohort location works for you.</p>
-        <input type="text" id="apply-city" name="city" class="field-input" required>
-        <p class="field-error hidden" data-error-for="apply-city">Please tell us your city.</p>
+        <label for="apply-note" class="field-label">One line about you<span class="field-label-optional">(optional)</span></label>
+        <textarea id="apply-note" name="note" class="field-textarea" placeholder="What kind of thing you might want to build, where you are in your work, or anything else worth us knowing."></textarea>
       </div>
 
-      <!-- 8D — THREE QUESTIONS -->
+      <!-- WHAT HAPPENS NEXT -->
       <div class="divider-block">
-        <div class="eyebrow">Three questions</div>
-        <p class="prose">These are the only questions we ask.</p>
-        <p class="prose">Answer honestly. Specific answers stand out more than polished ones.</p>
-      </div>
-
-      <div class="field">
-        <label for="apply-q1" class="field-label">Question 1 — What do you want to build and who is it for?</label>
-        <p class="field-hint">Describe the problem, the person who has it, and why it matters to you.</p>
-        <textarea id="apply-q1" name="q1" class="field-textarea large" required></textarea>
-        <p class="field-error hidden" data-error-for="apply-q1">Please answer this question.</p>
-      </div>
-
-      <div class="field">
-        <label for="apply-q2" class="field-label">Question 2 — Why now?</label>
-        <p class="field-hint">What is happening in your life or work that makes this the right moment?</p>
-        <textarea id="apply-q2" name="q2" class="field-textarea" required></textarea>
-        <p class="field-error hidden" data-error-for="apply-q2">Please answer this question.</p>
-      </div>
-
-      <div class="field">
-        <label for="apply-q3" class="field-label">Question 3 — What does success look like at the end of the Build Month?</label>
-        <p class="field-hint">Not what you hope to learn. What you want to have built, launched, or proven.</p>
-        <textarea id="apply-q3" name="q3" class="field-textarea" required></textarea>
-        <p class="field-error hidden" data-error-for="apply-q3">Please answer this question.</p>
-      </div>
-
-      <!-- 8E — FEES -->
-      <div class="divider-block">
-        <div class="eyebrow">Fees</div>
-        <div class="fees-list" id="fees-list">
-          <p class="prose">Loading fees…</p>
-        </div>
-        <p class="fees-disclaimer">No payment is taken at this stage. If you are selected, you will receive a payment link by email.</p>
-      </div>
-
-      <!-- 8F — BEFORE YOU SUBMIT -->
-      <div class="divider-block">
-        <div class="eyebrow">Before you submit</div>
-        <p class="prose">We respond to every application within 48 hours.</p>
-        <p class="prose">If you are selected, you will receive a personal email with everything you need to prepare.</p>
-        <p class="prose">If this cohort is not the right fit, we will tell you why and offer priority consideration for the next one.</p>
-        <p class="prose">Submitting this application commits you to nothing financially. The commitment begins after selection, when you choose to confirm your place.</p>
+        <div class="eyebrow">What happens next</div>
+        <p class="prose">We read every entry.</p>
+        <p class="prose">When 2026 enrolment opens, waitlist members are written to first.</p>
+        <p class="prose">We do not share your information.</p>
       </div>
 
       <!-- SUBMIT -->
       <div class="submit-block">
         <p class="submit-error hidden" id="submit-error"></p>
-        <button type="submit" class="btn btn-primary btn-full" id="submit-btn">Submit my application</button>
-        <p class="submit-disclaimer">By submitting, you agree to our privacy policy. We do not share your information with anyone.</p>
+        <button type="submit" class="btn btn-primary btn-full" id="submit-btn">Join the waitlist</button>
       </div>
 
     </form>
@@ -1104,63 +694,18 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
 </section>
 
 <!-- ============================================================
-     CONFIRMATION SCREEN (replaces application after submit)
+     CONFIRMATION SCREEN (replaces waitlist form after submit)
      ============================================================ -->
 <section class="section-confirmation hidden" id="section-confirmation">
   <div class="container">
 
     <div class="eyebrow">Submitted</div>
-    <h2 class="headline">Your application is in.</h2>
-    <p class="prose-lead">We read every application personally. You will hear back within 48 hours.</p>
-    <p class="prose prose-italic">If you have a question before then, you can email us directly.</p>
+    <h2 class="headline">You are on the list.</h2>
+    <p class="prose-lead">When the 2026 cohorts are announced, we will write to you before the page goes public.</p>
+    <p class="prose prose-italic">If you have a question in the meantime, you can email us directly.</p>
 
     <div class="confirm-cta">
-      <a href="mailto:hello@orangecaterpillar.com?subject=Question%20about%20my%20Just%20Build%20application" class="btn btn-dark btn-full">Email us at hello@orangecaterpillar.com</a>
-    </div>
-
-    <!-- FEEDBACK -->
-    <div class="feedback-block" id="feedback-block">
-      <div id="feedback-intro">
-        <div class="eyebrow">A quick reading on the reading</div>
-        <p class="prose prose-italic">Three short questions. Optional. We use this to keep sharpening SWISH.</p>
-      </div>
-
-      <div id="feedback-form">
-
-        <div class="feedback-q">
-          <div class="feedback-q-label">How sharp did this reading feel for you?</div>
-          <div class="feedback-scale" id="feedback-sharpness">
-            <button type="button" class="feedback-scale-btn" data-value="1"><span class="fb-num">1</span><span class="fb-word">Off</span></button>
-            <button type="button" class="feedback-scale-btn" data-value="2"><span class="fb-num">2</span><span class="fb-word">A bit off</span></button>
-            <button type="button" class="feedback-scale-btn" data-value="3"><span class="fb-num">3</span><span class="fb-word">Mostly accurate</span></button>
-            <button type="button" class="feedback-scale-btn" data-value="4"><span class="fb-num">4</span><span class="fb-word">Sharp</span></button>
-            <button type="button" class="feedback-scale-btn" data-value="5"><span class="fb-num">5</span><span class="fb-word">Cuts to the bone</span></button>
-          </div>
-        </div>
-
-        <div class="feedback-q">
-          <div class="feedback-q-label">How did the experience itself feel?</div>
-          <div class="feedback-choices" id="feedback-experience">
-            <button type="button" class="feedback-choice-btn" data-value="Laborious">Laborious</button>
-            <button type="button" class="feedback-choice-btn" data-value="Slow">Slow</button>
-            <button type="button" class="feedback-choice-btn" data-value="Quick">Quick</button>
-            <button type="button" class="feedback-choice-btn" data-value="Just right">Just right</button>
-          </div>
-        </div>
-
-        <div class="feedback-q">
-          <div class="feedback-q-label">Anything else you want to say?</div>
-          <textarea id="feedback-comment" class="feedback-comment" placeholder="What landed, what missed, what would be more useful next time."></textarea>
-        </div>
-
-        <div class="feedback-submit">
-          <button type="button" class="btn btn-dark" id="feedback-submit-btn">Submit feedback</button>
-        </div>
-      </div>
-
-      <div class="feedback-thanks hidden" id="feedback-thanks">
-        Thank you. Sam reads every one of these. They genuinely shape what comes next.
-      </div>
+      <a href="mailto:hello@orangecaterpillar.com?subject=Question%20about%20the%20Just%20Build%20waitlist" class="btn btn-dark btn-full">Email us at hello@orangecaterpillar.com</a>
     </div>
 
   </div>
@@ -1176,67 +721,38 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
   // ============================================================
   // EMAILJS CONFIGURATION
   // ============================================================
-  // Set these four constants when you have your EmailJS account ready.
-  // Until then the form will display the confirmation screen without
-  // attempting to send any email — useful for testing visually.
+  // Public key and service ID match the SWISH/feedback setup.
+  // EMAILJS_WAITLIST_TEMPLATE_ID is a NEW template you'll need to
+  // create in EmailJS — the old application template expects fields
+  // (q1, q2, q3, cohort_name, etc.) that the waitlist does not collect.
+  // The new template should accept these variables:
+  //   {{firstname}}  {{lastname}}  {{full_name}}
+  //   {{email}}  {{phone}}  {{note}}  {{submitted_at}}
+  // Once the template is created in EmailJS, paste its ID below.
   const EMAILJS_PUBLIC_KEY = '4oFdVRvbVQ8mQHUnZ';
   const EMAILJS_SERVICE_ID = 'service_w32avyy';
-  const EMAILJS_APPLICATION_TEMPLATE_ID = 'template_dxrfj69';
-  const EMAILJS_FEEDBACK_TEMPLATE_ID = 'template_kbr9wtj';
+  const EMAILJS_WAITLIST_TEMPLATE_ID = 'template_dxrfj69';
 
   function isEmailJSConfigured() {
-    return !!(EMAILJS_PUBLIC_KEY && EMAILJS_SERVICE_ID && EMAILJS_APPLICATION_TEMPLATE_ID);
+    return !!(
+      EMAILJS_PUBLIC_KEY &&
+      EMAILJS_SERVICE_ID &&
+      EMAILJS_WAITLIST_TEMPLATE_ID &&
+      EMAILJS_WAITLIST_TEMPLATE_ID.indexOf('REPLACE') === -1
+    );
   }
 
-  if (isEmailJSConfigured() && typeof emailjs !== 'undefined') {
+  if (EMAILJS_PUBLIC_KEY && typeof emailjs !== 'undefined') {
     emailjs.init(EMAILJS_PUBLIC_KEY);
   }
-
-  // ============================================================
-  // STATE
-  // ============================================================
-  let allCohorts = [];
-  let allFees = {};
-  let selectedPersona = null;   // 'midcareer' | 'college' | 'early' | 'school' | 'other' | null
-  let selectedCohortId = null;
 
   // ============================================================
   // HELPERS
   // ============================================================
   function $(sel) { return document.querySelector(sel); }
-  function $$(sel) { return document.querySelectorAll(sel); }
-  function clear(el) { while (el.firstChild) el.removeChild(el.firstChild); }
-
-  function escapeHtml(s) {
-    if (s == null) return '';
-    return String(s)
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#39;');
-  }
-
-  function formatDate(iso) {
-    if (!iso) return '';
-    const d = new Date(iso + 'T00:00:00');
-    return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-  }
-
-  function formatDateRange(startIso, endIso) {
-    if (!startIso || !endIso) return '';
-    const start = new Date(startIso + 'T00:00:00');
-    const end = new Date(endIso + 'T00:00:00');
-    const sameMonth = start.getMonth() === end.getMonth() && start.getFullYear() === end.getFullYear();
-    if (sameMonth) {
-      return `${start.getDate()}–${end.getDate()} ${start.toLocaleDateString('en-GB', { month: 'long', year: 'numeric' })}`;
-    }
-    const opts = { day: 'numeric', month: 'long', year: 'numeric' };
-    return `${start.toLocaleDateString('en-GB', opts)} – ${end.toLocaleDateString('en-GB', opts)}`;
-  }
 
   // ============================================================
-  // EMAIL PRE-FILL FROM URL PARAMETER (?email=...)
+  // EMAIL PRE-FILL FROM URL (?email=... — used by SWISH redirect)
   // ============================================================
   function prefillEmailFromURL() {
     const params = new URLSearchParams(window.location.search);
@@ -1251,209 +767,16 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
   }
 
   // ============================================================
-  // LOAD DATA (fees + cohorts)
-  // ============================================================
-  async function loadData() {
-    try {
-      const [feesRes, cohortsRes] = await Promise.all([
-        fetch('fees.json'),
-        fetch('cohorts.json')
-      ]);
-      if (!feesRes.ok || !cohortsRes.ok) throw new Error('Could not load data');
-      allFees = await feesRes.json();
-      const cohortsData = await cohortsRes.json();
-      allCohorts = cohortsData.cohorts || [];
-      renderFees();
-      renderCohorts();
-    } catch (err) {
-      console.error('Data load failed:', err);
-      $('#fees-list').innerHTML = '<p class="prose">Could not load fees. Please refresh the page.</p>';
-      $('#cohort-list').innerHTML = '<p class="prose">Could not load cohorts. Please refresh the page.</p>';
-    }
-  }
-
-  // ============================================================
-  // RENDER FEES (8E)
-  // ============================================================
-  function renderFees() {
-    const container = $('#fees-list');
-    clear(container);
-    Object.values(allFees).forEach(fee => {
-      const row = document.createElement('div');
-      row.className = 'fee-row';
-      let html = `<span class="fee-label">${escapeHtml(fee.label)}</span><span class="fee-amount">${escapeHtml(fee.display)}</span>`;
-      if (fee.note) {
-        html += `<span class="fee-note">${escapeHtml(fee.note)}</span>`;
-      }
-      row.innerHTML = html;
-      container.appendChild(row);
-    });
-  }
-
-  // ============================================================
-  // PERSONA → COHORT FILTERING
-  // ============================================================
-  function getFilteredCohorts() {
-    // Hide closed cohorts always
-    const visible = allCohorts.filter(c => c.status !== 'closed');
-
-    if (!selectedPersona) return visible; // show all
-    if (selectedPersona === 'other') return visible;
-
-    const audienceForPersona = {
-      midcareer: 'mid_career',
-      early: 'mid_career',
-      college: 'students',
-      school: 'students'
-    };
-    const targetAudience = audienceForPersona[selectedPersona];
-    if (!targetAudience) return visible;
-    return visible.filter(c => !c.audience || c.audience === targetAudience);
-  }
-
-  function renderCohorts() {
-    const container = $('#cohort-list');
-    const prompt = $('#cohort-prompt');
-    clear(container);
-
-    const cohortsToShow = getFilteredCohorts();
-
-    // Show "select who you are" prompt only when nothing selected
-    prompt.classList.toggle('hidden', !!selectedPersona);
-
-    if (cohortsToShow.length === 0) {
-      const p = document.createElement('p');
-      p.className = 'prose';
-      p.textContent = 'No open cohorts at the moment. Please check back soon.';
-      container.appendChild(p);
-      updateStudentIDNote();
-      return;
-    }
-
-    // Clear selection if the previously-selected cohort is no longer visible
-    if (selectedCohortId && !cohortsToShow.some(c => c.id === selectedCohortId)) {
-      selectedCohortId = null;
-    }
-
-    cohortsToShow.forEach(c => {
-      const card = document.createElement('label');
-      card.className = 'cohort-card';
-      card.dataset.cohortId = c.id;
-      if (selectedCohortId === c.id) card.classList.add('is-selected');
-
-      const radio = document.createElement('input');
-      radio.type = 'radio';
-      radio.name = 'cohort';
-      radio.value = c.id;
-      if (selectedCohortId === c.id) radio.checked = true;
-      radio.addEventListener('change', () => onSelectCohort(c.id));
-      card.appendChild(radio);
-
-      // Visual radio indicator (top-right)
-      const radioVisual = document.createElement('span');
-      radioVisual.className = 'cohort-radio-visual';
-      card.appendChild(radioVisual);
-
-      const name = document.createElement('div');
-      name.className = 'cohort-name';
-      const cityCountry = c.country ? `${c.city}, ${c.country}` : c.city;
-      const audienceLabel = c.audience === 'mid_career' ? 'Mid-career' : (c.audience === 'students' ? 'Students' : '');
-      const fallbackName = c.audience ? `${cityCountry} — ${audienceLabel}` : cityCountry;
-      name.innerHTML = `<span>${escapeHtml(c.name || fallbackName)}</span>`;
-      if (c.status === 'filling') {
-        const tag = document.createElement('span');
-        tag.className = 'cohort-status';
-        tag.textContent = 'Filling Fast';
-        name.appendChild(tag);
-      } else if (c.status === 'waitlist') {
-        const tag = document.createElement('span');
-        tag.className = 'cohort-status';
-        tag.textContent = 'Waitlist Only';
-        name.appendChild(tag);
-      }
-      card.appendChild(name);
-
-      const dates = document.createElement('div');
-      dates.className = 'cohort-meta';
-      dates.textContent = `Build Weekend: ${formatDateRange(c.weekend_start, c.weekend_end)}`;
-      card.appendChild(dates);
-
-      const month = document.createElement('div');
-      month.className = 'cohort-meta';
-      month.textContent = `Build Month ends: ${formatDate(c.build_month_end)}`;
-      card.appendChild(month);
-
-      if (c.format) {
-        const fmt = document.createElement('div');
-        fmt.className = 'cohort-format';
-        fmt.textContent = c.format;
-        card.appendChild(fmt);
-      }
-
-      if (c.audience) {
-        const aud = document.createElement('div');
-        aud.className = 'cohort-audience';
-        aud.textContent = c.audience === 'mid_career' ? 'For mid-career and early-career professionals' : 'For college and school students';
-        card.appendChild(aud);
-      }
-
-      container.appendChild(card);
-    });
-
-    updateStudentIDNote();
-  }
-
-  function onSelectCohort(cohortId) {
-    selectedCohortId = cohortId;
-    $$('#cohort-list .cohort-card').forEach(card => {
-      card.classList.toggle('is-selected', card.dataset.cohortId === cohortId);
-    });
-    hideError('cohort');
-    updateStudentIDNote();
-  }
-
-  function updateStudentIDNote() {
-    const note = $('#student-id-note');
-    if (!selectedCohortId) {
-      note.classList.add('hidden');
-      return;
-    }
-    const cohort = allCohorts.find(c => c.id === selectedCohortId);
-    if (cohort && cohort.audience === 'students') {
-      note.classList.remove('hidden');
-    } else {
-      note.classList.add('hidden');
-    }
-  }
-
-  // ============================================================
-  // PERSONA SELECTION
-  // ============================================================
-  function wirePersonaCards() {
-    $$('.persona-card input[name="persona"]').forEach(input => {
-      input.addEventListener('change', () => {
-        selectedPersona = input.value;
-        $$('.persona-card').forEach(card => {
-          const radio = card.querySelector('input[name="persona"]');
-          card.classList.toggle('is-selected', radio.checked);
-        });
-        hideError('persona');
-        renderCohorts();
-      });
-    });
-  }
-
-  // ============================================================
   // VALIDATION
   // ============================================================
   function showError(key) {
-    const el = document.querySelector(`[data-error-for="${key}"]`);
+    const el = document.querySelector('[data-error-for="' + key + '"]');
     if (el) el.classList.remove('hidden');
     const input = document.getElementById(key);
     if (input) input.classList.add('has-error');
   }
   function hideError(key) {
-    const el = document.querySelector(`[data-error-for="${key}"]`);
+    const el = document.querySelector('[data-error-for="' + key + '"]');
     if (el) el.classList.add('hidden');
     const input = document.getElementById(key);
     if (input) input.classList.remove('has-error');
@@ -1461,37 +784,26 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
 
   function validateForm() {
     let firstErrorEl = null;
-    const fail = (key) => {
+    const fail = function (key) {
       showError(key);
       if (!firstErrorEl) {
-        firstErrorEl = document.querySelector(`[data-error-for="${key}"]`)
+        firstErrorEl = document.querySelector('[data-error-for="' + key + '"]')
                     || document.getElementById(key);
       }
     };
 
-    // 8A persona
-    if (!selectedPersona) fail('persona');
+    const firstname = $('#apply-firstname').value.trim();
+    if (!firstname) fail('apply-firstname');
 
-    // 8B cohort
-    if (!selectedCohortId) fail('cohort');
-
-    // 8C details
-    const name = $('#apply-name').value.trim();
-    if (!name) fail('apply-name');
+    const lastname = $('#apply-lastname').value.trim();
+    if (!lastname) fail('apply-lastname');
 
     const email = $('#apply-email').value.trim();
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) fail('apply-email');
 
-    const wa = $('#apply-whatsapp').value.trim().replace(/[\s\-()]/g, '');
-    if (!/^\+\d{8,15}$/.test(wa)) fail('apply-whatsapp');
-
-    const city = $('#apply-city').value.trim();
-    if (!city) fail('apply-city');
-
-    // 8D questions
-    if (!$('#apply-q1').value.trim()) fail('apply-q1');
-    if (!$('#apply-q2').value.trim()) fail('apply-q2');
-    if (!$('#apply-q3').value.trim()) fail('apply-q3');
+    // Phone is OPTIONAL — only validate if user entered something
+    const phone = $('#apply-phone').value.trim().replace(/[\s\-()]/g, '');
+    if (phone && !/^\+\d{8,15}$/.test(phone)) fail('apply-phone');
 
     if (firstErrorEl) {
       firstErrorEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -1500,44 +812,33 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
     return true;
   }
 
-  // Live error clearing as user types / changes
   function wireLiveErrorClearing() {
-    ['apply-name','apply-email','apply-whatsapp','apply-city','apply-q1','apply-q2','apply-q3'].forEach(id => {
+    const ids = ['apply-firstname', 'apply-lastname', 'apply-email', 'apply-phone'];
+    ids.forEach(function (id) {
       const el = document.getElementById(id);
       if (!el) return;
-      el.addEventListener('input', () => hideError(id));
+      el.addEventListener('input', function () { hideError(id); });
     });
   }
 
   // ============================================================
   // FORM SUBMISSION
   // ============================================================
-  function buildApplicationParams() {
-    const cohort = allCohorts.find(c => c.id === selectedCohortId);
-    const personaLabels = {
-      midcareer: 'Mid-career professional',
-      college: 'College student',
-      early: 'Early career professional (1 to 5 years)',
-      school: 'School student',
-      other: 'Something else'
-    };
-
+  function buildWaitlistParams() {
+    const firstname = $('#apply-firstname').value.trim();
+    const lastname = $('#apply-lastname').value.trim();
     return {
-      name: $('#apply-name').value.trim(),
+      firstname: firstname,
+      lastname: lastname,
+      full_name: (firstname + ' ' + lastname).trim(),
       email: $('#apply-email').value.trim(),
-      whatsapp: $('#apply-whatsapp').value.trim(),
-      persona: personaLabels[selectedPersona] || selectedPersona,
-      city: $('#apply-city').value.trim(),
-      cohort_name: cohort ? cohort.name : '',
-      cohort_dates: cohort ? `${formatDateRange(cohort.weekend_start, cohort.weekend_end)}, Build Month ends ${formatDate(cohort.build_month_end)}` : '',
-      q1: $('#apply-q1').value.trim(),
-      q2: $('#apply-q2').value.trim(),
-      q3: $('#apply-q3').value.trim(),
+      phone: $('#apply-phone').value.trim() || '(not provided)',
+      note: $('#apply-note').value.trim() || '(none)',
       submitted_at: new Date().toISOString()
     };
   }
 
-  async function submitApplication(e) {
+  async function submitWaitlist(e) {
     e.preventDefault();
     $('#submit-error').classList.add('hidden');
 
@@ -1548,19 +849,19 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
     const originalText = submitBtn.textContent;
     submitBtn.textContent = 'Submitting…';
 
-    const params = buildApplicationParams();
+    const params = buildWaitlistParams();
 
     try {
       if (isEmailJSConfigured()) {
-        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_APPLICATION_TEMPLATE_ID, params);
+        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_WAITLIST_TEMPLATE_ID, params);
       } else {
-        // EmailJS not yet configured — log to console for visibility while testing
-        console.info('EmailJS not configured. Application data:', params);
-        await new Promise(r => setTimeout(r, 400)); // simulate latency
+        // Template ID still set to placeholder — log to console for visual testing.
+        console.info('EmailJS waitlist template not configured. Waitlist data:', params);
+        await new Promise(function (r) { setTimeout(r, 400); });
       }
-      showConfirmation(params);
+      showConfirmation();
     } catch (err) {
-      console.error('Submission failed:', err);
+      console.error('Waitlist submission failed:', err);
       submitBtn.disabled = false;
       submitBtn.textContent = originalText;
       const errorEl = $('#submit-error');
@@ -1569,90 +870,21 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
     }
   }
 
-  function showConfirmation(params) {
+  function showConfirmation() {
     $('#section-apply').classList.add('hidden');
     $('#section-confirmation').classList.remove('hidden');
-    // Smooth-scroll to confirmation
-    setTimeout(() => {
+    setTimeout(function () {
       $('#section-confirmation').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 50);
-    // Stash applicant name for feedback email subject line
-    window.__applicantName = (params && params.name) || '';
-  }
-
-  // ============================================================
-  // FEEDBACK FORM
-  // ============================================================
-  let feedbackSharpness = null;
-  let feedbackExperience = null;
-
-  function wireFeedback() {
-    $$('#feedback-sharpness .feedback-scale-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        feedbackSharpness = parseInt(btn.dataset.value, 10);
-        $$('#feedback-sharpness .feedback-scale-btn').forEach(b => b.classList.remove('is-selected'));
-        btn.classList.add('is-selected');
-      });
-    });
-    $$('#feedback-experience .feedback-choice-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        feedbackExperience = btn.dataset.value;
-        $$('#feedback-experience .feedback-choice-btn').forEach(b => b.classList.remove('is-selected'));
-        btn.classList.add('is-selected');
-      });
-    });
-
-    $('#feedback-submit-btn').addEventListener('click', submitFeedback);
-  }
-
-  async function submitFeedback() {
-    const comment = $('#feedback-comment').value.trim();
-    if (feedbackSharpness === null && feedbackExperience === null && !comment) {
-      // nothing to submit
-      return;
-    }
-
-    const btn = $('#feedback-submit-btn');
-    btn.disabled = true;
-    const original = btn.textContent;
-    btn.textContent = 'Submitting…';
-
-    const params = {
-      applicant_name: window.__applicantName || '',
-      sharpness: feedbackSharpness,
-      experience: feedbackExperience,
-      comment: comment,
-      submitted_at: new Date().toISOString()
-    };
-
-    try {
-      if (isEmailJSConfigured() && EMAILJS_FEEDBACK_TEMPLATE_ID) {
-        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_FEEDBACK_TEMPLATE_ID, params);
-      } else {
-        console.info('EmailJS feedback template not configured. Feedback data:', params);
-        await new Promise(r => setTimeout(r, 300));
-      }
-      $('#feedback-intro').classList.add('hidden');
-      $('#feedback-form').classList.add('hidden');
-      $('#feedback-thanks').classList.remove('hidden');
-    } catch (err) {
-      console.error('Feedback submit failed:', err);
-      btn.disabled = false;
-      btn.textContent = original;
-      alert('Could not record feedback. Please try again.');
-    }
   }
 
   // ============================================================
   // INIT
   // ============================================================
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('DOMContentLoaded', function () {
     prefillEmailFromURL();
-    wirePersonaCards();
     wireLiveErrorClearing();
-    wireFeedback();
-    $('#apply-form').addEventListener('submit', submitApplication);
-    loadData();
+    $('#waitlist-form').addEventListener('submit', submitWaitlist);
   });
 
 })();

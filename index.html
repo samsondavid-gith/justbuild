@@ -541,6 +541,78 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
 }
 
 /* ================================================================
+   CREDIBILITY — founder profile with photo
+   ================================================================ */
+.cred-block {
+  display: grid;
+  grid-template-columns: 1fr 200px;
+  gap: 2.25rem;
+  align-items: start;
+  margin: 1.25rem 0 1.5rem;
+}
+
+.cred-headline {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.35rem;
+  color: var(--text-primary);
+}
+
+.cred-role {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 1.25rem;
+}
+
+.cred-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cred-list li {
+  position: relative;
+  padding-left: 0.9rem;
+  margin-bottom: 0.55rem;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--text-primary);
+}
+
+.cred-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 3px;
+  height: 0.85em;
+  background: var(--accent);
+}
+
+.cred-photo {
+  width: 100%;
+  border-radius: 4px;
+  display: block;
+}
+
+@media (max-width: 600px) {
+  .cred-block {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .cred-photo {
+    max-width: 200px;
+  }
+}
+
+/* ================================================================
    UTILITY
    ================================================================ */
 .hidden { display: none !important; }
@@ -666,9 +738,21 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
 
     <!-- CREDIBILITY -->
     <div class="divider-block">
-      <p class="prose">Just Build has been designed by people who have built and led at the highest levels of AI and business.</p>
-      <p class="prose">Not designed in theory. Designed from the inside of what it actually takes to build something real with AI and to lead organisations through what that change demands.</p>
-      <p class="prose">The framework you learn here is the one that was actually used.</p>
+      <div class="eyebrow">Learn from someone who's actually done it</div>
+      <div class="cred-block">
+        <div class="cred-content">
+          <h3 class="cred-headline">Samson David</h3>
+          <p class="cred-role">Founder · Orange Caterpillar</p>
+          <ul class="cred-list">
+            <li>Former CEO of a category leading AI tech startup.</li>
+            <li>Former Fortune 100 CXO. $20B+ operations. 200K+ team.</li>
+            <li>Board member and strategic advisor, theAgenticOS.ai.</li>
+            <li>The Economic Times Global Leaders Award 2022.</li>
+          </ul>
+        </div>
+        <img src="/Samz%20image.png" alt="Samson David" class="cred-photo">
+      </div>
+      <p class="prose" style="margin-top:1.5rem;">The framework you learn here is the one that was actually used.</p>
     </div>
 
     <!-- WHAT YOU LEAVE WITH -->

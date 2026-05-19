@@ -245,6 +245,93 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
 }
 
 /* ================================================================
+   INTELLECTUAL SPINE — three-card layout
+   ================================================================ */
+.spine-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin: 0 0 2rem;
+}
+
+@media (min-width: 720px) {
+  .spine-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.875rem;
+  }
+}
+
+.spine-card {
+  padding: 1.75rem 1.5rem 1.5rem;
+  background: var(--bg-primary);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+}
+
+.spine-card-emphasis {
+  background: var(--accent-soft);
+  border-color: var(--accent-line);
+}
+
+.spine-num {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+  margin-bottom: 1.5rem;
+}
+
+.spine-label {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding-bottom: 0.75rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--accent-line);
+}
+
+.spine-tag {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--text-primary);
+  margin: 0 0 1rem;
+  line-height: 1.5;
+}
+
+.spine-detail {
+  border-left: 3px solid var(--accent);
+  padding-left: 0.875rem;
+}
+
+.spine-body {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.spine-summary {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-style: italic;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 1rem;
+  padding: 1rem 1.25rem;
+  border-left: 3px solid var(--accent);
+  background: var(--accent-soft);
+}
+
+/* ================================================================
    TAKEAWAYS (what you leave with, what continues after)
    ================================================================ */
 .takeaway {
@@ -476,6 +563,7 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
   .subhead { font-size: 1.3rem; }
   .trinity { font-size: 1.4rem; }
   .onething-line { font-size: 1.4rem; }
+  .spine-summary { font-size: 1rem; }
   .field-row {
     grid-template-columns: 1fr;
     gap: 0;
@@ -540,10 +628,40 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
       <div class="eyebrow">How you think while building</div>
       <p class="prose">Everything runs on one lens.</p>
       <p class="trinity">Humanics. Mechanics. Valuenomics.</p>
-      <p class="prose center">Who is this for.</p>
-      <p class="prose center">What is AI actually doing.</p>
-      <p class="prose center">Why would anyone pay.</p>
-      <p class="prose prose-italic" style="margin-top:1.5rem;">Not taught as theory. Applied at every decision. By the end it becomes how you think. Not just for this build but for every one after.</p>
+      <p class="prose prose-italic center" style="margin-top:0; margin-bottom:2.5rem;">Not just chasing tools. A fundamental way of thinking about AI.</p>
+
+      <div class="spine-grid">
+        <div class="spine-card">
+          <div class="spine-num">01</div>
+          <div class="spine-label">Humanics</div>
+          <p class="spine-tag">Builds the builder.</p>
+          <div class="spine-detail">
+            <p class="spine-body">First principles reasoning. Problem framing. Systems thinking. Questions that change trajectories.</p>
+          </div>
+        </div>
+
+        <div class="spine-card spine-card-emphasis">
+          <div class="spine-num">02</div>
+          <div class="spine-label">Mechanics</div>
+          <p class="spine-tag">Builds the AI.</p>
+          <div class="spine-detail">
+            <p class="spine-body">Understand how AI actually works. How models think. Know. Learn. Take action. Communicate. Stay safe.</p>
+          </div>
+        </div>
+
+        <div class="spine-card">
+          <div class="spine-num">03</div>
+          <div class="spine-label">Valuenomics</div>
+          <p class="spine-tag">Builds the business.</p>
+          <div class="spine-detail">
+            <p class="spine-body">Turning insight to narrative. Narrative to influence. Influence to outcomes.</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="spine-summary">Humanics builds the builder. Mechanics builds the AI. Valuenomics builds the business.</p>
+
+      <p class="prose prose-italic" style="margin-top:2rem;">Not taught as theory. Applied at every decision. By the end it becomes how you think. Not just for this build but for every one after.</p>
     </div>
 
     <!-- CREDIBILITY -->

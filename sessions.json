@@ -2,28 +2,30 @@
   "workshop": {
     "title": "Just Build",
     "subtitle": "",
-    "session_count": 13,
+    "session_count": 11,
     "day1_sessions": [
-      "0",
       "1",
       "2",
       "3",
       "4",
-      "5",
-      "6a"
+      "5"
     ],
     "day2_sessions": [
-      "6b",
+      "6",
       "7",
       "8",
-      "9",
       "polish",
       "10",
       "11"
     ],
     "cohort_members": [],
     "cohort_label": "C1",
-    "oc_application_url": "justbuild.orangecaterpillar.com/apply"
+    "cohort_size": 25,
+    "oc_application_url": "justbuild.orangecaterpillar.com/apply",
+    "day1_start": "09:00",
+    "day1_end": "18:00",
+    "day2_start": "09:00",
+    "day2_end": "18:30"
   },
   "sessions": [
     {
@@ -31,75 +33,7 @@
       "duration_minutes": 30,
       "break_after": false,
       "break_duration_minutes": 0,
-      "set_the_stage": "If you walked in with an idea already, skip ahead to Session 1. If you did not, take twenty to thirty minutes with this short pre-session and you will leave with one.\n\nThe biggest myth about entrepreneurship is that you need a flash of genius before you can start. You do not. You need a problem you actually care about, and a small honest description of who has it. That is all. The idea itself almost always comes out of a problem someone you can picture is dealing with.\n\nSo instead of trying to think of an idea, you are going to use Gemini to surface problems that match your interests, your life, and the kinds of people you already understand. Then you will pick one that feels alive to you and bring that into Session 1.",
-      "questions": [
-        {
-          "title": "Whose problems do you already understand?",
-          "body": "Not who you want to help. Who do you already know. Write down three groups of people whose daily lives you can describe in some detail. Could be students at your college, freelance designers, parents of toddlers, people who run small kirana stores, weekend cyclists, anyone."
-        },
-        {
-          "title": "What annoys you, personally?",
-          "body": "List five things that have made you genuinely irritated in the last month. Tiny annoyances count. Forgetting where you parked. Spending an hour comparing three insurance policies. Not being able to find someone to play badminton with on a Sunday morning."
-        },
-        {
-          "title": "What do you keep wishing existed?",
-          "body": "Sometimes the cleanest signal is the phrase someone wishes existed. Write down two or three things you have thought I wish there was a thing that did this. Do not filter for whether it could exist or already does. Just write what came to mind."
-        }
-      ],
-      "hmv": [],
-      "prompts": [
-        {
-          "number": 1,
-          "title": "Find your idea",
-          "tool": "Gemini  (gemini.google.com)",
-          "content": "I am about to spend two days building a real AI-powered product as a solopreneur. I do not have an idea yet. Help me find one.\n\nHere is what I know about myself.\n\nThree groups of people whose lives I understand: [from Question 1]\nFive things that have annoyed me in the last month: [from Question 2]\nTwo or three things I wish existed: [from Question 3]\n\nDo four things for me.\n\nFirst, look at the annoyances and the wishes. Tell me which two or three of them point to a real problem that other people probably also experience. Not just me. Be honest if any of them are too personal or too niche to be a real micro-venture.\n\nSecond, for each of those candidate problems, describe in two sentences who specifically has this problem. The more specific the better. Not people or professionals. A specific kind of person in a specific situation.\n\nThird, for each candidate, name an existing tool or workaround people currently use, and one thing about that workaround that is genuinely not good enough.\n\nFourth, recommend the one problem out of these candidates that you think is most worth me exploring this weekend, and tell me honestly why. Then ask me three follow-up questions to help me get sharper on that problem before I move to Session 1."
-        }
-      ],
-      "build": [
-        {
-          "title": "Read Gemini's response",
-          "instructions": "Pay attention to the candidate it recommends, and also pay attention to which one made you sit up a little when you read it. Sometimes Gemini's pick is right. Sometimes your gut is right. Trust your gut if it disagrees, but only if you can explain why."
-        },
-        {
-          "title": "Have a second round",
-          "instructions": "Answer Gemini's three follow-up questions. Push back when its picks feel off. One or two more turns of back-and-forth is usually enough."
-        },
-        {
-          "title": "Write your card",
-          "instructions": "By the end, you should be able to write three things on a card. One sentence about the problem. Who specifically has it. Why their current workaround is not good enough."
-        }
-      ],
-      "test_output": [
-        {
-          "title": "The problem test",
-          "description": "Can you say the problem in one sentence without mentioning your solution? If yes, pass."
-        },
-        {
-          "title": "The person test",
-          "description": "Can you describe one specific kind of person who has this problem, in enough detail that a stranger in the room could recognise them? If yes, pass."
-        },
-        {
-          "title": "The gap test",
-          "description": "Can you name what people currently do about this problem, and explain why it is not good enough? If yes, pass."
-        },
-        {
-          "title": "The energy test",
-          "description": "Does this idea make you a little excited to spend two days on it? If yes, pass. If no, run the prompt again with a different framing."
-        }
-      ],
-      "output_capture": null,
-      "id": "0",
-      "number": "0",
-      "title": "Do you have an idea yet?",
-      "start_time": "Pre-workshop",
-      "end_time": "Optional"
-    },
-    {
-      "day": 1,
-      "duration_minutes": 90,
-      "break_after": false,
-      "break_duration_minutes": 0,
-      "set_the_stage": "You walked in with an idea. Maybe one you have been carrying for months. Maybe one that came to you last week. Maybe one you found in pre-session 0 this morning. Whichever it is, right now it lives only in your head, and right now nobody has tested whether it would survive contact with reality.\n\nThis session does that test. By the end of ninety minutes, the idea you bring in will either be sharper than it was when you arrived, or you will have replaced it with something stronger. Either is a good outcome.\n\nThere is no shame in pivoting at this stage. The shame is in building for two days on top of an idea that you privately knew was thin.",
+      "set_the_stage": "You walked in with an idea. Maybe one you have been carrying for months. Maybe one that came to you last week. Right now it lives only in your head, and nobody has tested whether it would survive contact with reality.\n\nThis session does that test. Thirty minutes. By the end, the idea you bring in will either be sharper than it was when you arrived, or you will have replaced it with something stronger. Either is a good outcome.\n\nThere is no shame in pivoting at this stage. The shame is in building for two days on top of an idea that you privately knew was thin.",
       "questions": [
         {
           "title": "What is the idea?",
@@ -210,14 +144,14 @@
       "id": "1",
       "number": "1",
       "title": "Ideation",
-      "start_time": "10:00",
-      "end_time": "11:30"
+      "start_time": "9:15",
+      "end_time": "9:45"
     },
     {
       "day": 1,
-      "duration_minutes": 30,
+      "duration_minutes": 45,
       "break_after": true,
-      "break_duration_minutes": 60,
+      "break_duration_minutes": 15,
       "set_the_stage": "You now have a real problem with a real human at its centre. Most people at this point make one mistake. They open a tool and start building immediately. They figure out what they are building as they go.\n\nThat is how you waste four hours and end up with something that does not work.\n\nA solopreneur who has built before does something different. They spend thirty minutes designing before they touch a single tool. Not a detailed specification. Not a project plan. Just enough clarity to know exactly what they are building before they start.\n\nThree things. What is the simplest possible version of the solution? What does the user put in and what do they get out? What does the AI do and what does it never do? Answer those in the next thirty minutes and you will build twice as fast and twice as well.",
       "questions": [
         {
@@ -275,26 +209,26 @@
         {
           "number": 1,
           "title": "Define the minimum solution",
-          "tool": "Claude  (claude.ai)",
+          "tool": "ChatGPT  (chatgpt.com)",
           "content": "I am a solopreneur designing my first AI-powered product. I need to define the simplest possible version that still creates real value.\n\nMy problem statement: [from Session 1]\nMy target user: [from Session 1]\nMy value proposition: [from Session 1]\n\nHelp me define the minimum viable version of this solution. Then give me the solution in one sentence and the three-step user flow. Step 1, the user inputs [what]. Step 2, the AI does [what]. Step 3, the user receives [what in what format].\n\nBe specific. Be simple. Push back if I am making this more complex than it needs to be."
         },
         {
           "number": 2,
           "title": "Write the system prompt",
-          "tool": "Claude  (same conversation)",
+          "tool": "ChatGPT  (same conversation)",
           "content": "I am building the following AI-powered product.\n\nSolution in one sentence: [from Prompt 1]\nTarget user: [from Session 1]\nWhat the user inputs: [from Prompt 1]\nWhat the AI produces: [from Prompt 1]\nThree things the AI must never do: [from Question 6]\n\nWrite me a system prompt with seven elements.\n\nRole, who the AI is and what it exists to do.\nContext, what the AI needs to know about the situation.\nInstructions, step by step what the AI does when triggered.\nTone, how the AI communicates.\nOutput format, exactly how the AI structures its output.\nConstraints, the three things the AI never does.\nEscalation, when the AI should stop and tell the user to seek human help."
         },
         {
           "number": 3,
           "title": "Test the system prompt",
-          "tool": "Claude  (same conversation)",
+          "tool": "ChatGPT  (same conversation)",
           "content": "Read the system prompt you just wrote. Now play the role of my target user.\n\nMy target user is: [human portrait]\n\nGive me three inputs this user might realistically provide. For each input, run the system prompt mentally and tell me what output it would produce. Is that output genuinely useful?\n\nThen give me one edge case input. What happens? Does the system prompt handle it gracefully or does it break?"
         }
       ],
       "build": [
         {
           "title": "Three prompts in sequence",
-          "instructions": "Run each prompt one at a time in the same Claude conversation. About fifteen minutes total."
+          "instructions": "Run each prompt one at a time in the same ChatGPT conversation. About fifteen minutes total."
         },
         {
           "title": "Read every line of the system prompt",
@@ -302,7 +236,7 @@
         },
         {
           "title": "Fix the edge case if it breaks",
-          "instructions": "If Prompt 3 reveals the system prompt fails on the edge case, ask Claude to rewrite the affected element. Test again."
+          "instructions": "If Prompt 3 reveals the system prompt fails on the edge case, ask ChatGPT to rewrite the affected element. Test again."
         }
       ],
       "test_output": [
@@ -331,17 +265,17 @@
       "id": "2",
       "number": "2",
       "title": "Design",
-      "start_time": "11:30",
-      "end_time": "12:00",
-      "break_label": "Lunch",
-      "break_note": "After lunch, you build your AI App. Show up fresh."
+      "start_time": "9:45",
+      "end_time": "10:30",
+      "break_label": "Break",
+      "break_note": "Stretch. Water. Then we build the AI App."
     },
     {
       "day": 1,
-      "duration_minutes": 90,
+      "duration_minutes": 120,
       "break_after": true,
-      "break_duration_minutes": 15,
-      "set_the_stage": "You have a problem. You have a design. You have a system prompt. Now you build.\n\nToday, a solopreneur with a clear idea and the right prompts can have a working product with a live URL in ninety minutes. Not a mockup. Not a wireframe. Something real that a stranger can open on their phone right now.\n\nOne HTML file. No code knowledge required. No API key. No backend. Everything runs in the browser. You build it with Claude, customise it until it feels like yours, and deploy it to the internet before this session ends.",
+      "break_duration_minutes": 45,
+      "set_the_stage": "You have a problem. You have a design. You have a system prompt. Now you build.\n\nToday, a solopreneur with a clear idea and the right prompts can have a working product with a live URL in two hours. Not a mockup. Not a wireframe. Something real that a stranger can open on their phone right now.\n\nOne HTML file. No code knowledge required. No API key. No backend. Everything runs in the browser. You build it with Claude, customise it until it feels like yours, and deploy it to the internet before this session ends.",
       "questions": [
         {
           "title": "What does the user see first?",
@@ -458,17 +392,17 @@
       "id": "3",
       "number": "3",
       "title": "Build the AI App",
-      "start_time": "13:00",
-      "end_time": "14:30",
-      "break_label": "Break",
-      "break_note": "Stretch, water, fresh air. Back in fifteen."
+      "start_time": "10:45",
+      "end_time": "12:45",
+      "break_label": "Lunch",
+      "break_note": "Eat. Share what you are building with one person you have not talked to yet. Back at 1:30."
     },
     {
       "day": 1,
-      "duration_minutes": 60,
-      "break_after": false,
-      "break_duration_minutes": 0,
-      "set_the_stage": "You have a product. It works. It lives at a real URL. But right now, nobody knows it exists.\n\nA solopreneur without a website is a shopkeeper without a shopfront. Your website is a conversation with a stranger who has never heard of you. A conversation that has to answer three questions in under thirty seconds. What is this? Is this for me? What do I do next?\n\nIf your website answers those three questions clearly, the stranger clicks through to your AI App. If it does not, they leave. You have sixty minutes to build that conversation.",
+      "duration_minutes": 120,
+      "break_after": true,
+      "break_duration_minutes": 15,
+      "set_the_stage": "You have a product. It works. It lives at a real URL. But right now, nobody knows it exists.\n\nA solopreneur without a website is a shopkeeper without a shopfront. Your website is a conversation with a stranger who has never heard of you. A conversation that has to answer three questions in under thirty seconds. What is this? Is this for me? What do I do next?\n\nIf your website answers those three questions clearly, the stranger clicks through to your AI App. If it does not, they leave. You have two hours to build that conversation.",
       "questions": [
         {
           "title": "What is the one thing your website must make a stranger feel?",
@@ -525,24 +459,24 @@
         {
           "number": 1,
           "title": "Write the website copy",
-          "tool": "ChatGPT  (chatgpt.com)",
+          "tool": "Grok  (grok.com)",
           "content": "I am a solopreneur building a marketing website for my product. Write the copy for six sections. Final words ready to paste. No explanations. Just the best version.\n\nMy product: [one sentence solution]\nMy target user: [human portrait]\nMy value proposition: [from Session 1]\nThe feeling the website must create: [from Question 1]\nMy AI App URL: [Netlify URL]\nMy target user's primary hesitation: [from Question 3]\n\nSection 1, Headline. One line. Maximum ten words. A user headline, not a product headline.\nSection 2, Subheadline. Two sentences. Who this is for. What specifically changes.\nSection 3, How it works. Three steps. One sentence each. No jargon.\nSection 4, Trust statement. Directly addresses the primary hesitation. Honest. Specific.\nSection 5, Call to action. One button label that describes the action and hints at value.\nSection 6, Credibility line. One sentence. Why I am the right person to have built this."
         },
         {
           "number": 2,
           "title": "Test and refine",
-          "tool": "ChatGPT  (same conversation)",
+          "tool": "Grok  (same conversation)",
           "content": "Read the copy you just wrote as if you are my target user seeing this for the first time.\n\nMy target user is: [human portrait]\n\nAsk yourself three questions. Does the headline stop me and make me think this is for me? Does the copy speak to me directly or could it apply to anyone? After reading everything, do I know exactly what to do next and do I want to do it?\n\nFor any section where the answer is no, rewrite that section. Tell me what you changed and why."
         }
       ],
       "build": [
         {
-          "title": "Stage 1. ChatGPT writes the copy (10 minutes)",
-          "instructions": "Paste Prompt 1. ChatGPT produces all six sections. Read every section against the questions. Identify any section that feels generic or off-tone. Run Prompt 2 to refine."
+          "title": "Stage 1. Grok writes the copy (10 minutes)",
+          "instructions": "Paste Prompt 1. Grok produces all six sections. Read every section against the questions. Identify any section that feels generic or off-tone. Run Prompt 2 to refine."
         },
         {
           "title": "Stage 2. Build the site on Carrd (40 minutes), step by step",
-          "instructions": "1. Open carrd.co and sign in.  2. Click Build a Site, then Start from scratch.  3. Pick the simplest single-column template. You can change the look later.  4. You will land in the editor. The page is on the left, controls on the right when you click any element.  5. Click the top text area. Replace the placeholder headline with your ChatGPT headline. Set a clear large size.  6. Below the headline, add or edit a smaller text area for your subheadline. Paste the two sentences from ChatGPT.  7. Click the plus icon to add a new section. Add a heading How it works, then paste the three steps below it.  8. Add another section for your Trust statement.  9. Add a button element. Type the call-to-action label. In the link field, paste your Netlify AI App URL. Set it to open in a new tab.  10. Add a small Credibility line at the bottom.  11. Add an Image element. Upload a screenshot of your AI App showing a real output.  12. Click the eye icon to preview the site.  13. Click Publish. Pick a name like yourname-product. Site lives at that-name.carrd.co.  14. Open the URL on your phone. Tap the button. Confirm it opens your AI App.  15. If anything looks off, edit and republish."
+          "instructions": "1. Open carrd.co and sign in.  2. Click Build a Site, then Start from scratch.  3. Pick the simplest single-column template. You can change the look later.  4. You will land in the editor. The page is on the left, controls on the right when you click any element.  5. Click the top text area. Replace the placeholder headline with your Grok headline. Set a clear large size.  6. Below the headline, add or edit a smaller text area for your subheadline. Paste the two sentences from Grok.  7. Click the plus icon to add a new section. Add a heading How it works, then paste the three steps below it.  8. Add another section for your Trust statement.  9. Add a button element. Type the call-to-action label. In the link field, paste your Netlify AI App URL. Set it to open in a new tab.  10. Add a small Credibility line at the bottom.  11. Add an Image element. Upload a screenshot of your AI App showing a real output.  12. Click the eye icon to preview the site.  13. Click Publish. Pick a name like yourname-product. Site lives at that-name.carrd.co.  14. Open the URL on your phone. Tap the button. Confirm it opens your AI App.  15. If anything looks off, edit and republish."
         }
       ],
       "test_output": [
@@ -577,12 +511,14 @@
       "id": "4",
       "number": "4",
       "title": "Build the Website",
-      "start_time": "14:45",
-      "end_time": "15:45"
+      "start_time": "13:30",
+      "end_time": "15:30",
+      "break_label": "Break",
+      "break_note": "Stretch. Water. Then we build the chatbot."
     },
     {
       "day": 1,
-      "duration_minutes": 60,
+      "duration_minutes": 120,
       "break_after": false,
       "break_duration_minutes": 0,
       "set_the_stage": "You have a product. You have a website. But not everyone who lands on your website is ready to try your product immediately. Some have questions. Some have doubts.\n\nA chatbot is your always-on conversation partner. It handles the questions while you sleep. It addresses the doubts before they become reasons to leave. It guides the curious visitor toward becoming an actual user.\n\nA good chatbot does not feel like a robot. It feels like a knowledgeable, helpful person who genuinely understands the product and cares about the visitor.",
@@ -642,24 +578,24 @@
         {
           "number": 1,
           "title": "Design the conversation flow",
-          "tool": "Mistral  (chat.mistral.ai)",
+          "tool": "ChatGPT  (chatgpt.com)",
           "content": "I am building a chatbot for my solopreneur product using Voiceflow. Design the complete conversation flow.\n\nMy product: [one sentence solution]\nMy target user: [human portrait]\nChatbot personality in three words: [from Question 2]\nThe three questions my user most wants answered: [from Question 1]\nWhat the chatbot never says: [from Question 6]\nHow every conversation ends: [from Question 5]\nWhat happens when the chatbot does not know: [from Question 4]\n\nDesign the complete conversation flow structured as follows.\n\nOpening message, acknowledges what the visitor is here for, invites a specific response.\nThree question and answer pairs, for each of the three user questions. Each answer honest, specific, brief.\nOne edge case, a question the chatbot was not designed to handle. Show the honest response.\nClosing invitation, the natural, genuine invitation to try the product that ends every conversation.\n\nFormat as a clear conversation script I can build in Voiceflow."
         },
         {
           "number": 2,
           "title": "Test the conversation",
-          "tool": "Mistral  (same conversation)",
+          "tool": "ChatGPT  (same conversation)",
           "content": "Read the conversation flow you just designed. Now play the role of three different visitors.\n\nVisitor 1, a curious first-time visitor who has one specific question about whether this works for their situation.\nVisitor 2, a sceptical visitor who pushes back on one of the answers and asks a follow-up question the chatbot was not designed for.\nVisitor 3, a visitor who clicks through every option just to see what happens.\n\nFor each visitor, tell me honestly whether the chatbot served them well. Where does it break? Where does it lose them? What needs to change?"
         }
       ],
       "build": [
         {
-          "title": "Stage 1. Mistral designs the conversation (15 minutes)",
+          "title": "Stage 1. ChatGPT designs the conversation (15 minutes)",
           "instructions": "Paste Prompt 1. Read the full script out loud quietly to yourself. Reading aloud is the fastest way to catch unnatural language. Run Prompt 2 to stress-test the script against three visitor types."
         },
         {
           "title": "Stage 2. Build in Voiceflow (35 minutes), step by step",
-          "instructions": "1. Open voiceflow.com and sign in.  2. Click Create New Project. Choose the Chatbot template (not Voice Assistant).  3. Name the project after your product. Click Create.  4. You will land in the canvas. The left panel has blocks you can drag in. The canvas is where you connect them.  5. The project starts with a Start block. Drag a Text block next to it. Connect them.  6. Click the Text block. On the right, paste your opening message from Mistral.  7. Add a Buttons (Choice) block after the opening. Add three buttons, one for each user question.  8. For each button, drag a Text block. Connect the button to its Text block. Paste the corresponding answer.  9. After each answer, add another Buttons block with a Try it for myself option. Connect that to a final Text block with your closing invitation including your Carrd website link.  10. In project settings, find the No Match response. Paste your edge-case response there.  11. Click the play icon to test in the simulator. Click through every path. Type something off-script.  12. When the conversation works end to end, click Publish.  13. Copy the embed code snippet.  14. Open your Carrd site in editor mode. Add an Embed element. Paste the Voiceflow code. Republish."
+          "instructions": "1. Open voiceflow.com and sign in.  2. Click Create New Project. Choose the Chatbot template (not Voice Assistant).  3. Name the project after your product. Click Create.  4. You will land in the canvas. The left panel has blocks you can drag in. The canvas is where you connect them.  5. The project starts with a Start block. Drag a Text block next to it. Connect them.  6. Click the Text block. On the right, paste your opening message from ChatGPT.  7. Add a Buttons (Choice) block after the opening. Add three buttons, one for each user question.  8. For each button, drag a Text block. Connect the button to its Text block. Paste the corresponding answer.  9. After each answer, add another Buttons block with a Try it for myself option. Connect that to a final Text block with your closing invitation including your Carrd website link.  10. In project settings, find the No Match response. Paste your edge-case response there.  11. Click the play icon to test in the simulator. Click through every path. Type something off-script.  12. When the conversation works end to end, click Publish.  13. Copy the embed code snippet.  14. Open your Carrd site in editor mode. Add an Embed element. Paste the Voiceflow code. Republish."
         },
         {
           "title": "Stage 3. Test on phone (10 minutes)",
@@ -699,14 +635,14 @@
       "number": "5",
       "title": "Build the Chatbot",
       "start_time": "15:45",
-      "end_time": "16:45"
+      "end_time": "17:45"
     },
     {
-      "day": 1,
-      "duration_minutes": 15,
-      "break_after": false,
-      "break_duration_minutes": 0,
-      "set_the_stage": "Look at what you have built today. A working AI App with a live URL. A website that markets it. A chatbot that handles the questions. Three things that did not exist at 10am this morning.\n\nTonight you have one task. Thirty minutes. You do it at home, on your phone, or wherever you end up.\n\nYou are going to give your product a voice. Not a logo. Not a colour scheme. A literal voice. Sixty seconds of audio that captures who you are, what problem you solve, and why someone should try what you built.\n\nYou will write the script tonight using Gemini. Tomorrow morning you will generate it using ElevenLabs and it will be live on your website before 11am.",
+      "day": 2,
+      "duration_minutes": 90,
+      "break_after": true,
+      "break_duration_minutes": 15,
+      "set_the_stage": "Day 1, you built the visible things. The product. The site that markets it. The chatbot that handles questions. Day 2 starts with the voice.\n\nRight now your brand has no sound. A visitor lands on your site and hears nothing. You change that in the next ninety minutes.\n\nSixty seconds of audio. Your problem. Your product. Your invitation. Generated in ElevenLabs, embedded on your Carrd site. By 10:35 your website has a voice.\n\nThe script first. Then the recording. Then the embed. One session, three steps.",
       "questions": [
         {
           "title": "What is the one moment you want the listener to feel?",
@@ -718,79 +654,46 @@
         },
         {
           "title": "What is the problem in one sentence, spoken out loud?",
-          "body": "Say the problem your product solves out loud. Right now. Without reading anything. The spoken version is almost always better than the written version. Record that sentence into your phone. That is your audio opening."
+          "body": "Say the problem your product solves out loud. Right now. Without reading anything. The spoken version is almost always better than the written version. That sentence is your audio opening."
         },
         {
           "title": "What does your product do, explained to a friend?",
-          "body": "Explain your product to the person sitting next to you as if you are telling a friend about something useful you discovered. Casual. No jargon. No pitch. That casual explanation is the middle section of your audio."
+          "body": "Explain your product to the person sitting next to you as if you are telling a friend about something useful you discovered. Casual. No jargon. No pitch. That casual explanation is the middle section."
         },
         {
           "title": "What is the one thing you want the listener to do after sixty seconds?",
           "body": "Not two things. One. An invitation makes someone want to do it. Not a call-to-action that tells them what to do. A call-to-action tells. An invitation makes them want."
+        },
+        {
+          "title": "Where on your website does the audio live?",
+          "body": "One specific place. The most effective placements are below the headline (after the visitor has read what the product is) or below the how-it-works section (as a human confirmation of what they just learned)."
         }
       ],
       "hmv": [],
       "prompts": [
         {
           "number": 1,
-          "title": "Write the audio script (do this tonight)",
+          "title": "Write the audio script",
           "tool": "Gemini  (gemini.google.com)",
-          "content": "I am a solopreneur building a sixty-second audio piece for my brand. This is the voice of my product.\n\nMy product: [one sentence solution]\nMy target user: [human portrait]\nMy value proposition: [from Session 1]\nWhose voice this is: [founder or product, from Question 2]\nThe problem in my own words: [what I said out loud in Question 3]\nHow I explained it to a friend: [the casual explanation from Question 4]\nThe one thing I want the listener to do: [from Question 5]\nThe feeling I want them to carry: [from Question 1]\n\nWrite me a sixty-second audio script structured in three beats.\n\nBeat 1, fifteen seconds. The problem. In the words my target user would use. Specific. Felt. Not generic.\nBeat 2, thirty seconds. The solution. Conversational. Clear. No jargon.\nBeat 3, fifteen seconds. The invitation. Natural. Not a call-to-action.\n\nWrite for the ear. Short sentences. Conversational rhythm. Natural pause points marked with [pause].\n\nAfter the script, tell me the total word count and approximate speaking time at a natural pace."
+          "content": "I am a solopreneur writing a sixty-second audio piece for my brand. This is the voice of my product.\n\nMy product: [one sentence solution]\nMy target user: [human portrait]\nMy value proposition: [from Session 1]\nWhose voice this is: [founder or product, from Question 2]\nThe problem in my own words: [from Question 3]\nHow I explained it to a friend: [from Question 4]\nThe one thing I want the listener to do: [from Question 5]\nThe feeling I want them to carry: [from Question 1]\n\nWrite me a sixty-second audio script structured in three beats.\n\nBeat 1, fifteen seconds. The problem. In the words my target user would use. Specific. Felt. Not generic.\nBeat 2, thirty seconds. The solution. Conversational. Clear. No jargon.\nBeat 3, fifteen seconds. The invitation. Natural. Not a call-to-action.\n\nWrite for the ear. Short sentences. Conversational rhythm. Natural pause points marked with [pause].\n\nAfter the script, tell me the total word count and approximate speaking time at a natural pace."
         }
       ],
       "build": [
         {
-          "title": "Tonight's homework",
-          "instructions": "Open Gemini on your phone or laptop. Paste the prompt with your specifics filled in. Read the script out loud immediately. Mark any sentence that feels unnatural to say. Ask Gemini to rewrite that sentence. Read it again. Save the final script. Bring it tomorrow."
-        }
-      ],
-      "test_output": [
-        {
-          "title": "The natural speech test",
-          "description": "You can read the script out loud naturally from start to finish without any sentence feeling forced."
+          "title": "Stage 1.  Write and refine the script (20 minutes)",
+          "instructions": "Paste the prompt into Gemini. Read the script Gemini produces out loud immediately. Mark any sentence that feels unnatural to say. Ask Gemini to rewrite that sentence. Read it again. Save the final script."
         },
         {
-          "title": "The timing test",
-          "description": "Reading at a natural pace, the script lands between fifty-five and sixty-five seconds."
-        }
-      ],
-      "output_capture": null,
-      "id": "6a",
-      "number": "6A",
-      "title": "Audio  /  overnight briefing",
-      "start_time": "16:45",
-      "end_time": "17:00"
-    },
-    {
-      "day": 2,
-      "duration_minutes": 30,
-      "break_after": false,
-      "break_duration_minutes": 0,
-      "set_the_stage": "Last night you wrote something real. A script that captures your problem, your product, and your invitation in sixty seconds. This morning you give it a voice.\n\nElevenLabs is one of the most remarkable tools in the no-code AI landscape. You paste in text. You choose a voice. You press generate. In thirty seconds you have professional-quality audio that sounds like it was recorded in a studio.\n\nTen minutes to generate. Ten minutes to embed. Ten minutes to test. By 11am your website has a voice.",
-      "questions": [
-        {
-          "title": "What does your brand sound like?",
-          "body": "Name a public figure, a podcaster, a presenter, or a type of voice that matches how you want your brand to sound. This primes your ear before you open ElevenLabs."
+          "title": "Stage 2.  Generate on ElevenLabs (25 minutes), step by step",
+          "instructions": "1. Open elevenlabs.io and sign in (free tier is fine for one minute of audio).  2. In the left menu, click Text to Speech.  3. Paste your final script into the large text area.  4. On the right, click the voice selector to browse the voice library.  5. Filter by language and accent. Listen to short samples of three or four voices. Pick the one matching the feeling from Question 1.  6. Below the voice, you will see Stability and Clarity sliders. Leave them at default for the first try.  7. Click Generate. Takes around thirty seconds.  8. Press play and listen to the entire sixty seconds. Identify one moment that sounds unnatural. Edit that part of the script and regenerate.  9. When happy, click Download. Save the MP3 as yourproduct-voice.mp3 to your desktop."
         },
         {
-          "title": "Where on your website does the audio live?",
-          "body": "One specific place. The most effective placements are below the headline, after the visitor has read what the product is, or below the how-it-works section as a human confirmation of what they just learned."
-        }
-      ],
-      "hmv": [],
-      "prompts": [],
-      "build": [
-        {
-          "title": "Stage 1. Generate on ElevenLabs (10 minutes), step by step",
-          "instructions": "1. Open elevenlabs.io and sign in.  2. In the left menu, click Text to Speech.  3. Paste your script from last night into the large text area.  4. On the right, click the voice selector to browse the voice library.  5. Filter by language and accent. Listen to short samples of three or four voices. Pick the one matching the feeling from Question 1.  6. Below the voice, you will see Stability and Clarity sliders. Leave them at default for the first try.  7. Click Generate. Takes around thirty seconds.  8. Press play and listen to the entire sixty seconds. Identify one moment that sounds unnatural. Edit that part of the script and regenerate.  9. When happy, click Download. Save the MP3 as yourproduct-voice.mp3 to your desktop."
+          "title": "Stage 3.  Embed on your website (25 minutes), step by step",
+          "instructions": "1. Open your Carrd site in the editor.  2. Click the plus icon. Choose Audio.  3. Upload your MP3 from the desktop.  4. Position the audio element at the placement you decided in Question 6.  5. Set it to play on click, not autoplay. Auto-playing audio is intrusive.  6. Add a one-line label above it like Hear why I built this, sixty seconds.  7. Publish your Carrd site."
         },
         {
-          "title": "Stage 2. Embed on your website (10 minutes)",
-          "instructions": "1. Open your Carrd site in the editor.  2. Click the plus icon. Choose Audio.  3. Upload your MP3 from the desktop.  4. Position the audio element at the placement you decided in Question 2.  5. Set it to play on click, not autoplay. Auto-playing audio is intrusive.  6. Add a one-line label above it like Hear why I built this, sixty seconds.  7. Publish."
-        },
-        {
-          "title": "Stage 3. Test (10 minutes)",
-          "instructions": "Open the website on your phone. Navigate to the audio element. Press play. Listen as your target user would. Identify one moment where attention drifts. Edit that part of the script, regenerate in ElevenLabs, swap the file in Carrd, republish. Test again."
+          "title": "Stage 4.  Test on a phone (20 minutes)",
+          "instructions": "Open the website on your phone. Navigate to the audio element. Press play. Listen as your target user would. Identify one moment where attention drifts. If needed, edit that part of the script, regenerate in ElevenLabs, swap the file in Carrd, republish. Test again. Aim for a clean run from start to finish."
         }
       ],
       "test_output": [
@@ -822,18 +725,20 @@
         "kind": "url",
         "guidance": "Your sixty seconds of audio lives on your Carrd site. Confirm it plays when you press the play icon on your phone."
       },
-      "id": "6b",
-      "number": "6B",
+      "id": "6",
+      "number": "6",
       "title": "Build the Audio",
-      "start_time": "10:30",
-      "end_time": "11:00"
+      "start_time": "9:05",
+      "end_time": "10:35",
+      "break_label": "Break",
+      "break_note": "Stretch. Water. Then we record the video."
     },
     {
       "day": 2,
-      "duration_minutes": 60,
+      "duration_minutes": 90,
       "break_after": true,
       "break_duration_minutes": 60,
-      "set_the_stage": "You have an AI App. A website. A chatbot. An audio piece. Now you need video.\n\nText tells someone what you built. Audio lets them hear your conviction. Video shows them the product working in real time. No description. No imagination required. They see it happen.\n\nA ninety-second screen recording of your product doing its job, with you narrating over it, is the most powerful piece of content you will produce today. It travels. People share videos.\n\nProduction quality does not matter. What matters is authenticity. A polished corporate video creates distance. A real person showing a real product doing something genuinely useful creates connection.",
+      "set_the_stage": "You have an AI App. A website. A chatbot. An audio piece. Now you need video.\n\nText tells someone what you built. Audio lets them hear your conviction. Video shows them the product working in real time. No description. No imagination required. They see it happen.\n\nA ninety-second screen recording of your product doing its job, with you narrating over it, is the most powerful piece of content you will produce this weekend. It travels. People share videos.\n\nProduction quality does not matter. What matters is authenticity. A polished corporate video creates distance. A real person showing a real product doing something genuinely useful creates connection.",
       "questions": [
         {
           "title": "What is the most impressive moment in your product?",
@@ -890,7 +795,7 @@
         {
           "number": 1,
           "title": "Write the narration script",
-          "tool": "Gemini  (gemini.google.com)",
+          "tool": "Grok  (grok.com)",
           "content": "I am recording a ninety-second screen recording demo of my product using Loom. Write me the narration script.\n\nMy product: [one sentence solution]\nMy target user: [human portrait]\nThe problem in one sentence spoken: [from Question 4]\nThe most impressive moment in my product: [from Question 1]\nWhat the viewer needs to believe before that moment: [from Question 2]\nNarration tone: [from Question 3]\nWhat I want the viewer to do immediately after watching: [from Question 6]\nWhere the link to my product lives: [website URL]\n\nWrite the narration script in three beats.\n\nBeat 1, thirty seconds. The problem. Spoken in the words my target user would use. Sets up the impressive moment.\nBeat 2, forty-five seconds. The demonstration. What I am showing on screen. Written so it sounds natural when spoken over a live screen recording.\nBeat 3, fifteen seconds. The invitation. Natural. Specific. Names the one action and where to take it.\n\nMark each beat clearly. Mark any moments where I should pause and let the screen speak for itself.\n\nAfter the script, give me five specific things to show on screen during Beat 2 in the exact order to show them."
         }
       ],
@@ -940,60 +845,60 @@
       "id": "7",
       "number": "7",
       "title": "Build the Video",
-      "start_time": "11:00",
-      "end_time": "12:00",
-      "break_label": "Lunch and Validation Conversations",
-      "break_note": "Use this lunch to call one real person who has the problem your product solves. Five questions, twenty minutes, verbatim notes."
+      "start_time": "10:50",
+      "end_time": "12:20",
+      "break_label": "Working lunch and validation conversation",
+      "break_note": "Use this lunch to call one real person who has the problem your product solves. Five questions, twenty minutes, verbatim notes. Eat while you talk."
     },
     {
       "day": 2,
-      "duration_minutes": 45,
-      "break_after": false,
-      "break_duration_minutes": 0,
-      "set_the_stage": "Look at everything you have built. A product that works. A website that markets it. A chatbot that handles questions. An audio piece that gives it a voice. A video that shows it in action.\n\nAll of it is visible. All of it requires someone to find it, open it, and engage with it. Now you build the invisible layer. The thing that runs while you sleep. While you are in meetings. While you are building the next version.\n\nThat is what automation is. Something that takes one trigger and produces one action, reliably, repeatedly, without you.\n\nWe are not going near Make.com or Zapier today. They are powerful, but the learning curve is real, and forty-five minutes is not enough. Instead we are using Tally. A free form builder that comes with automation baked in. You set up a form. Someone fills it. They receive an automatic personalised email. You receive a notification. The submission is logged. That is a full automated workflow, and you will have it live before this session ends.",
+      "duration_minutes": 150,
+      "break_after": true,
+      "break_duration_minutes": 15,
+      "set_the_stage": "Look at everything you have built. A product that works. A website that markets it. A chatbot that handles questions. An audio piece that gives it a voice. A video that shows it in action.\n\nAll of it is visible. All of it requires someone to find it, open it, and engage with it. Now you build the invisible layer. The thing that runs while you sleep. While you are in meetings. While you are building the next version. That is an agent. A real one.\n\nWe are using Make.com. It is a serious automation tool. It is what teams use to wire up real business workflows. The learning curve is real, which is why this session is two and a half hours, not forty-five minutes. We are not pretending. We are building an actual agent.\n\nYour facilitator has already built a template you will clone. The template does the hard plumbing. Your job is to configure it for your product, connect it to your email, write the messages it sends, and turn it on. By 15:50 you will have a live automation that listens for new submissions on your Carrd site, fires an automated workflow, and proves itself by triggering reliably in three test runs.",
       "questions": [
         {
           "title": "What is the one thing you would most want to happen automatically?",
-          "body": "Not a list. One thing. The thing that, if it happened without you every time, would make the biggest difference. The most common solopreneur automations are: someone signs up for early access and gets a welcome message. Someone reports a problem and gets an acknowledgment. Someone asks to be added to a waitlist and gets a confirmation with what happens next."
+          "body": "Not a list. One thing. The thing that, if it happened without you every time, would make the biggest difference. The most common solopreneur automations are: someone signs up for early access and gets a welcome message plus a calendar link. Someone reports a problem and gets an acknowledgment plus a status update one week later. Someone asks to be added to a waitlist and gets a confirmation plus their position number."
         },
         {
-          "title": "What is the one piece of information you need from them?",
+          "title": "What is the one piece of information you absolutely need from them?",
           "body": "Email, at minimum. Beyond that, what one or two things would let you respond personally? Their name. Their use case. Their biggest pain point. Pick at most three questions. More than that and people will not fill it in."
         },
         {
-          "title": "What goes in the automated email back to them?",
-          "body": "Not a templated, robotic confirmation. A real message that sounds like you. What does the email need to say? Acknowledge their submission. Tell them what happens next. Set an expectation for when they hear from you again."
+          "title": "What goes in the first automated email back to them?",
+          "body": "Not a templated, robotic confirmation. A real message that sounds like you. Acknowledge their submission. Tell them what happens next. Set an honest expectation for when they hear from you again."
         },
         {
-          "title": "Where on your website does the form live?",
-          "body": "Open your Carrd site. Where is the natural place to invite someone to submit? Below the AI App call-to-action? In a dedicated section called Get early access? Pick one specific spot."
+          "title": "Is there a second step in the automation, or just one?",
+          "body": "A real agent often has more than one action. After the immediate confirmation email, what else could happen? Log to a Google Sheet so you have a record. Send yourself a notification so you know to follow up. Schedule a reminder for next week. Pick one second step that makes the workflow feel agentic, not just a form."
         },
         {
           "title": "How do you know it is working?",
-          "body": "After you build this and turn it on, how do you know it fired? Tally sends you a notification of every submission. You also get the data in a Tally dashboard. The user gets their auto-confirmation email. Three confirmations, one workflow."
+          "body": "After you build this and turn it on, how do you know it fired? Make.com gives you a scenario log showing every run. The user gets their confirmation email. You get a notification. Plus your second step (sheet log or scheduled reminder). Four confirmations, one workflow."
         }
       ],
       "hmv": [
         {
           "dimension": "Humanics",
           "techniques": [
-            "Does the auto-confirmation email feel written for this specific person or like a mass email with a name inserted?",
-            "Does the form ask the minimum needed, not the maximum possible?",
-            "Does the email sound like the same person who wrote the website copy and narrated the video?"
+            "Does the auto-confirmation email feel written for this specific person, or like a mass email with a name inserted?",
+            "Does the agent ask the minimum needed, not the maximum possible?",
+            "Does every action the agent takes sound like the same person who wrote the website copy and narrated the video?"
           ]
         },
         {
           "dimension": "Mechanics",
           "techniques": [
-            "Test the form yourself with a real submission before you embed it.",
-            "Does the confirmation email arrive within thirty seconds?",
-            "If a user submits with an empty field or weird data, does the form handle it gracefully?"
+            "Test the full scenario three times before you turn it on. Run, run, run. Confirm no failures.",
+            "Does the confirmation email arrive within thirty seconds of submission?",
+            "If a user submits with an empty field or weird data, does the scenario handle it gracefully or crash?"
           ]
         },
         {
           "dimension": "Valuenomics",
           "techniques": [
-            "How much time does this automation save per week? Each manual reply is two to three minutes.",
+            "How much time does this automation save per week? Each manual reply is two to three minutes. Each manual log entry is one minute.",
             "Does this automation become more valuable as more people find your product?",
             "Would your user feel valued by the response they receive, or would they feel processed?"
           ]
@@ -1002,31 +907,39 @@
       "prompts": [
         {
           "number": 1,
-          "title": "Design the form and the auto-reply",
+          "title": "Design the agent's messages and logic",
           "tool": "Gemini  (gemini.google.com)",
-          "content": "I am a solopreneur setting up a simple Tally form on my website with an auto-confirmation email. Help me design it.\n\nMy product: [one sentence solution]\nMy target user: [human portrait]\nMy website URL: [from Session 4]\nWhat I want the form to do: [from Question 1]\nThe information I need from them: [from Question 2]\nWhat I want the email to convey: [from Question 3]\n\nDo three things.\n\nFirst, write me the form. Title, short description, and the two or three questions to ask. Make every question feel inviting, not bureaucratic.\n\nSecond, write the auto-confirmation email. Subject line plus body. Make it sound like a real person wrote it. Use the user's first name. Tell them what happens next. Set an honest expectation for when they will hear from me. Keep it under 120 words.\n\nThird, write a one-line invitation that sits above the embedded form on my Carrd site. It should tell the visitor what they get by filling it in."
+          "content": "I am a solopreneur configuring a Make.com agent that listens for new form submissions on my website. The template is already built. I need to write the content the agent uses.\n\nMy product: [one sentence solution]\nMy target user: [human portrait]\nMy website URL: [from Session 4]\nWhat I want the agent to do: [from Question 1]\nThe information I collect from the user: [from Question 2]\nWhat I want the first automated email to convey: [from Question 3]\nThe second step in the automation: [from Question 4]\n\nDo four things.\n\nFirst, write the form questions for my Carrd site. Two or three short questions. Make every question feel inviting, not bureaucratic.\n\nSecond, write the auto-confirmation email the agent sends. Subject line plus body. Make it sound like a real person wrote it. Use the user's first name with a personalisation tag. Tell them what happens next. Set an honest expectation. Under 120 words.\n\nThird, write the content of the second step. If it logs to a sheet, what columns? If it sends me a notification, what does it say? If it schedules a reminder, what does the reminder say one week later?\n\nFourth, write a one-line invitation that sits above the form on my Carrd site. Tells the visitor what they get by filling it in."
         }
       ],
       "build": [
         {
-          "title": "Stage 1.  Gemini drafts the form and email (5 minutes)",
-          "instructions": "Paste the prompt. Read the form questions and the email out loud. Edit anything that does not sound like you. Save the final form questions and email body in a notes app for the next stages."
+          "title": "Stage 1.  Gemini drafts your agent's content (15 minutes)",
+          "instructions": "Paste the prompt into Gemini. Read every piece of generated content out loud. Edit until everything sounds like you. Save the four pieces (form questions, confirmation email, second-step content, invitation line) in a notes app. You will paste them into Make.com in the next stages."
         },
         {
-          "title": "Stage 2.  Build the form on Tally (15 minutes), step by step",
-          "instructions": "1. Open tally.so and sign in. Free tier is fine.  2. Click New form. Pick Start from scratch.  3. Add a title block with your form title from Gemini.  4. Add a Short answer block for each question. The first one should always be Name. The second should always be Email.  5. Make Name and Email required. Other questions optional.  6. Click the settings icon (gear) for the form.  7. Go to the Email notifications section. Toggle on Send email to respondents.  8. Paste your auto-confirmation email subject line and body from Gemini. Use the personalisation tag for first name like {{Name}}.  9. In the same settings, toggle on Send email to me on every submission so you get notified.  10. Click Publish at the top right.  11. Tally gives you a Share link and an Embed code. Copy the embed code."
+          "title": "Stage 2.  Clone the Make.com template (20 minutes), step by step",
+          "instructions": "1. Open make.com and sign up if you have not (free tier is fine, gives you 1,000 operations per month).  2. Your facilitator will share a Make.com template link. Open it in a new tab.  3. Click Create scenario from template (or Clone, depending on Make's UI today).  4. Make.com loads the pre-built scenario into your account. You now own this scenario.  5. You will see a chain of modules already wired together. The trigger is a Webhook. The actions are Gmail (send email) plus one second-step module.  6. Click each module to see its configuration. The plumbing is done. The next stages connect each module to your account and your content."
         },
         {
-          "title": "Stage 3.  Embed on your Carrd site (10 minutes), step by step",
-          "instructions": "1. Open your Carrd site in the editor.  2. Find the spot you decided on in Question 4.  3. Click the plus icon. Choose Embed.  4. Paste your Tally embed code. Tally embeds render natively.  5. Add a heading or one-line invitation above the form using your line from Gemini.  6. Republish your Carrd site.  7. Open your site on your phone. Scroll to the form. Confirm it loads and looks clean."
+          "title": "Stage 3.  Connect Make.com to your Gmail (20 minutes), step by step",
+          "instructions": "1. Click the Gmail (Send Email) module in your scenario.  2. In the right panel, click the dropdown next to Connection.  3. Click Add new connection. A popup opens asking you to sign in to Google.  4. Sign in with the Gmail account you want the agent to send emails from.  5. Grant Make.com permission to send emails on your behalf. This is standard OAuth.  6. Once connected, the Gmail module shows a green dot.  7. If the template includes a Google Sheets or Slack module as the second step, repeat this process to connect those services too."
         },
         {
-          "title": "Stage 4.  Test the full automation (10 minutes)",
-          "instructions": "1. On your phone, fill the form with a real name and a real email you can check.  2. Hit submit.  3. Open your email. The auto-confirmation should arrive within thirty seconds.  4. Read the email. Does it sound like you? If not, edit and republish.  5. Open Tally on your laptop. Check the submission appears in the dashboard.  6. Confirm you received the notification email too.  7. Now you have three confirmations of one automated workflow. Take a screenshot of the Tally dashboard with your test submission for your portfolio."
+          "title": "Stage 4.  Paste your content into the modules (25 minutes), step by step",
+          "instructions": "1. Click the Gmail (Send Email) module.  2. In the To field, you will see {{email}} or similar (a variable from the webhook trigger). Leave this as is.  3. In the Subject field, paste your confirmation email subject from Gemini.  4. In the Body field, paste your confirmation email body from Gemini. Use Make.com's variable picker (the small icon next to the field) to insert {{name}} where the user's first name should appear.  5. Save the Gmail module.  6. Click the second-step module (Sheet, Slack, or whatever your template includes). Configure it with the content you wrote in Stage 1.  7. Save the entire scenario."
         },
         {
-          "title": "Stage 5.  Save the proof (5 minutes)",
-          "instructions": "The agent is invisible by design. Your portfolio needs evidence it exists. Two things to capture. The Tally form share URL (visible work). A screenshot of the Tally dashboard showing your test submission (proof it runs)."
+          "title": "Stage 5.  Build the form on Carrd and connect to the webhook (30 minutes), step by step",
+          "instructions": "1. In your Make.com scenario, click the Webhook trigger module at the start.  2. Make.com gives you a Webhook URL. Copy it to your clipboard.  3. Open your Carrd site in the editor.  4. Find the spot you decided on in Question 4.  5. Click the plus icon. Choose Form.  6. Add the form fields you wrote in Stage 1 (Name, Email, plus one optional question).  7. In the Form settings, find Action or Submission URL. Paste the Make.com Webhook URL there.  8. Set the form method to POST and the encoding to JSON if Carrd offers that option.  9. Save and republish your Carrd site.  10. Open your live site on your phone. Confirm the form renders correctly."
+        },
+        {
+          "title": "Stage 6.  Test the full automation, three times (30 minutes), step by step",
+          "instructions": "1. On your phone, fill the form with a real name and a real email you can check.  2. Hit submit.  3. Open Make.com on your laptop. Watch the scenario run live. You should see each module light up green as it executes.  4. Open your email. The confirmation should arrive within thirty seconds.  5. Read the email. Does it sound like you? Does the user's name appear correctly? If not, edit the Gmail module and try again.  6. Confirm the second step also fired (check your sheet, Slack, or wherever).  7. Repeat the test two more times with different test entries. Make sure all three runs succeed cleanly.  8. In Make.com, toggle the scenario from Off to On at the bottom of the screen. The agent is now live."
+        },
+        {
+          "title": "Stage 7.  Save the proof (10 minutes)",
+          "instructions": "Take a screenshot of your Make.com scenario showing green Active status and the run history with three successful runs. This is your portfolio evidence. The agent is invisible by design, so your portfolio needs proof it exists. Save the screenshot. Also save the Carrd URL where the form lives."
         }
       ],
       "test_output": [
@@ -1036,15 +949,19 @@
         },
         {
           "title": "The personal test",
-          "description": "The confirmation email reads like a person wrote it. Not templated. Not generic."
+          "description": "The confirmation email reads like you wrote it personally. Not templated. Not generic."
         },
         {
           "title": "The reliability test",
-          "description": "Three test submissions in a row, three confirmations. No failures."
+          "description": "Three test submissions in a row, three full scenario runs, no failures."
+        },
+        {
+          "title": "The second-step test",
+          "description": "The second action in your automation (sheet, slack, reminder) fired correctly each time."
         },
         {
           "title": "The notification test",
-          "description": "You receive a notification when someone submits."
+          "description": "You can see in Make.com's run history exactly what happened on each run."
         },
         {
           "title": "The value test",
@@ -1053,199 +970,141 @@
       ],
       "output_capture": {
         "artifact": "Agent",
-        "ask": "Save your Tally form URL.",
-        "placeholder": "https://tally.so/r/abcdef",
+        "ask": "Save your Carrd form URL (where the agent listens).",
+        "placeholder": "https://yourname.carrd.co",
         "kind": "url",
-        "guidance": "This is the share URL Tally gave you after publishing your form. The portfolio will show this alongside a note that it triggers an automated workflow."
+        "guidance": "The agent lives inside Make.com but listens to your Carrd form. Your portfolio page will show this URL alongside a description of what the agent does. Your facilitator also captures a screenshot of your Make.com scenario for the portfolio."
       },
       "id": "8",
       "number": "8",
       "title": "Build the Agent",
-      "start_time": "13:00",
-      "end_time": "13:45"
+      "start_time": "13:20",
+      "end_time": "15:50",
+      "break_label": "Break",
+      "break_note": "Stretch. Water. Demo Day setup happens during this break."
     },
     {
       "day": 2,
       "duration_minutes": 30,
-      "break_after": true,
-      "break_duration_minutes": 15,
-      "set_the_stage": "You have built six things. Every single one was built on assumptions. You assumed you understood the problem. You assumed your user would find the interface clear. You assumed the output was valuable enough to act on.\n\nSome of those assumptions are right. Some are wrong. And until now you did not know which is which.\n\nOver lunch you put what you built in front of a real person who has the problem. Not a friend who wants to support you. Someone who genuinely has the problem and has no reason to be kind. You took verbatim notes. Now you synthesise.",
+      "break_after": false,
+      "break_duration_minutes": 0,
+      "set_the_stage": "Thirty minutes. Two things happen in this block.\n\nOne. Walk through every link in your build. Carrd site. AI App URL. Chatbot. Audio. Video. Make.com scenario. Fix anything broken or fragile before Demo Day. You do not want anything failing in front of the room.\n\nTwo. Write down your one validation insight. The single thing you heard during your lunch conversation that you did not expect to hear. One sentence. This is the line you bring up during your Demo Day pitch to show you have done the work.",
       "questions": [],
       "hmv": [],
-      "prompts": [
-        {
-          "number": 1,
-          "title": "Synthesise what you heard",
-          "tool": "Claude  (claude.ai)",
-          "content": "I just had a validation conversation. Here is what I heard.\n\nWhat they said about the problem: [verbatim notes]\nWhat they said about the current workaround: [verbatim notes]\nTheir reaction when they saw the product: [what they did and said]\nWhat they said about the output: [verbatim notes]\nTheir answer to the payment question: [verbatim notes]\nThe one thing they said that I did not expect: [verbatim notes]\n\nAnalyse what I heard through three lenses.\n\nHumanics, what did this conversation reveal about my target user that I did not know before?\nMechanics, what did this reveal about how the product actually works versus how I assumed it worked?\nValuenomics, what did this reveal about the real value of the product?\n\nEnd with three specific changes I should make based on what I heard."
-        }
-      ],
+      "prompts": [],
       "build": [
         {
-          "title": "Synthesise alone (10 minutes)",
-          "instructions": "Run the prompt with your verbatim notes. Read Claude's synthesis carefully. Pay attention to anything Claude flags that you did not see yourself."
+          "title": "Stage 1.  Open every link, click through (15 minutes)",
+          "instructions": "Open your Carrd site on your phone. Click the AI App link. Run a real input. Test the chatbot. Play the audio. Watch the video. Submit a test through the agent form and confirm the email arrives. If anything is broken, fragile, or confusing, fix it now."
         },
         {
-          "title": "Cohort sync (20 minutes)",
-          "instructions": "The room comes together. Three questions, everyone writes their answer before sharing. What is the most surprising thing you heard? What did your validation target say that you wrote down in their exact words? What are you changing because of this conversation?"
+          "title": "Stage 2.  Capture your one validation insight (10 minutes)",
+          "instructions": "From the conversation you had over lunch, write down the one specific thing the person said that you did not expect. Verbatim if possible. One or two sentences. This is the line you mention during your Demo Day pitch when you talk about what you learned."
         },
         {
-          "title": "Map the patterns",
-          "instructions": "Three people share each answer. The facilitator maps patterns across the cohort. The patterns that appear in multiple participants are the most important learnings of the entire program."
+          "title": "Stage 3.  Quick demo rehearsal (5 minutes)",
+          "instructions": "Stand up. Run your 90-second demo once, out loud, to whoever is sitting next to you. Cut anything that does not fit. You demo in front of the full room next."
         }
       ],
       "test_output": [
         {
-          "title": "The conversation test",
-          "description": "You had a real conversation with a real person who genuinely has the problem. Not a friend."
+          "title": "The links test",
+          "description": "Every link in your build chain works. You confirmed this on your phone, end to end."
         },
         {
-          "title": "The language test",
-          "description": "You can name three specific words or phrases your validation target used that were different from the words you have been using."
+          "title": "The insight test",
+          "description": "You can state in one sentence, without notes, the one thing your validation target said that surprised you."
         },
         {
-          "title": "The surprise test",
-          "description": "You can name one specific thing your validation target said that genuinely surprised you. If you cannot, the conversation was too comfortable."
-        },
-        {
-          "title": "The payment test",
-          "description": "You asked whether they would pay. You got a clear answer."
-        },
-        {
-          "title": "The change test",
-          "description": "You can name three specific changes you will make based on what you heard."
+          "title": "The 90-second test",
+          "description": "You ran your demo out loud once. It fits in 90 seconds. Hard cap."
         }
       ],
       "output_capture": null,
       "id": "9",
       "number": "9",
-      "title": "Validation Synthesis",
-      "start_time": "13:45",
-      "end_time": "14:15",
-      "break_label": "Break",
-      "break_note": "Stretch, water, fresh air. Back in fifteen."
+      "title": "Polish and validation insight",
+      "start_time": "16:05",
+      "end_time": "16:35"
     },
     {
       "day": 2,
       "duration_minutes": 60,
       "break_after": false,
       "break_duration_minutes": 0,
-      "set_the_stage": "Up to this point you have been building under time pressure. This hour is the only one in the workshop that is not. Use it deliberately.\n\nThree things might want your attention. Choose the one that matters most for your specific build. Do not flit between three things. Pick one and give it the full hour.",
-      "questions": [],
-      "hmv": [],
-      "prompts": [],
-      "build": [
-        {
-          "title": "Option 1.  Apply what you learned from validation",
-          "instructions": "If your validation conversation surfaced something genuinely useful, make one substantial change based on it. Not three changes. The one that most directly addresses what your target user told you."
-        },
-        {
-          "title": "Option 2.  Fix what is fragile",
-          "instructions": "Open every link in your build chain. Carrd site. AI App URL. Chatbot. Audio. Video. Tally form. Run through the journey as a stranger would. Anything fragile, broken, or confusing, fix it now. You do not want it failing during your demo."
-        },
-        {
-          "title": "Option 3.  Prepare for the demo",
-          "instructions": "Ninety minutes of demo time is coming. Each participant has four minutes. Use this hour to rehearse what you will say, in what order, and what you will show. Run through your demo at least twice, ideally with someone watching."
-        }
-      ],
-      "test_output": [],
-      "output_capture": null,
-      "id": "polish",
-      "number": "9.5",
-      "title": "Final Polish and Demo Day prep",
-      "start_time": "14:30",
-      "end_time": "15:30"
-    },
-    {
-      "day": 2,
-      "duration_minutes": 90,
-      "break_after": false,
-      "break_duration_minutes": 0,
-      "set_the_stage": "Look at this room. It looks different from this morning. That is intentional.\n\nWhat is about to happen is different from everything that came before it. For the last two days you have been building. Heads down. Focused on the product. Now you shift. From builder to founder.\n\nA founder does not just build things. A founder can stand in front of people who do not know them, who have not been on this journey, who have no reason to be impressed, and make them understand in four minutes why what they built matters.\n\nThat is what Demo Day is. Not a show and tell. Not a progress update. A demonstration to real human beings that something real exists and that it creates real value.\n\nFour minutes each. Strictly timed.",
+      "set_the_stage": "Look at this room. It looks different from this morning. That is intentional.\n\nWhat is about to happen is different from everything that came before it. For the last two days you have been building. Heads down. Focused on the product. Now you shift. From builder to founder.\n\nA founder does not just build things. A founder can stand in front of people who do not know them, who have not been on this journey, who have no reason to be impressed, and make them understand in ninety seconds why what they built matters.\n\nThat is what Demo Day is. Not a show and tell. Not a progress update. A demonstration to real human beings that something real exists and that it creates real value.\n\nNinety seconds each. Hard cap. The facilitator runs the clock. When it ends, you stop. Twenty-five demos in under an hour. The room stays on the energy.",
       "questions": [
         {
           "title": "What is the problem in one sentence, said to a stranger?",
-          "body": "Not the version you have been saying in this room all day. The version a complete stranger would understand in ten seconds."
-        },
-        {
-          "title": "What is the sequence of your six modalities?",
-          "body": "AI App first. Website second. Chatbot embedded on the website third. Audio fourth. Video fifth. Agent sixth. By the end, the cohort sees not just a product but a complete solopreneur business."
+          "body": "Not the version you have been saying in this room all weekend. The version a complete stranger would understand in ten seconds."
         },
         {
           "title": "What is your impressive moment?",
-          "body": "The single moment during the four minutes when you want the room to feel that is genuinely good. Do not say and here is the impressive part. Just show it. Pause. Let the room react."
+          "body": "The single moment during the ninety seconds when you want the room to feel that is genuinely good. Do not say and here is the impressive part. Just show it. Pause. Let the room react."
         },
         {
-          "title": "What do you say when something does not work?",
-          "body": "Two acceptable responses. Narrate it. In the final version this will produce a specific output. What you are seeing is a limitation I identified during validation. Or pivot. Move to the next modality without dwelling and come back at the end. What is not acceptable is apologising repeatedly or abandoning the structure."
-        },
-        {
-          "title": "What is the one specific next action you commit to in the Build Month?",
-          "body": "Not three things. Not a plan. One thing. A vague commitment signals unclear thinking. A specific commitment signals genuine learning."
+          "title": "What is the one validation insight you mention?",
+          "body": "From your lunch conversation. The one specific thing your validation target said that you did not expect. In their words if possible. Mention it. It shows you talked to a real person."
         }
       ],
       "hmv": [],
       "prompts": [
         {
           "number": 1,
-          "title": "Structure the demo",
-          "tool": "Claude  (claude.ai)",
-          "content": "I am about to present at Demo Day. I have four minutes. I have six modalities to show. Help me structure the presentation.\n\nMy product: [one sentence solution]\nMy target user: [human portrait]\nMy problem statement for the demo: [from Question 1]\nMy impressive moment: [from Question 3]\nWhat did not work perfectly today: [from Question 4]\nMy one specific next action: [from Question 5]\n\nGive me the exact structure for my four-minute demo.\n\nOpening, thirty seconds. The problem statement. Spoken directly to the audience. No product yet.\nModality sequence, three minutes. Six modalities in order. For each one, one sentence of narration before showing it. What to say during the impressive moment. What to say if something does not work.\nClosing, thirty seconds. What I learned from validation. My one specific next action. Said as a commitment, not a plan.\n\nMake the opening and closing memorable. The audience will remember the first thing they hear and the last thing they hear."
+          "title": "Structure the 90-second demo",
+          "tool": "ChatGPT  (chat.openai.com)",
+          "content": "I am about to present at Demo Day. I have ninety seconds. I have six modalities to reference. Help me structure the demo.\n\nMy product: [one sentence solution]\nMy target user: [human portrait]\nMy problem statement for the demo: [from Question 1]\nMy impressive moment: [from Question 2]\nMy validation insight: [from Question 3]\n\nGive me the exact structure for my ninety-second demo.\n\nOpening, fifteen seconds. The problem statement. Spoken directly to the audience. No product yet.\nShow the product, fifty seconds. Open the AI App. Run the impressive moment. Pause. Reference the other five modalities by name (website, chatbot, audio, video, agent) but do not show them all (no time). Mention they are all at the portfolio URL.\nClosing, twenty-five seconds. My one validation insight in the user's words. One sentence on what I learned this weekend. My portfolio URL.\n\nMake the opening and closing memorable. Ninety seconds is brutal. Cut anything not essential."
         }
       ],
       "build": [
         {
-          "title": "Section 1.  The problem (30 seconds)",
-          "instructions": "Spoken directly to the audience. Not read from notes. One sentence on the problem. One sentence on who has it. One number, what it costs them. Then silence. Two seconds. Let the problem land before showing the solution."
+          "title": "Section 1.  Setup the room (5 minutes, before demos start)",
+          "instructions": "All twenty-five laptops on tables, plugged in, AI App ready in browser. Facilitator at the screen with the timer. One mic if the room is large. Each student knows their order."
         },
         {
-          "title": "Section 2.  The live product (3 minutes)",
-          "instructions": "Open the AI App. Enter a real input. Show the output. Pause on the impressive moment. Move to the website. Show the headline. Click through to the AI App from the call-to-action button. Show the chatbot. Type one real question. Show the response. Play the audio for fifteen seconds. Play the first fifteen seconds of the video from LinkedIn. Show the Tally form. Submit a test entry. Show the auto-confirmation arrive."
+          "title": "Section 2.  Ninety seconds each, twenty-five demos in a row",
+          "instructions": "Each student stands. Ninety seconds. Hard cap. Timer visible. When the timer hits zero, applause from the room and the next person is up. No transition speeches. No long handovers. The energy stays high."
         },
         {
-          "title": "Section 3.  What is next (30 seconds)",
-          "instructions": "One thing learned from validation. Spoken in the validation target's exact words. One specific change committed to for the Build Month. Named precisely. One sentence close. Not a thank you. A statement of intent."
-        },
-        {
-          "title": "After each demo.  The cohort responds (60 seconds)",
-          "instructions": "Every participant writes one word or one short phrase. Simultaneously. Then shares. Not feedback. An impression. Compelling. Needed. Confused. Want this. The facilitator reads the pattern across responses."
+          "title": "Section 3.  Cohort response (after each demo, 5 seconds)",
+          "instructions": "After each demo, the room reacts. Applause. One word from a neighbor (compelling, needed, confused, want this). No structured feedback. Just energy. Move to the next person."
         }
       ],
       "test_output": [
         {
           "title": "The live product test",
-          "description": "Every modality worked during your demo. AI App. Website CTA. Chatbot. Audio. Video. Agent."
+          "description": "The build you opened during your demo worked. You did not stumble on a broken link."
         },
         {
-          "title": "The stranger test",
-          "description": "Someone who knew nothing about your product before the demo can describe what it does, who it is for, and what makes it valuable."
+          "title": "The 90-second test",
+          "description": "You stopped when the timer hit zero. You did not run over."
         },
         {
           "title": "The impressive moment test",
           "description": "You paused after the impressive moment. The room reacted."
         },
         {
-          "title": "The honesty test",
-          "description": "You acknowledged at least one thing not yet perfect and connected it to what you learned from validation."
+          "title": "The insight test",
+          "description": "You mentioned one specific thing your validation target said. In their words."
         },
         {
-          "title": "The commitment test",
-          "description": "You named one specific next action, specific enough that the cohort could hold you accountable in four weeks."
+          "title": "The portfolio URL test",
+          "description": "You said your portfolio URL out loud at the end. Anyone in the room could find your work."
         }
       ],
       "output_capture": null,
       "id": "10",
       "number": "10",
-      "title": "Internal Demo Day",
-      "start_time": "15:30",
-      "end_time": "17:00"
+      "title": "Demo Day",
+      "start_time": "16:35",
+      "end_time": "17:35"
     },
     {
       "day": 2,
-      "duration_minutes": 60,
+      "duration_minutes": 50,
       "break_after": false,
       "break_duration_minutes": 0,
-      "set_the_stage": "Stop for a moment. Look at what you have in front of you right now. Forty-eight hours ago this did not exist. None of it. Not the product. Not the website. Not the chatbot. Not the audio. Not the video. Not the agent. Not the portfolio you just saw.\n\nYou came in with an idea on a card. You leave with six live things in the world, collected into one URL.\n\nThis hour is about what you do with that URL next.\n\nMost of this hour goes to the placement door. The LinkedIn post you write. The recruiters you message. The interviews you start lining up. The 90-second demo you already know how to run. Your portfolio is ready. Use it.\n\nAt the end of this hour, for those who want it, we open the second door. Orange Caterpillar runs a four-week structured program for builders who want to grow what they built into a real micro-venture. Not everyone applies. The ones who do are the ones who could not stop building if they tried.",
+      "set_the_stage": "Stop for a moment. Look at what you have in front of you right now. Forty-eight hours ago this did not exist. None of it. Not the product. Not the website. Not the chatbot. Not the audio. Not the video. Not the agent. Not the portfolio you just saw.\n\nYou came in with an idea on a card. You leave with six live things in the world, collected into one URL.\n\nThis block is about what you do with that URL next.\n\nMost of this hour goes to placement. The LinkedIn post you write here. The three outreach messages you draft as homework this week. The recruiters you start messaging. Your portfolio is ready. Use it.\n\nAt the very end, for those who want it, we open one more door. Orange Caterpillar Ventures runs a selective four-week program for builders who want to grow what they built into a real micro-venture, including a path to angel funding. Not everyone applies. The ones who do are the ones who could not stop building if they tried.",
       "questions": [
         {
           "title": "What is the one thing you learned this weekend that you did not expect to learn?",
@@ -1299,28 +1158,22 @@
         {
           "number": 1,
           "title": "Write your LinkedIn launch post",
-          "tool": "Claude  (claude.ai)",
-          "content": "I just finished the Just Build workshop and have a portfolio of six AI-powered builds. I need a LinkedIn launch post.\n\nMy focus or strongest build: [one sentence, from Question 4]\nMy target user or problem: [one sentence]\nThe one thing I built that surprised me: [from Question 1]\nMy portfolio URL: [from the portfolio reveal]\nThe kind of role I want next: [from Question 3]\n\nWrite me a LinkedIn post that.\n\nOpens with the most surprising or impressive thing about what I built.\nNames the problem I was solving in one sentence, in plain language.\nLists what I built, six things, in a clean and scannable format.\nEnds with my portfolio URL and a specific invitation. If you are hiring for AI-adjacent roles, I would love to chat.\n\nKeep it under 200 words. Conversational. Honest. Not boastful. Sound like a human who built something, not a marketer."
-        },
-        {
-          "number": 2,
-          "title": "Draft your three outreach messages",
-          "tool": "Claude  (same conversation)",
-          "content": "I need to send my portfolio URL to three specific people this week. Help me draft a personal message for each.\n\nPerson 1, the recruiter or hiring manager.\nName, role, why I want to reach them: [name and one sentence]\n\nPerson 2, the alumnus from my college.\nName, role, why I want to reach them: [name and one sentence]\n\nPerson 3, the founder or builder I admire who is publicly active.\nName, role, why I want to reach them: [name and one sentence]\n\nMy portfolio URL: [from the portfolio reveal]\n\nFor each person, write me a message under 80 words. Personal. Specific. Not generic. Reference something they have actually said or done that you noticed. End with my portfolio URL and a clear, low-friction ask. A 15-minute call this week. A reply. A single question they would be willing to answer."
+          "tool": "ChatGPT  (chat.openai.com)",
+          "content": "I just finished the Just Build workshop and have a portfolio of six AI-powered builds. I need a LinkedIn launch post.\n\nMy focus or strongest build: [one sentence, from Question 4]\nMy target user or problem: [one sentence]\nThe one thing I built that surprised me: [from Question 1]\nMy portfolio URL: [the one being emailed to me within 48 hours]\nThe kind of role I want next: [from Question 3]\n\nWrite me a LinkedIn post that.\n\nOpens with the most surprising or impressive thing about what I built.\nNames the problem I was solving in one sentence, in plain language.\nLists what I built, six things, in a clean and scannable format.\nEnds with my portfolio URL and a specific invitation. If you are hiring for AI-adjacent roles, I would love to chat.\n\nKeep it under 200 words. Conversational. Honest. Not boastful. Sound like a human who built something, not a marketer."
         }
       ],
       "build": [
         {
-          "title": "Stage 1.  Write the LinkedIn launch post (10 minutes)",
-          "instructions": "Paste Prompt 1 into Claude. Read the post out loud. Edit anything that sounds like a marketer. Do not post tonight. We post tomorrow morning after one night of distance. Save the draft somewhere you will find it. The post lives on your LinkedIn for years. Get it right."
+          "title": "Stage 1.  Write the LinkedIn launch post (20 minutes)",
+          "instructions": "Paste Prompt 1 into ChatGPT. Read the post out loud. Edit anything that sounds like a marketer. Do not publish today. Publish within 48 hours, after one night of distance. Save the draft somewhere you will find it."
         },
         {
-          "title": "Stage 2.  Draft the three outreach messages (15 minutes)",
-          "instructions": "Paste Prompt 2 into the same Claude conversation. Use the three names you wrote down for Question 2. Read each message out loud. If it sounds copy-pasted from a template, ask Claude to make it more specific. Save all three messages for tomorrow."
+          "title": "Stage 2.  Public commitments, tight (10 minutes)",
+          "instructions": "Around the room. Each person stands and says one sentence, twenty seconds maximum. The one role or company they most want to land. That is it. Twenty-five people at twenty seconds each is roughly eight minutes. Move fast. The facilitator times each one. The full commitments (three real people, the LinkedIn post, the outreach messages) get captured in the WhatsApp group after the workshop."
         },
         {
-          "title": "Stage 3.  Public commitments (15 minutes)",
-          "instructions": "Everyone stands. Each person states three things to the room. The one role or company they most want to land. The three real people they will message before Friday. The one thing they will not change about their portfolio while applying. Vague commitments get gently pushed back on in real time. Specific commitments get noted."
+          "title": "Stage 3.  Build Month homework (5 minutes)",
+          "instructions": "Within 48 hours of this workshop ending, three pieces of homework. One. Publish your LinkedIn launch post. Two. Draft three outreach messages to three real people you identified in Question 2. ChatGPT will help you. Three. Send those messages. The first person you message determines whether your portfolio earns its keep."
         },
         {
           "title": "Stage 4.  The four-week structure (10 minutes)",
@@ -1328,17 +1181,13 @@
         },
         {
           "title": "Stage 5.  The optional next door (5 minutes)",
-          "instructions": "Some of you cannot stop thinking about the idea you built. The product feels real. The validation conversation lit something up. If that is you, the Orange Caterpillar Micro-Venture Program is open for applications. Four weeks of structured iteration, weekly reviews, and a real Demo Day to investors and operators. Applications close one week after this workshop. Apply at justbuild.orangecaterpillar.com/apply. The program is selective. We accept the builders who showed real momentum this weekend. Talk to a facilitator if you want to know more."
+          "instructions": "Some of you cannot stop thinking about the idea you built. If that is you, Orange Caterpillar Ventures is open for applications. Four weeks of structured iteration, weekly reviews, a real Demo Day to investors and operators, and a path to angel funding for the strongest builds. Applications close one week after this workshop. Apply at justbuild.orangecaterpillar.com/apply. The program is selective. We accept the builders who showed real momentum this weekend. Talk to a facilitator if you want to know more before you apply."
         }
       ],
       "test_output": [
         {
           "title": "The post test",
-          "description": "You have a LinkedIn launch post drafted, edited, and ready to publish tomorrow morning."
-        },
-        {
-          "title": "The outreach test",
-          "description": "You have three personal messages drafted, one for each of three real people you will send to this week."
+          "description": "You have a LinkedIn launch post drafted, edited, and ready to publish within 48 hours."
         },
         {
           "title": "The role test",
@@ -1346,19 +1195,23 @@
         },
         {
           "title": "The commitment test",
-          "description": "You stated three specific commitments to the room. The role. The three people. The thing you will not change."
+          "description": "You stated your one role commitment to the room. The rest goes to WhatsApp."
+        },
+        {
+          "title": "The homework test",
+          "description": "You know what to do in the next 48 hours. LinkedIn post live. Three outreach messages drafted and sent."
         },
         {
           "title": "The application test",
-          "description": "If the micro-venture path is calling you, you know where the OC Micro-Venture Program application lives."
+          "description": "If the micro-venture path is calling you, you know where the OC Ventures application lives and that it closes one week from now."
         }
       ],
       "output_capture": null,
       "id": "11",
       "number": "11",
       "title": "Close and what comes next",
-      "start_time": "17:00",
-      "end_time": "18:00"
+      "start_time": "17:40",
+      "end_time": "18:30"
     }
   ]
 }

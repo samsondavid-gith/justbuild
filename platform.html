@@ -1128,31 +1128,260 @@
     font-style: italic;
   }
 
-  /* ----- Cohort Wall ----- */
-  .cohort-grid {
+  /* ----- Housekeeping ----- */
+  .hk-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 14px;
     text-align: left;
   }
-  .cohort-card {
+  .hk-card {
     background: var(--bg-elev-1);
     border: 1px solid var(--line);
     border-left: 3px solid var(--accent);
     border-radius: 4px;
-    padding: 14px 16px;
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
   }
-  .cohort-name {
-    font-family: var(--serif);
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--text);
-    margin-bottom: 4px;
+  .hk-label {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 12px;
   }
-  .cohort-problem {
+  .hk-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex: 1;
+  }
+  .hk-list li {
+    position: relative;
+    padding: 6px 0 6px 14px;
+    color: var(--text-soft);
     font-size: 13px;
-    color: var(--text-muted);
     line-height: 1.45;
+    border-bottom: 1px solid var(--line);
+  }
+  .hk-list li:last-child { border-bottom: none; }
+  .hk-list li::before {
+    content: "·";
+    position: absolute;
+    left: 0;
+    top: 5px;
+    color: var(--accent);
+    font-weight: bold;
+    font-size: 14px;
+  }
+  .hk-list strong { color: var(--text); font-weight: 500; }
+  .hk-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 10px;
+  }
+  .hk-tool {
+    display: inline-block;
+    padding: 4px 9px;
+    font-size: 11px;
+    color: var(--text);
+    background: var(--accent-soft);
+    border: 1px solid var(--accent);
+    border-radius: 12px;
+    font-weight: 500;
+  }
+  .hk-note {
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.4;
+    font-style: italic;
+    margin-top: auto;
+  }
+  @media (max-width: 900px) {
+    .hk-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ----- Outcomes (new Two Doors structure: 3 sections) ----- */
+  .outcomes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 16px;
+    text-align: left;
+  }
+  .outcome {
+    background: var(--bg-elev-1);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 20px 22px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+  .outcome-primary {
+    border: 1px solid var(--accent);
+    box-shadow: 0 0 0 4px rgba(193, 125, 42, 0.08);
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .outcome-primary::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--accent);
+  }
+  .outcome-secondary {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .outcome-secondary::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--line-strong);
+  }
+  .outcome-shared {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    border-color: var(--line-strong);
+  }
+  .outcome-shared::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--text-muted);
+  }
+  .outcome-tag {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 12px;
+    margin-top: 4px;
+  }
+  .outcome-secondary .outcome-tag,
+  .outcome-shared .outcome-tag { color: var(--text-muted); }
+  .outcome-title {
+    font-family: var(--serif);
+    font-size: clamp(20px, 1.9vw, 26px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+  .outcome-lede {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--text-soft);
+  }
+  .outcome-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .outcome-list li {
+    position: relative;
+    padding: 6px 0 6px 20px;
+    color: var(--text-soft);
+    font-size: 14px;
+    line-height: 1.45;
+    border-bottom: 1px solid var(--line);
+  }
+  .outcome-list li:last-child { border-bottom: none; }
+  .outcome-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 13px;
+    width: 8px;
+    height: 2px;
+    background: var(--accent);
+  }
+  .shared-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .shared-item {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 6px 12px;
+    font-size: 13px;
+    color: var(--text-soft);
+  }
+  @media (max-width: 900px) {
+    .outcomes-grid {
+      grid-template-columns: 1fr;
+    }
+    .outcome-primary, .outcome-secondary, .outcome-shared {
+      grid-column: 1;
+      grid-row: auto;
+    }
+  }
+
+  /* ----- Timeline (new Workshop Complete structure) ----- */
+  .timeline {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    text-align: left;
+  }
+  .timeline-row {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 24px;
+    align-items: start;
+    background: var(--bg-elev-1);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    border-radius: 4px;
+    padding: 18px 22px;
+  }
+  .timeline-when {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    padding-top: 2px;
+  }
+  .timeline-title {
+    font-family: var(--serif);
+    font-size: clamp(17px, 1.7vw, 22px);
+    font-weight: 400;
+    color: var(--text);
+    letter-spacing: -0.01em;
+    margin-bottom: 6px;
+  }
+  .timeline-detail {
+    font-size: 14px;
+    color: var(--text-soft);
+    line-height: 1.55;
+  }
+  @media (max-width: 700px) {
+    .timeline-row {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
   }
 
   /* ----- Day 1 Photo ----- */
@@ -1570,13 +1799,14 @@ function buildScreenSequence() {
 
   // Welcome layer
   SCREENS.push({ type: "welcome" });
+  SCREENS.push({ type: "housekeeping" });
   SCREENS.push({ type: "two-doors" });
   SCREENS.push({ type: "journey-map" });
   SCREENS.push({ type: "tools-landscape" });
 
   SESSIONS.forEach((session, idx) => {
-    // Day 2 morning check-in appears just before Session 6B (first Day 2 build session)
-    if (session.id === "6b") {
+    // Day 2 morning welcome appears just before Session 6 (first Day 2 session)
+    if (session.id === "6") {
       SCREENS.push({ type: "day2-checkin" });
     }
 
@@ -1622,14 +1852,8 @@ function buildScreenSequence() {
 
     SCREENS.push({ type: "session-end", session });
 
-    // Cohort wall appears after Session 1 (Ideation) ends
-    if (session.id === "1") {
-      SCREENS.push({ type: "cohort-wall" });
-    }
-
-    // End-of-Day-1 photo and feedback appear after Session 6A (last Day 1 session)
-    if (session.id === "6a") {
-      SCREENS.push({ type: "feedback-prompt", day: 1 });
+    // End-of-Day-1 photo appears after Session 5 (last Day 1 session, chatbot)
+    if (session.id === "5") {
       SCREENS.push({ type: "day1-photo" });
     }
 
@@ -1647,13 +1871,10 @@ function buildScreenSequence() {
     }
   });
 
-  // Day 2 close feedback prompt before closing screen
-  SCREENS.push({ type: "feedback-prompt", day: 2 });
-
   // Closing inspirational slide
   SCREENS.push({ type: "closing" });
 
-  // Workshop complete (Day 2 close)
+  // Workshop complete (Day 2 close - now "What happens next" timeline)
   SCREENS.push({ type: "workshop-complete" });
 }
 
@@ -1685,10 +1906,11 @@ function renderCurrent() {
   }
 
   // Top/bottom bars hidden on welcome-layer screens, break, complete, and interlude moments
-  const isWelcomeLayer = screen.type === "welcome" || screen.type === "two-doors"
-                       || screen.type === "journey-map" || screen.type === "tools-landscape";
-  const isInterlude = screen.type === "cohort-wall" || screen.type === "day1-photo"
-                    || screen.type === "day2-checkin" || screen.type === "feedback-prompt"
+  const isWelcomeLayer = screen.type === "welcome" || screen.type === "housekeeping"
+                       || screen.type === "two-doors" || screen.type === "journey-map"
+                       || screen.type === "tools-landscape";
+  const isInterlude = screen.type === "day1-photo"
+                    || screen.type === "day2-checkin"
                     || screen.type === "portfolio-reveal" || screen.type === "closing";
   const noChrome = isWelcomeLayer || isInterlude || screen.type === "workshop-complete" || screen.type === "break";
   topbar.classList.toggle("hidden", noChrome);
@@ -1713,13 +1935,12 @@ function renderCurrent() {
   let html = "";
   switch (screen.type) {
     case "welcome":            html = renderWelcome(); break;
+    case "housekeeping":       html = renderHousekeeping(); break;
     case "two-doors":          html = renderTwoDoors(); break;
     case "journey-map":        html = renderJourneyMap(); break;
     case "tools-landscape":    html = renderToolsLandscape(); break;
-    case "cohort-wall":        html = renderCohortWall(); break;
     case "day1-photo":         html = renderDay1Photo(); break;
     case "day2-checkin":       html = renderDay2Checkin(); break;
-    case "feedback-prompt":    html = renderFeedbackPrompt(screen); break;
     case "portfolio-reveal":   html = renderPortfolioReveal(); break;
     case "closing":            html = renderClosing(); break;
     case "session-start":      html = renderSessionStart(screen.session); break;
@@ -1802,35 +2023,40 @@ function renderWelcome() {
 function renderTwoDoors() {
   return `
     <div class="wl-screen">
-      <div class="wl-eyebrow">What you walk out with</div>
-      <h1 class="wl-title">A portfolio. And an option.</h1>
-      <p class="wl-sub">By Sunday afternoon, two things. The first is automatic. The second is optional, and only some of you will choose it.</p>
+      <div class="wl-eyebrow">The outcome</div>
+      <h1 class="wl-title">What you walk out with.</h1>
+      <p class="wl-sub">A portfolio you can use for placement this week. An optional path if you want to keep building. And the structure to support both.</p>
 
-      <div class="doors-grid">
-        <div class="door door-primary">
-          <div class="door-tag">Primary outcome <span class="door-dot">&middot;</span> For everyone</div>
-          <h2 class="door-title">A working AI portfolio.</h2>
-          <p class="door-lede">You walk in carrying proof, not promises. The recruiter who asks "show me what you can do with AI" has an answer waiting at your portfolio URL.</p>
-          <ul class="door-list">
-            <li>Six live builds at one URL.</li>
-            <li>A 90-second demo you can run from your phone.</li>
-            <li>The 56% AI wage premium becomes available to you.</li>
+      <div class="outcomes-grid">
+
+        <div class="outcome outcome-primary">
+          <div class="outcome-tag">For placement <span class="door-dot">&middot;</span> For everyone</div>
+          <h2 class="outcome-title">An AI portfolio that opens doors.</h2>
+          <ul class="outcome-list">
+            <li>A live AI portfolio that can be demoed in 90 seconds.</li>
+            <li>LinkedIn launch templates and outreach scripts.</li>
+            <li>Available for the 56% AI wage premium.</li>
           </ul>
         </div>
 
-        <div class="door door-secondary">
-          <div class="door-tag">Optional next step <span class="door-dot">&middot;</span> For builders who want more</div>
-          <h2 class="door-title">A starting micro-venture.</h2>
-          <p class="door-lede">If what you build feels real by Sunday, Orange Caterpillar runs a four-week structured program to grow it into a working first product. Selective. Applications open at the end of the workshop.</p>
-          <ul class="door-list">
-            <li>Four weeks of structured iteration.</li>
-            <li>Weekly reviews. Office hours. Real Demo Day.</li>
-            <li>For the builders who could not stop.</li>
-          </ul>
+        <div class="outcome outcome-secondary">
+          <div class="outcome-tag">If you want to go further <span class="door-dot">&middot;</span> Selective</div>
+          <h2 class="outcome-title">A path to angel funding.</h2>
+          <p class="outcome-lede">If what you build feels real by the end of the workshop, OC Ventures runs a selective four-week program. The strongest builds get polished and presented to angel investors via a formal application. Not for everyone. For the builders who could not stop.</p>
         </div>
+
+        <div class="outcome outcome-shared">
+          <div class="outcome-tag">For the whole cohort <span class="door-dot">&middot;</span> What everyone gets</div>
+          <h2 class="outcome-title">The structure around both.</h2>
+          <div class="shared-grid">
+            <span class="shared-item">Office hours</span>
+            <span class="shared-item">Weekly reviews</span>
+            <span class="shared-item">A real Demo Day in four weeks</span>
+            <span class="shared-item">The cohort and WhatsApp group</span>
+          </div>
+        </div>
+
       </div>
-
-      <p class="wl-footer">First a portfolio. Then, if you want it, a micro-venture.</p>
     </div>
   `;
 }
@@ -1896,9 +2122,9 @@ function renderToolsLandscape() {
         { name: "Claude", pick: true },
         { name: "ChatGPT", pick: true },
         { name: "Gemini", pick: true },
-        { name: "Mistral", pick: true },
+        { name: "Grok", pick: true },
+        { name: "Mistral", pick: false },
         { name: "DeepSeek", pick: false },
-        { name: "Grok", pick: false },
       ],
     },
     {
@@ -1985,36 +2211,53 @@ function renderToolsLandscape() {
    Feedback Prompt, Portfolio Reveal, Output Capture
    ============================================ */
 
-function renderCohortWall() {
-  // Pull placeholder cohort data from localStorage (later: from backend)
-  let cohortMembers = [];
-  try {
-    const stored = localStorage.getItem("jb-cohort-members");
-    if (stored) cohortMembers = JSON.parse(stored);
-  } catch (_) {}
-
-  // If empty, show placeholder example cards so the screen makes sense
-  if (cohortMembers.length === 0) {
-    cohortMembers = [
-      { name: "Names appear here", problem: "as each builder defines their problem in Session 1." },
-    ];
-  }
-  const cards = cohortMembers.map(m => `
-    <div class="cohort-card">
-      <div class="cohort-name">${escapeHtml(m.name)}</div>
-      <div class="cohort-problem">${escapeHtml(m.problem)}</div>
-    </div>
-  `).join("");
-
+function renderHousekeeping() {
   return `
     <div class="wl-screen">
-      <div class="wl-eyebrow">Your cohort</div>
-      <h1 class="wl-title">Meet who you are building with.</h1>
-      <p class="wl-sub">You are not in this alone. Look around the room. These are the people whose work will sit next to yours four weeks from now at Demo Day. Their problems. Their builds. Their names.</p>
-      <div class="cohort-grid">
-        ${cards}
+      <div class="wl-eyebrow">Before we start</div>
+      <h1 class="wl-title">Housekeeping.</h1>
+      <p class="wl-sub">Five minutes of setup so nothing gets in the way for the next two days. Your facilitator will share two links verbally. Keep them open on your laptop all weekend.</p>
+
+      <div class="hk-grid">
+        <div class="hk-card">
+          <div class="hk-label">Two links you need open</div>
+          <ul class="hk-list">
+            <li><strong>Cohort form.</strong> Your facilitator will share the link. Open it and bookmark it. After every build session you paste your URL into this form.</li>
+            <li><strong>WhatsApp group.</strong> Your facilitator will share the invite. Join now. Questions, wins, and after-hours updates happen here.</li>
+          </ul>
+        </div>
+
+        <div class="hk-card">
+          <div class="hk-label">Accounts you need today (all free)</div>
+          <div class="hk-tools">
+            <span class="hk-tool">Claude</span>
+            <span class="hk-tool">ChatGPT</span>
+            <span class="hk-tool">Gemini</span>
+            <span class="hk-tool">Grok</span>
+            <span class="hk-tool">Netlify</span>
+            <span class="hk-tool">Carrd</span>
+            <span class="hk-tool">Voiceflow</span>
+            <span class="hk-tool">ElevenLabs</span>
+            <span class="hk-tool">Loom</span>
+            <span class="hk-tool">LinkedIn</span>
+            <span class="hk-tool">Make.com</span>
+          </div>
+          <p class="hk-note">If you do not have any of these, sign up now. Your facilitator will pause for two minutes.</p>
+        </div>
+
+        <div class="hk-card">
+          <div class="hk-label">How this works</div>
+          <ul class="hk-list">
+            <li>This screen is projected. The facilitator runs the pace.</li>
+            <li>You work on your own laptop in parallel.</li>
+            <li>If you are stuck, raise your hand. The facilitator or a co-builder comes to you.</li>
+            <li>End of Day 1, one cohort photo. Bring your phone.</li>
+            <li>Your personal portfolio URL is emailed to you within 48 hours of the workshop ending.</li>
+          </ul>
+        </div>
       </div>
-      <p class="wl-footer">One cohort. One room. Two days. Forward together.</p>
+
+      <p class="wl-footer">Two links open. Eleven accounts ready. Hand up if stuck. Now we build.</p>
     </div>
   `;
 }
@@ -2033,8 +2276,8 @@ function renderDay1Photo() {
           <rect x="28" y="6" width="24" height="8" rx="2" stroke="var(--accent)" stroke-width="2"/>
         </svg>
       </div>
-      <p class="wl-quiet">Then home. Tonight you have one task. Write your audio script with Gemini. Thirty minutes. Bring it tomorrow.</p>
-      <p class="wl-footer">See you at 10am tomorrow.</p>
+      <p class="wl-quiet">Then home. Rest. No homework. Tomorrow at 9am we add three more builds.</p>
+      <p class="wl-footer">See you at 9am tomorrow.</p>
     </div>
   `;
 }
@@ -2053,53 +2296,23 @@ function renderDay2Checkin() {
             <li>AI App</li>
             <li>Website</li>
             <li>Chatbot</li>
-            <li>Audio script (homework)</li>
           </ul>
         </div>
         <div class="d2-recap-divider"></div>
         <div class="d2-recap-half d2-recap-ahead">
           <div class="d2-recap-label">Ahead of you</div>
           <ul class="d2-recap-list">
-            <li>Audio (live by 11am)</li>
-            <li>Video (live on LinkedIn by lunch)</li>
+            <li>Audio (live by 10:35)</li>
+            <li>Video (live on LinkedIn by 12:20)</li>
             <li>Validation (real conversation over lunch)</li>
-            <li>Agent (automation by 14:00)</li>
-            <li>Demo Day (15:30)</li>
+            <li>Agent (automation by 15:50)</li>
+            <li>Demo Day (16:35)</li>
+            <li>Close (17:40)</li>
           </ul>
         </div>
       </div>
 
-      <p class="wl-footer">By 6pm tonight, your portfolio is real.</p>
-    </div>
-  `;
-}
-
-function renderFeedbackPrompt(screen) {
-  const day = screen.day || 1;
-
-  const dayCopy = day === 1 ? {
-    eyebrow: "Day 1 &middot; Feedback",
-    title: "Tell us one thing.",
-    sub: "Around the room. Each person, one sentence.",
-    question: "What was the hardest part of today, or the thing that surprised you most?",
-    closing: "Your facilitator captures these. We read every one before tomorrow morning.",
-  } : {
-    eyebrow: "Day 2 &middot; Feedback",
-    title: "One last question.",
-    sub: "Around the room. Each person, one sentence.",
-    question: "What is the one thing you wish this workshop had covered, or done differently?",
-    closing: "Your facilitator captures these. The next cohort gets a better workshop because of you.",
-  };
-
-  return `
-    <div class="wl-screen interlude-narrow">
-      <div class="wl-eyebrow">${dayCopy.eyebrow}</div>
-      <h1 class="wl-title">${dayCopy.title}</h1>
-      <p class="wl-sub">${dayCopy.sub}</p>
-      <div class="feedback-question">
-        <p class="feedback-question-text">${dayCopy.question}</p>
-      </div>
-      <p class="wl-quiet">${dayCopy.closing}</p>
+      <p class="wl-footer">By 6:30pm tonight, your portfolio is real.</p>
     </div>
   `;
 }
@@ -2110,9 +2323,9 @@ function renderPortfolioReveal() {
     { id: "3",  label: "AI App",   note: "Your live product",         placeholder: "yourname.netlify.app" },
     { id: "4",  label: "Website",  note: "Marketing site",            placeholder: "yourname.carrd.co" },
     { id: "5",  label: "Chatbot",  note: "Always-on support",         placeholder: "embedded on your site" },
-    { id: "6b", label: "Audio",    note: "60 seconds of your voice",  placeholder: "embedded on your site" },
+    { id: "6",  label: "Audio",    note: "60 seconds of your voice",  placeholder: "embedded on your site" },
     { id: "7",  label: "Video",    note: "90 seconds on LinkedIn",    placeholder: "linkedin.com/posts/..." },
-    { id: "8",  label: "Agent",    note: "Automated workflow",        placeholder: "tally.so/r/..." },
+    { id: "8",  label: "Agent",    note: "Automated workflow",        placeholder: "make.com scenario" },
   ];
 
   const cards = artifacts.map((a, i) => `
@@ -2135,7 +2348,7 @@ function renderPortfolioReveal() {
       <div class="portfolio-hero">
         <div class="portfolio-hero-label">Your portfolio URL</div>
         <div class="portfolio-hero-url">justbuild.orangecaterpillar.com/<span class="portfolio-hero-slot">your-college</span>/<span class="portfolio-hero-slot">c1</span>/<span class="portfolio-hero-slot">your-name</span></div>
-        <p class="portfolio-hero-note">We email each of you your personal portfolio URL by Monday. Use it on LinkedIn. Use it in every application. Use it in every message you send to a recruiter this week.</p>
+        <p class="portfolio-hero-note">We email each of you your personal portfolio URL within 48 hours. Use it on LinkedIn. Use it in every application. Use it in every message you send to a recruiter this week.</p>
       </div>
 
       <div class="portfolio-grid">
@@ -2368,30 +2581,41 @@ function renderBreak(screen) {
 }
 
 function renderWorkshopComplete() {
-  const builds = `
-    <li>An AI App at a live URL</li>
-    <li>A website that markets it</li>
-    <li>A chatbot that handles questions</li>
-    <li>Sixty seconds of audio</li>
-    <li>A ninety-second video on LinkedIn</li>
-    <li>An automated agent running in the background</li>
-    <li>One real validation conversation</li>
-    <li>A four-week plan to Demo Day</li>
-  `;
   return `
-    <div class="hero">
-      <img class="hero-logo" src="logo.png" alt="Orange Caterpillar" onerror="this.style.display='none'">
-      <div class="hero-eyebrow">Workshop Complete</div>
-      <h1 class="hero-title">Day 2<br><span style="font-style: italic; font-weight: 300;">complete</span></h1>
-      <hr class="hero-rule">
-      <p class="hero-sub" style="margin-bottom: 32px;">What you have built</p>
-      <ul style="list-style: none; max-width: 460px; margin: 0 auto; text-align: left; color: var(--text-soft); font-size: 18px; line-height: 2;">
-        ${builds}
-      </ul>
-      <hr class="hero-rule" style="margin-top: 56px;">
-      <h2 style="font-family: var(--serif); font-size: clamp(56px, 9vw, 128px); color: var(--accent); font-weight: 400; letter-spacing: -0.03em; line-height: 1; margin-top: 32px;">
-        Go build.
-      </h2>
+    <div class="wl-screen">
+      <div class="wl-eyebrow">What happens next</div>
+      <h1 class="wl-title">The next four weeks.</h1>
+      <p class="wl-sub">You walk out of this room with a portfolio. Here is exactly what happens after.</p>
+
+      <div class="timeline">
+
+        <div class="timeline-row">
+          <div class="timeline-when">Within 48 hours</div>
+          <div class="timeline-what">
+            <div class="timeline-title">Your personal portfolio URL arrives by email.</div>
+            <div class="timeline-detail">Check your inbox. Add the URL to your LinkedIn the same day. Send it to the first person you identified at the close.</div>
+          </div>
+        </div>
+
+        <div class="timeline-row">
+          <div class="timeline-when">Next week</div>
+          <div class="timeline-what">
+            <div class="timeline-title">The support structure opens.</div>
+            <div class="timeline-detail">Office hours twice a week. Weekly group review on the regular cadence. WhatsApp group active for recruiter conversations, interview prep, and wins.</div>
+          </div>
+        </div>
+
+        <div class="timeline-row">
+          <div class="timeline-when">Four weeks out</div>
+          <div class="timeline-what">
+            <div class="timeline-title">Real Demo Day.</div>
+            <div class="timeline-detail">The cohort regroups. Builders who applied to OC Ventures present to angel investors and operators. Applications close one week before. Apply at justbuild.orangecaterpillar.com/apply if you want in.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <p class="wl-footer">You know what to do. Go do it.</p>
     </div>
   `;
 }

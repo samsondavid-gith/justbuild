@@ -155,9 +155,8 @@
   .stage {
     flex: 1 1 auto;
     display: flex;
-    padding: 56px 80px;
-    overflow-y: auto;
-    overflow-x: hidden;
+    padding: 32px 60px;
+    overflow: hidden;
   }
 
   .screen {
@@ -178,36 +177,36 @@
     text-transform: uppercase;
     color: var(--accent);
     font-weight: 500;
-    margin-bottom: 22px;
+    margin-bottom: 14px;
   }
 
   /* ----- Welcome / session-start / session-end ----- */
   .hero {
     text-align: center;
-    padding: 24px 0;
+    padding: 8px 0;
   }
   .hero-logo {
     display: block;
-    width: 120px;
+    width: 100px;
     height: auto;
-    margin: 0 auto 32px;
+    margin: 0 auto 20px;
     opacity: 0.98;
   }
   .hero-eyebrow {
-    font-size: 12px;
+    font-size: 11px;
     letter-spacing: 0.28em;
     text-transform: uppercase;
     color: var(--accent);
-    margin-bottom: 28px;
+    margin-bottom: 18px;
     font-weight: 500;
   }
   .hero-title {
     font-family: var(--serif);
-    font-size: clamp(64px, 9vw, 132px);
+    font-size: clamp(56px, 8vw, 120px);
     font-weight: 300;
     line-height: 0.95;
     letter-spacing: -0.03em;
-    margin-bottom: 24px;
+    margin-bottom: 18px;
   }
   .hero-title.brand {
     color: var(--accent);
@@ -215,24 +214,24 @@
   }
   .hero-sub {
     font-family: var(--serif);
-    font-size: clamp(20px, 2.4vw, 32px);
+    font-size: clamp(18px, 2.0vw, 28px);
     color: var(--text-soft);
     font-style: italic;
     font-weight: 300;
     letter-spacing: -0.005em;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
   }
   .hero-meta {
     color: var(--text-muted);
-    font-size: 15px;
+    font-size: 14px;
     letter-spacing: 0.04em;
-    margin-top: 8px;
+    margin-top: 6px;
   }
   .hero-rule {
     width: 64px;
     height: 1px;
     background: var(--accent);
-    margin: 40px auto;
+    margin: 24px auto;
     border: none;
   }
   .hero-rule.thin { width: 40px; opacity: 0.6; }
@@ -248,80 +247,80 @@
   /* ----- Stage (set the stage) ----- */
   .stage-text {
     font-family: var(--serif);
-    font-size: clamp(22px, 2.2vw, 30px);
-    line-height: 1.5;
+    font-size: clamp(18px, 1.7vw, 24px);
+    line-height: 1.45;
     color: var(--text);
     font-weight: 300;
     letter-spacing: -0.005em;
-    max-width: 56ch;
+    max-width: 62ch;
   }
   .stage-text p {
-    margin: 0 0 1.1em 0;
+    margin: 0 0 0.85em 0;
   }
   .stage-text p:last-child {
     margin-bottom: 0;
   }
   .facilitator-note {
-    margin-top: 40px;
-    padding-top: 22px;
+    margin-top: 24px;
+    padding-top: 16px;
     border-top: 1px dashed var(--line);
     color: var(--text-muted);
-    font-size: 14px;
+    font-size: 13px;
     font-style: italic;
     letter-spacing: 0.01em;
-    max-width: 56ch;
+    max-width: 62ch;
   }
 
   /* ----- Question ----- */
   .question-title {
     font-family: var(--serif);
-    font-size: clamp(40px, 5.5vw, 76px);
+    font-size: clamp(32px, 4.2vw, 56px);
     font-weight: 400;
     line-height: 1.05;
     letter-spacing: -0.02em;
-    margin-bottom: 28px;
+    margin-bottom: 20px;
   }
   .question-body {
-    font-size: clamp(18px, 1.6vw, 22px);
+    font-size: clamp(15px, 1.3vw, 19px);
     color: var(--text-soft);
-    line-height: 1.6;
-    max-width: 56ch;
-    margin-bottom: 28px;
+    line-height: 1.55;
+    max-width: 62ch;
+    margin-bottom: 20px;
   }
 
   /* ----- HMV ----- */
   .hmv-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    margin-bottom: 32px;
+    gap: 16px;
+    margin-bottom: 16px;
   }
   .hmv-panel {
     background: var(--bg-elev-1);
     border: 1px solid var(--line);
     border-top: 2px solid var(--accent);
-    padding: 28px 24px;
+    padding: 18px 18px;
     border-radius: 2px;
   }
   .hmv-name {
     font-family: var(--serif);
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 500;
     color: var(--accent);
-    margin-bottom: 16px;
+    margin-bottom: 10px;
     letter-spacing: -0.01em;
   }
   .hmv-list {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 10px;
   }
   .hmv-list li {
-    font-size: 15px;
+    font-size: 13px;
     color: var(--text-soft);
-    line-height: 1.55;
-    padding-left: 18px;
+    line-height: 1.5;
+    padding-left: 14px;
     position: relative;
   }
   .hmv-list li::before {
@@ -332,13 +331,13 @@
     font-weight: 500;
   }
   @media (max-width: 1000px) {
-    .hmv-grid { grid-template-columns: 1fr; gap: 16px; }
+    .hmv-grid { grid-template-columns: 1fr; gap: 12px; }
   }
 
   /* ----- Prompt ----- */
   .prompt-title {
     font-family: var(--serif);
-    font-size: clamp(28px, 3.4vw, 44px);
+    font-size: clamp(24px, 2.8vw, 36px);
     font-weight: 400;
     letter-spacing: -0.015em;
     margin-bottom: 8px;
@@ -346,46 +345,46 @@
   .prompt-tool {
     display: inline-flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     background: var(--accent);
     border: 1px solid var(--accent);
     border-radius: 6px;
-    padding: 12px 18px;
-    margin-bottom: 24px;
-    font-size: 14px;
+    padding: 8px 14px;
+    margin-bottom: 14px;
+    font-size: 13px;
     color: var(--bg);
     box-shadow: 0 0 0 3px rgba(193, 125, 42, 0.18);
   }
   .prompt-tool::before {
     content: "USE";
-    font-size: 11px;
+    font-size: 10px;
     letter-spacing: 0.22em;
     color: var(--bg);
     font-weight: 700;
-    padding-right: 12px;
+    padding-right: 10px;
     border-right: 1px solid rgba(10, 10, 10, 0.4);
     opacity: 0.85;
   }
   .prompt-tool strong {
     color: var(--bg);
     font-weight: 700;
-    font-size: 16px;
+    font-size: 14px;
     letter-spacing: -0.005em;
   }
   .prompt-box {
     background: #050505;
     border: 1px solid var(--line);
     border-left: 3px solid var(--accent);
-    padding: 28px 32px;
+    padding: 16px 20px;
     font-family: var(--mono);
-    font-size: 15px;
-    line-height: 1.65;
+    font-size: 13px;
+    line-height: 1.55;
     color: var(--text-soft);
     white-space: pre-wrap;
     word-break: break-word;
     border-radius: 2px;
-    margin-bottom: 18px;
-    max-height: 48vh;
+    margin-bottom: 12px;
+    max-height: 40vh;
     overflow-y: auto;
   }
   .prompt-box::-webkit-scrollbar { width: 8px; }
@@ -399,9 +398,9 @@
     background: var(--accent);
     color: #FFFFFF;
     border: none;
-    padding: 14px 28px;
+    padding: 10px 22px;
     font-family: var(--sans);
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -418,58 +417,80 @@
     counter-reset: build;
     display: flex;
     flex-direction: column;
-    gap: 28px;
-    margin-bottom: 32px;
+    gap: 14px;
+    margin-bottom: 16px;
   }
   .build-item {
     counter-increment: build;
     display: grid;
-    grid-template-columns: 56px 1fr;
-    gap: 20px;
-    padding-bottom: 24px;
+    grid-template-columns: 42px 1fr;
+    gap: 14px;
+    padding-bottom: 12px;
     border-bottom: 1px solid var(--line);
   }
   .build-item:last-child { border-bottom: none; padding-bottom: 0; }
   .build-item::before {
     content: counter(build, decimal-leading-zero);
     font-family: var(--serif);
-    font-size: 32px;
+    font-size: 22px;
     color: var(--accent);
     font-weight: 400;
     line-height: 1;
-    padding-top: 4px;
+    padding-top: 3px;
   }
   .build-item h3 {
     font-family: var(--serif);
-    font-size: 24px;
+    font-size: 17px;
     font-weight: 500;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
     letter-spacing: -0.01em;
   }
   .build-item p {
     color: var(--text-soft);
-    font-size: 16px;
-    line-height: 1.6;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  /* For sessions with many build steps (6+), use two-column grid */
+  .build-list.compact {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 28px;
+  }
+  .build-list.compact .build-item {
+    padding-bottom: 8px;
+    grid-template-columns: 32px 1fr;
+    gap: 10px;
+  }
+  .build-list.compact .build-item::before {
+    font-size: 18px;
+  }
+  .build-list.compact .build-item h3 {
+    font-size: 15px;
+  }
+  .build-list.compact .build-item p {
+    font-size: 12px;
+    line-height: 1.45;
   }
 
   /* ----- Test Output ----- */
   .test-intro {
     color: var(--text-soft);
-    font-size: 17px;
-    margin-bottom: 28px;
+    font-size: 14px;
+    margin-bottom: 14px;
   }
   .test-list {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 14px;
-    margin-bottom: 32px;
+    gap: 6px;
+    margin-bottom: 12px;
   }
   .test-item {
     display: flex;
     align-items: flex-start;
-    gap: 18px;
-    padding: 18px 22px;
+    gap: 12px;
+    padding: 10px 14px;
     background: var(--bg-elev-1);
     border: 1px solid var(--line);
     border-radius: 2px;
@@ -482,9 +503,9 @@
     border-color: var(--accent);
   }
   .checkbox {
-    flex: 0 0 24px;
-    width: 24px;
-    height: 24px;
+    flex: 0 0 20px;
+    width: 20px;
+    height: 20px;
     border: 1.5px solid var(--text-muted);
     border-radius: 3px;
     display: flex;
@@ -498,23 +519,23 @@
     border-color: var(--accent);
   }
   .checkbox svg {
-    width: 14px;
-    height: 14px;
+    width: 12px;
+    height: 12px;
     opacity: 0;
     transition: opacity 0.2s ease;
   }
   .test-item.checked .checkbox svg { opacity: 1; }
   .test-content h4 {
     font-family: var(--serif);
-    font-size: 19px;
+    font-size: 15px;
     font-weight: 500;
-    margin-bottom: 4px;
+    margin-bottom: 3px;
     color: var(--text);
   }
   .test-content p {
     color: var(--text-soft);
-    font-size: 15px;
-    line-height: 1.55;
+    font-size: 13px;
+    line-height: 1.5;
   }
 
   .all-checked-banner {
@@ -834,43 +855,43 @@
   .wl-screen {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 0 24px 16px;
+    padding: 0 24px 8px;
     text-align: center;
   }
   .wl-eyebrow {
-    font-size: 12px;
+    font-size: 11px;
     letter-spacing: 0.28em;
     text-transform: uppercase;
     color: var(--accent);
-    margin-bottom: 16px;
+    margin-bottom: 10px;
     font-weight: 500;
   }
   .wl-title {
     font-family: var(--serif);
-    font-size: clamp(36px, 4.4vw, 56px);
+    font-size: clamp(32px, 3.8vw, 48px);
     font-weight: 300;
     line-height: 1.02;
     letter-spacing: -0.025em;
-    margin-bottom: 14px;
+    margin-bottom: 10px;
   }
   .wl-sub {
     font-family: var(--serif);
-    font-size: clamp(15px, 1.3vw, 18px);
+    font-size: clamp(14px, 1.2vw, 17px);
     color: var(--text-soft);
     font-style: italic;
     font-weight: 300;
     line-height: 1.45;
     max-width: 68ch;
-    margin: 0 auto 28px;
+    margin: 0 auto 18px;
   }
   .wl-footer {
     font-family: var(--serif);
-    font-size: clamp(15px, 1.4vw, 18px);
+    font-size: clamp(14px, 1.3vw, 17px);
     font-weight: 500;
     color: var(--text);
-    margin-top: 22px;
+    margin-top: 14px;
     letter-spacing: -0.005em;
-    padding-left: 14px;
+    padding-left: 12px;
     border-left: 3px solid var(--accent);
     display: inline-block;
     text-align: left;
@@ -1052,44 +1073,44 @@
   .cat-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
+    gap: 12px;
     text-align: left;
   }
   .cat-card {
     background: var(--bg-elev-1);
     border: 1px solid var(--line);
     border-radius: 4px;
-    padding: 16px 18px 16px;
+    padding: 12px 14px;
     display: flex;
     flex-direction: column;
   }
   .cat-name {
     font-family: var(--serif);
-    font-size: 17px;
+    font-size: 15px;
     font-weight: 500;
     letter-spacing: -0.01em;
     color: var(--text);
-    margin-bottom: 4px;
+    margin-bottom: 2px;
   }
   .cat-use {
-    font-size: 12px;
+    font-size: 11px;
     color: var(--text-muted);
     line-height: 1.4;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
     font-style: italic;
   }
   .cat-tools {
     display: flex;
     flex-wrap: wrap;
-    gap: 5px;
+    gap: 4px;
   }
   .tool-chip {
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    padding: 4px 9px;
-    font-size: 11px;
-    border-radius: 12px;
+    padding: 3px 8px;
+    font-size: 10px;
+    border-radius: 10px;
     border: 1px solid var(--line);
     color: var(--text-muted);
     background: transparent;
@@ -2025,7 +2046,7 @@ function renderTwoDoors() {
     <div class="wl-screen">
       <div class="wl-eyebrow">The outcome</div>
       <h1 class="wl-title">What you walk out with.</h1>
-      <p class="wl-sub">A portfolio you can use for placement this week. An optional path if you want to keep building. And the structure to support both.</p>
+      <p class="wl-sub">A portfolio you can use across the next twelve months. An optional path if you want to keep building. And the structure to support both.</p>
 
       <div class="outcomes-grid">
 
@@ -2123,17 +2144,24 @@ function renderToolsLandscape() {
         { name: "ChatGPT", pick: true },
         { name: "Gemini", pick: true },
         { name: "Grok", pick: true },
-        { name: "Mistral", pick: false },
         { name: "DeepSeek", pick: false },
+        { name: "Mistral", pick: false },
+        { name: "Llama", pick: false },
+        { name: "Qwen", pick: false },
+        { name: "Copilot", pick: false },
+        { name: "Pi", pick: false },
       ],
     },
     {
       name: "Search & Research",
-      use: "Finding real evidence. Validating that problems exist out there.",
+      use: "Finding real evidence. Validating that problems exist.",
       tools: [
         { name: "Perplexity", pick: true },
         { name: "You.com", pick: false },
         { name: "Phind", pick: false },
+        { name: "Exa", pick: false },
+        { name: "Consensus", pick: false },
+        { name: "Elicit", pick: false },
       ],
     },
     {
@@ -2145,6 +2173,10 @@ function renderToolsLandscape() {
         { name: "Framer", pick: false },
         { name: "Bolt", pick: false },
         { name: "Lovable", pick: false },
+        { name: "v0", pick: false },
+        { name: "Replit", pick: false },
+        { name: "Wix", pick: false },
+        { name: "Squarespace", pick: false },
       ],
     },
     {
@@ -2154,6 +2186,10 @@ function renderToolsLandscape() {
         { name: "Voiceflow", pick: true },
         { name: "Botpress", pick: false },
         { name: "Landbot", pick: false },
+        { name: "Chatbase", pick: false },
+        { name: "Tidio", pick: false },
+        { name: "Intercom Fin", pick: false },
+        { name: "Drift", pick: false },
       ],
     },
     {
@@ -2165,6 +2201,11 @@ function renderToolsLandscape() {
         { name: "Suno", pick: false },
         { name: "Runway", pick: false },
         { name: "HeyGen", pick: false },
+        { name: "Descript", pick: false },
+        { name: "Synthesia", pick: false },
+        { name: "PlayHT", pick: false },
+        { name: "Pika", pick: false },
+        { name: "Veo", pick: false },
       ],
     },
     {
@@ -2174,6 +2215,10 @@ function renderToolsLandscape() {
         { name: "Make.com", pick: true },
         { name: "Zapier", pick: false },
         { name: "n8n", pick: false },
+        { name: "Activepieces", pick: false },
+        { name: "Pipedream", pick: false },
+        { name: "Lindy", pick: false },
+        { name: "Relay", pick: false },
       ],
     },
   ];
@@ -2423,7 +2468,6 @@ function renderStage(s) {
   return `
     <div class="label">Set the Stage</div>
     <div class="stage-text">${paragraphs}</div>
-    <div class="facilitator-note">Read this aloud to the room. Speak slowly. Do not rush the opening.</div>
   `;
 }
 
@@ -2433,7 +2477,6 @@ function renderQuestion(screen) {
     <div class="label">Question ${screen.questionIndex + 1} of ${screen.questionTotal}</div>
     <h2 class="question-title">${escapeHtml(q.title)}</h2>
     <p class="question-body">${escapeHtml(q.body)}</p>
-    ${q.facilitator_note ? `<div class="facilitator-note">${escapeHtml(q.facilitator_note)}</div>` : ""}
   `;
 }
 
@@ -2449,7 +2492,6 @@ function renderHMV(s) {
   return `
     <div class="label">HMV Techniques</div>
     <div class="hmv-grid">${panels}</div>
-    <div class="facilitator-note">Apply these lenses to what participants share. Name the lens when you use it.</div>
   `;
 }
 
@@ -2478,10 +2520,10 @@ function renderBuild(s) {
       </div>
     </li>
   `).join("");
+  const isCompact = (s.build || []).length >= 6;
   return `
     <div class="label">Build</div>
-    <ul class="build-list">${items}</ul>
-    <div class="facilitator-note">Circulate during this time. Ask at every table. What did the model produce that surprised you? What did you change and why? What does your target user see at each touchpoint?</div>
+    <ul class="build-list ${isCompact ? 'compact' : ''}">${items}</ul>
   `;
 }
 

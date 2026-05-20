@@ -1088,6 +1088,393 @@
   @media (max-width: 580px) {
     .cat-grid { grid-template-columns: 1fr; }
   }
+
+  /* ============================================
+     INTERLUDES (cohort, photo, checkin, feedback, portfolio)
+     ============================================ */
+  .interlude-narrow { max-width: 760px; }
+
+  .wl-quiet {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-top: 18px;
+    font-style: italic;
+  }
+
+  /* ----- Cohort Wall ----- */
+  .cohort-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+    text-align: left;
+  }
+  .cohort-card {
+    background: var(--bg-elev-1);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    border-radius: 4px;
+    padding: 14px 16px;
+  }
+  .cohort-name {
+    font-family: var(--serif);
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .cohort-problem {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.45;
+  }
+
+  /* ----- Day 1 Photo ----- */
+  .photo-icon {
+    margin: 8px auto 24px;
+    width: 110px;
+  }
+
+  /* ----- Day 2 Check-in ----- */
+  .checkin-form {
+    max-width: 580px;
+    margin: 0 auto;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .checkin-field {
+    background: var(--bg-elev-1);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 18px 20px;
+  }
+  .checkin-label {
+    display: block;
+    font-family: var(--serif);
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 14px;
+    line-height: 1.4;
+  }
+  .checkin-radio-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .checkin-radio {
+    flex: 1;
+    min-width: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 14px;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    cursor: pointer;
+    color: var(--text-soft);
+    font-size: 14px;
+    transition: all 160ms ease;
+    background: var(--bg);
+  }
+  .checkin-radio:hover { border-color: var(--text-muted); }
+  .checkin-radio.selected {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+    color: var(--text);
+    font-weight: 500;
+  }
+  .checkin-radio input { display: none; }
+  .checkin-textarea {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 12px 14px;
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.5;
+    resize: vertical;
+    transition: border-color 160ms ease;
+  }
+  .checkin-textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+  .checkin-textarea::placeholder { color: var(--text-faint); }
+
+  /* ----- Feedback Prompt ----- */
+  .feedback-form {
+    max-width: 580px;
+    margin: 0 auto;
+    text-align: left;
+    background: var(--bg-elev-1);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 18px 20px;
+  }
+
+  /* ----- Portfolio Reveal ----- */
+  .portfolio-screen { max-width: 1100px; }
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 32px;
+    text-align: left;
+  }
+  .portfolio-card {
+    background: var(--bg-elev-1);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 14px 16px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .portfolio-card.filled { border-left: 3px solid var(--accent); }
+  .portfolio-card.placeholder { opacity: 0.5; border-style: dashed; }
+  .portfolio-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .portfolio-body { flex: 1; min-width: 0; }
+  .portfolio-label {
+    font-family: var(--serif);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .portfolio-note {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .portfolio-link {
+    display: block;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+    line-height: 1.35;
+  }
+  .portfolio-link:hover { text-decoration: underline; }
+  .portfolio-text {
+    font-size: 12px;
+    color: var(--text-soft);
+    line-height: 1.4;
+  }
+  .portfolio-url-block {
+    background: var(--accent-soft);
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  .portfolio-url-label {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .portfolio-url {
+    font-family: var(--mono);
+    font-size: clamp(14px, 1.5vw, 18px);
+    color: var(--text);
+    font-weight: 500;
+    word-break: break-all;
+    margin-bottom: 10px;
+  }
+  .portfolio-url-note {
+    font-size: 13px;
+    color: var(--text-soft);
+    line-height: 1.5;
+    max-width: 60ch;
+    margin: 0 auto;
+  }
+
+  /* ----- Output Capture ----- */
+  .capture-screen {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .capture-title {
+    font-family: var(--serif);
+    font-size: clamp(28px, 3.2vw, 40px);
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    margin-bottom: 8px;
+  }
+  .capture-arrow {
+    color: var(--accent);
+    font-weight: 300;
+    margin: 0 6px;
+  }
+  .capture-ask {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-style: italic;
+    color: var(--text-soft);
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+  .capture-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .capture-input {
+    width: 100%;
+    background: var(--bg-elev-1);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 14px 16px;
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 14px;
+    line-height: 1.5;
+    transition: border-color 160ms ease;
+  }
+  .capture-input:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+  .capture-input::placeholder {
+    color: var(--text-faint);
+    font-family: var(--mono);
+  }
+  textarea.capture-input { font-family: var(--sans); resize: vertical; }
+  textarea.capture-input::placeholder { font-family: var(--sans); }
+  .capture-save {
+    align-self: flex-start;
+    background: var(--accent);
+    color: var(--bg);
+    border: none;
+    padding: 10px 18px;
+    border-radius: 4px;
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+    transition: opacity 160ms ease;
+  }
+  .capture-save:hover { opacity: 0.9; }
+  .capture-save:disabled { opacity: 0.5; cursor: wait; }
+  .capture-status {
+    font-size: 13px;
+    min-height: 18px;
+  }
+  .status-ok { color: #6FB67A; }
+  .status-error { color: var(--danger); }
+  .capture-guidance {
+    background: var(--bg-elev-1);
+    border-left: 3px solid var(--accent);
+    padding: 14px 18px;
+    border-radius: 0 4px 4px 0;
+    font-size: 14px;
+    color: var(--text-soft);
+    line-height: 1.55;
+    font-style: italic;
+  }
+
+  /* ============================================
+     STUCK BUTTON (floating, persistent on workshop screens)
+     ============================================ */
+  .stuck-btn {
+    position: fixed;
+    bottom: 90px;
+    right: 24px;
+    z-index: 50;
+    background: var(--bg-elev-2);
+    border: 1px solid var(--line-strong);
+    color: var(--text-soft);
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: all 160ms ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .stuck-btn:hover {
+    border-color: var(--accent);
+    color: var(--text);
+  }
+  .stuck-btn::before {
+    content: "?";
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    font-size: 10px;
+    font-weight: 600;
+  }
+  .stuck-btn.hidden { display: none; }
+
+  .stuck-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(4px);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .stuck-overlay.hidden { display: none; }
+  .stuck-dialog {
+    background: var(--bg-elev-1);
+    border: 1px solid var(--line-strong);
+    border-radius: 8px;
+    padding: 32px 36px;
+    max-width: 440px;
+    text-align: center;
+  }
+  .stuck-dialog h3 {
+    font-family: var(--serif);
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+  }
+  .stuck-dialog p {
+    color: var(--text-soft);
+    font-size: 14px;
+    line-height: 1.55;
+    margin-bottom: 20px;
+  }
+  .stuck-close {
+    background: var(--accent);
+    color: var(--bg);
+    border: none;
+    padding: 10px 22px;
+    border-radius: 4px;
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
 </style>
 </head>
 <body>
@@ -1142,9 +1529,21 @@
   <button class="nav-btn nav-next" id="next-btn">Next →</button>
 </footer>
 
+<!-- Stuck button (floating, visible on workshop screens only) -->
+<button class="stuck-btn hidden" id="stuck-btn" title="Click if you are stuck">Stuck?</button>
+
+<!-- Stuck dialog (hidden by default) -->
+<div class="stuck-overlay hidden" id="stuck-overlay">
+  <div class="stuck-dialog">
+    <h3>Help is on the way.</h3>
+    <p>The facilitator has been notified. Someone will come to your table in a moment. While you wait, take a breath and re-read the prompt you are on.</p>
+    <button class="stuck-close" id="stuck-close" type="button">Got it</button>
+  </div>
+</div>
+
 <script>
 /* ============================================
-   Just Build  /  Facilitator Platform
+   Just Build  /  Workshop Platform
    ============================================ */
 
 let WORKSHOP = null;          // sessions.json content
@@ -1204,13 +1603,18 @@ async function loadSessions() {
 function buildScreenSequence() {
   SCREENS = [];
 
-  // Welcome
+  // Welcome layer
   SCREENS.push({ type: "welcome" });
   SCREENS.push({ type: "two-doors" });
   SCREENS.push({ type: "journey-map" });
   SCREENS.push({ type: "tools-landscape" });
 
   SESSIONS.forEach((session, idx) => {
+    // Day 2 morning check-in appears just before Session 6B (first Day 2 build session)
+    if (session.id === "6b") {
+      SCREENS.push({ type: "day2-checkin" });
+    }
+
     SCREENS.push({ type: "session-start", session });
     SCREENS.push({ type: "stage", session });
 
@@ -1246,7 +1650,28 @@ function buildScreenSequence() {
       SCREENS.push({ type: "test-output", session });
     }
 
+    // Output capture happens after test-output, before session-end (for build sessions)
+    if (session.output_capture) {
+      SCREENS.push({ type: "output-capture", session });
+    }
+
     SCREENS.push({ type: "session-end", session });
+
+    // Cohort wall appears after Session 1 (Ideation) ends
+    if (session.id === "1") {
+      SCREENS.push({ type: "cohort-wall" });
+    }
+
+    // End-of-Day-1 photo and feedback appear after Session 6A (last Day 1 session)
+    if (session.id === "6a") {
+      SCREENS.push({ type: "feedback-prompt", day: 1 });
+      SCREENS.push({ type: "day1-photo" });
+    }
+
+    // Portfolio reveal appears after Session 10 (Demo Day) ends
+    if (session.id === "10") {
+      SCREENS.push({ type: "portfolio-reveal" });
+    }
 
     if (session.break_after) {
       SCREENS.push({
@@ -1256,6 +1681,9 @@ function buildScreenSequence() {
       });
     }
   });
+
+  // Day 2 close feedback prompt before workshop-complete
+  SCREENS.push({ type: "feedback-prompt", day: 2 });
 
   // Workshop complete (Day 2 close)
   SCREENS.push({ type: "workshop-complete" });
@@ -1288,12 +1716,22 @@ function renderCurrent() {
     breakTimer.intervalId = null;
   }
 
-  // Top/bottom bars hidden on welcome-layer screens, break, and complete
+  // Top/bottom bars hidden on welcome-layer screens, break, complete, and interlude moments
   const isWelcomeLayer = screen.type === "welcome" || screen.type === "two-doors"
                        || screen.type === "journey-map" || screen.type === "tools-landscape";
-  const noChrome = isWelcomeLayer || screen.type === "workshop-complete" || screen.type === "break";
+  const isInterlude = screen.type === "cohort-wall" || screen.type === "day1-photo"
+                    || screen.type === "day2-checkin" || screen.type === "feedback-prompt"
+                    || screen.type === "portfolio-reveal";
+  const noChrome = isWelcomeLayer || isInterlude || screen.type === "workshop-complete" || screen.type === "break";
   topbar.classList.toggle("hidden", noChrome);
   bottombar.classList.toggle("hidden", screen.type === "welcome");
+
+  // Stuck button visible only on workshop session screens
+  const stuckBtn = $("#stuck-btn");
+  if (stuckBtn) {
+    const showStuck = !!screen.session && screen.type !== "session-end" && screen.type !== "session-start";
+    stuckBtn.classList.toggle("hidden", !showStuck);
+  }
 
   // Update topbar context
   if (screen.session) {
@@ -1306,7 +1744,7 @@ function renderCurrent() {
   // Reset/start timer for sessions
   if (screen.session && screen.type === "session-start") {
     setupTimer(screen.session);
-  } else if (isWelcomeLayer || screen.type === "workshop-complete") {
+  } else if (isWelcomeLayer || isInterlude || screen.type === "workshop-complete") {
     stopTimer();
   }
 
@@ -1317,6 +1755,11 @@ function renderCurrent() {
     case "two-doors":          html = renderTwoDoors(); break;
     case "journey-map":        html = renderJourneyMap(); break;
     case "tools-landscape":    html = renderToolsLandscape(); break;
+    case "cohort-wall":        html = renderCohortWall(); break;
+    case "day1-photo":         html = renderDay1Photo(); break;
+    case "day2-checkin":       html = renderDay2Checkin(); break;
+    case "feedback-prompt":    html = renderFeedbackPrompt(screen); break;
+    case "portfolio-reveal":   html = renderPortfolioReveal(); break;
     case "session-start":      html = renderSessionStart(screen.session); break;
     case "stage":              html = renderStage(screen.session); break;
     case "question":           html = renderQuestion(screen); break;
@@ -1324,6 +1767,7 @@ function renderCurrent() {
     case "prompt":             html = renderPrompt(screen); break;
     case "build":              html = renderBuild(screen.session); break;
     case "test-output":        html = renderTestOutput(screen.session); break;
+    case "output-capture":     html = renderOutputCapture(screen.session); break;
     case "session-end":        html = renderSessionEnd(screen); break;
     case "break":              html = renderBreak(screen); break;
     case "workshop-complete":  html = renderWorkshopComplete(); break;
@@ -1349,6 +1793,7 @@ function sectionLabel(screen) {
                             : "The Prompt";
     case "build":          return "Build";
     case "test-output":    return "Test Output";
+    case "output-capture": return "Save your work";
     case "session-end":    return "Complete";
     default:               return "";
   }
@@ -1573,6 +2018,241 @@ function renderToolsLandscape() {
   `;
 }
 
+/* ============================================
+   INTERLUDE SCREENS
+   Cohort Wall, Day 1 Photo, Day 2 Check-in,
+   Feedback Prompt, Portfolio Reveal, Output Capture
+   ============================================ */
+
+function renderCohortWall() {
+  // Pull placeholder cohort data from localStorage (later: from backend)
+  let cohortMembers = [];
+  try {
+    const stored = localStorage.getItem("jb-cohort-members");
+    if (stored) cohortMembers = JSON.parse(stored);
+  } catch (_) {}
+
+  // If empty, show placeholder example cards so the screen makes sense
+  if (cohortMembers.length === 0) {
+    cohortMembers = [
+      { name: "Names appear here", problem: "as each builder defines their problem in Session 1." },
+    ];
+  }
+  const cards = cohortMembers.map(m => `
+    <div class="cohort-card">
+      <div class="cohort-name">${escapeHtml(m.name)}</div>
+      <div class="cohort-problem">${escapeHtml(m.problem)}</div>
+    </div>
+  `).join("");
+
+  return `
+    <div class="wl-screen">
+      <div class="wl-eyebrow">Your cohort</div>
+      <h1 class="wl-title">Meet who you are building with.</h1>
+      <p class="wl-sub">You are not in this alone. Look around the room. These are the people whose work will sit next to yours four weeks from now at Demo Day. Their problems. Their builds. Their names.</p>
+      <div class="cohort-grid">
+        ${cards}
+      </div>
+      <p class="wl-footer">One cohort. One room. Two days. Forward together.</p>
+    </div>
+  `;
+}
+
+function renderDay1Photo() {
+  return `
+    <div class="wl-screen interlude-narrow">
+      <div class="wl-eyebrow">Day 1 &middot; Close</div>
+      <h1 class="wl-title">One photo before you go.</h1>
+      <p class="wl-sub">Hold up your phone. Show the live URL of the AI App you built today. One photo of the room, every phone lit up with proof.</p>
+      <div class="photo-icon">
+        <svg viewBox="0 0 80 64" xmlns="http://www.w3.org/2000/svg" fill="none">
+          <rect x="2" y="14" width="76" height="48" rx="6" stroke="var(--accent)" stroke-width="2"/>
+          <circle cx="40" cy="38" r="14" stroke="var(--accent)" stroke-width="2"/>
+          <circle cx="40" cy="38" r="6" fill="var(--accent)"/>
+          <rect x="28" y="6" width="24" height="8" rx="2" stroke="var(--accent)" stroke-width="2"/>
+        </svg>
+      </div>
+      <p class="wl-quiet">Then home. Tonight you have one task. Write your audio script with Gemini. Thirty minutes. Bring it tomorrow.</p>
+      <p class="wl-footer">See you at 10am tomorrow.</p>
+    </div>
+  `;
+}
+
+function renderDay2Checkin() {
+  // Pull saved values from localStorage if returning to this screen
+  let saved = {};
+  try {
+    const stored = localStorage.getItem("jb-day2-checkin");
+    if (stored) saved = JSON.parse(stored);
+  } catch (_) {}
+  const idea = saved.idea || "";
+  const worry = saved.worry || "";
+
+  return `
+    <div class="wl-screen interlude-narrow">
+      <div class="wl-eyebrow">Day 2 &middot; Morning</div>
+      <h1 class="wl-title">Welcome back.</h1>
+      <p class="wl-sub">Some of you walked away from yesterday still on fire. Some of you went home quietly doubting. Before we start, two questions. For you alone. Nobody else sees these.</p>
+
+      <div class="checkin-form">
+        <div class="checkin-field">
+          <label class="checkin-label">Is this still the idea you want to build today?</label>
+          <div class="checkin-radio-group" data-field="idea">
+            <label class="checkin-radio ${idea === 'yes' ? 'selected' : ''}">
+              <input type="radio" name="idea" value="yes" ${idea === 'yes' ? 'checked' : ''}>
+              <span>Yes, all in</span>
+            </label>
+            <label class="checkin-radio ${idea === 'unsure' ? 'selected' : ''}">
+              <input type="radio" name="idea" value="unsure" ${idea === 'unsure' ? 'checked' : ''}>
+              <span>Not sure</span>
+            </label>
+            <label class="checkin-radio ${idea === 'pivot' ? 'selected' : ''}">
+              <input type="radio" name="idea" value="pivot" ${idea === 'pivot' ? 'checked' : ''}>
+              <span>I am pivoting</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="checkin-field">
+          <label class="checkin-label" for="checkin-worry">What is the one thing you are worried about today?</label>
+          <textarea id="checkin-worry" class="checkin-textarea" rows="3" placeholder="One sentence. No need to solve it now. Just name it.">${escapeHtml(worry)}</textarea>
+        </div>
+      </div>
+
+      <p class="wl-quiet">Naming a worry shrinks it. Read both questions. Answer honestly. Then we go.</p>
+    </div>
+  `;
+}
+
+function renderFeedbackPrompt(screen) {
+  const day = screen.day || 1;
+  const key = `jb-feedback-day${day}`;
+  let saved = "";
+  try {
+    saved = localStorage.getItem(key) || "";
+  } catch (_) {}
+
+  const dayCopy = day === 1 ? {
+    eyebrow: "Day 1 &middot; Feedback",
+    title: "Tell us one thing.",
+    sub: "Before we close out today, one question. Honest answers help us run a better workshop tomorrow.",
+    label: "What was the hardest part of today, or the thing that surprised you most?",
+    placeholder: "Two or three sentences. We read every one.",
+  } : {
+    eyebrow: "Day 2 &middot; Feedback",
+    title: "One last question.",
+    sub: "You are about to walk out with a portfolio you did not have yesterday. Before you go, tell us one thing.",
+    label: "What is the one thing you wish this workshop had covered, or done differently?",
+    placeholder: "Two or three sentences. We read every one and improve for the next cohort.",
+  };
+
+  return `
+    <div class="wl-screen interlude-narrow">
+      <div class="wl-eyebrow">${dayCopy.eyebrow}</div>
+      <h1 class="wl-title">${dayCopy.title}</h1>
+      <p class="wl-sub">${dayCopy.sub}</p>
+      <div class="feedback-form">
+        <label class="checkin-label" for="feedback-text">${dayCopy.label}</label>
+        <textarea id="feedback-text" class="checkin-textarea" data-feedback-day="${day}" rows="4" placeholder="${dayCopy.placeholder}">${escapeHtml(saved)}</textarea>
+      </div>
+      <p class="wl-quiet">Your answer is anonymous. Click Next when you are ready.</p>
+    </div>
+  `;
+}
+
+function renderPortfolioReveal() {
+  // Pull saved captures from localStorage
+  const captures = {};
+  try {
+    const stored = localStorage.getItem("jb-captures");
+    if (stored) Object.assign(captures, JSON.parse(stored));
+  } catch (_) {}
+
+  // Define the six build artifacts in order
+  const artifacts = [
+    { id: "3",  label: "AI App",   note: "The product itself" },
+    { id: "4",  label: "Website",  note: "Marketing site" },
+    { id: "5",  label: "Chatbot",  note: "Always-on support" },
+    { id: "6b", label: "Audio",    note: "60 seconds of voice" },
+    { id: "7",  label: "Video",    note: "90 seconds on LinkedIn" },
+    { id: "8",  label: "Agent",    note: "Automation that runs alone" },
+  ];
+
+  const cards = artifacts.map((a, i) => {
+    const c = captures[a.id];
+    const filled = c && (c.url || c.text);
+    const display = c ? (c.url || c.text || "") : "Saved during Session " + a.id.toUpperCase();
+    const isLink = c && c.url;
+    return `
+      <div class="portfolio-card ${filled ? 'filled' : 'placeholder'}">
+        <div class="portfolio-num">0${i + 1}</div>
+        <div class="portfolio-body">
+          <div class="portfolio-label">${a.label}</div>
+          <div class="portfolio-note">${a.note}</div>
+          ${isLink
+            ? `<a class="portfolio-link" href="${escapeHtml(c.url)}" target="_blank" rel="noopener">${escapeHtml(c.url)}</a>`
+            : `<div class="portfolio-text">${escapeHtml(display)}</div>`
+          }
+        </div>
+      </div>
+    `;
+  }).join("");
+
+  // Build the portfolio URL (placeholder until backend wires real values)
+  const portfolioUrl = "justbuild.orangecaterpillar.com/your-city/your-college/c1/your-name";
+
+  return `
+    <div class="wl-screen portfolio-screen">
+      <div class="wl-eyebrow">Your portfolio</div>
+      <h1 class="wl-title">It is real. It is yours.</h1>
+      <p class="wl-sub">Forty-eight hours ago, none of this existed. Now look at what you can show. Six things you built. One URL that carries them all.</p>
+
+      <div class="portfolio-grid">
+        ${cards}
+      </div>
+
+      <div class="portfolio-url-block">
+        <div class="portfolio-url-label">Your portfolio URL</div>
+        <div class="portfolio-url">${portfolioUrl}</div>
+        <p class="portfolio-url-note">Copy this. Paste it into LinkedIn. Put it on your CV. Send it to one recruiter and one founder this week. This is what your degree did not give you on its own.</p>
+      </div>
+
+      <p class="wl-footer">Six builds. One URL. Yours.</p>
+    </div>
+  `;
+}
+
+function renderOutputCapture(s) {
+  const oc = s.output_capture || {};
+  // Restore saved value
+  let saved = { url: "", text: "" };
+  try {
+    const allCaptures = JSON.parse(localStorage.getItem("jb-captures") || "{}");
+    if (allCaptures[s.id]) saved = allCaptures[s.id];
+  } catch (_) {}
+  const value = saved.url || saved.text || "";
+  const isText = oc.kind === "text";
+
+  return `
+    <div class="capture-screen">
+      <div class="label">Save your work</div>
+      <h2 class="capture-title">${escapeHtml(oc.artifact || "Output")} <span class="capture-arrow">→</span> Portfolio</h2>
+      <p class="capture-ask">${escapeHtml(oc.ask || "Paste your work below.")}</p>
+
+      <div class="capture-form">
+        ${isText
+          ? `<textarea class="capture-input" id="capture-input" data-session="${s.id}" data-kind="text" rows="3" placeholder="${escapeHtml(oc.placeholder || '')}">${escapeHtml(value)}</textarea>`
+          : `<input class="capture-input" type="url" id="capture-input" data-session="${s.id}" data-kind="url" placeholder="${escapeHtml(oc.placeholder || '')}" value="${escapeHtml(value)}">`
+        }
+        <button class="capture-save" id="capture-save" type="button">${value ? 'Update saved' : 'Save to portfolio'}</button>
+        <div class="capture-status" id="capture-status">${value ? '<span class="status-ok">Saved.</span>' : ''}</div>
+      </div>
+
+      ${oc.guidance ? `<p class="capture-guidance">${escapeHtml(oc.guidance)}</p>` : ''}
+    </div>
+  `;
+}
+
 function renderSessionStart(s) {
   const dayLabel = `Day ${s.day} &middot; ${s.start_time} to ${s.end_time} &middot; ${s.duration_minutes} minutes`;
   return `
@@ -1732,13 +2412,24 @@ function renderBreak(screen) {
       </div>
     `;
   }
+  // Default wellness prompt depending on break duration
+  let wellnessPrompt = "";
+  if (duration >= 45) {
+    wellnessPrompt = "Long break. Eat. Walk outside if you can. Talk to one person in this room you have not talked to yet.";
+  } else if (duration >= 30) {
+    wellnessPrompt = "Real break. Step away from the screen. Stretch. Drink water. Look at something more than ten metres away.";
+  } else {
+    wellnessPrompt = "Short break. Stand up. Stretch. Drink water. Look at something more than ten metres away.";
+  }
+  const breakNote = after.break_note ? escapeHtml(after.break_note) : wellnessPrompt;
+
   return `
     <div class="break">
       <p class="hero-eyebrow" style="margin-bottom: 24px;">${escapeHtml(label)}</p>
       <div class="break-timer" id="break-display">${String(minsRemaining).padStart(2, "0")}:${String(secsRemaining).padStart(2, "0")}</div>
       <p class="break-label">${escapeHtml(label)} time</p>
-      ${next ? `<p class="break-next">After the break, then <strong style="color: var(--accent);">${escapeHtml(next.title)}</strong></p>` : ""}
-      ${after.break_note ? `<p class="break-next" style="margin-top: 32px; font-style: italic; max-width: 56ch; margin-left: auto; margin-right: auto;">${escapeHtml(after.break_note)}</p>` : ""}
+      <p class="break-next" style="margin-top: 28px; font-style: italic; max-width: 60ch; margin-left: auto; margin-right: auto;">${breakNote}</p>
+      ${next ? `<p class="break-next" style="margin-top: 24px;">When the timer ends, then <strong style="color: var(--accent);">${escapeHtml(next.title)}</strong></p>` : ""}
     </div>
   `;
 }
@@ -1835,12 +2526,108 @@ function attachHandlers(screen) {
   if (screen && screen.type === "break" && breakTimer.finished) {
     document.body.onclick = (e) => {
       if (e.target.closest(".bottombar")) return;
+      if (e.target.closest(".stuck-btn") || e.target.closest(".stuck-overlay")) return;
       breakTimer.finished = false;
       document.body.onclick = null;
       next();
     };
   } else {
     document.body.onclick = null;
+  }
+
+  // Output Capture: save to localStorage
+  const captureSave = $("#capture-save");
+  const captureInput = $("#capture-input");
+  if (captureSave && captureInput) {
+    captureSave.onclick = () => {
+      const sessionId = captureInput.dataset.session;
+      const kind = captureInput.dataset.kind;
+      const value = captureInput.value.trim();
+      const status = $("#capture-status");
+
+      if (!value) {
+        if (status) status.innerHTML = '<span class="status-error">Add something before saving.</span>';
+        return;
+      }
+      // Validate URL kind
+      if (kind === "url") {
+        try {
+          const u = new URL(value);
+          if (!u.protocol.startsWith("http")) throw new Error("not http");
+        } catch (_) {
+          if (status) status.innerHTML = '<span class="status-error">That does not look like a URL. Make sure it starts with https://</span>';
+          return;
+        }
+      }
+      // Save to localStorage
+      try {
+        const all = JSON.parse(localStorage.getItem("jb-captures") || "{}");
+        if (kind === "url") all[sessionId] = { url: value, savedAt: new Date().toISOString() };
+        else all[sessionId] = { text: value, savedAt: new Date().toISOString() };
+        localStorage.setItem("jb-captures", JSON.stringify(all));
+        if (status) status.innerHTML = '<span class="status-ok">Saved to your portfolio.</span>';
+        captureSave.textContent = "Update saved";
+      } catch (err) {
+        if (status) status.innerHTML = '<span class="status-error">Could not save. Tell the facilitator.</span>';
+      }
+    };
+  }
+
+  // Day 2 Check-in: save inputs to localStorage as they change
+  document.querySelectorAll('.checkin-radio input[type="radio"]').forEach(radio => {
+    radio.onchange = () => {
+      // Update visual state
+      document.querySelectorAll('.checkin-radio').forEach(label => label.classList.remove('selected'));
+      radio.closest('.checkin-radio').classList.add('selected');
+      // Save
+      try {
+        const saved = JSON.parse(localStorage.getItem("jb-day2-checkin") || "{}");
+        saved.idea = radio.value;
+        localStorage.setItem("jb-day2-checkin", JSON.stringify(saved));
+      } catch (_) {}
+    };
+  });
+  const worryInput = $("#checkin-worry");
+  if (worryInput) {
+    worryInput.oninput = () => {
+      try {
+        const saved = JSON.parse(localStorage.getItem("jb-day2-checkin") || "{}");
+        saved.worry = worryInput.value;
+        localStorage.setItem("jb-day2-checkin", JSON.stringify(saved));
+      } catch (_) {}
+    };
+  }
+
+  // Feedback prompts: save as user types
+  const feedbackInput = $("#feedback-text");
+  if (feedbackInput) {
+    feedbackInput.oninput = () => {
+      const day = feedbackInput.dataset.feedbackDay;
+      try {
+        localStorage.setItem(`jb-feedback-day${day}`, feedbackInput.value);
+      } catch (_) {}
+    };
+  }
+
+  // Stuck button: open/close dialog
+  const stuckBtn = $("#stuck-btn");
+  const stuckOverlay = $("#stuck-overlay");
+  const stuckClose = $("#stuck-close");
+  if (stuckBtn && stuckOverlay) {
+    stuckBtn.onclick = (e) => {
+      e.stopPropagation();
+      stuckOverlay.classList.remove("hidden");
+    };
+  }
+  if (stuckClose && stuckOverlay) {
+    stuckClose.onclick = () => {
+      stuckOverlay.classList.add("hidden");
+    };
+  }
+  if (stuckOverlay) {
+    stuckOverlay.onclick = (e) => {
+      if (e.target === stuckOverlay) stuckOverlay.classList.add("hidden");
+    };
   }
 }
 

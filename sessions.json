@@ -84,6 +84,7 @@
           "description": "Does this idea make you a little excited to spend two days on it? If yes, pass. If no, run the prompt again with a different framing."
         }
       ],
+      "output_capture": null,
       "id": "0",
       "number": "0",
       "title": "Do you have an idea yet?",
@@ -202,6 +203,7 @@
           "description": "Can you name one specific reason this person would pay for a solution? If yes, pass."
         }
       ],
+      "output_capture": null,
       "id": "1",
       "number": "1",
       "title": "Ideation",
@@ -322,6 +324,7 @@
           "description": "Can you answer all three HMV questions without hesitation?"
         }
       ],
+      "output_capture": null,
       "id": "2",
       "number": "2",
       "title": "Design",
@@ -442,6 +445,13 @@
           "description": "Your target user would feel the output was worth the time they spent providing the input."
         }
       ],
+      "output_capture": {
+        "artifact": "AI App",
+        "ask": "Paste the live URL of your AI App.",
+        "placeholder": "https://yourname.netlify.app",
+        "kind": "url",
+        "guidance": "This is the URL you got from Netlify after dragging your index.html into it. It should open on any phone without needing a login."
+      },
       "id": "3",
       "number": "3",
       "title": "Build the AI App",
@@ -554,6 +564,13 @@
           "description": "After reading the website, a visitor has an accurate expectation of what will happen when they try the AI App."
         }
       ],
+      "output_capture": {
+        "artifact": "Website",
+        "ask": "Paste the live URL of your Carrd website.",
+        "placeholder": "https://yourname.carrd.co",
+        "kind": "url",
+        "guidance": "This is the published Carrd URL, not the editor URL. Open it on your phone first to confirm it works."
+      },
       "id": "4",
       "number": "4",
       "title": "Build the Website",
@@ -668,6 +685,13 @@
           "description": "Every conversation, regardless of path, ends with a genuine invitation to try the AI App."
         }
       ],
+      "output_capture": {
+        "artifact": "Chatbot",
+        "ask": "Paste your website URL again, now with the chatbot embedded.",
+        "placeholder": "https://yourname.carrd.co",
+        "kind": "url",
+        "guidance": "The chatbot lives on your Carrd site as an embedded widget. Confirm it appears when you open the URL on your phone."
+      },
       "id": "5",
       "number": "5",
       "title": "Build the Chatbot",
@@ -727,6 +751,7 @@
           "description": "Reading at a natural pace, the script lands between fifty-five and sixty-five seconds."
         }
       ],
+      "output_capture": null,
       "id": "6a",
       "number": "6A",
       "title": "Audio  /  overnight briefing",
@@ -787,6 +812,13 @@
           "description": "Play the audio to someone in the room who has not heard it. They can describe what the product does."
         }
       ],
+      "output_capture": {
+        "artifact": "Audio",
+        "ask": "Paste your website URL again, now with the audio embedded.",
+        "placeholder": "https://yourname.carrd.co",
+        "kind": "url",
+        "guidance": "Your sixty seconds of audio lives on your Carrd site. Confirm it plays when you press the play icon on your phone."
+      },
       "id": "6b",
       "number": "6B",
       "title": "Build the Audio",
@@ -895,6 +927,13 @@
           "description": "After the video ends, the next step is obvious and accessible on a phone."
         }
       ],
+      "output_capture": {
+        "artifact": "Video",
+        "ask": "Paste the LinkedIn post URL of your video.",
+        "placeholder": "https://www.linkedin.com/posts/yourname-...",
+        "kind": "url",
+        "guidance": "This is the URL of your LinkedIn post, not the Loom URL. Open the post in a fresh browser and confirm the video plays."
+      },
       "id": "7",
       "number": "7",
       "title": "Build the Video",
@@ -1001,6 +1040,13 @@
           "description": "You can name in one sentence what specifically changes for the user or for you every time this agent fires."
         }
       ],
+      "output_capture": {
+        "artifact": "Agent",
+        "ask": "Describe what your agent does in one sentence.",
+        "placeholder": "Every time someone fills the form on my site, the agent sends them a personal welcome email within sixty seconds.",
+        "kind": "text",
+        "guidance": "The agent does not have a URL because it lives inside Make.com. Describe what it does in plain language. The platform will add the description to your portfolio with a note that the automation runs in the background."
+      },
       "id": "8",
       "number": "8",
       "title": "Build the Agent",
@@ -1059,6 +1105,7 @@
           "description": "You can name three specific changes you will make based on what you heard."
         }
       ],
+      "output_capture": null,
       "id": "9",
       "number": "9",
       "title": "Validation Synthesis",
@@ -1091,6 +1138,7 @@
         }
       ],
       "test_output": [],
+      "output_capture": null,
       "id": "polish",
       "number": "9.5",
       "title": "Final Polish and Demo Day prep",
@@ -1174,6 +1222,7 @@
           "description": "You named one specific next action, specific enough that the cohort could hold you accountable in four weeks."
         }
       ],
+      "output_capture": null,
       "id": "10",
       "number": "10",
       "title": "Internal Demo Day",
@@ -1185,80 +1234,89 @@
       "duration_minutes": 60,
       "break_after": false,
       "break_duration_minutes": 0,
-      "set_the_stage": "Stop for a moment. Look at what you have in front of you right now. Forty-eight hours ago this did not exist. None of it. Not the product. Not the website. Not the chatbot. Not the audio. Not the video. Not the agent.\n\nYou came in with an idea on a card. You leave with six live things in the world. Things a stranger can find, open, hear, watch, and use without you being present to explain them.\n\nBut here is the thing most programs get wrong at this moment. They call it a celebration. They hand out certificates. They send people home with the feeling that something is complete. Nothing is complete.\n\nWhat happened this weekend is the beginning, not the end. The next four weeks are harder than this weekend. This weekend you had structure. You had a facilitator. The next four weeks you have none of that. That is what makes the Build Month the real test.",
+      "set_the_stage": "Stop for a moment. Look at what you have in front of you right now. Forty-eight hours ago this did not exist. None of it. Not the product. Not the website. Not the chatbot. Not the audio. Not the video. Not the agent. Not the portfolio you just saw.\n\nYou came in with an idea on a card. You leave with six live things in the world, collected into one URL that opens two doors.\n\nNow the question. Which door do you walk through first this week?\n\nDoor One. Use the portfolio in your job search starting Monday. Put the URL on your LinkedIn. Run the 90-second demo in three interviews this month. Land a role that recognises what you can already do.\n\nDoor Two. Keep building the venture for the next four weeks. One real conversation per week. One iteration based on what you heard. By Demo Day in four weeks, decide whether to keep going.\n\nBoth doors stay open whichever you pick first. Most of you will do both. The point of this hour is to leave with a plan for the next four weeks, regardless of which door is louder for you right now.",
       "questions": [
         {
           "title": "What is the one thing you learned this weekend that you did not expect to learn?",
           "body": "Not what you expected to learn. The one thing that surprised you. Everyone answers in sequence around the room. One sentence each."
         },
         {
-          "title": "What is the gap between what you built and what your validation target needed?",
-          "body": "Be specific. Not they wanted more features. What specifically was different between what you built and what they actually needed?"
+          "title": "Which door is louder for you right now?",
+          "body": "Door One, Door Two, or both in parallel. This is not a commitment. It is a reflection. Honest answers only. The door that is louder for you right now is the one that should get more of your time this week, whichever it is."
         },
         {
-          "title": "What is the one thing you will change first?",
-          "body": "Of everything you could improve, what is the one change that would make the biggest difference to your target user in the next week?"
+          "title": "If Door One is louder. Who are the first three people who will see your portfolio URL this week?",
+          "body": "A recruiter you have been talking to. A hiring manager whose role you want. An alumnus from your college who is doing something interesting. Make it three actual names. Not categories. Names."
         },
         {
-          "title": "Who are the next three real people you will show this to?",
-          "body": "Not after you improve it. Now. This week. Before anything changes. Three specific people who have the problem and have no reason to be kind."
+          "title": "If Door Two is louder. What is the one specific change you will make in the next seven days?",
+          "body": "Not three changes. Not a plan. One. The change that most directly addresses what your validation target told you. Be specific enough that the cohort could check on you in seven days."
         },
         {
-          "title": "What would Demo Day success look like for you specifically?",
-          "body": "Not the program's definition of success. Yours. What would you need to have built, learned, or proven in four weeks for you personally to feel this was worth the time and commitment?"
+          "title": "What would success look like for you in four weeks?",
+          "body": "Not the program's definition. Yours. For Door One that might be three interviews lined up with your portfolio. For Door Two that might be three real users and one of them paid. For both, it might be one offer letter and one paying customer. Whatever it is, name it precisely."
         }
       ],
       "hmv": [
         {
-          "dimension": "Humanics in the Build Month",
+          "dimension": "Humanics in the next four weeks",
           "techniques": [
-            "One real user conversation per week. Minimum. Not a survey. A conversation.",
-            "Every product change must be traceable to something a real person said.",
-            "If you improve the product based on your own ideas for more than two days without checking, stop. Book a conversation."
+            "If Door Two is louder. One real user conversation per week. Minimum. Not a survey. A conversation.",
+            "If Door One is louder. One real recruiter or hiring manager conversation per week. Minimum.",
+            "Every change to your portfolio should be traceable to feedback from a real person."
           ]
         },
         {
-          "dimension": "Mechanics in the Build Month",
+          "dimension": "Mechanics in the next four weeks",
           "techniques": [
-            "The most common failure is spending four weeks rebuilding from scratch instead of iterating.",
-            "The product you built this weekend is good enough to test. It is not good enough to be the final version.",
-            "When you feel the urge to rebuild, ask: am I rebuilding because it is fundamentally wrong, or because I am uncomfortable showing something imperfect?"
+            "If Door Two is louder. The most common failure is spending four weeks rebuilding from scratch instead of iterating.",
+            "If Door One is louder. The most common failure is waiting for the portfolio to be ready before applying. It is ready. Apply.",
+            "When you feel the urge to rebuild before applying or talking to users, ask. Am I rebuilding because it is fundamentally wrong, or because I am uncomfortable showing something imperfect?"
           ]
         },
         {
-          "dimension": "Valuenomics in the Build Month",
+          "dimension": "Valuenomics in the next four weeks",
           "techniques": [
-            "Week 1, ask one person if they would pay. Get a yes or a no.",
-            "Week 2, ask three more. Look for a pattern.",
-            "Week 3, if the pattern is yes, explore what paying would look like.",
-            "Week 4, come to Demo Day with a clear honest answer."
+            "Door One, week 1. Apply to three roles with your portfolio URL in the application. Track responses.",
+            "Door Two, week 1. Ask one person if they would pay. Get a yes or a no.",
+            "By Demo Day in four weeks, you should be able to answer one question with confidence. What is my portfolio earning me, in interviews or in users?"
           ]
         }
       ],
       "prompts": [
         {
           "number": 1,
-          "title": "Build the four-week plan",
+          "title": "Build your four-week plan",
           "tool": "Gemini  (gemini.google.com)",
-          "content": "I have just completed a two-day Just Build workshop. I have built six modalities of a solopreneur product. I now have four weeks to iterate and prepare for Demo Day.\n\nMy product: [one sentence solution]\nWhat I learned from validation: [the key insight from Session 9]\nThe gap between what I built and what my user needed: [from Question 2]\nThe first change I will make: [from Question 3]\nThe three people I will show it to this week: [from Question 4]\nWhat Demo Day success looks like for me: [from Question 5]\n\nBuild me a four-week plan. Structured and specific. One primary goal per week. Three specific actions per week. One checkpoint question that tells me whether I am on track.\n\nWeek 1, Refine. Based on validation. One specific change. Three specific conversations.\nWeek 2, Validate deeper. More real users. Clearer pattern. First willingness-to-pay conversation.\nWeek 3, Iterate substantially. One meaningful change based on what Weeks 1 and 2 revealed.\nWeek 4, Prepare and launch. Demo Day ready. Product polished enough to show confidently.\n\nFor each week, give me the one question I should be able to answer by Friday that tells me the week was not wasted."
+          "content": "I have just completed a two-day Just Build workshop. I have a portfolio of six AI-powered builds collected at one URL. I now have four weeks before Demo Day.\n\nMy portfolio URL: [from the portfolio reveal]\nMy target user or focus: [from Session 1]\nWhat I learned from validation: [the key insight from Session 9]\nThe door that is louder for me right now: [Door One, Door Two, or Both]\nWhat success looks like for me in four weeks: [from Question 5]\n\nBuild me a four-week plan structured by my chosen door.\n\nIf Door One is louder. Week 1, set up the portfolio for recruiters. Where to post. Who to message. Week 2, three interviews booked. The 90-second demo polished. Week 3, first-round conversations underway. Refining the pitch based on questions. Week 4, offers or clear next steps. Decision point.\n\nIf Door Two is louder. Week 1, apply what I learned from validation. One specific change to the product. Week 2, talk to three more real users. Look for the pattern. Week 3, iterate substantially. First willingness-to-pay conversation. Week 4, Demo Day ready. Product polished enough to show confidently.\n\nIf Both. Allocate my time between the two doors honestly. Most students will spend roughly 60 percent on whichever door is louder and 40 percent on the other. Acknowledge what I can actually do in seven days a week.\n\nFor each week, give me the one question I should be able to answer by Friday that tells me the week was not wasted."
+        },
+        {
+          "number": 2,
+          "title": "Write your LinkedIn launch post",
+          "tool": "Claude  (claude.ai)",
+          "content": "I just finished the Just Build workshop and have a portfolio of six AI-powered builds. I need a LinkedIn launch post.\n\nMy focus or product: [one sentence]\nMy target user: [one sentence]\nThe one thing I built that surprised me: [from Question 1]\nMy portfolio URL: [from the portfolio reveal]\nThe door that is louder for me right now: [Door One, Door Two, or Both]\n\nWrite me a LinkedIn post that.\n\nOpens with the most surprising or impressive thing about what I built.\nNames the problem I was solving in one sentence, in plain language.\nLists what I built (six things) in a clean, scannable format.\nEnds with my portfolio URL and a specific invitation.\n\nThe invitation depends on my door.\nIf Door One. If you are hiring for AI roles, I would love to chat.\nIf Door Two. If this problem is yours too, let me know.\nIf Both. Pick whichever fits more naturally.\n\nKeep it under 200 words. Conversational. Honest. Not boastful. Sound like a human who built something, not a marketer."
         }
       ],
       "build": [
         {
-          "title": "Stage 1.  The four-week plan (20 minutes)",
-          "instructions": "Run the prompt. Read the plan Gemini produces. Make two specific edits where Gemini's generic plan needs adapting to your specific idea. Save the plan. This is your operating brief for the next four weeks."
+          "title": "Stage 1.  Your four-week plan (15 minutes)",
+          "instructions": "Run Prompt 1 in Gemini. Read the plan. Make two specific edits where Gemini's generic plan needs adapting to your specific door and your specific idea. Save the plan. This is your operating brief for the next four weeks."
         },
         {
-          "title": "Stage 2.  Public commitments (20 minutes)",
-          "instructions": "Everyone stands and states three things to the room. The one specific change you commit to making in Week 1, named precisely. The three specific people you will show the product to before next Friday, named by first name or relationship. What Demo Day success looks like for you specifically. The WhatsApp group captures these. Vague commitments get gently pushed back on in real time."
+          "title": "Stage 2.  Your LinkedIn launch post (10 minutes)",
+          "instructions": "Run Prompt 2 in Claude. Read the post out loud. Edit anything that sounds like a marketer. Do not post yet. We post tomorrow morning after one night of distance. Save the draft somewhere you will find it."
         },
         {
-          "title": "Stage 3.  The four-week structure (10 minutes)",
-          "instructions": "Weekly group session, same day, same time, every week, ninety minutes. Office hours twice per week, thirty minutes each, bookable for specific stuck-points. WhatsApp group for sharing verbatim user quotes, asking for help, and celebrating wins."
+          "title": "Stage 3.  Public commitments (20 minutes)",
+          "instructions": "Everyone stands and states three things to the room. Which door is louder for them this week. The one specific commitment they will make in the next seven days, named precisely. The three specific people who will see their portfolio before next Friday, named by first name or relationship. The WhatsApp group captures these. Vague commitments get gently pushed back on in real time."
         },
         {
-          "title": "Stage 4.  The certificate moment (10 minutes)",
-          "instructions": "You are not receiving a certificate today. The OC Just Build Certificate marks completion of the full journey, not attendance at a workshop. Four weeks from now at Demo Day, when you stand in front of a real audience and demonstrate a product that is genuinely better than what you showed today, and when you can speak honestly about what you learned and what you changed, that is when the certificate means something. See you at Demo Day. Go build."
+          "title": "Stage 4.  The four-week structure (10 minutes)",
+          "instructions": "Weekly group session, same day, same time, every week, ninety minutes. Office hours twice per week, thirty minutes each, bookable for specific stuck-points. WhatsApp group for sharing portfolio URL feedback, recruiter conversations, user quotes, and wins."
+        },
+        {
+          "title": "Stage 5.  The certificate moment (5 minutes)",
+          "instructions": "You are not receiving a certificate today. The OC Just Build Certificate marks completion of the full journey, not attendance at a workshop. Four weeks from now, when you can show one of two things, the certificate is yours. For Door One. A real conversation, interview, or connection that came directly from your portfolio. For Door Two. Real users you did not know before, validated change in the product, momentum. Either earns the certificate. See you at Demo Day. Go build."
         }
       ],
       "test_output": [
@@ -1267,22 +1325,27 @@
           "description": "You have a four-week plan with one primary goal per week, three specific actions per week, and one checkpoint question per week."
         },
         {
+          "title": "The post test",
+          "description": "You have a LinkedIn launch post drafted, ready to publish tomorrow morning after one night of distance."
+        },
+        {
           "title": "The commitment test",
-          "description": "You stated three specific public commitments to the room, specific enough that the cohort could evaluate whether you kept them at Demo Day."
+          "description": "You stated three specific public commitments to the room. Which door is louder. One specific action this week. Three specific people."
         },
         {
           "title": "The people test",
-          "description": "You can name three specific real people you will show the product to before next Friday."
+          "description": "You can name three specific real people who will see your portfolio before next Friday."
         },
         {
           "title": "The success test",
-          "description": "You can complete this sentence without hesitation. Demo Day success for me looks like, then a specific, personal, measurable answer."
+          "description": "You can complete this sentence without hesitation. Success in four weeks for me looks like, then a specific, personal, measurable answer."
         },
         {
           "title": "The group test",
-          "description": "You are in the WhatsApp alumni group. You saved the weekly session date and time. You know how to book office hours."
+          "description": "You are in the WhatsApp alumni group. You know the weekly session date and time. You know how to book office hours."
         }
       ],
+      "output_capture": null,
       "id": "11",
       "number": "11",
       "title": "Close and Four-Week Brief",

@@ -1,7 +1,7 @@
 {
   "workshop": {
     "title": "Just Build",
-    "subtitle": "AI Venture Building Workshop",
+    "subtitle": "",
     "session_count": 13,
     "day1_sessions": [
       "0",
@@ -20,7 +20,10 @@
       "polish",
       "10",
       "11"
-    ]
+    ],
+    "cohort_members": [],
+    "cohort_label": "C1",
+    "oc_application_url": "justbuild.orangecaterpillar.com/apply"
   },
   "sessions": [
     {
@@ -49,7 +52,7 @@
           "number": 1,
           "title": "Find your idea",
           "tool": "Gemini  (gemini.google.com)",
-          "content": "I am about to spend two days building a real AI-powered product as a solopreneur. I do not have an idea yet. Help me find one.\n\nHere is what I know about myself.\n\nThree groups of people whose lives I understand: [from Question 1]\nFive things that have annoyed me in the last month: [from Question 2]\nTwo or three things I wish existed: [from Question 3]\n\nDo four things for me.\n\nFirst, look at the annoyances and the wishes. Tell me which two or three of them point to a real problem that other people probably also experience. Not just me. Be honest if any of them are too personal or too niche to be a real venture.\n\nSecond, for each of those candidate problems, describe in two sentences who specifically has this problem. The more specific the better. Not people or professionals. A specific kind of person in a specific situation.\n\nThird, for each candidate, name an existing tool or workaround people currently use, and one thing about that workaround that is genuinely not good enough.\n\nFourth, recommend the one problem out of these candidates that you think is most worth me exploring this weekend, and tell me honestly why. Then ask me three follow-up questions to help me get sharper on that problem before I move to Session 1."
+          "content": "I am about to spend two days building a real AI-powered product as a solopreneur. I do not have an idea yet. Help me find one.\n\nHere is what I know about myself.\n\nThree groups of people whose lives I understand: [from Question 1]\nFive things that have annoyed me in the last month: [from Question 2]\nTwo or three things I wish existed: [from Question 3]\n\nDo four things for me.\n\nFirst, look at the annoyances and the wishes. Tell me which two or three of them point to a real problem that other people probably also experience. Not just me. Be honest if any of them are too personal or too niche to be a real micro-venture.\n\nSecond, for each of those candidate problems, describe in two sentences who specifically has this problem. The more specific the better. Not people or professionals. A specific kind of person in a specific situation.\n\nThird, for each candidate, name an existing tool or workaround people currently use, and one thing about that workaround that is genuinely not good enough.\n\nFourth, recommend the one problem out of these candidates that you think is most worth me exploring this weekend, and tell me honestly why. Then ask me three follow-up questions to help me get sharper on that problem before I move to Session 1."
         }
       ],
       "build": [
@@ -158,7 +161,7 @@
           "number": 1,
           "title": "Stress test your idea",
           "tool": "Gemini  (gemini.google.com)",
-          "content": "I am a solopreneur exploring an idea for a new venture. I need you to stress test it honestly.\n\nMy idea: [one sentence]\nMy target user: [specific person in specific situation]\nThe problem they experience: [specific problem, not the solution]\nHow often they experience it: [frequency]\nWhat it costs them: [time, money, emotional cost]\nWhat they currently do about it: [existing workaround]\nWhy the workaround is not good enough: [the gap]\n\nRun this through three lenses and be direct.\n\nHumanics. Is my target user specific enough? Is the problem genuinely felt by a real human or am I building for a demographic I imagine?\n\nMechanics. Is AI genuinely useful here? Should AI solve this or am I forcing it? Name the failure mode if you see one.\n\nValuenomics. Is there a real value exchange? Would this specific person pay for a solution?\n\nEnd with three hard questions I should be able to answer before I start building."
+          "content": "I am a solopreneur exploring an idea for a new micro-venture. I need you to stress test it honestly.\n\nMy idea: [one sentence]\nMy target user: [specific person in specific situation]\nThe problem they experience: [specific problem, not the solution]\nHow often they experience it: [frequency]\nWhat it costs them: [time, money, emotional cost]\nWhat they currently do about it: [existing workaround]\nWhy the workaround is not good enough: [the gap]\n\nRun this through three lenses and be direct.\n\nHumanics. Is my target user specific enough? Is the problem genuinely felt by a real human or am I building for a demographic I imagine?\n\nMechanics. Is AI genuinely useful here? Should AI solve this or am I forcing it? Name the failure mode if you see one.\n\nValuenomics. Is there a real value exchange? Would this specific person pay for a solution?\n\nEnd with three hard questions I should be able to answer before I start building."
         },
         {
           "number": 2,
@@ -947,105 +950,113 @@
       "duration_minutes": 45,
       "break_after": false,
       "break_duration_minutes": 0,
-      "set_the_stage": "Look at everything you have built. A product that works. A website that markets it. A chatbot that handles questions. An audio piece that gives it a voice. A video that shows it in action.\n\nAll of it is visible. All of it requires someone to find it, open it, and engage with it. Now you build the invisible layer. The thing that runs while you sleep. While you are in meetings. While you are building the next version.\n\nThat is what an agent is. Not an AI chatbot. Not a product feature. An automated workflow that takes one trigger and produces one action, reliably, repeatedly, without you.\n\nOne trigger. One action. Real and live before this session ends.",
+      "set_the_stage": "Look at everything you have built. A product that works. A website that markets it. A chatbot that handles questions. An audio piece that gives it a voice. A video that shows it in action.\n\nAll of it is visible. All of it requires someone to find it, open it, and engage with it. Now you build the invisible layer. The thing that runs while you sleep. While you are in meetings. While you are building the next version.\n\nThat is what automation is. Something that takes one trigger and produces one action, reliably, repeatedly, without you.\n\nWe are not going near Make.com or Zapier today. They are powerful, but the learning curve is real, and forty-five minutes is not enough. Instead we are using Tally. A free form builder that comes with automation baked in. You set up a form. Someone fills it. They receive an automatic personalised email. You receive a notification. The submission is logged. That is a full automated workflow, and you will have it live before this session ends.",
       "questions": [
         {
           "title": "What is the one thing you would most want to happen automatically?",
-          "body": "Not a list. One thing. The thing that, if it happened without you every time, would make the biggest difference. Two categories. User-facing automations improve the experience for the person using the product. Solopreneur-facing automations make your life easier."
+          "body": "Not a list. One thing. The thing that, if it happened without you every time, would make the biggest difference. The most common solopreneur automations are: someone signs up for early access and gets a welcome message. Someone reports a problem and gets an acknowledgment. Someone asks to be added to a waitlist and gets a confirmation with what happens next."
         },
         {
-          "title": "What triggers it?",
-          "body": "Something has to start the automation. The most reliable triggers for solopreneur builds are a form submission, a scheduled time, a new row in a spreadsheet, a new email in an inbox, or a webhook."
+          "title": "What is the one piece of information you need from them?",
+          "body": "Email, at minimum. Beyond that, what one or two things would let you respond personally? Their name. Their use case. Their biggest pain point. Pick at most three questions. More than that and people will not fill it in."
         },
         {
-          "title": "What is the one action that follows?",
-          "body": "When the trigger fires, what happens? One action. Not a sequence of five steps. The most common mistake is making it too complex. A trigger that fires and sends one email is powerful."
+          "title": "What goes in the automated email back to them?",
+          "body": "Not a templated, robotic confirmation. A real message that sounds like you. What does the email need to say? Acknowledge their submission. Tell them what happens next. Set an expectation for when they hear from you again."
         },
         {
-          "title": "Who benefits from this automation and how?",
-          "body": "When this agent runs, who notices? Who benefits? What changes for them? The best automations are invisible in the right way. The user does not think it was automated. They think that was fast."
+          "title": "Where on your website does the form live?",
+          "body": "Open your Carrd site. Where is the natural place to invite someone to submit? Below the AI App call-to-action? In a dedicated section called Get early access? Pick one specific spot."
         },
         {
           "title": "How do you know it is working?",
-          "body": "After you build this and turn it on, how do you know it fired? The simplest confirmation is a notification to yourself. You cannot trust an agent you cannot verify."
+          "body": "After you build this and turn it on, how do you know it fired? Tally sends you a notification of every submission. You also get the data in a Tally dashboard. The user gets their auto-confirmation email. Three confirmations, one workflow."
         }
       ],
       "hmv": [
         {
           "dimension": "Humanics",
           "techniques": [
-            "Does the automated message feel written for this specific person or like a mass email with a name inserted?",
-            "Does the agent fire at the right moment in the user's journey?",
-            "Does the automated message sound like the same person who wrote the website copy and narrated the video?"
+            "Does the auto-confirmation email feel written for this specific person or like a mass email with a name inserted?",
+            "Does the form ask the minimum needed, not the maximum possible?",
+            "Does the email sound like the same person who wrote the website copy and narrated the video?"
           ]
         },
         {
           "dimension": "Mechanics",
           "techniques": [
-            "Test the trigger three times before turning the agent on for real users.",
-            "What happens when the trigger fires with incomplete or unexpected data?",
-            "Does the agent have the correct permissions to perform its action?"
+            "Test the form yourself with a real submission before you embed it.",
+            "Does the confirmation email arrive within thirty seconds?",
+            "If a user submits with an empty field or weird data, does the form handle it gracefully?"
           ]
         },
         {
           "dimension": "Valuenomics",
           "techniques": [
-            "How much time does this automation save per week? If less than thirty minutes, it is a nice-to-have.",
-            "Does this automation become more valuable as the business grows?",
-            "Does this automation free you to do something more valuable with your time?"
+            "How much time does this automation save per week? Each manual reply is two to three minutes.",
+            "Does this automation become more valuable as more people find your product?",
+            "Would your user feel valued by the response they receive, or would they feel processed?"
           ]
         }
       ],
       "prompts": [
         {
           "number": 1,
-          "title": "Design the agent",
+          "title": "Design the form and the auto-reply",
           "tool": "Gemini  (gemini.google.com)",
-          "content": "I am a solopreneur building my first automated agent using Make.com. Help me design a simple, reliable one-trigger one-action automation.\n\nMy product: [one sentence solution]\nMy target user: [human portrait]\nMy website URL: [from Session 4]\nMy AI App URL: [from Session 3]\n\nThe automation I want to build: [from Question 1]\nThe trigger: [from Question 2]\nThe action: [from Question 3]\nWho benefits and how: [from Question 4]\nHow I know it is working: [from Question 5]\n\nDo three things.\n\nFirst, tell me honestly whether this is achievable in Make.com on a free account in thirty minutes. If not, suggest a simpler version.\n\nSecond, give me a step-by-step description of how to build this in Make.com. Which modules to use. What to connect. What to configure. Simple enough for someone who has never used Make.com.\n\nThird, write the content of the automated action. If it is an email, write the subject line and body. Write it so it sounds personal and human. Not automated. Not templated."
+          "content": "I am a solopreneur setting up a simple Tally form on my website with an auto-confirmation email. Help me design it.\n\nMy product: [one sentence solution]\nMy target user: [human portrait]\nMy website URL: [from Session 4]\nWhat I want the form to do: [from Question 1]\nThe information I need from them: [from Question 2]\nWhat I want the email to convey: [from Question 3]\n\nDo three things.\n\nFirst, write me the form. Title, short description, and the two or three questions to ask. Make every question feel inviting, not bureaucratic.\n\nSecond, write the auto-confirmation email. Subject line plus body. Make it sound like a real person wrote it. Use the user's first name. Tell them what happens next. Set an honest expectation for when they will hear from me. Keep it under 120 words.\n\nThird, write a one-line invitation that sits above the embedded form on my Carrd site. It should tell the visitor what they get by filling it in."
         }
       ],
       "build": [
         {
-          "title": "Stage 1. Gemini designs the automation (10 minutes)",
-          "instructions": "Paste the prompt. Read the response carefully. Is this achievable on Make.com free tier in thirty minutes? Is the automated message genuinely personal? If either is no, ask Gemini to simplify."
+          "title": "Stage 1.  Gemini drafts the form and email (5 minutes)",
+          "instructions": "Paste the prompt. Read the form questions and the email out loud. Edit anything that does not sound like you. Save the final form questions and email body in a notes app for the next stages."
         },
         {
-          "title": "Stage 2. Build in Make.com (25 minutes), step by step",
-          "instructions": "1. Open make.com and sign in.  2. Click Scenarios in the left menu. Click Create a new scenario.  3. You will see a blank canvas with a large plus icon. Click it.  4. Choose your trigger module. Form = Webhooks > Custom Webhook. Schedule = Scheduler. Email = Gmail or Outlook.  5. Configure the trigger. For a webhook, click Add to create a webhook URL. Copy that URL.  6. Click the plus on the right edge of the trigger module to add the action module.  7. Choose your action. Email = Gmail/Outlook > Send an Email. Slack = Slack > Send Message. Sheet = Google Sheets > Add Row.  8. Connect Make.com to your service. You will be prompted to sign in.  9. Fill in the action configuration. Use Make.com's mapping panel on the right to insert variables from the trigger.  10. Click Run Once at the bottom left.  11. Trigger the scenario manually. For webhooks use ReqBin or paste sample data. For schedules click Run now.  12. Confirm the action fired. Check your inbox or Slack.  13. Run the test three times to confirm consistency.  14. Toggle the scenario from Off to On in the top right."
+          "title": "Stage 2.  Build the form on Tally (15 minutes), step by step",
+          "instructions": "1. Open tally.so and sign in. Free tier is fine.  2. Click New form. Pick Start from scratch.  3. Add a title block with your form title from Gemini.  4. Add a Short answer block for each question. The first one should always be Name. The second should always be Email.  5. Make Name and Email required. Other questions optional.  6. Click the settings icon (gear) for the form.  7. Go to the Email notifications section. Toggle on Send email to respondents.  8. Paste your auto-confirmation email subject line and body from Gemini. Use the personalisation tag for first name like {{Name}}.  9. In the same settings, toggle on Send email to me on every submission so you get notified.  10. Click Publish at the top right.  11. Tally gives you a Share link and an Embed code. Copy the embed code."
         },
         {
-          "title": "Stage 3. Confirm and verify (10 minutes)",
-          "instructions": "Trigger the automation manually one final time. Confirm the action completed. Confirm the confirmation notification reached you. Take a screenshot of the scenario showing the green Active state."
+          "title": "Stage 3.  Embed on your Carrd site (10 minutes), step by step",
+          "instructions": "1. Open your Carrd site in the editor.  2. Find the spot you decided on in Question 4.  3. Click the plus icon. Choose Embed.  4. Paste your Tally embed code. Tally embeds render natively.  5. Add a heading or one-line invitation above the form using your line from Gemini.  6. Republish your Carrd site.  7. Open your site on your phone. Scroll to the form. Confirm it loads and looks clean."
+        },
+        {
+          "title": "Stage 4.  Test the full automation (10 minutes)",
+          "instructions": "1. On your phone, fill the form with a real name and a real email you can check.  2. Hit submit.  3. Open your email. The auto-confirmation should arrive within thirty seconds.  4. Read the email. Does it sound like you? If not, edit and republish.  5. Open Tally on your laptop. Check the submission appears in the dashboard.  6. Confirm you received the notification email too.  7. Now you have three confirmations of one automated workflow. Take a screenshot of the Tally dashboard with your test submission for your portfolio."
+        },
+        {
+          "title": "Stage 5.  Save the proof (5 minutes)",
+          "instructions": "The agent is invisible by design. Your portfolio needs evidence it exists. Two things to capture. The Tally form share URL (visible work). A screenshot of the Tally dashboard showing your test submission (proof it runs)."
         }
       ],
       "test_output": [
         {
           "title": "The live test",
-          "description": "You triggered the automation manually. The action completed within the expected timeframe."
+          "description": "You filled your own form. The confirmation email arrived in under thirty seconds."
         },
         {
           "title": "The personal test",
-          "description": "The automated message feels written for a specific person, not like mass communication."
+          "description": "The confirmation email reads like a person wrote it. Not templated. Not generic."
         },
         {
           "title": "The reliability test",
-          "description": "You triggered it three times in a row. It fired correctly all three times."
+          "description": "Three test submissions in a row, three confirmations. No failures."
         },
         {
-          "title": "The verification test",
-          "description": "You receive confirmation when the agent fires."
+          "title": "The notification test",
+          "description": "You receive a notification when someone submits."
         },
         {
           "title": "The value test",
-          "description": "You can name in one sentence what specifically changes for the user or for you every time this agent fires."
+          "description": "You can name in one sentence what specifically happens for the user every time someone submits."
         }
       ],
       "output_capture": {
         "artifact": "Agent",
-        "ask": "Describe what your agent does in one sentence.",
-        "placeholder": "Every time someone fills the form on my site, the agent sends them a personal welcome email within sixty seconds.",
-        "kind": "text",
-        "guidance": "The agent does not have a URL because it lives inside Make.com. Describe what it does in plain language. The platform will add the description to your portfolio with a note that the automation runs in the background."
+        "ask": "Save your Tally form URL.",
+        "placeholder": "https://tally.so/r/abcdef",
+        "kind": "url",
+        "guidance": "This is the share URL Tally gave you after publishing your form. The portfolio will show this alongside a note that it triggers an automated workflow."
       },
       "id": "8",
       "number": "8",
@@ -1130,7 +1141,7 @@
         },
         {
           "title": "Option 2.  Fix what is fragile",
-          "instructions": "Open every link in your build chain. Carrd site. AI App URL. Chatbot. Audio. Video. Make.com scenario. Run through the journey as a stranger would. Anything fragile, broken, or confusing, fix it now. You do not want it failing during your demo."
+          "instructions": "Open every link in your build chain. Carrd site. AI App URL. Chatbot. Audio. Video. Tally form. Run through the journey as a stranger would. Anything fragile, broken, or confusing, fix it now. You do not want it failing during your demo."
         },
         {
           "title": "Option 3.  Prepare for the demo",
@@ -1189,7 +1200,7 @@
         },
         {
           "title": "Section 2.  The live product (3 minutes)",
-          "instructions": "Open the AI App. Enter a real input. Show the output. Pause on the impressive moment. Move to the website. Show the headline. Click through to the AI App from the call-to-action button. Show the chatbot. Type one real question. Show the response. Play the audio for fifteen seconds. Play the first fifteen seconds of the video from LinkedIn. Show the Make.com scenario. Trigger it. Show the confirmation."
+          "instructions": "Open the AI App. Enter a real input. Show the output. Pause on the impressive moment. Move to the website. Show the headline. Click through to the AI App from the call-to-action button. Show the chatbot. Type one real question. Show the response. Play the audio for fifteen seconds. Play the first fifteen seconds of the video from LinkedIn. Show the Tally form. Submit a test entry. Show the auto-confirmation arrive."
         },
         {
           "title": "Section 3.  What is next (30 seconds)",
@@ -1234,121 +1245,118 @@
       "duration_minutes": 60,
       "break_after": false,
       "break_duration_minutes": 0,
-      "set_the_stage": "Stop for a moment. Look at what you have in front of you right now. Forty-eight hours ago this did not exist. None of it. Not the product. Not the website. Not the chatbot. Not the audio. Not the video. Not the agent. Not the portfolio you just saw.\n\nYou came in with an idea on a card. You leave with six live things in the world, collected into one URL that opens two doors.\n\nNow the question. Which door do you walk through first this week?\n\nDoor One. Use the portfolio in your job search starting Monday. Put the URL on your LinkedIn. Run the 90-second demo in three interviews this month. Land a role that recognises what you can already do.\n\nDoor Two. Keep building the venture for the next four weeks. One real conversation per week. One iteration based on what you heard. By Demo Day in four weeks, decide whether to keep going.\n\nBoth doors stay open whichever you pick first. Most of you will do both. The point of this hour is to leave with a plan for the next four weeks, regardless of which door is louder for you right now.",
+      "set_the_stage": "Stop for a moment. Look at what you have in front of you right now. Forty-eight hours ago this did not exist. None of it. Not the product. Not the website. Not the chatbot. Not the audio. Not the video. Not the agent. Not the portfolio you just saw.\n\nYou came in with an idea on a card. You leave with six live things in the world, collected into one URL.\n\nThis hour is about what you do with that URL next.\n\nMost of this hour goes to the placement door. The LinkedIn post you write. The recruiters you message. The interviews you start lining up. The 90-second demo you already know how to run. Your portfolio is ready. Use it.\n\nAt the end of this hour, for those who want it, we open the second door. Orange Caterpillar runs a four-week structured program for builders who want to grow what they built into a real micro-venture. Not everyone applies. The ones who do are the ones who could not stop building if they tried.",
       "questions": [
         {
           "title": "What is the one thing you learned this weekend that you did not expect to learn?",
           "body": "Not what you expected to learn. The one thing that surprised you. Everyone answers in sequence around the room. One sentence each."
         },
         {
-          "title": "Which door is louder for you right now?",
-          "body": "Door One, Door Two, or both in parallel. This is not a commitment. It is a reflection. Honest answers only. The door that is louder for you right now is the one that should get more of your time this week, whichever it is."
+          "title": "Who are the first three people who will see your portfolio URL this week?",
+          "body": "Not categories. Names. A recruiter you have been talking to. A hiring manager whose role you want. An alumnus from your college doing something interesting. If you cannot name three real people, you do not have a placement plan yet, you have a wish."
         },
         {
-          "title": "If Door One is louder. Who are the first three people who will see your portfolio URL this week?",
-          "body": "A recruiter you have been talking to. A hiring manager whose role you want. An alumnus from your college who is doing something interesting. Make it three actual names. Not categories. Names."
+          "title": "What is the one role or company you most want to land?",
+          "body": "Be specific. Not great companies. One name. The one that would make this whole weekend feel like the best decision of the semester. Write it down."
         },
         {
-          "title": "If Door Two is louder. What is the one specific change you will make in the next seven days?",
-          "body": "Not three changes. Not a plan. One. The change that most directly addresses what your validation target told you. Be specific enough that the cohort could check on you in seven days."
+          "title": "What is the strongest thing you built this weekend that proves you can do that role?",
+          "body": "Of your six builds, which one most directly demonstrates the skill that role needs? When you send your portfolio URL, that is the build you point to first."
         },
         {
-          "title": "What would success look like for you in four weeks?",
-          "body": "Not the program's definition. Yours. For Door One that might be three interviews lined up with your portfolio. For Door Two that might be three real users and one of them paid. For both, it might be one offer letter and one paying customer. Whatever it is, name it precisely."
+          "title": "What would success in four weeks look like for you?",
+          "body": "Not the program's definition. Yours. Three interviews lined up. One offer on the table. A direct message back from someone you admire. Name it precisely."
         }
       ],
       "hmv": [
         {
           "dimension": "Humanics in the next four weeks",
           "techniques": [
-            "If Door Two is louder. One real user conversation per week. Minimum. Not a survey. A conversation.",
-            "If Door One is louder. One real recruiter or hiring manager conversation per week. Minimum.",
-            "Every change to your portfolio should be traceable to feedback from a real person."
+            "One real conversation per week. Minimum. With a recruiter, a hiring manager, or an alumnus.",
+            "Personal messages outperform applications. One LinkedIn message with your portfolio URL beats five generic applications.",
+            "If a recruiter or founder responds, you reply within twelve hours. Speed signals seriousness."
           ]
         },
         {
           "dimension": "Mechanics in the next four weeks",
           "techniques": [
-            "If Door Two is louder. The most common failure is spending four weeks rebuilding from scratch instead of iterating.",
-            "If Door One is louder. The most common failure is waiting for the portfolio to be ready before applying. It is ready. Apply.",
-            "When you feel the urge to rebuild before applying or talking to users, ask. Am I rebuilding because it is fundamentally wrong, or because I am uncomfortable showing something imperfect?"
+            "The most common failure is waiting for the portfolio to be ready before applying. It is ready. Apply.",
+            "Every change to your portfolio should be traceable to feedback from a real recruiter or user.",
+            "When you feel the urge to rebuild before applying, ask. Am I rebuilding because it is fundamentally wrong, or because I am uncomfortable showing something imperfect?"
           ]
         },
         {
           "dimension": "Valuenomics in the next four weeks",
           "techniques": [
-            "Door One, week 1. Apply to three roles with your portfolio URL in the application. Track responses.",
-            "Door Two, week 1. Ask one person if they would pay. Get a yes or a no.",
-            "By Demo Day in four weeks, you should be able to answer one question with confidence. What is my portfolio earning me, in interviews or in users?"
+            "Week 1. Send your portfolio URL to three specific people you have already identified.",
+            "Week 2. One LinkedIn post and three direct messages to roles you actually want.",
+            "Week 3. Refine the 90-second demo based on questions you got in your first interviews.",
+            "Week 4. Decide. Is the portfolio earning you what you want, or do you need to change the message?"
           ]
         }
       ],
       "prompts": [
         {
           "number": 1,
-          "title": "Build your four-week plan",
-          "tool": "Gemini  (gemini.google.com)",
-          "content": "I have just completed a two-day Just Build workshop. I have a portfolio of six AI-powered builds collected at one URL. I now have four weeks before Demo Day.\n\nMy portfolio URL: [from the portfolio reveal]\nMy target user or focus: [from Session 1]\nWhat I learned from validation: [the key insight from Session 9]\nThe door that is louder for me right now: [Door One, Door Two, or Both]\nWhat success looks like for me in four weeks: [from Question 5]\n\nBuild me a four-week plan structured by my chosen door.\n\nIf Door One is louder. Week 1, set up the portfolio for recruiters. Where to post. Who to message. Week 2, three interviews booked. The 90-second demo polished. Week 3, first-round conversations underway. Refining the pitch based on questions. Week 4, offers or clear next steps. Decision point.\n\nIf Door Two is louder. Week 1, apply what I learned from validation. One specific change to the product. Week 2, talk to three more real users. Look for the pattern. Week 3, iterate substantially. First willingness-to-pay conversation. Week 4, Demo Day ready. Product polished enough to show confidently.\n\nIf Both. Allocate my time between the two doors honestly. Most students will spend roughly 60 percent on whichever door is louder and 40 percent on the other. Acknowledge what I can actually do in seven days a week.\n\nFor each week, give me the one question I should be able to answer by Friday that tells me the week was not wasted."
+          "title": "Write your LinkedIn launch post",
+          "tool": "Claude  (claude.ai)",
+          "content": "I just finished the Just Build workshop and have a portfolio of six AI-powered builds. I need a LinkedIn launch post.\n\nMy focus or strongest build: [one sentence, from Question 4]\nMy target user or problem: [one sentence]\nThe one thing I built that surprised me: [from Question 1]\nMy portfolio URL: [from the portfolio reveal]\nThe kind of role I want next: [from Question 3]\n\nWrite me a LinkedIn post that.\n\nOpens with the most surprising or impressive thing about what I built.\nNames the problem I was solving in one sentence, in plain language.\nLists what I built, six things, in a clean and scannable format.\nEnds with my portfolio URL and a specific invitation. If you are hiring for AI-adjacent roles, I would love to chat.\n\nKeep it under 200 words. Conversational. Honest. Not boastful. Sound like a human who built something, not a marketer."
         },
         {
           "number": 2,
-          "title": "Write your LinkedIn launch post",
-          "tool": "Claude  (claude.ai)",
-          "content": "I just finished the Just Build workshop and have a portfolio of six AI-powered builds. I need a LinkedIn launch post.\n\nMy focus or product: [one sentence]\nMy target user: [one sentence]\nThe one thing I built that surprised me: [from Question 1]\nMy portfolio URL: [from the portfolio reveal]\nThe door that is louder for me right now: [Door One, Door Two, or Both]\n\nWrite me a LinkedIn post that.\n\nOpens with the most surprising or impressive thing about what I built.\nNames the problem I was solving in one sentence, in plain language.\nLists what I built (six things) in a clean, scannable format.\nEnds with my portfolio URL and a specific invitation.\n\nThe invitation depends on my door.\nIf Door One. If you are hiring for AI roles, I would love to chat.\nIf Door Two. If this problem is yours too, let me know.\nIf Both. Pick whichever fits more naturally.\n\nKeep it under 200 words. Conversational. Honest. Not boastful. Sound like a human who built something, not a marketer."
+          "title": "Draft your three outreach messages",
+          "tool": "Claude  (same conversation)",
+          "content": "I need to send my portfolio URL to three specific people this week. Help me draft a personal message for each.\n\nPerson 1, the recruiter or hiring manager.\nName, role, why I want to reach them: [name and one sentence]\n\nPerson 2, the alumnus from my college.\nName, role, why I want to reach them: [name and one sentence]\n\nPerson 3, the founder or builder I admire who is publicly active.\nName, role, why I want to reach them: [name and one sentence]\n\nMy portfolio URL: [from the portfolio reveal]\n\nFor each person, write me a message under 80 words. Personal. Specific. Not generic. Reference something they have actually said or done that you noticed. End with my portfolio URL and a clear, low-friction ask. A 15-minute call this week. A reply. A single question they would be willing to answer."
         }
       ],
       "build": [
         {
-          "title": "Stage 1.  Your four-week plan (15 minutes)",
-          "instructions": "Run Prompt 1 in Gemini. Read the plan. Make two specific edits where Gemini's generic plan needs adapting to your specific door and your specific idea. Save the plan. This is your operating brief for the next four weeks."
+          "title": "Stage 1.  Write the LinkedIn launch post (10 minutes)",
+          "instructions": "Paste Prompt 1 into Claude. Read the post out loud. Edit anything that sounds like a marketer. Do not post tonight. We post tomorrow morning after one night of distance. Save the draft somewhere you will find it. The post lives on your LinkedIn for years. Get it right."
         },
         {
-          "title": "Stage 2.  Your LinkedIn launch post (10 minutes)",
-          "instructions": "Run Prompt 2 in Claude. Read the post out loud. Edit anything that sounds like a marketer. Do not post yet. We post tomorrow morning after one night of distance. Save the draft somewhere you will find it."
+          "title": "Stage 2.  Draft the three outreach messages (15 minutes)",
+          "instructions": "Paste Prompt 2 into the same Claude conversation. Use the three names you wrote down for Question 2. Read each message out loud. If it sounds copy-pasted from a template, ask Claude to make it more specific. Save all three messages for tomorrow."
         },
         {
-          "title": "Stage 3.  Public commitments (20 minutes)",
-          "instructions": "Everyone stands and states three things to the room. Which door is louder for them this week. The one specific commitment they will make in the next seven days, named precisely. The three specific people who will see their portfolio before next Friday, named by first name or relationship. The WhatsApp group captures these. Vague commitments get gently pushed back on in real time."
+          "title": "Stage 3.  Public commitments (15 minutes)",
+          "instructions": "Everyone stands. Each person states three things to the room. The one role or company they most want to land. The three real people they will message before Friday. The one thing they will not change about their portfolio while applying. Vague commitments get gently pushed back on in real time. Specific commitments get noted."
         },
         {
           "title": "Stage 4.  The four-week structure (10 minutes)",
-          "instructions": "Weekly group session, same day, same time, every week, ninety minutes. Office hours twice per week, thirty minutes each, bookable for specific stuck-points. WhatsApp group for sharing portfolio URL feedback, recruiter conversations, user quotes, and wins."
+          "instructions": "Weekly group session, same day, same time, every week, ninety minutes. Office hours twice per week, thirty minutes each, bookable. The WhatsApp alumni group for sharing recruiter conversations, interview prep, and wins. You are not on your own. The cohort is the structure."
         },
         {
-          "title": "Stage 5.  The certificate moment (5 minutes)",
-          "instructions": "You are not receiving a certificate today. The OC Just Build Certificate marks completion of the full journey, not attendance at a workshop. Four weeks from now, when you can show one of two things, the certificate is yours. For Door One. A real conversation, interview, or connection that came directly from your portfolio. For Door Two. Real users you did not know before, validated change in the product, momentum. Either earns the certificate. See you at Demo Day. Go build."
+          "title": "Stage 5.  The optional next door (5 minutes)",
+          "instructions": "Some of you cannot stop thinking about the idea you built. The product feels real. The validation conversation lit something up. If that is you, the Orange Caterpillar Micro-Venture Program is open for applications. Four weeks of structured iteration, weekly reviews, and a real Demo Day to investors and operators. Applications close one week after this workshop. Apply at justbuild.orangecaterpillar.com/apply. The program is selective. We accept the builders who showed real momentum this weekend. Talk to a facilitator if you want to know more."
         }
       ],
       "test_output": [
         {
-          "title": "The plan test",
-          "description": "You have a four-week plan with one primary goal per week, three specific actions per week, and one checkpoint question per week."
+          "title": "The post test",
+          "description": "You have a LinkedIn launch post drafted, edited, and ready to publish tomorrow morning."
         },
         {
-          "title": "The post test",
-          "description": "You have a LinkedIn launch post drafted, ready to publish tomorrow morning after one night of distance."
+          "title": "The outreach test",
+          "description": "You have three personal messages drafted, one for each of three real people you will send to this week."
+        },
+        {
+          "title": "The role test",
+          "description": "You can name in one sentence the role or company you most want to land. Specific. Real."
         },
         {
           "title": "The commitment test",
-          "description": "You stated three specific public commitments to the room. Which door is louder. One specific action this week. Three specific people."
+          "description": "You stated three specific commitments to the room. The role. The three people. The thing you will not change."
         },
         {
-          "title": "The people test",
-          "description": "You can name three specific real people who will see your portfolio before next Friday."
-        },
-        {
-          "title": "The success test",
-          "description": "You can complete this sentence without hesitation. Success in four weeks for me looks like, then a specific, personal, measurable answer."
-        },
-        {
-          "title": "The group test",
-          "description": "You are in the WhatsApp alumni group. You know the weekly session date and time. You know how to book office hours."
+          "title": "The application test",
+          "description": "If the micro-venture path is calling you, you know where the OC Micro-Venture Program application lives."
         }
       ],
       "output_capture": null,
       "id": "11",
       "number": "11",
-      "title": "Close and Four-Week Brief",
+      "title": "Close and what comes next",
       "start_time": "17:00",
       "end_time": "18:00"
     }

@@ -346,28 +346,31 @@
   .prompt-tool {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    background: var(--accent-soft);
+    gap: 12px;
+    background: var(--accent);
     border: 1px solid var(--accent);
     border-radius: 6px;
-    padding: 10px 16px;
+    padding: 12px 18px;
     margin-bottom: 24px;
-    font-size: 13px;
-    color: var(--text-soft);
+    font-size: 14px;
+    color: var(--bg);
+    box-shadow: 0 0 0 3px rgba(193, 125, 42, 0.18);
   }
   .prompt-tool::before {
     content: "USE";
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    color: var(--accent);
-    font-weight: 600;
-    padding-right: 10px;
-    border-right: 1px solid var(--accent-line, rgba(193,125,42,0.35));
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    color: var(--bg);
+    font-weight: 700;
+    padding-right: 12px;
+    border-right: 1px solid rgba(10, 10, 10, 0.4);
+    opacity: 0.85;
   }
   .prompt-tool strong {
-    color: var(--accent);
-    font-weight: 600;
-    font-size: 15px;
+    color: var(--bg);
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: -0.005em;
   }
   .prompt-box {
     background: #050505;
@@ -876,21 +879,44 @@
   /* ----- Two Doors ----- */
   .doors-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 18px;
     margin: 0;
     text-align: left;
+    align-items: stretch;
   }
   .door {
     background: var(--bg-elev-1);
     border: 1px solid var(--line);
-    border-top: 3px solid var(--text-muted);
-    border-radius: 4px;
+    border-radius: 6px;
     padding: 22px 24px 24px;
     display: flex;
     flex-direction: column;
+    position: relative;
+    overflow: hidden;
   }
-  .door-primary { border-top-color: var(--accent); background: var(--accent-soft); }
+  .door-primary {
+    border: 1px solid var(--accent);
+    box-shadow: 0 0 0 4px rgba(193, 125, 42, 0.08), inset 0 1px 0 rgba(255,255,255,0.04);
+  }
+  .door-primary::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--accent);
+  }
+  .door-secondary::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--line-strong);
+  }
   .door-tag {
     font-size: 10px;
     letter-spacing: 0.22em;
@@ -898,6 +924,7 @@
     color: var(--accent);
     font-weight: 600;
     margin-bottom: 14px;
+    margin-top: 4px;
   }
   .door-secondary .door-tag { color: var(--text-muted); }
   .door-dot { color: var(--text-faint); margin: 0 4px; }
@@ -1134,172 +1161,181 @@
     width: 110px;
   }
 
-  /* ----- Day 2 Check-in ----- */
-  .checkin-form {
-    max-width: 580px;
-    margin: 0 auto;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-  }
-  .checkin-field {
-    background: var(--bg-elev-1);
-    border: 1px solid var(--line);
-    border-radius: 4px;
-    padding: 18px 20px;
-  }
-  .checkin-label {
-    display: block;
-    font-family: var(--serif);
-    font-size: 16px;
-    font-weight: 400;
-    color: var(--text);
-    margin-bottom: 14px;
-    line-height: 1.4;
-  }
-  .checkin-radio-group {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-  .checkin-radio {
-    flex: 1;
-    min-width: 120px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 14px;
-    border: 1px solid var(--line);
-    border-radius: 4px;
-    cursor: pointer;
-    color: var(--text-soft);
-    font-size: 14px;
-    transition: all 160ms ease;
-    background: var(--bg);
-  }
-  .checkin-radio:hover { border-color: var(--text-muted); }
-  .checkin-radio.selected {
-    border-color: var(--accent);
-    background: var(--accent-soft);
-    color: var(--text);
-    font-weight: 500;
-  }
-  .checkin-radio input { display: none; }
-  .checkin-textarea {
-    width: 100%;
-    background: var(--bg);
-    border: 1px solid var(--line);
-    border-radius: 4px;
-    padding: 12px 14px;
-    color: var(--text);
-    font-family: var(--sans);
-    font-size: 14px;
-    line-height: 1.5;
-    resize: vertical;
-    transition: border-color 160ms ease;
-  }
-  .checkin-textarea:focus {
-    outline: none;
-    border-color: var(--accent);
-  }
-  .checkin-textarea::placeholder { color: var(--text-faint); }
-
-  /* ----- Feedback Prompt ----- */
-  .feedback-form {
-    max-width: 580px;
-    margin: 0 auto;
-    text-align: left;
-    background: var(--bg-elev-1);
-    border: 1px solid var(--line);
-    border-radius: 4px;
-    padding: 18px 20px;
-  }
-
-  /* ----- Portfolio Reveal ----- */
-  .portfolio-screen { max-width: 1100px; }
-  .portfolio-grid {
+  /* ----- Day 2 Recap (replaces old check-in) ----- */
+  .d2-recap {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 14px;
-    margin-bottom: 32px;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 28px;
+    align-items: stretch;
+    max-width: 640px;
+    margin: 0 auto;
     text-align: left;
   }
-  .portfolio-card {
-    background: var(--bg-elev-1);
-    border: 1px solid var(--line);
-    border-radius: 4px;
-    padding: 14px 16px;
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
+  .d2-recap-half {
+    padding: 0;
   }
-  .portfolio-card.filled { border-left: 3px solid var(--accent); }
-  .portfolio-card.placeholder { opacity: 0.5; border-style: dashed; }
-  .portfolio-num {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--accent);
-    flex-shrink: 0;
-    margin-top: 2px;
+  .d2-recap-ahead {
+    padding-left: 8px;
   }
-  .portfolio-body { flex: 1; min-width: 0; }
-  .portfolio-label {
-    font-family: var(--serif);
-    font-size: 15px;
-    font-weight: 500;
-    color: var(--text);
+  .d2-recap-divider {
+    width: 1px;
+    background: var(--line);
   }
-  .portfolio-note {
-    font-size: 11px;
-    color: var(--text-muted);
-    margin-bottom: 6px;
-  }
-  .portfolio-link {
-    display: block;
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--accent);
-    text-decoration: none;
-    word-break: break-all;
-    line-height: 1.35;
-  }
-  .portfolio-link:hover { text-decoration: underline; }
-  .portfolio-text {
-    font-size: 12px;
-    color: var(--text-soft);
-    line-height: 1.4;
-  }
-  .portfolio-url-block {
-    background: var(--accent-soft);
-    border: 1px solid var(--accent);
-    border-radius: 6px;
-    padding: 20px 24px;
-    text-align: center;
-    margin-bottom: 16px;
-  }
-  .portfolio-url-label {
+  .d2-recap-label {
     font-size: 11px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--accent);
     font-weight: 600;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
   }
-  .portfolio-url {
+  .d2-recap-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .d2-recap-list li {
+    padding: 6px 0 6px 18px;
+    color: var(--text-soft);
+    font-size: 15px;
+    line-height: 1.4;
+    position: relative;
+  }
+  .d2-recap-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 14px;
+    width: 8px;
+    height: 2px;
+    background: var(--accent);
+  }
+  .d2-recap-half:not(.d2-recap-ahead) .d2-recap-list li {
+    color: var(--text-muted);
+  }
+  .d2-recap-half:not(.d2-recap-ahead) .d2-recap-list li::before {
+    background: var(--text-faint);
+  }
+
+  /* ----- Feedback Prompt (group activity, no inputs) ----- */
+  .feedback-question {
+    max-width: 640px;
+    margin: 0 auto;
+    background: var(--bg-elev-1);
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    padding: 26px 32px;
+    text-align: center;
+  }
+  .feedback-question-text {
+    font-family: var(--serif);
+    font-size: clamp(20px, 2.2vw, 28px);
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+  }
+
+  /* ----- Portfolio Reveal ----- */
+  .portfolio-screen { max-width: 1100px; }
+
+  .portfolio-hero {
+    border: 1px solid var(--accent);
+    border-radius: 8px;
+    padding: 24px 28px 22px;
+    margin-bottom: 28px;
+    background: linear-gradient(180deg, rgba(193,125,42,0.05), rgba(193,125,42,0.01));
+    position: relative;
+    overflow: hidden;
+  }
+  .portfolio-hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--accent);
+  }
+  .portfolio-hero-label {
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 12px;
+    margin-top: 4px;
+  }
+  .portfolio-hero-url {
     font-family: var(--mono);
-    font-size: clamp(14px, 1.5vw, 18px);
+    font-size: clamp(15px, 1.8vw, 22px);
     color: var(--text);
     font-weight: 500;
     word-break: break-all;
-    margin-bottom: 10px;
+    margin-bottom: 14px;
+    line-height: 1.35;
+    letter-spacing: -0.005em;
   }
-  .portfolio-url-note {
-    font-size: 13px;
+  .portfolio-hero-slot {
+    color: var(--accent);
+    font-style: normal;
+  }
+  .portfolio-hero-note {
+    font-size: 14px;
     color: var(--text-soft);
-    line-height: 1.5;
-    max-width: 60ch;
+    line-height: 1.55;
+    max-width: 70ch;
     margin: 0 auto;
+    font-style: italic;
+  }
+
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 8px;
+    text-align: left;
+  }
+  .portfolio-card {
+    background: var(--bg-elev-1);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 16px 18px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    transition: border-color 160ms ease;
+  }
+  .portfolio-card:hover { border-color: var(--line-strong); }
+  .portfolio-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    flex-shrink: 0;
+    margin-top: 3px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+  }
+  .portfolio-body { flex: 1; min-width: 0; }
+  .portfolio-label {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 2px;
+    letter-spacing: -0.01em;
+  }
+  .portfolio-note {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+  .portfolio-placeholder {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-faint);
+    word-break: break-all;
+    line-height: 1.4;
   }
 
   /* ----- Output Capture ----- */
@@ -1328,56 +1364,40 @@
     margin-bottom: 20px;
     line-height: 1.5;
   }
-  .capture-form {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-bottom: 16px;
-  }
-  .capture-input {
-    width: 100%;
+  .capture-instruction {
     background: var(--bg-elev-1);
     border: 1px solid var(--line);
-    border-radius: 4px;
-    padding: 14px 16px;
-    color: var(--text);
-    font-family: var(--mono);
-    font-size: 14px;
+    border-left: 3px solid var(--accent);
+    border-radius: 0 6px 6px 0;
+    padding: 18px 22px;
+    margin-bottom: 16px;
+  }
+  .capture-instruction-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 8px 0;
+    color: var(--text-soft);
+    font-size: 15px;
     line-height: 1.5;
-    transition: border-color 160ms ease;
+    border-bottom: 1px solid var(--line);
   }
-  .capture-input:focus {
-    outline: none;
-    border-color: var(--accent);
-  }
-  .capture-input::placeholder {
-    color: var(--text-faint);
-    font-family: var(--mono);
-  }
-  textarea.capture-input { font-family: var(--sans); resize: vertical; }
-  textarea.capture-input::placeholder { font-family: var(--sans); }
-  .capture-save {
-    align-self: flex-start;
+  .capture-instruction-step:last-child { border-bottom: none; }
+  .capture-instruction-num {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
     background: var(--accent);
     color: var(--bg);
-    border: none;
-    padding: 10px 18px;
-    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     font-family: var(--sans);
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    letter-spacing: 0.02em;
-    transition: opacity 160ms ease;
+    font-size: 12px;
+    font-weight: 700;
+    margin-top: 1px;
   }
-  .capture-save:hover { opacity: 0.9; }
-  .capture-save:disabled { opacity: 0.5; cursor: wait; }
-  .capture-status {
-    font-size: 13px;
-    min-height: 18px;
-  }
-  .status-ok { color: #6FB67A; }
-  .status-error { color: var(--danger); }
   .capture-guidance {
     background: var(--bg-elev-1);
     border-left: 3px solid var(--accent);
@@ -1390,89 +1410,46 @@
   }
 
   /* ============================================
-     STUCK BUTTON (floating, persistent on workshop screens)
+     CLOSING / INSPIRATIONAL
      ============================================ */
-  .stuck-btn {
-    position: fixed;
-    bottom: 90px;
-    right: 24px;
-    z-index: 50;
-    background: var(--bg-elev-2);
-    border: 1px solid var(--line-strong);
-    color: var(--text-soft);
-    padding: 8px 14px;
-    border-radius: 20px;
-    font-family: var(--sans);
-    font-size: 12px;
-    letter-spacing: 0.04em;
-    cursor: pointer;
-    transition: all 160ms ease;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .stuck-btn:hover {
-    border-color: var(--accent);
-    color: var(--text);
-  }
-  .stuck-btn::before {
-    content: "?";
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 16px;
-    height: 16px;
-    border: 1px solid currentColor;
-    border-radius: 50%;
-    font-size: 10px;
-    font-weight: 600;
-  }
-  .stuck-btn.hidden { display: none; }
-
-  .stuck-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.6);
-    backdrop-filter: blur(4px);
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-  }
-  .stuck-overlay.hidden { display: none; }
-  .stuck-dialog {
-    background: var(--bg-elev-1);
-    border: 1px solid var(--line-strong);
-    border-radius: 8px;
-    padding: 32px 36px;
-    max-width: 440px;
+  .closing-screen {
     text-align: center;
+    padding: 24px 24px 48px;
+    max-width: 760px;
+    margin: 0 auto;
   }
-  .stuck-dialog h3 {
-    font-family: var(--serif);
-    font-size: 24px;
-    font-weight: 400;
-    color: var(--text);
-    margin-bottom: 12px;
-    letter-spacing: -0.01em;
+  .closing-logo {
+    display: block;
+    width: clamp(160px, 22vw, 280px);
+    height: auto;
+    margin: 0 auto 36px;
   }
-  .stuck-dialog p {
-    color: var(--text-soft);
-    font-size: 14px;
-    line-height: 1.55;
-    margin-bottom: 20px;
-  }
-  .stuck-close {
-    background: var(--accent);
-    color: var(--bg);
-    border: none;
-    padding: 10px 22px;
-    border-radius: 4px;
-    font-family: var(--sans);
-    font-size: 14px;
+  .closing-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 22px;
     font-weight: 500;
-    cursor: pointer;
+  }
+  .closing-title {
+    font-family: var(--serif);
+    font-size: clamp(52px, 7vw, 92px);
+    font-weight: 300;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    margin-bottom: 24px;
+  }
+  .closing-sub {
+    font-family: var(--serif);
+    font-size: clamp(17px, 1.6vw, 22px);
+    color: var(--text-soft);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.5;
+    max-width: 60ch;
+    margin: 0 auto;
   }
 
 </style>
@@ -1528,18 +1505,6 @@
   </div>
   <button class="nav-btn nav-next" id="next-btn">Next →</button>
 </footer>
-
-<!-- Stuck button (floating, visible on workshop screens only) -->
-<button class="stuck-btn hidden" id="stuck-btn" title="Click if you are stuck">Stuck?</button>
-
-<!-- Stuck dialog (hidden by default) -->
-<div class="stuck-overlay hidden" id="stuck-overlay">
-  <div class="stuck-dialog">
-    <h3>Help is on the way.</h3>
-    <p>The facilitator has been notified. Someone will come to your table in a moment. While you wait, take a breath and re-read the prompt you are on.</p>
-    <button class="stuck-close" id="stuck-close" type="button">Got it</button>
-  </div>
-</div>
 
 <script>
 /* ============================================
@@ -1682,8 +1647,11 @@ function buildScreenSequence() {
     }
   });
 
-  // Day 2 close feedback prompt before workshop-complete
+  // Day 2 close feedback prompt before closing screen
   SCREENS.push({ type: "feedback-prompt", day: 2 });
+
+  // Closing inspirational slide
+  SCREENS.push({ type: "closing" });
 
   // Workshop complete (Day 2 close)
   SCREENS.push({ type: "workshop-complete" });
@@ -1721,17 +1689,10 @@ function renderCurrent() {
                        || screen.type === "journey-map" || screen.type === "tools-landscape";
   const isInterlude = screen.type === "cohort-wall" || screen.type === "day1-photo"
                     || screen.type === "day2-checkin" || screen.type === "feedback-prompt"
-                    || screen.type === "portfolio-reveal";
+                    || screen.type === "portfolio-reveal" || screen.type === "closing";
   const noChrome = isWelcomeLayer || isInterlude || screen.type === "workshop-complete" || screen.type === "break";
   topbar.classList.toggle("hidden", noChrome);
   bottombar.classList.toggle("hidden", screen.type === "welcome");
-
-  // Stuck button visible only on workshop session screens
-  const stuckBtn = $("#stuck-btn");
-  if (stuckBtn) {
-    const showStuck = !!screen.session && screen.type !== "session-end" && screen.type !== "session-start";
-    stuckBtn.classList.toggle("hidden", !showStuck);
-  }
 
   // Update topbar context
   if (screen.session) {
@@ -1760,6 +1721,7 @@ function renderCurrent() {
     case "day2-checkin":       html = renderDay2Checkin(); break;
     case "feedback-prompt":    html = renderFeedbackPrompt(screen); break;
     case "portfolio-reveal":   html = renderPortfolioReveal(); break;
+    case "closing":            html = renderClosing(); break;
     case "session-start":      html = renderSessionStart(screen.session); break;
     case "stage":              html = renderStage(screen.session); break;
     case "question":           html = renderQuestion(screen); break;
@@ -1829,7 +1791,6 @@ function renderWelcome() {
       <div class="hero-eyebrow">Orange Caterpillar</div>
       <h1 class="hero-title brand">JUST<br>BUILD</h1>
       <hr class="hero-rule">
-      <p class="hero-sub">${WORKSHOP.subtitle || "AI Venture Building Workshop"}</p>
       <p class="hero-meta">Two days &middot; Four weeks &middot; One portfolio</p>
       <div class="button-row" style="margin-top: 56px;">
         <button class="btn btn-primary" id="start-btn">Begin →</button>
@@ -1842,34 +1803,34 @@ function renderTwoDoors() {
   return `
     <div class="wl-screen">
       <div class="wl-eyebrow">What you walk out with</div>
-      <h1 class="wl-title">Two doors. One degree.</h1>
-      <p class="wl-sub">Your degree opens one set of options. By Sunday afternoon, this workshop opens two more. The first is automatic. The second is yours if you want it.</p>
+      <h1 class="wl-title">A portfolio. And an option.</h1>
+      <p class="wl-sub">By Sunday afternoon, two things. The first is automatic. The second is optional, and only some of you will choose it.</p>
 
       <div class="doors-grid">
         <div class="door door-primary">
-          <div class="door-tag">Door One <span class="door-dot">&middot;</span> Primary <span class="door-dot">&middot;</span> Job-ready</div>
-          <h2 class="door-title">A working portfolio.</h2>
-          <p class="door-lede">You walk in carrying proof, not promises. The recruiter who asks "show me what you can do with AI" has an answer waiting.</p>
+          <div class="door-tag">Primary outcome <span class="door-dot">&middot;</span> For everyone</div>
+          <h2 class="door-title">A working AI portfolio.</h2>
+          <p class="door-lede">You walk in carrying proof, not promises. The recruiter who asks "show me what you can do with AI" has an answer waiting at your portfolio URL.</p>
           <ul class="door-list">
-            <li>Six live builds in one portfolio.</li>
+            <li>Six live builds at one URL.</li>
             <li>A 90-second demo you can run from your phone.</li>
             <li>The 56% AI wage premium becomes available to you.</li>
           </ul>
         </div>
 
         <div class="door door-secondary">
-          <div class="door-tag">Door Two <span class="door-dot">&middot;</span> Optional <span class="door-dot">&middot;</span> Founder</div>
-          <h2 class="door-title">A starting venture.</h2>
-          <p class="door-lede">If the idea you build feels real, keep going. The six builds combine into a working first product. Yours to scale, set aside, or hand back as portfolio.</p>
+          <div class="door-tag">Optional next step <span class="door-dot">&middot;</span> For builders who want more</div>
+          <h2 class="door-title">A starting micro-venture.</h2>
+          <p class="door-lede">If what you build feels real by Sunday, Orange Caterpillar runs a four-week structured program to grow it into a working first product. Selective. Applications open at the end of the workshop.</p>
           <ul class="door-list">
-            <li>The option to keep building your venture.</li>
-            <li>Founder capability, demonstrable on demand.</li>
-            <li>The first product is always the hardest. You will have it.</li>
+            <li>Four weeks of structured iteration.</li>
+            <li>Weekly reviews. Office hours. Real Demo Day.</li>
+            <li>For the builders who could not stop.</li>
           </ul>
         </div>
       </div>
 
-      <p class="wl-footer">One workshop. Two doors. Both yours.</p>
+      <p class="wl-footer">First a portfolio. Then, if you want it, a micro-venture.</p>
     </div>
   `;
 }
@@ -2079,71 +2040,55 @@ function renderDay1Photo() {
 }
 
 function renderDay2Checkin() {
-  // Pull saved values from localStorage if returning to this screen
-  let saved = {};
-  try {
-    const stored = localStorage.getItem("jb-day2-checkin");
-    if (stored) saved = JSON.parse(stored);
-  } catch (_) {}
-  const idea = saved.idea || "";
-  const worry = saved.worry || "";
-
   return `
     <div class="wl-screen interlude-narrow">
       <div class="wl-eyebrow">Day 2 &middot; Morning</div>
       <h1 class="wl-title">Welcome back.</h1>
-      <p class="wl-sub">Some of you walked away from yesterday still on fire. Some of you went home quietly doubting. Before we start, two questions. For you alone. Nobody else sees these.</p>
+      <p class="wl-sub">Yesterday you built three things. A working AI App. A website that markets it. A chatbot that answers questions on it. They are still live. Open your phone. Check.</p>
 
-      <div class="checkin-form">
-        <div class="checkin-field">
-          <label class="checkin-label">Is this still the idea you want to build today?</label>
-          <div class="checkin-radio-group" data-field="idea">
-            <label class="checkin-radio ${idea === 'yes' ? 'selected' : ''}">
-              <input type="radio" name="idea" value="yes" ${idea === 'yes' ? 'checked' : ''}>
-              <span>Yes, all in</span>
-            </label>
-            <label class="checkin-radio ${idea === 'unsure' ? 'selected' : ''}">
-              <input type="radio" name="idea" value="unsure" ${idea === 'unsure' ? 'checked' : ''}>
-              <span>Not sure</span>
-            </label>
-            <label class="checkin-radio ${idea === 'pivot' ? 'selected' : ''}">
-              <input type="radio" name="idea" value="pivot" ${idea === 'pivot' ? 'checked' : ''}>
-              <span>I am pivoting</span>
-            </label>
-          </div>
+      <div class="d2-recap">
+        <div class="d2-recap-half">
+          <div class="d2-recap-label">Behind you</div>
+          <ul class="d2-recap-list">
+            <li>AI App</li>
+            <li>Website</li>
+            <li>Chatbot</li>
+            <li>Audio script (homework)</li>
+          </ul>
         </div>
-
-        <div class="checkin-field">
-          <label class="checkin-label" for="checkin-worry">What is the one thing you are worried about today?</label>
-          <textarea id="checkin-worry" class="checkin-textarea" rows="3" placeholder="One sentence. No need to solve it now. Just name it.">${escapeHtml(worry)}</textarea>
+        <div class="d2-recap-divider"></div>
+        <div class="d2-recap-half d2-recap-ahead">
+          <div class="d2-recap-label">Ahead of you</div>
+          <ul class="d2-recap-list">
+            <li>Audio (live by 11am)</li>
+            <li>Video (live on LinkedIn by lunch)</li>
+            <li>Validation (real conversation over lunch)</li>
+            <li>Agent (automation by 14:00)</li>
+            <li>Demo Day (15:30)</li>
+          </ul>
         </div>
       </div>
 
-      <p class="wl-quiet">Naming a worry shrinks it. Read both questions. Answer honestly. Then we go.</p>
+      <p class="wl-footer">By 6pm tonight, your portfolio is real.</p>
     </div>
   `;
 }
 
 function renderFeedbackPrompt(screen) {
   const day = screen.day || 1;
-  const key = `jb-feedback-day${day}`;
-  let saved = "";
-  try {
-    saved = localStorage.getItem(key) || "";
-  } catch (_) {}
 
   const dayCopy = day === 1 ? {
     eyebrow: "Day 1 &middot; Feedback",
     title: "Tell us one thing.",
-    sub: "Before we close out today, one question. Honest answers help us run a better workshop tomorrow.",
-    label: "What was the hardest part of today, or the thing that surprised you most?",
-    placeholder: "Two or three sentences. We read every one.",
+    sub: "Around the room. Each person, one sentence.",
+    question: "What was the hardest part of today, or the thing that surprised you most?",
+    closing: "Your facilitator captures these. We read every one before tomorrow morning.",
   } : {
     eyebrow: "Day 2 &middot; Feedback",
     title: "One last question.",
-    sub: "You are about to walk out with a portfolio you did not have yesterday. Before you go, tell us one thing.",
-    label: "What is the one thing you wish this workshop had covered, or done differently?",
-    placeholder: "Two or three sentences. We read every one and improve for the next cohort.",
+    sub: "Around the room. Each person, one sentence.",
+    question: "What is the one thing you wish this workshop had covered, or done differently?",
+    closing: "Your facilitator captures these. The next cohort gets a better workshop because of you.",
   };
 
   return `
@@ -2151,55 +2096,35 @@ function renderFeedbackPrompt(screen) {
       <div class="wl-eyebrow">${dayCopy.eyebrow}</div>
       <h1 class="wl-title">${dayCopy.title}</h1>
       <p class="wl-sub">${dayCopy.sub}</p>
-      <div class="feedback-form">
-        <label class="checkin-label" for="feedback-text">${dayCopy.label}</label>
-        <textarea id="feedback-text" class="checkin-textarea" data-feedback-day="${day}" rows="4" placeholder="${dayCopy.placeholder}">${escapeHtml(saved)}</textarea>
+      <div class="feedback-question">
+        <p class="feedback-question-text">${dayCopy.question}</p>
       </div>
-      <p class="wl-quiet">Your answer is anonymous. Click Next when you are ready.</p>
+      <p class="wl-quiet">${dayCopy.closing}</p>
     </div>
   `;
 }
 
 function renderPortfolioReveal() {
-  // Pull saved captures from localStorage
-  const captures = {};
-  try {
-    const stored = localStorage.getItem("jb-captures");
-    if (stored) Object.assign(captures, JSON.parse(stored));
-  } catch (_) {}
-
-  // Define the six build artifacts in order
+  // Define the six build artifacts in order with mock display data
   const artifacts = [
-    { id: "3",  label: "AI App",   note: "The product itself" },
-    { id: "4",  label: "Website",  note: "Marketing site" },
-    { id: "5",  label: "Chatbot",  note: "Always-on support" },
-    { id: "6b", label: "Audio",    note: "60 seconds of voice" },
-    { id: "7",  label: "Video",    note: "90 seconds on LinkedIn" },
-    { id: "8",  label: "Agent",    note: "Automation that runs alone" },
+    { id: "3",  label: "AI App",   note: "Your live product",         placeholder: "yourname.netlify.app" },
+    { id: "4",  label: "Website",  note: "Marketing site",            placeholder: "yourname.carrd.co" },
+    { id: "5",  label: "Chatbot",  note: "Always-on support",         placeholder: "embedded on your site" },
+    { id: "6b", label: "Audio",    note: "60 seconds of your voice",  placeholder: "embedded on your site" },
+    { id: "7",  label: "Video",    note: "90 seconds on LinkedIn",    placeholder: "linkedin.com/posts/..." },
+    { id: "8",  label: "Agent",    note: "Automated workflow",        placeholder: "tally.so/r/..." },
   ];
 
-  const cards = artifacts.map((a, i) => {
-    const c = captures[a.id];
-    const filled = c && (c.url || c.text);
-    const display = c ? (c.url || c.text || "") : "Saved during Session " + a.id.toUpperCase();
-    const isLink = c && c.url;
-    return `
-      <div class="portfolio-card ${filled ? 'filled' : 'placeholder'}">
-        <div class="portfolio-num">0${i + 1}</div>
-        <div class="portfolio-body">
-          <div class="portfolio-label">${a.label}</div>
-          <div class="portfolio-note">${a.note}</div>
-          ${isLink
-            ? `<a class="portfolio-link" href="${escapeHtml(c.url)}" target="_blank" rel="noopener">${escapeHtml(c.url)}</a>`
-            : `<div class="portfolio-text">${escapeHtml(display)}</div>`
-          }
-        </div>
+  const cards = artifacts.map((a, i) => `
+    <div class="portfolio-card">
+      <div class="portfolio-num">0${i + 1}</div>
+      <div class="portfolio-body">
+        <div class="portfolio-label">${a.label}</div>
+        <div class="portfolio-note">${a.note}</div>
+        <div class="portfolio-placeholder">${a.placeholder}</div>
       </div>
-    `;
-  }).join("");
-
-  // Build the portfolio URL (placeholder until backend wires real values)
-  const portfolioUrl = "justbuild.orangecaterpillar.com/your-city/your-college/c1/your-name";
+    </div>
+  `).join("");
 
   return `
     <div class="wl-screen portfolio-screen">
@@ -2207,14 +2132,14 @@ function renderPortfolioReveal() {
       <h1 class="wl-title">It is real. It is yours.</h1>
       <p class="wl-sub">Forty-eight hours ago, none of this existed. Now look at what you can show. Six things you built. One URL that carries them all.</p>
 
-      <div class="portfolio-grid">
-        ${cards}
+      <div class="portfolio-hero">
+        <div class="portfolio-hero-label">Your portfolio URL</div>
+        <div class="portfolio-hero-url">justbuild.orangecaterpillar.com/<span class="portfolio-hero-slot">your-college</span>/<span class="portfolio-hero-slot">c1</span>/<span class="portfolio-hero-slot">your-name</span></div>
+        <p class="portfolio-hero-note">We email each of you your personal portfolio URL by Monday. Use it on LinkedIn. Use it in every application. Use it in every message you send to a recruiter this week.</p>
       </div>
 
-      <div class="portfolio-url-block">
-        <div class="portfolio-url-label">Your portfolio URL</div>
-        <div class="portfolio-url">${portfolioUrl}</div>
-        <p class="portfolio-url-note">Copy this. Paste it into LinkedIn. Put it on your CV. Send it to one recruiter and one founder this week. This is what your degree did not give you on its own.</p>
+      <div class="portfolio-grid">
+        ${cards}
       </div>
 
       <p class="wl-footer">Six builds. One URL. Yours.</p>
@@ -2224,31 +2149,39 @@ function renderPortfolioReveal() {
 
 function renderOutputCapture(s) {
   const oc = s.output_capture || {};
-  // Restore saved value
-  let saved = { url: "", text: "" };
-  try {
-    const allCaptures = JSON.parse(localStorage.getItem("jb-captures") || "{}");
-    if (allCaptures[s.id]) saved = allCaptures[s.id];
-  } catch (_) {}
-  const value = saved.url || saved.text || "";
-  const isText = oc.kind === "text";
-
   return `
     <div class="capture-screen">
       <div class="label">Save your work</div>
       <h2 class="capture-title">${escapeHtml(oc.artifact || "Output")} <span class="capture-arrow">→</span> Portfolio</h2>
-      <p class="capture-ask">${escapeHtml(oc.ask || "Paste your work below.")}</p>
+      <p class="capture-ask">${escapeHtml(oc.ask || "Save your work below.")}</p>
 
-      <div class="capture-form">
-        ${isText
-          ? `<textarea class="capture-input" id="capture-input" data-session="${s.id}" data-kind="text" rows="3" placeholder="${escapeHtml(oc.placeholder || '')}">${escapeHtml(value)}</textarea>`
-          : `<input class="capture-input" type="url" id="capture-input" data-session="${s.id}" data-kind="url" placeholder="${escapeHtml(oc.placeholder || '')}" value="${escapeHtml(value)}">`
-        }
-        <button class="capture-save" id="capture-save" type="button">${value ? 'Update saved' : 'Save to portfolio'}</button>
-        <div class="capture-status" id="capture-status">${value ? '<span class="status-ok">Saved.</span>' : ''}</div>
+      <div class="capture-instruction">
+        <div class="capture-instruction-step">
+          <span class="capture-instruction-num">1</span>
+          <span>Open the cohort form on your laptop.</span>
+        </div>
+        <div class="capture-instruction-step">
+          <span class="capture-instruction-num">2</span>
+          <span>Find the ${escapeHtml(oc.artifact || "")} field. Paste your link.</span>
+        </div>
+        <div class="capture-instruction-step">
+          <span class="capture-instruction-num">3</span>
+          <span>Submit. Your facilitator will confirm when everyone is in.</span>
+        </div>
       </div>
 
       ${oc.guidance ? `<p class="capture-guidance">${escapeHtml(oc.guidance)}</p>` : ''}
+    </div>
+  `;
+}
+
+function renderClosing() {
+  return `
+    <div class="closing-screen">
+      <img class="closing-logo" src="logo.png" alt="Orange Caterpillar" onerror="this.style.display='none'">
+      <div class="closing-eyebrow">Orange Caterpillar</div>
+      <h1 class="closing-title">Now go use it.</h1>
+      <p class="closing-sub">You built six things in forty-eight hours. Forty-eight more hours and you will have used them. Send the message. Make the call. Apply for the role. Your portfolio is ready. So are you.</p>
     </div>
   `;
 }
@@ -2526,108 +2459,12 @@ function attachHandlers(screen) {
   if (screen && screen.type === "break" && breakTimer.finished) {
     document.body.onclick = (e) => {
       if (e.target.closest(".bottombar")) return;
-      if (e.target.closest(".stuck-btn") || e.target.closest(".stuck-overlay")) return;
       breakTimer.finished = false;
       document.body.onclick = null;
       next();
     };
   } else {
     document.body.onclick = null;
-  }
-
-  // Output Capture: save to localStorage
-  const captureSave = $("#capture-save");
-  const captureInput = $("#capture-input");
-  if (captureSave && captureInput) {
-    captureSave.onclick = () => {
-      const sessionId = captureInput.dataset.session;
-      const kind = captureInput.dataset.kind;
-      const value = captureInput.value.trim();
-      const status = $("#capture-status");
-
-      if (!value) {
-        if (status) status.innerHTML = '<span class="status-error">Add something before saving.</span>';
-        return;
-      }
-      // Validate URL kind
-      if (kind === "url") {
-        try {
-          const u = new URL(value);
-          if (!u.protocol.startsWith("http")) throw new Error("not http");
-        } catch (_) {
-          if (status) status.innerHTML = '<span class="status-error">That does not look like a URL. Make sure it starts with https://</span>';
-          return;
-        }
-      }
-      // Save to localStorage
-      try {
-        const all = JSON.parse(localStorage.getItem("jb-captures") || "{}");
-        if (kind === "url") all[sessionId] = { url: value, savedAt: new Date().toISOString() };
-        else all[sessionId] = { text: value, savedAt: new Date().toISOString() };
-        localStorage.setItem("jb-captures", JSON.stringify(all));
-        if (status) status.innerHTML = '<span class="status-ok">Saved to your portfolio.</span>';
-        captureSave.textContent = "Update saved";
-      } catch (err) {
-        if (status) status.innerHTML = '<span class="status-error">Could not save. Tell the facilitator.</span>';
-      }
-    };
-  }
-
-  // Day 2 Check-in: save inputs to localStorage as they change
-  document.querySelectorAll('.checkin-radio input[type="radio"]').forEach(radio => {
-    radio.onchange = () => {
-      // Update visual state
-      document.querySelectorAll('.checkin-radio').forEach(label => label.classList.remove('selected'));
-      radio.closest('.checkin-radio').classList.add('selected');
-      // Save
-      try {
-        const saved = JSON.parse(localStorage.getItem("jb-day2-checkin") || "{}");
-        saved.idea = radio.value;
-        localStorage.setItem("jb-day2-checkin", JSON.stringify(saved));
-      } catch (_) {}
-    };
-  });
-  const worryInput = $("#checkin-worry");
-  if (worryInput) {
-    worryInput.oninput = () => {
-      try {
-        const saved = JSON.parse(localStorage.getItem("jb-day2-checkin") || "{}");
-        saved.worry = worryInput.value;
-        localStorage.setItem("jb-day2-checkin", JSON.stringify(saved));
-      } catch (_) {}
-    };
-  }
-
-  // Feedback prompts: save as user types
-  const feedbackInput = $("#feedback-text");
-  if (feedbackInput) {
-    feedbackInput.oninput = () => {
-      const day = feedbackInput.dataset.feedbackDay;
-      try {
-        localStorage.setItem(`jb-feedback-day${day}`, feedbackInput.value);
-      } catch (_) {}
-    };
-  }
-
-  // Stuck button: open/close dialog
-  const stuckBtn = $("#stuck-btn");
-  const stuckOverlay = $("#stuck-overlay");
-  const stuckClose = $("#stuck-close");
-  if (stuckBtn && stuckOverlay) {
-    stuckBtn.onclick = (e) => {
-      e.stopPropagation();
-      stuckOverlay.classList.remove("hidden");
-    };
-  }
-  if (stuckClose && stuckOverlay) {
-    stuckClose.onclick = () => {
-      stuckOverlay.classList.add("hidden");
-    };
-  }
-  if (stuckOverlay) {
-    stuckOverlay.onclick = (e) => {
-      if (e.target === stuckOverlay) stuckOverlay.classList.add("hidden");
-    };
   }
 }
 

@@ -2,8 +2,9 @@
   "workshop": {
     "title": "Just Build",
     "subtitle": "",
-    "session_count": 11,
+    "session_count": 12,
     "day1_sessions": [
+      "0",
       "1",
       "2",
       "3",
@@ -23,11 +24,79 @@
     "cohort_size": 25,
     "oc_application_url": "justbuild.orangecaterpillar.com/apply",
     "day1_start": "09:00",
-    "day1_end": "18:00",
+    "day1_end": "18:30",
     "day2_start": "09:00",
     "day2_end": "18:30"
   },
   "sessions": [
+    {
+      "day": 1,
+      "duration_minutes": 30,
+      "break_after": false,
+      "break_duration_minutes": 0,
+      "set_the_stage": "If you walked in with an idea already, sit tight. Use this thirty minutes to sharpen it. Try Gemini with a couple of variations of what you already have. See if the prompt surfaces something better.\n\nIf you did not walk in with an idea, this is your thirty minutes to find one. Nobody is judging. The biggest myth about entrepreneurship is that you need a flash of genius before you can start. You do not. You need a problem you actually care about, and a small honest description of who has it. That is all. The idea itself almost always comes out of a problem someone you can picture is dealing with.\n\nSo instead of trying to think of an idea, you are going to use Gemini to surface problems that match your interests, your life, and the kinds of people you already understand. Then you will pick one that feels alive to you and bring that into Session 1.\n\nThirty minutes. The room runs in parallel. Some of you sharpening, some of you finding. By 9:45 everybody has an idea on a card. Then we move.",
+      "questions": [
+        {
+          "title": "Whose problems do you already understand?",
+          "body": "Not who you want to help. Who do you already know. Write down three groups of people whose daily lives you can describe in some detail. Could be students at your college, freelance designers, parents of toddlers, people who run small kirana stores, weekend cyclists, anyone."
+        },
+        {
+          "title": "What annoys you, personally?",
+          "body": "List five things that have made you genuinely irritated in the last month. Tiny annoyances count. Forgetting where you parked. Spending an hour comparing three insurance policies. Not being able to find someone to play badminton with on a Sunday morning."
+        },
+        {
+          "title": "What do you keep wishing existed?",
+          "body": "Sometimes the cleanest signal is the phrase someone wishes existed. Write down two or three things you have thought I wish there was a thing that did this. Do not filter for whether it could exist or already does. Just write what came to mind."
+        }
+      ],
+      "hmv": [],
+      "prompts": [
+        {
+          "number": 1,
+          "title": "Find your idea",
+          "tool": "Gemini  (gemini.google.com)",
+          "content": "I am about to spend two days building a real AI-powered product as a solopreneur. I do not have an idea yet. Help me find one.\n\nHere is what I know about myself.\n\nThree groups of people whose lives I understand: [from Question 1]\nFive things that have annoyed me in the last month: [from Question 2]\nTwo or three things I wish existed: [from Question 3]\n\nDo four things for me.\n\nFirst, look at the annoyances and the wishes. Tell me which two or three of them point to a real problem that other people probably also experience. Not just me. Be honest if any of them are too personal or too niche to be a real micro-venture.\n\nSecond, for each of those candidate problems, describe in two sentences who specifically has this problem. The more specific the better. Not people or professionals. A specific kind of person in a specific situation.\n\nThird, for each candidate, name an existing tool or workaround people currently use, and one thing about that workaround that is genuinely not good enough.\n\nFourth, recommend the one problem out of these candidates that you think is most worth me exploring this weekend, and tell me honestly why. Then ask me three follow-up questions to help me get sharper on that problem before I move to Session 1."
+        }
+      ],
+      "build": [
+        {
+          "title": "Read Gemini's response",
+          "instructions": "Pay attention to the candidate it recommends, and also pay attention to which one made you sit up a little when you read it. Sometimes Gemini's pick is right. Sometimes your gut is right. Trust your gut if it disagrees, but only if you can explain why."
+        },
+        {
+          "title": "Have a second round",
+          "instructions": "Answer Gemini's three follow-up questions. Push back when its picks feel off. One or two more turns of back-and-forth is usually enough."
+        },
+        {
+          "title": "Write your card",
+          "instructions": "By the end, you should be able to write three things on a card. One sentence about the problem. Who specifically has it. Why their current workaround is not good enough."
+        }
+      ],
+      "test_output": [
+        {
+          "title": "The problem test",
+          "description": "Can you say the problem in one sentence without mentioning your solution? If yes, pass."
+        },
+        {
+          "title": "The person test",
+          "description": "Can you describe one specific kind of person who has this problem, in enough detail that a stranger in the room could recognise them? If yes, pass."
+        },
+        {
+          "title": "The gap test",
+          "description": "Can you name what people currently do about this problem, and explain why it is not good enough? If yes, pass."
+        },
+        {
+          "title": "The energy test",
+          "description": "Does this idea make you a little excited to spend two days on it? If yes, pass. If no, run the prompt again with a different framing."
+        }
+      ],
+      "output_capture": null,
+      "id": "0",
+      "number": "0",
+      "title": "Do you have an idea yet?",
+      "start_time": "9:15",
+      "end_time": "9:45"
+    },
     {
       "day": 1,
       "duration_minutes": 30,
@@ -144,8 +213,8 @@
       "id": "1",
       "number": "1",
       "title": "Ideation",
-      "start_time": "9:15",
-      "end_time": "9:45"
+      "start_time": "9:45",
+      "end_time": "10:15"
     },
     {
       "day": 1,
@@ -265,8 +334,8 @@
       "id": "2",
       "number": "2",
       "title": "Design",
-      "start_time": "9:45",
-      "end_time": "10:30",
+      "start_time": "10:15",
+      "end_time": "11:00",
       "break_label": "Break",
       "break_note": "Stretch. Water. Then we build the AI App."
     },
@@ -392,10 +461,10 @@
       "id": "3",
       "number": "3",
       "title": "Build the AI App",
-      "start_time": "10:45",
-      "end_time": "12:45",
+      "start_time": "11:15",
+      "end_time": "13:15",
       "break_label": "Lunch",
-      "break_note": "Eat. Share what you are building with one person you have not talked to yet. Back at 1:30."
+      "break_note": "Eat. Share what you are building with one person you have not talked to yet. Back at 2:00."
     },
     {
       "day": 1,
@@ -511,8 +580,8 @@
       "id": "4",
       "number": "4",
       "title": "Build the Website",
-      "start_time": "13:30",
-      "end_time": "15:30",
+      "start_time": "14:00",
+      "end_time": "16:00",
       "break_label": "Break",
       "break_note": "Stretch. Water. Then we build the chatbot."
     },
@@ -634,8 +703,8 @@
       "id": "5",
       "number": "5",
       "title": "Build the Chatbot",
-      "start_time": "15:45",
-      "end_time": "17:45"
+      "start_time": "16:15",
+      "end_time": "18:15"
     },
     {
       "day": 2,

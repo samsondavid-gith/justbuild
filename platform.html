@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Just Build — Facilitator Platform</title>
+<title>Just Build  /  Facilitator Platform</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Inter:ital,wght@0,300..700;1,300..700&family=JetBrains+Mono:wght@400..600&display=swap" rel="stylesheet">
 <style>
   /* ========================================
-     Just Build — Facilitator Platform
+     Just Build  /  Facilitator Platform
      Dark mode. Optimised for projection.
      ======================================== */
 
@@ -69,9 +69,15 @@
 
   .topbar-left {
     display: flex;
-    align-items: baseline;
-    gap: 16px;
+    align-items: center;
+    gap: 14px;
     flex-wrap: wrap;
+  }
+  .topbar-logo {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    flex-shrink: 0;
   }
   .topbar-eyebrow {
     font-size: 11px;
@@ -179,6 +185,13 @@
   .hero {
     text-align: center;
     padding: 24px 0;
+  }
+  .hero-logo {
+    display: block;
+    width: 120px;
+    height: auto;
+    margin: 0 auto 32px;
+    opacity: 0.98;
   }
   .hero-eyebrow {
     font-size: 12px;
@@ -312,7 +325,7 @@
     position: relative;
   }
   .hmv-list li::before {
-    content: "—";
+    content: "/";
     position: absolute;
     left: 0;
     color: var(--accent);
@@ -331,15 +344,30 @@
     margin-bottom: 8px;
   }
   .prompt-tool {
-    font-size: 12px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--text-muted);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--accent-soft);
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    padding: 10px 16px;
     margin-bottom: 24px;
+    font-size: 13px;
+    color: var(--text-soft);
+  }
+  .prompt-tool::before {
+    content: "USE";
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    font-weight: 600;
+    padding-right: 10px;
+    border-right: 1px solid var(--accent-line, rgba(193,125,42,0.35));
   }
   .prompt-tool strong {
     color: var(--accent);
-    font-weight: 500;
+    font-weight: 600;
+    font-size: 15px;
   }
   .prompt-box {
     background: #050505;
@@ -754,6 +782,14 @@
   }
   .login-input::placeholder { color: rgba(255,255,255,0.3); }
 
+  .login-logo {
+    display: block;
+    width: 96px;
+    height: auto;
+    margin: 0 auto 24px;
+    opacity: 0.95;
+  }
+
   .login-submit {
     margin-top: 8px;
     background: var(--accent);
@@ -794,7 +830,8 @@
 
 <div class="login-overlay" id="login-overlay">
   <div class="login-card" id="login-card">
-    <div class="login-eyebrow">Facilitator Platform</div>
+    <img class="login-logo" src="logo.png" alt="Orange Caterpillar" onerror="this.style.display='none'">
+    <div class="login-eyebrow">Orange Caterpillar &middot; Facilitator Platform</div>
     <h1 class="login-title">Just<br>Build</h1>
     <p class="login-subtitle">Sign in to continue</p>
     <form class="login-form" id="login-form" autocomplete="off">
@@ -808,6 +845,7 @@
 
 <header class="topbar hidden" id="topbar">
   <div class="topbar-left">
+    <img class="topbar-logo" src="logo.png" alt="OC" onerror="this.style.display='none'">
     <span class="topbar-eyebrow" id="topbar-eyebrow">Session 1</span>
     <span class="topbar-title" id="topbar-title">Ideation</span>
     <span class="topbar-section" id="topbar-section"></span>
@@ -842,7 +880,7 @@
 
 <script>
 /* ============================================
-   Just Build — Facilitator Platform
+   Just Build  /  Facilitator Platform
    ============================================ */
 
 let WORKSHOP = null;          // sessions.json content
@@ -1070,11 +1108,12 @@ function updateProgress() {
 function renderWelcome() {
   return `
     <div class="hero">
-      <div class="hero-eyebrow">Facilitator Platform</div>
+      <img class="hero-logo" src="logo.png" alt="Orange Caterpillar" onerror="this.style.display='none'">
+      <div class="hero-eyebrow">Orange Caterpillar &middot; Facilitator Platform</div>
       <h1 class="hero-title brand">JUST<br>BUILD</h1>
       <hr class="hero-rule">
       <p class="hero-sub">${WORKSHOP.subtitle || "AI Venture Building Workshop"}</p>
-      <p class="hero-meta">${WORKSHOP.session_count || SESSIONS.length} sessions &middot; Two days</p>
+      <p class="hero-meta">${WORKSHOP.session_count || SESSIONS.length} sessions &middot; Two days &middot; Four weeks</p>
       <div class="button-row" style="margin-top: 56px;">
         <button class="btn btn-primary" id="start-btn">Start Workshop →</button>
       </div>
@@ -1139,7 +1178,7 @@ function renderHMV(s) {
 function renderPrompt(screen) {
   const p = screen.prompt;
   const counter = screen.promptTotal > 1 ? `Prompt ${screen.promptIndex + 1} of ${screen.promptTotal}` : "The Prompt";
-  const toolLine = p.tool ? `<div class="prompt-tool">For <strong>${escapeHtml(p.tool)}</strong></div>` : "";
+  const toolLine = p.tool ? `<div class="prompt-tool"><strong>${escapeHtml(p.tool)}</strong></div>` : "";
   return `
     <div class="label">${counter}</div>
     <h2 class="prompt-title">${escapeHtml(p.title)}</h2>
@@ -1164,7 +1203,7 @@ function renderBuild(s) {
   return `
     <div class="label">Build</div>
     <ul class="build-list">${items}</ul>
-    <div class="facilitator-note">Circulate during this time. Ask these three questions at every table: What did Claude produce that surprised you? What did you change and why? What does your target user see at each touchpoint?</div>
+    <div class="facilitator-note">Circulate during this time. Ask at every table. What did the model produce that surprised you? What did you change and why? What does your target user see at each touchpoint?</div>
   `;
 }
 
@@ -1246,7 +1285,7 @@ function renderBreak(screen) {
       <p class="hero-eyebrow" style="margin-bottom: 24px;">${escapeHtml(label)}</p>
       <div class="break-timer" id="break-display">${String(minsRemaining).padStart(2, "0")}:${String(secsRemaining).padStart(2, "0")}</div>
       <p class="break-label">${escapeHtml(label)} time</p>
-      ${next ? `<p class="break-next">After the break — <strong style="color: var(--accent);">${escapeHtml(next.title)}</strong></p>` : ""}
+      ${next ? `<p class="break-next">After the break, then <strong style="color: var(--accent);">${escapeHtml(next.title)}</strong></p>` : ""}
       ${after.break_note ? `<p class="break-next" style="margin-top: 32px; font-style: italic; max-width: 56ch; margin-left: auto; margin-right: auto;">${escapeHtml(after.break_note)}</p>` : ""}
     </div>
   `;
@@ -1254,7 +1293,7 @@ function renderBreak(screen) {
 
 function renderWorkshopComplete() {
   const builds = `
-    <li>An HTML app at a live URL</li>
+    <li>An AI App at a live URL</li>
     <li>A website that markets it</li>
     <li>A chatbot that handles questions</li>
     <li>Sixty seconds of audio</li>
@@ -1265,6 +1304,7 @@ function renderWorkshopComplete() {
   `;
   return `
     <div class="hero">
+      <img class="hero-logo" src="logo.png" alt="Orange Caterpillar" onerror="this.style.display='none'">
       <div class="hero-eyebrow">Workshop Complete</div>
       <h1 class="hero-title">Day 2<br><span style="font-style: italic; font-weight: 300;">complete</span></h1>
       <hr class="hero-rule">
@@ -1319,7 +1359,7 @@ function attachHandlers(screen) {
       range.selectNodeContents($("#prompt-box"));
       sel.removeAllRanges();
       sel.addRange(range);
-      copyBtn.textContent = "Selected — press Cmd/Ctrl+C";
+      copyBtn.textContent = "Selected. Press Cmd/Ctrl+C";
       setTimeout(() => { copyBtn.textContent = "Copy Prompt"; }, 3000);
     }
   };
@@ -1339,7 +1379,7 @@ function attachHandlers(screen) {
   const advanceBtn = $("#advance-btn");
   if (advanceBtn) advanceBtn.onclick = next;
 
-  // Break — click anywhere when over
+  // Break. Click anywhere when over.
   if (screen && screen.type === "break" && breakTimer.finished) {
     document.body.onclick = (e) => {
       if (e.target.closest(".bottombar")) return;
@@ -1529,7 +1569,7 @@ function escapeHtml(str) {
    ============================================ */
 /*
   Hardcoded credentials are stored as SHA-256 hashes below.
-  This is a soft gate — the JS file is publicly readable, so a
+  This is a soft gate. The JS file is publicly readable, so a
   determined visitor can still extract the hashes and brute-force.
   For real security, move to Render-level Basic Auth.
 
@@ -1539,7 +1579,7 @@ function escapeHtml(str) {
          .then(b => console.log(Array.from(new Uint8Array(b)).map(x => x.toString(16).padStart(2,"0")).join("")));
   2. Paste the resulting hex string into AUTH_ID_HASH or AUTH_PW_HASH.
 
-  Defaults below are for "admin" / "change-me" — REPLACE BEFORE DEPLOY.
+  Defaults below are for "admin" / "change-me". REPLACE BEFORE DEPLOY.
 */
 const AUTH_ID_HASH = "de83276e6b45237548b7d6c990b6fe6fd55de68a725e9ddeaf35666f7d93c475";
 const AUTH_PW_HASH = "f181008ea04c7c3d9734a4b9d87e48df67970972a43641bb0608b0e1e91c6c1b";

@@ -824,6 +824,270 @@
     40%, 80% { transform: translateX(6px); }
   }
   .login-card.shake { animation: login-shake 320ms ease; }
+
+  /* ============================================
+     WELCOME LAYER (two-doors, journey-map, tools-landscape)
+     ============================================ */
+  .wl-screen {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px 16px;
+    text-align: center;
+  }
+  .wl-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+  .wl-title {
+    font-family: var(--serif);
+    font-size: clamp(36px, 4.4vw, 56px);
+    font-weight: 300;
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    margin-bottom: 14px;
+  }
+  .wl-sub {
+    font-family: var(--serif);
+    font-size: clamp(15px, 1.3vw, 18px);
+    color: var(--text-soft);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.45;
+    max-width: 68ch;
+    margin: 0 auto 28px;
+  }
+  .wl-footer {
+    font-family: var(--serif);
+    font-size: clamp(15px, 1.4vw, 18px);
+    font-weight: 500;
+    color: var(--text);
+    margin-top: 22px;
+    letter-spacing: -0.005em;
+    padding-left: 14px;
+    border-left: 3px solid var(--accent);
+    display: inline-block;
+    text-align: left;
+  }
+
+  /* ----- Two Doors ----- */
+  .doors-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 0;
+    text-align: left;
+  }
+  .door {
+    background: var(--bg-elev-1);
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--text-muted);
+    border-radius: 4px;
+    padding: 22px 24px 24px;
+    display: flex;
+    flex-direction: column;
+  }
+  .door-primary { border-top-color: var(--accent); background: var(--accent-soft); }
+  .door-tag {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .door-secondary .door-tag { color: var(--text-muted); }
+  .door-dot { color: var(--text-faint); margin: 0 4px; }
+  .door-title {
+    font-family: var(--serif);
+    font-size: clamp(22px, 2.0vw, 28px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+    color: var(--text);
+  }
+  .door-lede {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--text-soft);
+    margin-bottom: 16px;
+  }
+  .door-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .door-list li {
+    position: relative;
+    padding: 6px 0 6px 20px;
+    color: var(--text-soft);
+    font-size: 14px;
+    line-height: 1.45;
+    border-bottom: 1px solid var(--line);
+  }
+  .door-list li:last-child { border-bottom: none; }
+  .door-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 13px;
+    width: 8px;
+    height: 2px;
+    background: var(--accent);
+  }
+  .door-secondary .door-list li::before { background: var(--text-muted); }
+
+  /* ----- Journey Map ----- */
+  .journey-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    text-align: left;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .journey-col {
+    background: var(--bg-elev-1);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 16px 20px;
+  }
+  .journey-day {
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--line);
+  }
+  .journey-list { list-style: none; margin: 0; padding: 0; }
+  .journey-item {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .journey-item:last-child { border-bottom: none; }
+  .journey-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-faint);
+    flex-shrink: 0;
+    width: 22px;
+  }
+  .journey-body { display: flex; flex-direction: column; gap: 1px; }
+  .journey-title {
+    font-family: var(--serif);
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+  .journey-note {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.35;
+  }
+  .journey-outcome {
+    margin-top: 18px;
+    text-align: center;
+  }
+  .journey-arrow {
+    font-size: 22px;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .journey-outcome-label {
+    font-family: var(--serif);
+    font-size: clamp(18px, 1.9vw, 24px);
+    font-weight: 400;
+    color: var(--text);
+    letter-spacing: -0.015em;
+    margin-bottom: 4px;
+  }
+  .journey-outcome-url {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+  }
+
+  /* ----- Tools Landscape ----- */
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    text-align: left;
+  }
+  .cat-card {
+    background: var(--bg-elev-1);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 16px 18px 16px;
+    display: flex;
+    flex-direction: column;
+  }
+  .cat-name {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .cat-use {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.4;
+    margin-bottom: 12px;
+    font-style: italic;
+  }
+  .cat-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  .tool-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 9px;
+    font-size: 11px;
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    color: var(--text-muted);
+    background: transparent;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+  .tool-chip.tool-pick {
+    background: var(--accent-soft);
+    border-color: var(--accent);
+    color: var(--text);
+    font-weight: 500;
+  }
+  .tool-star {
+    color: var(--accent);
+    font-size: 9px;
+    line-height: 1;
+  }
+
+  @media (max-width: 860px) {
+    .doors-grid, .journey-grid { grid-template-columns: 1fr; }
+    .cat-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 580px) {
+    .cat-grid { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
@@ -831,7 +1095,7 @@
 <div class="login-overlay" id="login-overlay">
   <div class="login-card" id="login-card">
     <img class="login-logo" src="logo.png" alt="Orange Caterpillar" onerror="this.style.display='none'">
-    <div class="login-eyebrow">Orange Caterpillar &middot; Facilitator Platform</div>
+    <div class="login-eyebrow">Orange Caterpillar</div>
     <h1 class="login-title">Just<br>Build</h1>
     <p class="login-subtitle">Sign in to continue</p>
     <form class="login-form" id="login-form" autocomplete="off">
@@ -942,6 +1206,9 @@ function buildScreenSequence() {
 
   // Welcome
   SCREENS.push({ type: "welcome" });
+  SCREENS.push({ type: "two-doors" });
+  SCREENS.push({ type: "journey-map" });
+  SCREENS.push({ type: "tools-landscape" });
 
   SESSIONS.forEach((session, idx) => {
     SCREENS.push({ type: "session-start", session });
@@ -1021,8 +1288,10 @@ function renderCurrent() {
     breakTimer.intervalId = null;
   }
 
-  // Top/bottom bars hidden on welcome and complete
-  const noChrome = screen.type === "welcome" || screen.type === "workshop-complete" || screen.type === "break";
+  // Top/bottom bars hidden on welcome-layer screens, break, and complete
+  const isWelcomeLayer = screen.type === "welcome" || screen.type === "two-doors"
+                       || screen.type === "journey-map" || screen.type === "tools-landscape";
+  const noChrome = isWelcomeLayer || screen.type === "workshop-complete" || screen.type === "break";
   topbar.classList.toggle("hidden", noChrome);
   bottombar.classList.toggle("hidden", screen.type === "welcome");
 
@@ -1037,7 +1306,7 @@ function renderCurrent() {
   // Reset/start timer for sessions
   if (screen.session && screen.type === "session-start") {
     setupTimer(screen.session);
-  } else if (screen.type === "welcome" || screen.type === "workshop-complete") {
+  } else if (isWelcomeLayer || screen.type === "workshop-complete") {
     stopTimer();
   }
 
@@ -1045,6 +1314,9 @@ function renderCurrent() {
   let html = "";
   switch (screen.type) {
     case "welcome":            html = renderWelcome(); break;
+    case "two-doors":          html = renderTwoDoors(); break;
+    case "journey-map":        html = renderJourneyMap(); break;
+    case "tools-landscape":    html = renderToolsLandscape(); break;
     case "session-start":      html = renderSessionStart(screen.session); break;
     case "stage":              html = renderStage(screen.session); break;
     case "question":           html = renderQuestion(screen); break;
@@ -1109,14 +1381,194 @@ function renderWelcome() {
   return `
     <div class="hero">
       <img class="hero-logo" src="logo.png" alt="Orange Caterpillar" onerror="this.style.display='none'">
-      <div class="hero-eyebrow">Orange Caterpillar &middot; Facilitator Platform</div>
+      <div class="hero-eyebrow">Orange Caterpillar</div>
       <h1 class="hero-title brand">JUST<br>BUILD</h1>
       <hr class="hero-rule">
       <p class="hero-sub">${WORKSHOP.subtitle || "AI Venture Building Workshop"}</p>
-      <p class="hero-meta">${WORKSHOP.session_count || SESSIONS.length} sessions &middot; Two days &middot; Four weeks</p>
+      <p class="hero-meta">Two days &middot; Four weeks &middot; One portfolio</p>
       <div class="button-row" style="margin-top: 56px;">
-        <button class="btn btn-primary" id="start-btn">Start Workshop →</button>
+        <button class="btn btn-primary" id="start-btn">Begin →</button>
       </div>
+    </div>
+  `;
+}
+
+function renderTwoDoors() {
+  return `
+    <div class="wl-screen">
+      <div class="wl-eyebrow">What you walk out with</div>
+      <h1 class="wl-title">Two doors. One degree.</h1>
+      <p class="wl-sub">Your degree opens one set of options. By Sunday afternoon, this workshop opens two more. The first is automatic. The second is yours if you want it.</p>
+
+      <div class="doors-grid">
+        <div class="door door-primary">
+          <div class="door-tag">Door One <span class="door-dot">&middot;</span> Primary <span class="door-dot">&middot;</span> Job-ready</div>
+          <h2 class="door-title">A working portfolio.</h2>
+          <p class="door-lede">You walk in carrying proof, not promises. The recruiter who asks "show me what you can do with AI" has an answer waiting.</p>
+          <ul class="door-list">
+            <li>Six live builds in one portfolio.</li>
+            <li>A 90-second demo you can run from your phone.</li>
+            <li>The 56% AI wage premium becomes available to you.</li>
+          </ul>
+        </div>
+
+        <div class="door door-secondary">
+          <div class="door-tag">Door Two <span class="door-dot">&middot;</span> Optional <span class="door-dot">&middot;</span> Founder</div>
+          <h2 class="door-title">A starting venture.</h2>
+          <p class="door-lede">If the idea you build feels real, keep going. The six builds combine into a working first product. Yours to scale, set aside, or hand back as portfolio.</p>
+          <ul class="door-list">
+            <li>The option to keep building your venture.</li>
+            <li>Founder capability, demonstrable on demand.</li>
+            <li>The first product is always the hardest. You will have it.</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="wl-footer">One workshop. Two doors. Both yours.</p>
+    </div>
+  `;
+}
+
+function renderJourneyMap() {
+  const day1 = [
+    { num: "01", title: "Ideation", note: "The problem you solve" },
+    { num: "02", title: "Design", note: "The system prompt that runs it" },
+    { num: "03", title: "AI App", note: "Live URL by 14:30" },
+    { num: "04", title: "Website", note: "Marketing site by 15:45" },
+    { num: "05", title: "Chatbot", note: "Embedded on your site" },
+  ];
+  const day2 = [
+    { num: "06", title: "Audio", note: "60 seconds of your voice" },
+    { num: "07", title: "Video", note: "90 seconds on LinkedIn" },
+    { num: "08", title: "Agent", note: "Automation that runs alone" },
+    { num: "09", title: "Validation", note: "One real conversation" },
+    { num: "10", title: "Demo Day", note: "Stand and ship" },
+  ];
+  const renderCol = (label, items) => `
+    <div class="journey-col">
+      <div class="journey-day">${label}</div>
+      <ul class="journey-list">
+        ${items.map(s => `
+          <li class="journey-item">
+            <span class="journey-num">${s.num}</span>
+            <span class="journey-body">
+              <span class="journey-title">${s.title}</span>
+              <span class="journey-note">${s.note}</span>
+            </span>
+          </li>
+        `).join("")}
+      </ul>
+    </div>
+  `;
+  return `
+    <div class="wl-screen">
+      <div class="wl-eyebrow">What you're about to build</div>
+      <h1 class="wl-title">Six builds. One portfolio.</h1>
+      <p class="wl-sub">Each session ships one piece. By Sunday afternoon, the pieces become a single thing you can show anyone.</p>
+
+      <div class="journey-grid">
+        ${renderCol("Day 1", day1)}
+        ${renderCol("Day 2", day2)}
+      </div>
+
+      <div class="journey-outcome">
+        <div class="journey-arrow">↓</div>
+        <p class="journey-outcome-label">Your portfolio</p>
+        <p class="journey-outcome-url">justbuild.orangecaterpillar.com/your-college/c1/your-name</p>
+      </div>
+    </div>
+  `;
+}
+
+function renderToolsLandscape() {
+  // ★ marks tools we use this weekend
+  const categories = [
+    {
+      name: "Chat & Reasoning",
+      use: "Thinking partner. Drafting. Analysis. System prompts.",
+      tools: [
+        { name: "Claude", pick: true },
+        { name: "ChatGPT", pick: true },
+        { name: "Gemini", pick: true },
+        { name: "Mistral", pick: true },
+        { name: "DeepSeek", pick: false },
+        { name: "Grok", pick: false },
+      ],
+    },
+    {
+      name: "Search & Research",
+      use: "Finding real evidence. Validating that problems exist out there.",
+      tools: [
+        { name: "Perplexity", pick: true },
+        { name: "You.com", pick: false },
+        { name: "Phind", pick: false },
+      ],
+    },
+    {
+      name: "Sites & Pages",
+      use: "Publishing a real URL without writing code.",
+      tools: [
+        { name: "Carrd", pick: true },
+        { name: "Webflow", pick: false },
+        { name: "Framer", pick: false },
+        { name: "Bolt", pick: false },
+        { name: "Lovable", pick: false },
+      ],
+    },
+    {
+      name: "Conversation",
+      use: "Building chatbots that handle questions while you sleep.",
+      tools: [
+        { name: "Voiceflow", pick: true },
+        { name: "Botpress", pick: false },
+        { name: "Landbot", pick: false },
+      ],
+    },
+    {
+      name: "Audio & Video",
+      use: "Giving your product a voice and showing it in action.",
+      tools: [
+        { name: "ElevenLabs", pick: true },
+        { name: "Loom", pick: true },
+        { name: "Suno", pick: false },
+        { name: "Runway", pick: false },
+        { name: "HeyGen", pick: false },
+      ],
+    },
+    {
+      name: "Automation",
+      use: "Wiring things together. Agents that run without you.",
+      tools: [
+        { name: "Make.com", pick: true },
+        { name: "Zapier", pick: false },
+        { name: "n8n", pick: false },
+      ],
+    },
+  ];
+  const cards = categories.map(c => `
+    <div class="cat-card">
+      <h3 class="cat-name">${c.name}</h3>
+      <p class="cat-use">${c.use}</p>
+      <div class="cat-tools">
+        ${c.tools.map(t => `
+          <span class="tool-chip ${t.pick ? "tool-pick" : ""}">
+            ${t.pick ? '<span class="tool-star">★</span>' : ''}${t.name}
+          </span>
+        `).join("")}
+      </div>
+    </div>
+  `).join("");
+  return `
+    <div class="wl-screen">
+      <div class="wl-eyebrow">The AI landscape</div>
+      <h1 class="wl-title">Pick the tool. Get the job done.</h1>
+      <p class="wl-sub">The map keeps changing. The shape of the work does not. Six categories cover almost everything a builder needs. We picked one or two in each for the workshop, marked with a star. Take the map. The choices are yours after.</p>
+
+      <div class="cat-grid">
+        ${cards}
+      </div>
+
+      <p class="wl-footer">Stars are what you use this weekend. The rest is the wider field. Both matter.</p>
     </div>
   `;
 }

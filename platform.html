@@ -151,6 +151,181 @@
   .progress-dot.done { background: var(--text-faint); }
   .progress-dot.active { background: var(--accent); }
 
+  /* ----- Jump-to-session picker ----- */
+  .jump-wrap {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+  }
+  .jump-btn {
+    appearance: none;
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .jump-btn:hover { color: var(--text); border-color: var(--line-strong); }
+  .jump-btn svg { opacity: 0.6; transition: transform 0.2s ease; }
+  .jump-wrap.open .jump-btn svg { transform: rotate(180deg); }
+
+  .jump-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 380px;
+    max-height: 70vh;
+    overflow-y: auto;
+    background: var(--bg-elev-1);
+    border: 1px solid var(--line-strong);
+    border-radius: 6px;
+    padding: 8px;
+    box-shadow: 0 18px 48px -12px rgba(0, 0, 0, 0.6);
+    display: none;
+    z-index: 50;
+  }
+  .jump-wrap.open .jump-menu { display: block; }
+  .jump-group {
+    padding: 12px 12px 6px;
+  }
+  .jump-group-label {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+  .jump-item {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 9px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: var(--text-soft);
+    font-size: 14px;
+    line-height: 1.4;
+    transition: background 0.12s ease, color 0.12s ease;
+  }
+  .jump-item:hover { background: var(--bg-elev-2); color: var(--text); }
+  .jump-item.current { background: rgba(193, 125, 42, 0.12); color: var(--text); }
+  .jump-item-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    min-width: 36px;
+    letter-spacing: 0.04em;
+  }
+  .jump-item.current .jump-item-num { color: var(--accent); }
+  .jump-item-title {
+    flex: 1;
+  }
+  .jump-item-time {
+    font-size: 11px;
+    color: var(--text-faint);
+    font-family: var(--mono);
+  }
+
+  /* ----- Office Hours screen ----- */
+  .oh-screen {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .oh-section {
+    margin-top: 40px;
+  }
+  .oh-section-label {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+  .oh-agenda {
+    list-style: none;
+    counter-reset: agenda;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .oh-agenda li {
+    counter-increment: agenda;
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    color: var(--text-soft);
+    font-size: 18px;
+    line-height: 1.5;
+    padding-left: 0;
+  }
+  .oh-agenda li::before {
+    content: counter(agenda, decimal-leading-zero);
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    min-width: 36px;
+    padding-top: 4px;
+    letter-spacing: 0.04em;
+  }
+  .oh-stuck-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .oh-stuck {
+    padding: 20px 24px;
+    background: var(--bg-elev-1);
+    border-left: 2px solid var(--accent);
+    border-radius: 0 4px 4px 0;
+  }
+  .oh-stuck-title {
+    font-family: var(--serif);
+    font-size: 19px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+  .oh-stuck-resolution {
+    color: var(--text-soft);
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  .oh-qa, .oh-homework {
+    padding: 22px 26px;
+    background: var(--bg-elev-1);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    color: var(--text-soft);
+    font-size: 17px;
+    line-height: 1.55;
+  }
+
+  /* ----- Milestone screen indicator ----- */
+  .milestone-banner {
+    background: rgba(193, 125, 42, 0.08);
+    border: 1px solid rgba(193, 125, 42, 0.25);
+    padding: 14px 22px;
+    border-radius: 4px;
+    color: var(--accent);
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    text-align: center;
+    font-weight: 500;
+  }
+
   /* ----- Stage / main area ----- */
   .stage {
     flex: 1 1 auto;
@@ -1732,6 +1907,13 @@
     <div class="timer" id="timer" title="Click or press T to pause/resume">--:--</div>
   </div>
   <div class="topbar-right">
+    <div class="jump-wrap" id="jump-wrap">
+      <button class="jump-btn" id="jump-btn" title="Jump to a session (J)">
+        <span id="jump-btn-label">Jump</span>
+        <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="1,1 5,5 9,1"></polyline></svg>
+      </button>
+      <div class="jump-menu" id="jump-menu"></div>
+    </div>
     <div class="progress" id="progress"></div>
   </div>
 </header>
@@ -1750,7 +1932,7 @@
       <span class="full">Humanics &middot; Mechanics &middot; Valuenomics</span>
     </div>
     <div class="keyboard-hint">
-      <kbd>←</kbd> Prev &middot; <kbd>Space</kbd>/<kbd>→</kbd> Next &middot; <kbd>T</kbd> Timer &middot; <kbd>F</kbd> Fullscreen &middot; <kbd>H</kbd> HMV
+      <kbd>←</kbd> Prev &middot; <kbd>Space</kbd>/<kbd>→</kbd> Next &middot; <kbd>T</kbd> Timer &middot; <kbd>F</kbd> Fullscreen &middot; <kbd>H</kbd> HMV &middot; <kbd>J</kbd> Jump
     </div>
   </div>
   <button class="nav-btn nav-next" id="next-btn">Next →</button>
@@ -1825,15 +2007,50 @@ function buildScreenSequence() {
   SCREENS.push({ type: "journey-map" });
   SCREENS.push({ type: "tools-landscape" });
 
+  // Track phase transitions so we can insert interludes between them
+  let prevPhase = null;
+  let prevDay = null;
+
   SESSIONS.forEach((session, idx) => {
-    // Day 2 morning welcome appears just before Session 6 (first Day 2 session)
-    if (session.id === "6") {
+    const phase = session.phase;
+    const day = String(session.day);
+
+    // Day 2 morning welcome — first session of Day 2 of the weekend
+    if (phase === "weekend" && day === "2" && prevDay !== "2") {
       SCREENS.push({ type: "day2-checkin" });
+    }
+
+    // Office-hours phase opener — appears once, before the first week of office hours
+    if (phase === "office_hours" && prevPhase !== "office_hours") {
+      SCREENS.push({ type: "phase-break", to: "office_hours" });
+    }
+
+    // Demo Day opener — appears once, before the Demo Day session
+    if (phase === "demo_day" && prevPhase !== "demo_day") {
+      SCREENS.push({ type: "phase-break", to: "demo_day" });
     }
 
     SCREENS.push({ type: "session-start", session });
     SCREENS.push({ type: "stage", session });
 
+    // Office hours screen is dedicated and replaces the standard question/prompt/build/test flow
+    if (session.session_type === "office_hours") {
+      SCREENS.push({ type: "office-hours", session });
+      // Test output (the "homework leaves the room" check) still applies if present
+      if (session.test_output && session.test_output.length) {
+        SCREENS.push({ type: "test-output", session });
+      }
+      if (session.output_capture) {
+        SCREENS.push({ type: "output-capture", session });
+      }
+      SCREENS.push({ type: "session-end", session });
+      prevPhase = phase;
+      prevDay = day;
+      return;
+    }
+
+    // Standard flow for all other session types (kickoff, build, milestone, interim_demo,
+    // planning, demo_day, close)
     (session.questions || []).forEach((q, qIdx) => {
       SCREENS.push({
         type: "question",
@@ -1873,13 +2090,16 @@ function buildScreenSequence() {
 
     SCREENS.push({ type: "session-end", session });
 
-    // End-of-Day-1 photo appears after Session 5 (last Day 1 session, chatbot)
-    if (session.id === "5") {
+    // End-of-Day-1 interlude — fires after the last session of Day 1 in the weekend phase
+    const nextSession = SESSIONS[idx + 1];
+    const isLastOfDay1 = phase === "weekend" && day === "1"
+      && (!nextSession || String(nextSession.day) !== "1" || nextSession.phase !== "weekend");
+    if (isLastOfDay1) {
       SCREENS.push({ type: "day1-photo" });
     }
 
-    // Portfolio reveal appears after Session 10 (Demo Day) ends
-    if (session.id === "10") {
+    // Portfolio reveal — after Demo Day session ends
+    if (session.session_type === "demo_day") {
       SCREENS.push({ type: "portfolio-reveal" });
     }
 
@@ -1890,12 +2110,15 @@ function buildScreenSequence() {
         nextSession: SESSIONS[idx + 1] || null,
       });
     }
+
+    prevPhase = phase;
+    prevDay = day;
   });
 
   // Closing inspirational slide
   SCREENS.push({ type: "closing" });
 
-  // Workshop complete (Day 2 close - now "What happens next" timeline)
+  // Workshop complete (now "what comes next" — after Demo Day)
   SCREENS.push({ type: "workshop-complete" });
 }
 
@@ -1932,6 +2155,7 @@ function renderCurrent() {
                        || screen.type === "tools-landscape";
   const isInterlude = screen.type === "day1-photo"
                     || screen.type === "day2-checkin"
+                    || screen.type === "phase-break"
                     || screen.type === "portfolio-reveal" || screen.type === "closing";
   const noChrome = isWelcomeLayer || isInterlude || screen.type === "workshop-complete" || screen.type === "break";
   topbar.classList.toggle("hidden", noChrome);
@@ -1939,7 +2163,7 @@ function renderCurrent() {
 
   // Update topbar context
   if (screen.session) {
-    $("#topbar-eyebrow").textContent = `Session ${screen.session.number}`;
+    $("#topbar-eyebrow").textContent = topbarEyebrow(screen.session);
     $("#topbar-title").textContent = screen.session.title;
     $("#topbar-section").textContent = sectionLabel(screen);
     updateProgress();
@@ -1962,6 +2186,7 @@ function renderCurrent() {
     case "tools-landscape":    html = renderToolsLandscape(); break;
     case "day1-photo":         html = renderDay1Photo(); break;
     case "day2-checkin":       html = renderDay2Checkin(); break;
+    case "phase-break":        html = renderPhaseBreak(screen); break;
     case "portfolio-reveal":   html = renderPortfolioReveal(); break;
     case "closing":            html = renderClosing(); break;
     case "session-start":      html = renderSessionStart(screen.session); break;
@@ -1971,6 +2196,7 @@ function renderCurrent() {
     case "prompt":             html = renderPrompt(screen); break;
     case "build":              html = renderBuild(screen.session); break;
     case "test-output":        html = renderTestOutput(screen.session); break;
+    case "office-hours":       html = renderOfficeHours(screen.session); break;
     case "output-capture":     html = renderOutputCapture(screen.session); break;
     case "session-end":        html = renderSessionEnd(screen); break;
     case "break":              html = renderBreak(screen); break;
@@ -1981,9 +2207,27 @@ function renderCurrent() {
   // Wire up dynamic handlers per screen
   attachHandlers(screen);
 
+  // Refresh the jump-to-session menu state
+  refreshJumpMenu();
+
   // Prev/next state
   $("#prev-btn").disabled = currentScreenIdx === 0;
   $("#next-btn").disabled = currentScreenIdx >= SCREENS.length - 1;
+}
+
+function topbarEyebrow(session) {
+  // For weekend sessions: "Session N". For office hours: "Week N · Office Hours".
+  // For demo_day and close: their natural label.
+  if (session.session_type === "office_hours") {
+    return `${session.day} · Office Hours`;
+  }
+  if (session.session_type === "demo_day") return "Demo Day";
+  if (session.session_type === "close") return "Close";
+  if (session.session_type === "kickoff") return "Kickoff";
+  if (session.session_type === "milestone") return "Milestone";
+  if (session.session_type === "interim_demo") return "Interim Demo Day";
+  if (session.session_type === "planning") return "Planning";
+  return `Session ${session.number}`;
 }
 
 function sectionLabel(screen) {
@@ -1997,6 +2241,7 @@ function sectionLabel(screen) {
                             : "The Prompt";
     case "build":          return "Build";
     case "test-output":    return "Test Output";
+    case "office-hours":   return "Office Hours";
     case "output-capture": return "Save your work";
     case "session-end":    return "Complete";
     default:               return "";
@@ -2046,7 +2291,7 @@ function renderTwoDoors() {
     <div class="wl-screen">
       <div class="wl-eyebrow">The outcome</div>
       <h1 class="wl-title">What you walk out with.</h1>
-      <p class="wl-sub">A portfolio you can use across the next twelve months. An optional path if you want to keep building. And the structure to support both.</p>
+      <p class="wl-sub">A portfolio you can use across the next twelve months. An optional path if you want to keep building. And the structure to support both, across six weeks.</p>
 
       <div class="outcomes-grid">
 
@@ -2054,7 +2299,7 @@ function renderTwoDoors() {
           <div class="outcome-tag">For placement <span class="door-dot">&middot;</span> For everyone</div>
           <h2 class="outcome-title">An AI portfolio that opens doors.</h2>
           <ul class="outcome-list">
-            <li>A live AI portfolio that can be demoed in 90 seconds.</li>
+            <li>A live AI portfolio that can be demoed in three minutes.</li>
             <li>LinkedIn launch templates and outreach scripts.</li>
             <li>Available for the 56% AI wage premium.</li>
           </ul>
@@ -2063,17 +2308,17 @@ function renderTwoDoors() {
         <div class="outcome outcome-secondary">
           <div class="outcome-tag">If you want to go further <span class="door-dot">&middot;</span> Selective</div>
           <h2 class="outcome-title">A path to angel funding.</h2>
-          <p class="outcome-lede">If what you build feels real by the end of the workshop, OC Ventures runs a selective four-week program. The strongest builds get polished and presented to angel investors via a formal application. Not for everyone. For the builders who could not stop.</p>
+          <p class="outcome-lede">If what you build feels real by Demo Day, OC Ventures runs a selective follow-on program. The strongest builds get polished and presented to angel investors via a formal application. Not for everyone. For the builders who could not stop.</p>
         </div>
 
         <div class="outcome outcome-shared">
           <div class="outcome-tag">For the whole cohort <span class="door-dot">&middot;</span> What everyone gets</div>
           <h2 class="outcome-title">The structure around both.</h2>
           <div class="shared-grid">
-            <span class="shared-item">Office hours</span>
-            <span class="shared-item">Weekly reviews</span>
-            <span class="shared-item">A real Demo Day in four weeks</span>
-            <span class="shared-item">The cohort and WhatsApp group</span>
+            <span class="shared-item">Weekly office hours</span>
+            <span class="shared-item">The WhatsApp group</span>
+            <span class="shared-item">An accountability partner</span>
+            <span class="shared-item">A recorded Demo Day in five weeks</span>
           </div>
         </div>
 
@@ -2084,18 +2329,22 @@ function renderTwoDoors() {
 
 function renderJourneyMap() {
   const day1 = [
-    { num: "01", title: "Ideation", note: "The problem you solve" },
-    { num: "02", title: "Design", note: "The system prompt that runs it" },
-    { num: "03", title: "AI App", note: "Live URL by 14:30" },
-    { num: "04", title: "Website", note: "Marketing site by 15:45" },
-    { num: "05", title: "Chatbot", note: "Embedded on your site" },
+    { num: "01", title: "Find the idea", note: "By 11:00 you have it on a card" },
+    { num: "02", title: "AI app, get it working", note: "Working v0 by lunch" },
+    { num: "03", title: "AI app, ship it", note: "Live URL by 16:00" },
+    { num: "04", title: "Plan the website", note: "Copy, video script, brochure" },
   ];
   const day2 = [
-    { num: "06", title: "Audio", note: "60 seconds of your voice" },
-    { num: "07", title: "Video", note: "90 seconds on LinkedIn" },
-    { num: "08", title: "Agent", note: "Automation that runs alone" },
-    { num: "09", title: "Validation", note: "One real conversation" },
-    { num: "10", title: "Demo Day", note: "Stand and ship" },
+    { num: "05", title: "Ship the assembly", note: "Site, audio, video, brochure" },
+    { num: "06", title: "Interim Demo Day", note: "90 seconds each, in this room" },
+    { num: "07", title: "The four-week plan", note: "Materials, calendar, partners" },
+  ];
+  const tail = [
+    { num: "W1", title: "Office hours · Chatbot", note: "Live on your site by Saturday" },
+    { num: "W2", title: "Office hours · Agent, part 1", note: "Trigger to email working" },
+    { num: "W3", title: "Office hours · Agent, part 2", note: "Voice and quality" },
+    { num: "W4", title: "Office hours · Demo Day prep", note: "Three minutes, hard cap" },
+    { num: "DD", title: "Demo Day", note: "Recorded. On your portfolio that night" },
   ];
   const renderCol = (label, items) => `
     <div class="journey-col">
@@ -2116,12 +2365,13 @@ function renderJourneyMap() {
   return `
     <div class="wl-screen">
       <div class="wl-eyebrow">What you're about to build</div>
-      <h1 class="wl-title">Six builds. One portfolio.</h1>
-      <p class="wl-sub">Each session ships one piece. By Sunday afternoon, the pieces become a single thing you can show anyone.</p>
+      <h1 class="wl-title">Two days in this room. Four weeks of your own work. One Demo Day.</h1>
+      <p class="wl-sub">The weekend is the launch pad. The four weeks are where the deeper builds happen. By Demo Day, your portfolio carries seven live things.</p>
 
-      <div class="journey-grid">
-        ${renderCol("Day 1", day1)}
-        ${renderCol("Day 2", day2)}
+      <div class="journey-grid" style="grid-template-columns: repeat(3, 1fr);">
+        ${renderCol("Day 1 · In this room", day1)}
+        ${renderCol("Day 2 · In this room", day2)}
+        ${renderCol("Weeks 1–5 · Mostly on your own", tail)}
       </div>
 
       <div class="journey-outcome">
@@ -2261,14 +2511,14 @@ function renderHousekeeping() {
     <div class="wl-screen">
       <div class="wl-eyebrow">Before we start</div>
       <h1 class="wl-title">Housekeeping.</h1>
-      <p class="wl-sub">Five minutes of setup so nothing gets in the way for the next two days. Your facilitator will share two links verbally. Keep them open on your laptop all weekend.</p>
+      <p class="wl-sub">Five minutes of setup so nothing gets in the way for the next six weeks. Your facilitator will share two links verbally. Keep them open on your laptop all weekend, and save them — you will use both for the four weeks of office hours that follow.</p>
 
       <div class="hk-grid">
         <div class="hk-card">
           <div class="hk-label">Two links you need open</div>
           <ul class="hk-list">
             <li><strong>Cohort form.</strong> Your facilitator will share the link. Open it and bookmark it. After every build session you paste your URL into this form.</li>
-            <li><strong>WhatsApp group.</strong> Your facilitator will share the invite. Join now. Questions, wins, and after-hours updates happen here.</li>
+            <li><strong>WhatsApp group.</strong> Your facilitator will share the invite. Join now. Questions, screenshots, weekly check-ins, and after-hours wins happen here for the full six weeks.</li>
           </ul>
         </div>
 
@@ -2297,7 +2547,7 @@ function renderHousekeeping() {
             <li>You work on your own laptop in parallel.</li>
             <li>If you are stuck, raise your hand. The facilitator or a co-builder comes to you.</li>
             <li>End of Day 1, one cohort photo. Bring your phone.</li>
-            <li>Your personal portfolio URL is emailed to you within 48 hours of the workshop ending.</li>
+            <li>Your personal portfolio URL is emailed to you within 48 hours of Demo Day.</li>
           </ul>
         </div>
       </div>
@@ -2321,7 +2571,7 @@ function renderDay1Photo() {
           <rect x="28" y="6" width="24" height="8" rx="2" stroke="var(--accent)" stroke-width="2"/>
         </svg>
       </div>
-      <p class="wl-quiet">Then home. Rest. No homework. Tomorrow at 9am we add three more builds.</p>
+      <p class="wl-quiet">Then home. Rest. Read through your website copy, video script, and brochure docs once before bed. Tomorrow at 9am we assemble the rest.</p>
       <p class="wl-footer">See you at 9am tomorrow.</p>
     </div>
   `;
@@ -2332,50 +2582,52 @@ function renderDay2Checkin() {
     <div class="wl-screen interlude-narrow">
       <div class="wl-eyebrow">Day 2 &middot; Morning</div>
       <h1 class="wl-title">Welcome back.</h1>
-      <p class="wl-sub">Yesterday you built three things. A working AI App. A website that markets it. A chatbot that answers questions on it. They are still live. Open your phone. Check.</p>
+      <p class="wl-sub">Yesterday you built one big thing — your AI app, live on the internet. And you wrote three documents: your website copy, your video script, your brochure. Today you assemble the rest.</p>
 
       <div class="d2-recap">
         <div class="d2-recap-half">
           <div class="d2-recap-label">Behind you</div>
           <ul class="d2-recap-list">
-            <li>AI App</li>
-            <li>Website</li>
-            <li>Chatbot</li>
+            <li>AI App, live</li>
+            <li>Website copy, written</li>
+            <li>Video script, written</li>
+            <li>Brochure copy, written</li>
           </ul>
         </div>
         <div class="d2-recap-divider"></div>
         <div class="d2-recap-half d2-recap-ahead">
-          <div class="d2-recap-label">Ahead of you</div>
+          <div class="d2-recap-label">Ahead of you today</div>
           <ul class="d2-recap-list">
-            <li>Audio (live by 10:35)</li>
-            <li>Video (live on LinkedIn by 12:20)</li>
-            <li>Validation (real conversation over lunch)</li>
-            <li>Agent (automation by 15:50)</li>
-            <li>Demo Day (16:35)</li>
-            <li>Close (17:40)</li>
+            <li>Website, live by lunch</li>
+            <li>Audio, embedded</li>
+            <li>Founder video, on LinkedIn</li>
+            <li>Brochure, downloadable PDF</li>
+            <li>Interim Demo Day, 15:00</li>
+            <li>The four-week plan, 17:15</li>
           </ul>
         </div>
       </div>
 
-      <p class="wl-footer">By 6:30pm tonight, your portfolio is real.</p>
+      <p class="wl-footer">By 17:00 today, the weekend is shipped. The next four weeks bring chatbot, agent, and Demo Day.</p>
     </div>
   `;
 }
 
 function renderPortfolioReveal() {
-  // Define the six build artifacts in order with mock display data
+  // Define the portfolio artifacts in the new six-week order
   const artifacts = [
-    { id: "3",  label: "AI App",   note: "Your live product",         placeholder: "yourname.netlify.app" },
-    { id: "4",  label: "Website",  note: "Marketing site",            placeholder: "yourname.carrd.co" },
-    { id: "5",  label: "Chatbot",  note: "Always-on support",         placeholder: "embedded on your site" },
-    { id: "6",  label: "Audio",    note: "60 seconds of your voice",  placeholder: "embedded on your site" },
-    { id: "7",  label: "Video",    note: "90 seconds on LinkedIn",    placeholder: "linkedin.com/posts/..." },
-    { id: "8",  label: "Agent",    note: "Automated workflow",        placeholder: "make.com scenario" },
+    { label: "AI App",       note: "Your live product",            placeholder: "yourname.netlify.app" },
+    { label: "Website",      note: "Marketing site",                placeholder: "yourname.carrd.co" },
+    { label: "Audio",        note: "60 seconds of your voice",      placeholder: "embedded on your site" },
+    { label: "Founder Video", note: "90 seconds on LinkedIn",       placeholder: "linkedin.com/posts/..." },
+    { label: "Chatbot",      note: "Always-on support",             placeholder: "embedded on your site" },
+    { label: "Agent",        note: "Automation that runs alone",    placeholder: "make.com scenario" },
+    { label: "Demo Day",     note: "3-minute recording, in this room", placeholder: "the strongest thing in the portfolio" },
   ];
 
   const cards = artifacts.map((a, i) => `
     <div class="portfolio-card">
-      <div class="portfolio-num">0${i + 1}</div>
+      <div class="portfolio-num">${String(i + 1).padStart(2, "0")}</div>
       <div class="portfolio-body">
         <div class="portfolio-label">${a.label}</div>
         <div class="portfolio-note">${a.note}</div>
@@ -2388,19 +2640,19 @@ function renderPortfolioReveal() {
     <div class="wl-screen portfolio-screen">
       <div class="wl-eyebrow">Your portfolio</div>
       <h1 class="wl-title">It is real. It is yours.</h1>
-      <p class="wl-sub">Forty-eight hours ago, none of this existed. Now look at what you can show. Six things you built. One URL that carries them all.</p>
+      <p class="wl-sub">Six weeks ago, none of this existed. Now look at what you can show. Seven things you built. One URL that carries them all.</p>
 
       <div class="portfolio-hero">
         <div class="portfolio-hero-label">Your portfolio URL</div>
         <div class="portfolio-hero-url">justbuild.orangecaterpillar.com/<span class="portfolio-hero-slot">your-college</span>/<span class="portfolio-hero-slot">c1</span>/<span class="portfolio-hero-slot">your-name</span></div>
-        <p class="portfolio-hero-note">We email each of you your personal portfolio URL within 48 hours. Use it on LinkedIn. Use it in every application. Use it in every message you send to a recruiter this week.</p>
+        <p class="portfolio-hero-note">Your personal portfolio URL goes live within 48 hours of Demo Day, with the Demo Day recording at the top. Use it on LinkedIn. Use it in every application. Use it in every message you send to a recruiter this week.</p>
       </div>
 
       <div class="portfolio-grid">
         ${cards}
       </div>
 
-      <p class="wl-footer">Six builds. One URL. Yours.</p>
+      <p class="wl-footer">Seven builds. One URL. Yours.</p>
     </div>
   `;
 }
@@ -2439,16 +2691,26 @@ function renderClosing() {
       <img class="closing-logo" src="logo.png" alt="Orange Caterpillar" onerror="this.style.display='none'">
       <div class="closing-eyebrow">Orange Caterpillar</div>
       <h1 class="closing-title">Now go use it.</h1>
-      <p class="closing-sub">You built six things in forty-eight hours. Forty-eight more hours and you will have used them. Send the message. Make the call. Apply for the role. Your portfolio is ready. So are you.</p>
+      <p class="closing-sub">You built seven things in six weeks. Forty-eight more hours and you will have used them. Send the message. Make the call. Apply for the role. Your portfolio is ready. So are you.</p>
     </div>
   `;
 }
 
 function renderSessionStart(s) {
-  const dayLabel = `Day ${s.day} &middot; ${s.start_time} to ${s.end_time} &middot; ${s.duration_minutes} minutes`;
+  // Day label format depends on session phase. Weekend = "Day 1/2", office hours = "Week 1", etc.
+  let dayPart;
+  if (typeof s.day === "number" || /^\d+$/.test(String(s.day))) {
+    dayPart = `Day ${s.day}`;
+  } else {
+    dayPart = String(s.day);
+  }
+  const dayLabel = `${dayPart} &middot; ${s.start_time} to ${s.end_time} &middot; ${s.duration_minutes} minutes`;
+  const sessionLabel = s.session_type === "office_hours"
+    ? "Office Hours"
+    : `Session ${String(s.number).padStart(2, "0")}`;
   return `
     <div class="hero">
-      <div class="hero-eyebrow">Session ${String(s.number).padStart(2, "0")}</div>
+      <div class="hero-eyebrow">${sessionLabel}</div>
       <h1 class="hero-title">${escapeHtml(s.title)}</h1>
       <hr class="hero-rule">
       <p class="hero-meta">${dayLabel}</p>
@@ -2562,16 +2824,92 @@ function renderTestOutput(s) {
   `;
 }
 
+function renderOfficeHours(s) {
+  const agenda = (s.agenda || []).map(a => `<li>${escapeHtml(a)}</li>`).join("");
+  const stuck = (s.stuck_points || []).map(p => `
+    <li class="oh-stuck">
+      <div class="oh-stuck-title">${escapeHtml(p.title)}</div>
+      <div class="oh-stuck-resolution">${escapeHtml(p.resolution)}</div>
+    </li>
+  `).join("");
+
+  const agendaBlock = agenda ? `
+    <div class="oh-section">
+      <div class="oh-section-label">The 90 minutes</div>
+      <ol class="oh-agenda">${agenda}</ol>
+    </div>
+  ` : "";
+
+  const stuckBlock = stuck ? `
+    <div class="oh-section">
+      <div class="oh-section-label">Walk through these proactively</div>
+      <ul class="oh-stuck-list" style="list-style:none; padding:0;">${stuck}</ul>
+    </div>
+  ` : "";
+
+  const qaBlock = s.live_qa_note ? `
+    <div class="oh-section">
+      <div class="oh-section-label">Live Q&amp;A</div>
+      <div class="oh-qa">${escapeHtml(s.live_qa_note)}</div>
+    </div>
+  ` : "";
+
+  const homeworkBlock = s.homework_check ? `
+    <div class="oh-section">
+      <div class="oh-section-label">Roster check &middot; last 15 minutes</div>
+      <div class="oh-homework">${escapeHtml(s.homework_check)}</div>
+    </div>
+  ` : "";
+
+  return `
+    <div class="oh-screen">
+      <div class="label">Office Hours</div>
+      ${agendaBlock}
+      ${stuckBlock}
+      ${qaBlock}
+      ${homeworkBlock}
+    </div>
+  `;
+}
+
+function renderPhaseBreak(screen) {
+  if (screen.to === "office_hours") {
+    return `
+      <div class="wl-screen interlude-narrow">
+        <div class="wl-eyebrow">Week 1 &middot; Office Hours</div>
+        <h1 class="wl-title">Welcome back.</h1>
+        <p class="wl-sub">The weekend was the launch pad. The next four Saturdays are where the deeper work happens. Ninety minutes each, same room, same time, every week. Chatbot this week. Agent the next two. Demo Day prep in Week 4.</p>
+        <p class="wl-footer">Bring your screen. Bring your specific question.</p>
+      </div>
+    `;
+  }
+  if (screen.to === "demo_day") {
+    return `
+      <div class="wl-screen interlude-narrow">
+        <div class="wl-eyebrow">Demo Day</div>
+        <h1 class="wl-title">Five weeks ago, none of this existed.</h1>
+        <p class="wl-sub">Tonight you stand in front of the room and show what you made. Three minutes plus one minute of Q&amp;A. Hard cap. Recorded. The recording becomes the strongest thing in your portfolio.</p>
+        <p class="wl-footer">Twenty-five demos. Two hours. Go.</p>
+      </div>
+    `;
+  }
+  return "";
+}
+
 function renderSessionEnd(screen) {
   const s = screen.session;
   const isLastSession = SESSIONS.indexOf(s) === SESSIONS.length - 1;
   const breakInfo = s.break_after ? `<p class="hero-meta">${s.break_label || "Break"} &middot; ${s.break_duration_minutes} minutes next</p>` : "";
+  const isNumeric = /^\d+$/.test(String(s.number));
+  const completeHeading = isNumeric
+    ? `Session ${String(s.number).padStart(2, "0")}<br><span style="font-style: italic; font-weight: 300;">complete</span>`
+    : `${escapeHtml(s.title)}<br><span style="font-style: italic; font-weight: 300;">complete</span>`;
   return `
     <div class="hero">
       <div class="hero-eyebrow">Complete</div>
-      <h1 class="hero-title" style="font-size: clamp(48px, 7vw, 96px);">Session ${String(s.number).padStart(2, "0")}<br><span style="font-style: italic; font-weight: 300;">complete</span></h1>
+      <h1 class="hero-title" style="font-size: clamp(48px, 7vw, 96px);">${completeHeading}</h1>
       <hr class="hero-rule">
-      <p class="hero-sub">${escapeHtml(s.title)}</p>
+      ${isNumeric ? `<p class="hero-sub">${escapeHtml(s.title)}</p>` : ""}
       ${breakInfo}
       ${!isLastSession ? `<div class="button-row" style="margin-top: 48px;"><button class="btn btn-ghost" id="continue-btn">${s.break_after ? "Begin break" : "Next session"} →</button></div>` : ""}
     </div>
@@ -2626,32 +2964,40 @@ function renderWorkshopComplete() {
   return `
     <div class="wl-screen">
       <div class="wl-eyebrow">What happens next</div>
-      <h1 class="wl-title">The next four weeks.</h1>
-      <p class="wl-sub">You walk out of this room with a portfolio. Here is exactly what happens after.</p>
+      <h1 class="wl-title">The next twelve months.</h1>
+      <p class="wl-sub">Demo Day is behind you. The portfolio is live. Here is what happens after.</p>
 
       <div class="timeline">
 
         <div class="timeline-row">
-          <div class="timeline-when">Within 48 hours</div>
+          <div class="timeline-when">Tonight</div>
           <div class="timeline-what">
-            <div class="timeline-title">Your personal portfolio URL arrives by email.</div>
-            <div class="timeline-detail">Check your inbox. Add the URL to your LinkedIn the same day. Send it to the first person you identified at the close.</div>
+            <div class="timeline-title">Your portfolio URL goes public, with the Demo Day recording at the top.</div>
+            <div class="timeline-detail">The recording becomes the strongest thing in the portfolio. Pin it to your LinkedIn featured section before you sleep. Send the URL to the three people you wrote down at the close.</div>
           </div>
         </div>
 
         <div class="timeline-row">
-          <div class="timeline-when">Next week</div>
+          <div class="timeline-when">This week</div>
           <div class="timeline-what">
-            <div class="timeline-title">The support structure opens.</div>
-            <div class="timeline-detail">Office hours twice a week. Weekly group review on the regular cadence. WhatsApp group active for recruiter conversations, interview prep, and wins.</div>
+            <div class="timeline-title">Put the URL on your resume and on every profile that matters.</div>
+            <div class="timeline-detail">Naukri, Internshala, LinkedIn, college placement portal. Three minutes per profile. Then send the URL by DM to three seniors or alumni you respect, one line, your portfolio. Speed signals seriousness.</div>
           </div>
         </div>
 
         <div class="timeline-row">
-          <div class="timeline-when">Four weeks out</div>
+          <div class="timeline-when">This month</div>
           <div class="timeline-what">
-            <div class="timeline-title">Real Demo Day.</div>
-            <div class="timeline-detail">The cohort regroups. Builders who applied to OC Ventures present to angel investors and operators. Applications close one week before. Apply at justbuild.orangecaterpillar.com/apply if you want in.</div>
+            <div class="timeline-title">Apply to one role where this portfolio is the proof.</div>
+            <div class="timeline-detail">Internship, off-campus role, product fellowship — whatever you have been holding off on because you did not feel ready. The portfolio is the proof. Apply.</div>
+          </div>
+        </div>
+
+        <div class="timeline-row">
+          <div class="timeline-when">If you want to keep building</div>
+          <div class="timeline-what">
+            <div class="timeline-title">OC Ventures opens for applications.</div>
+            <div class="timeline-detail">A selective follow-on program for builders who could not stop after Demo Day. The strongest builds get polished and presented to angel investors. Apply at justbuild.orangecaterpillar.com/apply.</div>
           </div>
         </div>
 
@@ -2710,7 +3056,7 @@ function attachHandlers(screen) {
   document.querySelectorAll(".test-item").forEach(el => {
     el.onclick = () => {
       const idx = parseInt(el.dataset.idx, 10);
-      const sid = parseInt(el.dataset.session, 10);
+      const sid = el.dataset.session; // session ids may be non-numeric strings ("milestone", "interim-demo")
       testsChecked[sid][idx] = !testsChecked[sid][idx];
       el.classList.toggle("checked", testsChecked[sid][idx]);
       const allDone = testsChecked[sid].every(Boolean);
@@ -2838,6 +3184,105 @@ function playChime() {
 }
 
 /* ============================================
+   JUMP-TO-SESSION MENU
+   ============================================ */
+
+function refreshJumpMenu() {
+  const menu = $("#jump-menu");
+  const btnLabel = $("#jump-btn-label");
+  if (!menu) return;
+
+  const currentScreen = SCREENS[currentScreenIdx];
+  const currentSessionId = currentScreen?.session?.id || null;
+
+  // Group sessions by phase
+  const phaseOrder = ["weekend", "office_hours", "demo_day", "close"];
+  const phaseLabels = {
+    "weekend": "Weekend Intensive",
+    "office_hours": "Four Weeks · Office Hours",
+    "demo_day": "Demo Day",
+    "close": "Close",
+  };
+  const groups = {};
+  SESSIONS.forEach(s => {
+    const p = s.phase || "weekend";
+    if (!groups[p]) groups[p] = [];
+    groups[p].push(s);
+  });
+
+  // Build HTML
+  let html = "";
+  phaseOrder.forEach(phase => {
+    if (!groups[phase]) return;
+    html += `<div class="jump-group">
+      <div class="jump-group-label">${phaseLabels[phase] || phase}</div>`;
+    groups[phase].forEach(s => {
+      const isCurrent = s.id === currentSessionId;
+      const num = s.number || s.id;
+      const time = s.session_type === "office_hours"
+        ? "90 min"
+        : `${s.start_time}–${s.end_time}`;
+      html += `<div class="jump-item ${isCurrent ? "current" : ""}" data-session-id="${escapeAttr(s.id)}">
+        <span class="jump-item-num">${escapeHtml(String(num))}</span>
+        <span class="jump-item-title">${escapeHtml(s.title)}</span>
+        <span class="jump-item-time">${escapeHtml(time)}</span>
+      </div>`;
+    });
+    html += `</div>`;
+  });
+  menu.innerHTML = html;
+
+  // Set the button label to the current session number/title (short form)
+  if (btnLabel) {
+    if (currentSessionId) {
+      const s = SESSIONS.find(s => s.id === currentSessionId);
+      btnLabel.textContent = s ? `${s.number || s.id}` : "Jump";
+    } else {
+      btnLabel.textContent = "Jump";
+    }
+  }
+
+  // Click handlers on items
+  menu.querySelectorAll(".jump-item").forEach(el => {
+    el.onclick = () => {
+      const sid = el.dataset.sessionId;
+      jumpToSession(sid);
+    };
+  });
+}
+
+function jumpToSession(sessionId) {
+  // Jump to the session-start screen for the given session id
+  const targetIdx = SCREENS.findIndex(scr => scr.type === "session-start" && scr.session && scr.session.id === sessionId);
+  if (targetIdx >= 0) {
+    currentScreenIdx = targetIdx;
+    renderCurrent();
+  }
+  closeJumpMenu();
+}
+
+function toggleJumpMenu() {
+  const wrap = $("#jump-wrap");
+  if (!wrap) return;
+  wrap.classList.toggle("open");
+}
+
+function closeJumpMenu() {
+  const wrap = $("#jump-wrap");
+  if (wrap) wrap.classList.remove("open");
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("jump-btn");
+  if (btn) btn.addEventListener("click", (e) => { e.stopPropagation(); toggleJumpMenu(); });
+  // Click outside closes
+  document.addEventListener("click", (e) => {
+    const wrap = document.getElementById("jump-wrap");
+    if (wrap && !wrap.contains(e.target)) closeJumpMenu();
+  });
+});
+
+/* ============================================
    KEYBOARD SHORTCUTS
    ============================================ */
 
@@ -2866,6 +3311,10 @@ document.addEventListener("keydown", (e) => {
     case "h": case "H":
       e.preventDefault();
       toggleHMV();
+      break;
+    case "j": case "J":
+      e.preventDefault();
+      toggleJumpMenu();
       break;
   }
 });
@@ -2905,6 +3354,7 @@ function escapeHtml(str) {
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#039;");
 }
+function escapeAttr(str) { return escapeHtml(str); }
 
 /* ============================================
    AUTH GATE

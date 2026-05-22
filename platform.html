@@ -326,13 +326,67 @@
     font-weight: 500;
   }
 
+  /* ----- Workshop-complete portfolio-contents panel ----- */
+  .wc-contents {
+    margin: 32px auto 40px;
+    padding: 24px 28px;
+    background: var(--bg-elev-1);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    max-width: 920px;
+  }
+  .wc-contents-label {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+  .wc-contents-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px 24px;
+  }
+  .wc-contents-list li {
+    color: var(--text-soft);
+    font-size: 15px;
+    line-height: 1.4;
+  }
+  .wc-contents-list li strong {
+    display: inline-block;
+    min-width: 28px;
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+  @media (max-width: 880px) {
+    .wc-contents-list { grid-template-columns: repeat(2, 1fr); }
+  }
+
   /* ----- Stage / main area ----- */
   .stage {
     flex: 1 1 auto;
     display: flex;
-    padding: 32px 60px;
-    overflow: hidden;
+    padding: 32px 60px 64px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    /* When content exceeds viewport, allow scroll instead of clipping the bottom */
+    scrollbar-width: thin;
+    scrollbar-color: var(--line-strong) transparent;
   }
+  .stage::-webkit-scrollbar { width: 8px; }
+  .stage::-webkit-scrollbar-track { background: transparent; }
+  .stage::-webkit-scrollbar-thumb {
+    background: var(--line-strong);
+    border-radius: 4px;
+  }
+  .stage::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
 
   .screen {
     width: 100%;
@@ -2616,15 +2670,17 @@ function renderDay2Checkin() {
 }
 
 function renderPortfolioReveal() {
-  // Define the portfolio artifacts in the new six-week order
+  // Define the portfolio artifacts. Eight items: AI app, website, audio, founder video,
+  // brochure, chatbot, agent, demo day recording.
   const artifacts = [
-    { label: "AI App",       note: "Your live product",            placeholder: "yourname.netlify.app" },
-    { label: "Website",      note: "Marketing site",                placeholder: "yourname.carrd.co" },
-    { label: "Audio",        note: "60 seconds of your voice",      placeholder: "embedded on your site" },
-    { label: "Founder Video", note: "90 seconds on LinkedIn",       placeholder: "linkedin.com/posts/..." },
-    { label: "Chatbot",      note: "Always-on support",             placeholder: "embedded on your site" },
-    { label: "Agent",        note: "Automation that runs alone",    placeholder: "make.com scenario" },
-    { label: "Demo Day",     note: "3-minute recording, in this room", placeholder: "the strongest thing in the portfolio" },
+    { label: "AI App",        note: "Your live product",                placeholder: "yourname.netlify.app" },
+    { label: "Website",       note: "Three-page marketing site",         placeholder: "yourname.carrd.co" },
+    { label: "Audio",         note: "60 seconds of your voice",          placeholder: "embedded on your site" },
+    { label: "Founder Video", note: "90 seconds on LinkedIn",            placeholder: "linkedin.com/posts/..." },
+    { label: "Brochure",      note: "One-page PDF, downloadable",        placeholder: "linked from your site" },
+    { label: "Chatbot",       note: "Always-on support",                 placeholder: "embedded on your site" },
+    { label: "Agent",         note: "Automation that runs alone",        placeholder: "make.com scenario" },
+    { label: "Demo Day",      note: "3-minute recording, in this room",  placeholder: "the strongest thing in the portfolio" },
   ];
 
   const cards = artifacts.map((a, i) => `
@@ -2642,7 +2698,7 @@ function renderPortfolioReveal() {
     <div class="wl-screen portfolio-screen">
       <div class="wl-eyebrow">Your portfolio</div>
       <h1 class="wl-title">It is real. It is yours.</h1>
-      <p class="wl-sub">Six weeks ago, none of this existed. Now look at what you can show. Seven things you built. One URL that carries them all.</p>
+      <p class="wl-sub">Six weeks ago, none of this existed. Now look at what you can show. Eight things you built. One URL that carries them all.</p>
 
       <div class="portfolio-hero">
         <div class="portfolio-hero-label">Your portfolio URL</div>
@@ -2654,7 +2710,7 @@ function renderPortfolioReveal() {
         ${cards}
       </div>
 
-      <p class="wl-footer">Seven builds. One URL. Yours.</p>
+      <p class="wl-footer">Eight builds. One URL. Yours.</p>
     </div>
   `;
 }
@@ -2967,7 +3023,21 @@ function renderWorkshopComplete() {
     <div class="wl-screen">
       <div class="wl-eyebrow">What happens next</div>
       <h1 class="wl-title">The next twelve months.</h1>
-      <p class="wl-sub">Demo Day is behind you. The portfolio is live. Here is what happens after.</p>
+      <p class="wl-sub">Demo Day is behind you. The portfolio is live. Here is what is in it, and what happens after.</p>
+
+      <div class="wc-contents">
+        <div class="wc-contents-label">What's in your portfolio</div>
+        <ul class="wc-contents-list">
+          <li><strong>01</strong> AI App</li>
+          <li><strong>02</strong> Website (three pages)</li>
+          <li><strong>03</strong> Audio</li>
+          <li><strong>04</strong> Founder Video</li>
+          <li><strong>05</strong> Brochure (PDF)</li>
+          <li><strong>06</strong> Chatbot</li>
+          <li><strong>07</strong> Agent</li>
+          <li><strong>08</strong> Demo Day Recording</li>
+        </ul>
+      </div>
 
       <div class="timeline">
 

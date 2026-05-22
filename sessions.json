@@ -2,7 +2,7 @@
   "workshop": {
     "title": "Just Build",
     "subtitle": "",
-    "session_count": 13,
+    "session_count": 15,
     "weekend_day1_sessions": [
       "0",
       "1",
@@ -45,7 +45,7 @@
       "duration_minutes": 30,
       "break_after": false,
       "break_duration_minutes": 0,
-      "set_the_stage": "Welcome. Look around this room. Twenty-five people, two days, four weeks, one Demo Day. That is the shape of what you have signed up for.\n\nMost workshops end the moment the room empties. This one starts there. The weekend is the launch pad. The four weeks after are where the deeper builds happen, on your own time, with structured support. Demo Day is where you stand in front of the room and show what you shipped.\n\nThirty minutes to set expectations, then we start building.",
+      "set_the_stage": "Welcome. Look around this room. This is your cohort. The people sitting next to you are the ones you will check in with, demo to, and stand alongside on Demo Day.\n\nMost workshops end the moment the room empties. This one starts there. The weekend is the launch pad. The four weeks after are where the deeper builds happen, on your own time, with weekly office hours to keep you moving. Demo Day is where you stand in front of the room and show what you shipped.\n\nThirty minutes to set the expectation, then we start building.",
       "questions": [
         {
           "title": "What do you want to walk out with on Demo Day?",
@@ -53,7 +53,7 @@
         },
         {
           "title": "What is the one thing that could stop you?",
-          "body": "Be honest. Time? Confidence? A specific tool you have never used? Knowing the obstacle now lets you ask for help before it blocks you."
+          "body": "Be honest. Time pressure during exams? Confidence? A tool you have never touched? Knowing the obstacle now lets you ask for help before it blocks you."
         }
       ],
       "hmv": [],
@@ -61,15 +61,15 @@
       "build": [
         {
           "title": "The program shape",
-          "instructions": "Two days in this room. Then Week 1 chatbot, Weeks 2-3 agent, Week 4 Demo Day prep. Office hours every week, 90 minutes, in this room or on Meet. WhatsApp group for between-session unblocks. Demo Day in Week 5."
+          "instructions": "Two days in this room. Then Week 1 chatbot, Weeks 2 and 3 agent, Week 4 Demo Day prep. Office hours every Saturday, 90 minutes, this room or on Meet. WhatsApp group for between-session unblocks. Demo Day in Week 5."
         },
         {
           "title": "The portfolio at the end",
-          "instructions": "Six builds, one URL. AI app, website, chatbot, audio piece, founder video, automation agent. All live. All yours. The URL is what you share with recruiters and on LinkedIn."
+          "instructions": "Six builds plus a Demo Day recording, all collected at one URL. AI app, website, marketing collaterals (audio, video, brochure), chatbot, automation agent. All live. All yours. The URL is what you share with recruiters, on LinkedIn, and during placements."
         },
         {
           "title": "How the room runs",
-          "instructions": "When you are stuck for more than fifteen minutes, raise your hand. Do not power through silently — the facilitator walks the room precisely to catch the silent stuck. The fastest way to slow yourself down is to refuse help."
+          "instructions": "When you are stuck for more than fifteen minutes, raise your hand. Do not power through silently. The facilitator walks the room precisely to catch the silent stuck. The fastest way to slow yourself down is to refuse help."
         }
       ],
       "test_output": [],
@@ -87,28 +87,32 @@
       "duration_minutes": 90,
       "break_after": true,
       "break_duration_minutes": 15,
-      "set_the_stage": "Ninety minutes to land on the one idea you will build for the next six weeks. Some of you walked in with an idea. Some of you did not. Both are fine. By 11:00 every person in this room has a single sentence on a card: the problem, who has it, why their current workaround is not good enough.\n\nThe biggest myth about entrepreneurship is that you need a flash of genius. You do not. You need a problem you actually care about, and a small honest description of who has it. Today, AI is the easy part. The hard part is choosing what to point it at.\n\nThirty minutes to surface candidates with Gemini. Thirty minutes to test which one survives a real human. Thirty minutes to commit on a card.",
+      "set_the_stage": "Ninety minutes to land on the one idea you will build for the next six weeks. Some of you walked in with an idea. Some of you did not. Both are fine. By the end of this session every person in this room has a single sentence on a card: the problem, who has it, why their current way of dealing with it is not good enough.\n\nThe biggest myth about entrepreneurship is that you need a flash of genius. You do not. You need a problem you actually care about, and a small honest description of who has it. Today, AI is the easy part. The hard part is choosing what to point it at.\n\nThirty minutes to surface candidates with Gemini. Thirty minutes to test which one survives a conversation with a real person. Thirty minutes to commit on a card.",
       "questions": [
         {
-          "title": "Whose problems do you already understand?",
-          "body": "Not who you want to help. Who do you already know. Write down three groups of people whose daily lives you can describe in some detail. Could be students at your college, freelance designers, parents of toddlers, people who run small kirana stores, weekend cyclists, anyone."
+          "title": "Whose world do you already understand?",
+          "body": "Not who you want to help. Who do you already know. Hostel mates, your mother, your father, classmates in a specific branch, your driver, the chaiwala at the gate, your tuition kids, your younger sibling, a friend who runs a side hustle, your relatives who run a small shop. Pick three groups whose daily life you can describe in detail."
         },
         {
-          "title": "What annoys you, personally?",
-          "body": "List five things that have made you genuinely irritated in the last month. Tiny annoyances count. Forgetting where you parked. Spending an hour comparing three insurance policies. Not being able to find someone to play badminton with on a Sunday morning."
+          "title": "What annoys the people around you?",
+          "body": "Walk through the last week of conversations. What did your friends complain about? What did your parents grumble about over dinner? What did your hostel mate say while staring at his laptop? Real frustrations, in real voices. List at least five. Quote them if you remember the exact words."
         },
         {
-          "title": "What do you keep wishing existed?",
-          "body": "Sometimes the cleanest signal is the phrase someone wishes existed. Write down two or three things you have thought I wish there was a thing that did this. Do not filter for whether it could exist or already does. Just write what came to mind."
+          "title": "What do you keep doing the slow way?",
+          "body": "Forget AI for a moment. What is something in your own life you do badly, slowly, or with effort, that you keep meaning to fix? Submitting assignments. Tracking expenses with friends. Finding affordable PG accommodation. Picking electives. Studying for a subject you do not like. Write down three honest answers."
+        },
+        {
+          "title": "Where does AI actually help?",
+          "body": "Not every problem needs AI. A spreadsheet beats AI for most tracking. A WhatsApp group beats AI for most coordination. AI is useful when the problem involves understanding text, generating content, reasoning over messy information, or giving personalised guidance. Look at the problems you listed. Mark which ones AI would actually help with, and which ones a form or a sheet would solve faster."
         }
       ],
       "hmv": [
         {
           "dimension": "Humanics",
           "techniques": [
-            "Picture the specific person with the problem. Where are they? What time of day is it? What just happened?",
-            "What are they feeling in that moment? Frustration, embarrassment, exhaustion, resignation?",
-            "Could the room recognise this person if they walked in?"
+            "Picture the specific person with the problem. Where are they sitting? What time of day is it? What just happened?",
+            "What are they feeling in that moment? Frustration, embarrassment, exhaustion, the urge to give up?",
+            "Could someone in this room recognise this person if they walked in?"
           ]
         },
         {
@@ -116,15 +120,15 @@
           "techniques": [
             "Is AI genuinely useful here, or are you forcing it?",
             "Watch for the AI-for-the-sake-of-AI idea, where you find a problem to justify the tech.",
-            "Watch for the spreadsheet problem, where a form would solve it just as well."
+            "Watch for the spreadsheet problem, where a Google Form would solve it just as well."
           ]
         },
         {
           "dimension": "Valuenomics",
           "techniques": [
-            "Does someone currently pay money to have this problem managed?",
+            "Does someone currently pay money to deal with this problem?",
             "Does someone currently spend significant time on it?",
-            "Does someone currently experience a painful consequence when it is not solved?"
+            "Does someone currently experience a real consequence when it is not solved?"
           ]
         }
       ],
@@ -133,7 +137,7 @@
           "number": 1,
           "title": "Find your idea",
           "tool": "Gemini (gemini.google.com)",
-          "content": "I am about to spend six weeks building a real AI-powered product as a solopreneur. I do not have an idea yet. Help me find one.\n\nHere is what I know about myself.\n\nThree groups of people whose lives I understand: [from Question 1]\nFive things that have annoyed me in the last month: [from Question 2]\nTwo or three things I wish existed: [from Question 3]\n\nDo four things for me.\n\nFirst, look at the annoyances and the wishes. Tell me which two or three of them point to a real problem that other people probably also experience. Not just me. Be honest if any of them are too personal or too niche to be a real micro-venture.\n\nSecond, for each of those candidate problems, describe in two sentences who specifically has this problem. The more specific the better. Not 'people' or 'professionals'. A specific kind of person in a specific situation.\n\nThird, for each candidate, name an existing tool or workaround people currently use, and one thing about that workaround that is genuinely not good enough.\n\nFourth, recommend the one problem out of these candidates that you think is most worth me exploring this weekend, and tell me honestly why. Then ask me three follow-up questions to help me get sharper on that problem before I move on."
+          "content": "I am about to spend six weeks building a real AI-powered product as a solopreneur. I do not have an idea yet. Help me find one.\n\nHere is what I know about myself.\n\nThree groups of people whose lives I understand: [from Question 1]\nFive things people around me complain about: [from Question 2]\nThree things I do the slow way myself: [from Question 3]\nProblems where AI would actually help: [from Question 4]\n\nDo four things for me.\n\nFirst, look at the candidates. Tell me which two or three of them point to a real problem that other people probably also experience. Not just me, not just one person. Be honest if any of them are too personal or too niche to be a real micro-venture.\n\nSecond, for each of those candidate problems, describe in two sentences who specifically has this problem. The more specific the better. Not 'people' or 'students'. A specific kind of person in a specific situation.\n\nThird, for each candidate, name what people currently do about this problem today (the existing tool, the workaround, the WhatsApp group, whatever), and one thing about that current approach that is genuinely not good enough.\n\nFourth, recommend the one problem out of these candidates that you think is most worth me exploring this weekend, and tell me honestly why. Then ask me three follow-up questions to help me get sharper on that problem before I move on."
         }
       ],
       "build": [
@@ -147,11 +151,11 @@
         },
         {
           "title": "Talk to a real human",
-          "instructions": "Find one person in the room you do not know. Tell them your one-sentence idea. Watch their face, not their words. If their first reaction is 'oh, yeah, that would be useful for X' you are close. If they nod politely and ask a generic question, you are not there yet."
+          "instructions": "Find one person in the room you do not know. Tell them your one-sentence idea. Watch their face, not just their words. If their first reaction is 'oh, yeah, that would be useful for X', you are close. If they nod politely and ask a generic question, you are not there yet."
         },
         {
           "title": "Write your card",
-          "instructions": "By 11:00 you have three things on a card. One sentence about the problem. One sentence about who specifically has it. One sentence about why their current workaround is not good enough."
+          "instructions": "Three things on a card. One sentence about the problem. One sentence about who specifically has it. One sentence about what they currently do and why it is not good enough."
         }
       ],
       "test_output": [
@@ -161,7 +165,7 @@
         },
         {
           "title": "The person test",
-          "description": "Can you describe one specific kind of person who has this problem, in enough detail that a stranger in the room could recognise them? If yes, pass."
+          "description": "Can you describe one specific kind of person who has this problem, in enough detail that a stranger in this room could recognise them? If yes, pass."
         },
         {
           "title": "The gap test",
@@ -180,25 +184,37 @@
       "session_type": "build",
       "day": 1,
       "phase": "weekend",
-      "title": "Build the AI app — get it working",
+      "title": "Build the AI app, get it working",
       "start_time": "11:15",
       "end_time": "13:15",
       "duration_minutes": 120,
       "break_after": false,
       "break_duration_minutes": 0,
-      "set_the_stage": "You have a problem. You have a user. Now you build.\n\nToday, a solopreneur with a clear idea and the right prompts can have a working AI app in two hours. Not a mockup. Not a wireframe. Something real that runs in a browser, takes a real input, and gives back a real output.\n\nOne HTML file. No code knowledge required. No backend. You build it with Claude, customise it until it feels like yours. By 13:15 the app responds to your test input with something recognisably useful — even if it is rough. We polish next session. Right now: get to working.\n\nLunch is at 13:15. Aim to be hungry by then, not panicking.",
+      "set_the_stage": "You have a problem. You have a user. Now you build.\n\nToday, a solopreneur with a clear idea and the right prompts can have a working AI app in two hours. Not a mockup. Not a wireframe. Something real that runs in a browser, takes a real input, and gives back a real output.\n\nOne HTML file. No coding background required. No backend. You build it with Claude, customise it until it feels like yours. By the end of this session the app responds to your test input with something recognisably useful, even if it is rough around the edges. We polish next session. Right now: get to working.\n\nLunch is at the end of this block. Aim to be hungry by then, not panicking.",
       "questions": [
         {
           "title": "What is the simplest version of your app?",
-          "body": "Before you write a prompt, sketch the smallest thing that could be useful. One input field. One output. One AI call in between. If you cannot describe it in one sentence, it is too complicated."
+          "body": "Before you write a prompt, sketch the smallest thing that could be useful. One input field. One output. One AI call in between. If you cannot describe it in one sentence, it is too complicated for today."
         },
         {
           "title": "What does the user put in?",
-          "body": "Be specific. A paragraph of text? A photo of their thali? A list of five preferences? The shape of the input determines the shape of everything else."
+          "body": "Be specific. A paragraph of text? A photo of their notes? A list of five preferences? Their semester marks? The shape of the input determines the shape of everything else."
         },
         {
           "title": "What does the user get out?",
-          "body": "Be specific. A list of seven items? A 200-word plan? A flashcard set? A score from 1 to 10 with one line of advice? Write the example output by hand, before the AI ever runs."
+          "body": "Be specific. A list of seven items? A 200-word plan? A flashcard set? A score from 1 to 10 with one line of advice? Write the example output by hand on paper, before the AI ever runs. If you cannot write the example, the AI will not produce it either."
+        },
+        {
+          "title": "What is the AI actually doing?",
+          "body": "Not 'AI generates the output'. That is vague. Is it summarising? Translating? Comparing? Recommending? Critiquing? Generating? Filtering? Name the verb. The verb tells you what to put in the system prompt."
+        },
+        {
+          "title": "What is the AI not allowed to do?",
+          "body": "A good system prompt has limits. What is off-topic? What should the AI refuse, redirect, or politely decline? Without limits, the AI drifts. With them, it stays useful. Name two things your AI must never do."
+        },
+        {
+          "title": "What is the one moment the user feels the value?",
+          "body": "Walk through your user's journey in your head. They land on the page. They type something in. They click the button. Then what? The exact moment they see their result is the moment that has to feel good. Picture it now. That is what you are building."
         }
       ],
       "hmv": [
@@ -207,7 +223,7 @@
           "techniques": [
             "Open the app as if you have never seen it. Is it immediately obvious what to do?",
             "Read every label and button out loud. Does it sound like something a real person would say?",
-            "Would a real user complete the full journey without help?"
+            "Would a real user complete the full journey without anyone explaining it to them?"
           ]
         },
         {
@@ -223,16 +239,16 @@
           "techniques": [
             "Look at the output for three seconds and look away. What did you retain?",
             "If someone paid for this output, would they feel it was worth it?",
-            "Would your target user screenshot the output and send it to a colleague?"
+            "Would your target user screenshot the output and send it to a friend?"
           ]
         }
       ],
       "prompts": [
         {
           "number": 1,
-          "title": "Build your AI app — first version",
+          "title": "Build your AI app, first version",
           "tool": "Claude (claude.ai)",
-          "content": "I am building a single-page AI app as a solopreneur. I need a single HTML file I can deploy by dragging into Netlify. No backend, no API key — the AI call happens through the OpenRouter free tier with a public key you will give me.\n\nHere is the idea.\n\nThe user: [one sentence — the specific person]\nThe problem: [one sentence — what is broken for them today]\nThe input the user gives me: [one specific input, with an example]\nThe output I give back: [one specific output, with an example]\n\nWrite me a single index.html file that does this. Inside the file, include:\n\nA clean simple form for the input.\nA single button labelled with something specific, not 'Submit'.\nA loading state while the AI thinks.\nThe output rendered clearly below the form.\nA system prompt for the AI that is detailed enough to produce consistently good output for the specific user and specific problem above.\nStyling that is clean and readable on a phone. Not flashy. Just good.\n\nAt the top of the file, leave a comment block with the system prompt, so I can edit it later without digging through the code."
+          "content": "I am building a single-page AI app as a solopreneur. I need a single HTML file I can deploy by dragging into Netlify. No backend, no API key. The AI call happens through the OpenRouter free tier with a public key you will give me.\n\nHere is the idea.\n\nThe user: [one sentence, the specific person]\nThe problem: [one sentence, what is broken for them today]\nThe input the user gives me: [one specific input, with an example]\nThe output I give back: [one specific output, with an example]\nWhat the AI is actually doing: [the verb. summarising, comparing, recommending, etc.]\nWhat the AI must never do: [two specific limits]\n\nWrite me a single index.html file that does this. Inside the file, include:\n\nA clean simple form for the input.\nA single button labelled with something specific, not 'Submit'.\nA loading state while the AI thinks.\nThe output rendered clearly below the form.\nA system prompt for the AI that is detailed enough to produce consistently good output for the specific user and specific problem above.\nStyling that is clean and readable on a phone. Not flashy. Just good.\n\nAt the top of the file, leave a comment block with the system prompt, so I can edit it later without digging through the code."
         }
       ],
       "build": [
@@ -242,7 +258,7 @@
         },
         {
           "title": "Run it with a real input",
-          "instructions": "Not a clever test input. Not the example from your prompt. A real one — the actual thing your target user would type in. See what comes back."
+          "instructions": "Not a clever test input. Not the example from your prompt. A real one, the actual thing your target user would type in. See what comes back."
         },
         {
           "title": "Sharpen the system prompt",
@@ -252,11 +268,11 @@
       "test_output": [
         {
           "title": "The first-run test",
-          "description": "Did your app produce any output for a real input by 13:00? If yes, pass."
+          "description": "Did your app produce any output for a real input by the end of this session? If yes, pass."
         },
         {
           "title": "The relevance test",
-          "description": "Is the output recognisably about the problem, for the user you described? Not perfect — recognisable. If yes, pass."
+          "description": "Is the output recognisably about the problem, for the user you described? Not perfect. Recognisable. If yes, pass."
         },
         {
           "title": "The honesty test",
@@ -271,13 +287,13 @@
       "session_type": "milestone",
       "day": 1,
       "phase": "weekend",
-      "title": "Milestone check — your AI does the right thing for the right person",
+      "title": "Milestone check, your AI does the right thing for the right person",
       "start_time": "13:45",
       "end_time": "14:15",
       "duration_minutes": 30,
       "break_after": false,
       "break_duration_minutes": 0,
-      "set_the_stage": "Thirty minutes. Everyone in the room shows two things.\n\nOne. The user you described this morning. One sentence. Read it aloud.\nTwo. The most recent output your AI produced for a realistic input from that user. Read it aloud.\n\nThe room and the facilitator listen for one thing: does the output sound like it was produced for that specific person, doing that specific thing? Or does it sound like a generic AI response with the topic swapped in?\n\nThe biggest failure mode on Day 1 is students who get the AI wired up and stop there, then spend the afternoon on UI polish. This thirty-minute interrupt is designed to catch that. If your output is generic, the system prompt is the problem, not the styling.\n\nFacilitator walks the room. Stuck students get unstuck. By 14:15 every person knows whether they are on track or whether they need to course-correct the prompt before they go further.",
+      "set_the_stage": "Thirty minutes. Everyone in the room shows two things.\n\nOne. The user you described this morning. One sentence. Read it aloud.\nTwo. The most recent output your AI produced for a realistic input from that user. Read it aloud.\n\nThe room and the facilitator listen for one thing. Does the output sound like it was produced for that specific person, doing that specific thing? Or does it sound like a generic AI response with the topic swapped in?\n\nThe biggest failure mode on Day 1 is students who get the AI wired up and stop there, then spend the afternoon on UI polish. This thirty-minute interrupt is designed to catch that. If your output is generic, the system prompt is the problem, not the styling.\n\nFacilitator walks the room. Stuck students get unstuck. By the end of this block every person knows whether they are on track or whether they need to course-correct the prompt before they go further.",
       "questions": [],
       "hmv": [],
       "prompts": [],
@@ -288,13 +304,13 @@
         },
         {
           "title": "Course correct or keep building",
-          "instructions": "If your output is on track, you keep building in the next session. If your output is generic, your next ninety minutes go to sharpening the system prompt before any visual polish. The facilitator will tell you which."
+          "instructions": "If your output is on track, you keep building in the next session. If your output is generic, the next block goes to sharpening the system prompt before any visual polish. The facilitator will tell you which."
         }
       ],
       "test_output": [
         {
           "title": "The recognition test",
-          "description": "Could a stranger in the room hear your output and recognise it as being for the user you described? If yes, pass. If no, the system prompt needs work before you move on."
+          "description": "Could a stranger in this room hear your output and recognise it as being for the user you described? If yes, pass. If no, the system prompt needs work before you move on."
         }
       ],
       "output_capture": null
@@ -305,21 +321,25 @@
       "session_type": "build",
       "day": 1,
       "phase": "weekend",
-      "title": "Build the AI app — ship it",
+      "title": "Build the AI app, ship it",
       "start_time": "14:15",
       "end_time": "16:00",
       "duration_minutes": 105,
       "break_after": true,
       "break_duration_minutes": 15,
-      "set_the_stage": "By the end of this block your AI app is live on the internet, at a real URL, working on a phone.\n\nTwo things happen in the next hour and forty-five minutes. First, you tighten the output so it consistently does the right thing — not just once, but every time, for the full range of inputs your user might throw at it. Second, you deploy it. Netlify drag-and-drop. Three minutes. You walk out of this session with a URL you can share.\n\nDo not get pulled into visual perfection. The product works or it does not. Once it works, deploy. The website session at 16:15 is where the visual story gets told, not here.",
+      "set_the_stage": "By the end of this block your AI app is live on the internet, at a real URL, working on a phone.\n\nTwo things happen in this session. First, you tighten the output so it consistently does the right thing, not just once, but every time, for the full range of inputs your user might throw at it. Second, you deploy it. Netlify drag-and-drop. Three minutes. You walk out of this session with a URL you can share.\n\nDo not get pulled into visual perfection. The product works or it does not. Once it works, deploy. The website session next is where the visual story gets told, not here.",
       "questions": [
         {
-          "title": "What does the AI never do?",
-          "body": "A good system prompt has constraints. What is off-limits? What should the AI refuse, redirect, or politely decline? Without constraints, the AI drifts. With them, it stays useful."
+          "title": "What does the AI never do, really?",
+          "body": "You named two limits this morning. Test them. Throw inputs that try to break the rules. Does the AI hold the line, or does it cave? If it caves, the system prompt is too soft. Tighten it."
         },
         {
           "title": "Where does it currently fail?",
-          "body": "Throw three weird inputs at your app. Inputs your user might realistically give that you did not design for. Where does it break? Where does it produce something embarrassing?"
+          "body": "Throw three weird inputs at your app. Inputs your user might realistically give that you did not design for. A blank input. A one-word input. A paragraph in Hindi or Hinglish if your user might do that. Where does it break? Where does it produce something embarrassing?"
+        },
+        {
+          "title": "Does the output look good on a phone?",
+          "body": "Most of your users will open this on their phone, not a laptop. Open your app on your phone. Is the text readable? Is the button reachable with one thumb? Does the output fit on the screen without horizontal scrolling?"
         }
       ],
       "hmv": [],
@@ -328,7 +348,7 @@
           "number": 1,
           "title": "Tighten the system prompt",
           "tool": "Claude (claude.ai)",
-          "content": "Here is my current index.html. The system prompt is in the comment block at the top.\n\n[paste your full index.html]\n\nThe output is good when the user gives a clean input. The output gets weak when the user gives [describe the kind of input that fails — short, vague, off-topic, etc.].\n\nRewrite the system prompt so the app produces good output in both cases. Add explicit constraints for what the AI should refuse to do, redirect, or handle gracefully. Keep the output format consistent.\n\nGive me only the updated system prompt, not the whole file. I will paste it in myself."
+          "content": "Here is my current index.html. The system prompt is in the comment block at the top.\n\n[paste your full index.html]\n\nThe output is good when the user gives a clean input. The output gets weak when the user gives [describe the kind of input that fails. short, vague, off-topic, etc.].\n\nRewrite the system prompt so the app produces good output in both cases. Add explicit instructions for what the AI should refuse to do, redirect, or handle gracefully. Keep the output format consistent.\n\nGive me only the updated system prompt, not the whole file. I will paste it in myself."
         }
       ],
       "build": [
@@ -338,7 +358,7 @@
         },
         {
           "title": "Polish the labels and one moment",
-          "instructions": "Read every label, button, and instruction on the page out loud. Replace any AI-flavoured phrasing with something a real person would say. Pick the one moment of the user's journey that matters most — the moment they see the output — and make sure that moment feels considered. Not everything. Just that one moment."
+          "instructions": "Read every label, button, and instruction on the page out loud. Replace any AI-flavoured phrasing with something a real person would say. Pick the one moment of the user's journey that matters most, the moment they see the output, and make sure that moment feels considered. Not everything. Just that one moment."
         },
         {
           "title": "Deploy to Netlify",
@@ -346,7 +366,7 @@
         },
         {
           "title": "Send the URL to one person",
-          "instructions": "Pick one person who is not in this room. Send them the URL on WhatsApp with one line: 'I built this in a day. Tell me what you think.' Their reply might land before Demo Day. If it does, it is gold for your pitch."
+          "instructions": "Pick one person who is not in this room. Could be a family member, a hostel mate, a friend from school, a senior at your college. Send them the URL on WhatsApp with one line: 'I built this in a day, tell me what you think.' Their reply might land before Demo Day. If it does, it is gold for your pitch."
         }
       ],
       "test_output": [
@@ -381,25 +401,37 @@
       "session_type": "build",
       "day": 1,
       "phase": "weekend",
-      "title": "Plan the website + marketing assets",
+      "title": "Plan the website + marketing collaterals",
       "start_time": "16:15",
       "end_time": "18:00",
       "duration_minutes": 105,
       "break_after": false,
       "break_duration_minutes": 0,
-      "set_the_stage": "You ship the website tomorrow morning. Tonight, you plan it.\n\nA solopreneur without a website is a shopkeeper without a shopfront. Your website is a conversation with a stranger who has never heard of you. A conversation that has to answer three questions in thirty seconds. What is this? Is this for me? What do I do next?\n\nThe biggest reason websites take twice as long as they should is that founders try to write copy live, in the website builder, while staring at a blank page. We are not doing that. In the next hour and forty-five minutes you write the entire website copy in a doc. You write the video script. You sketch the brochure. By 18:00 you walk out with three documents, ready to drop into the tools tomorrow morning.\n\nNo Carrd tonight. No recording. No design. Just writing.",
+      "set_the_stage": "You ship the website tomorrow morning. Tonight, you plan it.\n\nA solopreneur without a website is like a shopkeeper without a shopfront. Your website is a conversation with a stranger who has never heard of you. A conversation that has to answer three questions in thirty seconds. What is this? Is this for me? What do I do next?\n\nThe biggest reason websites take twice as long as they should is that founders try to write copy live, in the website builder, while staring at a blank page. We are not doing that. In this block you write all the copy in a doc. Tomorrow you just drop it in.\n\nThree pages of website copy. One ninety-second video script. One one-page brochure. By the end of this session you walk out with five documents, ready to use tomorrow morning.\n\nNo Carrd tonight. No recording. No design. Just writing.",
       "questions": [
         {
-          "title": "What does your website say in 30 seconds?",
-          "body": "If a stranger gives you thirty seconds, what three things must they take away? Write the three sentences. These become your headline, sub-headline, and call to action."
+          "title": "What does your landing page say in thirty seconds?",
+          "body": "If a stranger gives you thirty seconds, what three things must they take away? Write those three sentences. They become your headline, your sub-headline, and your call to action."
         },
         {
           "title": "What is the one specific outcome you promise?",
-          "body": "Not 'helps you cook better.' A specific, namable outcome. 'A seven-day meal plan built around what is in your kitchen.' 'Three tailored resume versions in five minutes.' Specific outcomes pull people in. Vague benefits push them away."
+          "body": "Not 'helps you study better'. A specific, namable outcome. 'Three resume versions in five minutes that match the role you actually want.' 'A flashcard set generated from your chapter PDF in under a minute.' Specific outcomes pull people in. Vague benefits push them away."
         },
         {
-          "title": "What does your video say in 90 seconds?",
-          "body": "Three beats. The problem you saw. The thing you built. What it does for someone. Ninety seconds, three beats, thirty seconds each. Write the script as if you were speaking to one person."
+          "title": "What goes on the about page?",
+          "body": "Why did you build this? Not the business reason. The personal one. What did you see in your own life, or in someone close to you, that made this feel worth six weeks of your time? People do not trust products. They trust the person behind the product. The about page is where they meet you."
+        },
+        {
+          "title": "What goes on the how-it-works page?",
+          "body": "Three steps. The user does step one, the AI does step two, the user gets step three. Plain language, no AI jargon. If someone read this section and then tried your app, would their expectations match what actually happens?"
+        },
+        {
+          "title": "What does your ninety-second video say?",
+          "body": "Three beats. The problem you saw. The thing you built. What it does for someone. Ninety seconds, three beats, thirty seconds each. Write the script as if you were speaking to one person, not a crowd."
+        },
+        {
+          "title": "What does your one-page brochure include?",
+          "body": "A brochure is read at arm's length, not studied. Big headline. Three short sections. One QR code or URL at the bottom. What are the three sections that earn their space on a single page?"
         }
       ],
       "hmv": [
@@ -415,47 +447,59 @@
           "dimension": "Mechanics",
           "techniques": [
             "Does the website describe what the product actually does, not what you wish it did?",
-            "Does the how-it-works section describe what the AI does in plain language?",
-            "After reading, does the visitor have an accurate expectation of what will happen?"
+            "Does the how-it-works page describe what the AI does in plain language?",
+            "After reading, does the visitor have an accurate expectation of what will happen when they try the app?"
           ]
         },
         {
           "dimension": "Valuenomics",
           "techniques": [
             "After thirty seconds, can someone say what the product does and who it is for?",
-            "Does the website name a specific outcome?",
-            "Does the website help the visitor understand why this is better than their current workaround?"
+            "Does the website name a specific outcome, in words a real user would use?",
+            "Does the website help the visitor understand why this is better than what they currently do?"
           ]
         }
       ],
       "prompts": [
         {
           "number": 1,
-          "title": "Draft the website copy",
+          "title": "Draft the landing page copy",
           "tool": "Claude (claude.ai)",
-          "content": "I am writing the copy for the single-page website of an AI product I just built. I want the copy first, in a doc. Tomorrow morning I will drop it into Carrd.\n\nThe product: [one sentence — what it does]\nThe user: [one sentence — who specifically uses it]\nThe outcome they get: [one sentence — the specific thing they walk away with]\nThe live URL of the AI app: [paste your Netlify URL]\n\nWrite me the copy for a single-page Carrd site with these sections:\n\nHeadline — under ten words, names the outcome, sounds like a real person said it.\nSub-headline — one sentence, names the specific user.\nHow it works — three short steps, plain language, what the user does and what they get back.\nWhy this is better than what they do today — three sentences naming the current workaround and why it is not good enough.\nCall to action — one button, specific verb, leads to the AI app URL.\n\nAvoid the AI-website voice. No 'revolutionary', no 'powerful', no 'seamless'. Write it like one person describing what they made, to one other person."
+          "content": "I am writing the copy for the landing page of an AI product I just built. I want the copy first, in a doc. Tomorrow morning I will drop it into Carrd.\n\nThe product: [one sentence, what it does]\nThe user: [one sentence, who specifically uses it]\nThe outcome they get: [one sentence, the specific thing they walk away with]\nThe live URL of the AI app: [paste your Netlify URL]\n\nWrite me the copy for a single-page landing on Carrd with these sections.\n\nHeadline. Under ten words. Names the outcome. Sounds like a real person said it.\nSub-headline. One sentence. Names the specific user.\nHow it works. Three short steps. Plain language. What the user does and what they get back.\nWhy this is better than what they do today. Three sentences naming the current way and why it is not good enough.\nCall to action. One button. Specific verb. Leads to the AI app URL.\n\nAvoid the AI-website voice. No 'revolutionary', no 'powerful', no 'seamless', no 'leverage'. Write it like one person describing what they made, to one other person."
         },
         {
           "number": 2,
-          "title": "Draft the 90-second video script",
+          "title": "Draft the about page copy",
           "tool": "Claude (claude.ai)",
-          "content": "I am recording a 90-second founder video tomorrow morning. Screen recording of me using the product, with me narrating over it. I will use the script you write tonight to record cleanly tomorrow.\n\nThe product: [paste from previous prompt]\nThe user: [paste]\nThe outcome: [paste]\n\nWrite me a 90-second script in three beats of 30 seconds each.\n\nBeat 1 (seconds 0-30) — The problem I saw. Be specific. A real situation, not abstract pain. End on the sentence that names what I built.\n\nBeat 2 (seconds 30-60) — What it does. I am showing my screen during this beat. Tell me what I am doing on screen and what I am saying out loud at each moment.\n\nBeat 3 (seconds 60-90) — Who this is for, and what they get. End with my AI app URL spoken aloud.\n\nWrite it in spoken English, not written English. Short sentences. Real pauses. No 'in conclusion' or 'in summary'. The way a person actually talks.\n\nFlag any line that will be hard to say in one take and suggest a smoother alternative."
+          "content": "I am writing the about page for the same product. The visitor has read the landing page and now wants to know who built this and why.\n\nThe product: [paste from previous]\nThe user: [paste from previous]\n\nHere is the personal story behind this product. [Tell Claude your real reason for picking this idea. Be honest. Was it a problem you watched a family member struggle with? A frustration you had? Something you noticed at college? Two or three sentences in your own voice.]\n\nWrite me the about page copy with these sections.\n\nA heading that introduces me by name.\nA paragraph about where I saw the problem. Specific, not abstract. The actual moment or person.\nA paragraph about why I think AI is the right tool for this, in plain words.\nA paragraph about what I want to do with this beyond just building it.\n\nFirst person. My name. My voice. Not corporate. Not 'our mission is'. Just one person talking about why they made the thing."
         },
         {
           "number": 3,
+          "title": "Draft the how-it-works page copy",
+          "tool": "Claude (claude.ai)",
+          "content": "I am writing the how-it-works page. This page is for visitors who liked the landing page and want to understand the mechanics before they try the app.\n\nThe product: [paste]\nThe user: [paste]\nWhat the AI is actually doing: [the verb you committed to in the AI app session]\nWhat the user puts in: [paste]\nWhat the user gets out: [paste]\n\nWrite me the how-it-works copy with three sections.\n\nStep 1. What the user does to start.\nStep 2. What the AI does in the background.\nStep 3. What the user gets and what they can do with it.\n\nFor each step, two or three sentences. Plain language. No AI jargon. If a parent or a relative read this, they should understand what is happening at every step. End with a button that says 'Try it now' and links to the AI app URL."
+        },
+        {
+          "number": 4,
+          "title": "Draft the ninety-second video script",
+          "tool": "Claude (claude.ai)",
+          "content": "I am recording a ninety-second founder video tomorrow morning. Screen recording of me using the product, with me narrating over it. I will use the script you write tonight to record cleanly tomorrow.\n\nThe product: [paste]\nThe user: [paste]\nThe outcome: [paste]\n\nWrite me a ninety-second script in three beats of thirty seconds each.\n\nBeat 1 (seconds 0 to 30). The problem I saw. Be specific. A real situation, not abstract pain. End on the sentence that names what I built.\n\nBeat 2 (seconds 30 to 60). What it does. I am showing my screen during this beat. Tell me what I am doing on screen and what I am saying out loud at each moment.\n\nBeat 3 (seconds 60 to 90). Who this is for, and what they get. End with my AI app URL spoken aloud.\n\nWrite it in spoken English, not written English. Short sentences. Real pauses. No 'in conclusion' or 'in summary'. The way an Indian college student actually talks to a friend, not how textbooks sound.\n\nFlag any line that will be hard to say in one take and suggest a smoother alternative."
+        },
+        {
+          "number": 5,
           "title": "Outline a one-page brochure",
           "tool": "Claude (claude.ai)",
-          "content": "I am generating a one-page brochure tomorrow morning. PDF. I will use Canva or a similar tool. I need the text content tonight so tomorrow I just drop it into a template.\n\nThe product: [paste]\nThe user: [paste]\nThe outcome: [paste]\nThe URL: [paste]\n\nGive me the text for a one-page brochure, in the order it should appear, with each block labelled:\n\nHero line — same as website headline, can be slightly different if it works better in print.\nThe problem — three sentences.\nThe product — three sentences.\nHow it works — three bullets.\nWho this is for — one sentence.\nCall to action — one line with the URL.\n\nKeep the total word count under 250 words. A brochure is read at arm's length, not studied."
+          "content": "I am generating a one-page brochure tomorrow morning. PDF. I will use Canva or a similar tool. I need the text content tonight so tomorrow I just drop it into a template.\n\nThe product: [paste]\nThe user: [paste]\nThe outcome: [paste]\nThe URL: [paste]\n\nGive me the text for a one-page brochure, in the order it should appear, with each block labelled.\n\nHero line. Same as website headline, can be slightly different if it works better in print.\nThe problem. Three sentences.\nThe product. Three sentences.\nHow it works. Three bullets.\nWho this is for. One sentence.\nCall to action. One line with the URL.\n\nKeep the total word count under 250 words. A brochure is read at arm's length, not studied."
         }
       ],
       "build": [
         {
-          "title": "Save three documents",
-          "instructions": "Three Google Docs or Notion pages. Website copy. Video script. Brochure copy. Title them clearly. You will need them in your hand tomorrow at 9:00am."
+          "title": "Save five documents",
+          "instructions": "Five Google Docs or Notion pages. Landing page copy. About page copy. How-it-works copy. Video script. Brochure copy. Title them clearly. You will need all five in your hand tomorrow morning."
         },
         {
           "title": "Read everything out loud, once",
-          "instructions": "Read the website copy out loud. Read the video script out loud. Read the brochure copy out loud. Whatever sounds awkward gets fixed tonight, not tomorrow."
+          "instructions": "Read the landing copy out loud. Read the about page out loud. Read the video script out loud. Whatever sounds awkward gets fixed tonight, not tomorrow."
         },
         {
           "title": "Show one peer in the room",
@@ -464,12 +508,16 @@
       ],
       "test_output": [
         {
-          "title": "The three-docs test",
-          "description": "Do you have three documents saved with website copy, video script, brochure copy? If yes, pass."
+          "title": "The five-docs test",
+          "description": "Do you have five documents saved with landing copy, about copy, how-it-works copy, video script, brochure copy? If yes, pass."
         },
         {
           "title": "The thirty-second test",
           "description": "If a stranger read only your headline and sub-headline, would they know what your product does and who it is for? If yes, pass."
+        },
+        {
+          "title": "The about-page test",
+          "description": "Does your about page read like one specific person wrote it, not like a corporate 'about us' template? If yes, pass."
         },
         {
           "title": "The spoken test",
@@ -490,11 +538,23 @@
       "duration_minutes": 360,
       "break_after": false,
       "break_duration_minutes": 0,
-      "set_the_stage": "Six hours. You walked in with three documents. You walk out at 15:00 with a live website, an audio piece embedded on it, a founder video on LinkedIn, and a one-page brochure as a PDF.\n\nThis is the execution day. Everything has been planned. Today you assemble.\n\nThe facilitator walks the room continuously. The order matters: website first because everything else gets linked to it, then audio because it embeds on the site, then video because it lives independently on LinkedIn and gets linked from the site, then brochure because it can be done in parallel during any wait.\n\nLunch happens inside this block. Take it when your flow allows, not on a forced schedule. Aim for around 12:30, not later than 13:00.\n\nWe come back together at 15:00 for the interim demo. Hard deadline. The interim demo is the most important hour of the weekend — it is what makes the next four weeks have momentum. Be done by 14:55.",
+      "set_the_stage": "Six hours. You walked in with five documents. You walk out with a live website (three pages), audio embedded on it, a founder video posted to LinkedIn, and a one-page brochure as a downloadable PDF.\n\nThis is the execution day. Everything has been planned. Today you assemble.\n\nThe facilitator walks the room continuously. The order matters. Website first because everything else gets linked to it. Audio next because it embeds on the site. Video after because it lives independently on LinkedIn and gets linked from the site. Brochure last because it can be done in parallel during any wait.\n\nLunch happens inside this block. Take it when your flow allows, not on a forced schedule. Aim for around midday.\n\nWe come back together at the end of this block for the interim demo. Hard deadline. The interim demo is the most important hour of the weekend. It is what makes the next four weeks have momentum. Be done in time.",
       "questions": [
         {
-          "title": "What is the one section of your website that has to sing?",
-          "body": "The headline and the call to action. Everything else can be average. Those two have to be precise."
+          "title": "Which page does the visitor see first?",
+          "body": "Most visitors will land on your home page. That page has to do the most work in the least time. The about page and the how-it-works page are for visitors who already want to know more. Plan accordingly."
+        },
+        {
+          "title": "Where does the audio belong on the page?",
+          "body": "Audio is most powerful when it lands right after the headline. The visitor reads your headline, hears your voice say what the product is, and then continues scrolling. Less powerful at the bottom. Worst at the very top before any context. Place it right after the headline."
+        },
+        {
+          "title": "What does your LinkedIn post caption say?",
+          "body": "The video lives on LinkedIn. The caption above the video is what most people read instead of watching. Two lines. The first names the problem. The second names what you built and where to try it. The video then earns the click for those who want more."
+        },
+        {
+          "title": "Where does the brochure link belong?",
+          "body": "Not at the top. The brochure is for visitors who already trust you and want something to share with someone else (a parent, a relative, a teacher). Place the download link low on the page, near a 'tell someone you know' invitation."
         }
       ],
       "hmv": [
@@ -503,7 +563,7 @@
           "techniques": [
             "Open your published Carrd site as if you have never seen it. Where do your eyes go first?",
             "Read every word aloud. Cut anything that sounds like marketing.",
-            "Does the founder video sound like the person who wrote the website?"
+            "Does the founder video sound like the same person who wrote the website?"
           ]
         },
         {
@@ -511,13 +571,14 @@
           "techniques": [
             "Test the link from the website to the AI app. Does it open in a new tab and load?",
             "Test the audio. Does it play on a phone, not just a laptop?",
-            "Test the LinkedIn post. Does the video autoplay in the feed?"
+            "Test the LinkedIn post. Does the video autoplay in the feed?",
+            "Test the brochure. Does it download as a PDF on both laptop and phone?"
           ]
         },
         {
           "dimension": "Valuenomics",
           "techniques": [
-            "Does the whole presence — site, audio, video, brochure — feel like it was made by the same person?",
+            "Does the whole presence, site, audio, video, brochure, feel like it was made by the same person?",
             "Would a recruiter who landed on this take it seriously?",
             "Does every asset point the visitor toward trying the AI app?"
           ]
@@ -528,61 +589,67 @@
           "number": 1,
           "title": "Website production helper",
           "tool": "Claude (claude.ai)",
-          "content": "I have my website copy in a doc. I am about to drop it into Carrd. Walk me through, in order, what to do — create the account, pick a template, paste each section in the right place, link the AI app button to my Netlify URL, embed an audio file, embed a video, publish.\n\nKeep it tight. Tell me the click sequence, not the theory."
+          "content": "I have my website copy in three docs: landing page, about page, how-it-works page. I am about to drop them into Carrd. Walk me through, in order, what to do. Create the account, pick a template that supports multiple pages, paste each page's copy in the right place, link the AI app button to my Netlify URL, embed an audio file on the landing page, add a LinkedIn video link, add a brochure download button, publish.\n\nKeep it tight. Tell me the click sequence, not the theory."
         },
         {
           "number": 2,
           "title": "Audio production",
           "tool": "ElevenLabs (elevenlabs.io)",
-          "content": "I want to generate a 60-second audio piece from this script.\n\n[paste your video script — the first 60 seconds, or a tightened version]\n\nGive me the ElevenLabs settings to use — voice selection, stability, similarity, style — to make it sound like a calm, real person and not a typical AI voice-over. I want it warm, slightly understated, and one notch slower than the default pace."
+          "content": "I want to generate a 60-second audio piece from this script.\n\n[paste your video script, the first 60 seconds, or a tightened version]\n\nGive me the ElevenLabs settings to use. Voice selection, stability, similarity, style. I want it to sound like a calm, real person and not a typical AI voice-over. Warm, slightly understated, and one notch slower than the default pace."
+        },
+        {
+          "number": 3,
+          "title": "LinkedIn post caption",
+          "tool": "Claude (claude.ai)",
+          "content": "I am about to post my ninety-second founder video on LinkedIn. The video is embedded as a native video, not a link. I need a two-line caption that earns the click for people who scroll past without watching.\n\nThe product: [paste]\nThe user: [paste]\nThe outcome: [paste]\n\nWrite me three caption options. Each option is exactly two lines. The first line names the problem in a way that someone in my LinkedIn network would recognise. The second line names what I built and includes the AI app URL.\n\nNo hashtags in the caption itself. Suggest three to five hashtags separately."
         }
       ],
       "build": [
         {
-          "title": "Hour 1 — Website skeleton",
-          "instructions": "Carrd account. Template chosen. All your copy pasted into the right sections. Link to the AI app live. Site published to a yourname.carrd.co URL. Do not polish yet — just get it up."
+          "title": "Hour 1, website skeleton",
+          "instructions": "Carrd account. Template chosen that supports multiple pages. Landing page, about page, and how-it-works page all created. Copy pasted into the right sections. Link to the AI app live. Site published to a yourname.carrd.co URL. Do not polish yet, just get it up."
         },
         {
-          "title": "Hour 2 — Audio recorded and embedded",
-          "instructions": "60 seconds of audio generated in ElevenLabs, downloaded as MP3, embedded on the Carrd site below the headline. Test on a phone."
+          "title": "Hour 2, audio recorded and embedded",
+          "instructions": "60 seconds of audio generated in ElevenLabs, downloaded as MP3, embedded on the landing page right after the headline. Test on a phone."
         },
         {
-          "title": "Hour 3 — Founder video recorded and posted",
-          "instructions": "Loom or QuickTime screen recording, you narrating live with the script in your peripheral vision. Aim for 90 seconds. Re-record up to three times if needed, but no more. Upload to LinkedIn as a native video post with a one-line caption. Pin the post to your profile. Copy the post URL — you will paste it on the site."
+          "title": "Hour 3, founder video recorded and posted",
+          "instructions": "Loom or QuickTime screen recording, you narrating live with the script in your peripheral vision. Aim for ninety seconds. Re-record up to three times if needed, but no more. Upload to LinkedIn as a native video post with the two-line caption. Pin the post to your profile. Copy the post URL. You will paste it on the site."
         },
         {
-          "title": "Hour 4 — Brochure to PDF",
+          "title": "Hour 4, brochure to PDF",
           "instructions": "Canva, one-page template. Drop in the brochure copy. Export PDF. Upload the PDF to Drive, set link to anyone-with-link can view. Copy the link, add a 'Download brochure' button to the website pointing to the PDF."
         },
         {
-          "title": "Hour 5 — Polish the website",
-          "instructions": "Now you polish. Whitespace. Fonts. Mobile preview. One photo of you in the header if you want. Test every link. Test on a friend's phone."
+          "title": "Hour 5, polish all three pages",
+          "instructions": "Now you polish. Whitespace. Fonts. Mobile preview. One photo of you on the about page. Make sure the three pages feel like they belong to each other. Test every link, including page-to-page navigation. Test on a friend's phone."
         },
         {
-          "title": "Final 30 minutes — Smoke test",
-          "instructions": "Open your website on a phone, on mobile data. Click the AI app button. Use the app. Come back. Click the LinkedIn video. Watch it. Download the brochure. Listen to the audio. The full visitor journey, in one walkthrough. Anything that does not work gets fixed before 14:55."
+          "title": "Final smoke test",
+          "instructions": "Open your website on a phone, on mobile data. Land on the home page. Listen to the audio. Click through to the about page. Read it. Click through to how-it-works. Read it. Click the AI app button. Use the app. Come back. Click the LinkedIn video link. Watch it. Download the brochure. The full visitor journey, in one walkthrough. Anything that does not work gets fixed before the interim demo."
         }
       ],
       "test_output": [
         {
-          "title": "The website test",
-          "description": "Does yourname.carrd.co load on a phone, with headline, copy, audio, video link, brochure link, and a button to the AI app? If yes, pass."
+          "title": "The three-page test",
+          "description": "Does yourname.carrd.co have a landing page, an about page, and a how-it-works page, all linked to each other and all looking like they belong together? If yes, pass."
         },
         {
           "title": "The audio test",
-          "description": "Does the audio play when you tap the play button on a phone? If yes, pass."
+          "description": "Does the audio play when you tap the play button on a phone, right after the headline on the landing page? If yes, pass."
         },
         {
           "title": "The video test",
-          "description": "Is the founder video live on your LinkedIn, with the post pinned, and linked from your website? If yes, pass."
+          "description": "Is the founder video live on your LinkedIn, with a real two-line caption, with the post pinned to your profile, and with the post linked from your website? If yes, pass."
         },
         {
           "title": "The brochure test",
-          "description": "Does the brochure download as a PDF from the website link? If yes, pass."
+          "description": "Does the brochure download as a PDF from the website link, on both laptop and phone? If yes, pass."
         },
         {
           "title": "The full-journey test",
-          "description": "Did you walk a friend through the full journey — site, audio, video, brochure, AI app — on a phone, before 15:00? If yes, pass."
+          "description": "Did you walk a friend through the full journey, all three pages, audio, video, brochure, AI app, on a phone, before the interim demo? If yes, pass."
         }
       ],
       "output_capture": {
@@ -590,7 +657,7 @@
         "ask": "Paste the live URL of your Carrd website.",
         "placeholder": "https://yourname.carrd.co",
         "kind": "url",
-        "guidance": "This is the published Carrd URL, not the editor URL. Confirm it works on a phone and that the audio, video link, brochure link, and AI app button all work."
+        "guidance": "This is the published Carrd URL, not the editor URL. Confirm it works on a phone and that all three pages, the audio, the video link, the brochure link, and the AI app button all work."
       }
     },
     {
@@ -605,28 +672,28 @@
       "duration_minutes": 120,
       "break_after": true,
       "break_duration_minutes": 15,
-      "set_the_stage": "Stop building. Stop polishing. Stand up.\n\nFor the last day and a half you have been heads-down. Now the room shifts. Every person in this cohort has 90 seconds to show what they made.\n\nThis is not Demo Day. Demo Day is in four weeks, with the full portfolio, recorded, shareable, in front of guests. This is the interim demo — peer to peer, no slides, no rehearsal. You stand up, open your site on the screen, walk the room through the user's journey in 90 seconds, and sit down. The room claps. The next person stands up.\n\nThis hour is the most important hour of the weekend. Not because of the demos themselves, but because of what watching twenty-five demos does to your own bar. By the time the room finishes, you will have ideas for what to add over the next four weeks. Write them down as you watch.",
+      "set_the_stage": "Stop building. Stop polishing. Stand up.\n\nFor the last day and a half you have been heads-down. Now the room shifts. Every person in this cohort has ninety seconds to show what they made.\n\nThis is not the real Demo Day. The real Demo Day is in four weeks, with the full portfolio, recorded, shareable, in front of guests. This is the interim demo. Peer to peer, no slides, no rehearsal. You stand up, open your site on the screen, walk the room through the user's journey in ninety seconds, and sit down. The room claps. The next person stands up.\n\nThis hour is the most important hour of the weekend. Not because of the demos themselves, but because of what watching the whole room demo does to your own bar. By the time the room finishes, you will have ideas for what to add over the next four weeks. Write them down as you watch.",
       "questions": [],
       "hmv": [],
       "prompts": [],
       "build": [
         {
-          "title": "The 90-second demo format",
-          "instructions": "Open your Carrd site on the projector. Three beats. Beat 1: who this is for and what they were doing before. Beat 2: open the AI app and run one real input — the room watches the output appear. Beat 3: one thing you learned building this that surprised you. Sit down. The room claps."
+          "title": "The ninety-second demo format",
+          "instructions": "Open your Carrd site on the projector. Three beats. Beat 1: who this is for and what they were doing before. Beat 2: open the AI app and run one real input, the room watches the output appear. Beat 3: one thing you learned building this that surprised you. Sit down. The room claps."
         },
         {
           "title": "Watch and write",
-          "instructions": "While others demo, keep a doc open. Whenever you see an idea you want to steal — copy a section structure, a phrasing, a moment in the AI output — write it down. You will look at this list during the four-week stretch."
+          "instructions": "While others demo, keep a doc open. Whenever you see an idea you want to steal, a section structure, a phrasing, a moment in the AI output, write it down. You will look at this list during the four-week stretch."
         },
         {
           "title": "Three demos get the room's vote",
-          "instructions": "At the end of the hour, the room votes for three demos that stood out — one for clearest problem, one for tightest AI output, one for sharpest delivery. Not winners. Just signal."
+          "instructions": "At the end of the hour, the room votes for three demos that stood out. One for clearest problem, one for tightest AI output, one for sharpest delivery. Not winners. Just signal."
         }
       ],
       "test_output": [
         {
           "title": "The demo test",
-          "description": "Did every person in the cohort demo in under 90 seconds? If yes, pass."
+          "description": "Did every person in the cohort demo in under ninety seconds? If yes, pass."
         },
         {
           "title": "The notebook test",
@@ -647,39 +714,39 @@
       "duration_minutes": 45,
       "break_after": false,
       "break_duration_minutes": 0,
-      "set_the_stage": "You walked in two days ago with an idea on a card. You leave with a live AI app, a website, an audio piece, a founder video, and a brochure. Five real things. All live. All yours.\n\nThe next four weeks are where the harder builds happen. Chatbot. Agent. Then Demo Day. You will do most of this on your own, with two forms of support: a weekly 90-minute office hours session — this room, same time, every week — and a WhatsApp group for between-session unblocks.\n\nForty-five minutes to hand over the materials, walk through the four-week shape, set the norms for how we support you, and lock the Demo Day date on every calendar.",
+      "set_the_stage": "You walked in two days ago with an idea on a card. You leave with a live AI app, a three-page website, an audio piece, a founder video, and a brochure. Five real things. All live. All yours.\n\nThe next four weeks are where the harder builds happen. Chatbot. Agent. Then Demo Day. You will do most of this on your own, with two forms of support. A weekly ninety-minute office hours session, this room or on Meet, same time, every week. And a WhatsApp group for between-session unblocks.\n\nForty-five minutes to hand over the materials, walk through the four-week shape, set the norms for how we support you, and lock the Demo Day date on every calendar.",
       "questions": [
         {
           "title": "What hour of the week is yours?",
-          "body": "Pick a specific hour, every week, that is your Just Build hour. Not 'whenever I find time'. A specific hour. Put it in your calendar before you leave the room. The students who finish the four weeks are the ones who treated this hour as non-negotiable."
+          "body": "Pick a specific hour, every week, that is your Just Build hour. Not 'whenever I find time'. A specific hour, that fits around your classes and your assignments. Put it in your phone calendar before you leave the room. The students who finish the four weeks are the ones who treated this hour as non-negotiable."
         },
         {
           "title": "Who is your accountability partner?",
-          "body": "Pair up with one person in the room. Once a week, on your Just Build hour, you text each other one update — what you finished, what you are stuck on. Two-sentence accountability. Pick now. Exchange numbers."
+          "body": "Pair up with one person in the room. Once a week, on your Just Build hour, you text each other one update. What you finished, what you are stuck on. Two-sentence accountability. Pick now. Exchange numbers."
         }
       ],
       "hmv": [],
       "prompts": [],
       "build": [
         {
-          "title": "Hand-out: the chatbot PDF",
+          "title": "Hand-out, the chatbot PDF",
           "instructions": "Every student gets the chatbot build PDF on their email and on WhatsApp. Detailed, step-by-step, screenshots for every screen. The expectation is you complete the chatbot build in Week 1 and bring questions to the Week 1 office hours."
         },
         {
-          "title": "Hand-out: the agent PDF",
+          "title": "Hand-out, the agent PDF",
           "instructions": "Every student gets the agent build PDF on their email and on WhatsApp. This is the harder build. Two weeks. Bring questions to the Week 2 and Week 3 office hours."
         },
         {
-          "title": "Office hours: same room, every week",
-          "instructions": "This room, this time, every Saturday, for the next four weeks. 90 minutes. Facilitator walks through common stuck points proactively. The rest is live Q&A. Treat it as a meeting, not a class — you bring your screen, your question, your unblock."
+          "title": "Office hours, same room, every Saturday",
+          "instructions": "This room (or on Meet), this time, every Saturday, for the next four weeks. Ninety minutes. Facilitator walks through common stuck points proactively. The rest is live Q&A. Treat it as a meeting, not a class. You bring your screen, your question, your unblock."
         },
         {
-          "title": "WhatsApp group: norms",
-          "instructions": "Group created tonight. Post screenshots, not text descriptions. 'It is not working' with no screenshot gets ignored. Screenshot plus what you tried plus the error message gets a reply within a few hours. Office hours are for stuck-for-30-minutes problems. WhatsApp is for quick unblocks."
+          "title": "WhatsApp group, norms",
+          "instructions": "Group created tonight. Post screenshots, not text descriptions. 'It is not working' with no screenshot gets ignored. Screenshot plus what you tried plus the error message gets a reply within a few hours. Office hours are for stuck-for-thirty-minutes problems. WhatsApp is for quick unblocks."
         },
         {
           "title": "Demo Day date and shape",
-          "instructions": "Demo Day is locked: [DATE]. This room. 6pm. Guests invited — alumni, recruiters, family if you want. Each of you gets 3 minutes plus 1 minute Q&A, hard cutoff. Demos are recorded. The recording becomes part of your portfolio."
+          "instructions": "Demo Day is locked. Date is on the calendar invite the facilitator just shared. Guests are invited. Alumni, recruiters, family if you want. Each of you gets three minutes plus one minute Q&A. Hard cutoff. Demos are recorded. The recording becomes part of your portfolio."
         }
       ],
       "test_output": [
@@ -704,17 +771,18 @@
       "session_type": "office_hours",
       "day": "Week 1",
       "phase": "office_hours",
-      "title": "Office hours — Chatbot",
+      "title": "Office hours, chatbot",
       "start_time": "Saturday",
       "end_time": "+ 90 min",
       "duration_minutes": 90,
       "break_after": false,
       "break_duration_minutes": 0,
-      "set_the_stage": "Welcome back. Week 1.\n\nBy now everyone in the room has worked through the chatbot PDF. Some of you have a chatbot live on your Carrd site. Some of you are stuck. Both are normal at this point.\n\nNinety minutes. The first thirty minutes I walk through the four places students most commonly get stuck on the chatbot build. The next forty-five is live Q&A — screen up, question on the table. The last fifteen we close with a roster check — every person in the room confirms, out loud, whether their chatbot is live or what specifically they need to land it by next Saturday.",
+      "set_the_stage": "Welcome back. Week 1.\n\nBy now everyone in this room has worked through the chatbot PDF. Some of you have a chatbot live on your Carrd site. Some of you are stuck. Some of you have not started. All three are normal at this point.\n\nNinety minutes. We open with a quick status check, then walk through the four places students most commonly get stuck on the chatbot build, then open the floor for live Q&A. The last fifteen minutes we close with a roster check. Every person in the room confirms, out loud, whether their chatbot is live or what specifically they need to land it by next Saturday.",
       "agenda": [
-        "First 30 min — Walkthrough of the four common stuck points on the chatbot build",
-        "Next 45 min — Live Q&A. Screens up. Bring your specific question",
-        "Last 15 min — Roster check. Every person says: live, or specifically what is left"
+        "First 10 min, status check. Go around the room. Each person in one sentence: chatbot live, in progress, not started, or specifically stuck",
+        "Next 20 min, walkthrough of the four common stuck points on the chatbot build",
+        "Next 45 min, live Q&A. Screens up. Bring your specific question",
+        "Last 15 min, roster check. Every person says: live, or specifically what is left"
       ],
       "stuck_points": [
         {
@@ -744,7 +812,7 @@
           "description": "By next Saturday, is your chatbot embedded on your Carrd site, visible on a phone, and producing useful answers for three test questions? If yes, pass. If no, post a screenshot to WhatsApp before Wednesday."
         }
       ],
-      "live_qa_note": "Open the floor for 40-45 minutes. Screens up. Specific questions only. If someone has a general 'I am stuck' question, ask them to share their screen and walk through what they tried.",
+      "live_qa_note": "Open the floor for 40 to 45 minutes. Screens up. Specific questions only. If someone has a general 'I am stuck' question, ask them to share their screen and walk through what they tried.",
       "homework_check": "Every person, around the room, in one sentence: chatbot live by next Saturday, or specifically what is left.",
       "output_capture": {
         "artifact": "Chatbot",
@@ -760,17 +828,18 @@
       "session_type": "office_hours",
       "day": "Week 2",
       "phase": "office_hours",
-      "title": "Office hours — Agent, week 1",
+      "title": "Office hours, agent, week 1",
       "start_time": "Saturday",
       "end_time": "+ 90 min",
       "duration_minutes": 90,
       "break_after": false,
       "break_duration_minutes": 0,
-      "set_the_stage": "Week 2. The agent build is harder than the chatbot build. That is by design. You have two weeks to ship it, not one.\n\nThis week you should be roughly halfway through the agent PDF — your Make.com account is set up, the template is cloned, the trigger from your Carrd form is wired, and you have run one test scenario end to end, even if the email it sends is still ugly.\n\nThe four stuck points in the first half of the agent build are different from the second half. We walk through this week's four. Next week we walk through the back-half four.",
+      "set_the_stage": "Week 2. The agent build is harder than the chatbot build. That is by design. You have two weeks to ship it, not one.\n\nThis week you should be roughly halfway through the agent PDF. Your Make.com account is set up, the template is cloned, the trigger from your Carrd form is wired, and you have run one test scenario end to end, even if the email it sends is still rough.\n\nThe four stuck points in the first half of the agent build are different from the second half. We walk through this week's four. Next week we walk through the back-half four.",
       "agenda": [
-        "First 30 min — Walkthrough of the four common stuck points in the first half of the agent build",
-        "Next 45 min — Live Q&A. Screens up. Make.com scenarios open",
-        "Last 15 min — Roster check. Every person says: trigger working, or specifically what is left"
+        "First 10 min, status check. Each person: agent trigger wired, in progress, not started, or specifically stuck",
+        "Next 20 min, walkthrough of the four common stuck points in the first half of the agent build",
+        "Next 45 min, live Q&A. Screens up. Make.com scenarios open",
+        "Last 15 min, roster check. Every person says: trigger working, or specifically what is left"
       ],
       "stuck_points": [
         {
@@ -783,7 +852,7 @@
         },
         {
           "title": "The free tier is hitting the operations limit",
-          "resolution": "Free tier is 1,000 ops per month — more than enough. If you are hitting limits, you are probably running the same scenario in a loop. Check whether you accidentally connected the scenario's output back to its trigger."
+          "resolution": "Free tier is 1,000 ops per month, more than enough. If you are hitting limits, you are probably running the same scenario in a loop. Check whether you accidentally connected the scenario's output back to its trigger."
         },
         {
           "title": "The email module asks for a Gmail connection and the connection fails",
@@ -797,10 +866,10 @@
       "test_output": [
         {
           "title": "The end-to-end test",
-          "description": "By next Saturday, can you submit your Carrd form and have an email arrive in your inbox within 30 seconds? Content can be rough. The pipe must be live. If yes, pass."
+          "description": "By next Saturday, can you submit your Carrd form and have an email arrive in your inbox within thirty seconds? Content can be rough. The pipe must be live. If yes, pass."
         }
       ],
-      "live_qa_note": "Open the floor for 40-45 minutes. Screens up — Make.com scenarios visible. Most agent debugging happens by looking at the scenario diagram together.",
+      "live_qa_note": "Open the floor for 40 to 45 minutes. Screens up, Make.com scenarios visible. Most agent debugging happens by looking at the scenario diagram together.",
       "homework_check": "Every person, around the room, in one sentence: trigger-to-email working by next Saturday, or specifically what is left.",
       "output_capture": null
     },
@@ -810,17 +879,18 @@
       "session_type": "office_hours",
       "day": "Week 3",
       "phase": "office_hours",
-      "title": "Office hours — Agent, week 2",
+      "title": "Office hours, agent, week 2",
       "start_time": "Saturday",
       "end_time": "+ 90 min",
       "duration_minutes": 90,
       "break_after": false,
       "break_duration_minutes": 0,
-      "set_the_stage": "Week 3. The agent should be live by next Saturday.\n\nThe back half of the agent build is where the agent goes from 'sending an email' to 'sending an email that feels written for this specific person'. The plumbing is done. The voice is what is left.\n\nThis week's stuck points are about quality, not connectivity. The email module works. The question is whether what it sends sounds like the same person who wrote the website copy and narrated the video — or like a no-reply notification from an internet company.",
+      "set_the_stage": "Week 3. The agent should be live by next Saturday.\n\nThe back half of the agent build is where the agent goes from 'sending an email' to 'sending an email that feels written for this specific person'. The plumbing is done. The voice is what is left.\n\nThis week's stuck points are about quality, not connectivity. The email module works. The question is whether what it sends sounds like the same person who wrote the website copy and narrated the video, or like a no-reply notification from an internet company.",
       "agenda": [
-        "First 30 min — Walkthrough of the four back-half stuck points on the agent build",
-        "Next 45 min — Live Q&A. Bring your sample emails. The room critiques",
-        "Last 15 min — Roster check. Every person says: agent live, or specifically what is left for Demo Day"
+        "First 10 min, status check. Each person: pipe working and improving voice, pipe still broken, or specifically stuck on quality",
+        "Next 20 min, walkthrough of the four back-half stuck points on the agent build",
+        "Next 45 min, live Q&A. Bring your sample emails. The room critiques",
+        "Last 15 min, roster check. Every person says: agent live, or specifically what is left for Demo Day"
       ],
       "stuck_points": [
         {
@@ -837,7 +907,7 @@
         },
         {
           "title": "Three test runs is not enough",
-          "resolution": "Run the full scenario ten times before Demo Day, with different realistic inputs. Run it with your name. Run it with a friend's name. Run it from a phone. Each run reveals something the previous nine did not. If anything fails, fix it now — not the morning of Demo Day."
+          "resolution": "Run the full scenario ten times before Demo Day, with different realistic inputs. Run it with your name. Run it with a friend's name. Run it from a phone. Each run reveals something the previous nine did not. If anything fails, fix it now, not the morning of Demo Day."
         }
       ],
       "questions": [],
@@ -847,11 +917,11 @@
       "test_output": [
         {
           "title": "The live agent test",
-          "description": "By Demo Day, can you submit your Carrd form three times with different inputs and have three good emails arrive — each one sounding like a real person wrote it for that specific submission? If yes, pass."
+          "description": "By Demo Day, can you submit your Carrd form three times with different inputs and have three good emails arrive, each one sounding like a real person wrote it for that specific submission? If yes, pass."
         }
       ],
       "live_qa_note": "Less debugging this week, more critique. Have students paste sample agent emails into the projector. The room reads them, names what sounds off, suggests fixes.",
-      "homework_check": "Every person, around the room: agent fully live for Demo Day, or specifically what is left. Anyone with more than one specific issue gets a 1:1 slot with the facilitator before Demo Day.",
+      "homework_check": "Every person, around the room: agent fully live for Demo Day, or specifically what is left. Anyone with more than one specific issue gets a one-to-one slot with the facilitator before Demo Day.",
       "output_capture": {
         "artifact": "Agent",
         "ask": "Save your Carrd form URL (where the agent listens).",
@@ -866,17 +936,18 @@
       "session_type": "office_hours",
       "day": "Week 4",
       "phase": "office_hours",
-      "title": "Office hours — Demo Day prep",
+      "title": "Office hours, Demo Day prep",
       "start_time": "Saturday",
       "end_time": "+ 90 min",
       "duration_minutes": 90,
       "break_after": false,
       "break_duration_minutes": 0,
-      "set_the_stage": "Last office hours. Demo Day is one week away.\n\nBy now every person in the room has the full portfolio live — AI app, website, audio, video, brochure, chatbot, agent. Six builds, one URL. The work this week is not more building. It is the pitch.\n\nMost demos fail not because the product is weak but because the founder rushed, said too much, and never paused. Today we fix that. Three minutes plus one minute of Q&A — the YC cap. Every person in this room pitches twice, the room gives feedback, and you leave with a tight, rehearsed three-minute demo.",
+      "set_the_stage": "Last office hours. Demo Day is one week away.\n\nBy now every person in the room has the full portfolio live. AI app, website, audio, video, brochure, chatbot, agent. Six builds, one URL. The work this week is not more building. It is the pitch.\n\nMost demos fail not because the product is weak but because the founder rushed, said too much, and never paused. Today we fix that. Three minutes plus one minute of Q&A, the YC cap. Every person in this room pitches twice, the room gives feedback, and you leave with a tight, rehearsed three-minute demo.",
       "agenda": [
-        "First 20 min — Walkthrough of the four-beat demo structure and the four most common pitch failures",
-        "Next 60 min — Each person pitches twice. Three minutes. Hard cutoff. Room gives one keep, one fix",
-        "Last 10 min — Logistics for Demo Day. Recording setup, slide handover, guest list confirmation"
+        "First 10 min, status check. Each person: full portfolio live, one piece still pending, or pitch-ready",
+        "Next 15 min, walkthrough of the four-beat demo structure and the four most common pitch failures",
+        "Next 60 min, each person pitches twice. Three minutes. Hard cutoff. Room gives one keep, one fix",
+        "Last 5 min, logistics for Demo Day. Recording setup, slide handover, guest list confirmation"
       ],
       "stuck_points": [
         {
@@ -885,15 +956,15 @@
         },
         {
           "title": "No live demo of the AI app",
-          "resolution": "The single most powerful 30 seconds of any demo is the moment your AI app produces output, live, on the projector, for an input typed during the pitch. Slides cannot match this. Plan the pitch around it."
+          "resolution": "The single most powerful thirty seconds of any demo is the moment your AI app produces output, live, on the projector, for an input typed during the pitch. Slides cannot match this. Plan the pitch around it."
         },
         {
           "title": "Pace too fast",
-          "resolution": "Founders pitching for the first time speak 30 percent faster than they think they are. Practise once with a stopwatch. If you finish in under 2:30, slow down. Pauses are not dead air — they are the moments the audience absorbs."
+          "resolution": "Founders pitching for the first time speak thirty percent faster than they think they are. Practise once with a stopwatch. If you finish in under two and a half minutes, slow down. Pauses are not dead air. They are the moments the audience absorbs."
         },
         {
           "title": "No call to action",
-          "resolution": "End every demo with one specific ask. 'Open my URL on your phone right now and try it.' 'If you know one parent of a toddler, send them this.' Demos that end on a flat 'thank you' leave no momentum. Demos that end on a specific ask travel."
+          "resolution": "End every demo with one specific ask. 'Open my URL on your phone right now and try it.' 'If you know someone studying for boards, send them this.' Demos that end on a flat 'thank you' leave no momentum. Demos that end on a specific ask travel."
         }
       ],
       "questions": [],
@@ -910,7 +981,7 @@
           "description": "Did you write down at least three specific things to change before next Saturday's Demo Day? If yes, pass."
         }
       ],
-      "live_qa_note": "Hard timekeeping. Stopwatch on. At 2:55 you give the signal. At 3:00 the pitch stops, even mid-sentence. The room internalises the cutoff by watching others get cut.",
+      "live_qa_note": "Hard timekeeping. Stopwatch on. At two minutes fifty-five seconds you give the signal. At three minutes the pitch stops, even mid-sentence. The room internalises the cutoff by watching others get cut.",
       "homework_check": "Every person leaves with: a recorded video of their final pitch attempt (phone is fine), three specific edits to make, and Demo Day confirmed in their calendar.",
       "output_capture": null
     },
@@ -926,11 +997,11 @@
       "duration_minutes": 120,
       "break_after": false,
       "break_duration_minutes": 0,
-      "set_the_stage": "Look at this room. It looks different from the morning of Day 1. That is intentional.\n\nFive weeks ago you walked in with an idea on a card. You leave tonight with six live builds, collected into one URL, and a three-minute recording of yourself standing in this room demonstrating what you made to a room of strangers who had no reason to be impressed.\n\nThat recording becomes the most valuable thing in your portfolio. Recruiters do not read resumes. They watch ninety seconds of footage and decide.\n\nTwenty-five demos. Three minutes plus one minute of Q&A. Hard cap. We record every one. By 8:00pm tonight every one of you has a Demo Day recording on your portfolio URL.",
+      "set_the_stage": "Look at this room. It looks different from the morning of Day 1. That is intentional.\n\nFive weeks ago you walked in with an idea on a card. You leave tonight with six live builds, collected into one URL, and a three-minute recording of yourself standing in this room demonstrating what you made to a room of strangers who had no reason to be impressed.\n\nThat recording becomes the most valuable thing in your portfolio. Recruiters do not read resumes anymore. They watch ninety seconds of footage and decide.\n\nDemos this evening. Three minutes plus one minute of Q&A. Hard cap. We record every one. By the end of tonight every one of you has a Demo Day recording on your portfolio URL.",
       "questions": [
         {
           "title": "What is your one specific ask?",
-          "body": "Every demo ends with one specific ask of the room. Not 'thank you'. Something the room can do tonight. Try the URL. Forward it to one person. Connect on LinkedIn. Write it down before you pitch."
+          "body": "Every demo ends with one specific ask of the room. Not 'thank you'. Something the room can do tonight. Try the URL. Forward it to one person. Connect on LinkedIn. Send it to their parent or relative if relevant. Write your ask down before you pitch."
         }
       ],
       "hmv": [],
@@ -938,7 +1009,7 @@
       "build": [
         {
           "title": "The four-beat demo",
-          "instructions": "Beat 1: The problem and the person. 30 seconds. Beat 2: The product, live on screen, with a real input. 90 seconds. Beat 3: The one thing a real user said that you did not expect. 30 seconds. Beat 4: The specific ask. 30 seconds."
+          "instructions": "Beat 1: The problem and the person. Thirty seconds. Beat 2: The product, live on screen, with a real input. Ninety seconds. Beat 3: The one thing a real user said that you did not expect. Thirty seconds. Beat 4: The specific ask. Thirty seconds."
         },
         {
           "title": "The Q&A minute",
@@ -952,7 +1023,7 @@
       "test_output": [
         {
           "title": "The cap test",
-          "description": "Did every demo come in under 3:00? If yes, pass."
+          "description": "Did every demo come in under three minutes? If yes, pass."
         },
         {
           "title": "The recording test",
@@ -968,7 +1039,7 @@
         "ask": "Paste the link to the published Demo Day recording on your portfolio.",
         "placeholder": "https://yourname.justbuild.orangecaterpillar.com",
         "kind": "url",
-        "guidance": "The recording lives at the top of your portfolio URL. It plays automatically when someone opens the page. The recording is the strongest thing in the portfolio — recruiters watch the demo, then explore the rest."
+        "guidance": "The recording lives at the top of your portfolio URL. It plays automatically when someone opens the page. The recording is the strongest thing in the portfolio. Recruiters watch the demo, then explore the rest."
       }
     },
     {
@@ -977,25 +1048,25 @@
       "session_type": "close",
       "day": "Week 5",
       "phase": "close",
-      "title": "Close — what comes next",
+      "title": "Close, what comes next",
       "start_time": "Demo Day",
       "end_time": "+ 45 min",
       "duration_minutes": 45,
       "break_after": false,
       "break_duration_minutes": 0,
-      "set_the_stage": "Stop for a moment. Look at the URL on your phone. Six weeks ago this did not exist. Not the product, not the website, not the chatbot, not the audio, not the video, not the agent, not the Demo Day recording.\n\nYou came in with an idea on a card. You leave with seven live things, collected into one URL.\n\nThis last block is about what you do with that URL across the next twelve months. Internships. Off-campus applications. Placement interviews when they come. LinkedIn that actually pulls recruiters to you. Your portfolio is the proof you can already do AI work. Use it everywhere.\n\nAt the very end, for those who want it, we open one more door. Orange Caterpillar Ventures for builders who want to keep building. Selective.",
+      "set_the_stage": "Stop for a moment. Look at the URL on your phone. Six weeks ago this did not exist. Not the product, not the website, not the chatbot, not the audio, not the video, not the agent, not the Demo Day recording.\n\nYou came in with an idea on a card. You leave with seven live things, collected into one URL.\n\nThis last block is about what you do with that URL across the next twelve months. Placements. Off-campus drives. Internship applications. Higher studies essays. LinkedIn that actually pulls recruiters to you. Your portfolio is the proof you can already do AI work. Use it everywhere.\n\nAt the very end, for those who want it, we open one more door. Orange Caterpillar Ventures for builders who want to keep building. Selective.",
       "questions": [
         {
           "title": "What is the one thing you will do tonight with this URL?",
-          "body": "Before you sleep. One specific action. Post on LinkedIn. Update your resume. Message one senior. Pin it to your WhatsApp status. The portfolio is only as valuable as the number of people who see it."
+          "body": "Before you sleep. One specific action. Update your LinkedIn featured section. Update your resume. Send the URL to one senior. Pin it to your WhatsApp status. The portfolio is only as valuable as the number of people who see it."
         },
         {
           "title": "What is the one thing you will do this week?",
-          "body": "Within seven days. Three specific people you will send this URL to, by name. Write the three names down now. The portfolio works when it travels."
+          "body": "Within seven days. Three specific people you will send this URL to, by name. A senior in your dream company. A college alum on LinkedIn. A professor or mentor. Write the three names down now. The portfolio works when it travels."
         },
         {
           "title": "What is the one thing you will do this month?",
-          "body": "Within thirty days. One internship application, one networking conversation, or one off-campus role — where this portfolio is the proof. Write down which."
+          "body": "Within thirty days. Apply to one off-campus drive. Apply to one internship through Internshala or LinkedIn. Reach out to one alum on LinkedIn for a fifteen-minute conversation. Walk into your college placement cell and show them your portfolio. Pick one and put it on the calendar."
         }
       ],
       "hmv": [
@@ -1003,14 +1074,14 @@
           "dimension": "Humanics across the next year",
           "techniques": [
             "Your portfolio is a long-running asset. Update it every time you build something new.",
-            "Personal messages beat generic applications. One DM with your portfolio URL to a senior or an alum outperforms ten cold emails.",
+            "Personal messages beat generic applications. One DM with your portfolio URL to a senior at your dream company outperforms ten cold emails to careers@ inboxes.",
             "If anyone responds, even with one line, reply within twelve hours. Speed signals seriousness."
           ]
         },
         {
           "dimension": "Mechanics across the next year",
           "techniques": [
-            "Put the portfolio URL on your LinkedIn, your resume, and your Naukri or Internshala profile. Three places, today.",
+            "Put the portfolio URL on your LinkedIn featured section, your resume, your Naukri profile, your Internshala profile, and your college placement portal. Five places, today.",
             "Every change to your portfolio should be traceable to feedback. Not your own taste.",
             "When you feel the urge to rebuild before sending, ask. Am I rebuilding because it is wrong, or because I am uncomfortable showing something imperfect?"
           ]
@@ -1020,8 +1091,8 @@
           "techniques": [
             "Today. LinkedIn post drafted. Three people you will message identified.",
             "Within 48 hours. Post published. Messages sent.",
-            "Next month. Apply to one internship or role where your strongest build is the proof.",
-            "Placement season. Open your portfolio in the interview. Run the 90-second demo from your phone."
+            "Next month. Apply to one off-campus drive or one internship where your strongest build is the proof. Walk into your placement cell and show them.",
+            "Placement season. Open your portfolio in the interview. Run the ninety-second demo from your phone."
           ]
         }
       ],
@@ -1033,11 +1104,11 @@
         },
         {
           "title": "Update your resume now",
-          "instructions": "Add one line under 'projects' or 'portfolio'. 'Built and shipped six AI products as a solopreneur in the Just Build cohort. Portfolio: yourname.justbuild.orangecaterpillar.com'. Five minutes."
+          "instructions": "Add one line under 'projects' or 'portfolio'. 'Built and shipped six AI products as a solopreneur in the Orange Caterpillar Just Build cohort. Portfolio: yourname.justbuild.orangecaterpillar.com'. Five minutes."
         },
         {
           "title": "Send three messages tonight",
-          "instructions": "Three people, before you sleep. A senior. An alum. A friend who works somewhere relevant. WhatsApp or DM. One line: 'Spent six weeks building this. Thought you might want to see.' Plus the URL. Speed signals seriousness."
+          "instructions": "Three people, before you sleep. A senior at a company you would like to work for. An alum from your college on LinkedIn. A professor or mentor who has shown interest in your work. WhatsApp or DM. One line: 'Spent six weeks building this, thought you might want to see.' Plus the URL. Speed signals seriousness."
         }
       ],
       "test_output": [

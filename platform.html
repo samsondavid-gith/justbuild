@@ -2329,21 +2329,21 @@ function renderTwoDoors() {
 
 function renderJourneyMap() {
   const day1 = [
-    { num: "01", title: "Find the idea", note: "By 11:00 you have it on a card" },
-    { num: "02", title: "AI app, get it working", note: "Working v0 by lunch" },
-    { num: "03", title: "AI app, ship it", note: "Live URL by 16:00" },
-    { num: "04", title: "Plan the website", note: "Copy, video script, brochure" },
+    { num: "01", title: "Identify & validate your idea", note: "One sentence, one user, on a card" },
+    { num: "02", title: "Build your AI app, get it working", note: "Real input, real output, by lunch" },
+    { num: "03", title: "Build your AI app, ship it", note: "Live on the internet, on a phone" },
+    { num: "04", title: "Plan your shopfront", note: "Website copy, video script, brochure" },
   ];
   const day2 = [
-    { num: "05", title: "Ship the assembly", note: "Site, audio, video, brochure" },
-    { num: "06", title: "Interim Demo Day", note: "90 seconds each, in this room" },
-    { num: "07", title: "The four-week plan", note: "Materials, calendar, partners" },
+    { num: "05", title: "Build your shopfront & marketing", note: "Three-page site, audio, video, brochure" },
+    { num: "06", title: "Show what you built", note: "Interim demo to the cohort" },
+    { num: "07", title: "Plan the next four weeks", note: "Materials, calendar, partners" },
   ];
   const tail = [
-    { num: "W1", title: "Office hours · Chatbot", note: "Live on your site by Saturday" },
-    { num: "W2", title: "Office hours · Agent, part 1", note: "Trigger to email working" },
-    { num: "W3", title: "Office hours · Agent, part 2", note: "Voice and quality" },
-    { num: "W4", title: "Office hours · Demo Day prep", note: "Three minutes, hard cap" },
+    { num: "W1", title: "Engage your visitors, chatbot", note: "Live on your site by Saturday" },
+    { num: "W2", title: "Automate behind the scenes, agent, part 1", note: "Trigger to email working" },
+    { num: "W3", title: "Automate behind the scenes, agent, part 2", note: "Voice and quality" },
+    { num: "W4", title: "Take it to market, Demo Day prep", note: "Three minutes, hard cap" },
     { num: "DD", title: "Demo Day", note: "Recorded. On your portfolio that night" },
   ];
   const renderCol = (label, items) => `
@@ -2371,7 +2371,7 @@ function renderJourneyMap() {
       <div class="journey-grid" style="grid-template-columns: repeat(3, 1fr);">
         ${renderCol("Day 1 · In this room", day1)}
         ${renderCol("Day 2 · In this room", day2)}
-        ${renderCol("Weeks 1–5 · Mostly on your own", tail)}
+        ${renderCol("Weeks 1 to 5 · Mostly on your own", tail)}
       </div>
 
       <div class="journey-outcome">
@@ -2511,7 +2511,7 @@ function renderHousekeeping() {
     <div class="wl-screen">
       <div class="wl-eyebrow">Before we start</div>
       <h1 class="wl-title">Housekeeping.</h1>
-      <p class="wl-sub">Five minutes of setup so nothing gets in the way for the next six weeks. Your facilitator will share two links verbally. Keep them open on your laptop all weekend, and save them — you will use both for the four weeks of office hours that follow.</p>
+      <p class="wl-sub">Five minutes of setup so nothing gets in the way for the next six weeks. Your facilitator will share two links verbally. Keep them open on your laptop all weekend, and save them. You will use both for the four weeks of office hours that follow.</p>
 
       <div class="hk-grid">
         <div class="hk-card">
@@ -2571,8 +2571,8 @@ function renderDay1Photo() {
           <rect x="28" y="6" width="24" height="8" rx="2" stroke="var(--accent)" stroke-width="2"/>
         </svg>
       </div>
-      <p class="wl-quiet">Then home. Rest. Read through your website copy, video script, and brochure docs once before bed. Tomorrow at 9am we assemble the rest.</p>
-      <p class="wl-footer">See you at 9am tomorrow.</p>
+      <p class="wl-quiet">Then home. Rest. Read through your landing page copy, about page copy, how-it-works copy, video script, and brochure docs once before bed. Tomorrow morning we assemble the rest.</p>
+      <p class="wl-footer">See you tomorrow morning.</p>
     </div>
   `;
 }
@@ -2582,14 +2582,16 @@ function renderDay2Checkin() {
     <div class="wl-screen interlude-narrow">
       <div class="wl-eyebrow">Day 2 &middot; Morning</div>
       <h1 class="wl-title">Welcome back.</h1>
-      <p class="wl-sub">Yesterday you built one big thing — your AI app, live on the internet. And you wrote three documents: your website copy, your video script, your brochure. Today you assemble the rest.</p>
+      <p class="wl-sub">Yesterday you built one big thing, your AI app, live on the internet. And you wrote five documents: your landing page copy, your about page copy, your how-it-works copy, your video script, and your brochure copy. Today you assemble the rest.</p>
 
       <div class="d2-recap">
         <div class="d2-recap-half">
           <div class="d2-recap-label">Behind you</div>
           <ul class="d2-recap-list">
             <li>AI App, live</li>
-            <li>Website copy, written</li>
+            <li>Landing page copy, written</li>
+            <li>About page copy, written</li>
+            <li>How-it-works copy, written</li>
             <li>Video script, written</li>
             <li>Brochure copy, written</li>
           </ul>
@@ -2598,17 +2600,17 @@ function renderDay2Checkin() {
         <div class="d2-recap-half d2-recap-ahead">
           <div class="d2-recap-label">Ahead of you today</div>
           <ul class="d2-recap-list">
-            <li>Website, live by lunch</li>
-            <li>Audio, embedded</li>
+            <li>Three-page website, live</li>
+            <li>Audio embedded on landing page</li>
             <li>Founder video, on LinkedIn</li>
             <li>Brochure, downloadable PDF</li>
-            <li>Interim Demo Day, 15:00</li>
-            <li>The four-week plan, 17:15</li>
+            <li>Interim Demo Day, mid-afternoon</li>
+            <li>The four-week plan, end of day</li>
           </ul>
         </div>
       </div>
 
-      <p class="wl-footer">By 17:00 today, the weekend is shipped. The next four weeks bring chatbot, agent, and Demo Day.</p>
+      <p class="wl-footer">By the end of today, the weekend is shipped. The next four weeks bring chatbot, agent, and Demo Day.</p>
     </div>
   `;
 }
@@ -2989,7 +2991,7 @@ function renderWorkshopComplete() {
           <div class="timeline-when">This month</div>
           <div class="timeline-what">
             <div class="timeline-title">Apply to one role where this portfolio is the proof.</div>
-            <div class="timeline-detail">Internship, off-campus role, product fellowship — whatever you have been holding off on because you did not feel ready. The portfolio is the proof. Apply.</div>
+            <div class="timeline-detail">An off-campus drive on Internshala. An internship through LinkedIn. A summer programme you have been holding off on. Walk into your college placement cell and show them your portfolio. The portfolio is the proof. Apply.</div>
           </div>
         </div>
 

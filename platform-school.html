@@ -537,53 +537,81 @@
   .artifact-name { font-family: var(--serif); font-size: 16px; font-weight: 500; margin-top: 5px; color: var(--text); }
   .artifact-desc { font-size: 12.5px; color: var(--text-muted); margin-top: 5px; line-height: 1.5; }
 
-  /* ----- Idea cards (5 picks for Session 1) ----- */
+  /* ----- Idea cards (4 picks for Session 1) ----- */
+  .ideas-screen {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0;
+  }
+  .ideas-screen-header { flex: 0 0 auto; margin-bottom: clamp(10px, 1.6vh, 18px); }
+  .ideas-screen-title {
+    font-family: var(--serif);
+    font-size: clamp(22px, 3.4vh, 36px);
+    font-weight: 300;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    margin-bottom: clamp(6px, 1vh, 12px);
+    max-width: 26ch;
+  }
+  .ideas-screen-title em { color: var(--accent); font-style: italic; font-weight: 400; }
+  .ideas-screen-sub {
+    font-family: var(--serif);
+    font-size: clamp(13px, 1.6vh, 16px);
+    font-style: italic;
+    line-height: 1.4;
+    color: var(--text-soft);
+    font-weight: 300;
+    max-width: 50ch;
+  }
   .ideas-grid {
+    flex: 1 1 auto;
+    min-height: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 14px;
-    margin: clamp(18px, 2.6vh, 28px) 0;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(8px, 1.2vh, 14px);
+    margin: 0;
+    overflow: hidden;
   }
   .idea-card {
     background: var(--bg-elev-1);
     border: 1px solid var(--line);
-    border-radius: 8px;
-    padding: 20px 20px 18px;
+    border-radius: 6px;
+    padding: clamp(12px, 1.8vh, 18px) clamp(12px, 1.6vh, 16px);
     display: flex; flex-direction: column;
     transition: border-color 0.2s, background 0.2s;
+    overflow: hidden;
   }
   .idea-card:hover { border-color: var(--accent-soft); }
   .idea-card-num {
     font-family: var(--mono);
-    font-size: 10.5px; letter-spacing: 0.16em;
+    font-size: 10px; letter-spacing: 0.16em;
     color: var(--accent);
-    margin-bottom: 6px;
+    margin-bottom: 4px;
   }
   .idea-card-name {
     font-family: var(--serif);
-    font-size: 22px;
+    font-size: clamp(17px, 2.4vh, 22px);
     font-weight: 500;
     color: var(--text);
-    margin-bottom: 14px;
+    margin-bottom: clamp(10px, 1.4vh, 14px);
     letter-spacing: -0.01em;
+    line-height: 1.1;
   }
-  .idea-card-row { margin-bottom: 10px; }
+  .idea-card-row { margin-bottom: clamp(7px, 1.1vh, 11px); }
+  .idea-card-row:last-child { margin-bottom: 0; }
   .idea-card-label {
-    font-size: 10px;
+    font-size: 9px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--text-muted);
     font-weight: 500;
-    margin-bottom: 3px;
+    margin-bottom: 2px;
   }
-  .idea-card-value { font-size: 13.5px; line-height: 1.5; color: var(--text-soft); }
-  .idea-card-real {
-    margin-top: auto;
-    padding-top: 12px;
-    border-top: 1px solid var(--line);
-    font-size: 12.5px; line-height: 1.5;
-    color: var(--text-muted);
-    font-style: italic;
+  .idea-card-value {
+    font-size: clamp(11.5px, 1.4vh, 13.5px);
+    line-height: 1.45;
+    color: var(--text-soft);
   }
 
   /* ----- Tools landscape ----- */
@@ -850,6 +878,7 @@
   }
 
   /* ----- Responsive ----- */
+  @media (max-width: 1100px) { .ideas-grid { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 860px) { .cat-grid { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 768px) {
     .stage { padding: 32px 22px; }
@@ -863,7 +892,10 @@
     .nav-btn { padding: 8px 12px; font-size: 11.5px; }
     .progress { display: none; }
   }
-  @media (max-width: 580px) { .cat-grid, .ideas-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 580px) {
+    .cat-grid { grid-template-columns: 1fr; }
+    .ideas-grid { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
@@ -1037,7 +1069,7 @@
       SCREENS.push({ type: 'session-start', session: session });
       SCREENS.push({ type: 'stage-text', session: session });
 
-      // After "Pick your idea" set-the-stage, show the 5 idea cards screen
+      // After "Pick your idea" set-the-stage, show the 4 idea cards screen
       if (session.id === '1') {
         SCREENS.push({ type: 'idea-cards', session: session });
       }
@@ -1260,10 +1292,12 @@
     if (ideas.length === 0) {
       return '<div class="wl-screen"><div class="wl-eyebrow">Ideas</div><h1 class="wl-title">No ideas configured.</h1></div>';
     }
-    return '<div class="wl-screen">' +
-      '<div class="wl-eyebrow">Pick one</div>' +
-      '<h1 class="wl-title">Five micro-ventures. <em>Pick the one that pulls you.</em></h1>' +
-      '<p class="wl-sub">Each one is a real venture someone you know could actually run. Pick one and make it yours.</p>' +
+    return '<div class="ideas-screen">' +
+      '<div class="ideas-screen-header">' +
+        '<div class="wl-eyebrow">Pick one</div>' +
+        '<h1 class="ideas-screen-title">Four micro-ventures. <em>Pick the one that pulls you.</em></h1>' +
+        '<p class="ideas-screen-sub">Each one is a real venture someone you know could actually run. Pick one and make it yours.</p>' +
+      '</div>' +
       '<div class="ideas-grid">' +
         ideas.map(function (idea, idx) {
           return '<div class="idea-card">' +
@@ -1281,7 +1315,6 @@
               '<div class="idea-card-label">What the app does</div>' +
               '<div class="idea-card-value">' + escapeHtml(idea.what_app_does) + '</div>' +
             '</div>' +
-            '<div class="idea-card-real">' + escapeHtml(idea.what_makes_it_real) + '</div>' +
           '</div>';
         }).join('') +
       '</div>' +
@@ -1478,8 +1511,8 @@
     }
 
     $('#stage-inner').innerHTML = html;
-    // Lock viewport for screens that need fixed bottom anchor
-    if (screen.type === 'prompt') {
+    // Lock viewport for screens that need fixed bottom anchor or no-scroll layout
+    if (screen.type === 'prompt' || screen.type === 'idea-cards') {
       $('#stage').classList.add('fit-viewport');
     } else {
       $('#stage').classList.remove('fit-viewport');
@@ -1518,7 +1551,7 @@
       const labels = {
         'session-start': 'Start',
         'stage-text': 'Set the stage',
-        'idea-cards': '5 idea cards',
+        'idea-cards': '4 idea cards',
         'questions': 'Questions',
         'hmv': 'The three checks',
         'prompt': 'Prompt',

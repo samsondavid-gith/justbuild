@@ -94,11 +94,11 @@
       "duration_minutes": 60,
       "break_after": true,
       "break_duration_minutes": 10,
-      "set_the_stage": "Sixty minutes to land on the one micro-venture you will build over the next two weeks.\n\nFive ideas are on the screen. Each one is a real micro-venture that someone you know could actually run. You pick one. Then you make it yours.\n\nBy the end of this session you have one sheet of paper. Your Ideation sheet. WHO you are building for, WHAT their problem is, and WHAT your First Build will do for them. The Ideation sheet is the first artifact on your portfolio.",
+      "set_the_stage": "Sixty minutes to land on the one micro-venture you will build over the next two weeks.\n\nFour ideas are on the screen. Each one is a real micro-venture that someone you know could actually run. You pick one. Then you make it yours.\n\nBy the end of this session you have one sheet of paper. Your Ideation sheet. WHO you are building for, WHAT their problem is, and WHAT your First Build will do for them. The Ideation sheet is the first artifact on your portfolio.",
       "questions": [
         {
-          "title": "Which of the five ideas pulls you in?",
-          "body": "Read all five on the screen. Notice which one you keep coming back to. That is usually the right one. Trust the pull."
+          "title": "Which of the four ideas pulls you in?",
+          "body": "Read all four on the screen. Notice which one you keep coming back to. That is usually the right one. Trust the pull."
         },
         {
           "title": "Whose face do you see when you read it?",
@@ -127,8 +127,8 @@
       ],
       "build": [
         {
-          "title": "Read the 5 idea cards on the screen",
-          "instructions": "Five real micro-ventures on the next screen. Read each one carefully. Each card tells you the customer, the problem, what the app does, and what makes it real."
+          "title": "Read the 4 idea cards on the screen",
+          "instructions": "Four real micro-ventures on the next screen. Read each one carefully. Each card tells you the customer, the problem, and what the app does."
         },
         {
           "title": "Pick one and personalise",
@@ -681,14 +681,6 @@
       "problem": "Customers do not know the weekly menu in advance. The aunty does not know who wants what until she has already cooked.",
       "what_app_does": "Shows the upcoming weekly menu. Lets regular customers pick their three preferred dishes for next week. Sends the preferences to the aunty.",
       "what_makes_it_real": "Real local business. Removes the daily WhatsApp guessing. The aunty cooks what people actually want. Customers pay in person as always."
-    },
-    {
-      "id": "rent-a-tree",
-      "name": "Rent-a-Tree",
-      "for_whom": "Anyone in your extended family who has a fruit tree in their backyard or village",
-      "problem": "Fruit trees produce more than the family can eat. The fruit rots. Strangers cannot easily buy from a single household.",
-      "what_app_does": "Shows the trees available, the fruit each one produces, and when. Lets a customer subscribe to a tree for a season. Shows updates on flowering, ripening, and harvest.",
-      "what_makes_it_real": "Real fruit, real season, real customers. Borrowed directly from the orchard rental model. Works for one mango tree in a grandparent's backyard."
     },
     {
       "id": "birthday-box",

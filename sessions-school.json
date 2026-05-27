@@ -556,45 +556,57 @@
       "session_type": "office_hours",
       "day": null,
       "phase": "office_hours",
-      "title": "Week 1: Pitch deck review",
+      "title": "Week 1: Pitch deck day",
       "start_time": "11:00",
       "end_time": "12:30",
       "duration_minutes": 90,
       "break_after": false,
       "break_duration_minutes": 0,
-      "set_the_stage": "Saturday morning. Online. Ninety minutes.\n\nEvery Minifounder walks into this session with a draft six-slide pitch deck built in Gamma. We sent the template on Monday. The deck tells the story of your venture in six slides: who you are, what problem you saw, who has it, what you built, how it works, what could happen next.\n\nThis session is review and coaching. Every Minifounder shares screen for five minutes. Three minutes to walk through the deck. Two minutes for the room to react. By the end of the call, you know exactly what to polish before Demo Day next weekend.",
+      "set_the_stage": "Saturday morning. Online. Ninety minutes.\n\nThis is the session where your micro-venture becomes a brand. You walked out of the weekend with an app, a website, and an audio-video. You walk out of today with a name, a logo, and a pitch deck that ties it all together.\n\nFive steps in ninety minutes. Pick your venture name. Pick your logo. Answer six brochure questions. Build the deck with all of that. Then we go round the room.",
       "questions": [
         {
-          "title": "Where does your deck stumble?",
-          "body": "Pick the one slide that does not feel right. Show that one first. The room helps you make it work."
+          "title": "What's missing from your First Build right now?",
+          "body": "Look at your live Carrd site. It probably says 'Rent-a-Plant' or 'Tiffin Choice' generic. Today we make it yours. A name only your mother would name it. A logo only you would design."
         },
         {
-          "title": "What surprised you while making it?",
-          "body": "Maybe the venture got smaller when you tried to explain it. Maybe it got bigger. Both are normal. Both teach you something for Demo Day."
+          "title": "Could a stranger remember it tomorrow?",
+          "body": "The test of a name and logo. If a parent at Demo Day saw your slide for ten seconds, could they recall the name the next morning? That is what you are aiming for."
         }
       ],
       "hmv": [],
       "prompts": [
         {
-          "title": "Pitch deck prompt for Gamma",
-          "content": "Build me a 6-slide pitch deck for my school micro-venture. I am a Class 9 student. Here is my venture:\n\n[PASTE YOUR IDEATION SHEET]\n\nMy app is live at: [YOUR CARRD URL]\n\nMake the deck warm, simple, and visual. Not corporate. The six slides should be:\n\n1. TITLE: My name, my venture name, one tagline\n2. THE PROBLEM: Who has it, in one sentence, with one real example\n3. WHO I AM BUILDING FOR: A short story about the real person\n4. WHAT I BUILT: Screenshots/description of the app and website\n5. HOW IT WORKS: Three steps the customer takes\n6. WHAT COULD HAPPEN NEXT: If this worked for 20 customers, what would change?\n\nUse a clean warm-coloured theme. Big visuals. Short text. The kind of deck a school student would actually present to their parents, not a startup investor."
+          "title": "Step 1: Pick your venture name (10 min)",
+          "content": "Spend 10 minutes brainstorming a name for YOUR specific venture. Not the generic idea name (Rent-a-Plant, Tiffin Choice etc). A name only you would pick.\n\nThree ways to find a name:\n\n1. The PERSON name approach: Your mother's name + what she does. 'Maa Ki Plants', 'Padma's Tiffin', 'Dadi's Mango Tree'.\n\n2. The PLACE name approach: Where it lives. 'BalconyBuds', 'Backyard Mango', 'Indiranagar Tiffin'.\n\n3. The FEELING name approach: What it gives the customer. 'Fresh Friday', 'Slow Plants', 'Mango Months'.\n\nWrite 5 options. Read them aloud. Pick the one that makes you smile. That is your venture name."
+        },
+        {
+          "title": "Step 2: Pick your logo (15 min)",
+          "content": "Open Canva. You already have an account from the brochure homework.\n\n1. Search 'logo' in the Canva templates.\n2. Filter by SIMPLE / MINIMAL designs. Avoid templates with too many elements.\n3. Replace the placeholder name with YOUR venture name from Step 1.\n4. Pick a colour that matches your venture's feeling. Warm orange for plants. Mustard yellow for food. Soft green for trees. Pink for birthday boxes.\n5. Download as PNG with transparent background.\n\nThat's your logo. Save it. You will use it in the pitch deck and update your Carrd site with it later."
+        },
+        {
+          "title": "Step 3: Answer these six questions (15 min)",
+          "content": "Answer these six questions in 2 lines each. Write them in a Google Doc. These answers go straight into your pitch deck prompt in Step 4.\n\n1. WHO ARE YOU? Your name, your class, your school.\n\n2. WHAT IS YOUR VENTURE CALLED? The name from Step 1.\n\n3. WHAT IS THE ONE-LINE TAGLINE? What your venture does, in 7 words or less. Example: 'Rent a plant. Return when bored.'\n\n4. WHO IS YOUR CUSTOMER? The real person. Name them. Where they live. What they do.\n\n5. WHAT PROBLEM DID YOU SOLVE FOR THEM? In one sentence.\n\n6. WHAT IS ONE REAL EXAMPLE? Tell me about ONE actual customer or potential customer interaction. What did they say? What did they do?"
+        },
+        {
+          "title": "Step 4: Build the deck in Gamma (20 min)",
+          "content": "Open gamma.app. Free account, 400 credits.\n\nPaste this prompt into Gamma. Replace the bracketed bits with YOUR answers from Step 3.\n\n---\n\nBuild me a 6-slide pitch deck for my school micro-venture. I am a Class 9 student.\n\n[ANSWER 1: WHO ARE YOU]\n\nMY VENTURE IS CALLED: [ANSWER 2]\n\nTAGLINE: [ANSWER 3]\n\nMY CUSTOMER: [ANSWER 4]\n\nPROBLEM I SOLVED: [ANSWER 5]\n\nREAL CUSTOMER EXAMPLE: [ANSWER 6]\n\nMy app is live at: [YOUR NETLIFY URL]\nMy website is live at: [YOUR CARRD URL]\n\nMake the deck warm, simple, and visual. Not corporate. Six slides:\n\n1. TITLE: My name, my venture name, my tagline. Reserve space for me to upload my logo.\n2. THE PROBLEM: Who has it, the real example from above.\n3. WHO I AM BUILDING FOR: The customer described as a person, with name.\n4. WHAT I BUILT: Show that I have an app, a website, an audio intro, a video walkthrough. Add the URLs.\n5. HOW IT WORKS: Three simple steps the customer takes.\n6. WHAT COULD HAPPEN NEXT: If 20 customers used this, what would change for my person?\n\nUse warm colours. Big visuals. Short text. The kind of deck a school student would present to their parents."
         }
       ],
       "build": [
         {
-          "title": "Open Gamma if you have not yet",
-          "instructions": "Go to gamma.app. Free tier gives you 400 credits. One deck takes 40 credits. Plenty of room."
+          "title": "The five-step arc",
+          "instructions": "10 min name. 15 min logo. 15 min answering questions. 20 min building deck. 30 min round-robin review. Stay with the clock."
         },
         {
-          "title": "Use the prompt with your details",
-          "instructions": "Paste in your Ideation sheet and Carrd URL. Hit generate. Gamma builds the whole deck in a minute."
+          "title": "Upload your logo into Gamma",
+          "instructions": "Once Gamma generates the deck, drag your logo PNG from Canva (Step 2) onto slide 1. Place it next to your venture name."
         },
         {
-          "title": "The round-robin",
-          "instructions": "We go around. Each Minifounder shares screen, runs through their deck in three minutes. The room and facilitator give two minutes of reaction. Move on. Twelve Minifounders fit into 90 minutes."
+          "title": "Round-robin review (last 30 min)",
+          "instructions": "Each Minifounder shares screen, runs through their deck in three minutes. Room and facilitator give two minutes of reaction. Move on. Twelve fit in 30 minutes if you stay tight."
         },
         {
-          "title": "Leave with one polish",
+          "title": "Leave with ONE polish",
           "instructions": "By the end of the call, every Minifounder has one specific thing to fix on the deck before Demo Day. Not three. One. Specific."
         }
       ],

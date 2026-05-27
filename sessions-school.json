@@ -1,0 +1,587 @@
+{
+  "workshop": {
+    "title": "First Build",
+    "subtitle": "For Minifounders",
+    "session_count": 12,
+    "weekend_day1_sessions": [
+      "0",
+      "1",
+      "2",
+      "milestone",
+      "3"
+    ],
+    "weekend_day2_sessions": [
+      "4",
+      "5",
+      "interim-demo",
+      "6"
+    ],
+    "week1_session": "7",
+    "week2_session": "8",
+    "week3_session": "9",
+    "demo_day_session": "10",
+    "close_session": "11",
+    "cohort_members": [],
+    "cohort_label": "FB1",
+    "cohort_size": 25,
+    "oc_application_url": "justbuild.orangecaterpillar.com/first-build",
+    "day1_start": "09:00",
+    "day1_end": "17:00",
+    "day2_start": "09:00",
+    "day2_end": "17:00",
+    "office_hours_duration_minutes": 60,
+    "stages": [
+      "Pick",
+      "Build",
+      "Launch",
+      "Polish",
+      "Share"
+    ]
+  },
+  "sessions": [
+    {
+      "id": "0",
+      "number": "0",
+      "session_type": "kickoff",
+      "day": 1,
+      "phase": "weekend",
+      "title": "Kickoff",
+      "start_time": "9:00",
+      "end_time": "9:30",
+      "duration_minutes": 30,
+      "break_after": false,
+      "break_duration_minutes": 0,
+      "set_the_stage": "Welcome. Look around this room. Every person sitting here is a Minifounder. By Sunday evening you walk out with your First Build.\n\nThis is not a coding class. It is not a school project. It is the first time you build something real for a real person you know. Your grandmother, your neighbour, your class teacher, your younger cousin. Someone with a real problem you have noticed.\n\nThirty minutes to set the shape, then we start.",
+      "questions": [
+        {
+          "title": "Who is one person you want to help?",
+          "body": "Not the whole world. One person you know. Your dadi who forgets to take her medicines. Your mother who runs a small tiffin business. Your younger brother who struggles with maths. Hold that one person in your head."
+        },
+        {
+          "title": "What will it feel like on Demo Day?",
+          "body": "Three weeks from now you stand in front of your parents and your friends and show what you made. Write down one sentence: On Demo Day I will show that I can _______. Keep it visible."
+        }
+      ],
+      "hmv": [],
+      "prompts": [],
+      "build": [
+        {
+          "title": "What we mean by First Build",
+          "instructions": "Six things you will make and put on one URL. Your Ideation. Your AI app. Your website. Your audio. Your video. Your brochure. All real. All yours."
+        },
+        {
+          "title": "The shape of the program",
+          "instructions": "Two days in this room. Then three weeks at home with weekly online check-ins of one hour each. Then Demo Day. Parents and teachers invited."
+        },
+        {
+          "title": "How the room works",
+          "instructions": "If you are stuck for more than ten minutes, raise your hand. The facilitator walks the room to catch the silent stuck. Asking for help is not cheating. It is how everyone in this room finishes by Sunday evening."
+        }
+      ],
+      "test_output": [],
+      "output_capture": null,
+      "stage": "Kickoff"
+    },
+    {
+      "id": "1",
+      "number": "1",
+      "session_type": "build",
+      "day": 1,
+      "phase": "weekend",
+      "title": "Pick your idea",
+      "start_time": "9:30",
+      "end_time": "11:00",
+      "duration_minutes": 90,
+      "break_after": true,
+      "break_duration_minutes": 15,
+      "set_the_stage": "Ninety minutes to pick the one idea you will build over the next three weeks.\n\nThere are five sample ideas on the wall. Each one is for a real person you probably know. You pick one. Then you make it yours. By the end of this session you have one sheet of paper. On the sheet: who you are building for, what their problem is, what your First Build will do for them.\n\nThe paper is the first thing you make in this room. It is called your Ideation. It goes on your portfolio.",
+      "questions": [
+        {
+          "title": "Which of the five ideas pulls you in?",
+          "body": "Read all five on the wall. Notice which one you keep coming back to. That is usually the right one. Trust the pull."
+        },
+        {
+          "title": "Whose face do you see when you read it?",
+          "body": "If you picked the grandmother medicine reminder idea, whose grandmother are you thinking of? Yours? Your friend's? Write the name on the paper. The face makes the idea real."
+        }
+      ],
+      "hmv": [
+        {
+          "axis": "Real person",
+          "instruction": "Is the person you named real? Can you call them today and ask one question about their problem?"
+        },
+        {
+          "axis": "Real problem",
+          "instruction": "Is the problem something they actually face? Or something you imagined they might face? When in doubt, message them."
+        },
+        {
+          "axis": "Demoable",
+          "instruction": "Can you show this person what you built in three weeks? If they live too far, or if you cannot speak to them, pick a different person you can reach."
+        }
+      ],
+      "prompts": [],
+      "build": [
+        {
+          "title": "The Ideation sheet",
+          "instructions": "One A4 sheet. Write at the top: WHO. Below that, the name of the person. Then WHAT THEY STRUGGLE WITH. Then WHAT MY FIRST BUILD WILL DO. Keep it short. Three lines each is enough."
+        },
+        {
+          "title": "Make it yours",
+          "instructions": "The five ideas on the wall are starting points, not finished things. The grandmother medicine reminder idea becomes different when you pick your own grandmother. Her language. Her routine. Her favourite TV serial. Personalise."
+        },
+        {
+          "title": "Share with the room",
+          "instructions": "Last fifteen minutes of this session, every Minifounder reads their sheet aloud. Two sentences. Who you are building for, what you are building. The room listens. The facilitator catches anything that needs sharpening."
+        }
+      ],
+      "test_output": [],
+      "output_capture": {
+        "artifact": "ideation",
+        "label": "Ideation sheet",
+        "instruction": "Photograph your Ideation sheet. Upload it to your portfolio folder. This is your first artifact."
+      },
+      "stage": "Pick"
+    },
+    {
+      "id": "2",
+      "number": "2",
+      "session_type": "build",
+      "day": 1,
+      "phase": "weekend",
+      "title": "Build your AI app",
+      "start_time": "11:15",
+      "end_time": "13:00",
+      "duration_minutes": 105,
+      "break_after": true,
+      "break_duration_minutes": 60,
+      "set_the_stage": "You have a person. You have a problem. Now you build the thing.\n\nOne hundred and five minutes. By the end of this block your AI app does something useful for the person on your sheet. Not perfectly. Not beautifully. Usefully.\n\nOne HTML file. One AI call. No backend. No accounts to set up. You build it with Claude on the screen in front of you, exactly the way the facilitator demonstrates. By lunch your app should respond to a real input with a real, useful output.",
+      "questions": [],
+      "hmv": [],
+      "prompts": [
+        {
+          "title": "Starter prompt for Claude",
+          "content": "I am building a simple web app for one specific person. Here is who they are and what they need: [PASTE YOUR IDEATION SHEET]. I want one HTML file with one input box, one button, and one output area. When the user enters their input, you call the Claude API and return a helpful response that sounds like it was written specifically for this person. Give me the full HTML file. Explain in simple words what each part does so I can change it later."
+        }
+      ],
+      "build": [
+        {
+          "title": "Follow the facilitator",
+          "instructions": "The facilitator builds a sample app on the big screen first. Watch the whole build before you start your own. Do not skip ahead. Most students who get stuck got stuck because they skipped the demo."
+        },
+        {
+          "title": "Test with a buddy",
+          "instructions": "When you have something running, do not test it yourself. Turn to the person next to you. Let them enter an input. Watch their face. If they look confused, that is your feedback. If they smile, that is your feedback too."
+        },
+        {
+          "title": "Save your file",
+          "instructions": "Name your file firstbuild-app.html and save it in your folder. We will deploy it after lunch."
+        }
+      ],
+      "test_output": [
+        {
+          "title": "Does the output sound like it was written for your person?",
+          "instruction": "Read the output aloud. Pretend you are your grandmother, or your neighbour aunty, or your younger brother. Would they understand it? Would it help them? If no, the prompt needs to change. Not the code."
+        }
+      ],
+      "output_capture": null,
+      "stage": "Build"
+    },
+    {
+      "id": "milestone",
+      "number": "milestone",
+      "session_type": "milestone",
+      "day": 1,
+      "phase": "weekend",
+      "title": "Lunch check",
+      "start_time": "13:00",
+      "end_time": "13:30",
+      "duration_minutes": 30,
+      "break_after": false,
+      "break_duration_minutes": 0,
+      "set_the_stage": "Thirty minutes. Everyone in the room shows two things over lunch.\n\nOne. The person on your Ideation sheet. Read the name aloud.\nTwo. The output your AI app made for that person. Read it aloud.\n\nThe room listens for one thing. Does the output sound like it was written for that person, doing that specific thing? Or does it sound like a generic answer?\n\nIf it sounds generic, the system prompt needs work. Not the design. Not the colours. The words you put in the prompt. We fix that this afternoon before we move to the website.",
+      "questions": [],
+      "hmv": [],
+      "prompts": [],
+      "build": [
+        {
+          "title": "The lunch round",
+          "instructions": "One Minifounder stands. Reads their person's name. Reads one output. Sits down. Next Minifounder stands. Whole room finishes in twenty minutes. Then we eat."
+        }
+      ],
+      "test_output": [],
+      "output_capture": null,
+      "stage": "Build"
+    },
+    {
+      "id": "3",
+      "number": "3",
+      "session_type": "build",
+      "day": 1,
+      "phase": "weekend",
+      "title": "Deploy and write the website",
+      "start_time": "14:30",
+      "end_time": "17:00",
+      "duration_minutes": 150,
+      "break_after": false,
+      "break_duration_minutes": 0,
+      "set_the_stage": "Two and a half hours. By the end of this block your AI app is live on the internet. You can open it on your phone. You can send the link to your mother. She can open it in her browser. It works.\n\nThen you start the website. Not the design yet. Just the words. One page. Three sections. What is this? Who is it for? How do I use it? Tomorrow morning we put those words into Carrd and the website goes live before lunch.",
+      "questions": [],
+      "hmv": [],
+      "prompts": [],
+      "build": [
+        {
+          "title": "Deploy to Netlify",
+          "instructions": "Drag and drop your firstbuild-app.html file onto Netlify. Three minutes. You get a URL. Open it on your phone. Send the URL to one person sitting in this room. They open it. It works. Now it is real."
+        },
+        {
+          "title": "Write the website words",
+          "instructions": "Open a Google Doc. Title it WEBSITE. Three sections. WHAT IS THIS, two lines. WHO IS THIS FOR, two lines, using the name from your Ideation sheet. HOW DO I USE IT, three lines, step by step. That is all the writing. No fancy words."
+        },
+        {
+          "title": "End of Day 1",
+          "instructions": "Save everything. App is live. Website words are written. Tomorrow morning the website goes live, then we make the audio, video, and brochure. See you at 9:00."
+        }
+      ],
+      "test_output": [],
+      "output_capture": {
+        "artifact": "ai_app",
+        "label": "AI app URL",
+        "instruction": "Save your Netlify URL. This is the second artifact for your portfolio."
+      },
+      "stage": "Build"
+    },
+    {
+      "id": "4",
+      "number": "4",
+      "session_type": "build",
+      "day": 2,
+      "phase": "weekend",
+      "title": "Launch the website",
+      "start_time": "9:00",
+      "end_time": "11:30",
+      "duration_minutes": 150,
+      "break_after": true,
+      "break_duration_minutes": 15,
+      "set_the_stage": "Day 2. Morning of the launch.\n\nTwo and a half hours. You walked in this morning with the website words written. You walk out at break with the website live. A real URL. Anyone in the world can visit it. The big button on the page takes them to your AI app.\n\nCarrd is what you use. It is the simplest website builder that exists. The facilitator demonstrates first, then you build your own. Do not get pulled into colours and fonts for the first hour. Words first. Layout next. Styling at the very end.",
+      "questions": [],
+      "hmv": [],
+      "prompts": [],
+      "build": [
+        {
+          "title": "Carrd setup",
+          "instructions": "Sign up for Carrd. Pick the simplest one-page template. Paste your three sections into it. Title at the top, three sections below, button at the bottom that links to your AI app URL."
+        },
+        {
+          "title": "Open it on a phone",
+          "instructions": "Your visitor will see it on a phone, not a laptop. Open your own Carrd URL on your phone before you call it done. If the button is too small or the words are too long, fix it now."
+        },
+        {
+          "title": "Share it once",
+          "instructions": "Send the URL to one family member. Not for feedback yet. Just so they have it. The act of sending it to someone outside this room makes it real."
+        }
+      ],
+      "test_output": [],
+      "output_capture": {
+        "artifact": "website",
+        "label": "Website URL",
+        "instruction": "Save your Carrd URL. This is the third artifact for your portfolio."
+      },
+      "stage": "Launch"
+    },
+    {
+      "id": "5",
+      "number": "5",
+      "session_type": "build",
+      "day": 2,
+      "phase": "weekend",
+      "title": "Audio, video, brochure",
+      "start_time": "11:45",
+      "end_time": "14:30",
+      "duration_minutes": 165,
+      "break_after": true,
+      "break_duration_minutes": 30,
+      "set_the_stage": "Two and three quarter hours. Three small things, one after the other.\n\nFirst, sixty seconds of audio. Your voice or an AI voice, reading a short script you write, embedded on your website right after the headline. It tells the visitor in one minute what your First Build does and why.\n\nSecond, ninety seconds of video. Screen-recorded. You show the AI app working. Your voice over it explains what is happening. We do not post to LinkedIn. We post on your portfolio. Parents see it on Demo Day.\n\nThird, a one-page brochure. A PDF the visitor can download from your website and forward on WhatsApp. So your grandmother's friend, who heard about your app from her, has something to look at on her own phone.\n\nLunch is somewhere in the middle of this block. Take it when you finish the audio.",
+      "questions": [],
+      "hmv": [],
+      "prompts": [
+        {
+          "title": "Audio script prompt",
+          "content": "Write a sixty-second spoken script that introduces my First Build. The script should sound like a young person speaking, not a corporate ad. It should answer three things in sixty seconds: what my First Build does, who it is for, and one small example of how it helped them. Here is my Ideation sheet and my website words: [PASTE]. Give me the script in plain English, with line breaks where I should pause."
+        },
+        {
+          "title": "Brochure prompt",
+          "content": "Make a one-page brochure for my First Build that I can save as a PDF and share on WhatsApp. It should have a title, a one-line description, three points about who it helps and how, and the URL of my website. Keep it visual and simple. Use plain English. Make it something a parent or grandparent would find easy to read on a phone."
+        }
+      ],
+      "build": [
+        {
+          "title": "Audio in ElevenLabs",
+          "instructions": "Paste your script into ElevenLabs. Pick a voice that fits your First Build. Generate. Download as MP3. Embed in your Carrd site right under the title."
+        },
+        {
+          "title": "Video on Loom or QuickTime",
+          "instructions": "Open your AI app. Hit screen record. Talk through what happens when you enter a real input. Keep it under ninety seconds. Save the file. Upload to your portfolio folder."
+        },
+        {
+          "title": "Brochure in Canva",
+          "instructions": "Open Canva. Use the AI brochure script. Drop the words into a clean one-page template. Export as PDF. Link it from your Carrd site."
+        }
+      ],
+      "test_output": [],
+      "output_capture": {
+        "artifact": "audio_video_brochure",
+        "label": "Audio, Video, Brochure",
+        "instruction": "Three files saved. All linked from your website. All on your portfolio."
+      },
+      "stage": "Polish"
+    },
+    {
+      "id": "interim-demo",
+      "number": "interim-demo",
+      "session_type": "interim_demo",
+      "day": 2,
+      "phase": "weekend",
+      "title": "Interim show",
+      "start_time": "15:00",
+      "end_time": "16:00",
+      "duration_minutes": 60,
+      "break_after": false,
+      "break_duration_minutes": 0,
+      "set_the_stage": "Stop building. Stand up.\n\nFor one and a half days you have been heads-down. Now the room shifts. Every Minifounder gets sixty seconds to show what they made.\n\nThis is not Demo Day. Demo Day is in three weeks with parents and teachers watching. This is the interim show. Just the cohort. No slides. No nervousness. You stand up, open your website on the big screen, walk the room through one example, and sit down. The room claps. Next Minifounder.\n\nThis hour matters because by the time the room finishes, you will know exactly what you want to polish over the next three weeks. Write things down as you watch.",
+      "questions": [],
+      "hmv": [],
+      "prompts": [],
+      "build": [
+        {
+          "title": "The order",
+          "instructions": "We go around the room. Sixty seconds each. No questions in between. Save questions for the WhatsApp group afterwards."
+        },
+        {
+          "title": "The watching task",
+          "instructions": "While others demo, keep a list open in your phone. Write down anything you want to add to your own First Build. The list is your homework for the next three weeks."
+        }
+      ],
+      "test_output": [],
+      "output_capture": null,
+      "stage": "Polish"
+    },
+    {
+      "id": "6",
+      "number": "6",
+      "session_type": "planning",
+      "day": 2,
+      "phase": "weekend",
+      "title": "What happens next",
+      "start_time": "16:00",
+      "end_time": "17:00",
+      "duration_minutes": 60,
+      "break_after": false,
+      "break_duration_minutes": 0,
+      "set_the_stage": "You walked in two days ago. You leave with five live things. The AI app, the website, the audio, the video, the brochure. Plus the Ideation sheet from the very first session.\n\nThe next three weeks are not heads-down building like this weekend. They are three things. One, share what you built with the person on your Ideation sheet. Two, polish based on what they say. Three, get ready for Demo Day.\n\nOne hour to walk through the three weeks, set the norms, lock the Demo Day date.",
+      "questions": [],
+      "hmv": [],
+      "prompts": [],
+      "build": [
+        {
+          "title": "The three weeks",
+          "instructions": "Week 1: share your First Build with your person and three others. Listen to what they say. Take notes. Week 2: polish based on their words, with the facilitator on the call. Week 3: practice your three-minute Demo Day talk."
+        },
+        {
+          "title": "Office hours",
+          "instructions": "Every Saturday at 11:00. Sixty minutes. On Google Meet. Be there even if you have no question. The room together is what keeps everyone moving."
+        },
+        {
+          "title": "WhatsApp group",
+          "instructions": "For between-session unblocks. Stuck on something? Post in the group. Someone usually replies in an hour. The facilitator is in the group too."
+        },
+        {
+          "title": "Demo Day",
+          "instructions": "Save the date now. Parents and teachers will be invited. Your three-minute talk will be recorded. The recording goes on your portfolio for life."
+        }
+      ],
+      "test_output": [],
+      "output_capture": null,
+      "stage": "Polish"
+    },
+    {
+      "id": "7",
+      "number": "7",
+      "session_type": "office_hours",
+      "day": null,
+      "phase": "office_hours",
+      "title": "Week 1 office hours",
+      "start_time": "11:00",
+      "end_time": "12:00",
+      "duration_minutes": 60,
+      "break_after": false,
+      "break_duration_minutes": 0,
+      "set_the_stage": "Welcome back. Week 1.\n\nYour First Build is live. The work this week was not coding. It was talking. You showed it to the person on your Ideation sheet, and to three others. You listened. You took notes.\n\nThis hour we go around the room. Every Minifounder shares one thing the person said that surprised you. Then we look at the patterns. Then we pick the one thing each person will polish this week.",
+      "questions": [
+        {
+          "title": "What did your person say that surprised you?",
+          "body": "Maybe they did not understand the button. Maybe they wanted something you never thought of. Maybe they loved a small detail you almost did not include. Surprises tell you where to polish."
+        }
+      ],
+      "hmv": [],
+      "prompts": [],
+      "build": [
+        {
+          "title": "The round",
+          "instructions": "Each Minifounder gets two minutes. One surprise from the user. One thing you want to polish next week. Facilitator notes everything on a shared screen."
+        },
+        {
+          "title": "Pick one polish",
+          "instructions": "By the end of this hour every Minifounder leaves with one concrete thing to fix this week. Not three. One. Specific."
+        }
+      ],
+      "test_output": [],
+      "output_capture": null,
+      "stage": "Polish"
+    },
+    {
+      "id": "8",
+      "number": "8",
+      "session_type": "office_hours",
+      "day": null,
+      "phase": "office_hours",
+      "title": "Week 2 office hours",
+      "start_time": "11:00",
+      "end_time": "12:00",
+      "duration_minutes": 60,
+      "break_after": false,
+      "break_duration_minutes": 0,
+      "set_the_stage": "Week 2. The polish week.\n\nBy now every Minifounder has shipped the one polish from last week. This hour is the second pass. Show what you polished. The room reacts. Facilitator helps you spot what is still rough.\n\nAlso this week: we start thinking about the three-minute Demo Day talk. Not writing it yet. Just collecting the pieces. The opening line. The one example you will show live. The closing sentence.",
+      "questions": [
+        {
+          "title": "What does the polished version look like?",
+          "body": "Show your screen. Walk the room through what is different from last week. Sixty seconds each."
+        },
+        {
+          "title": "What is your one example for Demo Day?",
+          "body": "On Demo Day you will show one realistic input and one real output, live, in front of parents. Which input? Pick now. Write it on your Ideation sheet."
+        }
+      ],
+      "hmv": [],
+      "prompts": [],
+      "build": [
+        {
+          "title": "Show and react round",
+          "instructions": "Each Minifounder shares screen. Sixty seconds to show polish. Thirty seconds for room reactions. Move on."
+        },
+        {
+          "title": "Pick your demo example",
+          "instructions": "Pick the one input you will demo live. Make sure your AI app gives a great answer to that input. Test it five times. If it fails once, fix the prompt."
+        }
+      ],
+      "test_output": [],
+      "output_capture": null,
+      "stage": "Share"
+    },
+    {
+      "id": "9",
+      "number": "9",
+      "session_type": "office_hours",
+      "day": null,
+      "phase": "office_hours",
+      "title": "Week 3 office hours",
+      "start_time": "11:00",
+      "end_time": "12:00",
+      "duration_minutes": 60,
+      "break_after": false,
+      "break_duration_minutes": 0,
+      "set_the_stage": "Last office hours. Demo Day is one week away.\n\nThis hour is rehearsal. Every Minifounder pitches their three-minute Demo Day talk in front of the cohort. The room gives feedback. You pitch a second time. You leave with a tight, rehearsed three-minute talk.\n\nMost talks fail because the Minifounder rushes, says too much, or never paused. Today we fix that. Three minutes is short. Three minutes is also long if you fill it with real things.",
+      "questions": [],
+      "hmv": [],
+      "prompts": [],
+      "build": [
+        {
+          "title": "The three-minute shape",
+          "instructions": "Minute 1: who you built for and why. Minute 2: live demo of your one example. Minute 3: what you learnt and what you would build next."
+        },
+        {
+          "title": "Round one rehearsal",
+          "instructions": "Every Minifounder pitches. Three minutes hard cap. Room listens silently. Facilitator times. After each pitch, two short reactions from the room."
+        },
+        {
+          "title": "Round two rehearsal",
+          "instructions": "Every Minifounder pitches again with the reactions in mind. Notice the difference. The second pitch is always tighter."
+        }
+      ],
+      "test_output": [],
+      "output_capture": null,
+      "stage": "Share"
+    },
+    {
+      "id": "10",
+      "number": "10",
+      "session_type": "demo_day",
+      "day": null,
+      "phase": "demo_day",
+      "title": "Demo Day",
+      "start_time": "16:00",
+      "end_time": "19:00",
+      "duration_minutes": 180,
+      "break_after": false,
+      "break_duration_minutes": 0,
+      "set_the_stage": "Look at the room. Parents in the chairs. Teachers along the side. Your friends in the back. Three weeks ago you walked in not knowing what you would build.\n\nTonight every Minifounder has a portfolio URL, six live artifacts, and three minutes to show the room what is on that URL.\n\nWe record every demo. The recording goes on your portfolio for life. The first thing you will ever show a college admissions officer, an internship coordinator, or a future co-founder.",
+      "questions": [],
+      "hmv": [],
+      "prompts": [],
+      "build": [
+        {
+          "title": "Order",
+          "instructions": "Alphabetical by first name. Three minutes plus one minute of questions. Hard cap."
+        },
+        {
+          "title": "Recording",
+          "instructions": "Camera is on. Lapel mic for clarity. Don't worry about the camera. Talk to the person in the front row. The recording will look after itself."
+        },
+        {
+          "title": "The room afterwards",
+          "instructions": "Mingling for thirty minutes after the last demo. Parents talk to Minifounders. Minifounders talk to each other. Snacks. Photos. Then home."
+        }
+      ],
+      "test_output": [],
+      "output_capture": {
+        "artifact": "demo_recording",
+        "label": "Demo Day recording",
+        "instruction": "The recording is added to your portfolio within twenty-four hours. The link goes to your parents by email."
+      },
+      "stage": "Share"
+    },
+    {
+      "id": "11",
+      "number": "11",
+      "session_type": "close",
+      "day": null,
+      "phase": "close",
+      "title": "What you do now",
+      "start_time": "18:30",
+      "end_time": "19:00",
+      "duration_minutes": 30,
+      "break_after": false,
+      "break_duration_minutes": 0,
+      "set_the_stage": "Open your phone. Look at your portfolio URL. Three weeks ago none of this existed. The Ideation sheet, the AI app, the website, the audio, the video, the brochure, the Demo Day recording. Seven live things. One URL.\n\nThirty minutes to talk about what you do with that URL across the next year. School essays. Class presentations. Project submissions. The first thing you send a college if you apply abroad. The first thing you show when someone asks what you did over the summer.\n\nAlso: when you are in engineering college, Just Build is waiting. The next step is bigger. You will be ready for it because you have already done this one.",
+      "questions": [],
+      "hmv": [],
+      "prompts": [],
+      "build": [
+        {
+          "title": "The portfolio URL",
+          "instructions": "Memorise it. Add it to your phone home screen. Put it in your school email signature. Put it on your Instagram bio if you want. It is yours."
+        },
+        {
+          "title": "What to do this week",
+          "instructions": "Send the URL to three people who were not at Demo Day. A relative. A teacher who did not come. A friend at another school. The URL is meant to travel."
+        },
+        {
+          "title": "Stay in the cohort",
+          "instructions": "The WhatsApp group stays open. When one of you builds something new, share it. When one of you wins something at school, share it. The cohort is the long-term gift. Take care of it."
+        }
+      ],
+      "test_output": [],
+      "output_capture": null,
+      "stage": "Share"
+    }
+  ]
+}

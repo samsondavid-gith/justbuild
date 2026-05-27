@@ -277,40 +277,53 @@
     overflow: hidden;
   }
   .prompt-header {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 10px 16px;
+    display: flex; justify-content: flex-start; align-items: center;
+    padding: 12px 22px;
     background: var(--bg-elev-2);
     border-bottom: 1px solid var(--line);
-    font-size: 11px;
-    letter-spacing: 0.16em;
+    font-size: 12px;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--text-muted);
+    font-weight: 500;
   }
   .prompt-box {
-    padding: 18px 20px;
+    padding: 22px 26px;
     font-family: var(--mono);
-    font-size: 12.5px;
-    line-height: 1.55;
-    color: var(--text-soft);
+    font-size: clamp(15px, 1.9vh, 19px);
+    line-height: 1.65;
+    color: var(--text);
     white-space: pre-wrap;
     word-break: break-word;
-    max-height: 50vh;
+    max-height: 55vh;
     overflow-y: auto;
   }
-  .copy-btn {
-    background: transparent;
-    color: var(--accent);
+  .prompt-laptop-line {
+    margin-top: 18px;
+    padding: 16px 22px;
+    background: rgba(193,125,42,0.08);
     border: 1px solid var(--accent-soft);
-    padding: 4px 12px;
-    border-radius: 3px;
-    font-size: 10.5px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    cursor: pointer;
+    border-radius: 6px;
+    text-align: center;
   }
-  .copy-btn:hover { background: rgba(193,125,42,0.08); }
-  .copy-btn.copied { color: var(--warning); border-color: rgba(232,181,58,0.3); }
+  .prompt-laptop-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+  .prompt-laptop-url {
+    font-family: var(--mono);
+    font-size: clamp(17px, 2.4vh, 23px);
+    color: var(--text);
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+  .copy-btn {
+    display: none;
+  }
 
   /* ----- Build checklist ----- */
   .build-list { list-style: none; padding: 0; margin: clamp(16px, 2.4vh, 24px) 0; }
@@ -1292,13 +1305,16 @@
   function renderPrompt(session, prompt, promptIdx) {
     return '<div class="eyebrow">A prompt to copy</div>' +
       '<h2 class="section-title">' + escapeHtml(prompt.title) + '</h2>' +
-      '<p class="stage-body">Copy this. Paste it into the tool named in the title. Customise where you see square brackets.</p>' +
+      '<p class="stage-body">Open the prompts page on your laptop. Find this prompt. Click Copy. Paste into the right tool. Customise where you see square brackets.</p>' +
       '<div class="prompt-wrap">' +
         '<div class="prompt-header">' +
           '<span>Prompt</span>' +
-          '<button class="copy-btn" data-prompt="' + encodeURIComponent(prompt.content) + '">Copy</button>' +
         '</div>' +
         '<div class="prompt-box">' + escapeHtml(prompt.content) + '</div>' +
+      '</div>' +
+      '<div class="prompt-laptop-line">' +
+        '<div class="prompt-laptop-eyebrow">Get this prompt on your laptop</div>' +
+        '<div class="prompt-laptop-url">justbuild.orangecaterpillar.com/prompts-school</div>' +
       '</div>';
   }
 
@@ -1606,17 +1622,6 @@
     if (continueBtn) continueBtn.addEventListener('click', function () { go(1); });
     const advanceBtn = $('#advance-btn');
     if (advanceBtn) advanceBtn.addEventListener('click', function () { go(1); });
-
-    document.querySelectorAll('.copy-btn').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        const text = decodeURIComponent(btn.getAttribute('data-prompt') || '');
-        navigator.clipboard.writeText(text).then(function () {
-          btn.textContent = 'Copied';
-          btn.classList.add('copied');
-          setTimeout(function () { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
-        });
-      });
-    });
 
     document.querySelectorAll('.build-item').forEach(function (item) {
       item.addEventListener('click', function () {

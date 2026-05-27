@@ -775,6 +775,60 @@
     opacity: 0.85;
   }
 
+  /* ----- Week intro reveal ----- */
+  .week-intro {
+    text-align: center;
+    padding: clamp(16px, 3vh, 40px) 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+  }
+  .week-intro-logo {
+    width: clamp(80px, 14vh, 160px);
+    height: auto;
+    margin: 0 auto clamp(14px, 2.2vh, 32px);
+    opacity: 0.95;
+    filter: drop-shadow(0 10px 32px rgba(193,125,42,0.3));
+  }
+  .week-intro-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: clamp(10px, 1.6vh, 18px);
+  }
+  .week-intro-number {
+    font-family: var(--serif);
+    font-size: clamp(64px, 14vh, 140px);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: 0.95;
+    color: var(--accent);
+    margin-bottom: clamp(8px, 1.4vh, 18px);
+  }
+  .week-intro-title {
+    font-family: var(--serif);
+    font-size: clamp(28px, 5vh, 52px);
+    font-weight: 300;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    color: var(--text);
+    margin-bottom: clamp(12px, 2vh, 24px);
+    max-width: 22ch;
+  }
+  .week-intro-sub {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(15px, 1.9vh, 21px);
+    color: var(--text-soft);
+    font-weight: 300;
+    max-width: 36ch;
+    line-height: 1.4;
+  }
+
   /* ----- Session start ----- */
   .session-start { padding: clamp(14px, 2.6vh, 32px) 0; }
   .session-start-meta {
@@ -1058,6 +1112,9 @@
 
     const sessions = DATA.sessions || [];
     sessions.forEach(function (session) {
+      // Big Week intro screen before every session
+      SCREENS.push({ type: 'week-intro', session: session });
+
       // Show a Demo Day welcome screen before the final session
       if (session.session_type === 'demo_day') {
         SCREENS.push({ type: 'phase-break', to: 'demo_day' });
@@ -1321,6 +1378,27 @@
     '</div>';
   }
 
+  function renderWeekIntro(session) {
+    const subtitles = {
+      '1': 'The week you pick your venture.',
+      '2': 'The week your app comes to life.',
+      '3': 'The week you polish, and start the website.',
+      '4': 'The week your website goes live.',
+      '5': 'The week you add your voice.',
+      '6': 'The week you show your face.',
+      '7': 'The week your venture gets a name.',
+      '8': 'The week you stand up and pitch.'
+    };
+    const sub = subtitles[String(session.week || session.number)] || '';
+    return '<div class="week-intro">' +
+      '<img class="week-intro-logo" src="logo.png" alt="Orange Caterpillar" onerror="this.style.display=\'none\'">' +
+      '<div class="week-intro-eyebrow">Built by Her</div>' +
+      '<div class="week-intro-number">Week ' + escapeHtml(String(session.week || session.number)) + '</div>' +
+      '<h1 class="week-intro-title">' + escapeHtml(session.title) + '</h1>' +
+      (sub ? '<p class="week-intro-sub">' + escapeHtml(sub) + '</p>' : '') +
+    '</div>';
+  }
+
   function renderPhaseBreak(to) {
     if (to === 'demo_day') {
       return '<div class="phase-break phase-break-demo">' +
@@ -1489,6 +1567,7 @@
       case 'journey-map': html = renderJourneyMap(); break;
       case 'tools-landscape': html = renderToolsLandscape(); break;
       case 'idea-cards': html = renderIdeaCards(); break;
+      case 'week-intro': html = renderWeekIntro(screen.session); break;
       case 'phase-break': html = renderPhaseBreak(screen.to); break;
       case 'session-start': html = renderSessionStart(screen.session); break;
       case 'stage-text': html = renderStageText(screen.session); break;
@@ -1536,6 +1615,11 @@
         'phase-break': 'Demo Day'
       };
       title.textContent = titles[screen.type] || '';
+      section.textContent = '';
+    } else if (screen.type === 'week-intro') {
+      // Minimal topbar on the reveal screen — let the artwork breathe
+      eyebrow.textContent = 'Built by Her';
+      title.textContent = 'Week ' + (screen.session.week || screen.session.number);
       section.textContent = '';
     } else {
       eyebrow.textContent = 'Week ' + (screen.session.week || screen.session.number);
@@ -1640,6 +1724,11 @@
   function syncTimerForScreen() {
     const screen = SCREENS[currentScreenIdx];
     if (!screen) return;
+    // The week-intro is a pure reveal screen — no timer until the proper session start
+    if (screen.type === 'week-intro') {
+      stopTimer();
+      return;
+    }
     if (screen.session) {
       // Inside a real workshop session
       if (timer.sessionId !== screen.session.id) {

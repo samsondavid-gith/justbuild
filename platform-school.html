@@ -174,7 +174,7 @@
   .stage::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 4px; }
 
   .stage-inner {
-    max-width: 1100px; margin: 0 auto;
+    max-width: 1280px; margin: 0 auto;
   }
 
   /* ----- Bottom bar ----- */
@@ -534,50 +534,27 @@
     margin-bottom: clamp(16px, 2.5vh, 32px);
   }
 
-  /* ----- Journey wave ----- */
-  .journey-wave-screen { padding-bottom: 60px; }
-  .journey-wave-title { margin-bottom: 12px; }
-  .journey-wave-sub { margin-bottom: 32px; }
-  .journey-wave-wrap {
-    margin: 32px 0;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    background: var(--bg-elev-1);
-    padding: 16px;
-  }
-  .journey-wave-svg { width: 100%; height: auto; display: block; }
+  /* ----- Journey wave (label fills only — overrides come later) ----- */
   .journey-label-main {
     font-family: var(--serif);
-    font-size: 24px;
+    font-size: 26px;
     font-weight: 500;
     fill: var(--text);
     letter-spacing: -0.01em;
   }
   .journey-label-sub {
     font-family: var(--sans);
-    font-size: 13px;
+    font-size: 14px;
     fill: var(--text-muted);
     letter-spacing: 0.02em;
   }
   .journey-bookend-label {
     font-family: var(--sans);
-    font-size: 12px;
+    font-size: 13px;
     fill: var(--accent);
     letter-spacing: 0.16em;
     text-transform: uppercase;
     font-weight: 500;
-  }
-  .journey-wave-rule {
-    height: 1px; background: var(--line); border: 0;
-    margin: 32px 0 24px;
-  }
-  .journey-wave-footer {
-    font-family: var(--serif);
-    font-size: 18px;
-    color: var(--text-soft);
-    font-style: italic;
-    line-height: 1.5;
-    max-width: 60ch;
   }
 
   /* ----- Portfolio hero (housekeeping) ----- */
@@ -786,6 +763,134 @@
     margin-bottom: clamp(12px, 1.8vh, 20px); max-width: 62ch;
   }
 
+  /* ----- Tools Landscape ----- */
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    text-align: left;
+    margin: clamp(12px, 2vh, 20px) 0;
+  }
+  .cat-card {
+    background: var(--bg-elev-1);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+  }
+  .cat-name {
+    font-family: var(--serif);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+  .cat-use {
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.4;
+    margin-bottom: 8px;
+    font-style: italic;
+  }
+  .cat-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .tool-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 8px;
+    font-size: 10px;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    color: var(--text-muted);
+    background: transparent;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+  .tool-chip.tool-pick {
+    background: var(--accent-soft);
+    border-color: var(--accent);
+    color: var(--text);
+    font-weight: 500;
+  }
+  .tool-star {
+    color: var(--accent);
+    font-size: 9px;
+    line-height: 1;
+  }
+  .wl-footer {
+    font-family: var(--serif);
+    font-size: clamp(13px, 1.5vh, 16px);
+    color: var(--text-muted);
+    font-style: italic;
+    margin-top: clamp(12px, 2vh, 20px);
+    text-align: left;
+  }
+
+  /* ----- Journey wave overrides (specific screen) ----- */
+  .journey-wave-screen {
+    max-width: 1280px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .journey-wave-title {
+    font-size: clamp(24px, 4vh, 44px) !important;
+    line-height: 1.05 !important;
+    margin-bottom: 8px !important;
+    max-width: none !important;
+  }
+  .journey-wave-sub {
+    margin-bottom: 12px !important;
+    font-size: clamp(13px, 1.6vh, 17px) !important;
+    max-width: 60ch !important;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .journey-wave-wrap {
+    width: 100%;
+    margin: 4px auto 12px;
+    padding: 4px 4px 8px;
+    background: var(--bg-elev-1);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+  }
+  .journey-wave-svg {
+    display: block;
+    width: 100%;
+    max-width: 1180px;
+    max-height: 55vh;
+    margin: 0 auto;
+    height: auto;
+  }
+  .journey-wave-rule {
+    width: 80px;
+    height: 1px;
+    background: var(--accent);
+    border: none;
+    margin: 4px auto 10px;
+  }
+  .journey-wave-footer {
+    font-family: var(--serif);
+    font-size: clamp(13px, 1.5vh, 16px);
+    color: var(--text-soft);
+    font-style: italic;
+    max-width: 900px;
+    margin: 0 auto;
+    line-height: 1.45;
+  }
+
+  @media (max-width: 860px) {
+    .cat-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 580px) {
+    .cat-grid { grid-template-columns: 1fr; }
+  }
+
   /* ----- Responsive ----- */
   @media (max-width: 768px) {
     .stage { padding: 40px 24px; }
@@ -887,11 +992,15 @@
   let DATA = null;
   let SCREENS = [];
   let currentScreenIdx = 0;
-  let timerInterval = null;
-  let timerStart = null;
-  let timerElapsed = 0;
-  let timerPaused = true;
-  let timerSessionMinutes = 0;
+  // Countdown timer state
+  const timer = {
+    intervalId: null,
+    totalSeconds: 0,
+    remainingSeconds: 0,
+    sessionId: null,
+    running: false,
+    paused: false
+  };
   let checkedItems = {};
 
   // ============================================================
@@ -968,6 +1077,7 @@
     SCREENS.push({ type: 'housekeeping' });
     SCREENS.push({ type: 'artifacts' });
     SCREENS.push({ type: 'journey-map' });
+    SCREENS.push({ type: 'tools-landscape' });
 
     const sessions = DATA.sessions || [];
     let prevPhase = null;
@@ -1144,6 +1254,95 @@
     '</div>';
   }
 
+  function renderToolsLandscape() {
+    // ★ marks tools used in First Build for school students.
+    // For schools we keep this lighter than the college program — no chatbot/agent tools.
+    const categories = [
+      {
+        name: 'Chat & Reasoning',
+        use: 'Your AI thinking partner. Drafts, ideas, system prompts.',
+        tools: [
+          { name: 'Claude', pick: true },
+          { name: 'ChatGPT', pick: true },
+          { name: 'Gemini', pick: true },
+          { name: 'Grok', pick: false },
+          { name: 'DeepSeek', pick: false },
+          { name: 'Copilot', pick: false }
+        ]
+      },
+      {
+        name: 'Search & Research',
+        use: 'Finding facts. Checking that problems are real.',
+        tools: [
+          { name: 'Perplexity', pick: true },
+          { name: 'Google', pick: true },
+          { name: 'You.com', pick: false },
+          { name: 'Exa', pick: false }
+        ]
+      },
+      {
+        name: 'Sites & Pages',
+        use: 'Putting your First Build on a real URL.',
+        tools: [
+          { name: 'Carrd', pick: true },
+          { name: 'Netlify', pick: true },
+          { name: 'Framer', pick: false },
+          { name: 'Wix', pick: false }
+        ]
+      },
+      {
+        name: 'Audio',
+        use: 'Giving your First Build a voice.',
+        tools: [
+          { name: 'ElevenLabs', pick: true },
+          { name: 'Suno', pick: false },
+          { name: 'PlayHT', pick: false }
+        ]
+      },
+      {
+        name: 'Video',
+        use: 'Showing your First Build in action.',
+        tools: [
+          { name: 'Loom', pick: true },
+          { name: 'QuickTime', pick: true },
+          { name: 'Descript', pick: false },
+          { name: 'Runway', pick: false }
+        ]
+      },
+      {
+        name: 'Brochure & Design',
+        use: 'Making the one-page PDF a visitor can share.',
+        tools: [
+          { name: 'Canva', pick: true },
+          { name: 'Figma', pick: false },
+          { name: 'Gamma', pick: false }
+        ]
+      }
+    ];
+
+    const cards = categories.map(function (c) {
+      return '<div class="cat-card">' +
+        '<h3 class="cat-name">' + escapeHtml(c.name) + '</h3>' +
+        '<p class="cat-use">' + escapeHtml(c.use) + '</p>' +
+        '<div class="cat-tools">' +
+          c.tools.map(function (t) {
+            return '<span class="tool-chip ' + (t.pick ? 'tool-pick' : '') + '">' +
+              (t.pick ? '<span class="tool-star">★</span>' : '') + escapeHtml(t.name) +
+            '</span>';
+          }).join('') +
+        '</div>' +
+      '</div>';
+    }).join('');
+
+    return '<div class="wl-screen">' +
+      '<div class="wl-eyebrow">The AI landscape</div>' +
+      '<h1 class="wl-title">Pick the tool. <em>Get the job done.</em></h1>' +
+      '<p class="wl-sub">The world has many AI tools. You only need a few to ship your First Build. Six small categories. Stars mark what we use this weekend. The rest is the wider field.</p>' +
+      '<div class="cat-grid">' + cards + '</div>' +
+      '<p class="wl-footer">Stars are this weekend. The rest is for later.</p>' +
+    '</div>';
+  }
+
   function renderPhaseBreak(to) {
     if (to === 'office_hours') {
       return '<div class="phase-break">' +
@@ -1311,6 +1510,7 @@
       case 'housekeeping': html = renderHousekeeping(); break;
       case 'artifacts': html = renderArtifacts(); break;
       case 'journey-map': html = renderJourneyMap(); break;
+      case 'tools-landscape': html = renderToolsLandscape(); break;
       case 'phase-break': html = renderPhaseBreak(screen.to); break;
       case 'session-start': html = renderSessionStart(screen.session); break;
       case 'stage-text': html = renderStageText(screen.session); break;
@@ -1328,8 +1528,8 @@
     $('#stage').scrollTop = 0;
     updateTopbar();
     updateProgress();
+    syncTimerForScreen();
     wireScreenEvents();
-    startSessionTimerIfNeeded();
   }
 
   // ============================================================
@@ -1348,6 +1548,7 @@
         'housekeeping': 'Portfolio URL',
         'artifacts': 'What you make',
         'journey-map': 'The journey',
+        'tools-landscape': 'The AI landscape',
         'phase-break': screen.to === 'office_hours' ? 'Office hours' : 'Demo Day'
       };
       title.textContent = titles[screen.type] || '';
@@ -1391,47 +1592,100 @@
   }
 
   // ============================================================
-  // TIMER
+  // TIMER (countdown, matches college platform)
   // ============================================================
-  function startSessionTimerIfNeeded() {
-    const screen = SCREENS[currentScreenIdx];
-    if (screen.type === 'session-start' && screen.session) {
-      timerSessionMinutes = screen.session.duration_minutes || 0;
-      timerElapsed = 0;
-      timerPaused = true;
-      updateTimerDisplay();
-    } else if (screen.type === 'break') {
-      // break is its own countdown handled inline by wireBreakTimer
-    }
+  function setupTimer(session) {
+    stopTimer();
+    timer.totalSeconds = (session.duration_minutes || 0) * 60;
+    timer.remainingSeconds = timer.totalSeconds;
+    timer.sessionId = session.id;
+    timer.running = false;
+    timer.paused = false;
+    updateTimerDisplay();
   }
   function startTimer() {
-    if (timerInterval) return;
-    timerPaused = false;
-    timerStart = Date.now() - timerElapsed * 1000;
-    timerInterval = setInterval(function () {
-      timerElapsed = Math.floor((Date.now() - timerStart) / 1000);
-      updateTimerDisplay();
-    }, 500);
+    if (timer.running) return;
+    if (timer.totalSeconds <= 0) return;
+    timer.running = true;
+    timer.paused = false;
+    timer.intervalId = setInterval(tickTimer, 1000);
+    updateTimerDisplay();
   }
   function pauseTimer() {
-    if (timerInterval) {
-      clearInterval(timerInterval);
-      timerInterval = null;
+    if (!timer.running) return;
+    timer.paused = !timer.paused;
+    updateTimerDisplay();
+  }
+  function stopTimer() {
+    if (timer.intervalId) clearInterval(timer.intervalId);
+    timer.intervalId = null;
+    timer.running = false;
+    timer.paused = false;
+    timer.totalSeconds = 0;
+    timer.remainingSeconds = 0;
+    timer.sessionId = null;
+    const el = $('#timer');
+    if (el) {
+      el.textContent = '--:--';
+      el.className = 'timer';
     }
-    timerPaused = true;
+  }
+  function tickTimer() {
+    if (timer.paused) return;
+    timer.remainingSeconds--;
     updateTimerDisplay();
   }
   function toggleTimer() {
-    if (timerPaused) startTimer(); else pauseTimer();
+    if (!timer.running && timer.totalSeconds > 0) {
+      startTimer();
+    } else if (timer.running) {
+      pauseTimer();
+    }
+  }
+  function fmtTime(seconds) {
+    const neg = seconds < 0;
+    const s = Math.abs(seconds);
+    const m = Math.floor(s / 60);
+    const sec = s % 60;
+    return (neg ? '-' : '') + String(m).padStart(2, '0') + ':' + String(sec).padStart(2, '0');
   }
   function updateTimerDisplay() {
     const el = $('#timer');
     if (!el) return;
-    const mins = Math.floor(timerElapsed / 60);
-    const secs = timerElapsed % 60;
-    el.textContent = String(mins).padStart(2, '0') + ':' + String(secs).padStart(2, '0');
-    el.classList.toggle('paused', timerPaused);
-    el.classList.toggle('overrun', timerSessionMinutes > 0 && mins >= timerSessionMinutes);
+    if (!timer.running && !timer.totalSeconds) {
+      el.textContent = '--:--';
+      el.className = 'timer';
+      return;
+    }
+    el.textContent = fmtTime(timer.remainingSeconds);
+    el.className = 'timer';
+    if (timer.paused) el.classList.add('paused');
+    if (timer.remainingSeconds <= 0) el.classList.add('overrun');
+    else if (timer.remainingSeconds <= 5 * 60) el.classList.add('overrun');
+  }
+
+  // Decide what the timer should do whenever screen changes
+  function syncTimerForScreen() {
+    const screen = SCREENS[currentScreenIdx];
+    if (!screen) return;
+    // Session screens: setup if entering a new session, otherwise leave alone
+    if (screen.session) {
+      if (timer.sessionId !== screen.session.id) {
+        // Different session — set up countdown but don't start until Begin is pressed
+        if (screen.type === 'session-start') {
+          setupTimer(screen.session);
+        } else {
+          // Mid-session screens entered via jump menu — also set up, but don't start
+          setupTimer(screen.session);
+        }
+      }
+    } else {
+      // Non-session screen (welcome, housekeeping, journey, tools, phase-break, break)
+      // Stop timer except during break (which has its own countdown)
+      if (screen.type !== 'break') {
+        stopTimer();
+      }
+    }
   }
 
   // ============================================================

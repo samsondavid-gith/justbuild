@@ -1,0 +1,494 @@
+{
+  "workshop": {
+    "title": "Built by Her",
+    "subtitle": "For Makers",
+    "session_count": 8,
+    "weekly_sessions": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8"
+    ],
+    "cohort_members": [],
+    "cohort_label": "BBH1",
+    "cohort_size": 20,
+    "oc_application_url": "justbuild.orangecaterpillar.com/platform-women",
+    "session_duration_minutes": 120,
+    "session_start_time": "11:00",
+    "session_end_time": "13:00",
+    "session_day": "Saturday",
+    "stages": [
+      "Idea",
+      "Build",
+      "Launch",
+      "Story",
+      "Brand",
+      "Share"
+    ]
+  },
+  "sessions": [
+    {
+      "id": "1",
+      "number": "1",
+      "session_type": "kickoff_build",
+      "week": 1,
+      "phase": "weekly",
+      "title": "Pick your venture",
+      "start_time": "11:00",
+      "end_time": "13:00",
+      "duration_minutes": 120,
+      "break_after": false,
+      "break_duration_minutes": 0,
+      "set_the_stage": "Welcome. Every Maker in this Zoom call is here to build a real small venture using AI as the builder.\n\nThis is not a course about AI. It is not a workshop on entrepreneurship. You are building a real small business that solves one problem for one kind of customer. Over the next eight weeks, two hours every Saturday, you will walk away with an app, a website, an audio, a video, a brochure, and a pitch deck. Seven artifacts. All yours.\n\nThis first session has two halves. First half: we look at the shape of the next eight weeks and the four ideas you can pick from. Second half: you write your Ideation sheet.",
+      "questions": [
+        {
+          "title": "What does a Maker walk away with?",
+          "body": "Seven real artifacts plus a pitch you can give to your family, your husband, your friends. Maybe an actual first customer by Week 8. The artifacts are real. They go live on the internet."
+        },
+        {
+          "title": "Who do you know who already runs something small?",
+          "body": "Your neighbour aunty who makes tiffins. Your friend who tutors. Your mother who grows plants. Your cousin who makes return-gift boxes. Many of you ARE that person. The Maker either runs the venture, or knows the person who does."
+        }
+      ],
+      "hmv": [
+        {
+          "axis": "Real person",
+          "instruction": "Is the person who would actually run this venture someone you know well or yourself? Can you speak to them today and ask one question?"
+        },
+        {
+          "axis": "Real problem",
+          "instruction": "Is the problem something they actually face? Or something you assumed? When in doubt, message them now."
+        },
+        {
+          "axis": "Demoable",
+          "instruction": "Can you show this person what you built in eight weeks? If they live too far or you cannot speak to them often, pick a different person."
+        }
+      ],
+      "prompts": [
+        {
+          "title": "Sharpen your idea with Perplexity",
+          "content": "I am building a small venture from home. I want to make a simple web app for [PERSON YOU PICKED, e.g. 'myself, I grow plants on my balcony' or 'my neighbour aunty who runs a tiffin service']. The app will [WHAT YOUR APP DOES, e.g. 'show a catalog of plants people can rent for three months and book them online']. Help me understand: what are 3 other people in India who already do something like this? What did they get right? What is the one thing my version should do differently because I am building it small and local? Keep your answer practical and warm."
+        }
+      ],
+      "build": [
+        {
+          "title": "Read the 4 idea cards",
+          "instructions": "Four real micro-ventures on the screen. Pick the one that pulls you. You can make it about yourself or about someone you know well. Both work."
+        },
+        {
+          "title": "Make it specific to your life",
+          "instructions": "Rent-a-Plant is a starting point. It becomes different when YOU pick your own balcony, your own neighbour aunty, or your own terrace garden."
+        },
+        {
+          "title": "Write your Ideation sheet",
+          "instructions": "One page. WHO this is for (you or someone you know, by name). WHAT they struggle with (one sentence). WHAT my venture will do (three lines). Plain words."
+        },
+        {
+          "title": "Share with the room",
+          "instructions": "Last twenty minutes, each Maker reads her Ideation sheet. Two sentences. Who you are building for, what you are building. The room listens warmly."
+        }
+      ],
+      "test_output": [],
+      "output_capture": {
+        "artifact": "ideation",
+        "label": "Ideation sheet",
+        "instruction": "Photograph your Ideation sheet. Save it. Artifact 1 of 7."
+      },
+      "stage": "Idea"
+    },
+    {
+      "id": "2",
+      "number": "2",
+      "session_type": "build",
+      "week": 2,
+      "phase": "weekly",
+      "title": "Build your app — part 1",
+      "start_time": "11:00",
+      "end_time": "13:00",
+      "duration_minutes": 120,
+      "break_after": false,
+      "break_duration_minutes": 0,
+      "set_the_stage": "Two hours. You build the working app at the heart of your venture.\n\nThe app is one HTML file. Just one. You open Claude.ai and tell it what your app does. Claude writes the HTML. You copy the HTML, open it in your browser, see it work, then ask Claude to change things. Each time Claude rewrites the whole file. You replace the old file. Refresh the browser. Look again.\n\nDo not write code yourself. You direct, Claude builds. By the end of this session your app does the main thing it is supposed to do. Not perfectly. Usefully.",
+      "questions": [],
+      "hmv": [],
+      "prompts": [
+        {
+          "title": "Starter prompt for Claude.ai",
+          "content": "I am building a simple working web app for a small home-based venture. It is for a real micro-venture, not a fake AI demo. Here is the venture:\n\n[PASTE YOUR IDEATION SHEET]\n\nBuild me ONE complete HTML file (with CSS and JavaScript inside) that does this. It should NOT call any external AI or API. All data should be inside the HTML file itself (a JavaScript array of objects is fine). The app should have:\n\n1. A simple landing screen explaining what this is\n2. A main screen showing the catalog / list / options\n3. A form where the customer makes their choice\n4. A confirmation screen showing what they chose and what happens next\n\nUse soft warm colours. Mobile-first layout. No external libraries unless absolutely needed. Give me the full file in one block so I can copy-paste it."
+        }
+      ],
+      "build": [
+        {
+          "title": "Open Claude.ai in one tab",
+          "instructions": "Claude.ai is the only tool we use for app building. Reserved for this. Do not use it for anything else (we have other tools for other tasks)."
+        },
+        {
+          "title": "Paste the starter prompt with your Ideation sheet",
+          "instructions": "Use the prompt above. Paste in your real Ideation sheet where the brackets are. Hit send. Claude returns one big HTML file."
+        },
+        {
+          "title": "Save the file as venture-app.html",
+          "instructions": "Copy the HTML code from Claude. Open Notepad (Windows) or TextEdit (Mac). Paste. Save as venture-app.html. Double-click it. Opens in your browser. That is your app."
+        },
+        {
+          "title": "Make it yours",
+          "instructions": "Tell Claude what to change. 'Add three more options.' 'Change the colour.' 'Show a thank-you message after the form.' Each time, Claude rewrites the whole file. You replace, refresh, look. Keep going until it works for your specific person."
+        },
+        {
+          "title": "Homework: deploy to Netlify",
+          "instructions": "After the session, go to netlify.com/drop. Drag your HTML file onto the page. You get a real URL in three minutes. Open the URL on your phone. Save the URL. Bring it to next session."
+        }
+      ],
+      "test_output": [
+        {
+          "title": "Test on your phone",
+          "instruction": "Open the app on your phone before the session ends. If something looks too small or hard to tap, ask Claude to fix it."
+        }
+      ],
+      "output_capture": {
+        "artifact": "ai_app",
+        "label": "Your app URL",
+        "instruction": "Save the Netlify URL after homework. Artifact 2 of 7."
+      },
+      "stage": "Build"
+    },
+    {
+      "id": "3",
+      "number": "3",
+      "session_type": "build",
+      "week": 3,
+      "phase": "weekly",
+      "title": "Polish your app + start the website",
+      "start_time": "11:00",
+      "end_time": "13:00",
+      "duration_minutes": 120,
+      "break_after": false,
+      "break_duration_minutes": 0,
+      "set_the_stage": "Two hours. The app gets sharper. The website starts to take shape.\n\nFirst hour: keep iterating with Claude.ai. Add the small details that make the app feel real. Better wording. Better catalog content. A nice confirmation page. The app should feel like something a customer would actually use, not a class project.\n\nSecond hour: we DESIGN the website. We do not build it yet. We figure out what goes on it, in what order, with what words. We use ChatGPT for the website copy this hour, NOT Claude.ai (we save Claude.ai for app polish later).",
+      "questions": [],
+      "hmv": [],
+      "prompts": [
+        {
+          "title": "Website copy prompt for ChatGPT",
+          "content": "I have built a small web app for [PERSON]. The app does [WHAT IT DOES]. Now I am writing the words for a one-page website that will introduce my app to visitors.\n\nGive me the words for a one-page website with these three sections:\n\n1. HEADLINE: One line at the top. Should make a visitor understand what this is in 5 seconds. Plain English. No business jargon.\n2. WHO IS THIS FOR: Two short lines. Name the person or kind of person who will use this.\n3. HOW IT WORKS: Three numbered steps. Each step one short sentence.\n\nWrite it warmly and plainly. The kind of words a real person would say, not a corporate brochure. Short sentences. No jargon."
+        }
+      ],
+      "build": [
+        {
+          "title": "First hour: polish the app",
+          "instructions": "Open Claude.ai. Continue from last session. Add details that make it feel like a real customer's tool. Better images. Better confirmation message. Aim for the actual customer to smile."
+        },
+        {
+          "title": "Re-deploy on Netlify",
+          "instructions": "After polishing, drag the new HTML file onto netlify.com/drop again. Same URL stays. Just newer version."
+        },
+        {
+          "title": "Second hour: website copy with ChatGPT",
+          "instructions": "Open ChatGPT (not Claude). Paste the prompt above with your details. Read what ChatGPT gives back. Edit until it sounds like you, not like ChatGPT."
+        },
+        {
+          "title": "Save the copy",
+          "instructions": "Save your three sections in a Google Doc titled WEBSITE COPY. Next week we build the website itself in Carrd."
+        }
+      ],
+      "test_output": [
+        {
+          "title": "Read your headline aloud",
+          "instruction": "Read your headline aloud to yourself or your spouse / friend. They have never seen your venture. Did they understand it in 5 seconds? If not, rewrite."
+        }
+      ],
+      "output_capture": null,
+      "stage": "Build"
+    },
+    {
+      "id": "4",
+      "number": "4",
+      "session_type": "build",
+      "week": 4,
+      "phase": "weekly",
+      "title": "Build your website",
+      "start_time": "11:00",
+      "end_time": "13:00",
+      "duration_minutes": 120,
+      "break_after": false,
+      "break_duration_minutes": 0,
+      "set_the_stage": "Two hours. Your website goes live with a real URL anyone in the world can visit.\n\nCarrd is the tool. The simplest website builder that exists. You pick a template, drop in your three sections of copy from last week, add a big button that takes the visitor to your app, publish. Done.\n\nDo not get pulled into colours and fonts in the first hour. Words first, layout second, styling last.",
+      "questions": [],
+      "hmv": [],
+      "prompts": [],
+      "build": [
+        {
+          "title": "Sign up at carrd.co",
+          "instructions": "Free account. Pick the simplest one-page template. Avoid templates with too many sections. You only need three."
+        },
+        {
+          "title": "Drop in your headline, then your three sections",
+          "instructions": "Top: headline. Middle: who it is for. Middle-lower: how it works. Bottom: one big button that says VISIT THE APP and links to your Netlify URL from Week 2."
+        },
+        {
+          "title": "Open on your phone",
+          "instructions": "Most visitors will see your site on a phone. Open your Carrd URL on your phone before you call it done. If the button is too small or the words too long, fix it now."
+        },
+        {
+          "title": "Publish at a custom URL",
+          "instructions": "Free Carrd lets you publish at yourname.carrd.co. Pick something simple like maa-plants.carrd.co. This is the URL that becomes your venture's home on the internet."
+        }
+      ],
+      "test_output": [],
+      "output_capture": {
+        "artifact": "website",
+        "label": "Your website URL",
+        "instruction": "Save the Carrd URL. Artifact 3 of 7."
+      },
+      "stage": "Launch"
+    },
+    {
+      "id": "5",
+      "number": "5",
+      "session_type": "build",
+      "week": 5,
+      "phase": "weekly",
+      "title": "Add your voice",
+      "start_time": "11:00",
+      "end_time": "13:00",
+      "duration_minutes": 120,
+      "break_after": false,
+      "break_duration_minutes": 0,
+      "set_the_stage": "Two hours. Sixty seconds of audio that introduces your venture in a warm voice.\n\nThree steps. First we write the script (with Gemini, NOT Claude). Then we generate the voice (with ElevenLabs free tier). Then we embed the audio on the website right under the headline.\n\nWhen a visitor lands on your site, they should hear your venture explained in a real human-sounding voice within sixty seconds.",
+      "questions": [],
+      "hmv": [],
+      "prompts": [
+        {
+          "title": "Audio script prompt for Gemini",
+          "content": "I have built a small web app called [APP NAME] for [PERSON]. The app does [WHAT IT DOES, ONE LINE].\n\nWrite me a 60-second spoken script that introduces this. The script will be read aloud (by an AI voice). It should sound warm and real, NOT a corporate ad. It should answer three things in sixty seconds:\n\n1. What this is (one sentence)\n2. Who it is for (one sentence)\n3. One small example of how it helps them (two sentences)\n\nUse plain English. Use short sentences. Add line breaks where the voice should pause."
+        }
+      ],
+      "build": [
+        {
+          "title": "Open Gemini in a new tab",
+          "instructions": "Use gemini.google.com. Free. Paste the script prompt with your real details."
+        },
+        {
+          "title": "Edit the script to sound like you",
+          "instructions": "Read the script aloud. If a sentence does not sound like something you would say, change it. The voice should sound like a real woman speaking, not a press release."
+        },
+        {
+          "title": "Generate the voice in ElevenLabs",
+          "instructions": "Go to elevenlabs.io. Sign up free. Paste your script. Pick a voice that fits your venture. Click generate. Download as MP3."
+        },
+        {
+          "title": "Embed the audio on Carrd",
+          "instructions": "In Carrd, add an Audio element right under the headline. Upload your MP3. Save and publish. Reload your live site on your phone to confirm it plays."
+        }
+      ],
+      "test_output": [],
+      "output_capture": {
+        "artifact": "audio",
+        "label": "Audio embedded on website",
+        "instruction": "Audio is live on the site. Artifact 4 of 7."
+      },
+      "stage": "Story"
+    },
+    {
+      "id": "6",
+      "number": "6",
+      "session_type": "build",
+      "week": 6,
+      "phase": "weekly",
+      "title": "Record your video",
+      "start_time": "11:00",
+      "end_time": "13:00",
+      "duration_minutes": 120,
+      "break_after": false,
+      "break_duration_minutes": 0,
+      "set_the_stage": "Two hours. Ninety seconds of video showing your venture in action, with your voice walking the visitor through it.\n\nLoom is the tool. Free. You hit record, your screen and your face both get captured, you walk through your app like you are showing it to a friend, you hit stop, you get a URL.\n\nThis is the artifact most family members will watch first. Make it warm. Make it short.",
+      "questions": [],
+      "hmv": [],
+      "prompts": [
+        {
+          "title": "Video script prompt for Gemini",
+          "content": "I have built a small web app called [APP NAME] for [PERSON]. The app does [WHAT IT DOES].\n\nWrite me a 90-second script for a screen-recorded video where I will be talking over my screen. The video will show me clicking through the app while I narrate.\n\nThe script should have three parts:\n\n1. INTRO (10 seconds): Who I am and what I built\n2. WALKTHROUGH (60 seconds): I open the app, I show the catalog/main screen, I make a choice, I show the confirmation\n3. CLOSE (20 seconds): Who this is really for and why I built it for them\n\nWrite it like spoken words, not written words. Short sentences. Casual. Include small notes for ME (like 'pause here' or 'click slowly') in brackets."
+        }
+      ],
+      "build": [
+        {
+          "title": "Get the script from Gemini",
+          "instructions": "Same Gemini tab as the audio script. Paste the video prompt with your details. Read the script aloud once before recording."
+        },
+        {
+          "title": "Sign up for Loom",
+          "instructions": "Go to loom.com. Free account. Install the browser extension or use the web recorder."
+        },
+        {
+          "title": "Record once",
+          "instructions": "Open your Carrd site in one tab and your app in another. Hit Loom record. Walk through your script. Hit stop. Watch it back once. If the first thirty seconds are clean, keep it. If you tripped, re-record. Do not re-record more than three times."
+        },
+        {
+          "title": "Embed on Carrd",
+          "instructions": "Loom gives you a share URL. Copy it. In Carrd, add a Video Embed element below the audio. Paste the Loom URL. Save and publish."
+        }
+      ],
+      "test_output": [
+        {
+          "title": "Show it to your husband, mother, or a friend",
+          "instruction": "Pull up your live Carrd site on your phone. Hand the phone to someone close to you. Let them play the audio and watch the video. Their face is the test."
+        }
+      ],
+      "output_capture": {
+        "artifact": "video",
+        "label": "Video embedded on website",
+        "instruction": "Video is live on the site. Artifact 5 of 7."
+      },
+      "stage": "Story"
+    },
+    {
+      "id": "7",
+      "number": "7",
+      "session_type": "brand",
+      "week": 7,
+      "phase": "weekly",
+      "title": "Brand: name, logo, brochure",
+      "start_time": "11:00",
+      "end_time": "13:00",
+      "duration_minutes": 120,
+      "break_after": false,
+      "break_duration_minutes": 0,
+      "set_the_stage": "Two hours. Your venture gets a name. A logo. A brochure.\n\nUntil now your project has been called Rent-a-Plant or Tiffin Choice or whatever the original idea was. This is the week you make it yours. A name only you would name it. A logo only you would design. A one-page brochure that captures it.\n\nThe brochure is something you can WhatsApp to your first customers, your friends, your in-laws. Real and shareable.",
+      "questions": [
+        {
+          "title": "Could a stranger remember the name tomorrow?",
+          "body": "The test of a name. If a friend saw your brochure for ten seconds today, could they recall the name tomorrow? That is what you are aiming for."
+        }
+      ],
+      "hmv": [],
+      "prompts": [
+        {
+          "title": "Step 1: Pick your venture name (20 min)",
+          "content": "Spend 20 minutes brainstorming a name for YOUR specific venture. Not the generic idea name. A name only you would pick.\n\nThree ways to find a name:\n\n1. The PERSON name approach: Your name + what you do. 'Padma's Tiffin', 'Maa Ki Plants', 'Sunita's Box'.\n\n2. The PLACE name approach: Where it lives. 'BalconyBuds', 'Indiranagar Tiffin', 'Backyard Mango'.\n\n3. The FEELING name approach: What it gives the customer. 'Fresh Friday', 'Slow Plants', 'Warm Wishes'.\n\nWrite 5 options. Read them aloud. Pick the one that makes you smile. That is your venture name."
+        },
+        {
+          "title": "Step 2: Design your logo (30 min)",
+          "content": "Open Canva. Free account.\n\n1. Search 'logo' in the Canva templates.\n2. Filter by SIMPLE / MINIMAL designs. Avoid templates with too many elements.\n3. Replace the placeholder name with YOUR venture name from Step 1.\n4. Pick a colour that matches your venture's feeling. Warm orange for plants. Mustard yellow for food. Soft green for trees. Pink for birthday boxes.\n5. Download as PNG with transparent background.\n\nSave it. You will use it in the brochure now and the pitch deck next week."
+        },
+        {
+          "title": "Step 3: Design your brochure (60 min)",
+          "content": "In Canva, search for 'one-page brochure' templates. Pick a simple one. Replace with:\n\n1. TOP: Your logo + venture name\n2. TAGLINE: What your venture does in 7 words or less\n3. THREE POINTS: Who it helps. How it works. What is special about yours.\n4. ONE PHOTO or ILLUSTRATION: A real photo of what you offer, or a simple Canva illustration\n5. BOTTOM: Your Carrd website URL + a phone number (yours or your WhatsApp)\n\nExport as PDF. Save with your venture name. Upload to your Carrd site as a download link."
+        }
+      ],
+      "build": [
+        {
+          "title": "The three-step arc",
+          "instructions": "20 min name. 30 min logo. 60 min brochure. Stay with the clock. Save everything as you go."
+        },
+        {
+          "title": "Update your Carrd with your logo",
+          "instructions": "In Carrd, add the logo at the top of your site. Save and publish."
+        },
+        {
+          "title": "Link the brochure from your Carrd",
+          "instructions": "Add a button on your Carrd that says 'Download brochure' and links to your PDF. Save and publish."
+        },
+        {
+          "title": "Send your brochure to 3 people tonight",
+          "instructions": "Before next Saturday, WhatsApp your brochure PDF to 3 people who might be customers. Just sharing. No pitch. Notice their replies."
+        }
+      ],
+      "test_output": [],
+      "output_capture": {
+        "artifact": "brochure",
+        "label": "Your brochure",
+        "instruction": "Save the PDF. Linked from your Carrd. Artifact 6 of 7."
+      },
+      "stage": "Brand"
+    },
+    {
+      "id": "8",
+      "number": "8",
+      "session_type": "demo_day",
+      "week": 8,
+      "phase": "weekly",
+      "title": "Pitch deck + Demo Day",
+      "start_time": "11:00",
+      "end_time": "13:00",
+      "duration_minutes": 120,
+      "break_after": false,
+      "break_duration_minutes": 0,
+      "set_the_stage": "The last session. Two hours.\n\nFirst hour: you build the pitch deck. You answer six questions, paste them into Gamma, and out comes a six-slide deck that tells the story of your venture.\n\nSecond hour: Demo Day. Every Maker presents her deck and her live website to the room. Three minutes each. We record every demo. The recording goes on your portfolio for life. The first thing you will show a future customer, a future co-founder, a curious relative.\n\nEight weeks ago you walked into this Zoom call with an idea. Today you walk out with a small business on the internet.",
+      "questions": [],
+      "hmv": [],
+      "prompts": [
+        {
+          "title": "Step 1: Answer six questions (15 min)",
+          "content": "Answer these six questions in 2 lines each. Write them in a Google Doc. These answers go straight into your pitch deck prompt next.\n\n1. WHO ARE YOU? Your name and one line about you.\n\n2. WHAT IS YOUR VENTURE CALLED? The name from Week 7.\n\n3. WHAT IS YOUR ONE-LINE TAGLINE? What your venture does in 7 words or less.\n\n4. WHO IS YOUR CUSTOMER? The real person. Name them. Where they live. What they do.\n\n5. WHAT PROBLEM DID YOU SOLVE FOR THEM? In one sentence.\n\n6. WHAT IS ONE REAL EXAMPLE? Tell me about ONE real customer or potential customer interaction. What did they say? What did they do?"
+        },
+        {
+          "title": "Step 2: Build the deck in Gamma (30 min)",
+          "content": "Open gamma.app. Free account, 400 credits.\n\nPaste this prompt into Gamma. Replace the bracketed bits with YOUR answers from Step 1.\n\n---\n\nBuild me a 6-slide pitch deck for my small home-based venture. I am a Maker building from home.\n\n[ANSWER 1: WHO ARE YOU]\n\nMY VENTURE IS CALLED: [ANSWER 2]\n\nTAGLINE: [ANSWER 3]\n\nMY CUSTOMER: [ANSWER 4]\n\nPROBLEM I SOLVED: [ANSWER 5]\n\nREAL CUSTOMER EXAMPLE: [ANSWER 6]\n\nMy app is live at: [YOUR NETLIFY URL]\nMy website is live at: [YOUR CARRD URL]\n\nMake the deck warm, simple, and visual. Not corporate. Six slides:\n\n1. TITLE: My name, my venture name, my tagline. Reserve space for me to upload my logo.\n2. THE PROBLEM: Who has it, the real example from above.\n3. WHO I AM BUILDING FOR: The customer described as a person, with name.\n4. WHAT I BUILT: Show that I have an app, a website, an audio intro, a video walkthrough. Add the URLs.\n5. HOW IT WORKS: Three simple steps the customer takes.\n6. WHAT COULD HAPPEN NEXT: If 20 customers used this, what would change for me and for them?\n\nUse warm colours. Big visuals. Short text. The kind of deck a Maker would present to her family."
+        }
+      ],
+      "build": [
+        {
+          "title": "First hour: build the deck",
+          "instructions": "15 min answering questions. 30 min building deck in Gamma. 15 min tweaking. Upload your logo from Week 7 onto slide 1."
+        },
+        {
+          "title": "Second hour: Demo Day",
+          "instructions": "Each Maker shares screen. Three minutes per Maker: 1 min introduce yourself and your venture, 1 min live demo of your website + app, 1 min what you learnt over eight weeks. One minute for the room to react."
+        },
+        {
+          "title": "Recording",
+          "instructions": "We record the entire Demo Day on Zoom. Each Maker gets her own clip extracted afterwards. The clip goes on your portfolio."
+        },
+        {
+          "title": "What happens next",
+          "instructions": "Within a week, you receive: your Demo Day clip, a portfolio page link with all 7 artifacts, and a certificate. Share the portfolio URL with family. Keep going on the venture."
+        }
+      ],
+      "test_output": [],
+      "output_capture": {
+        "artifact": "pitch_deck",
+        "label": "Your pitch deck + Demo Day recording",
+        "instruction": "Save the Gamma URL. Demo Day recording arrives within a week. Artifact 7 of 7."
+      },
+      "stage": "Share"
+    }
+  ],
+  "ideas": [
+    {
+      "id": "rent-a-plant",
+      "name": "Rent-a-Plant",
+      "for_whom": "Yourself if you grow plants on your balcony, or a neighbour aunty who runs a small nursery",
+      "problem": "Plants she has cannot find people who will look after them well. People who want plants do not want the commitment of buying.",
+      "what_app_does": "Shows a catalog of available plants with photos and care notes. Lets customers rent a plant for three months. Confirms the rental. Shows updates on the plant over time.",
+      "what_makes_it_real": "Customers exist (friends, family, neighbours). Business model is real (₹200 per month per plant). No payment integration needed, money changes hands in person."
+    },
+    {
+      "id": "tiffin-choice",
+      "name": "Tiffin Choice",
+      "for_whom": "Yourself if you run a small tiffin service, or a neighbour aunty who does",
+      "problem": "Customers do not know the weekly menu in advance. The cook does not know who wants what until she has already cooked.",
+      "what_app_does": "Shows the upcoming weekly menu. Lets regular customers pick their three preferred dishes for next week. Sends the preferences to the cook.",
+      "what_makes_it_real": "Real local business. Removes the daily WhatsApp guessing. The cook makes what people actually want. Customers pay in person as always."
+    },
+    {
+      "id": "birthday-box",
+      "name": "Birthday Box",
+      "for_whom": "Yourself if you make return-gift boxes for kids' birthday parties, or a friend who does",
+      "problem": "Parents organising kids' birthdays do not know what to put in the return-gift bags. The bag-maker has good ideas but no way to show them.",
+      "what_app_does": "Shows three themed boxes (Unicorn, Dinosaur, Space) at three price points. Parent picks theme, quantity, and party date. Submits the order. Confirmation page tells them what happens next.",
+      "what_makes_it_real": "Real product, real maker, real customers. Built around a real seasonal business cycle. Birthday season is year-round."
+    },
+    {
+      "id": "tutoring-slots",
+      "name": "Tutoring Slots",
+      "for_whom": "Yourself if you tutor younger students (Class 5–10) from home, or a friend who does",
+      "problem": "Parents trying to book a tutor have to make many phone calls. The tutor wastes evenings confirming and re-confirming slots over WhatsApp.",
+      "what_app_does": "Shows the tutor's subjects, sample lesson topics, available time slots, and recent students' progress. Parents pick a free trial slot. Booking is confirmed in person.",
+      "what_makes_it_real": "Real tutor, real students, real recurring revenue. Built around a real small venture inside the Maker's home and social circle."
+    }
+  ]
+}

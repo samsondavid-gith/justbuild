@@ -1,0 +1,1794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Built by Her  /  Facilitator Platform</title>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Inter:ital,wght@0,300..700;1,300..700&family=JetBrains+Mono:wght@400..600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:            #0A0A0A;
+    --bg-elev-1:    #141414;
+    --bg-elev-2:    #1C1C1C;
+    --line:          rgba(255,255,255,0.08);
+    --line-strong:   rgba(255,255,255,0.16);
+    --text:          #FFFFFF;
+    --text-soft:     #C8C8C8;
+    --text-muted:    #8A8A8A;
+    --text-faint:    #5A5A5A;
+    --accent:        #C17D2A;
+    --accent-soft:   rgba(193, 125, 42, 0.18);
+    --accent-glow:   rgba(193, 125, 42, 0.35);
+    --warning:       #E8B53A;
+    --danger:        #D7553A;
+    --serif:         'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --sans:          'Inter', system-ui, -apple-system, sans-serif;
+    --mono:          'JetBrains Mono', 'SF Mono', Menlo, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    height: 100%;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+  }
+  body { display: flex; flex-direction: column; height: 100vh; min-height: 0; }
+
+  /* ----- Top bar ----- */
+  .topbar {
+    flex: 0 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 24px;
+    padding: 16px 36px;
+    border-bottom: 1px solid var(--line);
+    background: var(--bg);
+    z-index: 5;
+  }
+  .topbar.hidden { display: none; }
+  .topbar-left { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .topbar-logo { width: 30px; height: 30px; object-fit: contain; flex-shrink: 0; }
+  .topbar-eyebrow {
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500;
+  }
+  .topbar-title {
+    font-family: var(--serif); font-size: 20px; font-weight: 400; letter-spacing: -0.01em;
+  }
+  .topbar-section {
+    font-size: 13px; color: var(--text-muted); letter-spacing: 0.04em;
+  }
+  .topbar-center { display: flex; justify-content: center; }
+  .timer {
+    font-family: var(--mono);
+    font-size: 24px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    padding: 4px 18px;
+    border: 1px solid var(--accent-soft);
+    border-radius: 4px;
+    background: rgba(193,125,42,0.04);
+    cursor: pointer;
+    user-select: none;
+    min-width: 110px;
+    text-align: center;
+    transition: opacity 0.2s, visibility 0.2s;
+  }
+  .timer.hidden { opacity: 0; visibility: hidden; }
+  .timer.paused { color: var(--warning); border-color: rgba(232,181,58,0.3); }
+  .timer.overrun { color: var(--danger); border-color: rgba(215,85,58,0.4); animation: pulse-warn 2s infinite; }
+  .timer.warning { color: var(--warning); }
+  @keyframes pulse-warn { 0%, 100% { opacity: 1; } 50% { opacity: 0.65; } }
+
+  .topbar-right { display: flex; justify-content: flex-end; align-items: center; gap: 18px; }
+
+  .jump-wrap { position: relative; }
+  .jump-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: transparent; color: var(--text-soft);
+    border: 1px solid var(--line-strong);
+    padding: 6px 14px; border-radius: 4px;
+    font-family: var(--sans); font-size: 13px; font-weight: 500;
+    letter-spacing: 0.04em; cursor: pointer;
+  }
+  .jump-btn:hover { color: var(--accent); border-color: var(--accent-soft); }
+
+  .jump-menu {
+    position: absolute; top: calc(100% + 8px); right: 0;
+    background: var(--bg-elev-1);
+    border: 1px solid var(--line-strong);
+    border-radius: 6px;
+    min-width: 320px;
+    max-height: 70vh; overflow-y: auto;
+    box-shadow: 0 12px 36px rgba(0,0,0,0.45);
+    padding: 8px 0;
+    display: none; z-index: 50;
+  }
+  .jump-menu.open { display: block; }
+  .jump-group {
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--text-faint); padding: 12px 16px 6px;
+  }
+  .jump-item {
+    display: block; width: 100%; text-align: left;
+    background: transparent; color: var(--text-soft);
+    border: none; padding: 7px 16px;
+    font-size: 13.5px; font-weight: 400; cursor: pointer;
+  }
+  .jump-item:hover { background: var(--bg-elev-2); color: var(--accent); }
+  .jump-item.current { color: var(--accent); font-weight: 500; }
+  .jump-id { font-family: var(--mono); font-size: 10.5px; color: var(--text-faint); margin-right: 10px; }
+
+  .progress { display: flex; gap: 6px; }
+  .progress-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--line-strong); transition: background 0.3s;
+  }
+  .progress-dot.active { background: var(--accent); transform: scale(1.3); }
+  .progress-dot.done { background: var(--accent-soft); }
+
+  /* ----- Main stage ----- */
+  .stage {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: clamp(20px, 4vh, 48px) clamp(24px, 6vw, 88px);
+    scroll-behavior: smooth;
+  }
+  .stage::-webkit-scrollbar { width: 8px; }
+  .stage::-webkit-scrollbar-track { background: transparent; }
+  .stage::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 4px; }
+  .stage-inner { max-width: 1280px; margin: 0 auto; }
+  .stage.fit-viewport { overflow: hidden; padding-top: clamp(16px, 2.4vh, 28px); padding-bottom: clamp(16px, 2.4vh, 28px); }
+  .stage.fit-viewport .stage-inner { height: 100%; display: flex; flex-direction: column; min-height: 0; }
+
+  /* ----- Bottom bar ----- */
+  .bottombar {
+    flex: 0 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 20px;
+    padding: 14px 36px;
+    border-top: 1px solid var(--line);
+    background: var(--bg);
+  }
+  .bottombar.hidden { display: none; }
+  .nav-btn {
+    background: transparent; color: var(--text-soft);
+    border: 1px solid var(--line-strong);
+    padding: 9px 22px; border-radius: 4px;
+    font-size: 13.5px; font-weight: 500;
+    letter-spacing: 0.04em; cursor: pointer;
+    transition: all 0.15s;
+  }
+  .nav-btn:hover { color: var(--accent); border-color: var(--accent-soft); background: rgba(193,125,42,0.04); }
+  .nav-prev { justify-self: start; }
+  .nav-next { justify-self: end; }
+  .bottombar-center { display: flex; justify-content: center; gap: 14px; }
+  .hmv-reminder {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--text-faint);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border: 1px dashed var(--line);
+    border-radius: 4px;
+  }
+
+  /* ----- Typography ----- */
+  .eyebrow {
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500;
+    margin-bottom: 18px;
+  }
+  h1.stage-title {
+    font-family: var(--serif);
+    font-size: clamp(26px, 4.2vh, 44px);
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    margin-bottom: clamp(14px, 2.2vh, 24px);
+    max-width: 22ch;
+  }
+  h2.section-title {
+    font-family: var(--serif);
+    font-size: clamp(20px, 2.6vh, 26px);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    margin: clamp(20px, 3vh, 36px) 0 clamp(10px, 1.6vh, 18px);
+    color: var(--text);
+  }
+  p.stage-body {
+    font-size: clamp(14px, 1.8vh, 17px);
+    line-height: 1.55;
+    color: var(--text-soft);
+    margin-bottom: clamp(10px, 1.4vh, 16px);
+    max-width: 60ch;
+  }
+
+  /* ----- Question cards ----- */
+  .question-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 14px;
+    margin: clamp(18px, 2.6vh, 28px) 0;
+  }
+  .question-card {
+    background: var(--bg-elev-1);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 18px 20px;
+  }
+  .question-card-title {
+    font-family: var(--serif);
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--accent);
+    margin-bottom: 8px;
+    letter-spacing: -0.005em;
+  }
+  .question-card-body { font-size: 14px; line-height: 1.55; color: var(--text-soft); }
+
+  /* ----- HMV ----- */
+  .hmv-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 14px;
+    margin: clamp(18px, 2.6vh, 28px) 0 12px;
+  }
+  .hmv-card {
+    background: rgba(193,125,42,0.06);
+    border: 1px solid var(--accent-soft);
+    border-radius: 6px;
+    padding: 16px 18px;
+  }
+  .hmv-axis {
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+  .hmv-instruction { font-size: 14px; color: var(--text-soft); line-height: 1.5; }
+
+  /* ----- Prompt box ----- */
+  .prompt-screen {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0;
+  }
+  .prompt-screen-header { flex: 0 0 auto; }
+  .prompt-wrap {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    margin: clamp(12px, 1.8vh, 20px) 0;
+    border: 1px solid var(--line-strong);
+    border-radius: 6px;
+    background: var(--bg-elev-1);
+    overflow: hidden;
+  }
+  .prompt-header {
+    flex: 0 0 auto;
+    display: flex; justify-content: flex-start; align-items: center;
+    padding: 10px 22px;
+    background: var(--bg-elev-2);
+    border-bottom: 1px solid var(--line);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+  .prompt-box {
+    flex: 1 1 auto;
+    min-height: 0;
+    padding: 18px 24px;
+    font-family: var(--mono);
+    font-size: clamp(14px, 1.7vh, 17px);
+    line-height: 1.6;
+    color: var(--text);
+    white-space: pre-wrap;
+    word-break: break-word;
+    overflow-y: auto;
+  }
+  .prompt-box::-webkit-scrollbar { width: 6px; }
+  .prompt-box::-webkit-scrollbar-track { background: transparent; }
+  .prompt-box::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 3px; }
+  .prompt-laptop-line {
+    flex: 0 0 auto;
+    margin-top: clamp(10px, 1.5vh, 16px);
+    padding: clamp(10px, 1.5vh, 14px) 22px;
+    background: rgba(193,125,42,0.08);
+    border: 1px solid var(--accent-soft);
+    border-radius: 6px;
+    text-align: center;
+  }
+  .prompt-laptop-eyebrow {
+    font-size: 10.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  .prompt-laptop-url {
+    font-family: var(--mono);
+    font-size: clamp(15px, 2vh, 21px);
+    color: var(--text);
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+  .prompt-screen-title {
+    font-family: var(--serif);
+    font-size: clamp(20px, 2.6vh, 28px) !important;
+    margin: clamp(6px, 1vh, 12px) 0 clamp(4px, 0.8vh, 10px) !important;
+  }
+  .prompt-screen-body {
+    font-size: clamp(13px, 1.5vh, 15px) !important;
+    margin-bottom: clamp(4px, 0.8vh, 10px) !important;
+  }
+  .copy-btn {
+    display: none;
+  }
+
+  /* ----- Build checklist ----- */
+  .build-list { list-style: none; padding: 0; margin: clamp(16px, 2.4vh, 24px) 0; }
+  .build-item {
+    display: flex; gap: 14px; align-items: flex-start;
+    padding: 16px 20px;
+    background: var(--bg-elev-1);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .build-item:hover { border-color: var(--accent-soft); }
+  .build-item.checked { background: rgba(193,125,42,0.05); border-color: var(--accent-soft); }
+  .build-checkbox {
+    flex: 0 0 auto;
+    width: 20px; height: 20px;
+    border: 1.5px solid var(--line-strong);
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 2px;
+    transition: all 0.15s;
+  }
+  .build-item.checked .build-checkbox { background: var(--accent); border-color: var(--accent); }
+  .build-checkbox svg { opacity: 0; }
+  .build-item.checked .build-checkbox svg { opacity: 1; }
+  .build-content { flex: 1; }
+  .build-title { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 5px; }
+  .build-item.checked .build-title { color: var(--accent); }
+  .build-instructions { font-size: 14px; line-height: 1.55; color: var(--text-soft); }
+
+  .all-checked-banner {
+    margin-top: 22px;
+    padding: 18px 22px;
+    background: rgba(193,125,42,0.1);
+    border: 1px solid var(--accent-soft);
+    border-radius: 6px;
+    display: none;
+    text-align: center;
+  }
+  .all-checked-banner.show { display: block; }
+
+  /* ----- Output capture ----- */
+  .output-capture-card {
+    margin: clamp(24px, 3.5vh, 36px) 0;
+    padding: 22px 26px;
+    background: rgba(193,125,42,0.08);
+    border: 1px solid var(--accent-soft);
+    border-radius: 8px;
+  }
+  .output-capture-eyebrow {
+    font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500; margin-bottom: 10px;
+  }
+  .output-capture-label {
+    font-family: var(--serif); font-size: 20px; font-weight: 500;
+    margin-bottom: 8px; color: var(--text);
+  }
+  .output-capture-instruction { font-size: 14.5px; color: var(--text-soft); line-height: 1.55; }
+
+  /* ----- Buttons ----- */
+  .button-row { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; margin-top: clamp(18px, 2.6vh, 28px); }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--line-strong);
+    padding: 12px 28px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .btn-primary { background: var(--accent); color: #FFFFFF; border-color: var(--accent); }
+  .btn-primary:hover { background: #A86A24; border-color: #A86A24; color: #FFFFFF; }
+  .btn-ghost { background: transparent; color: var(--text-soft); }
+
+  /* ----- Welcome screen ----- */
+  .hero { text-align: center; padding: clamp(18px, 3.5vh, 40px) 0; }
+  .hero-logo {
+    width: clamp(56px, 8vh, 92px); height: auto;
+    margin: 0 auto clamp(16px, 2.4vh, 28px);
+    opacity: 0.95;
+  }
+  .hero-eyebrow {
+    font-size: 12px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500;
+    margin-bottom: clamp(16px, 2.4vh, 32px);
+  }
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(52px, 13vh, 120px);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    line-height: 0.92;
+    color: var(--text);
+  }
+  .hero-rule {
+    width: 64px; height: 1px; background: var(--accent); border: 0;
+    margin: clamp(18px, 2.6vh, 36px) auto;
+  }
+  .hero-meta {
+    font-family: var(--serif);
+    font-size: clamp(15px, 1.8vh, 19px);
+    font-style: italic;
+    color: var(--text-soft);
+    font-weight: 300;
+  }
+
+  /* ----- Welcome variants ----- */
+  .wl-screen { padding: clamp(8px, 1.5vh, 24px) 0; }
+  .wl-eyebrow {
+    font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500;
+    margin-bottom: clamp(12px, 1.8vh, 24px);
+  }
+  .wl-title {
+    font-family: var(--serif);
+    font-size: clamp(30px, 5vh, 56px);
+    font-weight: 300;
+    letter-spacing: -0.025em;
+    line-height: 1.0;
+    margin-bottom: clamp(12px, 1.8vh, 24px);
+    max-width: 18ch;
+  }
+  .wl-title em { color: var(--accent); font-style: italic; font-weight: 400; }
+  .wl-sub {
+    font-family: var(--serif);
+    font-size: clamp(15px, 1.9vh, 20px);
+    font-style: italic;
+    line-height: 1.4;
+    color: var(--text-soft);
+    font-weight: 300;
+    max-width: 40ch;
+    margin-bottom: clamp(14px, 2.2vh, 28px);
+  }
+
+  /* ----- Portfolio hero ----- */
+  .portfolio-hero {
+    margin: clamp(18px, 2.6vh, 30px) 0;
+    padding: 22px 26px;
+    background: var(--bg-elev-1);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+  }
+  .portfolio-hero-eyebrow {
+    font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500; margin-bottom: 12px;
+  }
+  .portfolio-hero-url {
+    font-family: var(--mono);
+    font-size: clamp(14px, 2vh, 19px);
+    color: var(--text);
+    word-break: break-all;
+    letter-spacing: 0.01em;
+  }
+  .portfolio-hero-slot {
+    color: var(--accent);
+    background: rgba(193,125,42,0.08);
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+  .portfolio-hero-note { margin-top: 12px; font-size: 13px; color: var(--text-muted); font-style: italic; }
+
+  /* ----- Artifact strip ----- */
+  .artifacts-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin: clamp(16px, 2.4vh, 24px) 0;
+  }
+  .artifact-tile {
+    padding: 14px 14px;
+    background: var(--bg-elev-1);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+  }
+  .artifact-num { font-family: var(--mono); font-size: 10.5px; color: var(--accent); letter-spacing: 0.16em; }
+  .artifact-name { font-family: var(--serif); font-size: 16px; font-weight: 500; margin-top: 5px; color: var(--text); }
+  .artifact-desc { font-size: 12.5px; color: var(--text-muted); margin-top: 5px; line-height: 1.5; }
+
+  /* ----- Idea cards (4 picks for Session 1) ----- */
+  .ideas-screen {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0;
+  }
+  .ideas-screen-header { flex: 0 0 auto; margin-bottom: clamp(10px, 1.6vh, 18px); }
+  .ideas-screen-title {
+    font-family: var(--serif);
+    font-size: clamp(22px, 3.4vh, 36px);
+    font-weight: 300;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    margin-bottom: clamp(6px, 1vh, 12px);
+    max-width: 26ch;
+  }
+  .ideas-screen-title em { color: var(--accent); font-style: italic; font-weight: 400; }
+  .ideas-screen-sub {
+    font-family: var(--serif);
+    font-size: clamp(13px, 1.6vh, 16px);
+    font-style: italic;
+    line-height: 1.4;
+    color: var(--text-soft);
+    font-weight: 300;
+    max-width: 50ch;
+  }
+  .ideas-grid {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(8px, 1.2vh, 14px);
+    margin: 0;
+    overflow: hidden;
+  }
+  .idea-card {
+    background: var(--bg-elev-1);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: clamp(12px, 1.8vh, 18px) clamp(12px, 1.6vh, 16px);
+    display: flex; flex-direction: column;
+    transition: border-color 0.2s, background 0.2s;
+    overflow: hidden;
+  }
+  .idea-card:hover { border-color: var(--accent-soft); }
+  .idea-card-num {
+    font-family: var(--mono);
+    font-size: 10px; letter-spacing: 0.16em;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .idea-card-name {
+    font-family: var(--serif);
+    font-size: clamp(17px, 2.4vh, 22px);
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: clamp(10px, 1.4vh, 14px);
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+  }
+  .idea-card-row { margin-bottom: clamp(7px, 1.1vh, 11px); }
+  .idea-card-row:last-child { margin-bottom: 0; }
+  .idea-card-label {
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+  .idea-card-value {
+    font-size: clamp(11.5px, 1.4vh, 13.5px);
+    line-height: 1.45;
+    color: var(--text-soft);
+  }
+
+  /* ----- Tools landscape ----- */
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    text-align: left;
+    margin: clamp(12px, 2vh, 20px) 0;
+  }
+  .cat-card {
+    background: var(--bg-elev-1);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 12px 14px;
+    display: flex; flex-direction: column;
+  }
+  .cat-name {
+    font-family: var(--serif);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+  .cat-use {
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.4;
+    margin-bottom: 8px;
+    font-style: italic;
+  }
+  .cat-tools { display: flex; flex-wrap: wrap; gap: 4px; }
+  .tool-chip {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 3px 8px;
+    font-size: 10px;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    color: var(--text-muted);
+    background: transparent;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+  .tool-chip.tool-pick {
+    background: var(--accent-soft);
+    border-color: var(--accent);
+    color: var(--text);
+    font-weight: 500;
+  }
+  .tool-star { color: var(--accent); font-size: 9px; line-height: 1; }
+  .wl-footer {
+    font-family: var(--serif);
+    font-size: clamp(12.5px, 1.5vh, 15px);
+    color: var(--text-muted);
+    font-style: italic;
+    margin-top: clamp(12px, 2vh, 20px);
+    text-align: left;
+  }
+
+  /* ----- Journey wave overrides ----- */
+  .journey-wave-screen { max-width: 1280px; margin: 0 auto; text-align: center; }
+  .journey-wave-title {
+    font-size: clamp(22px, 3.8vh, 40px) !important;
+    line-height: 1.05 !important;
+    margin-bottom: 8px !important;
+    max-width: none !important;
+  }
+  .journey-wave-sub {
+    margin-bottom: 12px !important;
+    font-size: clamp(13px, 1.6vh, 17px) !important;
+    max-width: 60ch !important;
+    margin-left: auto; margin-right: auto;
+  }
+  .journey-wave-wrap {
+    width: 100%;
+    margin: 4px auto 12px;
+    padding: 4px 4px 8px;
+    background: var(--bg-elev-1);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+  }
+  .journey-wave-svg {
+    display: block;
+    width: 100%;
+    max-width: 1180px;
+    max-height: 55vh;
+    margin: 0 auto;
+    height: auto;
+  }
+  .journey-label-main {
+    font-family: var(--serif);
+    font-size: 26px; font-weight: 500;
+    fill: var(--text);
+    letter-spacing: -0.01em;
+  }
+  .journey-label-sub {
+    font-family: var(--sans);
+    font-size: 14px;
+    fill: var(--text-muted);
+    letter-spacing: 0.02em;
+  }
+  .journey-bookend-label {
+    font-family: var(--sans);
+    font-size: 13px;
+    fill: var(--accent);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .journey-wave-rule { width: 80px; height: 1px; background: var(--accent); border: none; margin: 4px auto 10px; }
+  .journey-wave-footer {
+    font-family: var(--serif);
+    font-size: clamp(13px, 1.5vh, 16px);
+    color: var(--text-soft);
+    font-style: italic;
+    max-width: 900px;
+    margin: 0 auto;
+    line-height: 1.45;
+  }
+
+  /* ----- Phase break ----- */
+  .phase-break { text-align: center; padding: clamp(20px, 4vh, 56px) 0; }
+  .phase-break-eyebrow {
+    font-size: 12px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500;
+    margin-bottom: clamp(16px, 3vh, 32px);
+  }
+  .phase-break-title {
+    font-family: var(--serif);
+    font-size: clamp(40px, 6.5vh, 72px);
+    font-weight: 300;
+    letter-spacing: -0.025em;
+    line-height: 1.0;
+    margin-bottom: clamp(14px, 2vh, 24px);
+  }
+  .phase-break-sub {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(15px, 1.9vh, 21px);
+    color: var(--text-soft);
+    font-weight: 300;
+    max-width: 36ch;
+    margin: 0 auto clamp(18px, 2.6vh, 36px);
+    line-height: 1.4;
+  }
+  .phase-break-demo { padding: clamp(8px, 1.5vh, 24px) 0; }
+  .phase-break-art {
+    display: block;
+    width: clamp(180px, 30vh, 280px);
+    height: auto;
+    margin: 0 auto clamp(14px, 2.2vh, 28px);
+    opacity: 0.95;
+    filter: drop-shadow(0 8px 30px rgba(193,125,42,0.25));
+  }
+  .phase-break-logo {
+    display: block;
+    width: clamp(50px, 7vh, 80px);
+    height: auto;
+    margin: clamp(12px, 2vh, 24px) auto 0;
+    opacity: 0.85;
+  }
+
+  /* ----- Session start ----- */
+  .session-start { padding: clamp(14px, 2.6vh, 32px) 0; }
+  .session-start-meta {
+    display: flex; flex-wrap: wrap; gap: 22px;
+    margin-top: clamp(16px, 2.4vh, 26px);
+    padding: 16px 20px;
+    background: var(--bg-elev-1);
+    border-left: 2px solid var(--accent);
+    border-radius: 0 4px 4px 0;
+  }
+  .session-start-meta-item {
+    font-size: 12.5px; color: var(--text-muted); letter-spacing: 0.04em;
+  }
+  .session-start-meta-item strong { color: var(--text-soft); font-weight: 500; margin-right: 5px; }
+
+  /* ----- Break screen ----- */
+  .break-screen { text-align: center; padding: clamp(16px, 3vh, 32px) 0; }
+  .break-eyebrow {
+    font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500;
+    margin-bottom: clamp(14px, 2vh, 24px);
+  }
+  .break-heading {
+    font-family: var(--serif);
+    font-size: clamp(36px, 5.5vh, 64px);
+    font-weight: 300;
+    letter-spacing: -0.025em;
+    line-height: 1.0;
+    margin-bottom: clamp(14px, 2vh, 24px);
+  }
+  .break-timer {
+    font-family: var(--mono);
+    font-size: clamp(64px, 14vh, 180px);
+    color: var(--accent);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin: clamp(14px, 2vh, 24px) 0;
+    font-weight: 400;
+  }
+  .break-note {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: clamp(14px, 1.7vh, 17px);
+  }
+
+  /* ----- Login overlay ----- */
+  .login-overlay {
+    position: fixed; inset: 0;
+    background: var(--bg);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 1000;
+  }
+  .login-overlay.hidden { display: none; }
+  .login-card {
+    width: 100%; max-width: 380px;
+    padding: 44px 36px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--bg-elev-1);
+    text-align: center;
+  }
+  .login-card .hero-logo { width: 56px; margin-bottom: 20px; }
+  .login-title {
+    font-family: var(--serif);
+    font-size: 26px; font-weight: 400;
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+  .login-sub {
+    font-size: 12px; color: var(--text-muted);
+    letter-spacing: 0.04em; margin-bottom: 28px;
+  }
+  .login-form { display: flex; flex-direction: column; gap: 10px; }
+  .login-input {
+    background: var(--bg);
+    border: 1px solid var(--line-strong);
+    padding: 11px 14px;
+    border-radius: 4px;
+    color: var(--text);
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .login-input:focus { border-color: var(--accent); }
+  .login-submit {
+    background: var(--accent); color: #FFFFFF; border: none;
+    padding: 11px; border-radius: 4px;
+    font-size: 14px; font-weight: 500;
+    letter-spacing: 0.04em; cursor: pointer; margin-top: 6px;
+  }
+  .login-submit:hover { background: #A86A24; }
+  .login-error { color: var(--danger); font-size: 12.5px; margin-top: 10px; display: none; }
+  .login-error.show { display: block; }
+
+  /* ----- Stage text ----- */
+  .stage-text { margin: clamp(14px, 2.2vh, 24px) 0; }
+  .stage-text p {
+    font-size: clamp(15px, 1.9vh, 18px); line-height: 1.55; color: var(--text-soft);
+    margin-bottom: clamp(10px, 1.5vh, 18px); max-width: 62ch;
+  }
+
+  /* ----- Responsive ----- */
+  @media (max-width: 1100px) { .ideas-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 860px) { .cat-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 768px) {
+    .stage { padding: 32px 22px; }
+    .topbar, .bottombar { padding: 12px 18px; }
+    .topbar { grid-template-columns: auto 1fr auto; gap: 10px; }
+    .topbar-title { font-size: 15px; }
+    .topbar-eyebrow { display: none; }
+    .timer { font-size: 16px; padding: 4px 12px; min-width: 76px; }
+    .jump-btn { padding: 5px 10px; font-size: 11px; }
+    .bottombar { grid-template-columns: 1fr auto 1fr; }
+    .nav-btn { padding: 8px 12px; font-size: 11.5px; }
+    .progress { display: none; }
+  }
+  @media (max-width: 580px) {
+    .cat-grid { grid-template-columns: 1fr; }
+    .ideas-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="login-overlay" id="login-overlay">
+  <div class="login-card">
+    <img class="hero-logo" src="logo.png" alt="Orange Caterpillar" onerror="this.style.display='none'">
+    <div class="login-title">Built by Her</div>
+    <div class="login-sub">Facilitator console</div>
+    <form class="login-form" id="login-form" autocomplete="off">
+      <input class="login-input" type="text" id="login-id" placeholder="ID" autocapitalize="off" autocorrect="off" spellcheck="false" required>
+      <input class="login-input" type="password" id="login-pw" placeholder="Password" required>
+      <button class="login-submit" type="submit">Enter</button>
+      <div class="login-error" id="login-error">Incorrect ID or password.</div>
+    </form>
+  </div>
+</div>
+
+<!-- TOPBAR -->
+<header class="topbar hidden" id="topbar">
+  <div class="topbar-left">
+    <img class="topbar-logo" src="logo.png" alt="" onerror="this.style.display='none'">
+    <span class="topbar-eyebrow" id="topbar-eyebrow">Built by Her</span>
+    <span class="topbar-title" id="topbar-title">Welcome</span>
+    <span class="topbar-section" id="topbar-section"></span>
+  </div>
+  <div class="topbar-center">
+    <div class="timer hidden" id="timer" title="Click or press T to pause/resume">--:--</div>
+  </div>
+  <div class="topbar-right">
+    <div class="jump-wrap" id="jump-wrap">
+      <button class="jump-btn" id="jump-btn" title="Jump to a session (J)">
+        <span>Jump</span>
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke-width="1.5" stroke="currentColor"><path d="M2 4l3 3 3-3"/></svg>
+      </button>
+      <div class="jump-menu" id="jump-menu"></div>
+    </div>
+    <div class="progress" id="progress"></div>
+  </div>
+</header>
+
+<!-- STAGE -->
+<main class="stage" id="stage">
+  <div class="stage-inner" id="stage-inner"></div>
+</main>
+
+<!-- BOTTOMBAR -->
+<footer class="bottombar hidden" id="bottombar">
+  <button class="nav-btn nav-prev" id="prev-btn">← Previous</button>
+  <div class="bottombar-center">
+    <div class="hmv-reminder" title="The three checks">
+      <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke-width="1.5" stroke="currentColor"><circle cx="5" cy="5" r="3.5"/></svg>
+      <span>Real person · Real problem · Demoable</span>
+    </div>
+  </div>
+  <button class="nav-btn nav-next" id="next-btn">Next →</button>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  // ============================================================
+  // CONFIG
+  // ============================================================
+  const LOGIN_ID = 'mufasa';
+  const LOGIN_PW = 'Phantom@6869';
+  const SESSIONS_URL = './sessions-women.json';
+  const STORAGE_PREFIX = 'women-fac:';
+
+  // ============================================================
+  // STATE
+  // ============================================================
+  let DATA = null;
+  let SCREENS = [];
+  let currentScreenIdx = 0;
+  const timer = {
+    intervalId: null,
+    totalSeconds: 0,
+    remainingSeconds: 0,
+    sessionId: null,
+    running: false,
+    paused: false
+  };
+  let breakTimerInterval = null;
+
+  // ============================================================
+  // HELPERS
+  // ============================================================
+  function $(sel) { return document.querySelector(sel); }
+  function escapeHtml(str) {
+    if (str === null || str === undefined) return '';
+    return String(str)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+  }
+  function paragraphsFromText(text) {
+    if (!text) return '';
+    return String(text).split(/\n\n+/).map(function (p) {
+      return '<p>' + escapeHtml(p).replace(/\n/g, '<br>') + '</p>';
+    }).join('');
+  }
+  function saveCheck(key, val) {
+    try { localStorage.setItem(STORAGE_PREFIX + 'check:' + key, val ? '1' : '0'); } catch (e) {}
+  }
+  function loadCheck(key) {
+    try { return localStorage.getItem(STORAGE_PREFIX + 'check:' + key) === '1'; } catch (e) { return false; }
+  }
+
+  // ============================================================
+  // LOGIN
+  // ============================================================
+  function isLoggedIn() {
+    try { return sessionStorage.getItem(STORAGE_PREFIX + 'auth') === '1'; } catch (e) { return false; }
+  }
+  function setLoggedIn() {
+    try { sessionStorage.setItem(STORAGE_PREFIX + 'auth', '1'); } catch (e) {}
+  }
+  function handleLogin(e) {
+    e.preventDefault();
+    const id = $('#login-id').value.trim().toLowerCase();
+    const pw = $('#login-pw').value;
+    if (id === LOGIN_ID && pw === LOGIN_PW) {
+      setLoggedIn();
+      $('#login-overlay').classList.add('hidden');
+      $('#topbar').classList.remove('hidden');
+      $('#bottombar').classList.remove('hidden');
+      boot();
+    } else {
+      $('#login-error').classList.add('show');
+    }
+  }
+
+  // ============================================================
+  // DATA
+  // ============================================================
+  async function loadSessions() {
+    try {
+      const res = await fetch(SESSIONS_URL, { cache: 'no-cache' });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      DATA = await res.json();
+      return true;
+    } catch (err) {
+      $('#stage-inner').innerHTML = '<div class="hero"><div class="hero-eyebrow">Error</div><h1 class="stage-title">Could not load sessions.</h1><p class="stage-body">' + escapeHtml(err.message) + '</p></div>';
+      return false;
+    }
+  }
+
+  // ============================================================
+  // BUILD SCREENS
+  // ============================================================
+  function buildScreens() {
+    SCREENS = [];
+    SCREENS.push({ type: 'welcome' });
+    SCREENS.push({ type: 'housekeeping' });
+    SCREENS.push({ type: 'artifacts' });
+    SCREENS.push({ type: 'journey-map' });
+    SCREENS.push({ type: 'tools-landscape' });
+
+    const sessions = DATA.sessions || [];
+    sessions.forEach(function (session) {
+      // Show a Demo Day welcome screen before the final session
+      if (session.session_type === 'demo_day') {
+        SCREENS.push({ type: 'phase-break', to: 'demo_day' });
+      }
+
+      SCREENS.push({ type: 'session-start', session: session });
+      SCREENS.push({ type: 'stage-text', session: session });
+
+      // After Week 1 set-the-stage, show the 4 idea cards screen
+      if (session.id === '1') {
+        SCREENS.push({ type: 'idea-cards', session: session });
+      }
+
+      if ((session.questions || []).length > 0) SCREENS.push({ type: 'questions', session: session });
+      if ((session.hmv || []).length > 0) SCREENS.push({ type: 'hmv', session: session });
+      if ((session.prompts || []).length > 0) {
+        session.prompts.forEach(function (p, idx) {
+          SCREENS.push({ type: 'prompt', session: session, prompt: p, promptIdx: idx });
+        });
+      }
+      if ((session.build || []).length > 0) SCREENS.push({ type: 'build', session: session });
+      if ((session.test_output || []).length > 0) SCREENS.push({ type: 'test-output', session: session });
+      if (session.output_capture) SCREENS.push({ type: 'output-capture', session: session });
+      SCREENS.push({ type: 'session-end', session: session });
+
+      if (session.break_after && session.break_duration_minutes > 0) {
+        SCREENS.push({ type: 'break', session: session });
+      }
+    });
+  }
+
+  // ============================================================
+  // RENDERERS
+  // ============================================================
+  function renderWelcome() {
+    return '<div class="hero">' +
+      '<img class="hero-logo" src="logo.png" alt="Orange Caterpillar" onerror="this.style.display=\'none\'">' +
+      '<div class="hero-eyebrow">Orange Caterpillar</div>' +
+      '<h1 class="hero-title">BUILT<br>BY HER</h1>' +
+      '<hr class="hero-rule">' +
+      '<p class="hero-meta">Eight weeks &middot; Two hours each &middot; Online</p>' +
+      '<div class="button-row" style="justify-content:center;">' +
+        '<button class="btn btn-primary" id="start-btn">Begin →</button>' +
+      '</div>' +
+    '</div>';
+  }
+
+  function renderHousekeeping() {
+    return '<div class="wl-screen">' +
+      '<div class="wl-eyebrow">Where you end up</div>' +
+      '<h1 class="wl-title">One page with <em>everything</em> you built.</h1>' +
+      '<p class="wl-sub">Every Maker gets a personal portfolio page at the end of eight weeks. Seven artifacts. Plus your Demo Day recording.</p>' +
+      '<div class="portfolio-hero">' +
+        '<div class="portfolio-hero-eyebrow">Your Portfolio Page</div>' +
+        '<div class="portfolio-hero-url">justbuild.orangecaterpillar.com/<span class="portfolio-hero-slot">women</span>/<span class="portfolio-hero-slot">bbh1</span>/<span class="portfolio-hero-slot">your-name</span></div>' +
+        '<p class="portfolio-hero-note">Goes live after Demo Day. Yours for life.</p>' +
+      '</div>' +
+    '</div>';
+  }
+
+  function renderArtifacts() {
+    const artifacts = [
+      { num: '01', name: 'Ideation', desc: 'One sheet. Who you build for. What their problem is. What your venture does. Week 1.' },
+      { num: '02', name: 'AI App', desc: 'One HTML file. Built with Claude. Live at a real URL. Works on a phone. Weeks 2-3.' },
+      { num: '03', name: 'Website', desc: 'One-page Carrd site. Three sections. A button that opens your app. Week 4.' },
+      { num: '04', name: 'Audio', desc: 'Sixty seconds. ElevenLabs voice. Embedded on the website. Week 5.' },
+      { num: '05', name: 'Video', desc: 'Ninety seconds. Loom screen-recording. You walking through the app. Week 6.' },
+      { num: '06', name: 'Brand & Brochure', desc: 'Name, logo, one-page PDF brochure in Canva. Shareable on WhatsApp. Week 7.' },
+      { num: '07', name: 'Pitch Deck', desc: 'Six slides in Gamma. Presented live in the Demo Day call. Week 8.' }
+    ];
+    return '<div class="wl-screen">' +
+      '<div class="wl-eyebrow">Seven things you make</div>' +
+      '<h1 class="wl-title">Seven artifacts. <em>All real. All yours.</em></h1>' +
+      '<p class="wl-sub">Each week builds one piece. Eight weeks later you have a complete small venture on the internet.</p>' +
+      '<div class="artifacts-strip">' +
+        artifacts.map(function (a) {
+          return '<div class="artifact-tile">' +
+            '<div class="artifact-num">' + escapeHtml(a.num) + '</div>' +
+            '<div class="artifact-name">' + escapeHtml(a.name) + '</div>' +
+            '<div class="artifact-desc">' + escapeHtml(a.desc) + '</div>' +
+          '</div>';
+        }).join('') +
+      '</div>' +
+    '</div>';
+  }
+
+  function renderJourneyMap() {
+    return '<div class="wl-screen journey-wave-screen">' +
+      '<div class="wl-eyebrow">Built by Her with AI</div>' +
+      '<h1 class="wl-title journey-wave-title"><em>From an idea on a page to a real venture on the internet.</em></h1>' +
+      '<p class="wl-sub journey-wave-sub"><em>Eight weeks of metamorphosis. Seven real artifacts made by you.</em></p>' +
+      '<div class="journey-wave-wrap">' +
+        '<svg class="journey-wave-svg" viewBox="0 0 1200 540" xmlns="http://www.w3.org/2000/svg" aria-label="Six-stage journey from caterpillar to butterfly">' +
+          '<defs>' +
+            '<radialGradient id="nodeGlow" cx="50%" cy="50%" r="50%">' +
+              '<stop offset="0%" stop-color="rgba(193,125,42,0.55)"/>' +
+              '<stop offset="60%" stop-color="rgba(193,125,42,0.18)"/>' +
+              '<stop offset="100%" stop-color="rgba(193,125,42,0)"/>' +
+            '</radialGradient>' +
+          '</defs>' +
+          '<path d="M 130 280 C 200 280, 240 200, 280 200 C 320 200, 340 380, 400 380 C 460 380, 480 200, 540 200 C 600 200, 620 380, 680 380 C 740 380, 760 200, 820 200 C 880 200, 900 380, 960 380 C 1000 380, 1030 280, 1070 280 C 1100 280, 1120 260, 1140 280" fill="none" stroke="rgba(193,125,42,0.85)" stroke-width="3" stroke-linecap="round"/>' +
+          // Idea (peak 1)
+          '<g><circle cx="280" cy="200" r="40" fill="url(#nodeGlow)"/><circle cx="280" cy="200" r="22" fill="#0A0A0A" stroke="rgba(193,125,42,0.6)" stroke-width="1"/><circle cx="280" cy="200" r="8" fill="#C17D2A"/></g>' +
+          '<text x="280" y="105" text-anchor="middle" class="journey-label-main">Idea</text>' +
+          '<text x="280" y="135" text-anchor="middle" class="journey-label-sub">Week 1</text>' +
+          // Build (trough 1)
+          '<g><circle cx="400" cy="380" r="40" fill="url(#nodeGlow)"/><circle cx="400" cy="380" r="22" fill="#0A0A0A" stroke="rgba(193,125,42,0.6)" stroke-width="1"/><circle cx="400" cy="380" r="8" fill="#C17D2A"/></g>' +
+          '<text x="400" y="455" text-anchor="middle" class="journey-label-main">Build</text>' +
+          '<text x="400" y="485" text-anchor="middle" class="journey-label-sub">Weeks 2-3</text>' +
+          // Launch (peak 2)
+          '<g><circle cx="540" cy="200" r="40" fill="url(#nodeGlow)"/><circle cx="540" cy="200" r="22" fill="#0A0A0A" stroke="rgba(193,125,42,0.6)" stroke-width="1"/><circle cx="540" cy="200" r="8" fill="#C17D2A"/></g>' +
+          '<text x="540" y="105" text-anchor="middle" class="journey-label-main">Launch</text>' +
+          '<text x="540" y="135" text-anchor="middle" class="journey-label-sub">Week 4</text>' +
+          // Story (trough 2)
+          '<g><circle cx="680" cy="380" r="40" fill="url(#nodeGlow)"/><circle cx="680" cy="380" r="22" fill="#0A0A0A" stroke="rgba(193,125,42,0.6)" stroke-width="1"/><circle cx="680" cy="380" r="8" fill="#C17D2A"/></g>' +
+          '<text x="680" y="455" text-anchor="middle" class="journey-label-main">Story</text>' +
+          '<text x="680" y="485" text-anchor="middle" class="journey-label-sub">Weeks 5-6</text>' +
+          // Brand (peak 3)
+          '<g><circle cx="820" cy="200" r="40" fill="url(#nodeGlow)"/><circle cx="820" cy="200" r="22" fill="#0A0A0A" stroke="rgba(193,125,42,0.6)" stroke-width="1"/><circle cx="820" cy="200" r="8" fill="#C17D2A"/></g>' +
+          '<text x="820" y="105" text-anchor="middle" class="journey-label-main">Brand</text>' +
+          '<text x="820" y="135" text-anchor="middle" class="journey-label-sub">Week 7</text>' +
+          // Share (trough 3)
+          '<g><circle cx="960" cy="380" r="40" fill="url(#nodeGlow)"/><circle cx="960" cy="380" r="22" fill="#0A0A0A" stroke="rgba(193,125,42,0.6)" stroke-width="1"/><circle cx="960" cy="380" r="8" fill="#C17D2A"/></g>' +
+          '<text x="960" y="455" text-anchor="middle" class="journey-label-main">Share</text>' +
+          '<text x="960" y="485" text-anchor="middle" class="journey-label-sub">Week 8 · Demo Day</text>' +
+          // Caterpillar (left)
+          '<image href="caterpillar.png" x="20" y="240" width="160" height="120" preserveAspectRatio="xMidYMid meet" onerror="this.style.display=\'none\'"/>' +
+          '<text x="100" y="395" text-anchor="middle" class="journey-bookend-label">Week 1</text>' +
+          // Butterfly (right)
+          '<image href="butterfly.png" x="1080" y="200" width="170" height="170" preserveAspectRatio="xMidYMid meet" onerror="this.style.display=\'none\'"/>' +
+          '<text x="1165" y="395" text-anchor="middle" class="journey-bookend-label">Demo Day</text>' +
+        '</svg>' +
+      '</div>' +
+      '<hr class="journey-wave-rule">' +
+      '<p class="journey-wave-footer">A Maker does not learn AI and then apply it. You build a real small venture, and the AI skill is what you pick up along the way.</p>' +
+    '</div>';
+  }
+
+  function renderToolsLandscape() {
+    // Tools chosen carefully so no single account hits its free-tier limit.
+    // Claude.ai is reserved for the app build. Every other text task goes elsewhere.
+    // The full landscape is shown so students see the universe — stars mark our picks.
+    const categories = [
+      {
+        name: 'App Building',
+        use: 'AI that writes the HTML file for you.',
+        tools: [
+          { name: 'Claude.ai', pick: true },
+          { name: 'Cursor', pick: false },
+          { name: 'Lovable', pick: false },
+          { name: 'Bolt.new', pick: false },
+          { name: 'v0', pick: false }
+        ]
+      },
+      {
+        name: 'Research & Sharpen Idea',
+        use: 'Find what already exists. Pressure-test the venture.',
+        tools: [
+          { name: 'Perplexity', pick: true },
+          { name: 'Google', pick: false },
+          { name: 'You.com', pick: false },
+          { name: 'Brave Search', pick: false }
+        ]
+      },
+      {
+        name: 'Website & Script Copy',
+        use: 'Words for the website, audio, video. Spread across tools.',
+        tools: [
+          { name: 'ChatGPT', pick: true },
+          { name: 'Gemini', pick: true },
+          { name: 'Copilot', pick: false },
+          { name: 'Mistral', pick: false }
+        ]
+      },
+      {
+        name: 'Audio Voice',
+        use: 'Turning the written script into a real-sounding voice.',
+        tools: [
+          { name: 'ElevenLabs', pick: true },
+          { name: 'PlayHT', pick: false },
+          { name: 'Suno', pick: false },
+          { name: 'Murf', pick: false }
+        ]
+      },
+      {
+        name: 'Video Recording',
+        use: 'Screen-record the walkthrough with your voice.',
+        tools: [
+          { name: 'Loom', pick: true },
+          { name: 'QuickTime', pick: false },
+          { name: 'Descript', pick: false },
+          { name: 'Riverside', pick: false }
+        ]
+      },
+      {
+        name: 'Site, Brochure, Deck',
+        use: 'The shopfront, the takeaway, the pitch.',
+        tools: [
+          { name: 'Carrd', pick: true },
+          { name: 'Netlify', pick: true },
+          { name: 'Canva', pick: true },
+          { name: 'Gamma', pick: true },
+          { name: 'Framer', pick: false },
+          { name: 'Beautiful.ai', pick: false }
+        ]
+      }
+    ];
+    const cards = categories.map(function (c) {
+      return '<div class="cat-card">' +
+        '<h3 class="cat-name">' + escapeHtml(c.name) + '</h3>' +
+        '<p class="cat-use">' + escapeHtml(c.use) + '</p>' +
+        '<div class="cat-tools">' +
+          c.tools.map(function (t) {
+            return '<span class="tool-chip ' + (t.pick ? 'tool-pick' : '') + '">' +
+              (t.pick ? '<span class="tool-star">★</span>' : '') + escapeHtml(t.name) +
+            '</span>';
+          }).join('') +
+        '</div>' +
+      '</div>';
+    }).join('');
+    return '<div class="wl-screen">' +
+      '<div class="wl-eyebrow">The AI landscape</div>' +
+      '<h1 class="wl-title">Many tools exist. <em>Stars show what we pick.</em></h1>' +
+      '<p class="wl-sub">The full landscape per category. We picked one or two from each, on purpose, so no single free account gets exhausted.</p>' +
+      '<div class="cat-grid">' + cards + '</div>' +
+      '<p class="wl-footer">Claude.ai is only for app building. Every other text task uses a different tool. This protects your Claude account.</p>' +
+    '</div>';
+  }
+
+  function renderIdeaCards() {
+    const ideas = (DATA && DATA.ideas) || [];
+    if (ideas.length === 0) {
+      return '<div class="wl-screen"><div class="wl-eyebrow">Ideas</div><h1 class="wl-title">No ideas configured.</h1></div>';
+    }
+    return '<div class="ideas-screen">' +
+      '<div class="ideas-screen-header">' +
+        '<div class="wl-eyebrow">Pick one</div>' +
+        '<h1 class="ideas-screen-title">Four small ventures. <em>Pick the one that pulls you.</em></h1>' +
+        '<p class="ideas-screen-sub">Each one is a real venture you could run yourself, or that someone you know could run. Pick one and make it yours.</p>' +
+      '</div>' +
+      '<div class="ideas-grid">' +
+        ideas.map(function (idea, idx) {
+          return '<div class="idea-card">' +
+            '<div class="idea-card-num">Idea ' + String(idx + 1).padStart(2, '0') + '</div>' +
+            '<div class="idea-card-name">' + escapeHtml(idea.name) + '</div>' +
+            '<div class="idea-card-row">' +
+              '<div class="idea-card-label">For whom</div>' +
+              '<div class="idea-card-value">' + escapeHtml(idea.for_whom) + '</div>' +
+            '</div>' +
+            '<div class="idea-card-row">' +
+              '<div class="idea-card-label">Problem</div>' +
+              '<div class="idea-card-value">' + escapeHtml(idea.problem) + '</div>' +
+            '</div>' +
+            '<div class="idea-card-row">' +
+              '<div class="idea-card-label">What the app does</div>' +
+              '<div class="idea-card-value">' + escapeHtml(idea.what_app_does) + '</div>' +
+            '</div>' +
+          '</div>';
+        }).join('') +
+      '</div>' +
+    '</div>';
+  }
+
+  function renderPhaseBreak(to) {
+    if (to === 'demo_day') {
+      return '<div class="phase-break phase-break-demo">' +
+        '<img class="phase-break-art" src="butterfly.png" alt="Butterfly" onerror="this.style.display=\'none\'">' +
+        '<div class="phase-break-eyebrow">Demo Day</div>' +
+        '<h1 class="phase-break-title">Welcome to Demo Day.</h1>' +
+        '<p class="phase-break-sub">Eight weeks ago you walked in with an idea. Today you walk out with a small business on the internet.</p>' +
+        '<img class="phase-break-logo" src="logo.png" alt="Orange Caterpillar" onerror="this.style.display=\'none\'">' +
+      '</div>';
+    }
+    return '';
+  }
+
+  function renderSessionStart(session) {
+    return '<div class="session-start">' +
+      '<div class="eyebrow">Week ' + escapeHtml(String(session.week || session.number)) + ' &middot; ' + escapeHtml(session.stage || '') + '</div>' +
+      '<h1 class="stage-title">' + escapeHtml(session.title) + '</h1>' +
+      '<div class="session-start-meta">' +
+        '<div class="session-start-meta-item"><strong>Time</strong>' + escapeHtml(session.start_time) + ' – ' + escapeHtml(session.end_time) + ' IST</div>' +
+        '<div class="session-start-meta-item"><strong>Length</strong>' + escapeHtml(String(session.duration_minutes)) + ' min</div>' +
+        '<div class="session-start-meta-item"><strong>Format</strong>Online (Zoom)</div>' +
+      '</div>' +
+      '<div class="button-row">' +
+        '<button class="btn btn-primary" id="begin-btn">Begin Session →</button>' +
+      '</div>' +
+    '</div>';
+  }
+
+  function renderStageText(session) {
+    return '<div class="eyebrow">Set the stage</div>' +
+      '<h2 class="section-title">' + escapeHtml(session.title) + '</h2>' +
+      '<div class="stage-text">' + paragraphsFromText(session.set_the_stage) + '</div>';
+  }
+
+  function renderQuestions(session) {
+    const qs = session.questions || [];
+    return '<div class="eyebrow">Sit with these</div>' +
+      '<h2 class="section-title">Questions for the room</h2>' +
+      '<div class="question-grid">' +
+        qs.map(function (q) {
+          return '<div class="question-card">' +
+            '<div class="question-card-title">' + escapeHtml(q.title) + '</div>' +
+            '<div class="question-card-body">' + escapeHtml(q.body) + '</div>' +
+          '</div>';
+        }).join('') +
+      '</div>';
+  }
+
+  function renderHmv(session) {
+    const items = session.hmv || [];
+    return '<div class="eyebrow">The three checks</div>' +
+      '<h2 class="section-title">Real person &middot; Real problem &middot; Demoable</h2>' +
+      '<p class="stage-body">Mild check, not a strict gate. If any of these feels wobbly, talk to the facilitator before you build further.</p>' +
+      '<div class="hmv-grid">' +
+        items.map(function (i) {
+          return '<div class="hmv-card">' +
+            '<div class="hmv-axis">' + escapeHtml(i.axis) + '</div>' +
+            '<div class="hmv-instruction">' + escapeHtml(i.instruction) + '</div>' +
+          '</div>';
+        }).join('') +
+      '</div>';
+  }
+
+  function renderPrompt(session, prompt, promptIdx) {
+    return '<div class="prompt-screen">' +
+      '<div class="prompt-screen-header">' +
+        '<div class="eyebrow">A prompt to copy</div>' +
+        '<h2 class="section-title prompt-screen-title">' + escapeHtml(prompt.title) + '</h2>' +
+        '<p class="stage-body prompt-screen-body">Open the prompts page on your laptop. Find this prompt. Click Copy. Paste into the right tool. Customise where you see square brackets.</p>' +
+      '</div>' +
+      '<div class="prompt-wrap">' +
+        '<div class="prompt-header"><span>Prompt</span></div>' +
+        '<div class="prompt-box">' + escapeHtml(prompt.content) + '</div>' +
+      '</div>' +
+      '<div class="prompt-laptop-line">' +
+        '<div class="prompt-laptop-eyebrow">Get this prompt on your laptop</div>' +
+        '<div class="prompt-laptop-url">justbuild.orangecaterpillar.com/prompts-women</div>' +
+      '</div>' +
+    '</div>';
+  }
+
+  function renderBuild(session) {
+    const items = session.build || [];
+    const allChecked = items.every(function (_, i) { return loadCheck(session.id + ':build:' + i); });
+    return '<div class="eyebrow">What to do this session</div>' +
+      '<h2 class="section-title">Build steps</h2>' +
+      '<ul class="build-list">' +
+        items.map(function (item, idx) {
+          const checked = loadCheck(session.id + ':build:' + idx);
+          return '<li class="build-item ' + (checked ? 'checked' : '') + '" data-key="' + session.id + ':build:' + idx + '">' +
+            '<div class="build-checkbox"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="white" stroke-width="2"><polyline points="2.5 7 6 10.5 11.5 4"/></svg></div>' +
+            '<div class="build-content">' +
+              '<div class="build-title">' + escapeHtml(item.title) + '</div>' +
+              '<div class="build-instructions">' + escapeHtml(item.instructions) + '</div>' +
+            '</div>' +
+          '</li>';
+        }).join('') +
+      '</ul>' +
+      '<div class="all-checked-banner ' + (allChecked ? 'show' : '') + '" id="all-checked">' +
+        '<p class="stage-body" style="margin: 0 0 14px;">All steps marked done. Move when the room is ready.</p>' +
+        '<button class="btn btn-primary" id="advance-btn">Move to next →</button>' +
+      '</div>';
+  }
+
+  function renderTestOutput(session) {
+    const items = session.test_output || [];
+    return '<div class="eyebrow">Test what you made</div>' +
+      '<h2 class="section-title">Does it work for your person?</h2>' +
+      '<div class="hmv-grid">' +
+        items.map(function (i) {
+          return '<div class="hmv-card">' +
+            '<div class="hmv-axis">Check</div>' +
+            '<div class="question-card-title" style="color:var(--text); font-size:15px; margin-bottom:6px;">' + escapeHtml(i.title) + '</div>' +
+            '<div class="hmv-instruction">' + escapeHtml(i.instruction) + '</div>' +
+          '</div>';
+        }).join('') +
+      '</div>';
+  }
+
+  function renderOutputCapture(session) {
+    const oc = session.output_capture;
+    if (!oc) return '';
+    return '<div class="output-capture-card">' +
+      '<div class="output-capture-eyebrow">Save it to your portfolio</div>' +
+      '<div class="output-capture-label">' + escapeHtml(oc.label) + '</div>' +
+      '<div class="output-capture-instruction">' + escapeHtml(oc.instruction) + '</div>' +
+    '</div>';
+  }
+
+  function renderSessionEnd(session) {
+    const sessions = DATA.sessions || [];
+    const idx = sessions.findIndex(function (s) { return s.id === session.id; });
+    const isLast = idx === sessions.length - 1;
+    return '<div class="eyebrow">End of session</div>' +
+      '<h2 class="section-title">' + escapeHtml(session.title) + ' is done.</h2>' +
+      '<p class="stage-body">' + (isLast ? 'You finished Built by Her. Eight weeks. Seven artifacts. One real venture.' : 'See you next Saturday. Same time. Same Zoom.') + '</p>' +
+      (!isLast ? '<div class="button-row"><button class="btn btn-ghost" id="continue-btn">' + (session.break_after ? 'Begin break' : 'Next session') + ' →</button></div>' : '');
+  }
+
+  function renderBreak(session) {
+    const minutes = session.break_duration_minutes || 15;
+    return '<div class="break-screen">' +
+      '<div class="break-eyebrow">Break</div>' +
+      '<h1 class="break-heading">Pause.</h1>' +
+      '<div class="break-timer" id="break-display">' + String(minutes).padStart(2, '0') + ':00</div>' +
+      '<p class="break-note">Water. Bathroom. Stretch. Come back at the timer.</p>' +
+      '<div class="button-row" style="justify-content:center;"><button class="btn btn-primary" id="skip-break-btn">Resume now →</button></div>' +
+    '</div>';
+  }
+
+  // ============================================================
+  // RENDER DISPATCHER
+  // ============================================================
+  function render() {
+    const screen = SCREENS[currentScreenIdx];
+    if (!screen) return;
+
+    // Clear any break timer that might be running
+    if (breakTimerInterval) { clearInterval(breakTimerInterval); breakTimerInterval = null; }
+
+    let html = '';
+    switch (screen.type) {
+      case 'welcome': html = renderWelcome(); break;
+      case 'housekeeping': html = renderHousekeeping(); break;
+      case 'artifacts': html = renderArtifacts(); break;
+      case 'journey-map': html = renderJourneyMap(); break;
+      case 'tools-landscape': html = renderToolsLandscape(); break;
+      case 'idea-cards': html = renderIdeaCards(); break;
+      case 'phase-break': html = renderPhaseBreak(screen.to); break;
+      case 'session-start': html = renderSessionStart(screen.session); break;
+      case 'stage-text': html = renderStageText(screen.session); break;
+      case 'questions': html = renderQuestions(screen.session); break;
+      case 'hmv': html = renderHmv(screen.session); break;
+      case 'prompt': html = renderPrompt(screen.session, screen.prompt, screen.promptIdx); break;
+      case 'build': html = renderBuild(screen.session); break;
+      case 'test-output': html = renderTestOutput(screen.session); break;
+      case 'output-capture': html = renderOutputCapture(screen.session); break;
+      case 'session-end': html = renderSessionEnd(screen.session); break;
+      case 'break': html = renderBreak(screen.session); break;
+    }
+
+    $('#stage-inner').innerHTML = html;
+    // Lock viewport for screens that need fixed bottom anchor or no-scroll layout
+    if (screen.type === 'prompt' || screen.type === 'idea-cards') {
+      $('#stage').classList.add('fit-viewport');
+    } else {
+      $('#stage').classList.remove('fit-viewport');
+    }
+    $('#stage').scrollTop = 0;
+    updateTopbar();
+    updateProgress();
+    syncTimerForScreen();
+    wireScreenEvents();
+  }
+
+  // ============================================================
+  // TOPBAR
+  // ============================================================
+  function updateTopbar() {
+    const screen = SCREENS[currentScreenIdx];
+    const eyebrow = $('#topbar-eyebrow');
+    const title = $('#topbar-title');
+    const section = $('#topbar-section');
+
+    if (!screen.session) {
+      eyebrow.textContent = 'Built by Her';
+      const titles = {
+        'welcome': 'Welcome',
+        'housekeeping': 'Portfolio Page',
+        'artifacts': 'What you make',
+        'journey-map': 'The journey',
+        'tools-landscape': 'The AI landscape',
+        'phase-break': 'Demo Day'
+      };
+      title.textContent = titles[screen.type] || '';
+      section.textContent = '';
+    } else {
+      eyebrow.textContent = 'Week ' + (screen.session.week || screen.session.number);
+      title.textContent = screen.session.title;
+      const labels = {
+        'session-start': 'Start',
+        'stage-text': 'Set the stage',
+        'idea-cards': '4 idea cards',
+        'questions': 'Questions',
+        'hmv': 'The three checks',
+        'prompt': 'Prompt',
+        'build': 'Build',
+        'test-output': 'Test',
+        'output-capture': 'Capture',
+        'session-end': 'End',
+        'break': 'Break'
+      };
+      section.textContent = labels[screen.type] || '';
+    }
+  }
+
+  function updateProgress() {
+    const screen = SCREENS[currentScreenIdx];
+    if (!screen.session) { $('#progress').innerHTML = ''; return; }
+    const sessionId = screen.session.id;
+    const sessionScreens = SCREENS.filter(function (s) { return s.session && s.session.id === sessionId; });
+    const indices = SCREENS.map(function (s, i) { return (s.session && s.session.id === sessionId) ? i : -1; }).filter(function (i) { return i !== -1; });
+    const localIdx = indices.indexOf(currentScreenIdx);
+    const total = sessionScreens.length;
+    let dots = '';
+    for (let i = 0; i < total; i++) {
+      const cls = i < localIdx ? 'done' : (i === localIdx ? 'active' : '');
+      dots += '<div class="progress-dot ' + cls + '"></div>';
+    }
+    $('#progress').innerHTML = dots;
+  }
+
+  // ============================================================
+  // TIMER (countdown — hidden on intro screens)
+  // ============================================================
+  function setupTimer(session) {
+    stopTimer();
+    timer.totalSeconds = (session.duration_minutes || 0) * 60;
+    timer.remainingSeconds = timer.totalSeconds;
+    timer.sessionId = session.id;
+    timer.running = false;
+    timer.paused = false;
+    showTimer();
+    updateTimerDisplay();
+  }
+  function startTimer() {
+    if (timer.running) return;
+    if (timer.totalSeconds <= 0) return;
+    timer.running = true;
+    timer.paused = false;
+    timer.intervalId = setInterval(tickTimer, 1000);
+    updateTimerDisplay();
+  }
+  function pauseTimer() {
+    if (!timer.running) return;
+    timer.paused = !timer.paused;
+    updateTimerDisplay();
+  }
+  function stopTimer() {
+    if (timer.intervalId) clearInterval(timer.intervalId);
+    timer.intervalId = null;
+    timer.running = false;
+    timer.paused = false;
+    timer.totalSeconds = 0;
+    timer.remainingSeconds = 0;
+    timer.sessionId = null;
+    hideTimer();
+  }
+  function tickTimer() {
+    if (timer.paused) return;
+    timer.remainingSeconds--;
+    updateTimerDisplay();
+  }
+  function toggleTimer() {
+    if (!timer.running && timer.totalSeconds > 0) startTimer();
+    else if (timer.running) pauseTimer();
+  }
+  function fmtTime(seconds) {
+    const neg = seconds < 0;
+    const s = Math.abs(seconds);
+    const m = Math.floor(s / 60);
+    const sec = s % 60;
+    return (neg ? '-' : '') + String(m).padStart(2, '0') + ':' + String(sec).padStart(2, '0');
+  }
+  function showTimer() { $('#timer').classList.remove('hidden'); }
+  function hideTimer() { $('#timer').classList.add('hidden'); }
+  function updateTimerDisplay() {
+    const el = $('#timer');
+    if (!el) return;
+    if (timer.totalSeconds <= 0) { el.textContent = '--:--'; el.className = 'timer hidden'; return; }
+    el.textContent = fmtTime(timer.remainingSeconds);
+    el.className = 'timer';
+    if (timer.paused) el.classList.add('paused');
+    if (timer.remainingSeconds <= 0) el.classList.add('overrun');
+    else if (timer.remainingSeconds <= 5 * 60) el.classList.add('warning');
+  }
+  function syncTimerForScreen() {
+    const screen = SCREENS[currentScreenIdx];
+    if (!screen) return;
+    if (screen.session) {
+      // Inside a real workshop session
+      if (timer.sessionId !== screen.session.id) {
+        setupTimer(screen.session);
+      } else {
+        showTimer();
+      }
+    } else {
+      // Non-session screen — hide the timer entirely (no --:--)
+      stopTimer();
+    }
+  }
+
+  // ============================================================
+  // JUMP MENU
+  // ============================================================
+  function buildJumpMenu() {
+    const menu = $('#jump-menu');
+    let html = '';
+    const grouped = {};
+    SCREENS.forEach(function (s, i) {
+      let group = 'Intro';
+      if (s.session) group = 'Week ' + (s.session.week || s.session.number) + ' · ' + s.session.title;
+      if (s.type === 'phase-break') group = '— Demo Day —';
+      if (!grouped[group]) grouped[group] = [];
+      grouped[group].push({ s: s, i: i });
+    });
+    Object.keys(grouped).forEach(function (g) {
+      html += '<div class="jump-group">' + escapeHtml(g) + '</div>';
+      grouped[g].forEach(function (entry) {
+        const cls = entry.i === currentScreenIdx ? 'jump-item current' : 'jump-item';
+        const label = entry.s.type.replace(/-/g, ' ').replace(/^./, function (c) { return c.toUpperCase(); });
+        html += '<button class="' + cls + '" data-idx="' + entry.i + '"><span class="jump-id">' + String(entry.i).padStart(2, '0') + '</span>' + escapeHtml(label) + '</button>';
+      });
+    });
+    menu.innerHTML = html;
+    menu.querySelectorAll('.jump-item').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        const idx = parseInt(btn.getAttribute('data-idx'), 10);
+        currentScreenIdx = idx;
+        $('#jump-menu').classList.remove('open');
+        render();
+      });
+    });
+  }
+  function toggleJumpMenu() {
+    buildJumpMenu();
+    $('#jump-menu').classList.toggle('open');
+  }
+
+  // ============================================================
+  // NAV
+  // ============================================================
+  function go(delta) {
+    const newIdx = currentScreenIdx + delta;
+    if (newIdx < 0 || newIdx >= SCREENS.length) return;
+    currentScreenIdx = newIdx;
+    render();
+  }
+
+  // ============================================================
+  // WIRE EVENTS
+  // ============================================================
+  function wireScreenEvents() {
+    const startBtn = $('#start-btn');
+    if (startBtn) startBtn.addEventListener('click', function () { go(1); });
+    const beginBtn = $('#begin-btn');
+    if (beginBtn) beginBtn.addEventListener('click', function () { startTimer(); go(1); });
+    const continueBtn = $('#continue-btn');
+    if (continueBtn) continueBtn.addEventListener('click', function () { go(1); });
+    const advanceBtn = $('#advance-btn');
+    if (advanceBtn) advanceBtn.addEventListener('click', function () { go(1); });
+
+    document.querySelectorAll('.build-item').forEach(function (item) {
+      item.addEventListener('click', function () {
+        const key = item.getAttribute('data-key');
+        const isChecked = item.classList.toggle('checked');
+        saveCheck(key, isChecked);
+        const all = Array.from(document.querySelectorAll('.build-item')).every(function (i) { return i.classList.contains('checked'); });
+        const banner = $('#all-checked');
+        if (banner) banner.classList.toggle('show', all);
+      });
+    });
+
+    const breakDisplay = $('#break-display');
+    if (breakDisplay) {
+      const screen = SCREENS[currentScreenIdx];
+      let remaining = (screen.session.break_duration_minutes || 15) * 60;
+      breakTimerInterval = setInterval(function () {
+        remaining--;
+        if (remaining < 0) { clearInterval(breakTimerInterval); breakTimerInterval = null; breakDisplay.textContent = '00:00'; return; }
+        const m = Math.floor(remaining / 60);
+        const s = remaining % 60;
+        breakDisplay.textContent = String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+      }, 1000);
+      const skipBtn = $('#skip-break-btn');
+      if (skipBtn) skipBtn.addEventListener('click', function () {
+        if (breakTimerInterval) { clearInterval(breakTimerInterval); breakTimerInterval = null; }
+        go(1);
+      });
+    }
+  }
+
+  // ============================================================
+  // KEYBOARD
+  // ============================================================
+  function onKey(e) {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); go(1); }
+    else if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); }
+    else if (e.key.toLowerCase() === 't') { toggleTimer(); }
+    else if (e.key.toLowerCase() === 'j') { toggleJumpMenu(); }
+  }
+
+  // ============================================================
+  // BOOT
+  // ============================================================
+  async function boot() {
+    const ok = await loadSessions();
+    if (!ok) return;
+    buildScreens();
+    currentScreenIdx = 0;
+    render();
+    $('#prev-btn').addEventListener('click', function () { go(-1); });
+    $('#next-btn').addEventListener('click', function () { go(1); });
+    $('#timer').addEventListener('click', toggleTimer);
+    $('#jump-btn').addEventListener('click', function (e) { e.stopPropagation(); toggleJumpMenu(); });
+    document.addEventListener('keydown', onKey);
+    document.addEventListener('click', function (e) {
+      if (!$('#jump-wrap').contains(e.target)) {
+        $('#jump-menu').classList.remove('open');
+      }
+    });
+  }
+
+  // ============================================================
+  // INIT
+  // ============================================================
+  document.addEventListener('DOMContentLoaded', function () {
+    $('#login-form').addEventListener('submit', handleLogin);
+    if (isLoggedIn()) {
+      $('#login-overlay').classList.add('hidden');
+      $('#topbar').classList.remove('hidden');
+      $('#bottombar').classList.remove('hidden');
+      boot();
+    }
+  });
+
+})();
+</script>
+</body>
+</html>

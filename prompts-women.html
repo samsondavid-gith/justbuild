@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Built by Her  /  Prompts</title>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Inter:ital,wght@0,300..700;1,300..700&family=JetBrains+Mono:wght@400..600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:            #0A0A0A;
+    --bg-elev-1:    #141414;
+    --bg-elev-2:    #1C1C1C;
+    --line:          rgba(255,255,255,0.08);
+    --line-strong:   rgba(255,255,255,0.16);
+    --text:          #FFFFFF;
+    --text-soft:     #C8C8C8;
+    --text-muted:    #8A8A8A;
+    --text-faint:    #5A5A5A;
+    --accent:        #C17D2A;
+    --accent-soft:   rgba(193, 125, 42, 0.18);
+    --accent-glow:   rgba(193, 125, 42, 0.35);
+    --warning:       #E8B53A;
+    --serif:         'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --sans:          'Inter', system-ui, -apple-system, sans-serif;
+    --mono:          'JetBrains Mono', 'SF Mono', Menlo, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container { max-width: 900px; margin: 0 auto; padding: 48px 28px 80px; }
+
+  .header { text-align: center; margin-bottom: 56px; padding-bottom: 36px; border-bottom: 1px solid var(--line); }
+  .header-logo { width: 64px; height: auto; margin-bottom: 18px; opacity: 0.95; }
+  .header-eyebrow { font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin-bottom: 12px; }
+  .header-title { font-family: var(--serif); font-size: clamp(32px, 5vw, 48px); font-weight: 400; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 14px; }
+  .header-sub { font-family: var(--serif); font-size: clamp(15px, 2vw, 18px); font-style: italic; color: var(--text-soft); font-weight: 300; max-width: 50ch; margin: 0 auto; }
+
+  .howto { background: var(--bg-elev-1); border: 1px solid var(--line); border-radius: 8px; padding: 20px 24px; margin-bottom: 48px; font-size: 14.5px; color: var(--text-soft); line-height: 1.6; }
+  .howto strong { color: var(--accent); font-weight: 500; }
+
+  .prompt-card { margin-bottom: 36px; background: var(--bg-elev-1); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; transition: border-color 0.2s; }
+  .prompt-card:hover { border-color: var(--accent-soft); }
+
+  .prompt-card-header { padding: 20px 24px; border-bottom: 1px solid var(--line); background: var(--bg-elev-2); }
+  .prompt-card-meta { display: flex; gap: 14px; align-items: center; margin-bottom: 8px; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-muted); flex-wrap: wrap; }
+  .prompt-card-meta-tag { color: var(--accent); font-weight: 500; }
+  .prompt-card-meta-tool { padding: 3px 10px; border: 1px solid var(--accent-soft); border-radius: 12px; background: rgba(193,125,42,0.06); color: var(--accent); font-weight: 500; letter-spacing: 0.12em; }
+  .prompt-card-title { font-family: var(--serif); font-size: 22px; font-weight: 500; letter-spacing: -0.01em; color: var(--text); margin-bottom: 6px; }
+  .prompt-card-desc { font-size: 13.5px; color: var(--text-muted); line-height: 1.55; }
+
+  .prompt-card-body { padding: 22px 24px; }
+  .prompt-text { font-family: var(--mono); font-size: 13px; line-height: 1.65; color: var(--text-soft); white-space: pre-wrap; word-break: break-word; background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 18px 20px; max-height: 380px; overflow-y: auto; margin-bottom: 18px; }
+  .prompt-text::-webkit-scrollbar { width: 6px; }
+  .prompt-text::-webkit-scrollbar-track { background: transparent; }
+  .prompt-text::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 3px; }
+
+  .copy-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+  .copy-btn { flex: 1; min-width: 200px; background: var(--accent); color: #FFFFFF; border: none; padding: 14px 22px; border-radius: 6px; font-family: var(--sans); font-size: 15px; font-weight: 500; letter-spacing: 0.04em; cursor: pointer; transition: background 0.15s; display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+  .copy-btn:hover { background: #A86A24; }
+  .copy-btn.copied { background: var(--warning); color: #0A0A0A; }
+  .copy-btn svg { width: 16px; height: 16px; }
+
+  .tool-link { background: transparent; color: var(--text-soft); border: 1px solid var(--line-strong); padding: 13px 18px; border-radius: 6px; text-decoration: none; font-size: 14px; font-weight: 500; letter-spacing: 0.04em; transition: all 0.15s; display: inline-flex; align-items: center; gap: 6px; }
+  .tool-link:hover { color: var(--accent); border-color: var(--accent-soft); background: rgba(193,125,42,0.04); }
+
+  .footer { margin-top: 64px; padding-top: 32px; border-top: 1px solid var(--line); text-align: center; font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+  .footer a { color: var(--accent); text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 600px) {
+    .container { padding: 32px 18px 56px; }
+    .prompt-card-header, .prompt-card-body { padding: 16px 18px; }
+    .copy-row { flex-direction: column; align-items: stretch; }
+    .copy-btn, .tool-link { width: 100%; text-align: center; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <header class="header">
+    <img class="header-logo" src="logo.png" alt="Orange Caterpillar" onerror="this.style.display='none'">
+    <div class="header-eyebrow">Built by Her</div>
+    <h1 class="header-title">Prompts you need across all 8 weeks</h1>
+    <p class="header-sub">Every prompt from the workshop. Copy. Paste into the right tool. Customise where you see square brackets.</p>
+  </header>
+
+  <div class="howto">
+    <strong>How to use this page.</strong> Keep this tab open through the workshop. When the facilitator says to use a prompt, scroll to it, click Copy, then open the right tool in another tab and paste. Each prompt tells you which tool to use.
+  </div>
+
+  <!-- Week 1: Perplexity -->
+  <div class="prompt-card" id="prompt-1">
+    <div class="prompt-card-header">
+      <div class="prompt-card-meta">
+        <span class="prompt-card-meta-tag">Week 1</span>
+        <span class="prompt-card-meta-tool">Perplexity</span>
+      </div>
+      <h2 class="prompt-card-title">Sharpen your idea</h2>
+      <p class="prompt-card-desc">After you've picked one of the four ideas, use this to research what already exists and find your edge.</p>
+    </div>
+    <div class="prompt-card-body">
+      <div class="prompt-text" id="text-1">I am building a small venture from home. I want to make a simple web app for [PERSON YOU PICKED, e.g. 'myself, I grow plants on my balcony' or 'my neighbour aunty who runs a tiffin service']. The app will [WHAT YOUR APP DOES, e.g. 'show a catalog of plants people can rent for three months and book them online']. Help me understand: what are 3 other people in India who already do something like this? What did they get right? What is the one thing my version should do differently because I am building it small and local? Keep your answer practical and warm.</div>
+      <div class="copy-row">
+        <button class="copy-btn" data-target="text-1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <span>Copy prompt</span>
+        </button>
+        <a class="tool-link" href="https://www.perplexity.ai" target="_blank" rel="noopener">Open Perplexity ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Week 2: Claude.ai -->
+  <div class="prompt-card" id="prompt-2">
+    <div class="prompt-card-header">
+      <div class="prompt-card-meta">
+        <span class="prompt-card-meta-tag">Week 2</span>
+        <span class="prompt-card-meta-tool">Claude.ai</span>
+      </div>
+      <h2 class="prompt-card-title">Build your app</h2>
+      <p class="prompt-card-desc">The starter prompt that gets Claude to build your full app as one HTML file. Iterate from here through Week 3.</p>
+    </div>
+    <div class="prompt-card-body">
+      <div class="prompt-text" id="text-2">I am building a simple working web app for a small home-based venture. It is for a real micro-venture, not a fake AI demo. Here is the venture:
+
+[PASTE YOUR IDEATION SHEET]
+
+Build me ONE complete HTML file (with CSS and JavaScript inside) that does this. It should NOT call any external AI or API. All data should be inside the HTML file itself (a JavaScript array of objects is fine). The app should have:
+
+1. A simple landing screen explaining what this is
+2. A main screen showing the catalog / list / options
+3. A form where the customer makes their choice
+4. A confirmation screen showing what they chose and what happens next
+
+Use soft warm colours. Mobile-first layout. No external libraries unless absolutely needed. Give me the full file in one block so I can copy-paste it.</div>
+      <div class="copy-row">
+        <button class="copy-btn" data-target="text-2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <span>Copy prompt</span>
+        </button>
+        <a class="tool-link" href="https://claude.ai" target="_blank" rel="noopener">Open Claude.ai ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Week 3: ChatGPT -->
+  <div class="prompt-card" id="prompt-3">
+    <div class="prompt-card-header">
+      <div class="prompt-card-meta">
+        <span class="prompt-card-meta-tag">Week 3</span>
+        <span class="prompt-card-meta-tool">ChatGPT</span>
+      </div>
+      <h2 class="prompt-card-title">Website copy</h2>
+      <p class="prompt-card-desc">Three sections of words for your one-page Carrd site. Sounds like you, not like a corporate brochure.</p>
+    </div>
+    <div class="prompt-card-body">
+      <div class="prompt-text" id="text-3">I have built a small web app for [PERSON]. The app does [WHAT IT DOES]. Now I am writing the words for a one-page website that will introduce my app to visitors.
+
+Give me the words for a one-page website with these three sections:
+
+1. HEADLINE: One line at the top. Should make a visitor understand what this is in 5 seconds. Plain English. No business jargon.
+2. WHO IS THIS FOR: Two short lines. Name the person or kind of person who will use this.
+3. HOW IT WORKS: Three numbered steps. Each step one short sentence.
+
+Write it warmly and plainly. The kind of words a real person would say, not a corporate brochure. Short sentences. No jargon.</div>
+      <div class="copy-row">
+        <button class="copy-btn" data-target="text-3">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <span>Copy prompt</span>
+        </button>
+        <a class="tool-link" href="https://chatgpt.com" target="_blank" rel="noopener">Open ChatGPT ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Week 5: Gemini audio -->
+  <div class="prompt-card" id="prompt-4">
+    <div class="prompt-card-header">
+      <div class="prompt-card-meta">
+        <span class="prompt-card-meta-tag">Week 5</span>
+        <span class="prompt-card-meta-tool">Gemini</span>
+      </div>
+      <h2 class="prompt-card-title">Audio script</h2>
+      <p class="prompt-card-desc">60 seconds of script for the audio that goes on your website. You'll feed this script into ElevenLabs next.</p>
+    </div>
+    <div class="prompt-card-body">
+      <div class="prompt-text" id="text-4">I have built a small web app called [APP NAME] for [PERSON]. The app does [WHAT IT DOES, ONE LINE].
+
+Write me a 60-second spoken script that introduces this. The script will be read aloud (by an AI voice). It should sound warm and real, NOT a corporate ad. It should answer three things in sixty seconds:
+
+1. What this is (one sentence)
+2. Who it is for (one sentence)
+3. One small example of how it helps them (two sentences)
+
+Use plain English. Use short sentences. Add line breaks where the voice should pause.</div>
+      <div class="copy-row">
+        <button class="copy-btn" data-target="text-4">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <span>Copy prompt</span>
+        </button>
+        <a class="tool-link" href="https://gemini.google.com" target="_blank" rel="noopener">Open Gemini ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Week 6: Gemini video -->
+  <div class="prompt-card" id="prompt-5">
+    <div class="prompt-card-header">
+      <div class="prompt-card-meta">
+        <span class="prompt-card-meta-tag">Week 6</span>
+        <span class="prompt-card-meta-tool">Gemini</span>
+      </div>
+      <h2 class="prompt-card-title">Video script</h2>
+      <p class="prompt-card-desc">90 seconds of script for the screen-recorded walkthrough video you'll make with Loom.</p>
+    </div>
+    <div class="prompt-card-body">
+      <div class="prompt-text" id="text-5">I have built a small web app called [APP NAME] for [PERSON]. The app does [WHAT IT DOES].
+
+Write me a 90-second script for a screen-recorded video where I will be talking over my screen. The video will show me clicking through the app while I narrate.
+
+The script should have three parts:
+
+1. INTRO (10 seconds): Who I am and what I built
+2. WALKTHROUGH (60 seconds): I open the app, I show the catalog/main screen, I make a choice, I show the confirmation
+3. CLOSE (20 seconds): Who this is really for and why I built it for them
+
+Write it like spoken words, not written words. Short sentences. Casual. Include small notes for ME (like 'pause here' or 'click slowly') in brackets.</div>
+      <div class="copy-row">
+        <button class="copy-btn" data-target="text-5">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <span>Copy prompt</span>
+        </button>
+        <a class="tool-link" href="https://gemini.google.com" target="_blank" rel="noopener">Open Gemini ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Week 7 Step 1: Name -->
+  <div class="prompt-card" id="prompt-6">
+    <div class="prompt-card-header">
+      <div class="prompt-card-meta">
+        <span class="prompt-card-meta-tag">Week 7 &middot; Step 1</span>
+        <span class="prompt-card-meta-tool">Brainstorm</span>
+      </div>
+      <h2 class="prompt-card-title">Pick your venture name</h2>
+      <p class="prompt-card-desc">Brainstorm 5 options. Read aloud. Pick the one that makes you smile. No tool — just thinking.</p>
+    </div>
+    <div class="prompt-card-body">
+      <div class="prompt-text" id="text-6">Spend 20 minutes brainstorming a name for YOUR specific venture. Not the generic idea name. A name only you would pick.
+
+Three ways to find a name:
+
+1. The PERSON name approach: Your name + what you do. 'Padma's Tiffin', 'Maa Ki Plants', 'Sunita's Box'.
+
+2. The PLACE name approach: Where it lives. 'BalconyBuds', 'Indiranagar Tiffin', 'Backyard Mango'.
+
+3. The FEELING name approach: What it gives the customer. 'Fresh Friday', 'Slow Plants', 'Warm Wishes'.
+
+Write 5 options. Read them aloud. Pick the one that makes you smile. That is your venture name.</div>
+      <div class="copy-row">
+        <button class="copy-btn" data-target="text-6">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <span>Copy guidance</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Week 7 Step 2: Logo -->
+  <div class="prompt-card" id="prompt-7">
+    <div class="prompt-card-header">
+      <div class="prompt-card-meta">
+        <span class="prompt-card-meta-tag">Week 7 &middot; Step 2</span>
+        <span class="prompt-card-meta-tool">Canva</span>
+      </div>
+      <h2 class="prompt-card-title">Design your logo</h2>
+      <p class="prompt-card-desc">30 minutes in Canva. Pick a simple template, drop in your venture name, choose a colour.</p>
+    </div>
+    <div class="prompt-card-body">
+      <div class="prompt-text" id="text-7">Open Canva. Free account.
+
+1. Search 'logo' in the Canva templates.
+2. Filter by SIMPLE / MINIMAL designs. Avoid templates with too many elements.
+3. Replace the placeholder name with YOUR venture name from Step 1.
+4. Pick a colour that matches your venture's feeling. Warm orange for plants. Mustard yellow for food. Soft green for trees. Pink for birthday boxes.
+5. Download as PNG with transparent background.
+
+Save it. You will use it in the brochure now and the pitch deck next week.</div>
+      <div class="copy-row">
+        <button class="copy-btn" data-target="text-7">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <span>Copy guidance</span>
+        </button>
+        <a class="tool-link" href="https://www.canva.com" target="_blank" rel="noopener">Open Canva ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Week 7 Step 3: Brochure -->
+  <div class="prompt-card" id="prompt-8">
+    <div class="prompt-card-header">
+      <div class="prompt-card-meta">
+        <span class="prompt-card-meta-tag">Week 7 &middot; Step 3</span>
+        <span class="prompt-card-meta-tool">Canva</span>
+      </div>
+      <h2 class="prompt-card-title">Design your brochure</h2>
+      <p class="prompt-card-desc">60 minutes in Canva. One-page brochure you can WhatsApp to your first customers.</p>
+    </div>
+    <div class="prompt-card-body">
+      <div class="prompt-text" id="text-8">In Canva, search for 'one-page brochure' templates. Pick a simple one. Replace with:
+
+1. TOP: Your logo + venture name
+2. TAGLINE: What your venture does in 7 words or less
+3. THREE POINTS: Who it helps. How it works. What is special about yours.
+4. ONE PHOTO or ILLUSTRATION: A real photo of what you offer, or a simple Canva illustration
+5. BOTTOM: Your Carrd website URL + a phone number (yours or your WhatsApp)
+
+Export as PDF. Save with your venture name. Upload to your Carrd site as a download link.</div>
+      <div class="copy-row">
+        <button class="copy-btn" data-target="text-8">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <span>Copy guidance</span>
+        </button>
+        <a class="tool-link" href="https://www.canva.com" target="_blank" rel="noopener">Open Canva ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Week 8 Step 1: Brochure questions -->
+  <div class="prompt-card" id="prompt-9">
+    <div class="prompt-card-header">
+      <div class="prompt-card-meta">
+        <span class="prompt-card-meta-tag">Week 8 &middot; Step 1</span>
+        <span class="prompt-card-meta-tool">Google Doc</span>
+      </div>
+      <h2 class="prompt-card-title">Answer six questions</h2>
+      <p class="prompt-card-desc">15 minutes. Write 2-line answers to these six questions in a Google Doc. They go straight into your deck prompt next.</p>
+    </div>
+    <div class="prompt-card-body">
+      <div class="prompt-text" id="text-9">Answer these six questions in 2 lines each. Write them in a Google Doc. These answers go straight into your pitch deck prompt next.
+
+1. WHO ARE YOU? Your name and one line about you.
+
+2. WHAT IS YOUR VENTURE CALLED? The name from Week 7.
+
+3. WHAT IS YOUR ONE-LINE TAGLINE? What your venture does in 7 words or less.
+
+4. WHO IS YOUR CUSTOMER? The real person. Name them. Where they live. What they do.
+
+5. WHAT PROBLEM DID YOU SOLVE FOR THEM? In one sentence.
+
+6. WHAT IS ONE REAL EXAMPLE? Tell me about ONE real customer or potential customer interaction. What did they say? What did they do?</div>
+      <div class="copy-row">
+        <button class="copy-btn" data-target="text-9">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <span>Copy questions</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Week 8 Step 2: Gamma deck -->
+  <div class="prompt-card" id="prompt-10">
+    <div class="prompt-card-header">
+      <div class="prompt-card-meta">
+        <span class="prompt-card-meta-tag">Week 8 &middot; Step 2</span>
+        <span class="prompt-card-meta-tool">Gamma</span>
+      </div>
+      <h2 class="prompt-card-title">Build the pitch deck</h2>
+      <p class="prompt-card-desc">30 minutes in Gamma. Paste this with your six answers from Step 1. The deck builds itself.</p>
+    </div>
+    <div class="prompt-card-body">
+      <div class="prompt-text" id="text-10">Build me a 6-slide pitch deck for my small home-based venture. I am a Maker building from home.
+
+[ANSWER 1: WHO ARE YOU]
+
+MY VENTURE IS CALLED: [ANSWER 2]
+
+TAGLINE: [ANSWER 3]
+
+MY CUSTOMER: [ANSWER 4]
+
+PROBLEM I SOLVED: [ANSWER 5]
+
+REAL CUSTOMER EXAMPLE: [ANSWER 6]
+
+My app is live at: [YOUR NETLIFY URL]
+My website is live at: [YOUR CARRD URL]
+
+Make the deck warm, simple, and visual. Not corporate. Six slides:
+
+1. TITLE: My name, my venture name, my tagline. Reserve space for me to upload my logo.
+2. THE PROBLEM: Who has it, the real example from above.
+3. WHO I AM BUILDING FOR: The customer described as a person, with name.
+4. WHAT I BUILT: Show that I have an app, a website, an audio intro, a video walkthrough. Add the URLs.
+5. HOW IT WORKS: Three simple steps the customer takes.
+6. WHAT COULD HAPPEN NEXT: If 20 customers used this, what would change for me and for them?
+
+Use warm colours. Big visuals. Short text. The kind of deck a Maker would present to her family.</div>
+      <div class="copy-row">
+        <button class="copy-btn" data-target="text-10">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <span>Copy prompt</span>
+        </button>
+        <a class="tool-link" href="https://gamma.app" target="_blank" rel="noopener">Open Gamma ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>Built by Her &middot; <a href="https://justbuild.orangecaterpillar.com">Orange Caterpillar</a></p>
+    <p style="margin-top: 8px; color: var(--text-faint);">Stuck on a prompt? Ask the facilitator on the Zoom call or post in the WhatsApp group.</p>
+  </footer>
+
+</div>
+
+<script>
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var targetId = btn.getAttribute('data-target');
+      var text = document.getElementById(targetId).textContent;
+      navigator.clipboard.writeText(text).then(function () {
+        var originalHtml = btn.innerHTML;
+        btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>Copied to clipboard</span>';
+        btn.classList.add('copied');
+        setTimeout(function () { btn.innerHTML = originalHtml; btn.classList.remove('copied'); }, 2500);
+      }).catch(function () {
+        var textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+          document.execCommand('copy');
+          var originalHtml = btn.innerHTML;
+          btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>Copied</span>';
+          btn.classList.add('copied');
+          setTimeout(function () { btn.innerHTML = originalHtml; btn.classList.remove('copied'); }, 2500);
+        } catch (err) {
+          alert('Could not copy automatically. Long-press the prompt and copy manually.');
+        }
+        document.body.removeChild(textarea);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

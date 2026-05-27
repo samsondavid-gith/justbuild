@@ -2,7 +2,7 @@
   "workshop": {
     "title": "Just Build",
     "subtitle": "",
-    "session_count": 15,
+    "session_count": 16,
     "weekend_day1_sessions": [
       "0",
       "1",
@@ -13,6 +13,7 @@
     ],
     "weekend_day2_sessions": [
       "5",
+      "5b",
       "interim-demo",
       "6"
     ],
@@ -30,7 +31,15 @@
     "day1_end": "18:00",
     "day2_start": "09:00",
     "day2_end": "18:00",
-    "office_hours_duration_minutes": 90
+    "office_hours_duration_minutes": 90,
+    "stages": [
+      "Ideate",
+      "Build",
+      "Launch",
+      "Brand",
+      "Automate",
+      "Ready to show"
+    ]
   },
   "sessions": [
     {
@@ -73,7 +82,8 @@
         }
       ],
       "test_output": [],
-      "output_capture": null
+      "output_capture": null,
+      "stage": "Kickoff"
     },
     {
       "id": "1",
@@ -176,7 +186,8 @@
           "description": "Does this idea make you a little excited to spend six weeks on it? If yes, pass. If no, run the prompt again with a different framing."
         }
       ],
-      "output_capture": null
+      "output_capture": null,
+      "stage": "Ideate"
     },
     {
       "id": "2",
@@ -279,7 +290,8 @@
           "description": "Would you show this to your target user without apologising for it? Not yet. That is fine. Pass means you know what to fix next."
         }
       ],
-      "output_capture": null
+      "output_capture": null,
+      "stage": "Build"
     },
     {
       "id": "milestone",
@@ -287,7 +299,7 @@
       "session_type": "milestone",
       "day": 1,
       "phase": "weekend",
-      "title": "Milestone check, your AI does the right thing for the right person",
+      "title": "Milestone check, does your AI do the right thing for the right person?",
       "start_time": "13:45",
       "end_time": "14:15",
       "duration_minutes": 30,
@@ -313,7 +325,8 @@
           "description": "Could a stranger in this room hear your output and recognise it as being for the user you described? If yes, pass. If no, the system prompt needs work before you move on."
         }
       ],
-      "output_capture": null
+      "output_capture": null,
+      "stage": "Build"
     },
     {
       "id": "3",
@@ -393,7 +406,8 @@
         "placeholder": "https://yourname.netlify.app",
         "kind": "url",
         "guidance": "This is the URL you got from Netlify after dragging your index.html into it. It should open on any phone without needing a login."
-      }
+      },
+      "stage": "Build"
     },
     {
       "id": "4",
@@ -524,26 +538,122 @@
           "description": "Does your video script sound like spoken English, not written English? Read it once more if you are unsure. If yes, pass."
         }
       ],
-      "output_capture": null
+      "output_capture": null,
+      "stage": "Launch"
     },
     {
       "id": "5",
       "number": "5",
       "session_type": "build",
+      "stage": "Launch",
       "day": 2,
       "phase": "weekend",
-      "title": "Ship the website, audio, video, and brochure",
+      "title": "Launch the website",
       "start_time": "9:00",
-      "end_time": "15:00",
-      "duration_minutes": 360,
+      "end_time": "12:00",
+      "duration_minutes": 180,
       "break_after": false,
       "break_duration_minutes": 0,
-      "set_the_stage": "Six hours. You walked in with five documents. You walk out with a live website (three pages), audio embedded on it, a founder video posted to LinkedIn, and a one-page brochure as a downloadable PDF.\n\nThis is the execution day. Everything has been planned. Today you assemble.\n\nThe facilitator walks the room continuously. The order matters. Website first because everything else gets linked to it. Audio next because it embeds on the site. Video after because it lives independently on LinkedIn and gets linked from the site. Brochure last because it can be done in parallel during any wait.\n\nLunch happens inside this block. Take it when your flow allows, not on a forced schedule. Aim for around midday.\n\nWe come back together at the end of this block for the interim demo. Hard deadline. The interim demo is the most important hour of the weekend. It is what makes the next four weeks have momentum. Be done in time.",
+      "set_the_stage": "Three hours. You walked in with three pages of website copy written and ready. You walk out with a live three-page website at a real URL , landing page, about page, how-it-works page , all linked to each other, all looking like they belong together, with a working button that takes a visitor to your AI app.\n\nThis is Launch. The shopfront opens. The audio, the founder video, and the brochure all come next, in the Brand session after lunch. Right now, the priority is the website skeleton , three pages, copy in place, mobile-ready, AI app linked.\n\nThe facilitator walks the room continuously. If you finish your three pages early, do not race ahead to Brand. Polish what you have. Open it on a friend's phone. Read it aloud once more. The Brand session begins together, after lunch.",
       "questions": [
         {
           "title": "Which page does the visitor see first?",
-          "body": "Most visitors will land on your home page. That page has to do the most work in the least time. The about page and the how-it-works page are for visitors who already want to know more. Plan accordingly."
+          "body": "Most visitors will land on your landing page. That page has to do the most work in the least time. The about page and the how-it-works page are for visitors who already want to know more. Plan accordingly."
         },
+        {
+          "title": "Are the three pages clearly linked?",
+          "body": "A visitor on the landing page should be able to reach about and how-it-works in one click. A visitor on the about page should be able to come back to landing in one click. Test the navigation on a phone, not just a laptop."
+        },
+        {
+          "title": "Does it look like one person built this?",
+          "body": "Same fonts. Same colours. Same voice. The three pages must feel like one site, not three separate sites stitched together. Walk through all three before you call yourself done."
+        }
+      ],
+      "hmv": [
+        {
+          "dimension": "Humanics",
+          "techniques": [
+            "Open your published Carrd site as if you have never seen it. Where do your eyes go first?",
+            "Read every word aloud. Cut anything that sounds like marketing.",
+            "Would a stranger know what to do within three seconds of landing?"
+          ]
+        },
+        {
+          "dimension": "Mechanics",
+          "techniques": [
+            "Test the link from the website to the AI app. Does it open in a new tab and load?",
+            "Test page-to-page navigation. Landing to about. About to how-it-works. How-it-works back to landing.",
+            "Test on a phone. Do the buttons reach the thumb? Does the text reflow without horizontal scrolling?"
+          ]
+        },
+        {
+          "dimension": "Valuenomics",
+          "techniques": [
+            "Does each page earn its place? If the about page is empty, cut it. If how-it-works just repeats the landing page, rewrite it.",
+            "Does the website point the visitor toward trying the AI app?",
+            "Would a recruiter who landed on this take it seriously?"
+          ]
+        }
+      ],
+      "prompts": [
+        {
+          "number": 1,
+          "title": "Website production helper",
+          "tool": "Claude (claude.ai)",
+          "content": "I have my website copy in three docs: landing page, about page, how-it-works page. I am about to drop them into Carrd. Walk me through, in order, what to do. Create the account, pick a template that supports multiple pages, paste each page's copy in the right place, set up the navigation between the three pages, link the AI app button to my Netlify URL, publish.\n\nKeep it tight. Tell me the click sequence, not the theory."
+        }
+      ],
+      "build": [
+        {
+          "title": "Hour 1, website skeleton",
+          "instructions": "Carrd account. Template chosen that supports multiple pages. Landing, about, and how-it-works pages all created. Copy pasted into the right sections. Link to the AI app live. Site published to a yourname.carrd.co URL. Do not polish yet, just get it up."
+        },
+        {
+          "title": "Hour 2, navigation and pages talk to each other",
+          "instructions": "Every page has a clear way to get to the other two. Landing → about. About → how-it-works. How-it-works → landing (and to the AI app button). Test on a phone."
+        },
+        {
+          "title": "Hour 3, polish all three pages",
+          "instructions": "Whitespace. Fonts. Mobile preview. One photo of you on the about page. Make sure the three pages feel like they belong to each other. Test every link including page-to-page navigation. Test on a friend's phone if you can."
+        }
+      ],
+      "test_output": [
+        {
+          "title": "The three-page test",
+          "description": "Does yourname.carrd.co have a landing page, an about page, and a how-it-works page, all linked to each other and all looking like they belong together? If yes, pass."
+        },
+        {
+          "title": "The phone test",
+          "description": "Does the site look good and work cleanly on a phone, with page-to-page navigation reachable by thumb? If yes, pass."
+        },
+        {
+          "title": "The AI app link test",
+          "description": "Does the AI app button on the landing page open your live Netlify app in a new tab? If yes, pass."
+        }
+      ],
+      "output_capture": {
+        "artifact": "Website",
+        "ask": "Paste the live URL of your three-page Carrd website.",
+        "placeholder": "https://yourname.carrd.co",
+        "kind": "url",
+        "guidance": "This is the published Carrd URL, not the editor URL. Confirm all three pages load on a phone and the AI app button works. Audio, video link, and brochure all come in the Brand session after lunch."
+      }
+    },
+    {
+      "id": "5b",
+      "number": "5b",
+      "session_type": "build",
+      "stage": "Brand",
+      "day": 2,
+      "phase": "weekend",
+      "title": "Brand with audio, video, and brochure",
+      "start_time": "12:00",
+      "end_time": "15:00",
+      "duration_minutes": 180,
+      "break_after": false,
+      "break_duration_minutes": 0,
+      "set_the_stage": "Three hours. The website is live. Now you give it a voice, a face, and something a visitor can carry away with them.\n\nThis is Brand. Three pieces. Sixty seconds of audio in your voice, generated from your script, embedded on the landing page right after the headline. Ninety seconds of founder video, screen-recorded with your voice over it, posted as a native video on LinkedIn. One one-page brochure, generated as a PDF, linked from your website for visitors who want to share it with a parent or relative.\n\nAll three exist for the same reason: trust. A website is a stranger reading words. Audio, video, and brochure turn that stranger into someone who has met you.\n\nThe facilitator walks the room continuously. Lunch is the first 30 minutes of this block if you have not eaten yet , take it now. Be done by 15:00. Interim demo at 15:00. Hard deadline.",
+      "questions": [
         {
           "title": "Where does the audio belong on the page?",
           "body": "Audio is most powerful when it lands right after the headline. The visitor reads your headline, hears your voice say what the product is, and then continues scrolling. Less powerful at the bottom. Worst at the very top before any context. Place it right after the headline."
@@ -555,50 +665,47 @@
         {
           "title": "Where does the brochure link belong?",
           "body": "Not at the top. The brochure is for visitors who already trust you and want something to share with someone else (a parent, a relative, a teacher). Place the download link low on the page, near a 'tell someone you know' invitation."
+        },
+        {
+          "title": "Do all three sound like the same person?",
+          "body": "Your website voice, your audio voice, your video voice. They should be the same person. If your audio sounds nothing like your website, the website voice was probably not yours to start with. Read all three out loud, in order, before you call them done."
         }
       ],
       "hmv": [
         {
           "dimension": "Humanics",
           "techniques": [
-            "Open your published Carrd site as if you have never seen it. Where do your eyes go first?",
-            "Read every word aloud. Cut anything that sounds like marketing.",
-            "Does the founder video sound like the same person who wrote the website?"
+            "Listen to the audio without watching the screen. Does it sound like a person, or like an announcement?",
+            "Watch the founder video with the sound off. Does the screen activity hold attention even without your voice?",
+            "Read the brochure at arm's length. Does the eye know where to land first, second, third?"
           ]
         },
         {
           "dimension": "Mechanics",
           "techniques": [
-            "Test the link from the website to the AI app. Does it open in a new tab and load?",
-            "Test the audio. Does it play on a phone, not just a laptop?",
-            "Test the LinkedIn post. Does the video autoplay in the feed?",
-            "Test the brochure. Does it download as a PDF on both laptop and phone?"
+            "Test the audio on a phone, not just a laptop. Does it autoplay or does the visitor have to tap?",
+            "Test the LinkedIn post in your feed. Does the video autoplay? Is the caption two lines visible without expanding?",
+            "Test the brochure download. Does the PDF open on a phone and a laptop both?"
           ]
         },
         {
           "dimension": "Valuenomics",
           "techniques": [
-            "Does the whole presence, site, audio, video, brochure, feel like it was made by the same person?",
-            "Would a recruiter who landed on this take it seriously?",
-            "Does every asset point the visitor toward trying the AI app?"
+            "Does the whole presence feel like it was made by one person, not stitched together?",
+            "Does every asset point the visitor toward trying the AI app?",
+            "Would a parent who saw the brochure understand what their child built?"
           ]
         }
       ],
       "prompts": [
         {
           "number": 1,
-          "title": "Website production helper",
-          "tool": "Claude (claude.ai)",
-          "content": "I have my website copy in three docs: landing page, about page, how-it-works page. I am about to drop them into Carrd. Walk me through, in order, what to do. Create the account, pick a template that supports multiple pages, paste each page's copy in the right place, link the AI app button to my Netlify URL, embed an audio file on the landing page, add a LinkedIn video link, add a brochure download button, publish.\n\nKeep it tight. Tell me the click sequence, not the theory."
-        },
-        {
-          "number": 2,
           "title": "Audio production",
           "tool": "ElevenLabs (elevenlabs.io)",
           "content": "I want to generate a 60-second audio piece from this script.\n\n[paste your video script, the first 60 seconds, or a tightened version]\n\nGive me the ElevenLabs settings to use. Voice selection, stability, similarity, style. I want it to sound like a calm, real person and not a typical AI voice-over. Warm, slightly understated, and one notch slower than the default pace."
         },
         {
-          "number": 3,
+          "number": 2,
           "title": "LinkedIn post caption",
           "tool": "Claude (claude.ai)",
           "content": "I am about to post my ninety-second founder video on LinkedIn. The video is embedded as a native video, not a link. I need a two-line caption that earns the click for people who scroll past without watching.\n\nThe product: [paste]\nThe user: [paste]\nThe outcome: [paste]\n\nWrite me three caption options. Each option is exactly two lines. The first line names the problem in a way that someone in my LinkedIn network would recognise. The second line names what I built and includes the AI app URL.\n\nNo hashtags in the caption itself. Suggest three to five hashtags separately."
@@ -606,24 +713,16 @@
       ],
       "build": [
         {
-          "title": "Hour 1, website skeleton",
-          "instructions": "Carrd account. Template chosen that supports multiple pages. Landing page, about page, and how-it-works page all created. Copy pasted into the right sections. Link to the AI app live. Site published to a yourname.carrd.co URL. Do not polish yet, just get it up."
-        },
-        {
-          "title": "Hour 2, audio recorded and embedded",
+          "title": "Hour 1, audio recorded and embedded",
           "instructions": "60 seconds of audio generated in ElevenLabs, downloaded as MP3, embedded on the landing page right after the headline. Test on a phone."
         },
         {
-          "title": "Hour 3, founder video recorded and posted",
-          "instructions": "Loom or QuickTime screen recording, you narrating live with the script in your peripheral vision. Aim for ninety seconds. Re-record up to three times if needed, but no more. Upload to LinkedIn as a native video post with the two-line caption. Pin the post to your profile. Copy the post URL. You will paste it on the site."
+          "title": "Hour 2, founder video recorded and posted",
+          "instructions": "Loom or QuickTime screen recording, you narrating live with the script in your peripheral vision. Aim for ninety seconds. Re-record up to three times if needed, but no more. Upload to LinkedIn as a native video post with the two-line caption. Pin the post to your profile. Copy the post URL , you will paste it on the site."
         },
         {
-          "title": "Hour 4, brochure to PDF",
-          "instructions": "Canva, one-page template. Drop in the brochure copy. Export PDF. Upload the PDF to Drive, set link to anyone-with-link can view. Copy the link, add a 'Download brochure' button to the website pointing to the PDF."
-        },
-        {
-          "title": "Hour 5, polish all three pages",
-          "instructions": "Now you polish. Whitespace. Fonts. Mobile preview. One photo of you on the about page. Make sure the three pages feel like they belong to each other. Test every link, including page-to-page navigation. Test on a friend's phone."
+          "title": "Hour 3, brochure to PDF",
+          "instructions": "Canva, one-page template. Drop in the brochure copy. Export PDF. Upload the PDF to Drive, set link to anyone-with-link can view. Copy the link, add a 'Download brochure' button to the website low on the landing page."
         },
         {
           "title": "Final smoke test",
@@ -631,10 +730,6 @@
         }
       ],
       "test_output": [
-        {
-          "title": "The three-page test",
-          "description": "Does yourname.carrd.co have a landing page, an about page, and a how-it-works page, all linked to each other and all looking like they belong together? If yes, pass."
-        },
         {
           "title": "The audio test",
           "description": "Does the audio play when you tap the play button on a phone, right after the headline on the landing page? If yes, pass."
@@ -653,11 +748,11 @@
         }
       ],
       "output_capture": {
-        "artifact": "Website",
-        "ask": "Paste the live URL of your Carrd website.",
-        "placeholder": "https://yourname.carrd.co",
+        "artifact": "Brand Collaterals",
+        "ask": "Paste your LinkedIn founder video post URL.",
+        "placeholder": "https://www.linkedin.com/posts/...",
         "kind": "url",
-        "guidance": "This is the published Carrd URL, not the editor URL. Confirm it works on a phone and that all three pages, the audio, the video link, the brochure link, and the AI app button all work."
+        "guidance": "Audio and brochure live on your website (already captured in the Launch session). The founder video is the one new public URL from Brand , pinned to your LinkedIn profile and linked from your website."
       }
     },
     {
@@ -700,7 +795,8 @@
           "description": "Did you write down at least five ideas from other people's demos to apply to your own build over the next four weeks? If yes, pass."
         }
       ],
-      "output_capture": null
+      "output_capture": null,
+      "stage": "Brand"
     },
     {
       "id": "6",
@@ -763,7 +859,8 @@
           "description": "Do you have the chatbot PDF, the agent PDF, and the WhatsApp invite link on your phone before you leave this room? If yes, pass."
         }
       ],
-      "output_capture": null
+      "output_capture": null,
+      "stage": "Brand"
     },
     {
       "id": "7",
@@ -771,13 +868,13 @@
       "session_type": "office_hours",
       "day": "Week 1",
       "phase": "office_hours",
-      "title": "Office hours, chatbot",
+      "title": "Strengthen the Launch with a chatbot",
       "start_time": "Saturday",
       "end_time": "+ 90 min",
       "duration_minutes": 90,
       "break_after": false,
       "break_duration_minutes": 0,
-      "set_the_stage": "Welcome back. Week 1.\n\nBy now everyone in this room has worked through the chatbot PDF. Some of you have a chatbot live on your Carrd site. Some of you are stuck. Some of you have not started. All three are normal at this point.\n\nNinety minutes. We open with a quick status check, then walk through the four places students most commonly get stuck on the chatbot build, then open the floor for live Q&A. The last fifteen minutes we close with a roster check. Every person in the room confirms, out loud, whether their chatbot is live or what specifically they need to land it by next Saturday.",
+      "set_the_stage": "Welcome back. Week 1.\n\nThe Launch is live. The website is up, the audio is embedded, the video is on LinkedIn, the brochure is downloadable. What is missing is the moment when a visitor has a question and you are not there to answer. The chatbot is what fills that gap. It strengthens the Launch by giving every visitor someone to talk to, every hour of every day.\n\nBy now everyone in this room has worked through the chatbot PDF. Some of you have a chatbot live on your Carrd site. Some of you are stuck. Some of you have not started. All three are normal at this point.\n\nNinety minutes. We open with a quick status check, then walk through the four places students most commonly get stuck on the chatbot build, then open the floor for live Q&A. The last fifteen minutes we close with a roster check. Every person in the room confirms, out loud, whether their chatbot is live or what specifically they need to land it by next Saturday.",
       "agenda": [
         "First 10 min, status check. Go around the room. Each person in one sentence: chatbot live, in progress, not started, or specifically stuck",
         "Next 20 min, walkthrough of the four common stuck points on the chatbot build",
@@ -820,7 +917,8 @@
         "placeholder": "https://yourname.carrd.co",
         "kind": "url",
         "guidance": "The chatbot lives on your Carrd site as an embedded widget. Confirm it appears when you open the URL on your phone."
-      }
+      },
+      "stage": "Launch"
     },
     {
       "id": "8",
@@ -871,7 +969,8 @@
       ],
       "live_qa_note": "Open the floor for 40 to 45 minutes. Screens up, Make.com scenarios visible. Most agent debugging happens by looking at the scenario diagram together.",
       "homework_check": "Every person, around the room, in one sentence: trigger-to-email working by next Saturday, or specifically what is left.",
-      "output_capture": null
+      "output_capture": null,
+      "stage": "Automate"
     },
     {
       "id": "9",
@@ -928,7 +1027,8 @@
         "placeholder": "https://yourname.carrd.co",
         "kind": "url",
         "guidance": "The agent lives inside Make.com but listens to your Carrd form. Your portfolio page will show this URL alongside a description of what the agent does. Your facilitator also captures a screenshot of your Make.com scenario for the portfolio."
-      }
+      },
+      "stage": "Automate"
     },
     {
       "id": "10",
@@ -983,7 +1083,8 @@
       ],
       "live_qa_note": "Hard timekeeping. Stopwatch on. At two minutes fifty-five seconds you give the signal. At three minutes the pitch stops, even mid-sentence. The room internalises the cutoff by watching others get cut.",
       "homework_check": "Every person leaves with: a recorded video of their final pitch attempt (phone is fine), three specific edits to make, and Demo Day confirmed in their calendar.",
-      "output_capture": null
+      "output_capture": null,
+      "stage": "Ready to show"
     },
     {
       "id": "11",
@@ -1040,7 +1141,8 @@
         "placeholder": "https://yourname.justbuild.orangecaterpillar.com",
         "kind": "url",
         "guidance": "The recording lives at the top of your portfolio URL. It plays automatically when someone opens the page. The recording is the strongest thing in the portfolio. Recruiters watch the demo, then explore the rest."
-      }
+      },
+      "stage": "Ready to show"
     },
     {
       "id": "12",
@@ -1125,7 +1227,8 @@
           "description": "Will you send the three messages before you sleep tonight? If yes, pass."
         }
       ],
-      "output_capture": null
+      "output_capture": null,
+      "stage": "Ready to show"
     }
   ]
 }

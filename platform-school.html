@@ -13,11 +13,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Inter:ital,wght@0,300..700;1,300..700&family=JetBrains+Mono:wght@400..600&display=swap" rel="stylesheet">
 <style>
-  /* ========================================
-     First Build  /  Facilitator Platform
-     Dark mode. Optimised for projection.
-     ======================================== */
-
   :root {
     --bg:            #0A0A0A;
     --bg-elev-1:    #141414;
@@ -45,18 +40,12 @@
     background: var(--bg);
     color: var(--text);
     font-family: var(--sans);
-    font-size: 18px;
+    font-size: 17px;
     line-height: 1.55;
     -webkit-font-smoothing: antialiased;
     overflow: hidden;
   }
-
-  body {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    min-height: 0;
-  }
+  body { display: flex; flex-direction: column; height: 100vh; min-height: 0; }
 
   /* ----- Top bar ----- */
   .topbar {
@@ -64,23 +53,21 @@
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    gap: 32px;
-    padding: 18px 40px;
+    gap: 24px;
+    padding: 16px 36px;
     border-bottom: 1px solid var(--line);
     background: var(--bg);
     z-index: 5;
   }
   .topbar.hidden { display: none; }
-  .topbar-left {
-    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
-  }
+  .topbar-left { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
   .topbar-logo { width: 30px; height: 30px; object-fit: contain; flex-shrink: 0; }
   .topbar-eyebrow {
     font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
     color: var(--accent); font-weight: 500;
   }
   .topbar-title {
-    font-family: var(--serif); font-size: 22px; font-weight: 400; letter-spacing: -0.01em;
+    font-family: var(--serif); font-size: 20px; font-weight: 400; letter-spacing: -0.01em;
   }
   .topbar-section {
     font-size: 13px; color: var(--text-muted); letter-spacing: 0.04em;
@@ -88,7 +75,7 @@
   .topbar-center { display: flex; justify-content: center; }
   .timer {
     font-family: var(--mono);
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 500;
     letter-spacing: 0.04em;
     color: var(--accent);
@@ -100,10 +87,14 @@
     user-select: none;
     min-width: 110px;
     text-align: center;
+    transition: opacity 0.2s, visibility 0.2s;
   }
+  .timer.hidden { opacity: 0; visibility: hidden; }
   .timer.paused { color: var(--warning); border-color: rgba(232,181,58,0.3); }
   .timer.overrun { color: var(--danger); border-color: rgba(215,85,58,0.4); animation: pulse-warn 2s infinite; }
-  @keyframes pulse-warn { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+  .timer.warning { color: var(--warning); }
+  @keyframes pulse-warn { 0%, 100% { opacity: 1; } 50% { opacity: 0.65; } }
+
   .topbar-right { display: flex; justify-content: flex-end; align-items: center; gap: 18px; }
 
   .jump-wrap { position: relative; }
@@ -116,7 +107,6 @@
     letter-spacing: 0.04em; cursor: pointer;
   }
   .jump-btn:hover { color: var(--accent); border-color: var(--accent-soft); }
-  .jump-btn svg { stroke: currentColor; }
 
   .jump-menu {
     position: absolute; top: calc(100% + 8px); right: 0;
@@ -131,30 +121,22 @@
   }
   .jump-menu.open { display: block; }
   .jump-group {
-    font-family: var(--sans);
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--text-faint);
-    padding: 12px 16px 6px;
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--text-faint); padding: 12px 16px 6px;
   }
   .jump-item {
     display: block; width: 100%; text-align: left;
     background: transparent; color: var(--text-soft);
-    border: none; padding: 8px 16px;
-    font-family: var(--sans); font-size: 14px; font-weight: 400;
-    cursor: pointer;
+    border: none; padding: 7px 16px;
+    font-size: 13.5px; font-weight: 400; cursor: pointer;
   }
   .jump-item:hover { background: var(--bg-elev-2); color: var(--accent); }
   .jump-item.current { color: var(--accent); font-weight: 500; }
-  .jump-item .jump-id {
-    font-family: var(--mono); font-size: 11px;
-    color: var(--text-faint); margin-right: 10px;
-  }
+  .jump-id { font-family: var(--mono); font-size: 10.5px; color: var(--text-faint); margin-right: 10px; }
 
   .progress { display: flex; gap: 6px; }
   .progress-dot {
-    width: 8px; height: 8px; border-radius: 50%;
+    width: 7px; height: 7px; border-radius: 50%;
     background: var(--line-strong); transition: background 0.3s;
   }
   .progress-dot.active { background: var(--accent); transform: scale(1.3); }
@@ -166,16 +148,13 @@
     min-height: 0;
     overflow-y: auto;
     overflow-x: hidden;
-    padding: clamp(24px, 4vh, 56px) clamp(24px, 6vw, 96px);
+    padding: clamp(20px, 4vh, 48px) clamp(24px, 6vw, 88px);
     scroll-behavior: smooth;
   }
   .stage::-webkit-scrollbar { width: 8px; }
   .stage::-webkit-scrollbar-track { background: transparent; }
   .stage::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 4px; }
-
-  .stage-inner {
-    max-width: 1280px; margin: 0 auto;
-  }
+  .stage-inner { max-width: 1280px; margin: 0 auto; }
 
   /* ----- Bottom bar ----- */
   .bottombar {
@@ -183,27 +162,24 @@
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    gap: 24px;
-    padding: 18px 40px;
+    gap: 20px;
+    padding: 14px 36px;
     border-top: 1px solid var(--line);
     background: var(--bg);
   }
   .bottombar.hidden { display: none; }
-
   .nav-btn {
     background: transparent; color: var(--text-soft);
     border: 1px solid var(--line-strong);
-    padding: 10px 24px; border-radius: 4px;
-    font-family: var(--sans); font-size: 14px; font-weight: 500;
+    padding: 9px 22px; border-radius: 4px;
+    font-size: 13.5px; font-weight: 500;
     letter-spacing: 0.04em; cursor: pointer;
     transition: all 0.15s;
   }
   .nav-btn:hover { color: var(--accent); border-color: var(--accent-soft); background: rgba(193,125,42,0.04); }
-  .nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
   .nav-prev { justify-self: start; }
   .nav-next { justify-self: end; }
   .bottombar-center { display: flex; justify-content: center; gap: 14px; }
-
   .hmv-reminder {
     display: inline-flex; align-items: center; gap: 8px;
     color: var(--text-faint);
@@ -213,114 +189,88 @@
     padding: 6px 14px;
     border: 1px dashed var(--line);
     border-radius: 4px;
-    cursor: pointer;
   }
-  .hmv-reminder:hover { color: var(--accent); border-color: var(--accent-soft); }
-  .hmv-reminder svg { stroke: currentColor; }
 
   /* ----- Typography ----- */
   .eyebrow {
-    font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
     color: var(--accent); font-weight: 500;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
   }
   h1.stage-title {
     font-family: var(--serif);
-    font-size: clamp(28px, 4.5vh, 48px);
+    font-size: clamp(26px, 4.2vh, 44px);
     font-weight: 400;
     line-height: 1.08;
     letter-spacing: -0.02em;
-    margin-bottom: clamp(16px, 2.5vh, 28px);
+    margin-bottom: clamp(14px, 2.2vh, 24px);
     max-width: 22ch;
   }
   h2.section-title {
     font-family: var(--serif);
-    font-size: clamp(20px, 2.8vh, 28px);
+    font-size: clamp(20px, 2.6vh, 26px);
     font-weight: 500;
     letter-spacing: -0.01em;
-    margin: clamp(24px, 4vh, 48px) 0 clamp(12px, 2vh, 20px);
-    color: var(--text);
-  }
-  h3.sub-title {
-    font-family: var(--sans);
-    font-size: 17px;
-    font-weight: 600;
-    letter-spacing: 0.01em;
-    margin: 24px 0 10px;
+    margin: clamp(20px, 3vh, 36px) 0 clamp(10px, 1.6vh, 18px);
     color: var(--text);
   }
   p.stage-body {
-    font-family: var(--sans);
-    font-size: clamp(15px, 1.9vh, 18px);
+    font-size: clamp(14px, 1.8vh, 17px);
     line-height: 1.55;
     color: var(--text-soft);
-    margin-bottom: clamp(12px, 1.5vh, 18px);
+    margin-bottom: clamp(10px, 1.4vh, 16px);
     max-width: 60ch;
   }
-  p.stage-body strong { color: var(--text); font-weight: 600; }
-  hr.section-rule {
-    height: 1px; background: var(--line); border: 0;
-    margin: 40px 0;
-  }
 
-  /* ----- Question cards (used in set-the-stage) ----- */
+  /* ----- Question cards ----- */
   .question-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 18px;
-    margin: 32px 0;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 14px;
+    margin: clamp(18px, 2.6vh, 28px) 0;
   }
   .question-card {
     background: var(--bg-elev-1);
     border: 1px solid var(--line);
     border-radius: 6px;
-    padding: 22px 24px;
+    padding: 18px 20px;
   }
   .question-card-title {
     font-family: var(--serif);
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
     color: var(--accent);
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     letter-spacing: -0.005em;
   }
-  .question-card-body {
-    font-size: 15px;
-    line-height: 1.55;
-    color: var(--text-soft);
-  }
+  .question-card-body { font-size: 14px; line-height: 1.55; color: var(--text-soft); }
 
-  /* ----- HMV cards ----- */
+  /* ----- HMV ----- */
   .hmv-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 16px;
-    margin: 28px 0 12px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 14px;
+    margin: clamp(18px, 2.6vh, 28px) 0 12px;
   }
   .hmv-card {
     background: rgba(193,125,42,0.06);
     border: 1px solid var(--accent-soft);
     border-radius: 6px;
-    padding: 20px 22px;
+    padding: 16px 18px;
   }
   .hmv-axis {
-    font-family: var(--sans);
-    font-size: 11px;
+    font-size: 10.5px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--accent);
     font-weight: 500;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
   }
-  .hmv-instruction {
-    font-size: 15px;
-    color: var(--text-soft);
-    line-height: 1.5;
-  }
+  .hmv-instruction { font-size: 14px; color: var(--text-soft); line-height: 1.5; }
 
   /* ----- Prompt box ----- */
   .prompt-wrap {
-    margin: 28px 0;
+    margin: clamp(18px, 2.6vh, 28px) 0;
     border: 1px solid var(--line-strong);
     border-radius: 6px;
     background: var(--bg-elev-1);
@@ -328,23 +278,24 @@
   }
   .prompt-header {
     display: flex; justify-content: space-between; align-items: center;
-    padding: 12px 18px;
+    padding: 10px 16px;
     background: var(--bg-elev-2);
     border-bottom: 1px solid var(--line);
-    font-family: var(--sans);
-    font-size: 12px;
+    font-size: 11px;
     letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--text-muted);
   }
   .prompt-box {
-    padding: 20px 22px;
+    padding: 18px 20px;
     font-family: var(--mono);
-    font-size: 13.5px;
+    font-size: 12.5px;
     line-height: 1.55;
     color: var(--text-soft);
     white-space: pre-wrap;
     word-break: break-word;
+    max-height: 50vh;
+    overflow-y: auto;
   }
   .copy-btn {
     background: transparent;
@@ -352,8 +303,7 @@
     border: 1px solid var(--accent-soft);
     padding: 4px 12px;
     border-radius: 3px;
-    font-family: var(--sans);
-    font-size: 11px;
+    font-size: 10.5px;
     font-weight: 500;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -363,14 +313,14 @@
   .copy-btn.copied { color: var(--warning); border-color: rgba(232,181,58,0.3); }
 
   /* ----- Build checklist ----- */
-  .build-list { list-style: none; padding: 0; margin: 24px 0; }
+  .build-list { list-style: none; padding: 0; margin: clamp(16px, 2.4vh, 24px) 0; }
   .build-item {
-    display: flex; gap: 16px; align-items: flex-start;
-    padding: 20px 22px;
+    display: flex; gap: 14px; align-items: flex-start;
+    padding: 16px 20px;
     background: var(--bg-elev-1);
     border: 1px solid var(--line);
     border-radius: 6px;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     cursor: pointer;
     transition: border-color 0.15s, background 0.15s;
   }
@@ -378,31 +328,24 @@
   .build-item.checked { background: rgba(193,125,42,0.05); border-color: var(--accent-soft); }
   .build-checkbox {
     flex: 0 0 auto;
-    width: 22px; height: 22px;
+    width: 20px; height: 20px;
     border: 1.5px solid var(--line-strong);
     border-radius: 4px;
     display: flex; align-items: center; justify-content: center;
     margin-top: 2px;
     transition: all 0.15s;
   }
-  .build-item.checked .build-checkbox {
-    background: var(--accent); border-color: var(--accent);
-  }
+  .build-item.checked .build-checkbox { background: var(--accent); border-color: var(--accent); }
   .build-checkbox svg { opacity: 0; }
   .build-item.checked .build-checkbox svg { opacity: 1; }
   .build-content { flex: 1; }
-  .build-title {
-    font-family: var(--sans); font-size: 16px; font-weight: 600;
-    color: var(--text); margin-bottom: 6px;
-  }
+  .build-title { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 5px; }
   .build-item.checked .build-title { color: var(--accent); }
-  .build-instructions {
-    font-size: 15px; line-height: 1.55; color: var(--text-soft);
-  }
+  .build-instructions { font-size: 14px; line-height: 1.55; color: var(--text-soft); }
 
   .all-checked-banner {
-    margin-top: 28px;
-    padding: 22px 24px;
+    margin-top: 22px;
+    padding: 18px 22px;
     background: rgba(193,125,42,0.1);
     border: 1px solid var(--accent-soft);
     border-radius: 6px;
@@ -413,165 +356,117 @@
 
   /* ----- Output capture ----- */
   .output-capture-card {
-    margin: 36px 0;
-    padding: 28px 30px;
+    margin: clamp(24px, 3.5vh, 36px) 0;
+    padding: 22px 26px;
     background: rgba(193,125,42,0.08);
     border: 1px solid var(--accent-soft);
     border-radius: 8px;
   }
   .output-capture-eyebrow {
-    font-size: 11px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--accent);
-    font-weight: 500;
-    margin-bottom: 12px;
+    font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500; margin-bottom: 10px;
   }
   .output-capture-label {
-    font-family: var(--serif);
-    font-size: 22px;
-    font-weight: 500;
-    margin-bottom: 10px;
-    color: var(--text);
+    font-family: var(--serif); font-size: 20px; font-weight: 500;
+    margin-bottom: 8px; color: var(--text);
   }
-  .output-capture-instruction {
-    font-size: 15.5px;
-    color: var(--text-soft);
-    line-height: 1.55;
-  }
+  .output-capture-instruction { font-size: 14.5px; color: var(--text-soft); line-height: 1.55; }
 
   /* ----- Buttons ----- */
-  .button-row {
-    display: flex; gap: 16px; align-items: center; flex-wrap: wrap;
-    margin-top: 24px;
-  }
+  .button-row { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; margin-top: clamp(18px, 2.6vh, 28px); }
   .btn {
     display: inline-flex; align-items: center; justify-content: center;
     background: transparent;
     color: var(--text);
     border: 1px solid var(--line-strong);
-    padding: 14px 32px;
+    padding: 12px 28px;
     border-radius: 4px;
-    font-family: var(--sans);
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 500;
     letter-spacing: 0.04em;
     cursor: pointer;
     transition: all 0.15s;
   }
   .btn:hover { border-color: var(--accent); color: var(--accent); }
-  .btn-primary {
-    background: var(--accent); color: #FFFFFF; border-color: var(--accent);
-  }
+  .btn-primary { background: var(--accent); color: #FFFFFF; border-color: var(--accent); }
   .btn-primary:hover { background: #A86A24; border-color: #A86A24; color: #FFFFFF; }
-  .btn-ghost {
-    background: transparent; color: var(--text-soft);
-  }
+  .btn-ghost { background: transparent; color: var(--text-soft); }
 
   /* ----- Welcome screen ----- */
-  .hero {
-    text-align: center;
-    padding: clamp(20px, 4vh, 48px) 0 clamp(16px, 3vh, 32px);
-  }
+  .hero { text-align: center; padding: clamp(18px, 3.5vh, 40px) 0; }
   .hero-logo {
-    width: clamp(56px, 8vh, 96px); height: auto;
-    margin: 0 auto clamp(16px, 2.5vh, 28px);
+    width: clamp(56px, 8vh, 92px); height: auto;
+    margin: 0 auto clamp(16px, 2.4vh, 28px);
     opacity: 0.95;
   }
   .hero-eyebrow {
     font-size: 12px; letter-spacing: 0.32em; text-transform: uppercase;
     color: var(--accent); font-weight: 500;
-    margin-bottom: clamp(18px, 3vh, 36px);
+    margin-bottom: clamp(16px, 2.4vh, 32px);
   }
   .hero-title {
     font-family: var(--serif);
-    font-size: clamp(56px, 14vh, 128px);
-    font-weight: 300;
-    letter-spacing: -0.04em;
+    font-size: clamp(52px, 13vh, 120px);
+    font-weight: 700;
+    letter-spacing: 0.04em;
     line-height: 0.92;
     color: var(--text);
   }
-  .hero-title.brand { letter-spacing: 0.04em; font-weight: 700; }
   .hero-rule {
     width: 64px; height: 1px; background: var(--accent); border: 0;
-    margin: clamp(20px, 3vh, 40px) auto;
+    margin: clamp(18px, 2.6vh, 36px) auto;
   }
   .hero-meta {
     font-family: var(--serif);
-    font-size: clamp(15px, 1.8vh, 20px);
+    font-size: clamp(15px, 1.8vh, 19px);
     font-style: italic;
     color: var(--text-soft);
     font-weight: 300;
   }
 
-  /* ----- Welcome variants (housekeeping, two-doors, journey-map) ----- */
-  .wl-screen {
-    padding: clamp(8px, 1.5vh, 24px) 0;
-  }
+  /* ----- Welcome variants ----- */
+  .wl-screen { padding: clamp(8px, 1.5vh, 24px) 0; }
   .wl-eyebrow {
     font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase;
     color: var(--accent); font-weight: 500;
-    margin-bottom: clamp(14px, 2vh, 28px);
+    margin-bottom: clamp(12px, 1.8vh, 24px);
   }
   .wl-title {
     font-family: var(--serif);
-    font-size: clamp(32px, 5.5vh, 60px);
+    font-size: clamp(30px, 5vh, 56px);
     font-weight: 300;
     letter-spacing: -0.025em;
     line-height: 1.0;
-    margin-bottom: clamp(14px, 2vh, 28px);
+    margin-bottom: clamp(12px, 1.8vh, 24px);
     max-width: 18ch;
   }
   .wl-title em { color: var(--accent); font-style: italic; font-weight: 400; }
   .wl-sub {
     font-family: var(--serif);
-    font-size: clamp(16px, 2vh, 22px);
+    font-size: clamp(15px, 1.9vh, 20px);
     font-style: italic;
     line-height: 1.4;
     color: var(--text-soft);
     font-weight: 300;
-    max-width: 36ch;
-    margin-bottom: clamp(16px, 2.5vh, 32px);
+    max-width: 40ch;
+    margin-bottom: clamp(14px, 2.2vh, 28px);
   }
 
-  /* ----- Journey wave (label fills only — overrides come later) ----- */
-  .journey-label-main {
-    font-family: var(--serif);
-    font-size: 26px;
-    font-weight: 500;
-    fill: var(--text);
-    letter-spacing: -0.01em;
-  }
-  .journey-label-sub {
-    font-family: var(--sans);
-    font-size: 14px;
-    fill: var(--text-muted);
-    letter-spacing: 0.02em;
-  }
-  .journey-bookend-label {
-    font-family: var(--sans);
-    font-size: 13px;
-    fill: var(--accent);
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    font-weight: 500;
-  }
-
-  /* ----- Portfolio hero (housekeeping) ----- */
+  /* ----- Portfolio hero ----- */
   .portfolio-hero {
-    margin: 32px 0;
-    padding: 28px 30px;
+    margin: clamp(18px, 2.6vh, 30px) 0;
+    padding: 22px 26px;
     background: var(--bg-elev-1);
     border: 1px solid var(--line);
     border-radius: 8px;
   }
   .portfolio-hero-eyebrow {
-    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--accent); font-weight: 500; margin-bottom: 14px;
+    font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500; margin-bottom: 12px;
   }
   .portfolio-hero-url {
     font-family: var(--mono);
-    font-size: clamp(15px, 2vw, 20px);
+    font-size: clamp(14px, 2vh, 19px);
     color: var(--text);
     word-break: break-all;
     letter-spacing: 0.01em;
@@ -582,188 +477,75 @@
     padding: 2px 6px;
     border-radius: 3px;
   }
-  .portfolio-hero-note {
-    margin-top: 16px;
-    font-size: 14px;
-    color: var(--text-muted);
-    font-style: italic;
-  }
+  .portfolio-hero-note { margin-top: 12px; font-size: 13px; color: var(--text-muted); font-style: italic; }
 
   /* ----- Artifact strip ----- */
   .artifacts-strip {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 14px;
-    margin: 24px 0;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin: clamp(16px, 2.4vh, 24px) 0;
   }
   .artifact-tile {
-    padding: 18px 16px;
+    padding: 14px 14px;
     background: var(--bg-elev-1);
     border: 1px solid var(--line);
     border-radius: 6px;
   }
-  .artifact-num {
-    font-family: var(--mono); font-size: 11px; color: var(--accent);
-    letter-spacing: 0.16em;
-  }
-  .artifact-name {
-    font-family: var(--serif); font-size: 18px; font-weight: 500;
-    margin-top: 6px; color: var(--text);
-  }
-  .artifact-desc {
-    font-size: 13px; color: var(--text-muted); margin-top: 6px; line-height: 1.5;
-  }
+  .artifact-num { font-family: var(--mono); font-size: 10.5px; color: var(--accent); letter-spacing: 0.16em; }
+  .artifact-name { font-family: var(--serif); font-size: 16px; font-weight: 500; margin-top: 5px; color: var(--text); }
+  .artifact-desc { font-size: 12.5px; color: var(--text-muted); margin-top: 5px; line-height: 1.5; }
 
-  /* ----- Phase break ----- */
-  .phase-break {
-    text-align: center;
-    padding: clamp(20px, 4vh, 56px) 0;
+  /* ----- Idea cards (5 picks for Session 1) ----- */
+  .ideas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 14px;
+    margin: clamp(18px, 2.6vh, 28px) 0;
   }
-  .phase-break-eyebrow {
-    font-size: 12px; letter-spacing: 0.32em; text-transform: uppercase;
-    color: var(--accent); font-weight: 500;
-    margin-bottom: clamp(16px, 3vh, 32px);
-  }
-  .phase-break-title {
-    font-family: var(--serif);
-    font-size: clamp(44px, 7vh, 80px);
-    font-weight: 300;
-    letter-spacing: -0.025em;
-    line-height: 1.0;
-    margin-bottom: clamp(14px, 2vh, 24px);
-  }
-  .phase-break-sub {
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: clamp(16px, 2vh, 22px);
-    color: var(--text-soft);
-    font-weight: 300;
-    max-width: 36ch;
-    margin: 0 auto clamp(20px, 3vh, 40px);
-    line-height: 1.4;
-  }
-
-  /* ----- Session start ----- */
-  .session-start {
-    padding: clamp(16px, 3vh, 40px) 0;
-  }
-  .session-start-meta {
-    display: flex; flex-wrap: wrap; gap: 24px;
-    margin-top: 28px;
-    padding: 18px 22px;
+  .idea-card {
     background: var(--bg-elev-1);
-    border-left: 2px solid var(--accent);
-    border-radius: 0 4px 4px 0;
-  }
-  .session-start-meta-item {
-    font-family: var(--sans);
-    font-size: 13px;
-    color: var(--text-muted);
-    letter-spacing: 0.04em;
-  }
-  .session-start-meta-item strong {
-    color: var(--text-soft);
-    font-weight: 500;
-    margin-right: 6px;
-  }
-
-  /* ----- Break screen ----- */
-  .break-screen {
-    text-align: center;
-    padding: clamp(16px, 3vh, 32px) 0;
-  }
-  .break-eyebrow {
-    font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase;
-    color: var(--accent); font-weight: 500;
-    margin-bottom: clamp(14px, 2vh, 24px);
-  }
-  .break-heading {
-    font-family: var(--serif);
-    font-size: clamp(40px, 6vh, 72px);
-    font-weight: 300;
-    letter-spacing: -0.025em;
-    line-height: 1.0;
-    margin-bottom: clamp(16px, 2vh, 28px);
-  }
-  .break-timer {
-    font-family: var(--mono);
-    font-size: clamp(72px, 16vh, 200px);
-    color: var(--accent);
-    line-height: 1;
-    letter-spacing: -0.02em;
-    margin: clamp(16px, 2vh, 28px) 0;
-    font-weight: 400;
-  }
-  .break-note {
-    font-family: var(--serif);
-    font-style: italic;
-    color: var(--text-muted);
-    font-size: clamp(14px, 1.8vh, 18px);
-  }
-
-  /* ----- Login overlay ----- */
-  .login-overlay {
-    position: fixed; inset: 0;
-    background: var(--bg);
-    display: flex; align-items: center; justify-content: center;
-    z-index: 1000;
-  }
-  .login-overlay.hidden { display: none; }
-  .login-card {
-    width: 100%; max-width: 380px;
-    padding: 48px 40px;
     border: 1px solid var(--line);
     border-radius: 8px;
-    background: var(--bg-elev-1);
-    text-align: center;
+    padding: 20px 20px 18px;
+    display: flex; flex-direction: column;
+    transition: border-color 0.2s, background 0.2s;
   }
-  .login-card .hero-logo {
-    width: 64px; margin-bottom: 24px;
+  .idea-card:hover { border-color: var(--accent-soft); }
+  .idea-card-num {
+    font-family: var(--mono);
+    font-size: 10.5px; letter-spacing: 0.16em;
+    color: var(--accent);
+    margin-bottom: 6px;
   }
-  .login-card .login-title {
+  .idea-card-name {
     font-family: var(--serif);
-    font-size: 28px;
-    font-weight: 400;
-    margin-bottom: 8px;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 14px;
     letter-spacing: -0.01em;
   }
-  .login-card .login-sub {
-    font-size: 13px; color: var(--text-muted);
-    letter-spacing: 0.04em; margin-bottom: 32px;
+  .idea-card-row { margin-bottom: 10px; }
+  .idea-card-label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-bottom: 3px;
   }
-  .login-form { display: flex; flex-direction: column; gap: 12px; }
-  .login-input {
-    background: var(--bg);
-    border: 1px solid var(--line-strong);
-    padding: 12px 16px;
-    border-radius: 4px;
-    color: var(--text);
-    font-family: var(--sans); font-size: 15px;
-    outline: none;
-    transition: border-color 0.15s;
-  }
-  .login-input:focus { border-color: var(--accent); }
-  .login-submit {
-    background: var(--accent); color: #FFFFFF; border: none;
-    padding: 12px; border-radius: 4px;
-    font-family: var(--sans); font-size: 15px; font-weight: 500;
-    letter-spacing: 0.04em; cursor: pointer; margin-top: 8px;
-  }
-  .login-submit:hover { background: #A86A24; }
-  .login-error {
-    color: var(--danger); font-size: 13px; margin-top: 12px;
-    display: none;
-  }
-  .login-error.show { display: block; }
-
-  /* ----- Stage text paragraphs ----- */
-  .stage-text { margin: clamp(16px, 2.5vh, 28px) 0; }
-  .stage-text p {
-    font-size: clamp(15px, 1.9vh, 18px); line-height: 1.55; color: var(--text-soft);
-    margin-bottom: clamp(12px, 1.8vh, 20px); max-width: 62ch;
+  .idea-card-value { font-size: 13.5px; line-height: 1.5; color: var(--text-soft); }
+  .idea-card-real {
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 1px solid var(--line);
+    font-size: 12.5px; line-height: 1.5;
+    color: var(--text-muted);
+    font-style: italic;
   }
 
-  /* ----- Tools Landscape ----- */
+  /* ----- Tools landscape ----- */
   .cat-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -776,12 +558,11 @@
     border: 1px solid var(--line);
     border-radius: 4px;
     padding: 12px 14px;
-    display: flex;
-    flex-direction: column;
+    display: flex; flex-direction: column;
   }
   .cat-name {
     font-family: var(--serif);
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 500;
     letter-spacing: -0.01em;
     color: var(--text);
@@ -794,15 +575,9 @@
     margin-bottom: 8px;
     font-style: italic;
   }
-  .cat-tools {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px;
-  }
+  .cat-tools { display: flex; flex-wrap: wrap; gap: 4px; }
   .tool-chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
+    display: inline-flex; align-items: center; gap: 4px;
     padding: 3px 8px;
     font-size: 10px;
     border-radius: 10px;
@@ -818,28 +593,20 @@
     color: var(--text);
     font-weight: 500;
   }
-  .tool-star {
-    color: var(--accent);
-    font-size: 9px;
-    line-height: 1;
-  }
+  .tool-star { color: var(--accent); font-size: 9px; line-height: 1; }
   .wl-footer {
     font-family: var(--serif);
-    font-size: clamp(13px, 1.5vh, 16px);
+    font-size: clamp(12.5px, 1.5vh, 15px);
     color: var(--text-muted);
     font-style: italic;
     margin-top: clamp(12px, 2vh, 20px);
     text-align: left;
   }
 
-  /* ----- Journey wave overrides (specific screen) ----- */
-  .journey-wave-screen {
-    max-width: 1280px;
-    margin: 0 auto;
-    text-align: center;
-  }
+  /* ----- Journey wave overrides ----- */
+  .journey-wave-screen { max-width: 1280px; margin: 0 auto; text-align: center; }
   .journey-wave-title {
-    font-size: clamp(24px, 4vh, 44px) !important;
+    font-size: clamp(22px, 3.8vh, 40px) !important;
     line-height: 1.05 !important;
     margin-bottom: 8px !important;
     max-width: none !important;
@@ -848,8 +615,7 @@
     margin-bottom: 12px !important;
     font-size: clamp(13px, 1.6vh, 17px) !important;
     max-width: 60ch !important;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: auto; margin-right: auto;
   }
   .journey-wave-wrap {
     width: 100%;
@@ -867,13 +633,27 @@
     margin: 0 auto;
     height: auto;
   }
-  .journey-wave-rule {
-    width: 80px;
-    height: 1px;
-    background: var(--accent);
-    border: none;
-    margin: 4px auto 10px;
+  .journey-label-main {
+    font-family: var(--serif);
+    font-size: 26px; font-weight: 500;
+    fill: var(--text);
+    letter-spacing: -0.01em;
   }
+  .journey-label-sub {
+    font-family: var(--sans);
+    font-size: 14px;
+    fill: var(--text-muted);
+    letter-spacing: 0.02em;
+  }
+  .journey-bookend-label {
+    font-family: var(--sans);
+    font-size: 13px;
+    fill: var(--accent);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .journey-wave-rule { width: 80px; height: 1px; background: var(--accent); border: none; margin: 4px auto 10px; }
   .journey-wave-footer {
     font-family: var(--serif);
     font-size: clamp(13px, 1.5vh, 16px);
@@ -884,50 +664,169 @@
     line-height: 1.45;
   }
 
-  @media (max-width: 860px) {
-    .cat-grid { grid-template-columns: 1fr 1fr; }
+  /* ----- Phase break ----- */
+  .phase-break { text-align: center; padding: clamp(20px, 4vh, 56px) 0; }
+  .phase-break-eyebrow {
+    font-size: 12px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500;
+    margin-bottom: clamp(16px, 3vh, 32px);
   }
-  @media (max-width: 580px) {
-    .cat-grid { grid-template-columns: 1fr; }
+  .phase-break-title {
+    font-family: var(--serif);
+    font-size: clamp(40px, 6.5vh, 72px);
+    font-weight: 300;
+    letter-spacing: -0.025em;
+    line-height: 1.0;
+    margin-bottom: clamp(14px, 2vh, 24px);
+  }
+  .phase-break-sub {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(15px, 1.9vh, 21px);
+    color: var(--text-soft);
+    font-weight: 300;
+    max-width: 36ch;
+    margin: 0 auto clamp(18px, 2.6vh, 36px);
+    line-height: 1.4;
+  }
+
+  /* ----- Session start ----- */
+  .session-start { padding: clamp(14px, 2.6vh, 32px) 0; }
+  .session-start-meta {
+    display: flex; flex-wrap: wrap; gap: 22px;
+    margin-top: clamp(16px, 2.4vh, 26px);
+    padding: 16px 20px;
+    background: var(--bg-elev-1);
+    border-left: 2px solid var(--accent);
+    border-radius: 0 4px 4px 0;
+  }
+  .session-start-meta-item {
+    font-size: 12.5px; color: var(--text-muted); letter-spacing: 0.04em;
+  }
+  .session-start-meta-item strong { color: var(--text-soft); font-weight: 500; margin-right: 5px; }
+
+  /* ----- Break screen ----- */
+  .break-screen { text-align: center; padding: clamp(16px, 3vh, 32px) 0; }
+  .break-eyebrow {
+    font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--accent); font-weight: 500;
+    margin-bottom: clamp(14px, 2vh, 24px);
+  }
+  .break-heading {
+    font-family: var(--serif);
+    font-size: clamp(36px, 5.5vh, 64px);
+    font-weight: 300;
+    letter-spacing: -0.025em;
+    line-height: 1.0;
+    margin-bottom: clamp(14px, 2vh, 24px);
+  }
+  .break-timer {
+    font-family: var(--mono);
+    font-size: clamp(64px, 14vh, 180px);
+    color: var(--accent);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin: clamp(14px, 2vh, 24px) 0;
+    font-weight: 400;
+  }
+  .break-note {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: clamp(14px, 1.7vh, 17px);
+  }
+
+  /* ----- Login overlay ----- */
+  .login-overlay {
+    position: fixed; inset: 0;
+    background: var(--bg);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 1000;
+  }
+  .login-overlay.hidden { display: none; }
+  .login-card {
+    width: 100%; max-width: 380px;
+    padding: 44px 36px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--bg-elev-1);
+    text-align: center;
+  }
+  .login-card .hero-logo { width: 56px; margin-bottom: 20px; }
+  .login-title {
+    font-family: var(--serif);
+    font-size: 26px; font-weight: 400;
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+  .login-sub {
+    font-size: 12px; color: var(--text-muted);
+    letter-spacing: 0.04em; margin-bottom: 28px;
+  }
+  .login-form { display: flex; flex-direction: column; gap: 10px; }
+  .login-input {
+    background: var(--bg);
+    border: 1px solid var(--line-strong);
+    padding: 11px 14px;
+    border-radius: 4px;
+    color: var(--text);
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .login-input:focus { border-color: var(--accent); }
+  .login-submit {
+    background: var(--accent); color: #FFFFFF; border: none;
+    padding: 11px; border-radius: 4px;
+    font-size: 14px; font-weight: 500;
+    letter-spacing: 0.04em; cursor: pointer; margin-top: 6px;
+  }
+  .login-submit:hover { background: #A86A24; }
+  .login-error { color: var(--danger); font-size: 12.5px; margin-top: 10px; display: none; }
+  .login-error.show { display: block; }
+
+  /* ----- Stage text ----- */
+  .stage-text { margin: clamp(14px, 2.2vh, 24px) 0; }
+  .stage-text p {
+    font-size: clamp(15px, 1.9vh, 18px); line-height: 1.55; color: var(--text-soft);
+    margin-bottom: clamp(10px, 1.5vh, 18px); max-width: 62ch;
   }
 
   /* ----- Responsive ----- */
+  @media (max-width: 860px) { .cat-grid { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 768px) {
-    .stage { padding: 40px 24px; }
-    .topbar, .bottombar { padding: 14px 20px; }
-    .topbar { grid-template-columns: auto 1fr auto; gap: 12px; }
-    .topbar-title { font-size: 16px; }
+    .stage { padding: 32px 22px; }
+    .topbar, .bottombar { padding: 12px 18px; }
+    .topbar { grid-template-columns: auto 1fr auto; gap: 10px; }
+    .topbar-title { font-size: 15px; }
     .topbar-eyebrow { display: none; }
-    .timer { font-size: 18px; padding: 4px 12px; min-width: 80px; }
+    .timer { font-size: 16px; padding: 4px 12px; min-width: 76px; }
     .jump-btn { padding: 5px 10px; font-size: 11px; }
     .bottombar { grid-template-columns: 1fr auto 1fr; }
-    .nav-btn { padding: 8px 14px; font-size: 12px; }
+    .nav-btn { padding: 8px 12px; font-size: 11.5px; }
     .progress { display: none; }
   }
+  @media (max-width: 580px) { .cat-grid, .ideas-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
 
-<!-- ============================================================
-     LOGIN OVERLAY
-     ============================================================ -->
+<!-- LOGIN -->
 <div class="login-overlay" id="login-overlay">
-  <div class="login-card" id="login-card">
+  <div class="login-card">
     <img class="hero-logo" src="logo.png" alt="Orange Caterpillar" onerror="this.style.display='none'">
     <div class="login-title">First Build</div>
     <div class="login-sub">Facilitator console</div>
     <form class="login-form" id="login-form" autocomplete="off">
       <input class="login-input" type="text" id="login-id" placeholder="ID" autocapitalize="off" autocorrect="off" spellcheck="false" required>
       <input class="login-input" type="password" id="login-pw" placeholder="Password" required>
-      <button class="login-submit" type="submit" id="login-submit">Enter</button>
+      <button class="login-submit" type="submit">Enter</button>
       <div class="login-error" id="login-error">Incorrect ID or password.</div>
     </form>
   </div>
 </div>
 
-<!-- ============================================================
-     TOPBAR
-     ============================================================ -->
+<!-- TOPBAR -->
 <header class="topbar hidden" id="topbar">
   <div class="topbar-left">
     <img class="topbar-logo" src="logo.png" alt="" onerror="this.style.display='none'">
@@ -936,13 +835,13 @@
     <span class="topbar-section" id="topbar-section"></span>
   </div>
   <div class="topbar-center">
-    <div class="timer" id="timer" title="Click or press T to pause/resume">--:--</div>
+    <div class="timer hidden" id="timer" title="Click or press T to pause/resume">--:--</div>
   </div>
   <div class="topbar-right">
     <div class="jump-wrap" id="jump-wrap">
       <button class="jump-btn" id="jump-btn" title="Jump to a session (J)">
-        <span id="jump-btn-label">Jump</span>
-        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke-width="1.5"><path d="M2 4l3 3 3-3"/></svg>
+        <span>Jump</span>
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke-width="1.5" stroke="currentColor"><path d="M2 4l3 3 3-3"/></svg>
       </button>
       <div class="jump-menu" id="jump-menu"></div>
     </div>
@@ -950,30 +849,23 @@
   </div>
 </header>
 
-<!-- ============================================================
-     MAIN STAGE
-     ============================================================ -->
+<!-- STAGE -->
 <main class="stage" id="stage">
   <div class="stage-inner" id="stage-inner"></div>
 </main>
 
-<!-- ============================================================
-     BOTTOMBAR
-     ============================================================ -->
+<!-- BOTTOMBAR -->
 <footer class="bottombar hidden" id="bottombar">
   <button class="nav-btn nav-prev" id="prev-btn">← Previous</button>
   <div class="bottombar-center">
-    <div class="hmv-reminder" id="hmv-reminder" title="Press H to toggle">
-      <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke-width="1.5"><circle cx="5" cy="5" r="3.5"/></svg>
+    <div class="hmv-reminder" title="The three checks">
+      <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke-width="1.5" stroke="currentColor"><circle cx="5" cy="5" r="3.5"/></svg>
       <span>Real person · Real problem · Demoable</span>
     </div>
   </div>
   <button class="nav-btn nav-next" id="next-btn">Next →</button>
 </footer>
 
-<!-- ============================================================
-     APP LOGIC
-     ============================================================ -->
 <script>
 (function () {
   'use strict';
@@ -992,7 +884,6 @@
   let DATA = null;
   let SCREENS = [];
   let currentScreenIdx = 0;
-  // Countdown timer state
   const timer = {
     intervalId: null,
     totalSeconds: 0,
@@ -1001,7 +892,7 @@
     running: false,
     paused: false
   };
-  let checkedItems = {};
+  let breakTimerInterval = null;
 
   // ============================================================
   // HELPERS
@@ -1010,11 +901,8 @@
   function escapeHtml(str) {
     if (str === null || str === undefined) return '';
     return String(str)
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#039;');
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#039;');
   }
   function paragraphsFromText(text) {
     if (!text) return '';
@@ -1054,7 +942,7 @@
   }
 
   // ============================================================
-  // DATA LOAD
+  // DATA
   // ============================================================
   async function loadSessions() {
     try {
@@ -1063,7 +951,7 @@
       DATA = await res.json();
       return true;
     } catch (err) {
-      $('#stage-inner').innerHTML = '<div class="hero"><div class="hero-eyebrow">Error</div><h1 class="hero-title" style="font-size:48px">Could not load sessions.</h1><p class="stage-body" style="margin-top:24px">' + escapeHtml(err.message) + '</p></div>';
+      $('#stage-inner').innerHTML = '<div class="hero"><div class="hero-eyebrow">Error</div><h1 class="stage-title">Could not load sessions.</h1><p class="stage-body">' + escapeHtml(err.message) + '</p></div>';
       return false;
     }
   }
@@ -1082,44 +970,31 @@
     const sessions = DATA.sessions || [];
     let prevPhase = null;
     sessions.forEach(function (session) {
-      // Phase transitions
       if (session.phase === 'office_hours' && prevPhase !== 'office_hours') {
         SCREENS.push({ type: 'phase-break', to: 'office_hours' });
       }
       if (session.phase === 'demo_day' && prevPhase !== 'demo_day') {
         SCREENS.push({ type: 'phase-break', to: 'demo_day' });
       }
-      if (session.day === 2 && prevPhase === 'weekend' && session.id !== sessions[0].id) {
-        // Day 2 morning marker (only once)
-        const lastWeekendSession = sessions.filter(function (s) { return s.day === 1; }).pop();
-        if (lastWeekendSession && session.id !== lastWeekendSession.id) {
-          // already handled by session-start; skip explicit day2 marker
-        }
-      }
 
       SCREENS.push({ type: 'session-start', session: session });
       SCREENS.push({ type: 'stage-text', session: session });
 
-      if ((session.questions || []).length > 0) {
-        SCREENS.push({ type: 'questions', session: session });
+      // After "Pick your idea" set-the-stage, show the 5 idea cards screen
+      if (session.id === '1') {
+        SCREENS.push({ type: 'idea-cards', session: session });
       }
-      if ((session.hmv || []).length > 0) {
-        SCREENS.push({ type: 'hmv', session: session });
-      }
+
+      if ((session.questions || []).length > 0) SCREENS.push({ type: 'questions', session: session });
+      if ((session.hmv || []).length > 0) SCREENS.push({ type: 'hmv', session: session });
       if ((session.prompts || []).length > 0) {
         session.prompts.forEach(function (p, idx) {
           SCREENS.push({ type: 'prompt', session: session, prompt: p, promptIdx: idx });
         });
       }
-      if ((session.build || []).length > 0) {
-        SCREENS.push({ type: 'build', session: session });
-      }
-      if ((session.test_output || []).length > 0) {
-        SCREENS.push({ type: 'test-output', session: session });
-      }
-      if (session.output_capture) {
-        SCREENS.push({ type: 'output-capture', session: session });
-      }
+      if ((session.build || []).length > 0) SCREENS.push({ type: 'build', session: session });
+      if ((session.test_output || []).length > 0) SCREENS.push({ type: 'test-output', session: session });
+      if (session.output_capture) SCREENS.push({ type: 'output-capture', session: session });
       SCREENS.push({ type: 'session-end', session: session });
 
       if (session.break_after && session.break_duration_minutes > 0) {
@@ -1136,10 +1011,10 @@
     return '<div class="hero">' +
       '<img class="hero-logo" src="logo.png" alt="Orange Caterpillar" onerror="this.style.display=\'none\'">' +
       '<div class="hero-eyebrow">Orange Caterpillar</div>' +
-      '<h1 class="hero-title brand">FIRST<br>BUILD</h1>' +
+      '<h1 class="hero-title">FIRST<br>BUILD</h1>' +
       '<hr class="hero-rule">' +
-      '<p class="hero-meta">Two days &middot; Three weeks &middot; One portfolio</p>' +
-      '<div class="button-row" style="justify-content:center; margin-top: clamp(20px, 3vh, 40px);">' +
+      '<p class="hero-meta">Two days &middot; Two weeks &middot; One portfolio page</p>' +
+      '<div class="button-row" style="justify-content:center;">' +
         '<button class="btn btn-primary" id="start-btn">Begin →</button>' +
       '</div>' +
     '</div>';
@@ -1148,10 +1023,10 @@
   function renderHousekeeping() {
     return '<div class="wl-screen">' +
       '<div class="wl-eyebrow">Where you end up</div>' +
-      '<h1 class="wl-title">One URL with <em>everything</em> you built.</h1>' +
-      '<p class="wl-sub">Every Minifounder gets a personal portfolio page. Six artifacts. Plus a Demo Day recording.</p>' +
+      '<h1 class="wl-title">One page with <em>everything</em> you built.</h1>' +
+      '<p class="wl-sub">Every Minifounder gets a personal portfolio page. Seven artifacts. Plus a Demo Day recording.</p>' +
       '<div class="portfolio-hero">' +
-        '<div class="portfolio-hero-eyebrow">Your portfolio URL</div>' +
+        '<div class="portfolio-hero-eyebrow">Your Portfolio Page</div>' +
         '<div class="portfolio-hero-url">justbuild.orangecaterpillar.com/<span class="portfolio-hero-slot">your-school</span>/<span class="portfolio-hero-slot">fb1</span>/<span class="portfolio-hero-slot">your-name</span></div>' +
         '<p class="portfolio-hero-note">Goes live on Demo Day. Yours for life.</p>' +
       '</div>' +
@@ -1160,17 +1035,18 @@
 
   function renderArtifacts() {
     const artifacts = [
-      { num: '01', name: 'Ideation', desc: 'The one-page sheet that says who you are building for and what your First Build will do for them.' },
-      { num: '02', name: 'AI App', desc: 'One HTML file. One AI call. Live at a real URL. Works on a phone.' },
-      { num: '03', name: 'Website', desc: 'One-page Carrd site. Three sections. A button that opens your AI app.' },
-      { num: '04', name: 'Audio', desc: 'Sixty seconds. Embedded on the website. Your voice or an AI voice telling visitors what the First Build does.' },
-      { num: '05', name: 'Video', desc: 'Ninety seconds. Screen-recorded. You walking the visitor through one real example.' },
-      { num: '06', name: 'Brochure', desc: 'One-page PDF. Linked from the website. Shareable on WhatsApp.' }
+      { num: '01', name: 'Ideation', desc: 'One sheet. Who you build for. What their problem is. What your First Build does.' },
+      { num: '02', name: 'AI App', desc: 'One HTML file. Built with Claude. Live at a real URL. Works on a phone.' },
+      { num: '03', name: 'Website', desc: 'One-page Carrd site. Three sections. A button that opens your app.' },
+      { num: '04', name: 'Audio', desc: 'Sixty seconds. ElevenLabs voice. Embedded on the website.' },
+      { num: '05', name: 'Video', desc: 'Ninety seconds. Loom screen-recording. You walking through the app.' },
+      { num: '06', name: 'Brochure', desc: 'One-page PDF in Canva. Linked from the website. Shareable on WhatsApp.' },
+      { num: '07', name: 'Pitch Deck', desc: 'Six slides in Gamma. Tells the story of your venture. Built in Week 1.' }
     ];
     return '<div class="wl-screen">' +
-      '<div class="wl-eyebrow">Six things you make</div>' +
-      '<h1 class="wl-title">Six artifacts. <em>All real. All yours.</em></h1>' +
-      '<p class="wl-sub">Five of these are built across the weekend. The polish happens across the next three weeks. The Demo Day recording is the seventh thing.</p>' +
+      '<div class="wl-eyebrow">Seven things you make</div>' +
+      '<h1 class="wl-title">Seven artifacts. <em>All real. All yours.</em></h1>' +
+      '<p class="wl-sub">Six over the weekend. Pitch deck in Week 1. Plus your Demo Day recording in Week 2.</p>' +
       '<div class="artifacts-strip">' +
         artifacts.map(function (a) {
           return '<div class="artifact-tile">' +
@@ -1184,13 +1060,10 @@
   }
 
   function renderJourneyMap() {
-    // Five stages of the Minifounder journey.
-    // Wave alternates peak and trough.
-    // Caterpillar at left (Day one), butterfly at right (Demo Day).
     return '<div class="wl-screen journey-wave-screen">' +
       '<div class="wl-eyebrow">First Build with AI</div>' +
-      '<h1 class="wl-title journey-wave-title"><em>From an idea on a paper to a portfolio on the internet.</em></h1>' +
-      '<p class="wl-sub journey-wave-sub"><em>Two days and three weeks of metamorphosis. Six real things made by you.</em></p>' +
+      '<h1 class="wl-title journey-wave-title"><em>From an idea on a paper to a real micro-venture on the internet.</em></h1>' +
+      '<p class="wl-sub journey-wave-sub"><em>Two days and two weeks of metamorphosis. Seven real artifacts made by you.</em></p>' +
       '<div class="journey-wave-wrap">' +
         '<svg class="journey-wave-svg" viewBox="0 0 1200 540" xmlns="http://www.w3.org/2000/svg" aria-label="Five-stage journey from caterpillar to butterfly">' +
           '<defs>' +
@@ -1201,46 +1074,26 @@
             '</radialGradient>' +
           '</defs>' +
           '<path d="M 130 280 C 200 280, 240 200, 290 200 C 340 200, 370 200, 400 200 C 460 200, 480 380, 540 380 C 600 380, 620 200, 680 200 C 740 200, 760 200, 780 200 C 840 200, 860 380, 920 380 C 980 380, 1000 200, 1060 200 C 1090 200, 1110 240, 1130 280" fill="none" stroke="rgba(193,125,42,0.85)" stroke-width="3" stroke-linecap="round"/>' +
-          // Node 1: Pick (peak)
-          '<g class="journey-node">' +
-            '<circle cx="345" cy="200" r="40" fill="url(#nodeGlow)"/>' +
-            '<circle cx="345" cy="200" r="22" fill="#0A0A0A" stroke="rgba(193,125,42,0.6)" stroke-width="1"/>' +
-            '<circle cx="345" cy="200" r="8" fill="#C17D2A"/>' +
-          '</g>' +
-          '<text x="345" y="105" text-anchor="middle" class="journey-label-main">Pick</text>' +
-          '<text x="345" y="135" text-anchor="middle" class="journey-label-sub">Choose one idea, one person</text>' +
-          // Node 2: Build (trough)
-          '<g class="journey-node">' +
-            '<circle cx="540" cy="380" r="40" fill="url(#nodeGlow)"/>' +
-            '<circle cx="540" cy="380" r="22" fill="#0A0A0A" stroke="rgba(193,125,42,0.6)" stroke-width="1"/>' +
-            '<circle cx="540" cy="380" r="8" fill="#C17D2A"/>' +
-          '</g>' +
+          // Idea (peak)
+          '<g class="journey-node"><circle cx="345" cy="200" r="40" fill="url(#nodeGlow)"/><circle cx="345" cy="200" r="22" fill="#0A0A0A" stroke="rgba(193,125,42,0.6)" stroke-width="1"/><circle cx="345" cy="200" r="8" fill="#C17D2A"/></g>' +
+          '<text x="345" y="105" text-anchor="middle" class="journey-label-main">Idea</text>' +
+          '<text x="345" y="135" text-anchor="middle" class="journey-label-sub">Pick one micro-venture</text>' +
+          // Build (trough)
+          '<g class="journey-node"><circle cx="540" cy="380" r="40" fill="url(#nodeGlow)"/><circle cx="540" cy="380" r="22" fill="#0A0A0A" stroke="rgba(193,125,42,0.6)" stroke-width="1"/><circle cx="540" cy="380" r="8" fill="#C17D2A"/></g>' +
           '<text x="540" y="455" text-anchor="middle" class="journey-label-main">Build</text>' +
-          '<text x="540" y="485" text-anchor="middle" class="journey-label-sub">AI app at the core</text>' +
-          // Node 3: Launch (peak)
-          '<g class="journey-node">' +
-            '<circle cx="730" cy="200" r="40" fill="url(#nodeGlow)"/>' +
-            '<circle cx="730" cy="200" r="22" fill="#0A0A0A" stroke="rgba(193,125,42,0.6)" stroke-width="1"/>' +
-            '<circle cx="730" cy="200" r="8" fill="#C17D2A"/>' +
-          '</g>' +
+          '<text x="540" y="485" text-anchor="middle" class="journey-label-sub">Working app, built with Claude</text>' +
+          // Launch (peak)
+          '<g class="journey-node"><circle cx="730" cy="200" r="40" fill="url(#nodeGlow)"/><circle cx="730" cy="200" r="22" fill="#0A0A0A" stroke="rgba(193,125,42,0.6)" stroke-width="1"/><circle cx="730" cy="200" r="8" fill="#C17D2A"/></g>' +
           '<text x="730" y="105" text-anchor="middle" class="journey-label-main">Launch</text>' +
           '<text x="730" y="135" text-anchor="middle" class="journey-label-sub">Website goes live</text>' +
-          // Node 4: Polish (trough)
-          '<g class="journey-node">' +
-            '<circle cx="920" cy="380" r="40" fill="url(#nodeGlow)"/>' +
-            '<circle cx="920" cy="380" r="22" fill="#0A0A0A" stroke="rgba(193,125,42,0.6)" stroke-width="1"/>' +
-            '<circle cx="920" cy="380" r="8" fill="#C17D2A"/>' +
-          '</g>' +
-          '<text x="920" y="455" text-anchor="middle" class="journey-label-main">Polish</text>' +
-          '<text x="920" y="485" text-anchor="middle" class="journey-label-sub">Audio &middot; video &middot; brochure</text>' +
-          // Node 5: Share (peak)
-          '<g class="journey-node">' +
-            '<circle cx="1075" cy="200" r="40" fill="url(#nodeGlow)"/>' +
-            '<circle cx="1075" cy="200" r="22" fill="#0A0A0A" stroke="rgba(193,125,42,0.6)" stroke-width="1"/>' +
-            '<circle cx="1075" cy="200" r="8" fill="#C17D2A"/>' +
-          '</g>' +
+          // Story (trough)
+          '<g class="journey-node"><circle cx="920" cy="380" r="40" fill="url(#nodeGlow)"/><circle cx="920" cy="380" r="22" fill="#0A0A0A" stroke="rgba(193,125,42,0.6)" stroke-width="1"/><circle cx="920" cy="380" r="8" fill="#C17D2A"/></g>' +
+          '<text x="920" y="455" text-anchor="middle" class="journey-label-main">Story</text>' +
+          '<text x="920" y="485" text-anchor="middle" class="journey-label-sub">Audio · video · brochure · deck</text>' +
+          // Share (peak)
+          '<g class="journey-node"><circle cx="1075" cy="200" r="40" fill="url(#nodeGlow)"/><circle cx="1075" cy="200" r="22" fill="#0A0A0A" stroke="rgba(193,125,42,0.6)" stroke-width="1"/><circle cx="1075" cy="200" r="8" fill="#C17D2A"/></g>' +
           '<text x="1075" y="105" text-anchor="middle" class="journey-label-main">Share</text>' +
-          '<text x="1075" y="135" text-anchor="middle" class="journey-label-sub">Demo Day in front of parents</text>' +
+          '<text x="1075" y="135" text-anchor="middle" class="journey-label-sub">Demo Day with parents</text>' +
           // Caterpillar (left)
           '<image href="caterpillar.png" x="20" y="240" width="160" height="120" preserveAspectRatio="xMidYMid meet" onerror="this.style.display=\'none\'"/>' +
           '<text x="100" y="395" text-anchor="middle" class="journey-bookend-label">Day one</text>' +
@@ -1250,76 +1103,68 @@
         '</svg>' +
       '</div>' +
       '<hr class="journey-wave-rule">' +
-      '<p class="journey-wave-footer">A Minifounder does not learn AI and then apply it. You build a real First Build for a real person, and the AI capability is what you pick up along the way.</p>' +
+      '<p class="journey-wave-footer">A Minifounder does not learn AI and then apply it. You build a real micro-venture, and the AI skill is what you pick up along the way.</p>' +
     '</div>';
   }
 
   function renderToolsLandscape() {
-    // ★ marks tools used in First Build for school students.
-    // For schools we keep this lighter than the college program — no chatbot/agent tools.
+    // Tools chosen carefully so no single account hits its free-tier limit.
+    // Claude.ai is reserved for the app build. Every other text task goes elsewhere.
     const categories = [
       {
-        name: 'Chat & Reasoning',
-        use: 'Your AI thinking partner. Drafts, ideas, system prompts.',
+        name: 'App Building',
+        use: 'Claude builds your HTML file. Reserved for this and nothing else.',
         tools: [
-          { name: 'Claude', pick: true },
+          { name: 'Claude.ai', pick: true }
+        ]
+      },
+      {
+        name: 'Research & Sharpen Idea',
+        use: 'Validate the venture exists. Find what works.',
+        tools: [
+          { name: 'Perplexity', pick: true },
+          { name: 'Google', pick: false },
+          { name: 'You.com', pick: false }
+        ]
+      },
+      {
+        name: 'Website & Script Copy',
+        use: 'Words for the website and scripts. Spread across tools.',
+        tools: [
           { name: 'ChatGPT', pick: true },
           { name: 'Gemini', pick: true },
-          { name: 'Grok', pick: false },
-          { name: 'DeepSeek', pick: false },
           { name: 'Copilot', pick: false }
         ]
       },
       {
-        name: 'Search & Research',
-        use: 'Finding facts. Checking that problems are real.',
+        name: 'Audio Voice',
+        use: 'Turning the script into a real voice.',
         tools: [
-          { name: 'Perplexity', pick: true },
-          { name: 'Google', pick: true },
-          { name: 'You.com', pick: false },
-          { name: 'Exa', pick: false }
+          { name: 'ElevenLabs', pick: true },
+          { name: 'PlayHT', pick: false },
+          { name: 'Suno', pick: false }
         ]
       },
       {
-        name: 'Sites & Pages',
-        use: 'Putting your First Build on a real URL.',
+        name: 'Video Recording',
+        use: 'Screen-record the walkthrough with your voice.',
+        tools: [
+          { name: 'Loom', pick: true },
+          { name: 'QuickTime', pick: false },
+          { name: 'Descript', pick: false }
+        ]
+      },
+      {
+        name: 'Site, Brochure, Deck',
+        use: 'The shopfront, the takeaway, the pitch.',
         tools: [
           { name: 'Carrd', pick: true },
           { name: 'Netlify', pick: true },
-          { name: 'Framer', pick: false },
-          { name: 'Wix', pick: false }
-        ]
-      },
-      {
-        name: 'Audio',
-        use: 'Giving your First Build a voice.',
-        tools: [
-          { name: 'ElevenLabs', pick: true },
-          { name: 'Suno', pick: false },
-          { name: 'PlayHT', pick: false }
-        ]
-      },
-      {
-        name: 'Video',
-        use: 'Showing your First Build in action.',
-        tools: [
-          { name: 'Loom', pick: true },
-          { name: 'QuickTime', pick: true },
-          { name: 'Descript', pick: false },
-          { name: 'Runway', pick: false }
-        ]
-      },
-      {
-        name: 'Brochure & Design',
-        use: 'Making the one-page PDF a visitor can share.',
-        tools: [
           { name: 'Canva', pick: true },
-          { name: 'Figma', pick: false },
-          { name: 'Gamma', pick: false }
+          { name: 'Gamma', pick: true }
         ]
       }
     ];
-
     const cards = categories.map(function (c) {
       return '<div class="cat-card">' +
         '<h3 class="cat-name">' + escapeHtml(c.name) + '</h3>' +
@@ -1333,13 +1178,45 @@
         '</div>' +
       '</div>';
     }).join('');
-
     return '<div class="wl-screen">' +
       '<div class="wl-eyebrow">The AI landscape</div>' +
-      '<h1 class="wl-title">Pick the tool. <em>Get the job done.</em></h1>' +
-      '<p class="wl-sub">The world has many AI tools. You only need a few to ship your First Build. Six small categories. Stars mark what we use this weekend. The rest is the wider field.</p>' +
+      '<h1 class="wl-title">Right tool. <em>Right task.</em></h1>' +
+      '<p class="wl-sub">Stars mark what we use this weekend. Spread across tools on purpose. No single account gets exhausted.</p>' +
       '<div class="cat-grid">' + cards + '</div>' +
-      '<p class="wl-footer">Stars are this weekend. The rest is for later.</p>' +
+      '<p class="wl-footer">Claude.ai is only for app building. Every other text task uses a different tool. This protects your Claude account.</p>' +
+    '</div>';
+  }
+
+  function renderIdeaCards() {
+    const ideas = (DATA && DATA.ideas) || [];
+    if (ideas.length === 0) {
+      return '<div class="wl-screen"><div class="wl-eyebrow">Ideas</div><h1 class="wl-title">No ideas configured.</h1></div>';
+    }
+    return '<div class="wl-screen">' +
+      '<div class="wl-eyebrow">Pick one</div>' +
+      '<h1 class="wl-title">Five micro-ventures. <em>Pick the one that pulls you.</em></h1>' +
+      '<p class="wl-sub">Each one is a real venture someone you know could actually run. Pick one and make it yours.</p>' +
+      '<div class="ideas-grid">' +
+        ideas.map(function (idea, idx) {
+          return '<div class="idea-card">' +
+            '<div class="idea-card-num">Idea ' + String(idx + 1).padStart(2, '0') + '</div>' +
+            '<div class="idea-card-name">' + escapeHtml(idea.name) + '</div>' +
+            '<div class="idea-card-row">' +
+              '<div class="idea-card-label">For whom</div>' +
+              '<div class="idea-card-value">' + escapeHtml(idea.for_whom) + '</div>' +
+            '</div>' +
+            '<div class="idea-card-row">' +
+              '<div class="idea-card-label">Problem</div>' +
+              '<div class="idea-card-value">' + escapeHtml(idea.problem) + '</div>' +
+            '</div>' +
+            '<div class="idea-card-row">' +
+              '<div class="idea-card-label">What the app does</div>' +
+              '<div class="idea-card-value">' + escapeHtml(idea.what_app_does) + '</div>' +
+            '</div>' +
+            '<div class="idea-card-real">' + escapeHtml(idea.what_makes_it_real) + '</div>' +
+          '</div>';
+        }).join('') +
+      '</div>' +
     '</div>';
   }
 
@@ -1347,15 +1224,15 @@
     if (to === 'office_hours') {
       return '<div class="phase-break">' +
         '<div class="phase-break-eyebrow">End of the weekend</div>' +
-        '<h1 class="phase-break-title">Three weeks at home.</h1>' +
-        '<p class="phase-break-sub">One hour of office hours every Saturday. WhatsApp for between-session unblocks. Demo Day in three weeks.</p>' +
+        '<h1 class="phase-break-title">Week 1: build the deck.</h1>' +
+        '<p class="phase-break-sub">Online office hours on Saturday. Bring a draft six-slide pitch deck. The room helps you sharpen it.</p>' +
       '</div>';
     }
     if (to === 'demo_day') {
       return '<div class="phase-break">' +
         '<div class="phase-break-eyebrow">Demo Day</div>' +
-        '<h1 class="phase-break-title">The day you show your parents.</h1>' +
-        '<p class="phase-break-sub">Three minutes per Minifounder. Recorded. The recording is yours for life.</p>' +
+        '<h1 class="phase-break-title">Week 2: parents in the room.</h1>' +
+        '<p class="phase-break-sub">In person. Four hours. Three minutes per Minifounder. Recorded for life.</p>' +
       '</div>';
     }
     return '';
@@ -1367,11 +1244,11 @@
       '<h1 class="stage-title">' + escapeHtml(session.title) + '</h1>' +
       '<div class="session-start-meta">' +
         '<div class="session-start-meta-item"><strong>Time</strong>' + escapeHtml(session.start_time) + ' – ' + escapeHtml(session.end_time) + '</div>' +
-        '<div class="session-start-meta-item"><strong>Length</strong>' + escapeHtml(String(session.duration_minutes)) + ' minutes</div>' +
+        '<div class="session-start-meta-item"><strong>Length</strong>' + escapeHtml(String(session.duration_minutes)) + ' min</div>' +
         (session.day ? '<div class="session-start-meta-item"><strong>Day</strong>' + escapeHtml(String(session.day)) + '</div>' : '') +
         '<div class="session-start-meta-item"><strong>Phase</strong>' + escapeHtml(session.phase || '') + '</div>' +
       '</div>' +
-      '<div class="button-row" style="margin-top: clamp(20px, 3vh, 40px);">' +
+      '<div class="button-row">' +
         '<button class="btn btn-primary" id="begin-btn">Begin Session →</button>' +
       '</div>' +
     '</div>';
@@ -1401,7 +1278,7 @@
     const items = session.hmv || [];
     return '<div class="eyebrow">The three checks</div>' +
       '<h2 class="section-title">Real person &middot; Real problem &middot; Demoable</h2>' +
-      '<p class="stage-body">Mild check, not a gate. If any of these feels wobbly, talk to the facilitator before you build further.</p>' +
+      '<p class="stage-body">Mild check, not a strict gate. If any of these feels wobbly, talk to the facilitator before you build further.</p>' +
       '<div class="hmv-grid">' +
         items.map(function (i) {
           return '<div class="hmv-card">' +
@@ -1413,14 +1290,13 @@
   }
 
   function renderPrompt(session, prompt, promptIdx) {
-    const key = session.id + ':prompt:' + promptIdx;
     return '<div class="eyebrow">A prompt to copy</div>' +
       '<h2 class="section-title">' + escapeHtml(prompt.title) + '</h2>' +
-      '<p class="stage-body">Copy this. Paste it into Claude. Then customise where you see square brackets.</p>' +
+      '<p class="stage-body">Copy this. Paste it into the tool named in the title. Customise where you see square brackets.</p>' +
       '<div class="prompt-wrap">' +
         '<div class="prompt-header">' +
           '<span>Prompt</span>' +
-          '<button class="copy-btn" id="copy-btn-' + escapeHtml(String(promptIdx)) + '" data-prompt="' + encodeURIComponent(prompt.content) + '">Copy</button>' +
+          '<button class="copy-btn" data-prompt="' + encodeURIComponent(prompt.content) + '">Copy</button>' +
         '</div>' +
         '<div class="prompt-box">' + escapeHtml(prompt.content) + '</div>' +
       '</div>';
@@ -1428,9 +1304,7 @@
 
   function renderBuild(session) {
     const items = session.build || [];
-    const allChecked = items.every(function (_, i) {
-      return loadCheck(session.id + ':build:' + i);
-    });
+    const allChecked = items.every(function (_, i) { return loadCheck(session.id + ':build:' + i); });
     return '<div class="eyebrow">What to do this session</div>' +
       '<h2 class="section-title">Build steps</h2>' +
       '<ul class="build-list">' +
@@ -1446,7 +1320,7 @@
         }).join('') +
       '</ul>' +
       '<div class="all-checked-banner ' + (allChecked ? 'show' : '') + '" id="all-checked">' +
-        '<p class="stage-body" style="margin: 0 0 16px;">All steps marked done. Move when the room is ready.</p>' +
+        '<p class="stage-body" style="margin: 0 0 14px;">All steps marked done. Move when the room is ready.</p>' +
         '<button class="btn btn-primary" id="advance-btn">Move to next →</button>' +
       '</div>';
   }
@@ -1459,7 +1333,7 @@
         items.map(function (i) {
           return '<div class="hmv-card">' +
             '<div class="hmv-axis">Check</div>' +
-            '<div class="question-card-title" style="color:var(--text); font-size:16px; margin-bottom:8px;">' + escapeHtml(i.title) + '</div>' +
+            '<div class="question-card-title" style="color:var(--text); font-size:15px; margin-bottom:6px;">' + escapeHtml(i.title) + '</div>' +
             '<div class="hmv-instruction">' + escapeHtml(i.instruction) + '</div>' +
           '</div>';
         }).join('') +
@@ -1483,7 +1357,7 @@
     return '<div class="eyebrow">End of session</div>' +
       '<h2 class="section-title">' + escapeHtml(session.title) + ' is done.</h2>' +
       '<p class="stage-body">' + (isLast ? 'You finished First Build. Look around the room.' : 'Stretch. Refill water. Then the next session.') + '</p>' +
-      (!isLast ? '<div class="button-row" style="margin-top: clamp(20px, 3vh, 40px);"><button class="btn btn-ghost" id="continue-btn">' + (session.break_after ? 'Begin break' : 'Next session') + ' →</button></div>' : '');
+      (!isLast ? '<div class="button-row"><button class="btn btn-ghost" id="continue-btn">' + (session.break_after ? 'Begin break' : 'Next session') + ' →</button></div>' : '');
   }
 
   function renderBreak(session) {
@@ -1493,7 +1367,7 @@
       '<h1 class="break-heading">Pause.</h1>' +
       '<div class="break-timer" id="break-display">' + String(minutes).padStart(2, '0') + ':00</div>' +
       '<p class="break-note">Water. Bathroom. Stretch. Come back at the timer.</p>' +
-      '<div class="button-row" style="justify-content:center; margin-top: clamp(16px, 2vh, 28px);"><button class="btn btn-primary" id="skip-break-btn">Resume now →</button></div>' +
+      '<div class="button-row" style="justify-content:center;"><button class="btn btn-primary" id="skip-break-btn">Resume now →</button></div>' +
     '</div>';
   }
 
@@ -1504,6 +1378,9 @@
     const screen = SCREENS[currentScreenIdx];
     if (!screen) return;
 
+    // Clear any break timer that might be running
+    if (breakTimerInterval) { clearInterval(breakTimerInterval); breakTimerInterval = null; }
+
     let html = '';
     switch (screen.type) {
       case 'welcome': html = renderWelcome(); break;
@@ -1511,6 +1388,7 @@
       case 'artifacts': html = renderArtifacts(); break;
       case 'journey-map': html = renderJourneyMap(); break;
       case 'tools-landscape': html = renderToolsLandscape(); break;
+      case 'idea-cards': html = renderIdeaCards(); break;
       case 'phase-break': html = renderPhaseBreak(screen.to); break;
       case 'session-start': html = renderSessionStart(screen.session); break;
       case 'stage-text': html = renderStageText(screen.session); break;
@@ -1545,7 +1423,7 @@
       eyebrow.textContent = 'First Build';
       const titles = {
         'welcome': 'Welcome',
-        'housekeeping': 'Portfolio URL',
+        'housekeeping': 'Portfolio Page',
         'artifacts': 'What you make',
         'journey-map': 'The journey',
         'tools-landscape': 'The AI landscape',
@@ -1559,6 +1437,7 @@
       const labels = {
         'session-start': 'Start',
         'stage-text': 'Set the stage',
+        'idea-cards': '5 idea cards',
         'questions': 'Questions',
         'hmv': 'The three checks',
         'prompt': 'Prompt',
@@ -1574,10 +1453,7 @@
 
   function updateProgress() {
     const screen = SCREENS[currentScreenIdx];
-    if (!screen.session) {
-      $('#progress').innerHTML = '';
-      return;
-    }
+    if (!screen.session) { $('#progress').innerHTML = ''; return; }
     const sessionId = screen.session.id;
     const sessionScreens = SCREENS.filter(function (s) { return s.session && s.session.id === sessionId; });
     const indices = SCREENS.map(function (s, i) { return (s.session && s.session.id === sessionId) ? i : -1; }).filter(function (i) { return i !== -1; });
@@ -1592,7 +1468,7 @@
   }
 
   // ============================================================
-  // TIMER (countdown, matches college platform)
+  // TIMER (countdown — hidden on intro screens)
   // ============================================================
   function setupTimer(session) {
     stopTimer();
@@ -1601,6 +1477,7 @@
     timer.sessionId = session.id;
     timer.running = false;
     timer.paused = false;
+    showTimer();
     updateTimerDisplay();
   }
   function startTimer() {
@@ -1624,11 +1501,7 @@
     timer.totalSeconds = 0;
     timer.remainingSeconds = 0;
     timer.sessionId = null;
-    const el = $('#timer');
-    if (el) {
-      el.textContent = '--:--';
-      el.className = 'timer';
-    }
+    hideTimer();
   }
   function tickTimer() {
     if (timer.paused) return;
@@ -1636,11 +1509,8 @@
     updateTimerDisplay();
   }
   function toggleTimer() {
-    if (!timer.running && timer.totalSeconds > 0) {
-      startTimer();
-    } else if (timer.running) {
-      pauseTimer();
-    }
+    if (!timer.running && timer.totalSeconds > 0) startTimer();
+    else if (timer.running) pauseTimer();
   }
   function fmtTime(seconds) {
     const neg = seconds < 0;
@@ -1649,42 +1519,31 @@
     const sec = s % 60;
     return (neg ? '-' : '') + String(m).padStart(2, '0') + ':' + String(sec).padStart(2, '0');
   }
+  function showTimer() { $('#timer').classList.remove('hidden'); }
+  function hideTimer() { $('#timer').classList.add('hidden'); }
   function updateTimerDisplay() {
     const el = $('#timer');
     if (!el) return;
-    if (!timer.running && !timer.totalSeconds) {
-      el.textContent = '--:--';
-      el.className = 'timer';
-      return;
-    }
+    if (timer.totalSeconds <= 0) { el.textContent = '--:--'; el.className = 'timer hidden'; return; }
     el.textContent = fmtTime(timer.remainingSeconds);
     el.className = 'timer';
     if (timer.paused) el.classList.add('paused');
     if (timer.remainingSeconds <= 0) el.classList.add('overrun');
-    else if (timer.remainingSeconds <= 5 * 60) el.classList.add('overrun');
+    else if (timer.remainingSeconds <= 5 * 60) el.classList.add('warning');
   }
-
-  // Decide what the timer should do whenever screen changes
   function syncTimerForScreen() {
     const screen = SCREENS[currentScreenIdx];
     if (!screen) return;
-    // Session screens: setup if entering a new session, otherwise leave alone
     if (screen.session) {
+      // Inside a real workshop session
       if (timer.sessionId !== screen.session.id) {
-        // Different session — set up countdown but don't start until Begin is pressed
-        if (screen.type === 'session-start') {
-          setupTimer(screen.session);
-        } else {
-          // Mid-session screens entered via jump menu — also set up, but don't start
-          setupTimer(screen.session);
-        }
+        setupTimer(screen.session);
+      } else {
+        showTimer();
       }
     } else {
-      // Non-session screen (welcome, housekeeping, journey, tools, phase-break, break)
-      // Stop timer except during break (which has its own countdown)
-      if (screen.type !== 'break') {
-        stopTimer();
-      }
+      // Non-session screen — hide the timer entirely (no --:--)
+      stopTimer();
     }
   }
 
@@ -1736,7 +1595,7 @@
   }
 
   // ============================================================
-  // WIRE SCREEN EVENTS
+  // WIRE EVENTS
   // ============================================================
   function wireScreenEvents() {
     const startBtn = $('#start-btn');
@@ -1748,7 +1607,6 @@
     const advanceBtn = $('#advance-btn');
     if (advanceBtn) advanceBtn.addEventListener('click', function () { go(1); });
 
-    // Copy buttons
     document.querySelectorAll('.copy-btn').forEach(function (btn) {
       btn.addEventListener('click', function () {
         const text = decodeURIComponent(btn.getAttribute('data-prompt') || '');
@@ -1760,34 +1618,33 @@
       });
     });
 
-    // Build checklist
     document.querySelectorAll('.build-item').forEach(function (item) {
       item.addEventListener('click', function () {
         const key = item.getAttribute('data-key');
         const isChecked = item.classList.toggle('checked');
         saveCheck(key, isChecked);
-        // refresh all-checked banner
-        const allItems = document.querySelectorAll('.build-item');
-        const all = Array.from(allItems).every(function (i) { return i.classList.contains('checked'); });
+        const all = Array.from(document.querySelectorAll('.build-item')).every(function (i) { return i.classList.contains('checked'); });
         const banner = $('#all-checked');
         if (banner) banner.classList.toggle('show', all);
       });
     });
 
-    // Break timer
     const breakDisplay = $('#break-display');
     if (breakDisplay) {
       const screen = SCREENS[currentScreenIdx];
       let remaining = (screen.session.break_duration_minutes || 15) * 60;
-      const tick = setInterval(function () {
+      breakTimerInterval = setInterval(function () {
         remaining--;
-        if (remaining < 0) { clearInterval(tick); breakDisplay.textContent = '00:00'; return; }
+        if (remaining < 0) { clearInterval(breakTimerInterval); breakTimerInterval = null; breakDisplay.textContent = '00:00'; return; }
         const m = Math.floor(remaining / 60);
         const s = remaining % 60;
         breakDisplay.textContent = String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
       }, 1000);
       const skipBtn = $('#skip-break-btn');
-      if (skipBtn) skipBtn.addEventListener('click', function () { clearInterval(tick); go(1); });
+      if (skipBtn) skipBtn.addEventListener('click', function () {
+        if (breakTimerInterval) { clearInterval(breakTimerInterval); breakTimerInterval = null; }
+        go(1);
+      });
     }
   }
 
@@ -1814,9 +1671,8 @@
     $('#prev-btn').addEventListener('click', function () { go(-1); });
     $('#next-btn').addEventListener('click', function () { go(1); });
     $('#timer').addEventListener('click', toggleTimer);
-    $('#jump-btn').addEventListener('click', toggleJumpMenu);
+    $('#jump-btn').addEventListener('click', function (e) { e.stopPropagation(); toggleJumpMenu(); });
     document.addEventListener('keydown', onKey);
-    // Click outside jump menu closes it
     document.addEventListener('click', function (e) {
       if (!$('#jump-wrap').contains(e.target)) {
         $('#jump-menu').classList.remove('open');
@@ -1839,6 +1695,5 @@
 
 })();
 </script>
-
 </body>
 </html>

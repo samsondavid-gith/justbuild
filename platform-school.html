@@ -54,7 +54,8 @@
   body {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    height: 100vh;
+    min-height: 0;
   }
 
   /* ----- Top bar ----- */
@@ -162,9 +163,10 @@
   /* ----- Main stage ----- */
   .stage {
     flex: 1 1 auto;
+    min-height: 0;
     overflow-y: auto;
     overflow-x: hidden;
-    padding: 64px 96px;
+    padding: clamp(24px, 4vh, 56px) clamp(24px, 6vw, 96px);
     scroll-behavior: smooth;
   }
   .stage::-webkit-scrollbar { width: 8px; }
@@ -224,19 +226,19 @@
   }
   h1.stage-title {
     font-family: var(--serif);
-    font-size: clamp(36px, 5vw, 56px);
+    font-size: clamp(28px, 4.5vh, 48px);
     font-weight: 400;
     line-height: 1.08;
     letter-spacing: -0.02em;
-    margin-bottom: 28px;
+    margin-bottom: clamp(16px, 2.5vh, 28px);
     max-width: 22ch;
   }
   h2.section-title {
     font-family: var(--serif);
-    font-size: clamp(22px, 2.6vw, 30px);
+    font-size: clamp(20px, 2.8vh, 28px);
     font-weight: 500;
     letter-spacing: -0.01em;
-    margin: 48px 0 20px;
+    margin: clamp(24px, 4vh, 48px) 0 clamp(12px, 2vh, 20px);
     color: var(--text);
   }
   h3.sub-title {
@@ -249,10 +251,10 @@
   }
   p.stage-body {
     font-family: var(--sans);
-    font-size: 19px;
+    font-size: clamp(15px, 1.9vh, 18px);
     line-height: 1.55;
     color: var(--text-soft);
-    margin-bottom: 18px;
+    margin-bottom: clamp(12px, 1.5vh, 18px);
     max-width: 60ch;
   }
   p.stage-body strong { color: var(--text); font-weight: 600; }
@@ -469,21 +471,21 @@
   /* ----- Welcome screen ----- */
   .hero {
     text-align: center;
-    padding: 80px 0 40px;
+    padding: clamp(20px, 4vh, 48px) 0 clamp(16px, 3vh, 32px);
   }
   .hero-logo {
-    width: 96px; height: auto;
-    margin: 0 auto 28px;
+    width: clamp(56px, 8vh, 96px); height: auto;
+    margin: 0 auto clamp(16px, 2.5vh, 28px);
     opacity: 0.95;
   }
   .hero-eyebrow {
     font-size: 12px; letter-spacing: 0.32em; text-transform: uppercase;
     color: var(--accent); font-weight: 500;
-    margin-bottom: 36px;
+    margin-bottom: clamp(18px, 3vh, 36px);
   }
   .hero-title {
     font-family: var(--serif);
-    font-size: clamp(72px, 12vw, 144px);
+    font-size: clamp(56px, 14vh, 128px);
     font-weight: 300;
     letter-spacing: -0.04em;
     line-height: 0.92;
@@ -492,11 +494,11 @@
   .hero-title.brand { letter-spacing: 0.04em; font-weight: 700; }
   .hero-rule {
     width: 64px; height: 1px; background: var(--accent); border: 0;
-    margin: 40px auto;
+    margin: clamp(20px, 3vh, 40px) auto;
   }
   .hero-meta {
     font-family: var(--serif);
-    font-size: 20px;
+    font-size: clamp(15px, 1.8vh, 20px);
     font-style: italic;
     color: var(--text-soft);
     font-weight: 300;
@@ -504,31 +506,32 @@
 
   /* ----- Welcome variants (housekeeping, two-doors, journey-map) ----- */
   .wl-screen {
-    padding: 24px 0;
+    padding: clamp(8px, 1.5vh, 24px) 0;
   }
   .wl-eyebrow {
     font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase;
-    color: var(--accent); font-weight: 500; margin-bottom: 28px;
+    color: var(--accent); font-weight: 500;
+    margin-bottom: clamp(14px, 2vh, 28px);
   }
   .wl-title {
     font-family: var(--serif);
-    font-size: clamp(42px, 6vw, 72px);
+    font-size: clamp(32px, 5.5vh, 60px);
     font-weight: 300;
     letter-spacing: -0.025em;
     line-height: 1.0;
-    margin-bottom: 28px;
+    margin-bottom: clamp(14px, 2vh, 28px);
     max-width: 18ch;
   }
   .wl-title em { color: var(--accent); font-style: italic; font-weight: 400; }
   .wl-sub {
     font-family: var(--serif);
-    font-size: 22px;
+    font-size: clamp(16px, 2vh, 22px);
     font-style: italic;
     line-height: 1.4;
     color: var(--text-soft);
     font-weight: 300;
     max-width: 36ch;
-    margin-bottom: 32px;
+    margin-bottom: clamp(16px, 2.5vh, 32px);
   }
 
   /* ----- Journey wave ----- */
@@ -637,34 +640,35 @@
   /* ----- Phase break ----- */
   .phase-break {
     text-align: center;
-    padding: 100px 0;
+    padding: clamp(20px, 4vh, 56px) 0;
   }
   .phase-break-eyebrow {
     font-size: 12px; letter-spacing: 0.32em; text-transform: uppercase;
-    color: var(--accent); font-weight: 500; margin-bottom: 32px;
+    color: var(--accent); font-weight: 500;
+    margin-bottom: clamp(16px, 3vh, 32px);
   }
   .phase-break-title {
     font-family: var(--serif);
-    font-size: clamp(48px, 7vw, 88px);
+    font-size: clamp(44px, 7vh, 80px);
     font-weight: 300;
     letter-spacing: -0.025em;
     line-height: 1.0;
-    margin-bottom: 24px;
+    margin-bottom: clamp(14px, 2vh, 24px);
   }
   .phase-break-sub {
     font-family: var(--serif);
     font-style: italic;
-    font-size: 22px;
+    font-size: clamp(16px, 2vh, 22px);
     color: var(--text-soft);
     font-weight: 300;
     max-width: 36ch;
-    margin: 0 auto 40px;
+    margin: 0 auto clamp(20px, 3vh, 40px);
     line-height: 1.4;
   }
 
   /* ----- Session start ----- */
   .session-start {
-    padding: 40px 0;
+    padding: clamp(16px, 3vh, 40px) 0;
   }
   .session-start-meta {
     display: flex; flex-wrap: wrap; gap: 24px;
@@ -689,25 +693,35 @@
   /* ----- Break screen ----- */
   .break-screen {
     text-align: center;
-    padding: 100px 0;
+    padding: clamp(16px, 3vh, 32px) 0;
   }
   .break-eyebrow {
     font-size: 12px; letter-spacing: 0.28em; text-transform: uppercase;
-    color: var(--accent); font-weight: 500; margin-bottom: 28px;
+    color: var(--accent); font-weight: 500;
+    margin-bottom: clamp(14px, 2vh, 24px);
+  }
+  .break-heading {
+    font-family: var(--serif);
+    font-size: clamp(40px, 6vh, 72px);
+    font-weight: 300;
+    letter-spacing: -0.025em;
+    line-height: 1.0;
+    margin-bottom: clamp(16px, 2vh, 28px);
   }
   .break-timer {
     font-family: var(--mono);
-    font-size: clamp(80px, 14vw, 160px);
-    color: var(--text);
-    letter-spacing: 0.04em;
-    margin: 32px 0;
+    font-size: clamp(72px, 16vh, 200px);
+    color: var(--accent);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin: clamp(16px, 2vh, 28px) 0;
     font-weight: 400;
   }
   .break-note {
     font-family: var(--serif);
     font-style: italic;
     color: var(--text-muted);
-    font-size: 18px;
+    font-size: clamp(14px, 1.8vh, 18px);
   }
 
   /* ----- Login overlay ----- */
@@ -766,10 +780,10 @@
   .login-error.show { display: block; }
 
   /* ----- Stage text paragraphs ----- */
-  .stage-text { margin: 28px 0; }
+  .stage-text { margin: clamp(16px, 2.5vh, 28px) 0; }
   .stage-text p {
-    font-size: 19px; line-height: 1.55; color: var(--text-soft);
-    margin-bottom: 20px; max-width: 62ch;
+    font-size: clamp(15px, 1.9vh, 18px); line-height: 1.55; color: var(--text-soft);
+    margin-bottom: clamp(12px, 1.8vh, 20px); max-width: 62ch;
   }
 
   /* ----- Responsive ----- */
@@ -1015,7 +1029,7 @@
       '<h1 class="hero-title brand">FIRST<br>BUILD</h1>' +
       '<hr class="hero-rule">' +
       '<p class="hero-meta">Two days &middot; Three weeks &middot; One portfolio</p>' +
-      '<div class="button-row" style="justify-content:center; margin-top: 56px;">' +
+      '<div class="button-row" style="justify-content:center; margin-top: clamp(20px, 3vh, 40px);">' +
         '<button class="btn btn-primary" id="start-btn">Begin →</button>' +
       '</div>' +
     '</div>';
@@ -1158,7 +1172,7 @@
         (session.day ? '<div class="session-start-meta-item"><strong>Day</strong>' + escapeHtml(String(session.day)) + '</div>' : '') +
         '<div class="session-start-meta-item"><strong>Phase</strong>' + escapeHtml(session.phase || '') + '</div>' +
       '</div>' +
-      '<div class="button-row" style="margin-top: 48px;">' +
+      '<div class="button-row" style="margin-top: clamp(20px, 3vh, 40px);">' +
         '<button class="btn btn-primary" id="begin-btn">Begin Session →</button>' +
       '</div>' +
     '</div>';
@@ -1270,17 +1284,17 @@
     return '<div class="eyebrow">End of session</div>' +
       '<h2 class="section-title">' + escapeHtml(session.title) + ' is done.</h2>' +
       '<p class="stage-body">' + (isLast ? 'You finished First Build. Look around the room.' : 'Stretch. Refill water. Then the next session.') + '</p>' +
-      (!isLast ? '<div class="button-row" style="margin-top: 48px;"><button class="btn btn-ghost" id="continue-btn">' + (session.break_after ? 'Begin break' : 'Next session') + ' →</button></div>' : '');
+      (!isLast ? '<div class="button-row" style="margin-top: clamp(20px, 3vh, 40px);"><button class="btn btn-ghost" id="continue-btn">' + (session.break_after ? 'Begin break' : 'Next session') + ' →</button></div>' : '');
   }
 
   function renderBreak(session) {
     const minutes = session.break_duration_minutes || 15;
     return '<div class="break-screen">' +
       '<div class="break-eyebrow">Break</div>' +
-      '<h1 class="phase-break-title">Pause.</h1>' +
+      '<h1 class="break-heading">Pause.</h1>' +
       '<div class="break-timer" id="break-display">' + String(minutes).padStart(2, '0') + ':00</div>' +
       '<p class="break-note">Water. Bathroom. Stretch. Come back at the timer.</p>' +
-      '<div class="button-row" style="justify-content:center; margin-top: 32px;"><button class="btn btn-primary" id="skip-break-btn">Resume now →</button></div>' +
+      '<div class="button-row" style="justify-content:center; margin-top: clamp(16px, 2vh, 28px);"><button class="btn btn-primary" id="skip-break-btn">Resume now →</button></div>' +
     '</div>';
   }
 

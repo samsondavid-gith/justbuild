@@ -1,0 +1,3886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Just Build  /  Facilitator Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Inter:ital,wght@0,300..700;1,300..700&family=JetBrains+Mono:wght@400..600&display=swap" rel="stylesheet">
+<style>
+  /* ========================================
+     Just Build  /  Facilitator Platform
+     Dark mode. Optimised for projection.
+     ======================================== */
+
+  :root {
+    --bg:            #0A0A0A;
+    --bg-elev-1:    #141414;
+    --bg-elev-2:    #1C1C1C;
+    --line:          rgba(255,255,255,0.08);
+    --line-strong:   rgba(255,255,255,0.16);
+    --text:          #FFFFFF;
+    --text-soft:     #C8C8C8;
+    --text-muted:    #8A8A8A;
+    --text-faint:    #5A5A5A;
+    --accent:        #C17D2A;
+    --accent-soft:   rgba(193, 125, 42, 0.18);
+    --accent-glow:   rgba(193, 125, 42, 0.35);
+    --warning:       #E8B53A;
+    --danger:        #D7553A;
+    --serif:         'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --sans:          'Inter', system-ui, -apple-system, sans-serif;
+    --mono:          'JetBrains Mono', 'SF Mono', Menlo, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    height: 100%;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 18px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  /* ----- Top bar ----- */
+  .topbar {
+    flex: 0 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 32px;
+    padding: 18px 40px;
+    border-bottom: 1px solid var(--line);
+    background: var(--bg);
+    z-index: 5;
+  }
+  .topbar.hidden { display: none; }
+
+  .topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .topbar-logo {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+  .topbar-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .topbar-title {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+  .topbar-section {
+    font-size: 13px;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+  }
+
+  .topbar-center {
+    display: flex;
+    justify-content: center;
+  }
+
+  .timer {
+    font-family: var(--mono);
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--text);
+    padding: 6px 18px;
+    border: 1px solid var(--line-strong);
+    border-radius: 4px;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.2s ease;
+    min-width: 130px;
+    text-align: center;
+  }
+  .timer:hover { border-color: var(--accent); }
+  .timer.paused { color: var(--text-muted); border-style: dashed; }
+  .timer.warning { color: var(--warning); border-color: rgba(232, 181, 58, 0.4); }
+  .timer.danger { color: var(--danger); border-color: rgba(215, 85, 58, 0.5); }
+  .timer.expired { animation: pulse 2s ease-in-out infinite; color: var(--danger); }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.55; }
+  }
+
+  .topbar-right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-muted);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+  }
+  .progress {
+    display: flex;
+    gap: 4px;
+  }
+  .progress-dot {
+    width: 18px;
+    height: 3px;
+    background: var(--line-strong);
+    border-radius: 1px;
+    transition: background 0.3s ease;
+  }
+  .progress-dot.done { background: var(--text-faint); }
+  .progress-dot.active { background: var(--accent); }
+
+  /* ----- Jump-to-session picker ----- */
+  .jump-wrap {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+  }
+  .jump-btn {
+    appearance: none;
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .jump-btn:hover { color: var(--text); border-color: var(--line-strong); }
+  .jump-btn svg { opacity: 0.6; transition: transform 0.2s ease; }
+  .jump-wrap.open .jump-btn svg { transform: rotate(180deg); }
+
+  .jump-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 380px;
+    max-height: 70vh;
+    overflow-y: auto;
+    background: var(--bg-elev-1);
+    border: 1px solid var(--line-strong);
+    border-radius: 6px;
+    padding: 8px;
+    box-shadow: 0 18px 48px -12px rgba(0, 0, 0, 0.6);
+    display: none;
+    z-index: 50;
+  }
+  .jump-wrap.open .jump-menu { display: block; }
+  .jump-group {
+    padding: 12px 12px 6px;
+  }
+  .jump-group-label {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+  .jump-item {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 9px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: var(--text-soft);
+    font-size: 14px;
+    line-height: 1.4;
+    transition: background 0.12s ease, color 0.12s ease;
+  }
+  .jump-item:hover { background: var(--bg-elev-2); color: var(--text); }
+  .jump-item.current { background: rgba(193, 125, 42, 0.12); color: var(--text); }
+  .jump-item-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    min-width: 36px;
+    letter-spacing: 0.04em;
+  }
+  .jump-item.current .jump-item-num { color: var(--accent); }
+  .jump-item-title {
+    flex: 1;
+  }
+  .jump-item-time {
+    font-size: 11px;
+    color: var(--text-faint);
+    font-family: var(--mono);
+  }
+
+  /* ----- Office Hours screen ----- */
+  .oh-screen {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .oh-section {
+    margin-top: 40px;
+  }
+  .oh-section-label {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+  .oh-agenda {
+    list-style: none;
+    counter-reset: agenda;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .oh-agenda li {
+    counter-increment: agenda;
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    color: var(--text-soft);
+    font-size: 18px;
+    line-height: 1.5;
+    padding-left: 0;
+  }
+  .oh-agenda li::before {
+    content: counter(agenda, decimal-leading-zero);
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    min-width: 36px;
+    padding-top: 4px;
+    letter-spacing: 0.04em;
+  }
+  .oh-stuck-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .oh-stuck {
+    padding: 20px 24px;
+    background: var(--bg-elev-1);
+    border-left: 2px solid var(--accent);
+    border-radius: 0 4px 4px 0;
+  }
+  .oh-stuck-title {
+    font-family: var(--serif);
+    font-size: 19px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+  .oh-stuck-resolution {
+    color: var(--text-soft);
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  .oh-prompts {
+    list-style: none;
+    counter-reset: oh-prompt;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .oh-prompt-item {
+    counter-increment: oh-prompt;
+    padding: 16px 18px 16px 48px;
+    background: rgba(193,125,42,0.06);
+    border: 1px solid var(--accent-soft);
+    border-radius: 4px;
+    position: relative;
+  }
+  .oh-prompt-item::before {
+    content: counter(oh-prompt, decimal-leading-zero);
+    position: absolute;
+    left: 14px;
+    top: 14px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .oh-prompt-title {
+    font-family: var(--serif);
+    font-size: 16px;
+    color: var(--text);
+    line-height: 1.4;
+  }
+  .oh-prompt-note {
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--text-muted);
+    text-align: center;
+  }
+  .oh-prompt-note strong {
+    font-family: var(--mono);
+    color: var(--accent);
+    font-weight: 500;
+  }
+  @media (max-width: 800px) {
+    .oh-prompts { grid-template-columns: 1fr; }
+  }
+  .oh-qa, .oh-homework {
+    padding: 22px 26px;
+    background: var(--bg-elev-1);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    color: var(--text-soft);
+    font-size: 17px;
+    line-height: 1.55;
+  }
+
+  /* ----- Milestone screen indicator ----- */
+  .milestone-banner {
+    background: rgba(193, 125, 42, 0.08);
+    border: 1px solid rgba(193, 125, 42, 0.25);
+    padding: 14px 22px;
+    border-radius: 4px;
+    color: var(--accent);
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    text-align: center;
+    font-weight: 500;
+  }
+
+  /* ----- Workshop-complete portfolio-contents panel ----- */
+  .wc-contents {
+    margin: 32px auto 40px;
+    padding: 24px 28px;
+    background: var(--bg-elev-1);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    max-width: 920px;
+  }
+  .wc-contents-label {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+  .wc-contents-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px 24px;
+  }
+  .wc-contents-list li {
+    color: var(--text-soft);
+    font-size: 15px;
+    line-height: 1.4;
+  }
+  .wc-contents-list li strong {
+    display: inline-block;
+    min-width: 28px;
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+  @media (max-width: 880px) {
+    .wc-contents-list { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* ----- Stage / main area ----- */
+  .stage {
+    flex: 1 1 auto;
+    display: flex;
+    padding: 32px 60px 64px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    /* When content exceeds viewport, allow scroll instead of clipping the bottom */
+    scrollbar-width: thin;
+    scrollbar-color: var(--line-strong) transparent;
+  }
+  .stage::-webkit-scrollbar { width: 8px; }
+  .stage::-webkit-scrollbar-track { background: transparent; }
+  .stage::-webkit-scrollbar-thumb {
+    background: var(--line-strong);
+    border-radius: 4px;
+  }
+  .stage::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+  .screen {
+    width: 100%;
+    max-width: 1100px;
+    margin: auto;
+    animation: fadeUp 0.42s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .label {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 14px;
+  }
+
+  /* ----- Welcome / session-start / session-end ----- */
+  .hero {
+    text-align: center;
+    padding: 8px 0;
+  }
+  .hero-logo {
+    display: block;
+    width: 100px;
+    height: auto;
+    margin: 0 auto 20px;
+    opacity: 0.98;
+  }
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 18px;
+    font-weight: 500;
+  }
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(56px, 8vw, 120px);
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin-bottom: 18px;
+  }
+  .hero-title.brand {
+    color: var(--accent);
+    font-weight: 400;
+  }
+  .hero-sub {
+    font-family: var(--serif);
+    font-size: clamp(18px, 2.0vw, 28px);
+    color: var(--text-soft);
+    font-style: italic;
+    font-weight: 300;
+    letter-spacing: -0.005em;
+    margin-bottom: 8px;
+  }
+  .hero-meta {
+    color: var(--text-muted);
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    margin-top: 6px;
+  }
+  .hero-rule {
+    width: 64px;
+    height: 1px;
+    background: var(--accent);
+    margin: 24px auto;
+    border: none;
+  }
+  .hero-rule.thin { width: 40px; opacity: 0.6; }
+
+  .button-row {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+  }
+
+  /* ----- Stage (set the stage) ----- */
+  .stage-text {
+    font-family: var(--serif);
+    font-size: clamp(18px, 1.7vw, 24px);
+    line-height: 1.45;
+    color: var(--text);
+    font-weight: 300;
+    letter-spacing: -0.005em;
+    max-width: 62ch;
+  }
+  .stage-text p {
+    margin: 0 0 0.85em 0;
+  }
+  .stage-text p:last-child {
+    margin-bottom: 0;
+  }
+  .facilitator-note {
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px dashed var(--line);
+    color: var(--text-muted);
+    font-size: 13px;
+    font-style: italic;
+    letter-spacing: 0.01em;
+    max-width: 62ch;
+  }
+
+  /* ----- Question ----- */
+  .question-title {
+    font-family: var(--serif);
+    font-size: clamp(32px, 4.2vw, 56px);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+  }
+  .question-body {
+    font-size: clamp(15px, 1.3vw, 19px);
+    color: var(--text-soft);
+    line-height: 1.55;
+    max-width: 62ch;
+    margin-bottom: 20px;
+  }
+
+  /* ----- HMV ----- */
+  .hmv-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .hmv-panel {
+    background: var(--bg-elev-1);
+    border: 1px solid var(--line);
+    border-top: 2px solid var(--accent);
+    padding: 18px 18px;
+    border-radius: 2px;
+  }
+  .hmv-name {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--accent);
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+  .hmv-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .hmv-list li {
+    font-size: 13px;
+    color: var(--text-soft);
+    line-height: 1.5;
+    padding-left: 14px;
+    position: relative;
+  }
+  .hmv-list li::before {
+    content: "/";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 500;
+  }
+  @media (max-width: 1000px) {
+    .hmv-grid { grid-template-columns: 1fr; gap: 12px; }
+  }
+
+  /* ----- Prompt ----- */
+  .prompt-title {
+    font-family: var(--serif);
+    font-size: clamp(24px, 2.8vw, 36px);
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    margin-bottom: 8px;
+  }
+  .prompt-tool {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    padding: 8px 14px;
+    margin-bottom: 14px;
+    font-size: 13px;
+    color: var(--bg);
+    box-shadow: 0 0 0 3px rgba(193, 125, 42, 0.18);
+  }
+  .prompt-tool::before {
+    content: "USE";
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    color: var(--bg);
+    font-weight: 700;
+    padding-right: 10px;
+    border-right: 1px solid rgba(10, 10, 10, 0.4);
+    opacity: 0.85;
+  }
+  .prompt-tool strong {
+    color: var(--bg);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: -0.005em;
+  }
+  .prompt-box {
+    background: #050505;
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    padding: 16px 20px;
+    font-family: var(--mono);
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--text-soft);
+    white-space: pre-wrap;
+    word-break: break-word;
+    border-radius: 2px;
+    margin-bottom: 12px;
+    max-height: 40vh;
+    overflow-y: auto;
+  }
+  .prompt-box::-webkit-scrollbar { width: 8px; }
+  .prompt-box::-webkit-scrollbar-track { background: transparent; }
+  .prompt-box::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 4px; }
+
+  .copy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--accent);
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 22px;
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.18s ease;
+  }
+  .copy-btn:hover { background: #D08A33; transform: translateY(-1px); }
+  .copy-btn.copied { background: #2C8A4F; pointer-events: none; }
+
+  /* ----- Build ----- */
+  .build-list {
+    list-style: none;
+    counter-reset: build;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+  .build-item {
+    counter-increment: build;
+    display: grid;
+    grid-template-columns: 42px 1fr;
+    gap: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+  }
+  .build-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .build-item::before {
+    content: counter(build, decimal-leading-zero);
+    font-family: var(--serif);
+    font-size: 22px;
+    color: var(--accent);
+    font-weight: 400;
+    line-height: 1;
+    padding-top: 3px;
+  }
+  .build-item h3 {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 500;
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+  }
+  .build-item p {
+    color: var(--text-soft);
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  /* For sessions with many build steps (6+), use two-column grid */
+  .build-list.compact {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 28px;
+  }
+  .build-list.compact .build-item {
+    padding-bottom: 8px;
+    grid-template-columns: 32px 1fr;
+    gap: 10px;
+  }
+  .build-list.compact .build-item::before {
+    font-size: 18px;
+  }
+  .build-list.compact .build-item h3 {
+    font-size: 15px;
+  }
+  .build-list.compact .build-item p {
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  /* ----- Test Output ----- */
+  .test-intro {
+    color: var(--text-soft);
+    font-size: 14px;
+    margin-bottom: 14px;
+  }
+  .test-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+  .test-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 14px;
+    background: var(--bg-elev-1);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .test-item:hover { border-color: var(--line-strong); }
+  .test-item.checked {
+    background: rgba(193, 125, 42, 0.08);
+    border-color: var(--accent);
+  }
+  .checkbox {
+    flex: 0 0 20px;
+    width: 20px;
+    height: 20px;
+    border: 1.5px solid var(--text-muted);
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+    transition: all 0.2s ease;
+  }
+  .test-item.checked .checkbox {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+  .checkbox svg {
+    width: 12px;
+    height: 12px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  .test-item.checked .checkbox svg { opacity: 1; }
+  .test-content h4 {
+    font-family: var(--serif);
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 3px;
+    color: var(--text);
+  }
+  .test-content p {
+    color: var(--text-soft);
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .all-checked-banner {
+    display: none;
+    text-align: center;
+    padding: 28px;
+    border: 1px solid var(--accent);
+    background: var(--accent-soft);
+    border-radius: 2px;
+    animation: fadeUp 0.4s ease;
+  }
+  .all-checked-banner.show { display: block; }
+
+  /* ----- Break ----- */
+  .break {
+    text-align: center;
+  }
+  .break-timer {
+    font-family: var(--mono);
+    font-size: clamp(120px, 22vw, 280px);
+    color: var(--accent);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    margin-bottom: 32px;
+  }
+  .break-label {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--text-soft);
+    font-style: italic;
+  }
+  .break-next {
+    color: var(--text-muted);
+    margin-top: 16px;
+    font-size: 14px;
+    letter-spacing: 0.04em;
+  }
+  .break-over {
+    font-family: var(--serif);
+    font-size: clamp(48px, 7vw, 96px);
+    font-weight: 400;
+  }
+
+  /* ----- Buttons ----- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 36px;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s ease;
+    border: none;
+    text-decoration: none;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #FFFFFF;
+  }
+  .btn-primary:hover { background: #D08A33; transform: translateY(-1px); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--text-soft);
+    border: 1px solid var(--line-strong);
+  }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ----- Bottom bar ----- */
+  .bottombar {
+    flex: 0 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 24px;
+    padding: 16px 40px;
+    border-top: 1px solid var(--line);
+    background: var(--bg);
+  }
+  .bottombar.hidden { display: none; }
+
+  .nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 22px;
+    background: transparent;
+    color: var(--text-soft);
+    border: 1px solid var(--line-strong);
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s ease;
+  }
+  .nav-btn:hover:not(:disabled) {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+  .nav-prev { justify-self: start; }
+  .nav-next { justify-self: end; }
+
+  .hmv-reminder {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--serif);
+    font-size: 14px;
+    font-style: italic;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    user-select: none;
+  }
+  .hmv-reminder .letter {
+    color: var(--accent);
+    font-weight: 500;
+    font-style: normal;
+    font-family: var(--sans);
+    letter-spacing: 0.32em;
+  }
+  .hmv-reminder .full {
+    color: var(--text-muted);
+    transition: opacity 0.2s ease;
+  }
+  .hmv-reminder.collapsed .full { display: none; }
+
+  .keyboard-hint {
+    font-size: 11px;
+    color: var(--text-faint);
+    letter-spacing: 0.04em;
+    margin-top: 4px;
+    text-align: center;
+  }
+  .keyboard-hint kbd {
+    font-family: var(--mono);
+    background: var(--bg-elev-1);
+    padding: 1px 6px;
+    border-radius: 2px;
+    border: 1px solid var(--line);
+    font-size: 10px;
+    color: var(--text-muted);
+  }
+
+  /* ----- Loading / error ----- */
+  .loading, .error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    padding: 40px;
+  }
+  .loading p, .error p {
+    color: var(--text-muted);
+    font-style: italic;
+    font-family: var(--serif);
+    font-size: 18px;
+  }
+  .error h2 {
+    font-family: var(--serif);
+    color: var(--danger);
+    margin-bottom: 16px;
+    font-weight: 400;
+    font-size: 28px;
+  }
+  .error code {
+    font-family: var(--mono);
+    background: var(--bg-elev-1);
+    padding: 2px 8px;
+    border-radius: 2px;
+    font-size: 13px;
+    color: var(--accent);
+  }
+
+  /* ----- Responsive ----- */
+  @media (max-width: 800px) {
+    .topbar, .bottombar { padding: 14px 20px; }
+    .stage { padding: 32px 24px; }
+    .topbar { grid-template-columns: 1fr auto; gap: 16px; }
+    .topbar-right { display: none; }
+    .keyboard-hint { display: none; }
+  }
+
+  /* Subtle grain to add atmosphere on projection */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image: radial-gradient(rgba(255,255,255,0.012) 1px, transparent 1px);
+    background-size: 3px 3px;
+    z-index: 1;
+  }
+
+  /* ========================================
+     Login Gate
+     ======================================== */
+  .login-overlay {
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .login-overlay.hidden { display: none; }
+
+  .login-card {
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+  }
+  .login-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+  .login-title {
+    font-family: var(--font-display);
+    font-size: 56px;
+    line-height: 0.95;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+  .login-subtitle {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 36px;
+  }
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .login-input {
+    width: 100%;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    padding: 14px 16px;
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 15px;
+    transition: border-color 160ms ease, background 160ms ease;
+  }
+  .login-input:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: rgba(255,255,255,0.06);
+  }
+  .login-input::placeholder { color: rgba(255,255,255,0.3); }
+
+  .login-logo {
+    display: block;
+    width: 96px;
+    height: auto;
+    margin: 0 auto 24px;
+    opacity: 0.95;
+  }
+
+  .login-submit {
+    margin-top: 8px;
+    background: var(--accent);
+    color: var(--bg);
+    border: none;
+    border-radius: 8px;
+    padding: 14px 20px;
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: opacity 160ms ease, transform 160ms ease;
+  }
+  .login-submit:hover { opacity: 0.9; }
+  .login-submit:active { transform: scale(0.98); }
+  .login-submit:disabled { opacity: 0.5; cursor: wait; }
+
+  .login-error {
+    color: #E07B6E;
+    font-size: 13px;
+    margin-top: 12px;
+    min-height: 18px;
+    opacity: 0;
+    transition: opacity 160ms ease;
+  }
+  .login-error.show { opacity: 1; }
+
+  @keyframes login-shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-6px); }
+    40%, 80% { transform: translateX(6px); }
+  }
+  .login-card.shake { animation: login-shake 320ms ease; }
+
+  /* ============================================
+     WELCOME LAYER (two-doors, journey-map, tools-landscape)
+     ============================================ */
+  .wl-screen {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px 8px;
+    text-align: center;
+  }
+  .wl-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  .wl-title {
+    font-family: var(--serif);
+    font-size: clamp(32px, 3.8vw, 48px);
+    font-weight: 300;
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    margin-bottom: 10px;
+  }
+  .wl-sub {
+    font-family: var(--serif);
+    font-size: clamp(14px, 1.2vw, 17px);
+    color: var(--text-soft);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.45;
+    max-width: 68ch;
+    margin: 0 auto 18px;
+  }
+  .wl-footer {
+    font-family: var(--serif);
+    font-size: clamp(14px, 1.3vw, 17px);
+    font-weight: 500;
+    color: var(--text);
+    margin-top: 14px;
+    letter-spacing: -0.005em;
+    padding-left: 12px;
+    border-left: 3px solid var(--accent);
+    display: inline-block;
+    text-align: left;
+  }
+
+  /* ----- Two Doors ----- */
+  .doors-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 18px;
+    margin: 0;
+    text-align: left;
+    align-items: stretch;
+  }
+  .door {
+    background: var(--bg-elev-1);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 22px 24px 24px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+  .door-primary {
+    border: 1px solid var(--accent);
+    box-shadow: 0 0 0 4px rgba(193, 125, 42, 0.08), inset 0 1px 0 rgba(255,255,255,0.04);
+  }
+  .door-primary::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--accent);
+  }
+  .door-secondary::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--line-strong);
+  }
+  .door-tag {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 14px;
+    margin-top: 4px;
+  }
+  .door-secondary .door-tag { color: var(--text-muted); }
+  .door-dot { color: var(--text-faint); margin: 0 4px; }
+  .door-title {
+    font-family: var(--serif);
+    font-size: clamp(22px, 2.0vw, 28px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+    color: var(--text);
+  }
+  .door-lede {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--text-soft);
+    margin-bottom: 16px;
+  }
+  .door-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .door-list li {
+    position: relative;
+    padding: 6px 0 6px 20px;
+    color: var(--text-soft);
+    font-size: 14px;
+    line-height: 1.45;
+    border-bottom: 1px solid var(--line);
+  }
+  .door-list li:last-child { border-bottom: none; }
+  .door-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 13px;
+    width: 8px;
+    height: 2px;
+    background: var(--accent);
+  }
+  .door-secondary .door-list li::before { background: var(--text-muted); }
+
+  /* ----- Journey Map ----- */
+  .journey-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    text-align: left;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .journey-col {
+    background: var(--bg-elev-1);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 16px 20px;
+  }
+  .journey-day {
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--line);
+  }
+  .journey-list { list-style: none; margin: 0; padding: 0; }
+  .journey-item {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .journey-item:last-child { border-bottom: none; }
+  .journey-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-faint);
+    flex-shrink: 0;
+    width: 22px;
+  }
+  .journey-body { display: flex; flex-direction: column; gap: 1px; }
+  .journey-title {
+    font-family: var(--serif);
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+  .journey-note {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.35;
+  }
+  .journey-outcome {
+    margin-top: 18px;
+    text-align: center;
+  }
+  .journey-arrow {
+    font-size: 22px;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .journey-outcome-label {
+    font-family: var(--serif);
+    font-size: clamp(18px, 1.9vw, 24px);
+    font-weight: 400;
+    color: var(--text);
+    letter-spacing: -0.015em;
+    margin-bottom: 4px;
+  }
+  .journey-outcome-url {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+  }
+
+  /* ----- Journey Wave (new five-stage visualization) ----- */
+  .journey-wave-screen {
+    max-width: 1280px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .journey-wave-title {
+    font-size: clamp(28px, 4vw, 48px) !important;
+    line-height: 1.05 !important;
+    margin-bottom: 8px !important;
+  }
+  .journey-wave-title em {
+    font-style: italic;
+    color: var(--text);
+    font-weight: 300;
+  }
+  .journey-wave-sub {
+    margin-bottom: 12px !important;
+    font-style: italic;
+    color: var(--text-soft);
+    font-size: clamp(14px, 1.3vw, 17px) !important;
+  }
+  .journey-wave-wrap {
+    width: 100%;
+    margin: 4px auto 12px;
+    padding: 4px 4px 8px;
+    background: var(--bg-elev-1);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+  }
+  .journey-wave-svg {
+    display: block;
+    width: 100%;
+    max-width: 1180px;
+    max-height: 60vh;  /* prevent the wave from eating the whole screen */
+    margin: 0 auto;
+    height: auto;
+  }
+  /* SVG text classes — applied via class attribute on <text> */
+  .journey-label-main {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 500;
+    fill: var(--text);
+    letter-spacing: -0.01em;
+  }
+  .journey-label-sub {
+    font-family: var(--sans);
+    font-size: 15px;
+    fill: var(--text-soft);
+    letter-spacing: 0.005em;
+  }
+  .journey-bookend-label {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 500;
+    fill: var(--text);
+    letter-spacing: -0.005em;
+  }
+  /* Subtle pulse on nodes — purely cosmetic */
+  .journey-node {
+    transform-origin: center;
+    animation: nodePulse 3.6s ease-in-out infinite;
+  }
+  .journey-node:nth-child(2) { animation-delay: 0s; }
+  .journey-node:nth-child(4) { animation-delay: 0.7s; }
+  .journey-node:nth-child(6) { animation-delay: 1.4s; }
+  .journey-node:nth-child(8) { animation-delay: 2.1s; }
+  .journey-node:nth-child(10) { animation-delay: 2.8s; }
+  @keyframes nodePulse {
+    0%, 100% { opacity: 0.95; }
+    50% { opacity: 1; }
+  }
+  .journey-wave-rule {
+    width: 80px;
+    height: 1px;
+    background: var(--accent);
+    border: none;
+    margin: 4px auto 10px;
+  }
+  .journey-wave-footer {
+    font-family: var(--serif);
+    font-size: clamp(13px, 1.2vw, 16px);
+    color: var(--text-soft);
+    font-style: italic;
+    max-width: 900px;
+    margin: 0 auto;
+    line-height: 1.45;
+  }
+
+  @media (max-width: 880px) {
+    .journey-label-main { font-size: 22px; }
+    .journey-label-sub { font-size: 13px; }
+    .journey-bookend-label { font-size: 18px; }
+  }
+
+  /* ----- Tools Landscape ----- */
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    text-align: left;
+  }
+  .cat-card {
+    background: var(--bg-elev-1);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+  }
+  .cat-name {
+    font-family: var(--serif);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+  .cat-use {
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.4;
+    margin-bottom: 8px;
+    font-style: italic;
+  }
+  .cat-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .tool-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 8px;
+    font-size: 10px;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    color: var(--text-muted);
+    background: transparent;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+  .tool-chip.tool-pick {
+    background: var(--accent-soft);
+    border-color: var(--accent);
+    color: var(--text);
+    font-weight: 500;
+  }
+  .tool-star {
+    color: var(--accent);
+    font-size: 9px;
+    line-height: 1;
+  }
+
+  @media (max-width: 860px) {
+    .doors-grid, .journey-grid { grid-template-columns: 1fr; }
+    .cat-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 580px) {
+    .cat-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ============================================
+     INTERLUDES (cohort, photo, checkin, feedback, portfolio)
+     ============================================ */
+  .interlude-narrow { max-width: 760px; }
+
+  .wl-quiet {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-top: 18px;
+    font-style: italic;
+  }
+
+  /* ----- Housekeeping ----- */
+  .hk-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+    text-align: left;
+  }
+  .hk-card {
+    background: var(--bg-elev-1);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    border-radius: 4px;
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+  }
+  .hk-label {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .hk-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex: 1;
+  }
+  .hk-list li {
+    position: relative;
+    padding: 6px 0 6px 14px;
+    color: var(--text-soft);
+    font-size: 13px;
+    line-height: 1.45;
+    border-bottom: 1px solid var(--line);
+  }
+  .hk-list li:last-child { border-bottom: none; }
+  .hk-list li::before {
+    content: "·";
+    position: absolute;
+    left: 0;
+    top: 5px;
+    color: var(--accent);
+    font-weight: bold;
+    font-size: 14px;
+  }
+  .hk-list strong { color: var(--text); font-weight: 500; }
+  .hk-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 10px;
+  }
+  .hk-tool {
+    display: inline-block;
+    padding: 4px 9px;
+    font-size: 11px;
+    color: var(--text);
+    background: var(--accent-soft);
+    border: 1px solid var(--accent);
+    border-radius: 12px;
+    font-weight: 500;
+  }
+  .hk-note {
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.4;
+    font-style: italic;
+    margin-top: auto;
+  }
+  @media (max-width: 900px) {
+    .hk-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ----- Outcomes (new Two Doors structure: 3 sections) ----- */
+  .outcomes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 16px;
+    text-align: left;
+  }
+  .outcome {
+    background: var(--bg-elev-1);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 20px 22px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+  .outcome-primary {
+    border: 1px solid var(--accent);
+    box-shadow: 0 0 0 4px rgba(193, 125, 42, 0.08);
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .outcome-primary::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--accent);
+  }
+  .outcome-secondary {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .outcome-secondary::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--line-strong);
+  }
+  .outcome-shared {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    border-color: var(--line-strong);
+  }
+  .outcome-shared::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--text-muted);
+  }
+  .outcome-tag {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 12px;
+    margin-top: 4px;
+  }
+  .outcome-secondary .outcome-tag,
+  .outcome-shared .outcome-tag { color: var(--text-muted); }
+  .outcome-title {
+    font-family: var(--serif);
+    font-size: clamp(20px, 1.9vw, 26px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+  .outcome-lede {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--text-soft);
+  }
+  .outcome-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .outcome-list li {
+    position: relative;
+    padding: 6px 0 6px 20px;
+    color: var(--text-soft);
+    font-size: 14px;
+    line-height: 1.45;
+    border-bottom: 1px solid var(--line);
+  }
+  .outcome-list li:last-child { border-bottom: none; }
+  .outcome-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 13px;
+    width: 8px;
+    height: 2px;
+    background: var(--accent);
+  }
+  .shared-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .shared-item {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 6px 12px;
+    font-size: 13px;
+    color: var(--text-soft);
+  }
+  @media (max-width: 900px) {
+    .outcomes-grid {
+      grid-template-columns: 1fr;
+    }
+    .outcome-primary, .outcome-secondary, .outcome-shared {
+      grid-column: 1;
+      grid-row: auto;
+    }
+  }
+
+  /* ----- Timeline (new Workshop Complete structure) ----- */
+  .timeline {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    text-align: left;
+  }
+  .timeline-row {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 24px;
+    align-items: start;
+    background: var(--bg-elev-1);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    border-radius: 4px;
+    padding: 18px 22px;
+  }
+  .timeline-when {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    padding-top: 2px;
+  }
+  .timeline-title {
+    font-family: var(--serif);
+    font-size: clamp(17px, 1.7vw, 22px);
+    font-weight: 400;
+    color: var(--text);
+    letter-spacing: -0.01em;
+    margin-bottom: 6px;
+  }
+  .timeline-detail {
+    font-size: 14px;
+    color: var(--text-soft);
+    line-height: 1.55;
+  }
+  @media (max-width: 700px) {
+    .timeline-row {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+  }
+
+  /* ----- Day 1 Photo ----- */
+  .photo-icon {
+    margin: 8px auto 24px;
+    width: 110px;
+  }
+
+  /* ----- Day 2 Recap (replaces old check-in) ----- */
+  .d2-recap {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 28px;
+    align-items: stretch;
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: left;
+  }
+  .d2-recap-half {
+    padding: 0;
+  }
+  .d2-recap-ahead {
+    padding-left: 8px;
+  }
+  .d2-recap-divider {
+    width: 1px;
+    background: var(--line);
+  }
+  .d2-recap-label {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .d2-recap-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .d2-recap-list li {
+    padding: 6px 0 6px 18px;
+    color: var(--text-soft);
+    font-size: 15px;
+    line-height: 1.4;
+    position: relative;
+  }
+  .d2-recap-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 14px;
+    width: 8px;
+    height: 2px;
+    background: var(--accent);
+  }
+  .d2-recap-half:not(.d2-recap-ahead) .d2-recap-list li {
+    color: var(--text-muted);
+  }
+  .d2-recap-half:not(.d2-recap-ahead) .d2-recap-list li::before {
+    background: var(--text-faint);
+  }
+
+  /* ----- Feedback Prompt (group activity, no inputs) ----- */
+  .feedback-question {
+    max-width: 640px;
+    margin: 0 auto;
+    background: var(--bg-elev-1);
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    padding: 26px 32px;
+    text-align: center;
+  }
+  .feedback-question-text {
+    font-family: var(--serif);
+    font-size: clamp(20px, 2.2vw, 28px);
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+  }
+
+  /* ----- Portfolio Reveal ----- */
+  .portfolio-screen { max-width: 1100px; }
+
+  .portfolio-hero {
+    border: 1px solid var(--accent);
+    border-radius: 8px;
+    padding: 24px 28px 22px;
+    margin-bottom: 28px;
+    background: linear-gradient(180deg, rgba(193,125,42,0.05), rgba(193,125,42,0.01));
+    position: relative;
+    overflow: hidden;
+  }
+  .portfolio-hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--accent);
+  }
+  .portfolio-hero-label {
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 12px;
+    margin-top: 4px;
+  }
+  .portfolio-hero-url {
+    font-family: var(--mono);
+    font-size: clamp(15px, 1.8vw, 22px);
+    color: var(--text);
+    font-weight: 500;
+    word-break: break-all;
+    margin-bottom: 14px;
+    line-height: 1.35;
+    letter-spacing: -0.005em;
+  }
+  .portfolio-hero-slot {
+    color: var(--accent);
+    font-style: normal;
+  }
+  .portfolio-hero-note {
+    font-size: 14px;
+    color: var(--text-soft);
+    line-height: 1.55;
+    max-width: 70ch;
+    margin: 0 auto;
+    font-style: italic;
+  }
+
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 8px;
+    text-align: left;
+  }
+  .portfolio-card {
+    background: var(--bg-elev-1);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 16px 18px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    transition: border-color 160ms ease;
+  }
+  .portfolio-card:hover { border-color: var(--line-strong); }
+  .portfolio-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    flex-shrink: 0;
+    margin-top: 3px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+  }
+  .portfolio-body { flex: 1; min-width: 0; }
+  .portfolio-label {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 2px;
+    letter-spacing: -0.01em;
+  }
+  .portfolio-note {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+  .portfolio-placeholder {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-faint);
+    word-break: break-all;
+    line-height: 1.4;
+  }
+
+  /* ----- Output Capture ----- */
+  .capture-screen {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .capture-title {
+    font-family: var(--serif);
+    font-size: clamp(28px, 3.2vw, 40px);
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    margin-bottom: 8px;
+  }
+  .capture-arrow {
+    color: var(--accent);
+    font-weight: 300;
+    margin: 0 6px;
+  }
+  .capture-ask {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-style: italic;
+    color: var(--text-soft);
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+  .capture-instruction {
+    background: var(--bg-elev-1);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 6px 6px 0;
+    padding: 18px 22px;
+    margin-bottom: 16px;
+  }
+  .capture-instruction-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 8px 0;
+    color: var(--text-soft);
+    font-size: 15px;
+    line-height: 1.5;
+    border-bottom: 1px solid var(--line);
+  }
+  .capture-instruction-step:last-child { border-bottom: none; }
+  .capture-instruction-num {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--bg);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 700;
+    margin-top: 1px;
+  }
+  .capture-guidance {
+    background: var(--bg-elev-1);
+    border-left: 3px solid var(--accent);
+    padding: 14px 18px;
+    border-radius: 0 4px 4px 0;
+    font-size: 14px;
+    color: var(--text-soft);
+    line-height: 1.55;
+    font-style: italic;
+  }
+
+  /* ============================================
+     IDEA CARDS (24 ideas across 3 pages, 8 per page, 4×2 grid)
+     ============================================ */
+  .ideas-screen {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0;
+    padding: 8px 0;
+  }
+  .ideas-screen-header {
+    flex: 0 0 auto;
+    margin-bottom: clamp(10px, 1.6vh, 18px);
+  }
+  .ideas-screen-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: clamp(8px, 1.2vh, 14px);
+  }
+  .ideas-screen-title {
+    font-family: var(--serif);
+    font-size: clamp(22px, 3.4vh, 36px);
+    font-weight: 300;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    margin-bottom: clamp(6px, 1vh, 12px);
+    max-width: 32ch;
+  }
+  .ideas-screen-title em {
+    color: var(--accent);
+    font-style: italic;
+    font-weight: 400;
+  }
+  .ideas-screen-sub {
+    font-family: var(--serif);
+    font-size: clamp(12px, 1.5vh, 15px);
+    font-style: italic;
+    line-height: 1.4;
+    color: var(--text-soft);
+    font-weight: 300;
+    max-width: 60ch;
+  }
+  .ideas-grid {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: clamp(8px, 1vh, 12px);
+    margin: 0;
+    overflow: hidden;
+  }
+  .idea-card {
+    background: var(--bg-elev-1);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: clamp(10px, 1.5vh, 14px) clamp(10px, 1.4vh, 14px);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .idea-card:hover { border-color: var(--accent-soft); }
+  .idea-card-num {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: 0.16em;
+    color: var(--accent);
+    margin-bottom: 3px;
+    flex-shrink: 0;
+  }
+  .idea-card-name {
+    font-family: var(--serif);
+    font-size: clamp(14px, 2vh, 18px);
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: clamp(6px, 1vh, 10px);
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    flex-shrink: 0;
+  }
+  .idea-card-row { margin-bottom: clamp(5px, 0.8vh, 8px); }
+  .idea-card-row:last-child { margin-bottom: 0; }
+  .idea-card-label {
+    font-size: 8.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-bottom: 1px;
+  }
+  .idea-card-value {
+    font-size: clamp(10.5px, 1.25vh, 12px);
+    line-height: 1.4;
+    color: var(--text-soft);
+  }
+
+  @media (max-width: 1100px) {
+    .ideas-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(4, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .ideas-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+  }
+
+  /* ============================================
+     CLOSING / INSPIRATIONAL
+     ============================================ */
+  .closing-screen {
+    text-align: center;
+    padding: 24px 24px 48px;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  .closing-logo {
+    display: block;
+    width: clamp(160px, 22vw, 280px);
+    height: auto;
+    margin: 0 auto 36px;
+  }
+  .closing-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 22px;
+    font-weight: 500;
+  }
+  .closing-title {
+    font-family: var(--serif);
+    font-size: clamp(52px, 7vw, 92px);
+    font-weight: 300;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    margin-bottom: 24px;
+  }
+  .closing-sub {
+    font-family: var(--serif);
+    font-size: clamp(17px, 1.6vw, 22px);
+    color: var(--text-soft);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.5;
+    max-width: 60ch;
+    margin: 0 auto;
+  }
+
+</style>
+</head>
+<body>
+
+<div class="login-overlay" id="login-overlay">
+  <div class="login-card" id="login-card">
+    <img class="login-logo" src="logo.png" alt="Orange Caterpillar" onerror="this.style.display='none'">
+    <div class="login-eyebrow">Orange Caterpillar</div>
+    <h1 class="login-title">Just<br>Build</h1>
+    <p class="login-subtitle">Sign in to continue</p>
+    <form class="login-form" id="login-form" autocomplete="off">
+      <input class="login-input" type="text" id="login-id" placeholder="ID" autocapitalize="off" autocorrect="off" spellcheck="false" required>
+      <input class="login-input" type="password" id="login-pw" placeholder="Password" required>
+      <button class="login-submit" type="submit" id="login-submit">Enter</button>
+      <div class="login-error" id="login-error">Incorrect ID or password.</div>
+    </form>
+  </div>
+</div>
+
+<header class="topbar hidden" id="topbar">
+  <div class="topbar-left">
+    <img class="topbar-logo" src="logo.png" alt="OC" onerror="this.style.display='none'">
+    <span class="topbar-eyebrow" id="topbar-eyebrow">Session 1</span>
+    <span class="topbar-title" id="topbar-title">Ideation</span>
+    <span class="topbar-section" id="topbar-section"></span>
+  </div>
+  <div class="topbar-center">
+    <div class="timer" id="timer" title="Click or press T to pause/resume">--:--</div>
+  </div>
+  <div class="topbar-right">
+    <div class="jump-wrap" id="jump-wrap">
+      <button class="jump-btn" id="jump-btn" title="Jump to a session (J)">
+        <span id="jump-btn-label">Jump</span>
+        <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="1,1 5,5 9,1"></polyline></svg>
+      </button>
+      <div class="jump-menu" id="jump-menu"></div>
+    </div>
+    <div class="progress" id="progress"></div>
+  </div>
+</header>
+
+<main class="stage" id="stage">
+  <div class="loading">
+    <p>Loading workshop…</p>
+  </div>
+</main>
+
+<footer class="bottombar hidden" id="bottombar">
+  <button class="nav-btn nav-prev" id="prev-btn">← Previous</button>
+  <div style="display:flex; flex-direction:column; align-items:center; gap:6px;">
+    <div class="hmv-reminder" id="hmv-reminder" title="Press H to toggle">
+      <span class="letter">H&middot;M&middot;V</span>
+      <span class="full">Humanics &middot; Mechanics &middot; Valuenomics</span>
+    </div>
+    <div class="keyboard-hint">
+      <kbd>←</kbd> Prev &middot; <kbd>Space</kbd>/<kbd>→</kbd> Next &middot; <kbd>T</kbd> Timer &middot; <kbd>F</kbd> Fullscreen &middot; <kbd>H</kbd> HMV &middot; <kbd>J</kbd> Jump
+    </div>
+  </div>
+  <button class="nav-btn nav-next" id="next-btn">Next →</button>
+</footer>
+
+<script>
+/* ============================================
+   Just Build  /  Workshop Platform
+   ============================================ */
+
+let WORKSHOP = null;          // sessions.json content
+let SESSIONS = [];            // sessions array
+let SCREENS = [];             // flat array of all screens with metadata
+
+let currentScreenIdx = 0;
+let testsChecked = {};        // { sessionId: [bool, bool, ...] }
+let hmvCollapsed = false;
+
+let timer = {
+  totalSeconds: 0,
+  remainingSeconds: 0,
+  running: false,
+  paused: false,
+  intervalId: null,
+  sessionId: null,
+};
+
+let breakTimer = {
+  remainingSeconds: 0,
+  intervalId: null,
+  finished: false,
+};
+
+const $ = (sel) => document.querySelector(sel);
+const fmt = (s) => {
+  const sign = s < 0 ? "-" : "";
+  s = Math.abs(s);
+  const m = Math.floor(s / 60);
+  const sec = s % 60;
+  return `${sign}${String(m).padStart(2, "0")}:${String(sec).padStart(2, "0")}`;
+};
+
+/* ----- Load sessions.json ----- */
+async function loadSessions() {
+  try {
+    const res = await fetch("./sessions-college.json", { cache: "no-cache" });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    WORKSHOP = data.workshop;
+    SESSIONS = data.sessions;
+    buildScreenSequence();
+    renderCurrent();
+  } catch (err) {
+    $("#stage").innerHTML = `
+      <div class="error">
+        <h2>Could not load sessions-college.json</h2>
+        <p>Make sure <code>sessions-college.json</code> sits next to <code>platform-college.html</code>.</p>
+        <p style="margin-top:16px; font-size:14px;">If you opened this file directly with a double-click, your browser blocks local fetches. Run a local server with <code>python3 -m http.server</code> in the same folder, then open <code>http://localhost:8000/platform-college.html</code>.</p>
+        <p style="margin-top:24px; opacity:0.5; font-size:12px;">${err.message}</p>
+      </div>`;
+  }
+}
+
+/* ----- Build the flat screen sequence ----- */
+function buildScreenSequence() {
+  SCREENS = [];
+
+  // Welcome layer
+  SCREENS.push({ type: "welcome" });
+  SCREENS.push({ type: "housekeeping" });
+  SCREENS.push({ type: "two-doors" });
+  SCREENS.push({ type: "journey-map" });
+  SCREENS.push({ type: "tools-landscape" });
+
+  // Track phase transitions so we can insert interludes between them
+  let prevPhase = null;
+  let prevDay = null;
+
+  SESSIONS.forEach((session, idx) => {
+    const phase = session.phase;
+    const day = String(session.day);
+
+    // Day 2 morning welcome — first session of Day 2 of the weekend
+    if (phase === "weekend" && day === "2" && prevDay !== "2") {
+      SCREENS.push({ type: "day2-checkin" });
+    }
+
+    // Office-hours phase opener — appears once, before the first week of office hours
+    if (phase === "office_hours" && prevPhase !== "office_hours") {
+      SCREENS.push({ type: "phase-break", to: "office_hours" });
+    }
+
+    // Demo Day opener — appears once, before the Demo Day session
+    if (phase === "demo_day" && prevPhase !== "demo_day") {
+      SCREENS.push({ type: "phase-break", to: "demo_day" });
+    }
+
+    // Idea cards screen — appears once, between Session 0 (Kickoff) and Session 1 (Find & validate)
+    // Shows 8 ideas from the page configured for this cohort
+    if (session.id === "1") {
+      SCREENS.push({ type: "idea-cards" });
+    }
+
+    SCREENS.push({ type: "session-start", session });
+    SCREENS.push({ type: "stage", session });
+
+    // Office hours screen is dedicated and replaces the standard question/prompt/build/test flow
+    if (session.session_type === "office_hours") {
+      SCREENS.push({ type: "office-hours", session });
+      // Test output (the "homework leaves the room" check) still applies if present
+      if (session.test_output && session.test_output.length) {
+        SCREENS.push({ type: "test-output", session });
+      }
+      if (session.output_capture) {
+        SCREENS.push({ type: "output-capture", session });
+      }
+      SCREENS.push({ type: "session-end", session });
+      prevPhase = phase;
+      prevDay = day;
+      return;
+    }
+
+    // Standard flow for all other session types (kickoff, build, milestone, interim_demo,
+    // planning, demo_day, close)
+    (session.questions || []).forEach((q, qIdx) => {
+      SCREENS.push({
+        type: "question",
+        session,
+        question: q,
+        questionIndex: qIdx,
+        questionTotal: session.questions.length,
+      });
+    });
+
+    if (session.hmv && session.hmv.length) {
+      SCREENS.push({ type: "hmv", session });
+    }
+
+    (session.prompts || []).forEach((p, pIdx) => {
+      SCREENS.push({
+        type: "prompt",
+        session,
+        prompt: p,
+        promptIndex: pIdx,
+        promptTotal: session.prompts.length,
+      });
+    });
+
+    if (session.build && session.build.length) {
+      SCREENS.push({ type: "build", session });
+    }
+
+    if (session.test_output && session.test_output.length) {
+      SCREENS.push({ type: "test-output", session });
+    }
+
+    // Output capture happens after test-output, before session-end (for build sessions)
+    if (session.output_capture) {
+      SCREENS.push({ type: "output-capture", session });
+    }
+
+    SCREENS.push({ type: "session-end", session });
+
+    // End-of-Day-1 interlude — fires after the last session of Day 1 in the weekend phase
+    const nextSession = SESSIONS[idx + 1];
+    const isLastOfDay1 = phase === "weekend" && day === "1"
+      && (!nextSession || String(nextSession.day) !== "1" || nextSession.phase !== "weekend");
+    if (isLastOfDay1) {
+      SCREENS.push({ type: "day1-photo" });
+    }
+
+    // Portfolio reveal — after Demo Day session ends
+    if (session.session_type === "demo_day") {
+      SCREENS.push({ type: "portfolio-reveal" });
+    }
+
+    if (session.break_after) {
+      SCREENS.push({
+        type: "break",
+        afterSession: session,
+        nextSession: SESSIONS[idx + 1] || null,
+      });
+    }
+
+    prevPhase = phase;
+    prevDay = day;
+  });
+
+  // Closing inspirational slide
+  SCREENS.push({ type: "closing" });
+
+  // Workshop complete (now "what comes next" — after Demo Day)
+  SCREENS.push({ type: "workshop-complete" });
+}
+
+/* ----- Navigation ----- */
+function next() {
+  if (currentScreenIdx < SCREENS.length - 1) {
+    currentScreenIdx++;
+    renderCurrent();
+  }
+}
+function prev() {
+  if (currentScreenIdx > 0) {
+    currentScreenIdx--;
+    renderCurrent();
+  }
+}
+
+/* ----- Render current screen ----- */
+function renderCurrent() {
+  const screen = SCREENS[currentScreenIdx];
+  const stage = $("#stage");
+  const topbar = $("#topbar");
+  const bottombar = $("#bottombar");
+
+  // Stop break timer if leaving break
+  if (screen.type !== "break" && breakTimer.intervalId) {
+    clearInterval(breakTimer.intervalId);
+    breakTimer.intervalId = null;
+  }
+
+  // Top/bottom bars hidden on welcome-layer screens, break, complete, and interlude moments
+  const isWelcomeLayer = screen.type === "welcome" || screen.type === "housekeeping"
+                       || screen.type === "two-doors" || screen.type === "journey-map"
+                       || screen.type === "tools-landscape";
+  const isInterlude = screen.type === "day1-photo"
+                    || screen.type === "day2-checkin"
+                    || screen.type === "phase-break"
+                    || screen.type === "portfolio-reveal" || screen.type === "closing";
+  const noChrome = isWelcomeLayer || isInterlude || screen.type === "workshop-complete" || screen.type === "break";
+  topbar.classList.toggle("hidden", noChrome);
+  bottombar.classList.toggle("hidden", screen.type === "welcome");
+
+  // Update topbar context
+  if (screen.session) {
+    $("#topbar-eyebrow").textContent = topbarEyebrow(screen.session);
+    $("#topbar-title").textContent = screen.session.title;
+    $("#topbar-section").textContent = sectionLabel(screen);
+    updateProgress();
+  } else if (screen.type === "idea-cards") {
+    const page = (WORKSHOP && WORKSHOP.workshop && WORKSHOP.workshop.cohort_idea_page) || 1;
+    $("#topbar-eyebrow").textContent = "IDEATE";
+    $("#topbar-title").textContent = "Pick your micro-venture";
+    $("#topbar-section").textContent = `8 idea cards · Set ${page} of 3`;
+    updateProgress();
+  }
+
+  // Reset/start timer for sessions
+  if (screen.session && screen.type === "session-start") {
+    setupTimer(screen.session);
+  } else if (isWelcomeLayer || isInterlude || screen.type === "workshop-complete" || screen.type === "idea-cards") {
+    stopTimer();
+  }
+
+  // Render content
+  let html = "";
+  switch (screen.type) {
+    case "welcome":            html = renderWelcome(); break;
+    case "housekeeping":       html = renderHousekeeping(); break;
+    case "two-doors":          html = renderTwoDoors(); break;
+    case "journey-map":        html = renderJourneyMap(); break;
+    case "tools-landscape":    html = renderToolsLandscape(); break;
+    case "idea-cards":         html = renderIdeaCards(); break;
+    case "day1-photo":         html = renderDay1Photo(); break;
+    case "day2-checkin":       html = renderDay2Checkin(); break;
+    case "phase-break":        html = renderPhaseBreak(screen); break;
+    case "portfolio-reveal":   html = renderPortfolioReveal(); break;
+    case "closing":            html = renderClosing(); break;
+    case "session-start":      html = renderSessionStart(screen.session); break;
+    case "stage":              html = renderStage(screen.session); break;
+    case "question":           html = renderQuestion(screen); break;
+    case "hmv":                html = renderHMV(screen.session); break;
+    case "prompt":             html = renderPrompt(screen); break;
+    case "build":              html = renderBuild(screen.session); break;
+    case "test-output":        html = renderTestOutput(screen.session); break;
+    case "office-hours":       html = renderOfficeHours(screen.session); break;
+    case "output-capture":     html = renderOutputCapture(screen.session); break;
+    case "session-end":        html = renderSessionEnd(screen); break;
+    case "break":              html = renderBreak(screen); break;
+    case "workshop-complete":  html = renderWorkshopComplete(); break;
+  }
+  stage.innerHTML = `<div class="screen">${html}</div>`;
+
+  // Wire up dynamic handlers per screen
+  attachHandlers(screen);
+
+  // Refresh the jump-to-session menu state
+  refreshJumpMenu();
+
+  // Prev/next state
+  $("#prev-btn").disabled = currentScreenIdx === 0;
+  $("#next-btn").disabled = currentScreenIdx >= SCREENS.length - 1;
+}
+
+function topbarEyebrow(session) {
+  // Show stage as the primary label when available; the session number/role appears in the subtitle/title.
+  // For the Kickoff session, the stage is just "Kickoff" itself (not a venture stage).
+  if (session.stage) {
+    return session.stage.toUpperCase();
+  }
+  // Fallback for sessions without stage (should not happen in v3)
+  if (session.session_type === "office_hours") return `${session.day} · Office Hours`;
+  if (session.session_type === "demo_day") return "Demo Day";
+  if (session.session_type === "close") return "Close";
+  if (session.session_type === "kickoff") return "Kickoff";
+  if (session.session_type === "milestone") return "Milestone";
+  if (session.session_type === "interim_demo") return "Interim Demo Day";
+  if (session.session_type === "planning") return "Planning";
+  return `Session ${session.number}`;
+}
+
+function sectionLabel(screen) {
+  switch (screen.type) {
+    case "session-start":  return "Begin";
+    case "stage":          return "Set the Stage";
+    case "question":       return `Question ${screen.questionIndex + 1} of ${screen.questionTotal}`;
+    case "hmv":            return "HMV Techniques";
+    case "prompt":         return screen.promptTotal > 1
+                            ? `Prompt ${screen.promptIndex + 1} of ${screen.promptTotal}`
+                            : "The Prompt";
+    case "build":          return "Build";
+    case "test-output":    return "Test Output";
+    case "office-hours":   return "Office Hours";
+    case "output-capture": return "Save your work";
+    case "session-end":    return "Complete";
+    default:               return "";
+  }
+}
+
+function updateProgress() {
+  const screen = SCREENS[currentScreenIdx];
+  if (!screen.session) return;
+  const sessionId = screen.session.id;
+  const sessionScreens = SCREENS.filter(s => s.session && s.session.id === sessionId);
+  const indices = SCREENS
+    .map((s, i) => (s.session && s.session.id === sessionId) ? i : -1)
+    .filter(i => i !== -1);
+  const localIdx = indices.indexOf(currentScreenIdx);
+  const total = sessionScreens.length;
+
+  let dotsHtml = "";
+  for (let i = 0; i < total; i++) {
+    const cls = i < localIdx ? "done" : (i === localIdx ? "active" : "");
+    dotsHtml += `<div class="progress-dot ${cls}"></div>`;
+  }
+  $("#progress").innerHTML = dotsHtml;
+}
+
+/* ============================================
+   SCREEN RENDERERS
+   ============================================ */
+
+function renderWelcome() {
+  return `
+    <div class="hero">
+      <img class="hero-logo" src="logo.png" alt="Orange Caterpillar" onerror="this.style.display='none'">
+      <div class="hero-eyebrow">Orange Caterpillar</div>
+      <h1 class="hero-title brand">JUST<br>BUILD</h1>
+      <hr class="hero-rule">
+      <p class="hero-meta">Two days &middot; Four weeks &middot; One portfolio</p>
+      <div class="button-row" style="margin-top: 56px;">
+        <button class="btn btn-primary" id="start-btn">Begin →</button>
+      </div>
+    </div>
+  `;
+}
+
+function renderTwoDoors() {
+  return `
+    <div class="wl-screen">
+      <div class="wl-eyebrow">The outcome</div>
+      <h1 class="wl-title">What you walk out with.</h1>
+      <p class="wl-sub">A portfolio you can use across the next twelve months. An optional path if you want to keep building. And the structure to support both, across six weeks.</p>
+
+      <div class="outcomes-grid">
+
+        <div class="outcome outcome-primary">
+          <div class="outcome-tag">For placement <span class="door-dot">&middot;</span> For everyone</div>
+          <h2 class="outcome-title">An AI portfolio that opens doors.</h2>
+          <ul class="outcome-list">
+            <li>A live AI portfolio that can be demoed in three minutes.</li>
+            <li>LinkedIn launch templates and outreach scripts.</li>
+            <li>Available for the 56% AI wage premium.</li>
+          </ul>
+        </div>
+
+        <div class="outcome outcome-secondary">
+          <div class="outcome-tag">If you want to go further <span class="door-dot">&middot;</span> Selective</div>
+          <h2 class="outcome-title">A path to angel funding.</h2>
+          <p class="outcome-lede">If what you build feels real by Demo Day, OC Ventures runs a selective follow-on program. The strongest builds get polished and presented to angel investors via a formal application. Not for everyone. For the builders who could not stop.</p>
+        </div>
+
+        <div class="outcome outcome-shared">
+          <div class="outcome-tag">For the whole cohort <span class="door-dot">&middot;</span> What everyone gets</div>
+          <h2 class="outcome-title">The structure around both.</h2>
+          <div class="shared-grid">
+            <span class="shared-item">Weekly office hours</span>
+            <span class="shared-item">The WhatsApp group</span>
+            <span class="shared-item">An accountability partner</span>
+            <span class="shared-item">A recorded Demo Day in five weeks</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  `;
+}
+
+function renderJourneyMap() {
+  // Five stages of the founder journey. Wave alternates peak (above) and trough (below).
+  // Positioned to fit a 1200x520 viewBox.
+  // Peaks: Ideate, Launch, Automate.  Troughs: Build, Brand.
+  // Caterpillar sits at x≈90 (Day one), butterfly at x≈1110 (Ready to show).
+
+  return `
+    <div class="wl-screen journey-wave-screen">
+      <div class="wl-eyebrow">JUST BUILD with AI</div>
+      <h1 class="wl-title journey-wave-title"><em>Learning AI by founding a micro-venture</em></h1>
+      <p class="wl-sub journey-wave-sub"><em>Six weeks of metamorphosis. A working AI portfolio with eight builds.</em></p>
+
+      <div class="journey-wave-wrap">
+        <svg class="journey-wave-svg" viewBox="0 0 1200 540" xmlns="http://www.w3.org/2000/svg" aria-label="Five-stage journey from caterpillar to butterfly">
+
+          <!-- Wave path: a sine curve through five stations -->
+          <defs>
+            <radialGradient id="nodeGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="rgba(193,125,42,0.55)"/>
+              <stop offset="60%" stop-color="rgba(193,125,42,0.18)"/>
+              <stop offset="100%" stop-color="rgba(193,125,42,0)"/>
+            </radialGradient>
+          </defs>
+
+          <!-- Connecting wave line: starts faint at caterpillar, brighter through wave, fades into butterfly -->
+          <path d="M 130 280
+                   C 200 280, 240 200, 290 200
+                   C 340 200, 370 200, 400 200
+                   C 460 200, 480 380, 540 380
+                   C 600 380, 620 200, 680 200
+                   C 740 200, 760 200, 780 200
+                   C 840 200, 860 380, 920 380
+                   C 980 380, 1000 200, 1060 200
+                   C 1090 200, 1110 240, 1130 280"
+                fill="none"
+                stroke="rgba(193,125,42,0.85)"
+                stroke-width="3"
+                stroke-linecap="round"/>
+
+          <!-- Node 1: Ideate (peak) -->
+          <g class="journey-node">
+            <circle cx="345" cy="200" r="40" fill="url(#nodeGlow)"/>
+            <circle cx="345" cy="200" r="22" fill="#FFFFFF" stroke="rgba(193,125,42,0.5)" stroke-width="1"/>
+            <circle cx="345" cy="200" r="8" fill="#C17D2A"/>
+          </g>
+          <text x="345" y="105" text-anchor="middle" class="journey-label-main">Ideate</text>
+          <text x="345" y="135" text-anchor="middle" class="journey-label-sub">Find a real problem</text>
+
+          <!-- Node 2: Build (trough) -->
+          <g class="journey-node">
+            <circle cx="540" cy="380" r="40" fill="url(#nodeGlow)"/>
+            <circle cx="540" cy="380" r="22" fill="#FFFFFF" stroke="rgba(193,125,42,0.5)" stroke-width="1"/>
+            <circle cx="540" cy="380" r="8" fill="#C17D2A"/>
+          </g>
+          <text x="540" y="455" text-anchor="middle" class="journey-label-main">Build</text>
+          <text x="540" y="485" text-anchor="middle" class="journey-label-sub">AI app at the core</text>
+
+          <!-- Node 3: Launch (peak) -->
+          <g class="journey-node">
+            <circle cx="730" cy="200" r="40" fill="url(#nodeGlow)"/>
+            <circle cx="730" cy="200" r="22" fill="#FFFFFF" stroke="rgba(193,125,42,0.5)" stroke-width="1"/>
+            <circle cx="730" cy="200" r="8" fill="#C17D2A"/>
+          </g>
+          <text x="730" y="105" text-anchor="middle" class="journey-label-main">Launch</text>
+          <text x="730" y="135" text-anchor="middle" class="journey-label-sub">Website and chatbot</text>
+
+          <!-- Node 4: Brand (trough) -->
+          <g class="journey-node">
+            <circle cx="920" cy="380" r="40" fill="url(#nodeGlow)"/>
+            <circle cx="920" cy="380" r="22" fill="#FFFFFF" stroke="rgba(193,125,42,0.5)" stroke-width="1"/>
+            <circle cx="920" cy="380" r="8" fill="#C17D2A"/>
+          </g>
+          <text x="920" y="455" text-anchor="middle" class="journey-label-main">Brand</text>
+          <text x="920" y="485" text-anchor="middle" class="journey-label-sub">Audio · video · brochure</text>
+
+          <!-- Node 5: Automate (peak) -->
+          <g class="journey-node">
+            <circle cx="1075" cy="200" r="40" fill="url(#nodeGlow)"/>
+            <circle cx="1075" cy="200" r="22" fill="#FFFFFF" stroke="rgba(193,125,42,0.5)" stroke-width="1"/>
+            <circle cx="1075" cy="200" r="8" fill="#C17D2A"/>
+          </g>
+          <text x="1075" y="105" text-anchor="middle" class="journey-label-main">Automate</text>
+          <text x="1075" y="135" text-anchor="middle" class="journey-label-sub">AI agent runs ops</text>
+
+          <!-- Caterpillar (left): your real artwork at caterpillar.png -->
+          <image href="caterpillar.png" x="20" y="240" width="160" height="120"
+                 preserveAspectRatio="xMidYMid meet"
+                 onerror="this.style.display='none'"/>
+          <text x="100" y="395" text-anchor="middle" class="journey-bookend-label">Day one</text>
+
+          <!-- Butterfly (right): your real artwork at butterfly.png -->
+          <image href="butterfly.png" x="1080" y="200" width="170" height="170"
+                 preserveAspectRatio="xMidYMid meet"
+                 onerror="this.style.display='none'"/>
+          <text x="1165" y="395" text-anchor="middle" class="journey-bookend-label">Ready to show</text>
+
+        </svg>
+      </div>
+
+      <hr class="journey-wave-rule">
+      <p class="journey-wave-footer">The student does not learn AI and then apply it. You build a real micro-venture, and the AI capability emerges from doing so.</p>
+    </div>
+  `;
+}
+
+function renderToolsLandscape() {
+  // ★ marks tools we use this weekend
+  const categories = [
+    {
+      name: "Chat & Reasoning",
+      use: "Thinking partner. Drafting. Analysis. System prompts.",
+      tools: [
+        { name: "Claude", pick: true },
+        { name: "ChatGPT", pick: true },
+        { name: "Gemini", pick: true },
+        { name: "Grok", pick: true },
+        { name: "DeepSeek", pick: false },
+        { name: "Mistral", pick: false },
+        { name: "Llama", pick: false },
+        { name: "Qwen", pick: false },
+        { name: "Copilot", pick: false },
+        { name: "Pi", pick: false },
+      ],
+    },
+    {
+      name: "Search & Research",
+      use: "Finding real evidence. Validating that problems exist.",
+      tools: [
+        { name: "Perplexity", pick: true },
+        { name: "You.com", pick: false },
+        { name: "Phind", pick: false },
+        { name: "Exa", pick: false },
+        { name: "Consensus", pick: false },
+        { name: "Elicit", pick: false },
+      ],
+    },
+    {
+      name: "Sites & Pages",
+      use: "Publishing a real URL without writing code.",
+      tools: [
+        { name: "Carrd", pick: true },
+        { name: "Webflow", pick: false },
+        { name: "Framer", pick: false },
+        { name: "Bolt", pick: false },
+        { name: "Lovable", pick: false },
+        { name: "v0", pick: false },
+        { name: "Replit", pick: false },
+        { name: "Wix", pick: false },
+        { name: "Squarespace", pick: false },
+      ],
+    },
+    {
+      name: "Conversation",
+      use: "Building chatbots that handle questions while you sleep.",
+      tools: [
+        { name: "Voiceflow", pick: true },
+        { name: "Botpress", pick: false },
+        { name: "Landbot", pick: false },
+        { name: "Chatbase", pick: false },
+        { name: "Tidio", pick: false },
+        { name: "Intercom Fin", pick: false },
+        { name: "Drift", pick: false },
+      ],
+    },
+    {
+      name: "Audio & Video",
+      use: "Giving your product a voice and showing it in action.",
+      tools: [
+        { name: "ElevenLabs", pick: true },
+        { name: "Loom", pick: true },
+        { name: "Suno", pick: false },
+        { name: "Runway", pick: false },
+        { name: "HeyGen", pick: false },
+        { name: "Descript", pick: false },
+        { name: "Synthesia", pick: false },
+        { name: "PlayHT", pick: false },
+        { name: "Pika", pick: false },
+        { name: "Veo", pick: false },
+      ],
+    },
+    {
+      name: "Automation",
+      use: "Wiring things together. Agents that run without you.",
+      tools: [
+        { name: "Make.com", pick: true },
+        { name: "Zapier", pick: false },
+        { name: "n8n", pick: false },
+        { name: "Activepieces", pick: false },
+        { name: "Pipedream", pick: false },
+        { name: "Lindy", pick: false },
+        { name: "Relay", pick: false },
+      ],
+    },
+  ];
+  const cards = categories.map(c => `
+    <div class="cat-card">
+      <h3 class="cat-name">${c.name}</h3>
+      <p class="cat-use">${c.use}</p>
+      <div class="cat-tools">
+        ${c.tools.map(t => `
+          <span class="tool-chip ${t.pick ? "tool-pick" : ""}">
+            ${t.pick ? '<span class="tool-star">★</span>' : ''}${t.name}
+          </span>
+        `).join("")}
+      </div>
+    </div>
+  `).join("");
+  return `
+    <div class="wl-screen">
+      <div class="wl-eyebrow">The AI landscape</div>
+      <h1 class="wl-title">Pick the tool. Get the job done.</h1>
+      <p class="wl-sub">The map keeps changing. The shape of the work does not. Six categories cover almost everything a builder needs. We picked one or two in each for the workshop, marked with a star. Take the map. The choices are yours after.</p>
+
+      <div class="cat-grid">
+        ${cards}
+      </div>
+
+      <p class="wl-footer">Stars are what you use this weekend. The rest is the wider field. Both matter.</p>
+    </div>
+  `;
+}
+
+/* ============================================
+   INTERLUDE SCREENS
+   Cohort Wall, Day 1 Photo, Day 2 Check-in,
+   Feedback Prompt, Portfolio Reveal, Output Capture
+   ============================================ */
+
+function renderIdeaCards() {
+  const all = (WORKSHOP && WORKSHOP.ideas) || [];
+  const page = (WORKSHOP && WORKSHOP.workshop && WORKSHOP.workshop.cohort_idea_page) || 1;
+  const ideas = all.filter(i => Number(i.page) === Number(page));
+  if (ideas.length === 0) {
+    return `
+      <div class="wl-screen">
+        <div class="wl-eyebrow">Ideas</div>
+        <h1 class="wl-title">No ideas configured for page ${page}.</h1>
+      </div>
+    `;
+  }
+  return `
+    <div class="ideas-screen">
+      <div class="ideas-screen-header">
+        <div class="ideas-screen-eyebrow">Pick one &middot; Set ${page} of 3</div>
+        <h1 class="ideas-screen-title">Eight micro-ventures. <em>Pick the one that pulls you.</em></h1>
+        <p class="ideas-screen-sub">Each one is a real venture you could run yourself, with a family member, or alongside someone you know. The next session is where you make it your own.</p>
+      </div>
+      <div class="ideas-grid">
+        ${ideas.map((idea, idx) => `
+          <div class="idea-card">
+            <div class="idea-card-num">Idea ${String(idx + 1).padStart(2, '0')}</div>
+            <div class="idea-card-name">${escapeHtml(idea.name)}</div>
+            <div class="idea-card-row">
+              <div class="idea-card-label">For whom</div>
+              <div class="idea-card-value">${escapeHtml(idea.for_whom)}</div>
+            </div>
+            <div class="idea-card-row">
+              <div class="idea-card-label">Problem</div>
+              <div class="idea-card-value">${escapeHtml(idea.problem)}</div>
+            </div>
+            <div class="idea-card-row">
+              <div class="idea-card-label">What the app does</div>
+              <div class="idea-card-value">${escapeHtml(idea.what_app_does)}</div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+}
+
+function renderHousekeeping() {
+  return `
+    <div class="wl-screen">
+      <div class="wl-eyebrow">Before we start</div>
+      <h1 class="wl-title">Housekeeping.</h1>
+      <p class="wl-sub">Five minutes of setup so nothing gets in the way for the next six weeks. Your facilitator will share two links verbally. Keep them open on your laptop all weekend, and save them. You will use both for the four weeks of office hours that follow.</p>
+
+      <div class="hk-grid">
+        <div class="hk-card">
+          <div class="hk-label">Two links you need open</div>
+          <ul class="hk-list">
+            <li><strong>Cohort form.</strong> Your facilitator will share the link. Open it and bookmark it. After every build session you paste your URL into this form.</li>
+            <li><strong>WhatsApp group.</strong> Your facilitator will share the invite. Join now. Questions, screenshots, weekly check-ins, and after-hours wins happen here for the full six weeks.</li>
+          </ul>
+        </div>
+
+        <div class="hk-card">
+          <div class="hk-label">Accounts you need today (all free)</div>
+          <div class="hk-tools">
+            <span class="hk-tool">Claude</span>
+            <span class="hk-tool">ChatGPT</span>
+            <span class="hk-tool">Gemini</span>
+            <span class="hk-tool">Grok</span>
+            <span class="hk-tool">Netlify</span>
+            <span class="hk-tool">Carrd</span>
+            <span class="hk-tool">Voiceflow</span>
+            <span class="hk-tool">ElevenLabs</span>
+            <span class="hk-tool">Loom</span>
+            <span class="hk-tool">LinkedIn</span>
+            <span class="hk-tool">Make.com</span>
+          </div>
+          <p class="hk-note">If you do not have any of these, sign up now. Your facilitator will pause for two minutes.</p>
+        </div>
+
+        <div class="hk-card">
+          <div class="hk-label">How this works</div>
+          <ul class="hk-list">
+            <li>This screen is projected. The facilitator runs the pace.</li>
+            <li>You work on your own laptop in parallel.</li>
+            <li>If you are stuck, raise your hand. The facilitator or a co-builder comes to you.</li>
+            <li>End of Day 1, one cohort photo. Bring your phone.</li>
+            <li>Your personal portfolio URL is emailed to you within 48 hours of Demo Day.</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="wl-footer">Two links open. Eleven accounts ready. Hand up if stuck. Now we build.</p>
+    </div>
+  `;
+}
+
+function renderDay1Photo() {
+  return `
+    <div class="wl-screen interlude-narrow">
+      <div class="wl-eyebrow">Day 1 &middot; Close</div>
+      <h1 class="wl-title">One photo before you go.</h1>
+      <p class="wl-sub">Hold up your phone. Show the live URL of the AI App you built today. One photo of the room, every phone lit up with proof.</p>
+      <div class="photo-icon">
+        <svg viewBox="0 0 80 64" xmlns="http://www.w3.org/2000/svg" fill="none">
+          <rect x="2" y="14" width="76" height="48" rx="6" stroke="var(--accent)" stroke-width="2"/>
+          <circle cx="40" cy="38" r="14" stroke="var(--accent)" stroke-width="2"/>
+          <circle cx="40" cy="38" r="6" fill="var(--accent)"/>
+          <rect x="28" y="6" width="24" height="8" rx="2" stroke="var(--accent)" stroke-width="2"/>
+        </svg>
+      </div>
+      <p class="wl-quiet">Then home. Rest. Read through your landing page copy, about page copy, how-it-works copy, video script, and brochure docs once before bed. Tomorrow morning we assemble the rest.</p>
+      <p class="wl-footer">See you tomorrow morning.</p>
+    </div>
+  `;
+}
+
+function renderDay2Checkin() {
+  return `
+    <div class="wl-screen interlude-narrow">
+      <div class="wl-eyebrow">Day 2 &middot; Morning</div>
+      <h1 class="wl-title">Welcome back.</h1>
+      <p class="wl-sub">Yesterday you built one big thing, your AI app, live on the internet. And you wrote five documents: your landing page copy, your about page copy, your how-it-works copy, your video script, and your brochure copy. Today you assemble the rest.</p>
+
+      <div class="d2-recap">
+        <div class="d2-recap-half">
+          <div class="d2-recap-label">Behind you</div>
+          <ul class="d2-recap-list">
+            <li>AI App, live</li>
+            <li>Landing page copy, written</li>
+            <li>About page copy, written</li>
+            <li>How-it-works copy, written</li>
+            <li>Video script, written</li>
+            <li>Brochure copy, written</li>
+          </ul>
+        </div>
+        <div class="d2-recap-divider"></div>
+        <div class="d2-recap-half d2-recap-ahead">
+          <div class="d2-recap-label">Ahead of you today</div>
+          <ul class="d2-recap-list">
+            <li>Three-page website, live</li>
+            <li>Audio embedded on landing page</li>
+            <li>Founder video, on LinkedIn</li>
+            <li>Brochure, downloadable PDF</li>
+            <li>Interim Demo Day, mid-afternoon</li>
+            <li>The four-week plan, end of day</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="wl-footer">By the end of today, the weekend is shipped. The next four weeks bring chatbot, agent, and Demo Day.</p>
+    </div>
+  `;
+}
+
+function renderPortfolioReveal() {
+  // Define the portfolio artifacts. Eight items: AI app, website, audio, founder video,
+  // brochure, chatbot, agent, demo day recording.
+  const artifacts = [
+    { label: "AI App",        note: "Your live product",                placeholder: "yourname.netlify.app" },
+    { label: "Website",       note: "Three-page marketing site",         placeholder: "yourname.carrd.co" },
+    { label: "Audio",         note: "60 seconds of your voice",          placeholder: "embedded on your site" },
+    { label: "Founder Video", note: "90 seconds on LinkedIn",            placeholder: "linkedin.com/posts/..." },
+    { label: "Brochure",      note: "One-page PDF, downloadable",        placeholder: "linked from your site" },
+    { label: "Chatbot",       note: "Always-on support",                 placeholder: "embedded on your site" },
+    { label: "Agent",         note: "Automation that runs alone",        placeholder: "make.com scenario" },
+    { label: "Demo Day",      note: "3-minute recording, in this room",  placeholder: "the strongest thing in the portfolio" },
+  ];
+
+  const cards = artifacts.map((a, i) => `
+    <div class="portfolio-card">
+      <div class="portfolio-num">${String(i + 1).padStart(2, "0")}</div>
+      <div class="portfolio-body">
+        <div class="portfolio-label">${a.label}</div>
+        <div class="portfolio-note">${a.note}</div>
+        <div class="portfolio-placeholder">${a.placeholder}</div>
+      </div>
+    </div>
+  `).join("");
+
+  return `
+    <div class="wl-screen portfolio-screen">
+      <div class="wl-eyebrow">Your portfolio</div>
+      <h1 class="wl-title">It is real. It is yours.</h1>
+      <p class="wl-sub">Six weeks ago, none of this existed. Now look at what you can show. Eight things you built. One URL that carries them all.</p>
+
+      <div class="portfolio-hero">
+        <div class="portfolio-hero-label">Your portfolio URL</div>
+        <div class="portfolio-hero-url">justbuild.orangecaterpillar.com/<span class="portfolio-hero-slot">your-college</span>/<span class="portfolio-hero-slot">c1</span>/<span class="portfolio-hero-slot">your-name</span></div>
+        <p class="portfolio-hero-note">Your personal portfolio URL goes live within 48 hours of Demo Day, with the Demo Day recording at the top. Use it on LinkedIn. Use it in every application. Use it in every message you send to a recruiter this week.</p>
+      </div>
+
+      <div class="portfolio-grid">
+        ${cards}
+      </div>
+
+      <p class="wl-footer">Eight builds. One URL. Yours.</p>
+    </div>
+  `;
+}
+
+function renderOutputCapture(s) {
+  const oc = s.output_capture || {};
+  return `
+    <div class="capture-screen">
+      <div class="label">Save your work</div>
+      <h2 class="capture-title">${escapeHtml(oc.artifact || "Output")} <span class="capture-arrow">→</span> Portfolio</h2>
+      <p class="capture-ask">${escapeHtml(oc.ask || "Save your work below.")}</p>
+
+      <div class="capture-instruction">
+        <div class="capture-instruction-step">
+          <span class="capture-instruction-num">1</span>
+          <span>Open the cohort form on your laptop.</span>
+        </div>
+        <div class="capture-instruction-step">
+          <span class="capture-instruction-num">2</span>
+          <span>Find the ${escapeHtml(oc.artifact || "")} field. Paste your link.</span>
+        </div>
+        <div class="capture-instruction-step">
+          <span class="capture-instruction-num">3</span>
+          <span>Submit. Your facilitator will confirm when everyone is in.</span>
+        </div>
+      </div>
+
+      ${oc.guidance ? `<p class="capture-guidance">${escapeHtml(oc.guidance)}</p>` : ''}
+    </div>
+  `;
+}
+
+function renderClosing() {
+  return `
+    <div class="closing-screen">
+      <img class="closing-logo" src="logo.png" alt="Orange Caterpillar" onerror="this.style.display='none'">
+      <div class="closing-eyebrow">Orange Caterpillar</div>
+      <h1 class="closing-title">Now go use it.</h1>
+      <p class="closing-sub">You built eight things in six weeks. Forty-eight more hours and you will have used them. Send the message. Make the call. Apply for the role. Your portfolio is ready. So are you.</p>
+    </div>
+  `;
+}
+
+function renderSessionStart(s) {
+  // Day label format depends on session phase. Weekend = "Day 1/2", office hours = "Week 1", etc.
+  let dayPart;
+  if (typeof s.day === "number" || /^\d+$/.test(String(s.day))) {
+    dayPart = `Day ${s.day}`;
+  } else {
+    dayPart = String(s.day);
+  }
+  const dayLabel = `${dayPart} &middot; ${s.start_time} to ${s.end_time} &middot; ${s.duration_minutes} minutes`;
+  const sessionLabel = s.session_type === "office_hours"
+    ? "Office Hours"
+    : `Session ${String(s.number).padStart(2, "0")}`;
+  return `
+    <div class="hero">
+      <div class="hero-eyebrow">${sessionLabel}</div>
+      <h1 class="hero-title">${escapeHtml(s.title)}</h1>
+      <hr class="hero-rule">
+      <p class="hero-meta">${dayLabel}</p>
+      <div class="button-row" style="margin-top: 56px;">
+        <button class="btn btn-primary" id="begin-btn">Begin Session →</button>
+      </div>
+    </div>
+  `;
+}
+
+function renderStage(s) {
+  // Split on double-newline so paragraph breaks in set_the_stage render as <p>s
+  const paragraphs = (s.set_the_stage || "")
+    .split(/\n\n+/)
+    .map(p => `<p>${escapeHtml(p.trim())}</p>`)
+    .join("");
+  return `
+    <div class="label">Set the Stage</div>
+    <div class="stage-text">${paragraphs}</div>
+  `;
+}
+
+function renderQuestion(screen) {
+  const q = screen.question;
+  return `
+    <div class="label">Question ${screen.questionIndex + 1} of ${screen.questionTotal}</div>
+    <h2 class="question-title">${escapeHtml(q.title)}</h2>
+    <p class="question-body">${escapeHtml(q.body)}</p>
+  `;
+}
+
+function renderHMV(s) {
+  const panels = (s.hmv || []).map(panel => `
+    <div class="hmv-panel">
+      <div class="hmv-name">${escapeHtml(panel.dimension)}</div>
+      <ul class="hmv-list">
+        ${panel.techniques.map(t => `<li>${escapeHtml(t)}</li>`).join("")}
+      </ul>
+    </div>
+  `).join("");
+  return `
+    <div class="label">HMV Techniques</div>
+    <div class="hmv-grid">${panels}</div>
+  `;
+}
+
+function renderPrompt(screen) {
+  const p = screen.prompt;
+  const counter = screen.promptTotal > 1 ? `Prompt ${screen.promptIndex + 1} of ${screen.promptTotal}` : "The Prompt";
+  const toolLine = p.tool ? `<div class="prompt-tool"><strong>${escapeHtml(p.tool)}</strong></div>` : "";
+  return `
+    <div class="label">${counter}</div>
+    <h2 class="prompt-title">${escapeHtml(p.title)}</h2>
+    ${toolLine}
+    <div class="prompt-box" id="prompt-box">${escapeHtml(p.content)}</div>
+    <button class="copy-btn" id="copy-btn" data-prompt="${encodeURIComponent(p.content)}">
+      Copy Prompt
+    </button>
+    ${p.facilitator_instruction ? `<div class="facilitator-note">${escapeHtml(p.facilitator_instruction)}</div>` : ""}
+  `;
+}
+
+function renderBuild(s) {
+  const items = (s.build || []).map(b => `
+    <li class="build-item">
+      <div>
+        <h3>${escapeHtml(b.title)}</h3>
+        <p>${escapeHtml(b.instructions)}</p>
+      </div>
+    </li>
+  `).join("");
+  const isCompact = (s.build || []).length >= 6;
+  return `
+    <div class="label">Build</div>
+    <ul class="build-list ${isCompact ? 'compact' : ''}">${items}</ul>
+  `;
+}
+
+function renderTestOutput(s) {
+  const sessionId = s.id;
+  if (!testsChecked[sessionId]) {
+    testsChecked[sessionId] = (s.test_output || []).map(() => false);
+  }
+  const items = (s.test_output || []).map((t, i) => {
+    const checked = testsChecked[sessionId][i];
+    return `
+      <li class="test-item ${checked ? "checked" : ""}" data-idx="${i}" data-session="${sessionId}">
+        <div class="checkbox">
+          <svg viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="3,8 7,12 13,4"></polyline>
+          </svg>
+        </div>
+        <div class="test-content">
+          <h4>${escapeHtml(t.title)}</h4>
+          <p>${escapeHtml(t.description)}</p>
+        </div>
+      </li>
+    `;
+  }).join("");
+  const allChecked = testsChecked[sessionId].every(Boolean);
+  const testCount = (s.test_output || []).length;
+  const numWord = testCount === 1 ? "One question" : `${testCount} questions`;
+  const allWord = testCount === 1 ? "It must" : "All must";
+  return `
+    <div class="label">Test Output</div>
+    <p class="test-intro">${numWord}. ${allWord} be yes before moving to the next session.</p>
+    <ul class="test-list">${items}</ul>
+    <div class="all-checked-banner ${allChecked ? "show" : ""}" id="all-checked">
+      <button class="btn btn-primary" id="advance-btn">Move to next session →</button>
+    </div>
+  `;
+}
+
+function renderOfficeHours(s) {
+  const agenda = (s.agenda || []).map(a => `<li>${escapeHtml(a)}</li>`).join("");
+  const stuck = (s.stuck_points || []).map(p => `
+    <li class="oh-stuck">
+      <div class="oh-stuck-title">${escapeHtml(p.title)}</div>
+      <div class="oh-stuck-resolution">${escapeHtml(p.resolution)}</div>
+    </li>
+  `).join("");
+
+  const agendaBlock = agenda ? `
+    <div class="oh-section">
+      <div class="oh-section-label">The 90 minutes</div>
+      <ol class="oh-agenda">${agenda}</ol>
+    </div>
+  ` : "";
+
+  const stuckBlock = stuck ? `
+    <div class="oh-section">
+      <div class="oh-section-label">Walk through these proactively</div>
+      <ul class="oh-stuck-list" style="list-style:none; padding:0;">${stuck}</ul>
+    </div>
+  ` : "";
+
+  const qaBlock = s.live_qa_note ? `
+    <div class="oh-section">
+      <div class="oh-section-label">Live Q&amp;A</div>
+      <div class="oh-qa">${escapeHtml(s.live_qa_note)}</div>
+    </div>
+  ` : "";
+
+  const homeworkBlock = s.homework_check ? `
+    <div class="oh-section">
+      <div class="oh-section-label">Roster check &middot; last 15 minutes</div>
+      <div class="oh-homework">${escapeHtml(s.homework_check)}</div>
+    </div>
+  ` : "";
+
+  // Prompts block — used by Session 10 (pitch deck builder) so students see all four step prompts on this office-hours screen
+  const promptsBlock = (s.prompts || []).length > 0 ? `
+    <div class="oh-section">
+      <div class="oh-section-label">Prompts you copy this session</div>
+      <ol class="oh-prompts">
+        ${s.prompts.map(p => `
+          <li class="oh-prompt-item">
+            <div class="oh-prompt-title">${escapeHtml(p.title)}</div>
+          </li>
+        `).join("")}
+      </ol>
+      <p class="oh-prompt-note">Open <strong>justbuild.orangecaterpillar.com/prompts-college</strong> on your laptop to copy each prompt.</p>
+    </div>
+  ` : "";
+
+  return `
+    <div class="oh-screen">
+      <div class="label">Office Hours</div>
+      ${agendaBlock}
+      ${promptsBlock}
+      ${stuckBlock}
+      ${qaBlock}
+      ${homeworkBlock}
+    </div>
+  `;
+}
+
+function renderPhaseBreak(screen) {
+  if (screen.to === "office_hours") {
+    return `
+      <div class="wl-screen interlude-narrow">
+        <div class="wl-eyebrow">Week 1 &middot; Office Hours</div>
+        <h1 class="wl-title">Welcome back.</h1>
+        <p class="wl-sub">The weekend was the launch pad. The next four Saturdays are where the deeper work happens. Ninety minutes each, same room, same time, every week. Chatbot this week. Agent the next two. Demo Day prep in Week 4.</p>
+        <p class="wl-footer">Bring your screen. Bring your specific question.</p>
+      </div>
+    `;
+  }
+  if (screen.to === "demo_day") {
+    return `
+      <div class="wl-screen interlude-narrow">
+        <div class="wl-eyebrow">Demo Day</div>
+        <h1 class="wl-title">Five weeks ago, none of this existed.</h1>
+        <p class="wl-sub">Tonight you stand in front of the room and show what you made. Three minutes plus one minute of Q&amp;A. Hard cap. Recorded. The recording becomes the strongest thing in your portfolio.</p>
+        <p class="wl-footer">Twenty-five demos. Two hours. Go.</p>
+      </div>
+    `;
+  }
+  return "";
+}
+
+function renderSessionEnd(screen) {
+  const s = screen.session;
+  const isLastSession = SESSIONS.indexOf(s) === SESSIONS.length - 1;
+  const breakInfo = s.break_after ? `<p class="hero-meta">${s.break_label || "Break"} &middot; ${s.break_duration_minutes} minutes next</p>` : "";
+  const isNumeric = /^\d+$/.test(String(s.number));
+  const completeHeading = isNumeric
+    ? `Session ${String(s.number).padStart(2, "0")}<br><span style="font-style: italic; font-weight: 300;">complete</span>`
+    : `${escapeHtml(s.title)}<br><span style="font-style: italic; font-weight: 300;">complete</span>`;
+  return `
+    <div class="hero">
+      <div class="hero-eyebrow">Complete</div>
+      <h1 class="hero-title" style="font-size: clamp(48px, 7vw, 96px);">${completeHeading}</h1>
+      <hr class="hero-rule">
+      ${isNumeric ? `<p class="hero-sub">${escapeHtml(s.title)}</p>` : ""}
+      ${breakInfo}
+      ${!isLastSession ? `<div class="button-row" style="margin-top: 48px;"><button class="btn btn-ghost" id="continue-btn">${s.break_after ? "Begin break" : "Next session"} →</button></div>` : ""}
+    </div>
+  `;
+}
+
+function renderBreak(screen) {
+  const after = screen.afterSession;
+  const next = screen.nextSession;
+  const duration = after.break_duration_minutes;
+  const label = after.break_label || "Break";
+  // Initialise break timer on first render
+  if (breakTimer.intervalId === null && !breakTimer.finished) {
+    breakTimer.remainingSeconds = duration * 60;
+    breakTimer.finished = false;
+    startBreakTimer();
+  }
+  const minsRemaining = Math.floor(breakTimer.remainingSeconds / 60);
+  const secsRemaining = breakTimer.remainingSeconds % 60;
+
+  if (breakTimer.finished) {
+    return `
+      <div class="break">
+        <h1 class="break-over">Break over.</h1>
+        <p class="break-next" style="margin-top: 32px;">Click anywhere or press Next to continue${next ? ` to <strong style="color: var(--accent);">${escapeHtml(next.title)}</strong>` : ""}.</p>
+      </div>
+    `;
+  }
+  // Default wellness prompt depending on break duration
+  let wellnessPrompt = "";
+  if (duration >= 45) {
+    wellnessPrompt = "Long break. Eat. Walk outside if you can. Talk to one person in this room you have not talked to yet.";
+  } else if (duration >= 30) {
+    wellnessPrompt = "Real break. Step away from the screen. Stretch. Drink water. Look at something more than ten metres away.";
+  } else {
+    wellnessPrompt = "Short break. Stand up. Stretch. Drink water. Look at something more than ten metres away.";
+  }
+  const breakNote = after.break_note ? escapeHtml(after.break_note) : wellnessPrompt;
+
+  return `
+    <div class="break">
+      <p class="hero-eyebrow" style="margin-bottom: 24px;">${escapeHtml(label)}</p>
+      <div class="break-timer" id="break-display">${String(minsRemaining).padStart(2, "0")}:${String(secsRemaining).padStart(2, "0")}</div>
+      <p class="break-label">${escapeHtml(label)} time</p>
+      <p class="break-next" style="margin-top: 28px; font-style: italic; max-width: 60ch; margin-left: auto; margin-right: auto;">${breakNote}</p>
+      ${next ? `<p class="break-next" style="margin-top: 24px;">When the timer ends, then <strong style="color: var(--accent);">${escapeHtml(next.title)}</strong></p>` : ""}
+    </div>
+  `;
+}
+
+function renderWorkshopComplete() {
+  return `
+    <div class="wl-screen">
+      <div class="wl-eyebrow">What happens next</div>
+      <h1 class="wl-title">The next twelve months.</h1>
+      <p class="wl-sub">Demo Day is behind you. The portfolio is live. Here is what is in it, and what happens after.</p>
+
+      <div class="wc-contents">
+        <div class="wc-contents-label">What's in your portfolio</div>
+        <ul class="wc-contents-list">
+          <li><strong>01</strong> AI App</li>
+          <li><strong>02</strong> Website (three pages)</li>
+          <li><strong>03</strong> Audio</li>
+          <li><strong>04</strong> Founder Video</li>
+          <li><strong>05</strong> Brochure (PDF)</li>
+          <li><strong>06</strong> Chatbot</li>
+          <li><strong>07</strong> Agent</li>
+          <li><strong>08</strong> Demo Day Recording</li>
+        </ul>
+      </div>
+
+      <div class="timeline">
+
+        <div class="timeline-row">
+          <div class="timeline-when">Tonight</div>
+          <div class="timeline-what">
+            <div class="timeline-title">Your portfolio URL goes public, with the Demo Day recording at the top.</div>
+            <div class="timeline-detail">The recording becomes the strongest thing in the portfolio. Pin it to your LinkedIn featured section before you sleep. Send the URL to the three people you wrote down at the close.</div>
+          </div>
+        </div>
+
+        <div class="timeline-row">
+          <div class="timeline-when">This week</div>
+          <div class="timeline-what">
+            <div class="timeline-title">Put the URL on your resume and on every profile that matters.</div>
+            <div class="timeline-detail">Naukri, Internshala, LinkedIn, college placement portal. Three minutes per profile. Then send the URL by DM to three seniors or alumni you respect, one line, your portfolio. Speed signals seriousness.</div>
+          </div>
+        </div>
+
+        <div class="timeline-row">
+          <div class="timeline-when">This month</div>
+          <div class="timeline-what">
+            <div class="timeline-title">Apply to one role where this portfolio is the proof.</div>
+            <div class="timeline-detail">An off-campus drive on Internshala. An internship through LinkedIn. A summer programme you have been holding off on. Walk into your college placement cell and show them your portfolio. The portfolio is the proof. Apply.</div>
+          </div>
+        </div>
+
+        <div class="timeline-row">
+          <div class="timeline-when">If you want to keep building</div>
+          <div class="timeline-what">
+            <div class="timeline-title">OC Ventures opens for applications.</div>
+            <div class="timeline-detail">A selective follow-on program for builders who could not stop after Demo Day. The strongest builds get polished and presented to angel investors. Apply at justbuild.orangecaterpillar.com/apply.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <p class="wl-footer">You know what to do. Go do it.</p>
+    </div>
+  `;
+}
+
+/* ============================================
+   HANDLERS
+   ============================================ */
+
+function attachHandlers(screen) {
+  // Welcome
+  const startBtn = $("#start-btn");
+  if (startBtn) startBtn.onclick = next;
+
+  // Session start
+  const beginBtn = $("#begin-btn");
+  if (beginBtn) beginBtn.onclick = () => {
+    startTimer();
+    next();
+  };
+
+  // Continue from session-end
+  const continueBtn = $("#continue-btn");
+  if (continueBtn) continueBtn.onclick = next;
+
+  // Copy prompt
+  const copyBtn = $("#copy-btn");
+  if (copyBtn) copyBtn.onclick = async () => {
+    const text = decodeURIComponent(copyBtn.dataset.prompt);
+    try {
+      await navigator.clipboard.writeText(text);
+      copyBtn.textContent = "Copied ✓";
+      copyBtn.classList.add("copied");
+      setTimeout(() => {
+        copyBtn.textContent = "Copy Prompt";
+        copyBtn.classList.remove("copied");
+      }, 2000);
+    } catch (err) {
+      // Fallback: select the prompt box
+      const sel = window.getSelection();
+      const range = document.createRange();
+      range.selectNodeContents($("#prompt-box"));
+      sel.removeAllRanges();
+      sel.addRange(range);
+      copyBtn.textContent = "Selected. Press Cmd/Ctrl+C";
+      setTimeout(() => { copyBtn.textContent = "Copy Prompt"; }, 3000);
+    }
+  };
+
+  // Test output checkboxes
+  document.querySelectorAll(".test-item").forEach(el => {
+    el.onclick = () => {
+      const idx = parseInt(el.dataset.idx, 10);
+      const sid = el.dataset.session; // session ids may be non-numeric strings ("milestone", "interim-demo")
+      testsChecked[sid][idx] = !testsChecked[sid][idx];
+      el.classList.toggle("checked", testsChecked[sid][idx]);
+      const allDone = testsChecked[sid].every(Boolean);
+      const banner = $("#all-checked");
+      if (banner) banner.classList.toggle("show", allDone);
+    };
+  });
+  const advanceBtn = $("#advance-btn");
+  if (advanceBtn) advanceBtn.onclick = next;
+
+  // Break. Click anywhere when over.
+  if (screen && screen.type === "break" && breakTimer.finished) {
+    document.body.onclick = (e) => {
+      if (e.target.closest(".bottombar")) return;
+      breakTimer.finished = false;
+      document.body.onclick = null;
+      next();
+    };
+  } else {
+    document.body.onclick = null;
+  }
+}
+
+/* ============================================
+   TIMER
+   ============================================ */
+
+function setupTimer(session) {
+  stopTimer();
+  timer.totalSeconds = session.duration_minutes * 60;
+  timer.remainingSeconds = timer.totalSeconds;
+  timer.sessionId = session.id;
+  timer.running = false;
+  timer.paused = false;
+  updateTimerDisplay();
+}
+
+function startTimer() {
+  if (timer.running) return;
+  timer.running = true;
+  timer.paused = false;
+  timer.intervalId = setInterval(tickTimer, 1000);
+  updateTimerDisplay();
+}
+
+function pauseTimer() {
+  if (!timer.running) return;
+  timer.paused = !timer.paused;
+  updateTimerDisplay();
+}
+
+function stopTimer() {
+  if (timer.intervalId) clearInterval(timer.intervalId);
+  timer.intervalId = null;
+  timer.running = false;
+  timer.paused = false;
+  $("#timer").textContent = "--:--";
+  $("#timer").className = "timer";
+}
+
+function tickTimer() {
+  if (timer.paused) return;
+  timer.remainingSeconds--;
+  updateTimerDisplay();
+}
+
+function updateTimerDisplay() {
+  const el = $("#timer");
+  if (!timer.running && !timer.totalSeconds) {
+    el.textContent = "--:--";
+    el.className = "timer";
+    return;
+  }
+  el.textContent = fmt(timer.remainingSeconds);
+  el.className = "timer";
+  if (timer.paused) el.classList.add("paused");
+  if (timer.remainingSeconds <= 0) el.classList.add("expired");
+  else if (timer.remainingSeconds <= 5 * 60) el.classList.add("danger");
+  else if (timer.remainingSeconds <= 10 * 60) el.classList.add("warning");
+}
+
+/* ----- Break timer ----- */
+function startBreakTimer() {
+  if (breakTimer.intervalId) clearInterval(breakTimer.intervalId);
+  breakTimer.intervalId = setInterval(() => {
+    breakTimer.remainingSeconds--;
+    const display = $("#break-display");
+    if (display) {
+      const m = Math.floor(breakTimer.remainingSeconds / 60);
+      const s = breakTimer.remainingSeconds % 60;
+      display.textContent = `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+    }
+    if (breakTimer.remainingSeconds <= 0) {
+      clearInterval(breakTimer.intervalId);
+      breakTimer.intervalId = null;
+      breakTimer.finished = true;
+      playChime();
+      renderCurrent();
+    }
+  }, 1000);
+}
+
+function playChime() {
+  try {
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return;
+    const ctx = new AC();
+    const playTone = (freq, start, dur) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.frequency.value = freq;
+      osc.type = "sine";
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      gain.gain.setValueAtTime(0, ctx.currentTime + start);
+      gain.gain.linearRampToValueAtTime(0.18, ctx.currentTime + start + 0.05);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + start + dur);
+      osc.start(ctx.currentTime + start);
+      osc.stop(ctx.currentTime + start + dur);
+    };
+    playTone(880, 0, 0.6);    // A5
+    playTone(1318, 0.18, 0.7); // E6
+    setTimeout(() => ctx.close(), 1500);
+  } catch (e) { /* silent */ }
+}
+
+/* ============================================
+   JUMP-TO-SESSION MENU
+   ============================================ */
+
+function refreshJumpMenu() {
+  const menu = $("#jump-menu");
+  const btnLabel = $("#jump-btn-label");
+  if (!menu) return;
+
+  const currentScreen = SCREENS[currentScreenIdx];
+  const currentSessionId = currentScreen?.session?.id || null;
+
+  // Group sessions by stage. Canonical order is from workshop.stages, with Kickoff first.
+  const stageOrder = ["Kickoff", "Ideate", "Build", "Launch", "Brand", "Automate", "Ready to show"];
+  const groups = {};
+  SESSIONS.forEach(s => {
+    const stage = s.stage || "Other";
+    if (!groups[stage]) groups[stage] = [];
+    groups[stage].push(s);
+  });
+
+  // Build HTML
+  let html = "";
+  stageOrder.forEach(stage => {
+    if (!groups[stage]) return;
+    html += `<div class="jump-group">
+      <div class="jump-group-label">${escapeHtml(stage)}</div>`;
+    groups[stage].forEach(s => {
+      const isCurrent = s.id === currentSessionId;
+      const num = s.number || s.id;
+      const time = s.session_type === "office_hours"
+        ? "90 min"
+        : `${s.start_time}–${s.end_time}`;
+      html += `<div class="jump-item ${isCurrent ? "current" : ""}" data-session-id="${escapeAttr(s.id)}">
+        <span class="jump-item-num">${escapeHtml(String(num))}</span>
+        <span class="jump-item-title">${escapeHtml(s.title)}</span>
+        <span class="jump-item-time">${escapeHtml(time)}</span>
+      </div>`;
+    });
+    html += `</div>`;
+  });
+  menu.innerHTML = html;
+
+  // Set the button label: show stage (or session number when no stage)
+  if (btnLabel) {
+    if (currentSessionId) {
+      const s = SESSIONS.find(s => s.id === currentSessionId);
+      btnLabel.textContent = s?.stage || s?.number || "Jump";
+    } else {
+      btnLabel.textContent = "Jump";
+    }
+  }
+
+  // Click handlers on items
+  menu.querySelectorAll(".jump-item").forEach(el => {
+    el.onclick = () => {
+      const sid = el.dataset.sessionId;
+      jumpToSession(sid);
+    };
+  });
+}
+
+function jumpToSession(sessionId) {
+  // Jump to the session-start screen for the given session id
+  const targetIdx = SCREENS.findIndex(scr => scr.type === "session-start" && scr.session && scr.session.id === sessionId);
+  if (targetIdx >= 0) {
+    currentScreenIdx = targetIdx;
+    renderCurrent();
+  }
+  closeJumpMenu();
+}
+
+function toggleJumpMenu() {
+  const wrap = $("#jump-wrap");
+  if (!wrap) return;
+  wrap.classList.toggle("open");
+}
+
+function closeJumpMenu() {
+  const wrap = $("#jump-wrap");
+  if (wrap) wrap.classList.remove("open");
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("jump-btn");
+  if (btn) btn.addEventListener("click", (e) => { e.stopPropagation(); toggleJumpMenu(); });
+  // Click outside closes
+  document.addEventListener("click", (e) => {
+    const wrap = document.getElementById("jump-wrap");
+    if (wrap && !wrap.contains(e.target)) closeJumpMenu();
+  });
+});
+
+/* ============================================
+   KEYBOARD SHORTCUTS
+   ============================================ */
+
+document.addEventListener("keydown", (e) => {
+  // Don't intercept when typing in inputs
+  if (e.target.matches("input, textarea, [contenteditable]")) return;
+
+  switch (e.key) {
+    case "ArrowRight":
+    case " ":
+      e.preventDefault();
+      next();
+      break;
+    case "ArrowLeft":
+      e.preventDefault();
+      prev();
+      break;
+    case "t": case "T":
+      e.preventDefault();
+      pauseTimer();
+      break;
+    case "f": case "F":
+      e.preventDefault();
+      toggleFullscreen();
+      break;
+    case "h": case "H":
+      e.preventDefault();
+      toggleHMV();
+      break;
+    case "j": case "J":
+      e.preventDefault();
+      toggleJumpMenu();
+      break;
+  }
+});
+
+function toggleFullscreen() {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen?.();
+  } else {
+    document.exitFullscreen?.();
+  }
+}
+
+function toggleHMV() {
+  hmvCollapsed = !hmvCollapsed;
+  $("#hmv-reminder").classList.toggle("collapsed", hmvCollapsed);
+}
+
+$("#hmv-reminder").addEventListener("click", toggleHMV);
+
+/* Timer click to pause/resume */
+$("#timer").addEventListener("click", pauseTimer);
+
+/* Prev/Next buttons */
+$("#prev-btn").addEventListener("click", prev);
+$("#next-btn").addEventListener("click", next);
+
+/* ============================================
+   UTILS
+   ============================================ */
+
+function escapeHtml(str) {
+  if (!str) return "";
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+function escapeAttr(str) { return escapeHtml(str); }
+
+/* ============================================
+   AUTH GATE
+   ============================================ */
+/*
+  Hardcoded credentials are stored as SHA-256 hashes below.
+  This is a soft gate. The JS file is publicly readable, so a
+  determined visitor can still extract the hashes and brute-force.
+  For real security, move to Render-level Basic Auth.
+
+  TO SET CREDENTIALS:
+  1. Open a browser console anywhere and run:
+       crypto.subtle.digest("SHA-256", new TextEncoder().encode("YOUR_VALUE"))
+         .then(b => console.log(Array.from(new Uint8Array(b)).map(x => x.toString(16).padStart(2,"0")).join("")));
+  2. Paste the resulting hex string into AUTH_ID_HASH or AUTH_PW_HASH.
+
+  Defaults below are for "admin" / "change-me". REPLACE BEFORE DEPLOY.
+*/
+const AUTH_ID_HASH = "9f32a6796682f1c784d46ca60d38aab39a4862523b4043814c2793c7b9382520";
+const AUTH_PW_HASH = "f181008ea04c7c3d9734a4b9d87e48df67970972a43641bb0608b0e1e91c6c1b";
+const AUTH_SESSION_KEY = "jb-platform-auth";
+
+async function sha256Hex(text) {
+  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, "0")).join("");
+}
+
+function dismissLogin() {
+  $("#login-overlay").classList.add("hidden");
+  loadSessions();
+}
+
+async function tryLogin(id, pw) {
+  // ID is case-insensitive (matches school and women platforms); password stays case-sensitive
+  const normalizedId = (id || "").trim().toLowerCase();
+  const [idHash, pwHash] = await Promise.all([sha256Hex(normalizedId), sha256Hex(pw)]);
+  return idHash === AUTH_ID_HASH && pwHash === AUTH_PW_HASH;
+}
+
+function initAuth() {
+  // Already authenticated this session?
+  try {
+    if (sessionStorage.getItem(AUTH_SESSION_KEY) === "1") {
+      dismissLogin();
+      return;
+    }
+  } catch (_) { /* sessionStorage may be unavailable; fall through to form */ }
+
+  const form = $("#login-form");
+  const errEl = $("#login-error");
+  const card = $("#login-card");
+  const submit = $("#login-submit");
+  const idInput = $("#login-id");
+  const pwInput = $("#login-pw");
+
+  // Focus the ID field on load
+  setTimeout(() => idInput.focus(), 50);
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const id = idInput.value.trim();
+    const pw = pwInput.value;
+    if (!id || !pw) return;
+
+    submit.disabled = true;
+    errEl.classList.remove("show");
+
+    const ok = await tryLogin(id, pw);
+    submit.disabled = false;
+
+    if (ok) {
+      try { sessionStorage.setItem(AUTH_SESSION_KEY, "1"); } catch (_) {}
+      dismissLogin();
+    } else {
+      errEl.classList.add("show");
+      card.classList.remove("shake");
+      // Force reflow so the animation re-triggers
+      void card.offsetWidth;
+      card.classList.add("shake");
+      pwInput.value = "";
+      pwInput.focus();
+    }
+  });
+}
+
+initAuth();
+</script>
+</body>
+</html>

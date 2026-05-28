@@ -2077,6 +2077,49 @@
     font-weight: 300;
     max-width: 60ch;
   }
+  .idea-set-switcher {
+    display: flex;
+    gap: 8px;
+    margin-top: clamp(10px, 1.4vh, 16px);
+    flex-wrap: wrap;
+  }
+  .idea-set-pill {
+    background: var(--bg-elev-1);
+    color: var(--text-soft);
+    border: 1px solid var(--line-strong);
+    padding: 7px 16px;
+    border-radius: 999px;
+    font-family: var(--sans);
+    font-size: 12.5px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .idea-set-pill:hover {
+    color: var(--accent);
+    border-color: var(--accent-soft);
+    background: rgba(193,125,42,0.04);
+  }
+  .idea-set-pill.active {
+    background: var(--accent);
+    color: #FFFFFF;
+    border-color: var(--accent);
+  }
+  .idea-set-pill.active:hover {
+    background: #A86A24;
+    border-color: #A86A24;
+    color: #FFFFFF;
+  }
+  .idea-set-pill-count {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    opacity: 0.7;
+    letter-spacing: 0.04em;
+  }
   .ideas-grid {
     flex: 1 1 auto;
     min-height: 0;
@@ -2481,10 +2524,11 @@ function renderCurrent() {
     $("#topbar-section").textContent = sectionLabel(screen);
     updateProgress();
   } else if (screen.type === "idea-cards") {
-    const page = (WORKSHOP && WORKSHOP.cohort_idea_page) || 1;
+    const defaultPage = (WORKSHOP && WORKSHOP.cohort_idea_page) || 1;
+    const activePage = Number(window.__ideaSetActive || defaultPage);
     $("#topbar-eyebrow").textContent = "IDEATE";
     $("#topbar-title").textContent = "Pick your micro-venture";
-    $("#topbar-section").textContent = `8 idea cards · Set ${page} of 3`;
+    $("#topbar-section").textContent = `8 idea cards · Set ${activePage} of 3`;
     updateProgress();
   }
 
@@ -2879,22 +2923,30 @@ function renderToolsLandscape() {
 
 function renderIdeaCards() {
   const all = IDEAS || [];
-  const page = (WORKSHOP && WORKSHOP.cohort_idea_page) || 1;
-  const ideas = all.filter(i => Number(i.page) === Number(page));
+  const defaultPage = (WORKSHOP && WORKSHOP.cohort_idea_page) || 1;
+  const activePage = Number(window.__ideaSetActive || defaultPage);
+  const ideas = all.filter(i => Number(i.page) === activePage);
   if (ideas.length === 0) {
     return `
       <div class="wl-screen">
         <div class="wl-eyebrow">Ideas</div>
-        <h1 class="wl-title">No ideas configured for page ${page}.</h1>
+        <h1 class="wl-title">No ideas configured for set ${activePage}.</h1>
       </div>
     `;
   }
+  // Build set-switcher pills
+  const switcher = [1, 2, 3].map(p => {
+    const count = all.filter(i => Number(i.page) === p).length;
+    const isActive = p === activePage;
+    return `<button class="idea-set-pill ${isActive ? 'active' : ''}" data-set="${p}">Set ${p} <span class="idea-set-pill-count">${count}</span></button>`;
+  }).join("");
   return `
     <div class="ideas-screen">
       <div class="ideas-screen-header">
-        <div class="ideas-screen-eyebrow">Pick one &middot; Set ${page} of 3</div>
+        <div class="ideas-screen-eyebrow">Pick one &middot; Set ${activePage} of 3</div>
         <h1 class="ideas-screen-title">Eight micro-ventures. <em>Pick the one that pulls you.</em></h1>
         <p class="ideas-screen-sub">Each one is a real venture you could run yourself, with a family member, or alongside someone you know. The next session is where you make it your own.</p>
+        <div class="idea-set-switcher">${switcher}</div>
       </div>
       <div class="ideas-grid">
         ${ideas.map((idea, idx) => `
@@ -3464,6 +3516,15 @@ function attachHandlers(screen) {
   // Welcome
   const startBtn = $("#start-btn");
   if (startBtn) startBtn.onclick = next;
+
+  // Idea set switcher pills — let facilitator (or anyone) flip between Set 1/2/3
+  document.querySelectorAll(".idea-set-pill").forEach(pill => {
+    pill.onclick = () => {
+      const set = parseInt(pill.dataset.set, 10);
+      window.__ideaSetActive = set;
+      renderCurrent();
+    };
+  });
 
   // Session start
   const beginBtn = $("#begin-btn");

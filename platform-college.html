@@ -2248,8 +2248,9 @@
    Just Build  /  Workshop Platform
    ============================================ */
 
-let WORKSHOP = null;          // sessions.json content
+let WORKSHOP = null;          // sessions-college.json workshop block
 let SESSIONS = [];            // sessions array
+let IDEAS = [];               // ideas array (top-level of sessions-college.json)
 let SCREENS = [];             // flat array of all screens with metadata
 
 let currentScreenIdx = 0;
@@ -2288,6 +2289,7 @@ async function loadSessions() {
     const data = await res.json();
     WORKSHOP = data.workshop;
     SESSIONS = data.sessions;
+    IDEAS = data.ideas || [];
     buildScreenSequence();
     renderCurrent();
   } catch (err) {
@@ -2479,7 +2481,7 @@ function renderCurrent() {
     $("#topbar-section").textContent = sectionLabel(screen);
     updateProgress();
   } else if (screen.type === "idea-cards") {
-    const page = (WORKSHOP && WORKSHOP.workshop && WORKSHOP.workshop.cohort_idea_page) || 1;
+    const page = (WORKSHOP && WORKSHOP.cohort_idea_page) || 1;
     $("#topbar-eyebrow").textContent = "IDEATE";
     $("#topbar-title").textContent = "Pick your micro-venture";
     $("#topbar-section").textContent = `8 idea cards · Set ${page} of 3`;
@@ -2876,8 +2878,8 @@ function renderToolsLandscape() {
    ============================================ */
 
 function renderIdeaCards() {
-  const all = (WORKSHOP && WORKSHOP.ideas) || [];
-  const page = (WORKSHOP && WORKSHOP.workshop && WORKSHOP.workshop.cohort_idea_page) || 1;
+  const all = IDEAS || [];
+  const page = (WORKSHOP && WORKSHOP.cohort_idea_page) || 1;
   const ideas = all.filter(i => Number(i.page) === Number(page));
   if (ideas.length === 0) {
     return `

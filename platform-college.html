@@ -436,6 +436,10 @@
   }
   .stage::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
 
+  /* Viewport-locked variant: used for prompt screens and idea-cards so the bottom strip is always visible */
+  .stage.fit-viewport { overflow: hidden; padding-top: clamp(20px, 3vh, 36px); padding-bottom: clamp(20px, 3vh, 36px); }
+  .stage.fit-viewport .screen { height: 100%; display: flex; flex-direction: column; min-height: 0; }
+
   .screen {
     width: 100%;
     max-width: 1100px;
@@ -687,6 +691,59 @@
   }
   .copy-btn:hover { background: #D08A33; transform: translateY(-1px); }
   .copy-btn.copied { background: #2C8A4F; pointer-events: none; }
+
+  /* ----- Prompt screen (viewport-locked, URL strip always visible) ----- */
+  .prompt-screen {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0;
+    padding: 8px 0;
+  }
+  .prompt-screen-header { flex: 0 0 auto; margin-bottom: clamp(8px, 1.2vh, 14px); }
+  .prompt-screen-title {
+    font-size: clamp(20px, 2.6vh, 28px) !important;
+    margin: clamp(4px, 0.8vh, 10px) 0 clamp(4px, 0.6vh, 8px) !important;
+  }
+  .prompt-screen-box {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    margin-bottom: 0 !important;
+    font-size: clamp(13px, 1.65vh, 16px) !important;
+    line-height: 1.6 !important;
+    color: var(--text) !important;
+    padding: 18px 24px !important;
+  }
+  .prompt-screen-footer {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(8px, 1.2vh, 14px);
+    margin-top: clamp(10px, 1.5vh, 16px);
+  }
+  .prompt-laptop-line {
+    padding: clamp(10px, 1.5vh, 14px) 22px;
+    background: rgba(193,125,42,0.08);
+    border: 1px solid var(--accent-soft);
+    border-radius: 6px;
+    text-align: center;
+  }
+  .prompt-laptop-eyebrow {
+    font-size: 10.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  .prompt-laptop-url {
+    font-family: var(--mono);
+    font-size: clamp(14px, 1.9vh, 20px);
+    color: var(--text);
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
 
   /* ----- Build ----- */
   .build-list {
@@ -2392,6 +2449,17 @@ function buildScreenSequence() {
     // Office hours screen is dedicated and replaces the standard question/prompt/build/test flow
     if (session.session_type === "office_hours") {
       SCREENS.push({ type: "office-hours", session });
+      // If office hours has prompts (like Session 10 pitch deck), give each prompt its own screen
+      const ohPrompts = session.prompts || [];
+      ohPrompts.forEach((prompt, pIdx) => {
+        SCREENS.push({
+          type: "prompt",
+          session,
+          prompt,
+          promptIndex: pIdx,
+          promptTotal: ohPrompts.length
+        });
+      });
       // Test output (the "homework leaves the room" check) still applies if present
       if (session.test_output && session.test_output.length) {
         SCREENS.push({ type: "test-output", session });
@@ -2567,6 +2635,9 @@ function renderCurrent() {
     case "workshop-complete":  html = renderWorkshopComplete(); break;
   }
   stage.innerHTML = `<div class="screen">${html}</div>`;
+
+  // Lock viewport for screens that need the bottom strip always visible
+  stage.classList.toggle("fit-viewport", screen.type === "prompt" || screen.type === "idea-cards");
 
   // Wire up dynamic handlers per screen
   attachHandlers(screen);
@@ -3232,14 +3303,24 @@ function renderPrompt(screen) {
   const counter = screen.promptTotal > 1 ? `Prompt ${screen.promptIndex + 1} of ${screen.promptTotal}` : "The Prompt";
   const toolLine = p.tool ? `<div class="prompt-tool"><strong>${escapeHtml(p.tool)}</strong></div>` : "";
   return `
-    <div class="label">${counter}</div>
-    <h2 class="prompt-title">${escapeHtml(p.title)}</h2>
-    ${toolLine}
-    <div class="prompt-box" id="prompt-box">${escapeHtml(p.content)}</div>
-    <button class="copy-btn" id="copy-btn" data-prompt="${encodeURIComponent(p.content)}">
-      Copy Prompt
-    </button>
-    ${p.facilitator_instruction ? `<div class="facilitator-note">${escapeHtml(p.facilitator_instruction)}</div>` : ""}
+    <div class="prompt-screen">
+      <div class="prompt-screen-header">
+        <div class="label">${counter}</div>
+        <h2 class="prompt-title prompt-screen-title">${escapeHtml(p.title)}</h2>
+        ${toolLine}
+      </div>
+      <div class="prompt-box prompt-screen-box" id="prompt-box">${escapeHtml(p.content)}</div>
+      <div class="prompt-screen-footer">
+        <button class="copy-btn" id="copy-btn" data-prompt="${encodeURIComponent(p.content)}">
+          Copy Prompt
+        </button>
+        <div class="prompt-laptop-line">
+          <div class="prompt-laptop-eyebrow">Get this prompt on your laptop</div>
+          <div class="prompt-laptop-url">justbuild.orangecaterpillar.com/prompts-college</div>
+        </div>
+      </div>
+      ${p.facilitator_instruction ? `<div class="facilitator-note">${escapeHtml(p.facilitator_instruction)}</div>` : ""}
+    </div>
   `;
 }
 
@@ -3331,10 +3412,11 @@ function renderOfficeHours(s) {
     </div>
   ` : "";
 
-  // Prompts block — used by Session 10 (pitch deck builder) so students see all four step prompts on this office-hours screen
+  // Prompts preview block — shows step titles only as a roadmap of what's next.
+  // Each prompt then gets its own full screen via buildScreenSequence.
   const promptsBlock = (s.prompts || []).length > 0 ? `
     <div class="oh-section">
-      <div class="oh-section-label">Prompts you copy this session</div>
+      <div class="oh-section-label">What's coming next &middot; ${s.prompts.length} prompts, one per screen</div>
       <ol class="oh-prompts">
         ${s.prompts.map(p => `
           <li class="oh-prompt-item">
@@ -3342,7 +3424,6 @@ function renderOfficeHours(s) {
           </li>
         `).join("")}
       </ol>
-      <p class="oh-prompt-note">Open <strong>justbuild.orangecaterpillar.com/prompts-college</strong> on your laptop to copy each prompt.</p>
     </div>
   ` : "";
 

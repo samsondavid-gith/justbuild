@@ -179,21 +179,21 @@
           "title": "Build your order page",
           "tool": "Gemini (gemini.google.com)",
           "desc": "Creates index.html: shows your offerings, lets a customer choose, and place an order.",
-          "content": "I am building a simple website for my small venture. It is not an AI product. I am just using you to write the code for me. I will host it as one plain HTML file, with no backend.\n\nHere is my venture:\n- What I sell: [one line, for example home tiffins, rented plants, handloom sarees, exam tutoring]\n- Who buys it: [one line, my customer]\n- My offerings, one per line as Name | photo link or leave blank | short description or details like nutrition, size, material | price in rupees:\n  [Name] | [photo link or blank] | [description or details] | [price]\n  [Name] | [photo link or blank] | [description or details] | [price]\n  (add as many as you have)\n- If my offerings are grouped, the grouping is: [by day, by collection, by plan, or none]\n\nBuild me one file called index.html that does this:\n- Shows my venture name and a one line tagline at the top.\n- Shows each offering as a card with its name, its photo (use the link if I gave one, otherwise a neat placeholder I can swap later), its description or details, and its price. Group them if I said so.\n- Lets the customer add an offering to their order and choose a quantity.\n- Shows a running list of what they picked and the total in rupees.\n- Has a short form for the customer name and phone number, and an optional note.\n- Has one clear button labelled Place order, not Submit.\n- After they place the order, shows a friendly confirmation on the screen with their order summary.\n\nKeep it clean and easy to read on a phone. Simple colours, nothing flashy. Put all my offerings near the top of the file so I can edit them easily later. No payment, no login, no backend yet. Do not add email or database steps yet, I will ask for those next. Give me the full index.html."
+          "content": "I am building a simple website for my small venture. It is not an AI product. I am just using you to write the code for me. I will host it as one plain HTML file, with no backend.\n\nHere is my venture:\n- What I sell: [one line, for example home tiffins, rented plants, handloom sarees, exam tutoring]\n- Who buys it: [one line, my customer]\n- My offerings, one per line as Name | photo link or leave blank | short description or details like nutrition, size, material | price in rupees:\n  [Name] | [photo link or blank] | [description or details] | [price]\n  [Name] | [photo link or blank] | [description or details] | [price]\n  (add as many as you have)\n- If my offerings are grouped, the grouping is: [by day, by collection, by plan, or none]\n\nBuild me one file called index.html that does this:\n- Shows my venture name and a one line tagline at the top.\n- Shows each offering as a card with its name, its photo (use the link if I gave one, otherwise a neat placeholder I can swap later), its description or details, and its price. Group them if I said so.\n- Lets the customer add an offering to their order and choose a quantity.\n- Shows a running list of what they picked and the total in rupees.\n- Has a short form for the customer name, email, and phone number, and an optional note.\n- Has one clear button labelled Place order, not Submit.\n- After they place the order, shows a friendly confirmation on the screen with their order summary.\n\nKeep it clean and easy to read on a phone. Simple colours, nothing flashy. Put all my offerings near the top of the file so I can edit them easily later. No payment, no login, no backend yet. Do not add email or database steps yet, I will ask for those next. Give me the full index.html."
         },
         {
           "number": 2,
           "title": "Add the email notification",
           "tool": "Gemini (gemini.google.com)",
           "desc": "Wires EmailJS in so you get an email the moment an order comes in.",
-          "content": "Here is my current index.html:\n\n[paste your full index.html]\n\nI want an email to reach me every time a customer places an order. I am using EmailJS. From my EmailJS account I have:\n- Public key: [paste]\n- Service ID: [paste]\n- Template ID: [paste]\n\nMy EmailJS template uses these fields: customer_name, customer_phone, order_details, order_total, customer_note.\n\nAdd EmailJS to my page so that when the customer taps Place order, it sends me an email with their name, phone, the list of items they ordered as readable text, the total, and their note. Load the EmailJS library from their CDN. Keep everything else working exactly as it is now. If the email ever fails, still show the customer their confirmation and log the error to the console. Give me the full updated index.html."
+          "content": "Here is my current index.html:\n\n[paste your full index.html]\n\nI want an email to reach me every time a customer places an order. I am using EmailJS. From my EmailJS account I have:\n- Public key: [paste]\n- Service ID: [paste]\n- Template ID: [paste]\n\nMy EmailJS template uses these fields: customer_name, customer_email, customer_phone, order_details, order_total, customer_note.\n\nAdd EmailJS to my page so that when the customer taps Place order, it sends me an email with their name, email, phone, the list of items they ordered as readable text, the total, and their note. Load the EmailJS library from their CDN. Keep everything else working exactly as it is now. If the email ever fails, still show the customer their confirmation and log the error to the console. Give me the full updated index.html."
         },
         {
           "number": 3,
           "title": "Save orders to your database",
           "tool": "Gemini (gemini.google.com)",
           "desc": "Wires Supabase in so every order is saved and never lost.",
-          "content": "Here is my current index.html:\n\n[paste your full index.html]\n\nI also want every order saved to my database so I never lose one. I am using Supabase. I have:\n- Project URL: [paste]\n- Anon public key: [paste]\n- A table called orders with these columns: customer_name (text), customer_phone (text), items (text), total (number), note (text). Supabase adds id and created_at on its own.\n\nAdd Supabase to my page using their JavaScript library from the CDN. When the customer taps Place order, save the order into the orders table at the same time as sending the email. Put all the items they picked into the items column as readable text. Keep the email and the on screen confirmation working. If saving ever fails, still show the confirmation and log the error to the console. Give me the full updated index.html."
+          "content": "Here is my current index.html:\n\n[paste your full index.html]\n\nI also want every order saved to my database so I never lose one. I am using Supabase. I have:\n- Project URL: [paste]\n- Anon public key: [paste]\n- A table called orders with these columns: customer_name (text), customer_email (text), customer_phone (text), items (text), total (number), note (text). Supabase adds id and created_at on its own.\n\nAdd Supabase to my page using their JavaScript library from the CDN. When the customer taps Place order, save the order into the orders table at the same time as sending the email. Put all the items they picked into the items column as readable text. Keep the email and the on screen confirmation working. If saving ever fails, still show the confirmation and log the error to the console. Give me the full updated index.html."
         },
         {
           "number": 4,
@@ -262,7 +262,7 @@
                 "detail": [
                   "Go to emailjs.com and create a free account.",
                   "Click Add New Service, choose Gmail or your email, and connect your inbox. Note the Service ID.",
-                  "Click Email Templates and create a template. In the body use these fields: {{customer_name}}, {{customer_phone}}, {{order_details}}, {{order_total}}, {{customer_note}}. Save it and note the Template ID.",
+                  "Click Email Templates and create a template. In the body use these fields: {{customer_name}}, {{customer_email}}, {{customer_phone}}, {{order_details}}, {{order_total}}, {{customer_note}}. Save it and note the Template ID.",
                   "Open Account and find your Public Key.",
                   "Write down three things: Public Key, Service ID, Template ID. You paste them into Prompt 2."
                 ],
@@ -274,7 +274,7 @@
                 "detail": [
                   "Go to supabase.com, sign up free, and click New project. Give it your venture name and a password you save. Wait about a minute.",
                   "On the left open Table Editor and click New table. Name it exactly orders. Turn off Enable Row Level Security for now to keep things simple.",
-                  "Add these columns, besides the id and created_at it makes for you: customer_name (text), customer_phone (text), items (text), total (numeric), note (text). Save the table.",
+                  "Add these columns, besides the id and created_at it makes for you: customer_name (text), customer_email (text), customer_phone (text), items (text), total (numeric), note (text). Save the table.",
                   "On the left open Project Settings, then API. Copy two things: the Project URL and the anon public key. You paste them into Prompts 3 and 4."
                 ],
                 "tool": "Supabase (supabase.com)"
@@ -1307,45 +1307,140 @@
       "duration_minutes": 90,
       "break_after": false,
       "break_duration_minutes": 0,
-      "set_the_stage": "Week 2. The agent build is harder than the chatbot build. That is by design. You have two weeks to ship it, not one.\n\nThis week you should be roughly halfway through the agent PDF. Your Make.com account is set up, the template is cloned, the trigger from your Carrd form is wired, and you have run one test scenario end to end, even if the email it sends is still rough.\n\nThe four stuck points in the first half of the agent build are different from the second half. We walk through this week's four. Next week we walk through the back-half four.",
+      "set_the_stage": "Week 2. The agent build is harder than the chatbot build. That is by design. You have two weeks to ship it, not one.\n\nThis week is the plumbing. By the end you have a Make.com account, your orders flowing from Supabase into Make, and a confirmation email going out to the customer on every order, even if the wording is still rough.\n\nThe agent is the assistant that handles what happens after an order. A customer orders on your app, it lands in your Supabase, and the agent, with no one watching, sends them a warm confirmation. Next week we make it sound like you and add a daily summary for yourself.\n\nWe open with a status check, walk the common stuck points for this week's plumbing, then open the floor. The last fifteen minutes, a roster check: confirmation sending, or specifically what is left.",
       "agenda": [
-        "First 10 min, status check. Each person: agent trigger wired, in progress, not started, or specifically stuck",
-        "Next 20 min, walkthrough of the four common stuck points in the first half of the agent build",
-        "Next 45 min, live Q&A. Screens up. Make.com scenarios open",
-        "Last 15 min, roster check. Every person says: trigger working, or specifically what is left"
+        "First 10 min, status check. Each person: orders reaching Make, in progress, not started, or specifically stuck",
+        "Next 20 min, walkthrough of the common stuck points wiring Supabase to Make",
+        "Next 45 min, live Q&A. Screens up, Make scenarios open",
+        "Last 15 min, roster check. Every person says: confirmation sending, or specifically what is left"
       ],
       "stuck_points": [
         {
-          "title": "The Carrd form is not triggering the Make scenario",
-          "resolution": "Make.com's webhook needs the exact URL pasted into Carrd's form-action field, not the form-redirect field. The PDF page 8 shows the exact place. Check there first."
+          "title": "Supabase is not sending new orders to Make",
+          "resolution": "Check the database webhook in Supabase points to the exact Make webhook URL and is set for the Insert event on the orders table. Then place one test order so Make receives a sample."
         },
         {
-          "title": "The scenario runs but does not see the form fields",
-          "resolution": "The webhook needs to be re-listened after you change the form. In Make, click 'Redetermine data structure' on the webhook module, then submit the form once. The fields will appear."
+          "title": "Make runs but does not see the order fields",
+          "resolution": "In the webhook module, click to redetermine the data structure, then place one more test order. The fields, including the customer email, will appear so you can map them."
         },
         {
           "title": "The free tier is hitting the operations limit",
-          "resolution": "Free tier is 1,000 ops per month, more than enough. If you are hitting limits, you are probably running the same scenario in a loop. Check whether you accidentally connected the scenario's output back to its trigger."
+          "resolution": "Free is 1,000 operations a month, plenty for testing. Turn the scenario off while you are not actively testing and on when you demo. Two scenarios is the free ceiling, which is exactly what this build needs."
         },
         {
-          "title": "The email module asks for a Gmail connection and the connection fails",
-          "resolution": "Gmail OAuth requires the Google account to allow third-party access. The PDF has the settings link. Open it in the same browser where you are logged into Make."
+          "title": "The confirmation email is not arriving",
+          "resolution": "Check the email module is connected to your inbox and the To field is mapped to the customer's email from the order, not a fixed address. Check spam. On free, allow up to about 15 minutes."
         }
       ],
-      "questions": [],
-      "hmv": [],
-      "prompts": [],
-      "build": [],
-      "test_output": [
+      "prompts": [
         {
-          "title": "The end-to-end test",
-          "description": "By next Saturday, can you submit your Carrd form and have an email arrive in your inbox within thirty seconds? Content can be rough. The pipe must be live. If yes, pass."
+          "number": 1,
+          "title": "Write your order confirmation email",
+          "tool": "Claude (claude.ai)",
+          "desc": "The warm note the customer gets the moment they order. The agent sends it for you.",
+          "content": "I want to send a customer a warm confirmation email the moment they place an order on my venture's website. An automation will send it, so write the email with placeholders I can fill from the order.\n\nMy venture:\n- What I sell: [one line]\n- My name and how I sign off: [your name]\n- What happens after they order: [one line, for example I confirm and deliver by 8pm]\n\nWrite a short, warm confirmation email in my voice. Use {{name}} for the customer's name and {{items}} for what they ordered. Include: a friendly thank you using their name, a line confirming what they ordered, a line on what happens next, and a warm sign off from me. Keep it human and specific, not a robotic no-reply. Give me a subject line and the body, as plain text."
         }
       ],
       "live_qa_note": "Open the floor for 40 to 45 minutes. Screens up, Make.com scenarios visible. Most agent debugging happens by looking at the scenario diagram together.",
       "homework_check": "Every person, around the room, in one sentence: trigger-to-email working by next Saturday, or specifically what is left.",
-      "output_capture": null,
-      "stage": "Automate"
+      "stage": "Automate",
+      "procedure": {
+        "sections": [
+          {
+            "id": "A",
+            "name": "Set up Make and check your orders",
+            "note": "The agent lives in Make.com and reads the orders already in your Supabase. Writing today is on Claude.",
+            "steps": [
+              {
+                "title": "Create a free Make account",
+                "body": "This is where your automation lives.",
+                "detail": [
+                  "Go to make.com and sign up for the free plan. No card needed.",
+                  "The free plan gives you two scenarios and 1,000 operations a month, which is exactly what this build needs."
+                ],
+                "tool": "Make (make.com)"
+              },
+              {
+                "title": "Check your order app collects email",
+                "body": "The agent emails the customer, so your orders need the customer's email.",
+                "detail": [
+                  "Open your order app. The form should ask for the customer's email, alongside name and phone.",
+                  "Open Supabase, your orders table. It should have a customer_email column.",
+                  "If either is missing, ask your build AI to add an email field to the form and save it to a customer_email column, then redeploy. Most of you already collect it."
+                ]
+              }
+            ]
+          },
+          {
+            "id": "B",
+            "name": "Wire your orders to the agent",
+            "note": "Supabase will tell Make every time a new order comes in.",
+            "steps": [
+              {
+                "title": "Start Scenario 1 with a webhook",
+                "body": "Create the entry point the order will arrive at.",
+                "detail": [
+                  "In Make, create a new scenario. Add the Webhooks module, then Custom webhook. Create one and copy the URL it gives you."
+                ],
+                "tool": "Make (make.com)"
+              },
+              {
+                "title": "Send new orders from Supabase to Make",
+                "body": "Tell Supabase to ping Make whenever an order is added.",
+                "detail": [
+                  "In Supabase, open Database, then Webhooks, and create a new webhook on the orders table for the Insert event.",
+                  "Set the URL to the Make webhook URL you copied, and save.",
+                  "If you cannot find database webhooks, ask your AI how to send a Supabase insert to a webhook URL and follow the steps."
+                ],
+                "tool": "Supabase (supabase.com)"
+              },
+              {
+                "title": "Test the connection",
+                "body": "Make a real order and watch it arrive in Make.",
+                "detail": [
+                  "Place a test order on your app.",
+                  "In Make, run the scenario once and confirm the order's details, name, email, and items, show up. If Make does not see the fields, redetermine the data structure and order again."
+                ]
+              }
+            ]
+          },
+          {
+            "id": "C",
+            "name": "Send the customer a confirmation",
+            "note": "Now the agent replies to every order, automatically.",
+            "steps": [
+              {
+                "title": "Run Prompt 1, write your confirmation email",
+                "body": "Claude writes a warm confirmation with placeholders.",
+                "detail": [
+                  "Open the build guide, copy Prompt 1, and paste it into Claude with your venture details.",
+                  "You get a subject line and body with {{name}} and {{items}} placeholders."
+                ],
+                "prompt_ref": 1
+              },
+              {
+                "title": "Add the email step in Make",
+                "body": "Make sends your email to the customer on every order.",
+                "detail": [
+                  "In your scenario, add an Email module, Send an email, and connect a free email such as your Gmail.",
+                  "In the To field, map the customer's email from the order. Put in your subject and body, and map {{name}} and {{items}} to the order's fields.",
+                  "Turn the scenario on."
+                ],
+                "tool": "Make (make.com)"
+              },
+              {
+                "title": "Test it end to end",
+                "body": "One real order should produce one real email.",
+                "detail": [
+                  "Place a test order using your own email as the customer.",
+                  "Within about 15 minutes you should get the confirmation. Check spam too.",
+                  "Week 1 is done when an order reliably produces a confirmation, even if the wording is still rough."
+                ]
+              }
+            ]
+          }
+        ]
+      }
     },
     {
       "id": "9",
@@ -1359,51 +1454,153 @@
       "duration_minutes": 90,
       "break_after": false,
       "break_duration_minutes": 0,
-      "set_the_stage": "Week 3. The agent should be live by next Saturday.\n\nThe back half of the agent build is where the agent goes from 'sending an email' to 'sending an email that feels written for this specific person'. The plumbing is done. The voice is what is left.\n\nThis week's stuck points are about quality, not connectivity. The email module works. The question is whether what it sends sounds like the same person who wrote the website copy and narrated the video, or like a no-reply notification from an internet company.",
+      "set_the_stage": "Week 3. The agent should be live by next Saturday.\n\nThe plumbing is done: an order comes in and a confirmation goes out. This week is two things. First, voice: make that confirmation sound like the same person who wrote your website and narrated your video, not a no-reply from an internet company. Second, the daily digest: a once-a-day summary email to yourself, read straight from your Supabase orders.\n\nThe email module already works. The question is whether what it sends sounds like you, and whether you get a clean view of your day without scrolling. We walk this week's stuck points, then open the floor. By next Saturday: a confirmation in your voice, plus a daily digest, both live.",
       "agenda": [
-        "First 10 min, status check. Each person: pipe working and improving voice, pipe still broken, or specifically stuck on quality",
-        "Next 20 min, walkthrough of the four back-half stuck points on the agent build",
-        "Next 45 min, live Q&A. Bring your sample emails. The room critiques",
+        "First 10 min, status check. Each person: confirmation live and improving, digest in progress, or specifically stuck",
+        "Next 20 min, walkthrough of this week's stuck points, voice and the digest",
+        "Next 45 min, live Q&A. Bring your confirmation email, the room critiques the voice",
         "Last 15 min, roster check. Every person says: agent live, or specifically what is left for Demo Day"
       ],
       "stuck_points": [
         {
-          "title": "The email reads like an auto-confirmation",
-          "resolution": "Pull your website copy. Pull your video script. The agent's voice must match. Rewrite the email body so it sounds like a continuation of the same person, not a transactional ping. Lead with one specific reference to what the user just submitted."
+          "title": "The confirmation reads like an auto-notification",
+          "resolution": "Pull your website copy and your video script. The email must sound like the same person. Rewrite the body so it leads with what they actually ordered, then your voice. Prompt 1 this week does exactly this."
         },
         {
-          "title": "The agent does not handle empty or weird inputs",
-          "resolution": "Add a router module in Make. If the form's main field is empty or under N characters, route to a polite 'I need a bit more to work with' response. The PDF page 22 has the router config."
+          "title": "The digest cannot read today's orders from Supabase",
+          "resolution": "In the HTTP module you read the orders table filtered to today's date. Ask your AI for the exact Supabase read for today's rows, and put your Project URL and anon key in the request. Test by running the scenario once."
         },
         {
-          "title": "The agent fires twice for one submission",
-          "resolution": "Carrd's default form behaviour submits and refreshes. If you have 'submit and stay' enabled, some browsers fire twice. Switch to redirect mode and point to a thank-you page in Carrd."
+          "title": "The agent breaks on a weird order",
+          "resolution": "Add a filter so the confirmation only sends when the customer email and items are both present. Empty or junk orders are skipped, not sent."
         },
         {
-          "title": "Three test runs is not enough",
-          "resolution": "Run the full scenario ten times before Demo Day, with different realistic inputs. Run it with your name. Run it with a friend's name. Run it from a phone. Each run reveals something the previous nine did not. If anything fails, fix it now, not the morning of Demo Day."
+          "title": "Both scenarios will not stay on",
+          "resolution": "Free allows exactly two active scenarios, which is what you have: the confirmation and the digest. If a third is on from testing, turn it off, and keep only these two active."
         }
       ],
-      "questions": [],
-      "hmv": [],
-      "prompts": [],
-      "build": [],
-      "test_output": [
+      "prompts": [
         {
-          "title": "The live agent test",
-          "description": "By Demo Day, can you submit your Carrd form three times with different inputs and have three good emails arrive, each one sounding like a real person wrote it for that specific submission? If yes, pass."
+          "number": 1,
+          "title": "Polish your confirmation to sound like you",
+          "tool": "Claude (claude.ai)",
+          "desc": "Rewrites the confirmation so it matches your website and video voice.",
+          "content": "Here is my current order confirmation email:\n\n[paste your current confirmation email]\n\nHere is my website landing copy and my video script, so the email matches my voice:\n\n[paste your landing copy and your video script]\n\nRewrite the confirmation so it sounds like the same person who wrote those, warm and specific, not like an automated notification. Keep the {{name}} and {{items}} placeholders. Lead with something that references what they actually ordered. Keep it short. Give me the subject line and body."
+        },
+        {
+          "number": 2,
+          "title": "Write your daily order digest",
+          "tool": "Claude (claude.ai)",
+          "desc": "The once-a-day summary email you get, read from your Supabase orders.",
+          "content": "Write me a short daily summary email that I, the venture owner, get each evening listing the day's orders.\n\nMy venture: [one line]\n\nThe automation will give you a list of today's orders, each with a name, items, and total. Write an email that opens with the count and total for the day, for example 12 orders, 4,800 rupees, then lists each order on its own line as name, items, total, and ends with a short encouraging sign off to myself. Use {{count}}, {{total}}, and {{orders_list}} as placeholders. Keep it clean and skimmable. Give me a subject line and body."
         }
       ],
       "live_qa_note": "Less debugging this week, more critique. Have students paste sample agent emails into the projector. The room reads them, names what sounds off, suggests fixes.",
       "homework_check": "Every person, around the room: agent fully live for Demo Day, or specifically what is left. Anyone with more than one specific issue gets a one-to-one slot with the facilitator before Demo Day.",
       "output_capture": {
         "artifact": "Agent",
-        "ask": "Save your Carrd form URL (where the agent listens).",
-        "placeholder": "https://yourname.carrd.co",
+        "ask": "Paste your app URL. Your agent now runs behind it.",
+        "placeholder": "https://yourname.netlify.app",
         "kind": "url",
-        "guidance": "The agent lives inside Make.com but listens to your Carrd form. Your portfolio page will show this URL alongside a description of what the agent does. Your facilitator also captures a screenshot of your Make.com scenario for the portfolio."
+        "guidance": "There is no separate URL for the agent, it works behind your app and Supabase. Paste your app URL. On Demo Day, place a live order to show the confirmation arrive, and show your daily digest."
       },
-      "stage": "Automate"
+      "stage": "Automate",
+      "procedure": {
+        "sections": [
+          {
+            "id": "A",
+            "name": "Make the confirmation sound like you",
+            "note": "The plumbing works. Now the voice. Writing is on Claude.",
+            "steps": [
+              {
+                "title": "Run Prompt 1, polish your confirmation",
+                "body": "Claude rewrites the email to match your website and video voice.",
+                "detail": [
+                  "Copy Prompt 1 and paste it into Claude with your current email, your landing copy, and your video script.",
+                  "You get a warmer version that references what they ordered."
+                ],
+                "prompt_ref": 1
+              },
+              {
+                "title": "Update the email in Make",
+                "body": "Swap in the better wording.",
+                "detail": [
+                  "Open Scenario 1 in Make. Replace the subject and body with your polished version, keeping the mapped {{name}} and {{items}}.",
+                  "Place a test order and read the email as if you were the customer. Adjust until it sounds like you."
+                ],
+                "tool": "Make (make.com)"
+              },
+              {
+                "title": "Handle the odd order",
+                "body": "Make sure a weird order does not break it.",
+                "detail": [
+                  "An order with no email or no items should be skipped, not sent broken.",
+                  "In Make, add a filter so the email only sends when the customer email and items are present. Ask in office hours if you are unsure."
+                ]
+              }
+            ]
+          },
+          {
+            "id": "B",
+            "name": "Add the daily digest",
+            "note": "A once-a-day summary to you, read from your Supabase orders.",
+            "steps": [
+              {
+                "title": "Run Prompt 2, write your digest",
+                "body": "Claude writes your evening summary email.",
+                "detail": [
+                  "Copy Prompt 2 and paste it into Claude with your venture.",
+                  "You get a clean summary format with {{count}}, {{total}}, and {{orders_list}} placeholders."
+                ],
+                "prompt_ref": 2
+              },
+              {
+                "title": "Build Scenario 2 in Make",
+                "body": "A second scenario that runs once each evening.",
+                "detail": [
+                  "In Make, create a new scenario, your second and last on the free plan. Set it to run on a schedule, once a day in the evening.",
+                  "Add an HTTP module that reads today's orders from Supabase, using your Project URL and anon key. Ask your AI for the exact Supabase read for today's rows if you are stuck.",
+                  "Add an Email module to send yourself the digest, mapping {{count}}, {{total}}, and the list of orders.",
+                  "Turn it on and run it once to test."
+                ],
+                "tool": "Make (make.com)"
+              }
+            ]
+          },
+          {
+            "id": "C",
+            "name": "Go live",
+            "note": "Both scenarios on. The agent runs without you.",
+            "steps": [
+              {
+                "title": "Final test",
+                "body": "Confirm both halves work.",
+                "detail": [
+                  "Place a test order. As the customer, you get the polished confirmation within about 15 minutes.",
+                  "Run the digest scenario once. As the owner, you get the day's summary.",
+                  "Make sure both scenarios are switched on."
+                ]
+              }
+            ]
+          },
+          {
+            "id": "D",
+            "name": "You are done",
+            "note": "",
+            "steps": [
+              {
+                "title": "Your agent is live",
+                "body": "Every order gets a personal reply, and you get a daily summary, hands free.",
+                "detail": [
+                  "Every customer gets a confirmation in your voice, automatically.",
+                  "You get one clean digest each evening, read from your own orders.",
+                  "There is no new URL, the agent runs behind the app and Supabase you already have. Tell your facilitator it is live."
+                ]
+              }
+            ]
+          }
+        ]
+      }
     },
     {
       "id": "10",

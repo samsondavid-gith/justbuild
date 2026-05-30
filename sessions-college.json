@@ -92,101 +92,73 @@
       "session_type": "build",
       "day": 1,
       "phase": "weekend",
-      "title": "Find & validate the idea",
+      "title": "Pick your idea",
       "start_time": "9:30",
       "end_time": "11:00",
       "duration_minutes": 90,
       "break_after": true,
       "break_duration_minutes": 15,
-      "set_the_stage": "Ninety minutes to land on the one idea you will build for the next six weeks. Some of you walked in with an idea. Some of you did not. Both are fine. By the end of this session every person in this room has a single sentence on a card: the problem, who has it, why their current way of dealing with it is not good enough.\n\nThe biggest myth about entrepreneurship is that you need a flash of genius. You do not. You need a problem you actually care about, and a small honest description of who has it. Today, AI is the easy part. The hard part is choosing what to point it at.\n\nThirty minutes to surface candidates with Gemini. Thirty minutes to test which one survives a conversation with a real person. Thirty minutes to commit on a card.",
+      "set_the_stage": "Ninety minutes to land on the one micro-venture you will build over the next six weeks.\n\nEight ideas are on the screen. Each one is a real micro-venture that you, a family member, or someone you know could actually run. You pick one. Then you make it yours.\n\nBy the end of this session you have one sheet of paper. Your Ideation sheet. WHO you are building for, WHAT their problem is, and WHAT your build will do for them. The Ideation sheet is the first thing on your portfolio.",
       "questions": [
         {
-          "title": "Whose world do you already understand?",
-          "body": "Not who you want to help. Who do you already know. Hostel mates, your mother, your father, classmates in a specific branch, your driver, the chaiwala at the gate, your tuition kids, your younger sibling, a friend who runs a side hustle, your relatives who run a small shop. Pick three groups whose daily life you can describe in detail."
+          "title": "Which of the ideas on the screen pulls you in?",
+          "body": "Read the set in front of you. If none of them pull you, switch to another set. Notice which one you keep coming back to. That is usually the right one. Trust the pull."
         },
         {
-          "title": "What annoys the people around you?",
-          "body": "Walk through the last week of conversations. What did your friends complain about? What did your parents grumble about over dinner? What did your hostel mate say while staring at his laptop? Real frustrations, in real voices. List at least five. Quote them if you remember the exact words."
-        },
-        {
-          "title": "What do you keep doing the slow way?",
-          "body": "Forget AI for a moment. What is something in your own life you do badly, slowly, or with effort, that you keep meaning to fix? Submitting assignments. Tracking expenses with friends. Finding affordable PG accommodation. Picking electives. Studying for a subject you do not like. Write down three honest answers."
-        },
-        {
-          "title": "Where does AI actually help?",
-          "body": "Not every problem needs AI. A spreadsheet beats AI for most tracking. A WhatsApp group beats AI for most coordination. AI is useful when the problem involves understanding text, generating content, reasoning over messy information, or giving personalised guidance. Look at the problems you listed. Mark which ones AI would actually help with, and which ones a form or a sheet would solve faster."
+          "title": "Whose face do you see when you read it?",
+          "body": "If you picked Rent a Tree, whose farm is it? Yours? A relative's? If you picked Tiffin Choice, who is the cook? Write the name. The face makes the idea real. It might even be your own."
         }
       ],
       "hmv": [
         {
-          "dimension": "Humanics",
+          "dimension": "Real person",
           "techniques": [
-            "Picture the specific person with the problem. Where are they sitting? What time of day is it? What just happened?",
-            "What are they feeling in that moment? Frustration, embarrassment, exhaustion, the urge to give up?",
-            "Could someone in this room recognise this person if they walked in?"
+            "Is the person who would run this venture someone you know, or could it be you?",
+            "Can you talk to them today and ask one question? If it is a family venture, write the family member's name."
           ]
         },
         {
-          "dimension": "Mechanics",
+          "dimension": "Real problem",
           "techniques": [
-            "Is AI genuinely useful here, or are you forcing it?",
-            "Watch for the AI-for-the-sake-of-AI idea, where you find a problem to justify the tech.",
-            "Watch for the spreadsheet problem, where a Google Form would solve it just as well."
+            "Is the problem something they actually face, or something you imagined?",
+            "When in doubt, message or call them now. One honest answer beats an hour of guessing."
           ]
         },
         {
-          "dimension": "Valuenomics",
+          "dimension": "Demoable",
           "techniques": [
-            "Does someone currently pay money to deal with this problem?",
-            "Does someone currently spend significant time on it?",
-            "Does someone currently experience a real consequence when it is not solved?"
+            "Can you show this person what you built over the six weeks?",
+            "If you cannot reach them at all, pick a different person, or a different idea."
           ]
         }
       ],
       "prompts": [
         {
           "number": 1,
-          "title": "Find your idea",
+          "title": "Sharpen your idea",
           "tool": "Gemini (gemini.google.com)",
-          "content": "I am about to spend six weeks building a real AI-powered product as a solopreneur. I do not have an idea yet. Help me find one.\n\nHere is what I know about myself.\n\nThree groups of people whose lives I understand: [from Question 1]\nFive things people around me complain about: [from Question 2]\nThree things I do the slow way myself: [from Question 3]\nProblems where AI would actually help: [from Question 4]\n\nDo four things for me.\n\nFirst, look at the candidates. Tell me which two or three of them point to a real problem that other people probably also experience. Not just me, not just one person. Be honest if any of them are too personal or too niche to be a real micro-venture.\n\nSecond, for each of those candidate problems, describe in two sentences who specifically has this problem. The more specific the better. Not 'people' or 'students'. A specific kind of person in a specific situation.\n\nThird, for each candidate, name what people currently do about this problem today (the existing tool, the workaround, the WhatsApp group, whatever), and one thing about that current approach that is genuinely not good enough.\n\nFourth, recommend the one problem out of these candidates that you think is most worth me exploring this weekend, and tell me honestly why. Then ask me three follow-up questions to help me get sharper on that problem before I move on."
+          "content": "I am building a small AI-powered web app over the next six weeks for [PERSON YOU PICKED, e.g. 'my family, who run a small farm']. The app will [WHAT YOUR APP DOES, e.g. 'let city families sponsor a fruit tree for a season and see photo updates as it grows']. Help me understand: who are 2 or 3 people or services already doing something like this in India? What do they get right? What is the one thing my small, local version should do differently? Keep your answer short and practical."
         }
       ],
       "build": [
         {
-          "title": "Read Gemini's response slowly",
-          "instructions": "Pay attention to the candidate it recommends, and also pay attention to which one made you sit up a little when you read it. Sometimes Gemini's pick is right. Sometimes your gut is right. Trust your gut if it disagrees, but only if you can explain why."
+          "title": "Read the idea cards on the screen",
+          "instructions": "Eight micro-ventures are on screen. Read each one carefully. Each card tells you who it is for, the problem, and what the app does. If none fit, switch sets using the pills at the top."
         },
         {
-          "title": "Have a second round",
-          "instructions": "Answer Gemini's three follow-up questions. Push back when its picks feel off. One or two more turns of back-and-forth is usually enough."
+          "title": "Pick one and make it yours",
+          "instructions": "Pick the one that pulls you in. Then make it specific to your life. Rent a Tree becomes your family's farm. Tiffin Choice becomes the cook you actually know. The card is a starting point. You make it real."
         },
         {
-          "title": "Talk to a real human",
-          "instructions": "Find one person in the room you do not know. Tell them your one-sentence idea. Watch their face, not just their words. If their first reaction is 'oh, yeah, that would be useful for X', you are close. If they nod politely and ask a generic question, you are not there yet."
+          "title": "Write your Ideation sheet",
+          "instructions": "One sheet. Top: WHO (the name of the person who will run this venture, even if that is you). Below: WHAT THEY STRUGGLE WITH (one sentence). Below: WHAT MY BUILD WILL DO (three lines, plain English)."
         },
         {
-          "title": "Write your card",
-          "instructions": "Three things on a card. One sentence about the problem. One sentence about who specifically has it. One sentence about what they currently do and why it is not good enough."
+          "title": "Share with the room",
+          "instructions": "In the last few minutes, each founder reads their sheet aloud. Two sentences: who you are building for, and what you are building. The room listens."
         }
       ],
-      "test_output": [
-        {
-          "title": "The problem test",
-          "description": "Can you say the problem in one sentence without mentioning your solution? If yes, pass."
-        },
-        {
-          "title": "The person test",
-          "description": "Can you describe one specific kind of person who has this problem, in enough detail that a stranger in this room could recognise them? If yes, pass."
-        },
-        {
-          "title": "The gap test",
-          "description": "Can you name what people currently do about this problem, and explain why it is not good enough? If yes, pass."
-        },
-        {
-          "title": "The energy test",
-          "description": "Does this idea make you a little excited to spend six weeks on it? If yes, pass. If no, run the prompt again with a different framing."
-        }
-      ],
+      "test_output": [],
       "output_capture": null,
       "stage": "Ideate"
     },

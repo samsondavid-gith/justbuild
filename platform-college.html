@@ -2437,14 +2437,15 @@ function buildScreenSequence() {
       SCREENS.push({ type: "phase-break", to: "demo_day" });
     }
 
-    // Idea cards screen — appears once, between Session 0 (Kickoff) and Session 1 (Find & validate)
-    // Shows 8 ideas from the page configured for this cohort
+    SCREENS.push({ type: "session-start", session });
+    SCREENS.push({ type: "stage", session });
+
+    // Idea cards screen — appears once, inside Session 1 (Pick your idea), right after the
+    // stage-setting, mirroring the school flow. Shows 8 ideas from the active set; the
+    // founder picks one and personalises it in this same session.
     if (session.id === "1") {
       SCREENS.push({ type: "idea-cards" });
     }
-
-    SCREENS.push({ type: "session-start", session });
-    SCREENS.push({ type: "stage", session });
 
     // Office hours screen is dedicated and replaces the standard question/prompt/build/test flow
     if (session.session_type === "office_hours") {
@@ -3016,7 +3017,7 @@ function renderIdeaCards() {
       <div class="ideas-screen-header">
         <div class="ideas-screen-eyebrow">Pick one &middot; Set ${activePage} of 3</div>
         <h1 class="ideas-screen-title">Eight micro-ventures. <em>Pick the one that pulls you.</em></h1>
-        <p class="ideas-screen-sub">Each one is a real venture you could run yourself, with a family member, or alongside someone you know. The next session is where you make it your own.</p>
+        <p class="ideas-screen-sub">Each one is a real venture you could run yourself, with a family member, or alongside someone you know. Pick one and make it yours.</p>
         <div class="idea-set-switcher">${switcher}</div>
       </div>
       <div class="ideas-grid">

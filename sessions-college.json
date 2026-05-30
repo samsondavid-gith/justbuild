@@ -2,13 +2,11 @@
   "workshop": {
     "title": "Just Build",
     "subtitle": "",
-    "session_count": 16,
+    "session_count": 14,
     "weekend_day1_sessions": [
       "0",
       "1",
       "2",
-      "milestone",
-      "3",
       "4"
     ],
     "weekend_day2_sessions": [
@@ -168,12 +166,12 @@
       "session_type": "build",
       "day": 1,
       "phase": "weekend",
-      "title": "Build the AI app, get it working",
+      "title": "Build the AI app",
       "start_time": "11:15",
-      "end_time": "13:15",
+      "end_time": "16:00",
       "duration_minutes": 120,
-      "break_after": false,
-      "break_duration_minutes": 0,
+      "break_after": true,
+      "break_duration_minutes": 15,
       "set_the_stage": "You have a problem. You have a user. Now you build.\n\nToday, a solopreneur with a clear idea and the right prompts can have a working AI app in two hours. Not a mockup. Not a wireframe. Something real that runs in a browser, takes a real input, and gives back a real output.\n\nOne HTML file. No coding background required. No backend. You build it with Claude, customise it until it feels like yours. By the end of this session the app responds to your test input with something recognisably useful, even if it is rough around the edges. We polish next session. Right now: get to working.\n\nLunch is at the end of this block. Aim to be hungry by then, not panicking.",
       "questions": [
         {
@@ -233,6 +231,12 @@
           "title": "Build your AI app, first version",
           "tool": "Claude (claude.ai)",
           "content": "I am building a single-page AI app as a solopreneur. I need a single HTML file I can deploy by dragging into Netlify. No backend, no API key. The AI call happens through the OpenRouter free tier with a public key you will give me.\n\nHere is the idea.\n\nThe user: [one sentence, the specific person]\nThe problem: [one sentence, what is broken for them today]\nThe input the user gives me: [one specific input, with an example]\nThe output I give back: [one specific output, with an example]\nWhat the AI is actually doing: [the verb. summarising, comparing, recommending, etc.]\nWhat the AI must never do: [two specific limits]\n\nWrite me a single index.html file that does this. Inside the file, include:\n\nA clean simple form for the input.\nA single button labelled with something specific, not 'Submit'.\nA loading state while the AI thinks.\nThe output rendered clearly below the form.\nA system prompt for the AI that is detailed enough to produce consistently good output for the specific user and specific problem above.\nStyling that is clean and readable on a phone. Not flashy. Just good.\n\nAt the top of the file, leave a comment block with the system prompt, so I can edit it later without digging through the code."
+        },
+        {
+          "number": 1,
+          "title": "Tighten the system prompt",
+          "tool": "Claude (claude.ai)",
+          "content": "Here is my current index.html. The system prompt is in the comment block at the top.\n\n[paste your full index.html]\n\nThe output is good when the user gives a clean input. The output gets weak when the user gives [describe the kind of input that fails. short, vague, off-topic, etc.].\n\nRewrite the system prompt so the app produces good output in both cases. Add explicit instructions for what the AI should refuse to do, redirect, or handle gracefully. Keep the output format consistent.\n\nGive me only the updated system prompt, not the whole file. I will paste it in myself."
         }
       ],
       "build": [
@@ -247,97 +251,7 @@
         {
           "title": "Sharpen the system prompt",
           "instructions": "If the output is generic, the system prompt is generic. Tell Claude what was wrong with the output and ask it to rewrite the system prompt to be more specific. Test again. Iterate until the output is recognisably useful, even if it is still rough."
-        }
-      ],
-      "test_output": [
-        {
-          "title": "The first-run test",
-          "description": "Did your app produce any output for a real input by the end of this session? If yes, pass."
         },
-        {
-          "title": "The relevance test",
-          "description": "Is the output recognisably about the problem, for the user you described? Not perfect. Recognisable. If yes, pass."
-        },
-        {
-          "title": "The honesty test",
-          "description": "Would you show this to your target user without apologising for it? Not yet. That is fine. Pass means you know what to fix next."
-        }
-      ],
-      "output_capture": null,
-      "stage": "Build"
-    },
-    {
-      "id": "milestone",
-      "number": "M",
-      "session_type": "milestone",
-      "day": 1,
-      "phase": "weekend",
-      "title": "Milestone check, does your AI do the right thing for the right person?",
-      "start_time": "13:45",
-      "end_time": "14:15",
-      "duration_minutes": 30,
-      "break_after": false,
-      "break_duration_minutes": 0,
-      "set_the_stage": "Thirty minutes. Everyone in the room shows two things.\n\nOne. The user you described this morning. One sentence. Read it aloud.\nTwo. The most recent output your AI produced for a realistic input from that user. Read it aloud.\n\nThe room and the facilitator listen for one thing. Does the output sound like it was produced for that specific person, doing that specific thing? Or does it sound like a generic AI response with the topic swapped in?\n\nThe biggest failure mode on Day 1 is students who get the AI wired up and stop there, then spend the afternoon on UI polish. This thirty-minute interrupt is designed to catch that. If your output is generic, the system prompt is the problem, not the styling.\n\nFacilitator walks the room. Stuck students get unstuck. By the end of this block every person knows whether they are on track or whether they need to course-correct the prompt before they go further.",
-      "questions": [],
-      "hmv": [],
-      "prompts": [],
-      "build": [
-        {
-          "title": "Read aloud",
-          "instructions": "When the facilitator gets to you, read the user sentence and the most recent output aloud to the room. The room listens. The facilitator names one thing to keep, one thing to fix."
-        },
-        {
-          "title": "Course correct or keep building",
-          "instructions": "If your output is on track, you keep building in the next session. If your output is generic, the next block goes to sharpening the system prompt before any visual polish. The facilitator will tell you which."
-        }
-      ],
-      "test_output": [
-        {
-          "title": "The recognition test",
-          "description": "Could a stranger in this room hear your output and recognise it as being for the user you described? If yes, pass. If no, the system prompt needs work before you move on."
-        }
-      ],
-      "output_capture": null,
-      "stage": "Build"
-    },
-    {
-      "id": "3",
-      "number": "3",
-      "session_type": "build",
-      "day": 1,
-      "phase": "weekend",
-      "title": "Build the AI app, ship it",
-      "start_time": "14:15",
-      "end_time": "16:00",
-      "duration_minutes": 105,
-      "break_after": true,
-      "break_duration_minutes": 15,
-      "set_the_stage": "By the end of this block your AI app is live on the internet, at a real URL, working on a phone.\n\nTwo things happen in this session. First, you tighten the output so it consistently does the right thing, not just once, but every time, for the full range of inputs your user might throw at it. Second, you deploy it. Netlify drag-and-drop. Three minutes. You walk out of this session with a URL you can share.\n\nDo not get pulled into visual perfection. The product works or it does not. Once it works, deploy. The website session next is where the visual story gets told, not here.",
-      "questions": [
-        {
-          "title": "What does the AI never do, really?",
-          "body": "You named two limits this morning. Test them. Throw inputs that try to break the rules. Does the AI hold the line, or does it cave? If it caves, the system prompt is too soft. Tighten it."
-        },
-        {
-          "title": "Where does it currently fail?",
-          "body": "Throw three weird inputs at your app. Inputs your user might realistically give that you did not design for. A blank input. A one-word input. A paragraph in Hindi or Hinglish if your user might do that. Where does it break? Where does it produce something embarrassing?"
-        },
-        {
-          "title": "Does the output look good on a phone?",
-          "body": "Most of your users will open this on their phone, not a laptop. Open your app on your phone. Is the text readable? Is the button reachable with one thumb? Does the output fit on the screen without horizontal scrolling?"
-        }
-      ],
-      "hmv": [],
-      "prompts": [
-        {
-          "number": 1,
-          "title": "Tighten the system prompt",
-          "tool": "Claude (claude.ai)",
-          "content": "Here is my current index.html. The system prompt is in the comment block at the top.\n\n[paste your full index.html]\n\nThe output is good when the user gives a clean input. The output gets weak when the user gives [describe the kind of input that fails. short, vague, off-topic, etc.].\n\nRewrite the system prompt so the app produces good output in both cases. Add explicit instructions for what the AI should refuse to do, redirect, or handle gracefully. Keep the output format consistent.\n\nGive me only the updated system prompt, not the whole file. I will paste it in myself."
-        }
-      ],
-      "build": [
         {
           "title": "Update the system prompt",
           "instructions": "Replace the system prompt in your index.html with Claude's rewrite. Run the three weird inputs again. Should be visibly better."
@@ -356,6 +270,18 @@
         }
       ],
       "test_output": [
+        {
+          "title": "The first-run test",
+          "description": "Did your app produce any output for a real input by the end of this session? If yes, pass."
+        },
+        {
+          "title": "The relevance test",
+          "description": "Is the output recognisably about the problem, for the user you described? Not perfect. Recognisable. If yes, pass."
+        },
+        {
+          "title": "The honesty test",
+          "description": "Would you show this to your target user without apologising for it? Not yet. That is fine. Pass means you know what to fix next."
+        },
         {
           "title": "The URL test",
           "description": "Do you have a netlify.app URL that opens on your phone? If yes, pass."

@@ -1109,7 +1109,7 @@
       "duration_minutes": 90,
       "break_after": false,
       "break_duration_minutes": 0,
-      "set_the_stage": "Welcome back. Week 1.\n\nThe Launch is live. The website is up, the audio is embedded, the video is on LinkedIn, the brochure is downloadable. What is missing is the moment when a visitor has a question and you are not there to answer. The chatbot is what fills that gap. It strengthens the Launch by giving every visitor someone to talk to, every hour of every day.\n\nBy now everyone in this room has worked through the chatbot PDF. Some of you have a chatbot live on your Carrd site. Some of you are stuck. Some of you have not started. All three are normal at this point.\n\nNinety minutes. We open with a quick status check, then walk through the four places students most commonly get stuck on the chatbot build, then open the floor for live Q&A. The last fifteen minutes we close with a roster check. Every person in the room confirms, out loud, whether their chatbot is live or what specifically they need to land it by next Saturday.",
+      "set_the_stage": "Welcome back. Week 1.\n\nThe Launch is live. The website is up, the audio is embedded, the video is on LinkedIn, the brochure is downloadable. What is missing is the moment when a visitor has a question and you are not there to answer. The chatbot is what fills that gap. It strengthens the Launch by giving every visitor someone to talk to, every hour of every day.\n\nBy now everyone in this room has worked through the chatbot steps in the build guide. Some of you have a chatbot live on your website. Some of you are stuck. Some of you have not started. All three are normal at this point.\n\nNinety minutes. We open with a quick status check, then walk through the four places students most commonly get stuck on the chatbot build, then open the floor for live Q&A. The last fifteen minutes we close with a roster check. Every person in the room confirms, out loud, whether their chatbot is live or what specifically they need to land it by next Saturday.",
       "agenda": [
         "First 10 min, status check. Go around the room. Each person in one sentence: chatbot live, in progress, not started, or specifically stuck",
         "Next 20 min, walkthrough of the four common stuck points on the chatbot build",
@@ -1134,26 +1134,166 @@
           "resolution": "The chatbot exists to convert visitors into AI app users. Every long answer should end with a soft invitation back to the app. Add that instruction to the system prompt explicitly."
         }
       ],
-      "questions": [],
-      "hmv": [],
-      "prompts": [],
-      "build": [],
-      "test_output": [
+      "prompts": [
         {
-          "title": "The live test",
-          "description": "By next Saturday, is your chatbot embedded on your Carrd site, visible on a phone, and producing useful answers for three test questions? If yes, pass. If no, post a screenshot to WhatsApp before Wednesday."
+          "number": 1,
+          "title": "Write your chatbot's FAQ",
+          "tool": "Mistral (chat.mistral.ai)",
+          "desc": "The questions customers ask and the answers your bot will give. This is the bot's brain.",
+          "content": "I want to add a small help chatbot to my venture's website. It answers the common questions visitors ask, using answers I write. It is not a live AI, it uses my own answers.\n\nMy venture:\n- What I sell: [one line]\n- Who it is for: [one line]\n- How customers order: [one line]\n- Delivery or service area: [one line]\n- Timings or availability: [one line]\n- Prices, roughly: [a line]\n\nHelp me build the FAQ for my chatbot. Give me the 8 to 12 questions a real customer is most likely to ask, and write a short, friendly answer for each in my voice, one or two lines each. Cover what I offer, prices, how to order, area, and timings. Add one answer for when someone asks something we have not covered, telling them to message me on WhatsApp at [your number] or use the Order button. Give it to me as a clean list of question and answer pairs."
+        },
+        {
+          "number": 2,
+          "title": "Build your chatbot widget",
+          "tool": "Mistral (chat.mistral.ai)",
+          "desc": "Turns your FAQ into a chat bubble you can paste onto every page of your site.",
+          "content": "Build me a small chat help widget for my website, as one self-contained block of HTML, CSS, and JavaScript I can paste into my pages. No backend, no API, no external services. It uses only the FAQ I give you below.\n\nMy venture name is [name].\n\nHere is my FAQ:\n[paste the question and answer pairs from the last step]\n\nThe widget should:\n- Show a small chat bubble in the bottom right corner of the page.\n- Open a chat panel when tapped, with a friendly greeting in my venture's name.\n- Show my common questions as tappable buttons, so a visitor can pick one and see the answer.\n- Also let them type. Match what they type to the closest FAQ question and show that answer.\n- When nothing matches, show my fallback answer (message on WhatsApp or use the Order button).\n- Look clean and simple, and work well on a phone.\n\nGive me the whole thing as one block I can paste right before the closing body tag, and tell me clearly where to paste it."
+        },
+        {
+          "number": 3,
+          "title": "Fix it when something breaks",
+          "tool": "Mistral (chat.mistral.ai)",
+          "desc": "Your go-to if the bubble does not show or an answer is wrong.",
+          "content": "Something with my chatbot is not working. Here is what is happening:\n\n[describe what you did, what you expected, and what happened. If there is red error text in the browser console, press F12 and paste it here.]\n\nHere is my current file:\n\n[paste the whole file, or the widget block]\n\nFind the problem and give me back the full corrected version. Tell me in one or two plain lines what was wrong. Do not change anything that is already working."
         }
       ],
       "live_qa_note": "Open the floor for 40 to 45 minutes. Screens up. Specific questions only. If someone has a general 'I am stuck' question, ask them to share their screen and walk through what they tried.",
       "homework_check": "Every person, around the room, in one sentence: chatbot live by next Saturday, or specifically what is left.",
       "output_capture": {
         "artifact": "Chatbot",
-        "ask": "Paste your website URL again, now with the chatbot embedded.",
-        "placeholder": "https://yourname.carrd.co",
+        "ask": "Paste your website URL again, now with the chatbot on it.",
+        "placeholder": "https://yourname.netlify.app",
         "kind": "url",
-        "guidance": "The chatbot lives on your Carrd site as an embedded widget. Confirm it appears when you open the URL on your phone."
+        "guidance": "The chatbot lives on your website as a small chat bubble. Open the URL on your phone and check the bubble appears and answers on every page."
       },
-      "stage": "Launch"
+      "stage": "Launch",
+      "procedure": {
+        "sections": [
+          {
+            "id": "A",
+            "name": "Write your chatbot's answers",
+            "note": "Your chatbot is only as good as the answers you give it. Write these first. Building today is on Mistral.",
+            "steps": [
+              {
+                "title": "Run Prompt 1, write your FAQ",
+                "body": "Mistral helps you list the real questions and write friendly answers.",
+                "detail": [
+                  "Open the build guide on your laptop and copy Prompt 1.",
+                  "Paste it into Mistral and fill in your venture details.",
+                  "Read the answers. Fix anything wrong or that does not sound like you. These answers are your chatbot's brain."
+                ],
+                "prompt_ref": 1
+              },
+              {
+                "title": "Save your FAQ",
+                "body": "Keep the question and answer pairs ready for the next step.",
+                "detail": [
+                  "Copy the final list of questions and answers somewhere you can paste it again."
+                ]
+              }
+            ]
+          },
+          {
+            "id": "B",
+            "name": "Build the widget",
+            "note": "Mistral turns your FAQ into a chat bubble for your site.",
+            "steps": [
+              {
+                "title": "Run Prompt 2, build your chatbot",
+                "body": "Mistral gives you one block of code to paste onto your site.",
+                "detail": [
+                  "Copy Prompt 2. Paste it into Mistral with your venture name and your FAQ.",
+                  "Mistral returns one block of code and tells you where to paste it."
+                ],
+                "prompt_ref": 2
+              },
+              {
+                "title": "Add it to all your pages",
+                "body": "The chatbot should appear on every page of your site.",
+                "detail": [
+                  "Open your website folder in VS Code.",
+                  "Paste the widget block right before the </body> tag on index.html, about.html, and how-it-works.html. The same block on all three.",
+                  "Save each file."
+                ]
+              }
+            ]
+          },
+          {
+            "id": "C",
+            "name": "Test it on your machine",
+            "note": "Try the bot before anyone else does.",
+            "steps": [
+              {
+                "title": "Open it with Live Server",
+                "body": "Run your site and look for the bubble.",
+                "detail": [
+                  "Right click index.html and choose Open with Live Server.",
+                  "You should see the chat bubble in the corner."
+                ]
+              },
+              {
+                "title": "Try the questions",
+                "body": "Use it like a curious visitor.",
+                "detail": [
+                  "Open the chat. Tap a few question buttons and check the answers.",
+                  "Type a question in your own words and see if it finds the right answer.",
+                  "Type something random and check you get the friendly fallback.",
+                  "Check the bubble shows on all three pages."
+                ]
+              },
+              {
+                "title": "Run Prompt 3 if anything is off",
+                "body": "Bubble missing or an answer wrong? This is your fix-it prompt.",
+                "detail": [
+                  "Copy Prompt 3. Tell Mistral what happened and paste your file.",
+                  "Paste the fix back into VS Code, save, and test again."
+                ],
+                "prompt_ref": 3
+              }
+            ]
+          },
+          {
+            "id": "D",
+            "name": "Put it live",
+            "note": "Push the change and let Netlify update your site.",
+            "steps": [
+              {
+                "title": "Publish your update",
+                "body": "Commit and push your changed pages.",
+                "detail": [
+                  "In GitHub Desktop you will see your changed pages. Type a summary like added chatbot, click Commit to main, then Push.",
+                  "Netlify updates your live site in under a minute."
+                ],
+                "tool": "GitHub Desktop (desktop.github.com)"
+              },
+              {
+                "title": "Test it live on your phone",
+                "body": "See the bot the way a visitor will.",
+                "detail": [
+                  "Open your live website on your phone.",
+                  "Tap the chat bubble and ask a couple of questions."
+                ]
+              }
+            ]
+          },
+          {
+            "id": "E",
+            "name": "You are done",
+            "note": "",
+            "steps": [
+              {
+                "title": "Your chatbot is live",
+                "body": "Every visitor now has someone to talk to, any hour.",
+                "detail": [
+                  "Your chatbot answers the common questions on every page.",
+                  "It points people to order or message you when it does not know.",
+                  "Your website URL is unchanged, the chatbot is now on it. Paste your website URL into the cohort form."
+                ]
+              }
+            ]
+          }
+        ]
+      }
     },
     {
       "id": "8",

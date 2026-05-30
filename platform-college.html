@@ -2881,17 +2881,35 @@ function buildScreenSequence() {
     // Office hours screen is dedicated and replaces the standard question/prompt/build/test flow
     if (session.session_type === "office_hours") {
       SCREENS.push({ type: "office-hours", session });
-      // If office hours has prompts (like Session 10 pitch deck), give each prompt its own screen
-      const ohPrompts = session.prompts || [];
-      ohPrompts.forEach((prompt, pIdx) => {
-        SCREENS.push({
-          type: "prompt",
-          session,
-          prompt,
-          promptIndex: pIdx,
-          promptTotal: ohPrompts.length
+      // If this office-hours session defines a step-by-step procedure (like the chatbot),
+      // walk its steps after the support screen, just like a build session. Otherwise give
+      // each prompt its own screen (like Session 10 pitch deck).
+      if (session.procedure && session.procedure.sections) {
+        session.procedure.sections.forEach((section, secIdx) => {
+          (section.steps || []).forEach((stp, stIdx) => {
+            SCREENS.push({
+              type: "step",
+              session,
+              section,
+              step: stp,
+              sectionIndex: secIdx,
+              stepIndex: stIdx,
+              code: section.id + String(stIdx + 1)
+            });
+          });
         });
-      });
+      } else {
+        const ohPrompts = session.prompts || [];
+        ohPrompts.forEach((prompt, pIdx) => {
+          SCREENS.push({
+            type: "prompt",
+            session,
+            prompt,
+            promptIndex: pIdx,
+            promptTotal: ohPrompts.length
+          });
+        });
+      }
       // Test output (the "homework leaves the room" check) still applies if present
       if (session.test_output && session.test_output.length) {
         SCREENS.push({ type: "test-output", session });
@@ -3994,8 +4012,8 @@ function renderOfficeHours(s) {
   ` : "";
 
   // Prompts preview block — shows step titles only as a roadmap of what's next.
-  // Each prompt then gets its own full screen via buildScreenSequence.
-  const promptsBlock = (s.prompts || []).length > 0 ? `
+  // Skipped when the session uses a step-by-step procedure (the steps are the roadmap).
+  const promptsBlock = (!s.procedure && (s.prompts || []).length > 0) ? `
     <div class="oh-section">
       <div class="oh-section-label">What's coming next &middot; ${s.prompts.length} prompts, one per screen</div>
       <ol class="oh-prompts">

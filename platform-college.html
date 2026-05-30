@@ -2321,8 +2321,7 @@
 
   /* Caterpillar buddy (shown only on concept slides) */
   #concept-cat { position: fixed; right: clamp(16px, 3.5vw, 56px); bottom: 86px; width: clamp(130px, 14vw, 190px); z-index: 50; display: none; pointer-events: none; }
-  #concept-cat-img { width: 100%; display: block; filter: drop-shadow(0 8px 24px rgba(0,0,0,0.55)); animation: concept-bob 3.6s ease-in-out infinite; }
-  @keyframes concept-bob { 0%,100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-8px) rotate(1deg); } }
+  #concept-cat-img { width: 100%; display: block; filter: drop-shadow(0 8px 24px rgba(0,0,0,0.55)); }
   .concept-bubble { position: absolute; right: 76%; bottom: 56%; background: #fff; color: #1A1A1A; font-size: 13px; line-height: 1.4; padding: 10px 13px; border-radius: 13px; width: max-content; max-width: 200px; box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
   .concept-bubble::after { content: ""; position: absolute; right: -8px; bottom: 16px; border: 8px solid transparent; border-left-color: #fff; border-right: 0; }
   .concept-bubble b { color: var(--accent); }
@@ -3971,64 +3970,101 @@ function refreshJumpMenu() {
   const btnLabel = $("#jump-btn-label");
   if (!menu) return;
 
-  const currentScreen = SCREENS[currentScreenIdx];
-  const currentSessionId = currentScreen?.session?.id || null;
+  // Friendly label for a single screen (one section)
+  const typeLabel = (scr) => {
+    switch (scr.type) {
+      case "welcome": return "Welcome";
+      case "housekeeping": return "Housekeeping";
+      case "two-doors": return "Two doors";
+      case "journey-map": return "Journey map";
+      case "tools-landscape": return "Tools landscape";
+      case "concept":
+        return scr.slide && scr.slide.lens === "opener"
+          ? "Overview"
+          : (scr.slide ? scr.slide.lens.charAt(0).toUpperCase() + scr.slide.lens.slice(1) : "Concept");
+      case "session-start": return "Begin";
+      case "stage": return "Set the stage";
+      case "idea-cards": return "Idea cards";
+      case "question": return "Question";
+      case "hmv": return "HMV check";
+      case "prompt": return scr.promptTotal > 1 ? `Prompt ${(scr.promptIndex || 0) + 1}` : "Prompt";
+      case "build": return "Build";
+      case "test-output": return "Test the output";
+      case "office-hours": return "Office hours";
+      case "output-capture": return "Save the work";
+      case "session-end": return "Wrap up";
+      case "phase-break": return "Transition";
+      case "break": return "Break";
+      case "portfolio-reveal": return "Portfolio reveal";
+      case "closing": return "Closing";
+      case "workshop-complete": return "Complete";
+      default: return scr.type.replace(/-/g, " ").replace(/^./, c => c.toUpperCase());
+    }
+  };
 
-  // Group sessions by stage. Canonical order is from workshop.stages, with Kickoff first.
-  const stageOrder = ["Kickoff", "Ideate", "Build", "Launch", "Brand", "Automate", "Ready to show"];
+  // Group every screen, in flow order, so the facilitator can jump to any section
+  const intro = ["welcome", "housekeeping", "two-doors", "journey-map", "tools-landscape"];
+  const groupsOrder = [];
   const groups = {};
-  SESSIONS.forEach(s => {
-    const stage = s.stage || "Other";
-    if (!groups[stage]) groups[stage] = [];
-    groups[stage].push(s);
+  let lastSessionGroup = null;
+
+  SCREENS.forEach((scr, i) => {
+    let g;
+    if (intro.includes(scr.type)) {
+      g = "Intro";
+    } else if (scr.type === "concept") {
+      g = `${scr.stageName || "Concept"} \u00B7 Concept`;
+    } else if (scr.session) {
+      const num = scr.session.number || scr.session.id;
+      g = `${num}. ${scr.session.title}`;
+      lastSessionGroup = g;
+    } else if (scr.type === "idea-cards") {
+      g = lastSessionGroup || "Pick your idea";
+    } else if (scr.type === "phase-break" || scr.type === "break") {
+      g = "Transitions";
+    } else if (scr.type === "portfolio-reveal" || scr.type === "closing" || scr.type === "workshop-complete") {
+      g = "Wrap up";
+    } else {
+      g = lastSessionGroup || "More";
+    }
+    if (!groups[g]) { groups[g] = []; groupsOrder.push(g); }
+    groups[g].push({ scr, i });
   });
 
-  // Build HTML
   let html = "";
-  stageOrder.forEach(stage => {
-    if (!groups[stage]) return;
-    html += `<div class="jump-group">
-      <div class="jump-group-label">${escapeHtml(stage)}</div>`;
-    groups[stage].forEach(s => {
-      const isCurrent = s.id === currentSessionId;
-      const num = s.number || s.id;
-      const time = s.session_type === "office_hours"
-        ? "90 min"
-        : `${s.start_time}–${s.end_time}`;
-      html += `<div class="jump-item ${isCurrent ? "current" : ""}" data-session-id="${escapeAttr(s.id)}">
-        <span class="jump-item-num">${escapeHtml(String(num))}</span>
-        <span class="jump-item-title">${escapeHtml(s.title)}</span>
-        <span class="jump-item-time">${escapeHtml(time)}</span>
+  groupsOrder.forEach(g => {
+    html += `<div class="jump-group"><div class="jump-group-label">${escapeHtml(g)}</div>`;
+    groups[g].forEach(({ scr, i }) => {
+      const isCurrent = i === currentScreenIdx;
+      html += `<div class="jump-item ${isCurrent ? "current" : ""}" data-idx="${i}">
+        <span class="jump-item-num">${String(i + 1).padStart(2, "0")}</span>
+        <span class="jump-item-title">${escapeHtml(typeLabel(scr))}</span>
       </div>`;
     });
     html += `</div>`;
   });
   menu.innerHTML = html;
 
-  // Set the button label: show stage (or session number when no stage)
+  // Button label: current stage (concept or session), else Jump
   if (btnLabel) {
-    if (currentSessionId) {
-      const s = SESSIONS.find(s => s.id === currentSessionId);
-      btnLabel.textContent = s?.stage || s?.number || "Jump";
-    } else {
-      btnLabel.textContent = "Jump";
+    const cur = SCREENS[currentScreenIdx];
+    let lbl = "Jump";
+    if (cur) {
+      if (cur.type === "concept") lbl = cur.stageName || "Jump";
+      else if (cur.session) lbl = cur.session.stage || cur.session.number || "Jump";
     }
+    btnLabel.textContent = lbl;
   }
 
-  // Click handlers on items
+  // Click handlers: jump straight to that screen index
   menu.querySelectorAll(".jump-item").forEach(el => {
-    el.onclick = () => {
-      const sid = el.dataset.sessionId;
-      jumpToSession(sid);
-    };
+    el.onclick = () => jumpToScreen(parseInt(el.dataset.idx, 10));
   });
 }
 
-function jumpToSession(sessionId) {
-  // Jump to the session-start screen for the given session id
-  const targetIdx = SCREENS.findIndex(scr => scr.type === "session-start" && scr.session && scr.session.id === sessionId);
-  if (targetIdx >= 0) {
-    currentScreenIdx = targetIdx;
+function jumpToScreen(idx) {
+  if (idx >= 0 && idx < SCREENS.length) {
+    currentScreenIdx = idx;
     renderCurrent();
   }
   closeJumpMenu();
@@ -4037,7 +4073,12 @@ function jumpToSession(sessionId) {
 function toggleJumpMenu() {
   const wrap = $("#jump-wrap");
   if (!wrap) return;
+  const willOpen = !wrap.classList.contains("open");
   wrap.classList.toggle("open");
+  if (willOpen) {
+    const cur = wrap.querySelector(".jump-item.current");
+    if (cur) cur.scrollIntoView({ block: "center" });
+  }
 }
 
 function closeJumpMenu() {

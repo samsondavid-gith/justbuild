@@ -33,14 +33,26 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
   .container { max-width: 900px; margin: 0 auto; padding: 48px 28px 80px; }
-  .header { text-align: center; margin-bottom: 56px; padding-bottom: 36px; border-bottom: 1px solid var(--line); }
+  .header { text-align: center; margin-bottom: 40px; padding-bottom: 36px; border-bottom: 1px solid var(--line); }
   .header-logo { width: 64px; height: auto; margin-bottom: 18px; opacity: 0.95; }
   .header-eyebrow { font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin-bottom: 12px; }
   .header-title { font-family: var(--serif); font-size: clamp(32px, 5vw, 48px); font-weight: 400; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 14px; }
-  .header-sub { font-family: var(--serif); font-size: clamp(15px, 2vw, 18px); font-style: italic; color: var(--text-soft); font-weight: 300; max-width: 50ch; margin: 0 auto; }
-  .howto { background: var(--bg-elev-1); border: 1px solid var(--line); border-radius: 8px; padding: 20px 24px; margin-bottom: 48px; font-size: 14.5px; color: var(--text-soft); line-height: 1.6; }
+  .header-sub { font-family: var(--serif); font-size: clamp(15px, 2vw, 18px); font-style: italic; color: var(--text-soft); font-weight: 300; max-width: 52ch; margin: 0 auto; }
+  .howto { background: var(--bg-elev-1); border: 1px solid var(--line); border-radius: 8px; padding: 20px 24px; margin-bottom: 28px; font-size: 14.5px; color: var(--text-soft); line-height: 1.6; }
   .howto strong { color: var(--accent); font-weight: 500; }
-  .prompt-card { margin-bottom: 36px; background: var(--bg-elev-1); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; transition: border-color 0.2s; }
+
+  /* Jump index */
+  .prompt-index { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 52px; }
+  .prompt-index a { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.04em; color: var(--text-soft); text-decoration: none; padding: 7px 12px; border: 1px solid var(--line); border-radius: 999px; transition: all 0.15s; white-space: nowrap; }
+  .prompt-index a:hover { color: var(--accent); border-color: var(--accent-soft); background: rgba(193,125,42,0.05); }
+
+  /* Session group header */
+  .session-group { margin: 52px 0 22px; scroll-margin-top: 18px; }
+  .session-group:first-of-type { margin-top: 8px; }
+  .session-group-num { font-family: var(--mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin-bottom: 7px; }
+  .session-group-title { font-family: var(--serif); font-size: clamp(22px, 3vw, 28px); font-weight: 500; letter-spacing: -0.01em; color: var(--text); }
+
+  .prompt-card { margin-bottom: 20px; background: var(--bg-elev-1); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; transition: border-color 0.2s; }
   .prompt-card:hover { border-color: var(--accent-soft); }
   .prompt-card-header { padding: 20px 24px; border-bottom: 1px solid var(--line); background: var(--bg-elev-2); }
   .prompt-card-meta { display: flex; gap: 14px; align-items: center; margin-bottom: 8px; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-muted); flex-wrap: wrap; }
@@ -60,6 +72,7 @@
   .copy-btn svg { width: 16px; height: 16px; }
   .tool-link { background: transparent; color: var(--text-soft); border: 1px solid var(--line-strong); padding: 13px 18px; border-radius: 6px; text-decoration: none; font-size: 14px; font-weight: 500; letter-spacing: 0.04em; transition: all 0.15s; display: inline-flex; align-items: center; gap: 6px; }
   .tool-link:hover { color: var(--accent); border-color: var(--accent-soft); background: rgba(193,125,42,0.04); }
+  .state-msg { text-align: center; color: var(--text-muted); font-size: 15px; padding: 60px 0; }
   .footer { margin-top: 64px; padding-top: 32px; border-top: 1px solid var(--line); text-align: center; font-size: 13px; color: var(--text-muted); line-height: 1.6; }
   .footer a { color: var(--accent); text-decoration: none; }
   .footer a:hover { text-decoration: underline; }
@@ -78,150 +91,18 @@
   <header class="header">
     <img class="header-logo" src="logo.png" alt="Orange Caterpillar" onerror="this.style.display='none'">
     <div class="header-eyebrow">Just Build &middot; College</div>
-    <h1 class="header-title">Pitch deck prompts</h1>
-    <p class="header-sub">Four prompts for your final office hours session. The deck you build today is the deck you pitch on Demo Day.</p>
+    <h1 class="header-title">Prompts</h1>
+    <p class="header-sub">Every copy-paste prompt for the workshop, in order. Find the session you are on, then Copy.</p>
   </header>
 
   <div class="howto">
-    <strong>How to use this page.</strong> Keep this tab open during the office hours call. When the facilitator says to use a prompt, scroll to it, click Copy, then paste into the right tool in another tab.
+    <strong>How to use this page.</strong> Keep this tab open during the session. When the facilitator reaches a prompt, scroll to that session below, click <strong>Copy</strong>, and paste it into the tool named on the card. Fill in the parts in [brackets] with your own venture.
   </div>
 
-  <div class="prompt-card" id="prompt-1">
-    <div class="prompt-card-header">
-      <div class="prompt-card-meta">
-        <span class="prompt-card-meta-tag">Step 1 &middot; 15 min</span>
-        <span class="prompt-card-meta-tool">Brainstorm</span>
-      </div>
-      <h2 class="prompt-card-title">Pick your venture name</h2>
-      <p class="prompt-card-desc">Brainstorm 5 options using three approaches. Read aloud. Pick the one that makes you smile.</p>
-    </div>
-    <div class="prompt-card-body">
-      <div class="prompt-text" id="text-1">Spend 15 minutes brainstorming a name for YOUR specific venture. Not the generic idea name (Tiffin Choice, Rent a Tree etc). A name only you would pick.
+  <nav class="prompt-index" id="prompt-index" aria-label="Jump to a session"></nav>
 
-Three ways to find a name:
-
-1. The PERSON name approach: Your name + what you do. 'Padma's Tiffin', 'Karthik Curates', 'Anjali Bakes'.
-
-2. The PLACE name approach: Where it lives. 'BalconyBuds', 'Indiranagar Tiffin', 'Bagru Block'.
-
-3. The FEELING name approach: What it gives the customer. 'Fresh Friday', 'Slow Plants', 'Steady Mornings'.
-
-Write 5 options. Read them aloud. Pick the one that makes you smile. That is your venture name.</div>
-      <div class="copy-row">
-        <button class="copy-btn" data-target="text-1">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-          <span>Copy guidance</span>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div class="prompt-card" id="prompt-2">
-    <div class="prompt-card-header">
-      <div class="prompt-card-meta">
-        <span class="prompt-card-meta-tag">Step 2 &middot; 20 min</span>
-        <span class="prompt-card-meta-tool">Canva</span>
-      </div>
-      <h2 class="prompt-card-title">Design your logo</h2>
-      <p class="prompt-card-desc">Canva template, drop in your venture name, choose a colour, download as PNG with transparent background.</p>
-    </div>
-    <div class="prompt-card-body">
-      <div class="prompt-text" id="text-2">Open Canva. Free account.
-
-1. Search 'logo' in the Canva templates.
-2. Filter by SIMPLE / MINIMAL designs. Avoid templates with too many elements.
-3. Replace the placeholder name with YOUR venture name from Step 1.
-4. Pick a colour that matches your venture's feeling. Warm orange for plants. Mustard yellow for food. Deep green for farms. Pink for events.
-5. Download as PNG with transparent background.
-
-Save it. You will use it in the deck now and on your website later this week.</div>
-      <div class="copy-row">
-        <button class="copy-btn" data-target="text-2">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-          <span>Copy guidance</span>
-        </button>
-        <a class="tool-link" href="https://www.canva.com" target="_blank" rel="noopener">Open Canva ↗</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="prompt-card" id="prompt-3">
-    <div class="prompt-card-header">
-      <div class="prompt-card-meta">
-        <span class="prompt-card-meta-tag">Step 3 &middot; 15 min</span>
-        <span class="prompt-card-meta-tool">Google Doc</span>
-      </div>
-      <h2 class="prompt-card-title">Answer six questions</h2>
-      <p class="prompt-card-desc">2 lines each in a Google Doc. These answers go straight into the deck prompt next.</p>
-    </div>
-    <div class="prompt-card-body">
-      <div class="prompt-text" id="text-3">Answer these six questions in 2 lines each. Write them in a Google Doc. These answers go straight into your deck prompt.
-
-1. WHO ARE YOU? Your name, your college, your year.
-
-2. WHAT IS YOUR VENTURE CALLED? The name from Step 1.
-
-3. WHAT IS YOUR ONE-LINE TAGLINE? What your venture does in 7 words or less. Example: 'Rent a tree. Eat the fruit for a season.'
-
-4. WHO IS YOUR CUSTOMER? The real person who paid (or said they would pay). Name them. Where they live. What they do.
-
-5. WHAT PROBLEM DID YOU SOLVE FOR THEM? In one sentence.
-
-6. WHAT IS ONE REAL VALIDATION INSIGHT? What is one thing a real user said or did that proved the venture works? Quote them if you can.</div>
-      <div class="copy-row">
-        <button class="copy-btn" data-target="text-3">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-          <span>Copy questions</span>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div class="prompt-card" id="prompt-4">
-    <div class="prompt-card-header">
-      <div class="prompt-card-meta">
-        <span class="prompt-card-meta-tag">Step 4 &middot; 40 min</span>
-        <span class="prompt-card-meta-tool">Gamma</span>
-      </div>
-      <h2 class="prompt-card-title">Build the deck in Gamma</h2>
-      <p class="prompt-card-desc">Paste this with your six answers from Step 3. Six-slide deck in one shot. Upload your logo to slide 1.</p>
-    </div>
-    <div class="prompt-card-body">
-      <div class="prompt-text" id="text-4">Build me a 6-slide pitch deck for my college micro-venture. I am a final-year engineering student.
-
-[ANSWER 1: WHO ARE YOU]
-
-MY VENTURE IS CALLED: [ANSWER 2]
-
-TAGLINE: [ANSWER 3]
-
-MY CUSTOMER: [ANSWER 4]
-
-PROBLEM I SOLVED: [ANSWER 5]
-
-REAL VALIDATION INSIGHT: [ANSWER 6]
-
-My app is live at: [YOUR APP URL]
-My website is live at: [YOUR WEBSITE URL]
-
-Make the deck warm, simple, and visual. Not corporate. Six slides:
-
-1. TITLE: My name, my venture name, my tagline. Reserve space for me to upload my logo.
-2. THE PROBLEM: Who has it, the real customer from above, one specific example.
-3. THE INSIGHT: What real user behaviour or quote proved the venture works.
-4. WHAT I BUILT: Show that I have an app, a website, a chatbot, and an agent. Add URLs.
-5. HOW IT WORKS: Three simple steps the customer takes.
-6. WHAT COULD HAPPEN NEXT: If 20 paying customers used this, what would change?
-
-Use warm colours. Big visuals. Short text. The kind of deck a founder would present at Demo Day to early customers, friends, and faculty, not to a VC.</div>
-      <div class="copy-row">
-        <button class="copy-btn" data-target="text-4">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-          <span>Copy prompt</span>
-        </button>
-        <a class="tool-link" href="https://gamma.app" target="_blank" rel="noopener">Open Gamma ↗</a>
-      </div>
-    </div>
+  <div id="prompts">
+    <p class="state-msg" id="state-msg">Loading prompts...</p>
   </div>
 
   <footer class="footer">
@@ -232,35 +113,111 @@ Use warm colours. Big visuals. Short text. The kind of deck a founder would pres
 </div>
 
 <script>
-  document.querySelectorAll('.copy-btn').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var targetId = btn.getAttribute('data-target');
-      var text = document.getElementById(targetId).textContent;
-      navigator.clipboard.writeText(text).then(function () {
-        var originalHtml = btn.innerHTML;
-        btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>Copied to clipboard</span>';
-        btn.classList.add('copied');
-        setTimeout(function () { btn.innerHTML = originalHtml; btn.classList.remove('copied'); }, 2500);
-      }).catch(function () {
-        var textarea = document.createElement('textarea');
-        textarea.value = text;
-        textarea.style.position = 'fixed';
-        textarea.style.opacity = '0';
-        document.body.appendChild(textarea);
-        textarea.select();
-        try {
-          document.execCommand('copy');
-          var originalHtml = btn.innerHTML;
-          btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span>Copied</span>';
+  var COPY_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+  var DONE_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>';
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  }
+
+  // "Claude (claude.ai)" -> {name:'Claude', url:'https://claude.ai'}; "Brainstorm" -> {name, url:null}; "None"/empty -> null
+  function parseTool(t) {
+    if (!t) return null;
+    t = String(t).trim();
+    if (!t || t.toLowerCase() === 'none') return null;
+    var m = t.match(/^(.*?)\s*\(([^)]+)\)\s*$/);
+    if (m) {
+      var domain = m[2].trim().replace(/^https?:\/\//, '').replace(/\/+$/, '');
+      return { name: m[1].trim(), url: 'https://' + domain };
+    }
+    return { name: t, url: null };
+  }
+
+  function shortTitle(t) {
+    t = String(t || '');
+    return t.length > 24 ? t.slice(0, 22).trim() + '\u2026' : t;
+  }
+
+  function attachCopy() {
+    document.querySelectorAll('.copy-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var text = document.getElementById(btn.getAttribute('data-target')).textContent;
+        var done = function () {
+          var original = btn.innerHTML;
+          btn.innerHTML = DONE_SVG + '<span>Copied to clipboard</span>';
           btn.classList.add('copied');
-          setTimeout(function () { btn.innerHTML = originalHtml; btn.classList.remove('copied'); }, 2500);
-        } catch (err) {
-          alert('Could not copy automatically. Long-press the prompt and copy manually.');
+          setTimeout(function () { btn.innerHTML = original; btn.classList.remove('copied'); }, 2500);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(done).catch(fallback);
+        } else { fallback(); }
+        function fallback() {
+          var ta = document.createElement('textarea');
+          ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+          document.body.appendChild(ta); ta.select();
+          try { document.execCommand('copy'); done(); }
+          catch (e) { alert('Could not copy automatically. Long-press the prompt and copy manually.'); }
+          document.body.removeChild(ta);
         }
-        document.body.removeChild(textarea);
       });
     });
-  });
+  }
+
+  function render(sessions) {
+    var idx = document.getElementById('prompt-index');
+    var wrap = document.getElementById('prompts');
+    if (!sessions.length) {
+      idx.innerHTML = '';
+      wrap.innerHTML = '<p class="state-msg">No prompts are configured yet. They will appear here as soon as they are added.</p>';
+      return;
+    }
+    idx.innerHTML = sessions.map(function (s) {
+      return '<a href="#session-' + esc(s.id) + '">' + esc(s.number) + ' &middot; ' + esc(shortTitle(s.title)) + '</a>';
+    }).join('');
+
+    var html = '';
+    var k = 0;
+    sessions.forEach(function (s) {
+      html += '<div class="session-group" id="session-' + esc(s.id) + '">'
+            +   '<div class="session-group-num">Session ' + esc(s.number) + (s.stage ? ' &middot; ' + esc(s.stage) : '') + '</div>'
+            +   '<h2 class="session-group-title">' + esc(s.title) + '</h2>'
+            + '</div>';
+      (s.prompts || []).forEach(function (p) {
+        k++;
+        var tool = parseTool(p.tool);
+        html += '<div class="prompt-card">'
+              +   '<div class="prompt-card-header">'
+              +     (tool ? '<div class="prompt-card-meta"><span class="prompt-card-meta-tool">' + esc(tool.name) + '</span></div>' : '')
+              +     '<h2 class="prompt-card-title">' + esc(p.title) + '</h2>'
+              +     (p.desc ? '<p class="prompt-card-desc">' + esc(p.desc) + '</p>' : '')
+              +   '</div>'
+              +   '<div class="prompt-card-body">'
+              +     '<div class="prompt-text" id="text-' + k + '">' + esc(p.content) + '</div>'
+              +     '<div class="copy-row">'
+              +       '<button class="copy-btn" data-target="text-' + k + '">' + COPY_SVG + '<span>Copy prompt</span></button>'
+              +       (tool && tool.url ? '<a class="tool-link" href="' + esc(tool.url) + '" target="_blank" rel="noopener">Open ' + esc(tool.name) + ' \u2197</a>' : '')
+              +     '</div>'
+              +   '</div>'
+              + '</div>';
+      });
+    });
+    wrap.innerHTML = html;
+    attachCopy();
+  }
+
+  fetch('./sessions-college.json', { cache: 'no-cache' })
+    .then(function (r) { if (!r.ok) throw new Error('load'); return r.json(); })
+    .then(function (d) {
+      var sessions = (d.sessions || []).filter(function (s) { return (s.prompts || []).length; });
+      render(sessions);
+    })
+    .catch(function () {
+      document.getElementById('prompt-index').innerHTML = '';
+      document.getElementById('prompts').innerHTML =
+        '<p class="state-msg">Could not load the prompts. Refresh the page, and make sure sessions-college.json is published next to this page.</p>';
+    });
 </script>
 
 </body>

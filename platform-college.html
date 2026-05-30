@@ -2601,6 +2601,35 @@ const CONCEPT_MODULES = {
         artifact: "An honest one-line answer to \"what is this, and what would the next level take?\"",
         prop: "coin", bubble: "Hobby, side income, or business? <b>Your call.</b>" }
     ]
+  },
+
+  "Chatbot": {
+    before_session: "7",
+    stage_number: "",
+    stage_name: "Chatbot",
+    slides: [
+      { lens: "opener",
+        headline: "A chatbot earns its place only if it *answers a real question.*",
+        sub: "Not a gimmick. The thing that replies at 11pm when you're asleep." },
+      { lens: "humanics", practice: "Anticipate the real question",
+        headline: "Answer the 3 questions every visitor *already has.*",
+        lead: "Before anyone trusts you, they have a few real questions. A good bot answers them instantly, even at midnight. A bad one is a toy nobody touches.",
+        example: "The bachelor's real questions before ordering: what is today's menu, how much, can I get it by 8pm? Your bot answers those at 11pm while you sleep, and he orders.",
+        artifact: "The 3 questions your visitor actually asks before trying you, written down.",
+        prop: "glass", bubble: "Answer the real question. <b>Even at midnight.</b>" },
+      { lens: "mechanics", practice: "Ground it in real info, no making things up",
+        headline: "Feed it your real info. *Let it say \"I'll check.\"*",
+        lead: "Build it on your actual menu, prices, and FAQ. The 20 percent only you can do: make it admit what it does not know instead of inventing. A confident wrong answer loses trust faster than \"let me check.\"",
+        example: "Ask your bot \"do you have Jain food?\" If you don't, it must say \"not yet,\" not invent a Jain thali. Test it with the questions real people actually ask.",
+        artifact: "Your bot grounded in real info, and one \"I don't know\" answer you tested.",
+        prop: "hat", bubble: "Real info in. <b>No making things up.</b>" },
+      { lens: "valuenomics", practice: "Remove a barrier or save your time",
+        headline: "A bot is worth it only if it *converts or saves you.*",
+        lead: "It earns its keep two ways: it turns a late-night browser into an order, or it stops you answering the same question forty times. If it does neither, skip it.",
+        example: "If every visitor WhatsApps \"kitna?\" and \"kya milega?\", a 24x7 bot converts the 11pm browser and frees your evening. If nobody had questions, you don't need one.",
+        artifact: "One line: the barrier this bot removes, or the hours it saves you.",
+        prop: "coin", bubble: "Converts a browser, or <b>saves your evening.</b>" }
+    ]
   }
 };
 let SCREENS = [];             // flat array of all screens with metadata
@@ -3293,7 +3322,7 @@ function renderConcept(screen) {
   if (sl.lens === "opener") {
     return `
       <div class="concept-slide concept-opener">
-        <div class="concept-stage-num">STAGE ${escapeHtml(screen.stageNumber || "")} &middot; ${escapeHtml((screen.stageName || "").toUpperCase())}</div>
+        <div class="concept-stage-num">${screen.stageNumber ? `STAGE ${escapeHtml(screen.stageNumber)} &middot; ` : ""}${escapeHtml((screen.stageName || "").toUpperCase())}</div>
         <h1 class="concept-opener-title">${conceptEm(sl.headline)}</h1>
         <div class="concept-opener-sub">${conceptEm(sl.sub)}</div>
         <div class="concept-three">

@@ -1608,92 +1608,161 @@
       "session_type": "office_hours",
       "day": "Week 4",
       "phase": "office_hours",
-      "title": "Office hours, pitch deck",
+      "title": "Office hours, investor pitch deck",
       "start_time": "Saturday",
       "end_time": "+ 90 min",
       "duration_minutes": 90,
       "break_after": false,
       "break_duration_minutes": 0,
-      "set_the_stage": "Last office hours. Demo Day is one week away.\n\nThis is the session where your micro-venture becomes a brand. You walked out of the weekend with an app, a website, and an audio-video. You spent three weeks adding a chatbot and an agent. Today the venture gets a name, a logo, and a pitch deck that ties it all together.\n\nFour steps in ninety minutes. Pick your venture name. Design your logo. Answer six questions. Build the deck in Gamma. You walk out with the deck you will pitch on Demo Day.",
+      "set_the_stage": "Last office hours. Demo Day is one week away.\n\nYou have a real venture: an app that takes orders, a website, brand pieces, a chatbot, and an agent. Today you turn all of it into an investor pitch deck, the deck you present on Demo Day.\n\nWe follow the Y Combinator seed deck, the same shape used by founders who went on to raise real money. Its rule is clarity and concision: one idea per slide, big readable text, a clear story. Nine slides: title, problem, solution, product, market, traction, business model, team, and the ask.\n\nYou write each slide with AI, then build the deck in Gamma in minutes, using the venture name and logo you already have. We open with a status check, walk the common stuck points, then open the floor. You walk out with the deck you will pitch.",
       "agenda": [
-        "First 15 min, pick a name for your venture. Three approaches. Five options. Pick the one that lands.",
-        "Next 20 min, design your logo in Canva. Pick a template, drop in your name, choose a colour.",
-        "Next 15 min, answer six questions in a Google Doc. These answers go straight into the deck prompt.",
-        "Last 40 min, paste the prompt into Gamma, get a six-slide deck, upload your logo, tweak slides."
+        "First 10 min, status check. Each person: deck drafted, in progress, or specifically stuck",
+        "Next 20 min, walkthrough of the common stuck points building the investor deck",
+        "Next 45 min, live Q&A. Decks on screen, the room pressure-tests each story",
+        "Last 15 min, roster check. Every person says: deck ready for Demo Day, or what is left"
       ],
       "stuck_points": [
         {
-          "title": "Cannot decide on a name",
-          "resolution": "Three approaches. Person name (your name + what you do): 'Padma's Tutoring', 'Karthik Curates'. Place name (where it lives): 'Indiranagar Tiffin', 'Bagru Block'. Feeling name (what it gives the customer): 'Fresh Friday', 'Slow Plants'. Write 5. Read aloud. Pick the one that makes you smile."
+          "title": "Too much on each slide",
+          "resolution": "YC's rule is one idea per slide. Cut until each slide makes a single point in big text. If you explain a slide for more than 20 seconds, split it or trim it. Prompt 2 does this for you."
         },
         {
-          "title": "Logo looking generic",
-          "resolution": "In Canva, filter logo templates by SIMPLE or MINIMAL. Avoid templates with too many elements. One symbol or one wordmark is enough. Pick a colour that matches your venture's feeling, not a colour from the template gallery."
+          "title": "I have no traction to show",
+          "resolution": "Use any real number, even small: test orders, friends who used it, rupees from one sale, sign-ups. One honest number beats a made-up big one. If there is truly nothing yet, show the clearest sign of demand you have."
         },
         {
-          "title": "Gamma deck looks corporate",
-          "resolution": "In the Gamma prompt, ask explicitly for 'warm colours, big visuals, short text, the kind of deck a founder presents to early customers and friends, not a startup investor.' If the first generation looks corporate, regenerate with that line emphasised."
+          "title": "The ask is vague",
+          "resolution": "Make it specific and honest for where you are: first 100 customers, one mentor in your space, a small grant, a pilot with one shop. Investors trust a clear, real ask."
         },
         {
-          "title": "Six questions feel like homework",
-          "resolution": "They are not homework. They are the deck. The Gamma prompt is a template that pours your six answers into a six-slide deck in one shot. Write each answer in two short lines. Done in fifteen minutes."
+          "title": "The deck looks cluttered in Gamma",
+          "resolution": "Pick the simplest theme, large text, one idea per slide. YC decks are intentionally plain. Put your logo on the title slide and stop there. Clear beats fancy."
         }
       ],
-      "questions": [],
-      "hmv": [],
       "prompts": [
         {
-          "title": "Step 1: Pick your venture name (15 min)",
-          "content": "Spend 15 minutes brainstorming a name for YOUR specific venture. Not the generic idea name (Tiffin Choice, Rent a Tree etc). A name only you would pick.\n\nThree ways to find a name:\n\n1. The PERSON name approach: Your name + what you do. 'Padma's Tiffin', 'Karthik Curates', 'Anjali Bakes'.\n\n2. The PLACE name approach: Where it lives. 'BalconyBuds', 'Indiranagar Tiffin', 'Bagru Block'.\n\n3. The FEELING name approach: What it gives the customer. 'Fresh Friday', 'Slow Plants', 'Steady Mornings'.\n\nWrite 5 options. Read them aloud. Pick the one that makes you smile. That is your venture name.",
-          "tool": "Brainstorm"
+          "number": 1,
+          "title": "Write your investor pitch deck",
+          "tool": "Claude (claude.ai)",
+          "desc": "Drafts all nine slides in the Y Combinator order, from your venture.",
+          "content": "I am building an investor pitch deck for my venture, to present on Demo Day. Follow the Y Combinator seed deck structure exactly. Keep it clear and concise, one idea per slide, plain language, no jargon.\n\nMy venture:\n- Name and one-line description: [name, and what you do for whom, in one line]\n- The problem: [the real problem, for a real person]\n- My solution: [my app and website, and what they let people do]\n- How it works: [the steps a customer takes: browse, order, get a confirmation]\n- Who it is for and how big: [my customer, and roughly how many such people exist, in plain numbers]\n- Traction so far: [anything real: orders, customers, rupees, sign-ups, even small numbers from testing]\n- How I make money: [per order or per sale, the price and rough margin in rupees]\n- Team: [who I am, and why I am the right person for this]\n- The ask: [what I want next: first 100 customers, a mentor, a small grant, whatever is honest for me]\n\nWrite the content for these nine slides, in this order, with a short heading and two to four lines or a few bullets each:\n1. Title: venture name and the one-line description.\n2. Problem.\n3. Solution.\n4. Product: how it works.\n5. Market: who it is for and how big.\n6. Traction: what I have so far.\n7. Business model: how I make money.\n8. Team.\n9. The ask: what I want next.\n\nKeep each slide to one idea, in big, simple language an investor grasps in seconds. Give me the slides as plain text, clearly labelled, ready to paste into a deck tool."
         },
         {
-          "title": "Step 2: Design your logo in Canva (20 min)",
-          "content": "Open Canva. Free account.\n\n1. Search 'logo' in the Canva templates.\n2. Filter by SIMPLE / MINIMAL designs. Avoid templates with too many elements.\n3. Replace the placeholder name with YOUR venture name from Step 1.\n4. Pick a colour that matches your venture's feeling. Warm orange for plants. Mustard yellow for food. Deep green for farms. Pink for events.\n5. Download as PNG with transparent background.\n\nSave it. You will use it in the deck now and on your website later this week.",
-          "tool": "Canva (canva.com)"
-        },
-        {
-          "title": "Step 3: Answer six questions (15 min)",
-          "content": "Answer these six questions in 2 lines each. Write them in a Google Doc. These answers go straight into your deck prompt.\n\n1. WHO ARE YOU? Your name, your college, your year.\n\n2. WHAT IS YOUR VENTURE CALLED? The name from Step 1.\n\n3. WHAT IS YOUR ONE-LINE TAGLINE? What your venture does in 7 words or less. Example: 'Rent a tree. Eat the fruit for a season.'\n\n4. WHO IS YOUR CUSTOMER? The real person who paid (or said they would pay). Name them. Where they live. What they do.\n\n5. WHAT PROBLEM DID YOU SOLVE FOR THEM? In one sentence.\n\n6. WHAT IS ONE REAL VALIDATION INSIGHT? What is one thing a real user said or did that proved the venture works? Quote them if you can.",
-          "tool": "Google Docs (docs.google.com)"
-        },
-        {
-          "title": "Step 4: Build the deck in Gamma (40 min)",
-          "content": "Open gamma.app. Free tier gives you 400 credits. One deck takes 40 credits. Plenty.\n\nPaste this prompt into Gamma. Replace the bracketed bits with YOUR answers from Step 3.\n\n---\n\nBuild me a 6-slide pitch deck for my college micro-venture. I am a final-year engineering student.\n\n[ANSWER 1: WHO ARE YOU]\n\nMY VENTURE IS CALLED: [ANSWER 2]\n\nTAGLINE: [ANSWER 3]\n\nMY CUSTOMER: [ANSWER 4]\n\nPROBLEM I SOLVED: [ANSWER 5]\n\nREAL VALIDATION INSIGHT: [ANSWER 6]\n\nMy app is live at: [YOUR APP URL]\nMy website is live at: [YOUR WEBSITE URL]\n\nMake the deck warm, simple, and visual. Not corporate. Six slides:\n\n1. TITLE: My name, my venture name, my tagline. Reserve space for me to upload my logo.\n2. THE PROBLEM: Who has it, the real customer from above, one specific example.\n3. THE INSIGHT: What real user behaviour or quote proved the venture works.\n4. WHAT I BUILT: Show that I have an app, a website, a chatbot, and an agent. Add URLs.\n5. HOW IT WORKS: Three simple steps the customer takes.\n6. WHAT COULD HAPPEN NEXT: If 20 paying customers used this, what would change?\n\nUse warm colours. Big visuals. Short text. The kind of deck a founder would present at Demo Day to early customers, friends, and faculty, not to a VC.",
-          "tool": "Gamma (gamma.app)"
-        }
-      ],
-      "build": [
-        {
-          "title": "The four-step arc",
-          "instructions": "15 min name. 20 min logo. 15 min answering questions. 40 min building the deck in Gamma. Stay with the clock."
-        },
-        {
-          "title": "Upload your logo into Gamma",
-          "instructions": "Once Gamma generates the deck, drag your logo PNG from Canva onto slide 1. Place it next to your venture name."
-        },
-        {
-          "title": "Tweak the slides Gamma generated",
-          "instructions": "Gamma usually nails 4 of 6 slides on the first try. Read each slide aloud. Fix the two that feel off. Do not regenerate the whole deck."
-        },
-        {
-          "title": "Leave with one polish",
-          "instructions": "By the end of the call, every founder has one specific thing to fix on the deck before Demo Day. Not three. One. Specific."
-        }
-      ],
-      "test_output": [
-        {
-          "title": "The deck-on-projector test",
-          "description": "If you screen-shared your deck on the call today and walked through the six slides in under three minutes, you are pitch-ready for Demo Day."
+          "number": 2,
+          "title": "Tighten it to investor standard",
+          "tool": "Claude (claude.ai)",
+          "desc": "Pressure-tests each slide the way a YC partner would, and sharpens it.",
+          "content": "Here is my draft investor pitch deck:\n\n[paste your nine slides]\n\nPressure-test it the way a Y Combinator partner would. For each slide, cut anything not essential, keep one clear idea, and make the words simpler and bolder. Sharpen the problem so it is obviously real, make the traction slide lead with the most impressive true number I have, and make the ask specific. Flag any slide that is vague or trying to say too much. Give me the tightened nine slides, ready to paste into Gamma."
         }
       ],
       "live_qa_note": "Most founders over-engineer the deck. Six slides. Short text. Big visuals. The Gamma defaults are usually right. Do not spend the last 20 minutes choosing fonts.",
       "homework_check": "Every founder leaves with: a Gamma deck URL with all six slides filled in, their venture logo placed on slide 1, and one specific thing they will polish before Demo Day.",
       "output_capture": {
-        "label": "Your pitch deck",
-        "description": "Save the Gamma share URL. This is the deck you present on Demo Day next Saturday."
+        "artifact": "Investor pitch deck",
+        "ask": "Paste the share link to your investor pitch deck.",
+        "placeholder": "https://gamma.app/docs/...",
+        "kind": "url",
+        "guidance": "This is the deck you present on Demo Day. Nine slides, Y Combinator structure, one idea per slide. Make sure the link opens for someone who is not logged in."
       },
-      "stage": "Ready to show"
+      "stage": "Ready to show",
+      "procedure": {
+        "sections": [
+          {
+            "id": "A",
+            "name": "Set up your deck tool",
+            "note": "You write the deck with AI, then build it in Gamma. Writing is on Claude.",
+            "steps": [
+              {
+                "title": "Set up Gamma",
+                "body": "Gamma turns your written slides into a clean deck in minutes.",
+                "detail": [
+                  "Go to gamma.app and create a free account.",
+                  "The free plan gives 400 credits, plenty for one deck. Free decks carry a small Made with Gamma mark, fine for Demo Day.",
+                  "If you would rather not make a new account, build the deck in Canva instead, which you already have."
+                ],
+                "tool": "Gamma (gamma.app)"
+              },
+              {
+                "title": "Pull your venture together",
+                "body": "Have everything ready before you write.",
+                "detail": [
+                  "Your venture name and logo from the brand work.",
+                  "Your real numbers: orders, customers, rupees, even small ones from testing.",
+                  "Your website and app links."
+                ]
+              }
+            ]
+          },
+          {
+            "id": "B",
+            "name": "Write the deck",
+            "note": "Follow the Y Combinator seed structure: nine slides, one idea each.",
+            "steps": [
+              {
+                "title": "Run Prompt 1, draft your deck",
+                "body": "Claude writes all nine slides in the YC order from your venture.",
+                "detail": [
+                  "Copy Prompt 1 from the build guide and paste it into Claude.",
+                  "Fill in every bracket with your real venture. Be honest with the numbers, small and real beats big and made up.",
+                  "You get nine labelled slides ready to use."
+                ],
+                "prompt_ref": 1
+              },
+              {
+                "title": "Run Prompt 2, tighten it",
+                "body": "Claude sharpens each slide to investor standard.",
+                "detail": [
+                  "Copy Prompt 2 and paste your nine slides in.",
+                  "You get a tighter version: one idea per slide, simpler words, your strongest true number leading the traction slide."
+                ],
+                "prompt_ref": 2
+              }
+            ]
+          },
+          {
+            "id": "C",
+            "name": "Build it in Gamma",
+            "note": "Turn your words into a clean deck.",
+            "steps": [
+              {
+                "title": "Generate the deck",
+                "body": "Paste your slides and let Gamma build it.",
+                "detail": [
+                  "In Gamma, create a new presentation by pasting text, and paste your nine tightened slides.",
+                  "Let Gamma generate the deck. Pick a clean, simple theme and add your logo to the title slide.",
+                  "Keep it simple: big text, one idea per slide, no clutter. That is the YC way."
+                ],
+                "tool": "Gamma (gamma.app)"
+              },
+              {
+                "title": "Read it like an investor",
+                "body": "Check it tells a clear story in under two minutes.",
+                "detail": [
+                  "Click through all nine slides. Each should make one point you grasp at a glance.",
+                  "Read it aloud as if pitching. Fix any slide that is wordy or unclear.",
+                  "Make sure the title says what you do, and the ask is specific."
+                ]
+              }
+            ]
+          },
+          {
+            "id": "D",
+            "name": "Save it for Demo Day",
+            "note": "",
+            "steps": [
+              {
+                "title": "Save your deck link",
+                "body": "This is what you present next Saturday.",
+                "detail": [
+                  "In Gamma, get the share link, or export to PDF or PowerPoint.",
+                  "Save the link and paste it into the cohort form.",
+                  "Practice your pitch out loud at least twice before Demo Day."
+                ]
+              }
+            ]
+          }
+        ]
+      }
     },
     {
       "id": "11",

@@ -2689,13 +2689,18 @@ function buildScreenSequence() {
       SCREENS.push({ type: "phase-break", to: "demo_day" });
     }
 
-    // Concept module (HMV teaching slides), inserted before the stage's keyed session
+    SCREENS.push({ type: "session-start", session });
+
+    // Concept module (HMV teaching slides): the first slides INSIDE the stage's first
+    // session, so the session clock runs and the chrome shows. `before_session` names
+    // that first session of the stage.
     Object.keys(CONCEPT_MODULES).forEach((stageKey) => {
       const mod = CONCEPT_MODULES[stageKey];
       if (mod && mod.before_session === session.id) {
         mod.slides.forEach((slide, sIdx) => {
           SCREENS.push({
             type: "concept",
+            session,
             slide: slide,
             stageNumber: mod.stage_number,
             stageName: mod.stage_name,
@@ -2706,7 +2711,6 @@ function buildScreenSequence() {
       }
     });
 
-    SCREENS.push({ type: "session-start", session });
     SCREENS.push({ type: "stage", session });
 
     // Idea cards screen — appears once, inside Session 1 (Pick your idea), right after the
@@ -2851,7 +2855,7 @@ function renderCurrent() {
                     || screen.type === "day2-checkin"
                     || screen.type === "phase-break"
                     || screen.type === "portfolio-reveal" || screen.type === "closing";
-  const noChrome = isWelcomeLayer || isInterlude || screen.type === "workshop-complete" || screen.type === "break" || screen.type === "concept";
+  const noChrome = isWelcomeLayer || isInterlude || screen.type === "workshop-complete" || screen.type === "break";
   topbar.classList.toggle("hidden", noChrome);
   bottombar.classList.toggle("hidden", screen.type === "welcome");
 
@@ -2889,7 +2893,7 @@ function renderCurrent() {
   // Reset/start timer for sessions
   if (screen.session && screen.type === "session-start") {
     setupTimer(screen.session);
-  } else if (isWelcomeLayer || isInterlude || screen.type === "workshop-complete" || screen.type === "concept") {
+  } else if (isWelcomeLayer || isInterlude || screen.type === "workshop-complete") {
     stopTimer();
   }
 
@@ -2968,6 +2972,7 @@ function sectionLabel(screen) {
     case "office-hours":   return "Office Hours";
     case "output-capture": return "Save your work";
     case "session-end":    return "Complete";
+    case "concept":        return `Concept ${screen.conceptIndex + 1} of ${screen.conceptTotal}`;
     default:               return "";
   }
 }
@@ -4159,8 +4164,6 @@ function refreshJumpMenu() {
     let g;
     if (intro.includes(scr.type)) {
       g = "Intro";
-    } else if (scr.type === "concept") {
-      g = `${scr.stageName || "Concept"} \u00B7 Concept`;
     } else if (scr.session) {
       const num = scr.session.number || scr.session.id;
       g = `${num}. ${scr.session.title}`;

@@ -2604,7 +2604,7 @@ function renderCurrent() {
   // Reset/start timer for sessions
   if (screen.session && screen.type === "session-start") {
     setupTimer(screen.session);
-  } else if (isWelcomeLayer || isInterlude || screen.type === "workshop-complete" || screen.type === "idea-cards") {
+  } else if (isWelcomeLayer || isInterlude || screen.type === "workshop-complete") {
     stopTimer();
   }
 

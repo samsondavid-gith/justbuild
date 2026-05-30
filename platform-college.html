@@ -2456,6 +2456,151 @@ const CONCEPT_MODULES = {
         artifact: "Rough maths on one order (in, out, what's left), plus one line on \"why now.\"",
         prop: "coin", bubble: "Make the maths work on <b>one</b> order first." }
     ]
+  },
+
+  "Build": {
+    before_session: "2",
+    stage_number: "02",
+    stage_name: "Build",
+    slides: [
+      { lens: "opener",
+        headline: "Build the smallest thing that *proves it works.*",
+        sub: "Stop planning. Make one real version a single person can use today." },
+      { lens: "humanics", practice: "Jobs to be done",
+        headline: "Build the one screen your user *actually touches.*",
+        lead: "They never see your code or your database. They see one screen, one button, one result. Build <b>that</b> first.",
+        example: "The tiffin v1 is not an admin panel. It is one WhatsApp menu so the bachelor orders before Sunday. That is the whole v1.",
+        artifact: "The single screen your first user touches, openable on a phone.",
+        prop: "glass", bubble: "One screen. One button. <b>That's v1.</b>" },
+      { lens: "mechanics", practice: "Lean MVP, build the risky 20%",
+        headline: "AI writes 80 percent. *You own the last 20.*",
+        lead: "AI gives you a working draft in minutes. Whether it actually works for <b>your</b> real case is yours. Build in small spikes and test each one.",
+        example: "AI builds the menu page in one shot. You paste your real 7 day menu, open it on your phone, and find Sunday is missing. That fix is your 20 percent.",
+        artifact: "The habit: build one piece, open it yourself, fix what broke, then ask AI for the next.",
+        prop: "hat", bubble: "AI does the lifting. <b>You catch what breaks.</b>" },
+      { lens: "valuenomics", practice: "Cost to serve",
+        headline: "Cheap to build is *not cheap to run.*",
+        lead: "Building v1 with AI is nearly free. Serving 100 people is where the real money shows up: ingredients, delivery, your time.",
+        example: "The order screen is free. Each tiffin still costs you 40 rupees in dal, gas, and the delivery boy. Build the screen, but write down the 40 rupees.",
+        artifact: "What it costs you to serve one customer once, in real rupees.",
+        prop: "coin", bubble: "Free to build. <b>Forty rupees to feed.</b>" }
+    ]
+  },
+
+  "Launch": {
+    before_session: "4",
+    stage_number: "03",
+    stage_name: "Launch",
+    slides: [
+      { lens: "opener",
+        headline: "A launch is *one stranger using it.*",
+        sub: "Not a big announcement. The first person who isn't your friend, actually using the thing." },
+      { lens: "humanics", practice: "The Mom Test",
+        headline: "Friends say nice. *Strangers tell the truth.*",
+        lead: "Your friends will clap, and that teaches you nothing. You learn only when someone with no reason to be kind tries it.",
+        example: "Don't post \"launching my app!\" to the class group. Stand outside one PG at 7pm, show three bachelors the menu, and watch if they actually order. Three strangers beat thirty likes.",
+        artifact: "A plan to put it in front of 3 people who don't know you, this week.",
+        prop: "glass", bubble: "Likes are polite. <b>Strangers are honest.</b>" },
+      { lens: "mechanics", practice: "Do things that don't scale",
+        headline: "Ship it rough, then *watch like a hawk.*",
+        lead: "A launch is not finished. Put the rough version out, watch exactly where people get stuck, and patch it the same day. Do it by hand if you must.",
+        example: "The first bachelor opens the menu, but there is no way to say yes. So that night you WhatsApp him \"reply 1 to confirm\" by hand. No automation. You just learned what to build next.",
+        artifact: "The one place people got stuck, and the by-hand fix you used to unstick them.",
+        prop: "hat", bubble: "Out the door, then <b>watch every tap.</b>" },
+      { lens: "valuenomics", practice: "Willingness to pay",
+        headline: "The first rupee beats *the hundredth like.*",
+        lead: "A like is free, so it is cheap to give. Money is not. The moment someone pays, even a little, you know the thing is real.",
+        example: "Free sign-ups: forty. People who paid 50 rupees to lock this week's order: four. Those four are your actual business. The forty are just being polite.",
+        artifact: "The number of people who gave you money, not just attention.",
+        prop: "coin", bubble: "One paying customer beats <b>a hundred likes.</b>" }
+    ]
+  },
+
+  "Brand": {
+    before_session: "5b",
+    stage_number: "04",
+    stage_name: "Brand",
+    slides: [
+      { lens: "opener",
+        headline: "A brand is the promise people remember *before they meet you.*",
+        sub: "Not a logo. The one feeling your name sets off." },
+      { lens: "humanics", practice: "Trust",
+        headline: "People buy whether *they trust you.*",
+        lead: "Before trying anything, everyone asks one silent question: can I trust this? A brand is the fastest answer. A clear name, a real face, one honest promise.",
+        example: "Two tiffins in one lane. \"FoodTech Solutions Pvt Ltd\" with a stock biryani photo, versus \"Sharda Aunty's Tiffin\" with her real photo and \"ghar jaisa khana, har din.\" The bachelor picks Aunty. Same dal, more trust.",
+        artifact: "The one promise your name makes, in your customer's own words.",
+        prop: "glass", bubble: "Same dal. <b>More trust.</b>" },
+      { lens: "mechanics", practice: "Positioning",
+        headline: "AI gives a hundred names. *You need the true one.*",
+        lead: "AI spins out logos, taglines, and palettes in seconds. That is the easy 80 percent. Your 20 percent is throwing away the 99 that sound like everyone, and keeping the one that is actually you.",
+        example: "AI offers \"NourishBox, FreshFuel, TiffinTech,\" all forgettable. You ignore them and keep \"Sharda Aunty's,\" because that one is real.",
+        artifact: "A name, a one-line promise, and a simple look, picked by you from what AI drafted.",
+        prop: "hat", bubble: "Ninety-nine sound generic. <b>Keep the real one.</b>" },
+      { lens: "valuenomics", practice: "Pricing power",
+        headline: "A trusted name charges *ten rupees more.*",
+        lead: "Two identical tiffins. The trusted one charges a bit more and people still pay, because they are buying the safety of not being let down. Brand is what lets you not be the cheapest.",
+        example: "The anonymous tiffin sells at 50 to survive. Aunty sells at 60 with a waiting list, because \"Aunty won't cheat me on quality.\" That extra 10 rupees across 100 plates is the brand earning its keep.",
+        artifact: "How much extra people will pay you over the cheapest option, and why.",
+        prop: "coin", bubble: "That extra ten rupees? <b>That's the brand.</b>" }
+    ]
+  },
+
+  "Automate": {
+    before_session: "8",
+    stage_number: "05",
+    stage_name: "Automate",
+    slides: [
+      { lens: "opener",
+        headline: "Automate the boring 80 percent, *do the human 20.*",
+        sub: "Not a robot business. Just freeing you from repetition so you can do the part that needs a human." },
+      { lens: "humanics", practice: "Human in the loop",
+        headline: "Automate the receipt. *Never the apology.*",
+        lead: "People happily take an instant confirmation from a machine, and feel insulted by a robotic reply when something goes wrong. Automate the predictable. Keep yourself for the moments that need a human.",
+        example: "Let the machine send confirmations, menus, and reminders. But when a tiffin arrives cold, the \"sorry, tomorrow is free\" comes from you, by hand. Machine for the chore, you for the care.",
+        artifact: "A list split in two: what a machine should handle, and what must stay human.",
+        prop: "glass", bubble: "Machine for the chore. <b>You for the care.</b>" },
+      { lens: "mechanics", practice: "Manual first, then automate",
+        headline: "Don't automate a mess. *Do it by hand first.*",
+        lead: "Automating a broken process just breaks it faster. Run it manually first so you know every step and every failure, then ask AI to wire up the steps you trust. Check the edges, that is your 20 percent.",
+        example: "Two weeks of taking orders by hand taught you Sundays are different. So when AI builds the auto-confirm, you make sure it handles the Sunday case, because you knew to look for it.",
+        artifact: "One task you have done by hand enough times to safely hand to a machine, edges and all.",
+        prop: "hat", bubble: "By hand till it works. <b>Then automate.</b>" },
+      { lens: "valuenomics", practice: "Margin and your time",
+        headline: "Every by-hand order *hides your time inside it.*",
+        lead: "Do everything yourself and your hours become a cost you forgot to count. Automation's real payoff is the same money with far less of your time, so you serve more people without burning out.",
+        example: "By hand, 30 orders eats your whole evening, so 30 is your ceiling. After auto-confirms and auto-reminders, the same evening handles 90. Your cost per order, in time, drops to a third.",
+        artifact: "How many more customers you can serve in the same time after automating one thing.",
+        prop: "coin", bubble: "Same evening. <b>Three times the orders.</b>" }
+    ]
+  },
+
+  "Ready to show": {
+    before_session: "10",
+    stage_number: "06",
+    stage_name: "Ready to show",
+    slides: [
+      { lens: "opener", mascot: "butterfly",
+        headline: "You walked in with an idea. *You're leaving with a thing that works.*",
+        sub: "Prove it is real, tell its story, and decide what comes next." },
+      { lens: "humanics", practice: "Show the change", mascot: "butterfly",
+        headline: "Don't demo features. *Show a better week.*",
+        lead: "Nobody remembers a feature list. They remember a person. Your strongest proof is one real human who had a problem, used your thing, and is better off.",
+        example: "Not \"my app has menus, payments, and reminders.\" Instead: \"Rohit, a bachelor in a Kothrud PG, used to burn 1,200 rupees a month on last-minute Swiggy. Now he pre-orders by Saturday and spends 400. Here is his week.\" Now they're listening.",
+        artifact: "One real person's before and after, told in three sentences.",
+        prop: "glass", bubble: "Not features. <b>One better week.</b>" },
+      { lens: "mechanics", practice: "Show, don't tell", mascot: "butterfly",
+        headline: "Show the thing *working,* not slides about it.",
+        lead: "A live thing beats a pretty slide every time. AI can polish a deck in minutes, but the moment that lands is the actual version opening on a real phone and just working. Practice the one path that works.",
+        example: "Skip the 20 slide architecture diagram. Pull out your phone, place a real order in front of the room, and show the confirmation arrive. Ten seconds of real beats ten minutes of slides.",
+        artifact: "The one 30 second live path you can show without it breaking.",
+        prop: "hat", bubble: "Ten seconds live beats <b>ten minutes of slides.</b>" },
+      { lens: "valuenomics", practice: "The honest next step", mascot: "butterfly",
+        headline: "Now you know your numbers. *Make the call.*",
+        lead: "You know what a customer costs, what they pay, and the time it takes. That is enough for an honest decision: hobby, side income, or business. No wrong answer, but make it on real numbers, not a dream.",
+        example: "Aunty's: 60 rupees a plate, 20 profit, 100 plates a day is 2,000 a day. A real income needs 300 plates, which needs a second cook. Now the choice is clear-eyed: stay small and tidy, or hire and grow.",
+        artifact: "An honest one-line answer to \"what is this, and what would the next level take?\"",
+        prop: "coin", bubble: "Hobby, side income, or business? <b>Your call.</b>" }
+    ]
   }
 };
 let SCREENS = [];             // flat array of all screens with metadata
@@ -2718,6 +2863,8 @@ function renderCurrent() {
       document.getElementById("concept-cat-prop").innerHTML = sl.prop ? (CONCEPT_PROPS[sl.prop] || "") : "";
       const bub = document.getElementById("concept-cat-bubble");
       if (sl.bubble) { bub.innerHTML = sl.bubble; bub.style.display = ""; } else { bub.style.display = "none"; }
+      const cimg = document.getElementById("concept-cat-img");
+      if (cimg) cimg.src = (sl.mascot === "butterfly") ? "butterfly.png" : "funny-caterpillar.png";
       cat.style.display = "block";
     } else {
       cat.style.display = "none";

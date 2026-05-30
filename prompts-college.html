@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Just Build  /  Prompts</title>
+<title>Just Build  /  Build Guide</title>
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="shortcut icon" href="/favicon.ico">
@@ -52,6 +52,26 @@
   .session-group-num { font-family: var(--mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin-bottom: 7px; }
   .session-group-title { font-family: var(--serif); font-size: clamp(22px, 3vw, 28px); font-weight: 500; letter-spacing: -0.01em; color: var(--text); }
 
+  /* Section break (within the build procedure) */
+  .section-break { display: flex; align-items: flex-start; gap: 14px; margin: 34px 0 18px; padding-top: 22px; border-top: 1px solid var(--line); }
+  .section-break:first-of-type { border-top: none; padding-top: 6px; }
+  .section-break-id { flex: 0 0 auto; width: 34px; height: 34px; border-radius: 7px; background: var(--accent); color: #fff; font-family: var(--mono); font-size: 15px; font-weight: 600; display: flex; align-items: center; justify-content: center; }
+  .section-break-name { font-family: var(--serif); font-size: 20px; font-weight: 600; letter-spacing: -0.01em; color: var(--text); }
+  .section-break-note { font-size: 13.5px; color: var(--text-muted); line-height: 1.5; margin-top: 3px; max-width: 60ch; }
+
+  /* Step block */
+  .step-block { margin: 0 0 14px; padding: 16px 18px; background: var(--bg-elev-1); border: 1px solid var(--line); border-radius: 9px; }
+  .step-block-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 5px; }
+  .step-block-code { flex: 0 0 auto; font-family: var(--mono); font-size: 12px; font-weight: 600; letter-spacing: 0.04em; color: var(--accent); }
+  .step-block-title { font-family: var(--serif); font-size: 17px; font-weight: 600; color: var(--text); }
+  .step-block-lead { font-size: 14px; color: var(--text-soft); line-height: 1.5; margin-bottom: 10px; }
+  .tool-chip { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.02em; color: var(--accent); text-decoration: none; border: 1px solid var(--accent-soft); border-radius: 999px; padding: 5px 11px; background: rgba(193,125,42,0.06); margin-bottom: 12px; }
+  .tool-chip:hover { background: rgba(193,125,42,0.14); }
+  .step-block-detail { margin: 4px 0 0; padding-left: 22px; }
+  .step-block-detail li { font-size: 14px; color: var(--text-soft); line-height: 1.55; margin-bottom: 6px; }
+  .step-block-detail li:last-child { margin-bottom: 0; }
+  .step-block .prompt-card { margin-top: 14px; margin-bottom: 0; }
+
   .prompt-card { margin-bottom: 20px; background: var(--bg-elev-1); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; transition: border-color 0.2s; }
   .prompt-card:hover { border-color: var(--accent-soft); }
   .prompt-card-header { padding: 20px 24px; border-bottom: 1px solid var(--line); background: var(--bg-elev-2); }
@@ -91,12 +111,12 @@
   <header class="header">
     <img class="header-logo" src="logo.png" alt="Orange Caterpillar" onerror="this.style.display='none'">
     <div class="header-eyebrow">Just Build &middot; College</div>
-    <h1 class="header-title">Prompts</h1>
-    <p class="header-sub">Every copy-paste prompt for the workshop, in order. Find the session you are on, then Copy.</p>
+    <h1 class="header-title">Build Guide</h1>
+    <p class="header-sub">Every step and every prompt for the workshop, in order. Find the session you are on, then follow along.</p>
   </header>
 
   <div class="howto">
-    <strong>How to use this page.</strong> Keep this tab open during the session. When the facilitator reaches a prompt, scroll to that session below, click <strong>Copy</strong>, and paste it into the tool named on the card. Fill in the parts in [brackets] with your own venture.
+    <strong>How to use this page.</strong> Keep this tab open during the session. Follow the steps in order. When a step has a prompt, click <strong>Copy</strong>, paste it into the tool named on the card, and fill in the parts in [brackets] with your own venture.
   </div>
 
   <nav class="prompt-index" id="prompt-index" aria-label="Jump to a session"></nav>
@@ -107,7 +127,8 @@
 
   <footer class="footer">
     <p>Just Build &middot; <a href="https://justbuild.orangecaterpillar.com">Orange Caterpillar</a></p>
-    <p style="margin-top: 8px; color: var(--text-faint);">Stuck on a prompt? Ask the facilitator on the call or post in the WhatsApp group.</p>
+    <p style="margin-top: 8px; color: var(--text-faint);">Stuck on a step? Ask the facilitator on the call or post in the WhatsApp group.</p>
+    <p style="margin-top: 8px; color: var(--text-faint);">Confidential. For enrolled Just Build students. Please do not share.</p>
   </footer>
 
 </div>
@@ -165,12 +186,39 @@
     });
   }
 
+  function toolChipHtml(toolStr) {
+    var tool = parseTool(toolStr);
+    if (!tool) return '';
+    if (tool.url) {
+      return '<a class="tool-chip" href="' + esc(tool.url) + '" target="_blank" rel="noopener">Open ' + esc(tool.name) + ' \u2197</a>';
+    }
+    return '<span class="tool-chip">' + esc(tool.name) + '</span>';
+  }
+
+  function promptCardHtml(p, k) {
+    var tool = parseTool(p.tool);
+    return '<div class="prompt-card">'
+         +   '<div class="prompt-card-header">'
+         +     (tool ? '<div class="prompt-card-meta"><span class="prompt-card-meta-tag">Prompt ' + esc(p.number) + '</span><span class="prompt-card-meta-tool">' + esc(tool.name) + '</span></div>' : '')
+         +     '<h2 class="prompt-card-title">' + esc(p.title) + '</h2>'
+         +     (p.desc ? '<p class="prompt-card-desc">' + esc(p.desc) + '</p>' : '')
+         +   '</div>'
+         +   '<div class="prompt-card-body">'
+         +     '<div class="prompt-text" id="text-' + k + '">' + esc(p.content) + '</div>'
+         +     '<div class="copy-row">'
+         +       '<button class="copy-btn" data-target="text-' + k + '">' + COPY_SVG + '<span>Copy prompt</span></button>'
+         +       (tool && tool.url ? '<a class="tool-link" href="' + esc(tool.url) + '" target="_blank" rel="noopener">Open ' + esc(tool.name) + ' \u2197</a>' : '')
+         +     '</div>'
+         +   '</div>'
+         + '</div>';
+  }
+
   function render(sessions) {
     var idx = document.getElementById('prompt-index');
     var wrap = document.getElementById('prompts');
     if (!sessions.length) {
       idx.innerHTML = '';
-      wrap.innerHTML = '<p class="state-msg">No prompts are configured yet. They will appear here as soon as they are added.</p>';
+      wrap.innerHTML = '<p class="state-msg">Nothing is configured yet. Steps and prompts will appear here as soon as they are added.</p>';
       return;
     }
     idx.innerHTML = sessions.map(function (s) {
@@ -180,28 +228,47 @@
     var html = '';
     var k = 0;
     sessions.forEach(function (s) {
+      // Session break
       html += '<div class="session-group" id="session-' + esc(s.id) + '">'
             +   '<div class="session-group-num">Session ' + esc(s.number) + (s.stage ? ' &middot; ' + esc(s.stage) : '') + '</div>'
             +   '<h2 class="session-group-title">' + esc(s.title) + '</h2>'
             + '</div>';
-      (s.prompts || []).forEach(function (p) {
-        k++;
-        var tool = parseTool(p.tool);
-        html += '<div class="prompt-card">'
-              +   '<div class="prompt-card-header">'
-              +     (tool ? '<div class="prompt-card-meta"><span class="prompt-card-meta-tool">' + esc(tool.name) + '</span></div>' : '')
-              +     '<h2 class="prompt-card-title">' + esc(p.title) + '</h2>'
-              +     (p.desc ? '<p class="prompt-card-desc">' + esc(p.desc) + '</p>' : '')
-              +   '</div>'
-              +   '<div class="prompt-card-body">'
-              +     '<div class="prompt-text" id="text-' + k + '">' + esc(p.content) + '</div>'
-              +     '<div class="copy-row">'
-              +       '<button class="copy-btn" data-target="text-' + k + '">' + COPY_SVG + '<span>Copy prompt</span></button>'
-              +       (tool && tool.url ? '<a class="tool-link" href="' + esc(tool.url) + '" target="_blank" rel="noopener">Open ' + esc(tool.name) + ' \u2197</a>' : '')
-              +     '</div>'
-              +   '</div>'
-              + '</div>';
-      });
+
+      if (s.procedure && s.procedure.sections) {
+        var byNum = {};
+        (s.prompts || []).forEach(function (p) { byNum[p.number] = p; });
+        s.procedure.sections.forEach(function (section) {
+          // Section break
+          html += '<div class="section-break">'
+                +   '<div class="section-break-id">' + esc(section.id) + '</div>'
+                +   '<div>'
+                +     '<div class="section-break-name">' + esc(section.name) + '</div>'
+                +     (section.note ? '<div class="section-break-note">' + esc(section.note) + '</div>' : '')
+                +   '</div>'
+                + '</div>';
+          (section.steps || []).forEach(function (stp, i) {
+            var code = esc(section.id) + (i + 1);
+            html += '<div class="step-block">'
+                  +   '<div class="step-block-head"><span class="step-block-code">' + code + '</span>'
+                  +     '<span class="step-block-title">' + esc(stp.title) + '</span></div>'
+                  +   (stp.body ? '<p class="step-block-lead">' + esc(stp.body) + '</p>' : '')
+                  +   (stp.tool ? toolChipHtml(stp.tool) : '')
+                  +   ((stp.detail && stp.detail.length)
+                        ? '<ol class="step-block-detail">' + stp.detail.map(function (line) { return '<li>' + esc(line) + '</li>'; }).join('') + '</ol>'
+                        : '');
+            if (stp.prompt_ref && byNum[stp.prompt_ref]) {
+              k++;
+              html += promptCardHtml(byNum[stp.prompt_ref], k);
+            }
+            html += '</div>';
+          });
+        });
+      } else {
+        (s.prompts || []).forEach(function (p) {
+          k++;
+          html += promptCardHtml(p, k);
+        });
+      }
     });
     wrap.innerHTML = html;
     attachCopy();
@@ -210,13 +277,15 @@
   fetch('./sessions-college.json', { cache: 'no-cache' })
     .then(function (r) { if (!r.ok) throw new Error('load'); return r.json(); })
     .then(function (d) {
-      var sessions = (d.sessions || []).filter(function (s) { return (s.prompts || []).length; });
+      var sessions = (d.sessions || []).filter(function (s) {
+        return (s.prompts || []).length || (s.procedure && s.procedure.sections && s.procedure.sections.length);
+      });
       render(sessions);
     })
     .catch(function () {
       document.getElementById('prompt-index').innerHTML = '';
       document.getElementById('prompts').innerHTML =
-        '<p class="state-msg">Could not load the prompts. Refresh the page, and make sure sessions-college.json is published next to this page.</p>';
+        '<p class="state-msg">Could not load the guide. Refresh the page, and make sure sessions-college.json is published next to this page.</p>';
     });
 </script>
 

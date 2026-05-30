@@ -552,6 +552,135 @@
     max-width: 62ch;
   }
 
+  /* ----- Step (build SOP, one per screen) ----- */
+  .step-screen { max-width: 64ch; }
+  .step-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  .step-code {
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: #FFFFFF;
+    background: var(--accent);
+    padding: 4px 11px;
+    border-radius: 6px;
+  }
+  .step-section-name {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .step-title {
+    font-family: var(--serif);
+    font-size: clamp(30px, 4vw, 50px);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 14px;
+  }
+  .step-lead {
+    font-family: var(--serif);
+    font-size: clamp(17px, 1.6vw, 22px);
+    line-height: 1.45;
+    color: var(--text-soft);
+    font-weight: 300;
+    max-width: 58ch;
+    margin-bottom: 18px;
+  }
+  .step-tool {
+    margin-bottom: 18px;
+  }
+  .step-tool a, .step-tool {
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.02em;
+  }
+  .step-tool a {
+    color: var(--accent);
+    text-decoration: none;
+    border: 1px solid var(--accent-soft);
+    border-radius: 999px;
+    padding: 6px 13px;
+    background: rgba(193,125,42,0.06);
+  }
+  .step-tool a:hover { background: rgba(193,125,42,0.14); }
+  .step-detail {
+    list-style: none;
+    margin: 0 0 4px 0;
+    padding: 0;
+    max-width: 60ch;
+  }
+  .step-detail li {
+    display: flex;
+    gap: 13px;
+    align-items: flex-start;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: clamp(15px, 1.35vw, 18px);
+    line-height: 1.5;
+    color: var(--text);
+  }
+  .step-detail li:last-child { border-bottom: none; }
+  .step-detail-num {
+    flex: 0 0 auto;
+    width: 22px;
+    height: 22px;
+    margin-top: 1px;
+    border-radius: 50%;
+    border: 1px solid var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .step-prompt {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 20px;
+    padding: 14px 18px;
+    border: 1px solid var(--accent-soft);
+    border-left: 3px solid var(--accent);
+    border-radius: 8px;
+    background: rgba(193,125,42,0.06);
+    max-width: 60ch;
+  }
+  .step-prompt-tag {
+    flex: 0 0 auto;
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    background: var(--accent);
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
+  .step-prompt-title {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+  .step-prompt-where {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.02em;
+    color: var(--text-muted);
+  }
+
   /* ----- Question ----- */
   .question-title {
     font-family: var(--serif);
@@ -2469,7 +2598,7 @@ const CONCEPT_MODULES = {
       { lens: "humanics", practice: "Jobs to be done",
         headline: "Build the one screen your user *actually touches.*",
         lead: "They never see your code or your database. They see one screen, one button, one result. Build <b>that</b> first.",
-        example: "The tiffin v1 is not an admin panel. It is one WhatsApp menu so the bachelor orders before Sunday. That is the whole v1.",
+        example: "The tiffin v1 is not an admin panel. It is one order page so the bachelor picks his meals and orders before Sunday. That is the whole v1.",
         artifact: "The single screen your first user touches, openable on a phone.",
         prop: "glass", bubble: "One screen. One button. <b>That's v1.</b>" },
       { lens: "mechanics", practice: "Lean MVP, build the risky 20%",
@@ -2776,6 +2905,33 @@ function buildScreenSequence() {
       return;
     }
 
+    // Step-by-step procedure (the build SOP): one screen per step, grouped into
+    // sections. Replaces the standard question/hmv/prompt/build/test flow for any
+    // session that defines a `procedure`. The full prompts live on the prompts page;
+    // a step that uses one points the room there.
+    if (session.procedure && session.procedure.sections) {
+      session.procedure.sections.forEach((section, secIdx) => {
+        (section.steps || []).forEach((stp, stIdx) => {
+          SCREENS.push({
+            type: "step",
+            session,
+            section,
+            step: stp,
+            sectionIndex: secIdx,
+            stepIndex: stIdx,
+            code: section.id + String(stIdx + 1)
+          });
+        });
+      });
+      if (session.output_capture) {
+        SCREENS.push({ type: "output-capture", session });
+      }
+      SCREENS.push({ type: "session-end", session });
+      prevPhase = phase;
+      prevDay = day;
+      return;
+    }
+
     // Standard flow for all other session types (kickoff, build, milestone, interim_demo,
     // planning, demo_day, close)
     (session.questions || []).forEach((q, qIdx) => {
@@ -2943,6 +3099,7 @@ function renderCurrent() {
     case "closing":            html = renderClosing(); break;
     case "session-start":      html = renderSessionStart(screen.session); break;
     case "stage":              html = renderStage(screen.session); break;
+    case "step":               html = renderStep(screen); break;
     case "question":           html = renderQuestion(screen); break;
     case "hmv":                html = renderHMV(screen.session); break;
     case "prompt":             html = renderPrompt(screen); break;
@@ -2991,6 +3148,7 @@ function sectionLabel(screen) {
   switch (screen.type) {
     case "session-start":  return "Begin";
     case "stage":          return "Set the Stage";
+    case "step":           return screen.section ? screen.section.name : "Build";
     case "question":       return `Question ${screen.questionIndex + 1} of ${screen.questionTotal}`;
     case "hmv":            return "HMV Techniques";
     case "prompt":         return screen.promptTotal > 1
@@ -3643,6 +3801,60 @@ function renderStage(s) {
   `;
 }
 
+function parseStepTool(t) {
+  if (!t) return null;
+  const m = String(t).match(/^(.*?)\s*\(([^)]+)\)\s*$/);
+  if (m) {
+    const domain = m[2].trim().replace(/^https?:\/\//, "").replace(/\/+$/, "");
+    return { name: m[1].trim(), url: "https://" + domain };
+  }
+  return { name: String(t).trim(), url: null };
+}
+
+function renderStep(screen) {
+  const st = screen.step || {};
+  const section = screen.section || {};
+  const code = screen.code || "";
+  const tool = st.tool ? parseStepTool(st.tool) : null;
+  const detail = (st.detail || []).map((line, i) =>
+    `<li><span class="step-detail-num">${i + 1}</span><span>${escapeHtml(line)}</span></li>`
+  ).join("");
+
+  let promptCallout = "";
+  if (st.prompt_ref) {
+    const p = (screen.session.prompts || []).find(x => x.number === st.prompt_ref);
+    const ptitle = p ? p.title : ("Prompt " + st.prompt_ref);
+    promptCallout = `
+      <div class="step-prompt">
+        <span class="step-prompt-tag">Prompt ${st.prompt_ref}</span>
+        <div class="step-prompt-body">
+          <div class="step-prompt-title">${escapeHtml(ptitle)}</div>
+          <div class="step-prompt-where">Copy it on your laptop &middot; justbuild.orangecaterpillar.com/prompts-college</div>
+        </div>
+      </div>`;
+  }
+
+  const toolLine = tool
+    ? `<div class="step-tool">${tool.url
+        ? `<a href="${escapeHtml(tool.url)}" target="_blank" rel="noopener">${escapeHtml(tool.name)} &#8599;</a>`
+        : escapeHtml(tool.name)}</div>`
+    : "";
+
+  return `
+    <div class="step-screen">
+      <div class="step-head">
+        <span class="step-code">${escapeHtml(code)}</span>
+        <span class="step-section-name">${escapeHtml(section.name || "")}</span>
+      </div>
+      <h2 class="step-title">${escapeHtml(st.title || "")}</h2>
+      ${st.body ? `<p class="step-lead">${escapeHtml(st.body)}</p>` : ""}
+      ${toolLine}
+      ${detail ? `<ol class="step-detail">${detail}</ol>` : ""}
+      ${promptCallout}
+    </div>
+  `;
+}
+
 function renderQuestion(screen) {
   const q = screen.question;
   return `
@@ -4165,6 +4377,7 @@ function refreshJumpMenu() {
           : (scr.slide ? scr.slide.lens.charAt(0).toUpperCase() + scr.slide.lens.slice(1) : "Concept");
       case "session-start": return "Begin";
       case "stage": return "Set the stage";
+      case "step": return `${scr.code || ""} ${scr.step ? scr.step.title : ""}`.trim();
       case "idea-cards": return "Idea cards";
       case "question": return "Question";
       case "hmv": return "HMV check";

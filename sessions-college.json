@@ -166,147 +166,296 @@
       "session_type": "build",
       "day": 1,
       "phase": "weekend",
-      "title": "Build the AI app",
+      "title": "Build your app",
       "start_time": "11:15",
       "end_time": "16:00",
       "duration_minutes": 120,
       "break_after": true,
       "break_duration_minutes": 15,
-      "set_the_stage": "You have a problem. You have a user. Now you build.\n\nToday, a solopreneur with a clear idea and the right prompts can have a working AI app in two hours. Not a mockup. Not a wireframe. Something real that runs in a browser, takes a real input, and gives back a real output.\n\nOne HTML file. No coding background required. No backend. You build it with Claude, customise it until it feels like yours. By the end of this session the app responds to your test input with something recognisably useful, even if it is rough around the edges. We polish next session. Right now: get to working.\n\nLunch is at the end of this block. Aim to be hungry by then, not panicking.",
-      "questions": [
-        {
-          "title": "What is the simplest version of your app?",
-          "body": "Before you write a prompt, sketch the smallest thing that could be useful. One input field. One output. One AI call in between. If you cannot describe it in one sentence, it is too complicated for today."
-        },
-        {
-          "title": "What does the user put in?",
-          "body": "Be specific. A paragraph of text? A photo of their notes? A list of five preferences? Their semester marks? The shape of the input determines the shape of everything else."
-        },
-        {
-          "title": "What does the user get out?",
-          "body": "Be specific. A list of seven items? A 200-word plan? A flashcard set? A score from 1 to 10 with one line of advice? Write the example output by hand on paper, before the AI ever runs. If you cannot write the example, the AI will not produce it either."
-        },
-        {
-          "title": "What is the AI actually doing?",
-          "body": "Not 'AI generates the output'. That is vague. Is it summarising? Translating? Comparing? Recommending? Critiquing? Generating? Filtering? Name the verb. The verb tells you what to put in the system prompt."
-        },
-        {
-          "title": "What is the AI not allowed to do?",
-          "body": "A good system prompt has limits. What is off-topic? What should the AI refuse, redirect, or politely decline? Without limits, the AI drifts. With them, it stays useful. Name two things your AI must never do."
-        },
-        {
-          "title": "What is the one moment the user feels the value?",
-          "body": "Walk through your user's journey in your head. They land on the page. They type something in. They click the button. Then what? The exact moment they see their result is the moment that has to feel good. Picture it now. That is what you are building."
-        }
-      ],
-      "hmv": [
-        {
-          "dimension": "Humanics",
-          "techniques": [
-            "Open the app as if you have never seen it. Is it immediately obvious what to do?",
-            "Read every label and button out loud. Does it sound like something a real person would say?",
-            "Would a real user complete the full journey without anyone explaining it to them?"
-          ]
-        },
-        {
-          "dimension": "Mechanics",
-          "techniques": [
-            "Run the app with a real input, not a perfect test input. What happens?",
-            "Run the app with an input it was not designed for. Does it fail gracefully?",
-            "Run the same input twice. Do you get the same quality of output?"
-          ]
-        },
-        {
-          "dimension": "Valuenomics",
-          "techniques": [
-            "Look at the output for three seconds and look away. What did you retain?",
-            "If someone paid for this output, would they feel it was worth it?",
-            "Would your target user screenshot the output and send it to a friend?"
-          ]
-        }
-      ],
+      "set_the_stage": "You have an idea and a user. Now you build the real thing.\n\nToday you build a working product for your venture. Not a slide, not a mockup. A real page on the internet that shows what you offer, lets a customer place an order, emails you the moment it comes in, saves every order to a database, and gives you a dashboard to see them all.\n\nYou do not write the code. Claude does. You tell it about your venture in plain words, paste in your own details, and put the pieces together one layer at a time. Tiffin, plants, sarees, tutoring, it does not matter what you sell. The steps are the same.\n\nWe go in order: set up your tools, build the order page, add the email, save to the database, build the dashboard, test it on your laptop, then put it live. By the end you have a real web address you can send to a real customer.\n\nFollow the steps on screen. The exact prompts to copy are on the prompts page on your laptop. When you get stuck, the fix-it prompt is there for you.",
       "prompts": [
         {
           "number": 1,
-          "title": "Build your AI app, first version",
+          "title": "Build your order page",
           "tool": "Claude (claude.ai)",
-          "content": "I am building a single-page AI app as a solopreneur. I need a single HTML file I can deploy by dragging into Netlify. No backend, no API key. The AI call happens through the OpenRouter free tier with a public key you will give me.\n\nHere is the idea.\n\nThe user: [one sentence, the specific person]\nThe problem: [one sentence, what is broken for them today]\nThe input the user gives me: [one specific input, with an example]\nThe output I give back: [one specific output, with an example]\nWhat the AI is actually doing: [the verb. summarising, comparing, recommending, etc.]\nWhat the AI must never do: [two specific limits]\n\nWrite me a single index.html file that does this. Inside the file, include:\n\nA clean simple form for the input.\nA single button labelled with something specific, not 'Submit'.\nA loading state while the AI thinks.\nThe output rendered clearly below the form.\nA system prompt for the AI that is detailed enough to produce consistently good output for the specific user and specific problem above.\nStyling that is clean and readable on a phone. Not flashy. Just good.\n\nAt the top of the file, leave a comment block with the system prompt, so I can edit it later without digging through the code."
+          "desc": "Creates index.html: shows your offerings, lets a customer choose, and place an order.",
+          "content": "I am building a simple website for my small venture. It is not an AI product. I am just using you to write the code for me. I will host it as one plain HTML file, with no backend.\n\nHere is my venture:\n- What I sell: [one line, for example home tiffins, rented plants, handloom sarees, exam tutoring]\n- Who buys it: [one line, my customer]\n- My offerings, one per line as Name | photo link or leave blank | short description or details like nutrition, size, material | price in rupees:\n  [Name] | [photo link or blank] | [description or details] | [price]\n  [Name] | [photo link or blank] | [description or details] | [price]\n  (add as many as you have)\n- If my offerings are grouped, the grouping is: [by day, by collection, by plan, or none]\n\nBuild me one file called index.html that does this:\n- Shows my venture name and a one line tagline at the top.\n- Shows each offering as a card with its name, its photo (use the link if I gave one, otherwise a neat placeholder I can swap later), its description or details, and its price. Group them if I said so.\n- Lets the customer add an offering to their order and choose a quantity.\n- Shows a running list of what they picked and the total in rupees.\n- Has a short form for the customer name and phone number, and an optional note.\n- Has one clear button labelled Place order, not Submit.\n- After they place the order, shows a friendly confirmation on the screen with their order summary.\n\nKeep it clean and easy to read on a phone. Simple colours, nothing flashy. Put all my offerings near the top of the file so I can edit them easily later. No payment, no login, no backend yet. Do not add email or database steps yet, I will ask for those next. Give me the full index.html."
         },
         {
-          "number": 1,
-          "title": "Tighten the system prompt",
+          "number": 2,
+          "title": "Add the email notification",
           "tool": "Claude (claude.ai)",
-          "content": "Here is my current index.html. The system prompt is in the comment block at the top.\n\n[paste your full index.html]\n\nThe output is good when the user gives a clean input. The output gets weak when the user gives [describe the kind of input that fails. short, vague, off-topic, etc.].\n\nRewrite the system prompt so the app produces good output in both cases. Add explicit instructions for what the AI should refuse to do, redirect, or handle gracefully. Keep the output format consistent.\n\nGive me only the updated system prompt, not the whole file. I will paste it in myself."
-        }
-      ],
-      "build": [
-        {
-          "title": "Get the file",
-          "instructions": "Copy Claude's HTML into a new file called index.html. Open it in your browser by double-clicking. It should load. If it does not load, paste the error back to Claude and ask for a fix."
+          "desc": "Wires EmailJS in so you get an email the moment an order comes in.",
+          "content": "Here is my current index.html:\n\n[paste your full index.html]\n\nI want an email to reach me every time a customer places an order. I am using EmailJS. From my EmailJS account I have:\n- Public key: [paste]\n- Service ID: [paste]\n- Template ID: [paste]\n\nMy EmailJS template uses these fields: customer_name, customer_phone, order_details, order_total, customer_note.\n\nAdd EmailJS to my page so that when the customer taps Place order, it sends me an email with their name, phone, the list of items they ordered as readable text, the total, and their note. Load the EmailJS library from their CDN. Keep everything else working exactly as it is now. If the email ever fails, still show the customer their confirmation and log the error to the console. Give me the full updated index.html."
         },
         {
-          "title": "Run it with a real input",
-          "instructions": "Not a clever test input. Not the example from your prompt. A real one, the actual thing your target user would type in. See what comes back."
+          "number": 3,
+          "title": "Save orders to your database",
+          "tool": "Claude (claude.ai)",
+          "desc": "Wires Supabase in so every order is saved and never lost.",
+          "content": "Here is my current index.html:\n\n[paste your full index.html]\n\nI also want every order saved to my database so I never lose one. I am using Supabase. I have:\n- Project URL: [paste]\n- Anon public key: [paste]\n- A table called orders with these columns: customer_name (text), customer_phone (text), items (text), total (number), note (text). Supabase adds id and created_at on its own.\n\nAdd Supabase to my page using their JavaScript library from the CDN. When the customer taps Place order, save the order into the orders table at the same time as sending the email. Put all the items they picked into the items column as readable text. Keep the email and the on screen confirmation working. If saving ever fails, still show the confirmation and log the error to the console. Give me the full updated index.html."
         },
         {
-          "title": "Sharpen the system prompt",
-          "instructions": "If the output is generic, the system prompt is generic. Tell Claude what was wrong with the output and ask it to rewrite the system prompt to be more specific. Test again. Iterate until the output is recognisably useful, even if it is still rough."
+          "number": 4,
+          "title": "Build your orders dashboard",
+          "tool": "Claude (claude.ai)",
+          "desc": "Creates dashboard.html: a private page where you see every order.",
+          "content": "Build me a second file called dashboard.html. This is a private page where I, the venture owner, can see all my orders.\n\nIt reads from my Supabase database. I have:\n- Project URL: [paste]\n- Anon public key: [paste]\n- A table called orders with columns: id, created_at, customer_name, customer_phone, items, total, note.\n\nThe page should:\n- Load all orders from the orders table, newest first.\n- Show them in a clean list or table: when it came in, customer name, phone, what they ordered, the total, and the note.\n- Show the number of orders and the total rupees at the top.\n- Have a Refresh button to load the latest orders.\n- Look clean and readable on a phone and a laptop.\n\nNo login for now, it is just for me. Use the Supabase JavaScript library from the CDN. Give me the full dashboard.html."
         },
         {
-          "title": "Update the system prompt",
-          "instructions": "Replace the system prompt in your index.html with Claude's rewrite. Run the three weird inputs again. Should be visibly better."
-        },
-        {
-          "title": "Polish the labels and one moment",
-          "instructions": "Read every label, button, and instruction on the page out loud. Replace any AI-flavoured phrasing with something a real person would say. Pick the one moment of the user's journey that matters most, the moment they see the output, and make sure that moment feels considered. Not everything. Just that one moment."
-        },
-        {
-          "title": "Deploy to Netlify",
-          "instructions": "Go to app.netlify.com/drop. Drag your index.html into the box. Wait fifteen seconds. Copy the URL. Open it on your phone, ideally on mobile data so you know it works outside wifi."
-        },
-        {
-          "title": "Send the URL to one person",
-          "instructions": "Pick one person who is not in this room. Could be a family member, a hostel mate, a friend from school, a senior at your college. Send them the URL on WhatsApp with one line: 'I built this in a day, tell me what you think.' Their reply might land before Demo Day. If it does, it is gold for your pitch."
-        }
-      ],
-      "test_output": [
-        {
-          "title": "The first-run test",
-          "description": "Did your app produce any output for a real input by the end of this session? If yes, pass."
-        },
-        {
-          "title": "The relevance test",
-          "description": "Is the output recognisably about the problem, for the user you described? Not perfect. Recognisable. If yes, pass."
-        },
-        {
-          "title": "The honesty test",
-          "description": "Would you show this to your target user without apologising for it? Not yet. That is fine. Pass means you know what to fix next."
-        },
-        {
-          "title": "The URL test",
-          "description": "Do you have a netlify.app URL that opens on your phone? If yes, pass."
-        },
-        {
-          "title": "The strangers test",
-          "description": "Could a stranger open the URL and complete the full journey without you sitting next to them? If yes, pass."
-        },
-        {
-          "title": "The output test",
-          "description": "For three different realistic inputs, did your app produce three outputs that were all useful? If yes, pass."
-        },
-        {
-          "title": "The phone test",
-          "description": "Does the app look good and work cleanly on a phone, not just a laptop? If yes, pass."
+          "number": 5,
+          "title": "Fix it when something breaks",
+          "tool": "Claude (claude.ai)",
+          "desc": "Your go-to whenever a step does not work. Paste the error and your file.",
+          "content": "Something on my page is not working. Here is what is happening:\n\n[describe exactly what you did, what you expected, and what actually happened. If there is red error text in the browser console, press F12 to open it and paste the error here.]\n\nHere is my current file:\n\n[paste the whole file]\n\nFind the problem and give me back the full corrected file. Tell me in one or two plain lines what was wrong, so I understand it. Do not change anything that is already working."
         }
       ],
       "output_capture": {
-        "artifact": "AI App",
-        "ask": "Paste the live URL of your AI App.",
-        "placeholder": "https://yourname.netlify.app",
+        "artifact": "Live app",
+        "ask": "Paste two links: your live order page, and your live dashboard.",
+        "placeholder": "https://yourname.netlify.app  and  https://yourname.netlify.app/dashboard.html",
         "kind": "url",
-        "guidance": "This is the URL you got from Netlify after dragging your index.html into it. It should open on any phone without needing a login."
+        "guidance": "These are the Netlify addresses for your order page and your dashboard. Both should open on any phone with no login."
       },
-      "stage": "Build"
+      "stage": "Build",
+      "procedure": {
+        "sections": [
+          {
+            "id": "A",
+            "name": "Set up your tools",
+            "note": "You do this once. Get every account ready before you build. Take it slow here and the rest is easy.",
+            "steps": [
+              {
+                "title": "Set up VS Code",
+                "body": "This is where your files live and where you run your site on your own machine.",
+                "detail": [
+                  "Go to code.visualstudio.com and download VS Code for your computer. Install it like any normal app.",
+                  "Open VS Code. On the left bar, click the Extensions icon, the four little squares.",
+                  "Search for Live Server by Ritwick Dey and click Install. This lets you open your site in a browser with one click later.",
+                  "Make one folder on your computer named after your venture. In VS Code choose File, then Open Folder, and pick it. All your files go here."
+                ],
+                "tool": "VS Code (code.visualstudio.com)"
+              },
+              {
+                "title": "Set up GitHub",
+                "body": "GitHub stores your code online and is how your site goes live. The desktop app means you never touch the command line.",
+                "detail": [
+                  "Go to github.com and create a free account with an email you check.",
+                  "Go to desktop.github.com, download GitHub Desktop, install it, and sign in with that account.",
+                  "That is all for now. You use it near the end to publish your site."
+                ],
+                "tool": "GitHub Desktop (desktop.github.com)"
+              },
+              {
+                "title": "Set up Netlify",
+                "body": "Netlify takes your code from GitHub and puts it on the internet, free, with its own web address.",
+                "detail": [
+                  "Go to netlify.com and click Sign up.",
+                  "Choose Sign up with GitHub and approve it. This links the two so Netlify can see your project later.",
+                  "Stop there. You connect your project at the Go live step."
+                ],
+                "tool": "Netlify (netlify.com)"
+              },
+              {
+                "title": "Set up EmailJS",
+                "body": "EmailJS emails you every time someone orders, straight from your page, with no server.",
+                "detail": [
+                  "Go to emailjs.com and create a free account.",
+                  "Click Add New Service, choose Gmail or your email, and connect your inbox. Note the Service ID.",
+                  "Click Email Templates and create a template. In the body use these fields: {{customer_name}}, {{customer_phone}}, {{order_details}}, {{order_total}}, {{customer_note}}. Save it and note the Template ID.",
+                  "Open Account and find your Public Key.",
+                  "Write down three things: Public Key, Service ID, Template ID. You paste them into Prompt 2."
+                ],
+                "tool": "EmailJS (emailjs.com)"
+              },
+              {
+                "title": "Set up Supabase",
+                "body": "Supabase is your free database. Every order is saved here, and you get a built in table view as a bonus.",
+                "detail": [
+                  "Go to supabase.com, sign up free, and click New project. Give it your venture name and a password you save. Wait about a minute.",
+                  "On the left open Table Editor and click New table. Name it exactly orders. Turn off Enable Row Level Security for now to keep things simple.",
+                  "Add these columns, besides the id and created_at it makes for you: customer_name (text), customer_phone (text), items (text), total (numeric), note (text). Save the table.",
+                  "On the left open Project Settings, then API. Copy two things: the Project URL and the anon public key. You paste them into Prompts 3 and 4."
+                ],
+                "tool": "Supabase (supabase.com)"
+              }
+            ]
+          },
+          {
+            "id": "B",
+            "name": "Build the order app",
+            "note": "Now you build, one layer at a time, with Claude. Each prompt adds one piece.",
+            "steps": [
+              {
+                "title": "Run Prompt 1, build your order page",
+                "body": "Open Claude and run Prompt 1. Fill the brackets with your real venture and offerings. Claude gives you a full index.html.",
+                "detail": [
+                  "Open the prompts page on your laptop and copy Prompt 1.",
+                  "Paste it into Claude. Replace every part in brackets with your own venture, your offerings, their prices, and details.",
+                  "Claude writes a full index.html. Read what it made. If something is off, tell Claude in plain words and it will fix it."
+                ],
+                "prompt_ref": 1
+              },
+              {
+                "title": "Put it in VS Code",
+                "body": "Get Claude's code into a real file on your computer.",
+                "detail": [
+                  "In VS Code choose File, then New File. Save it as index.html inside your venture folder.",
+                  "Copy all of Claude's code, paste it into that file, and save. Ctrl S on Windows, Cmd S on Mac."
+                ]
+              },
+              {
+                "title": "Run Prompt 2, add the email",
+                "body": "Now make it email you on every order, using your EmailJS keys.",
+                "detail": [
+                  "Copy Prompt 2 from the prompts page.",
+                  "Paste it into the same Claude chat. Paste your full index.html where it asks, and paste your three EmailJS values.",
+                  "Claude returns the updated index.html. Copy it back into your VS Code file, replacing what was there, and save."
+                ],
+                "prompt_ref": 2
+              },
+              {
+                "title": "Run Prompt 3, save to the database",
+                "body": "Now make every order save to Supabase as well.",
+                "detail": [
+                  "Copy Prompt 3 from the prompts page.",
+                  "Paste it into the same Claude chat. Paste your current index.html and your Supabase Project URL and anon key.",
+                  "Claude returns the updated index.html. Copy it back into your VS Code file, replacing what was there, and save."
+                ],
+                "prompt_ref": 3
+              }
+            ]
+          },
+          {
+            "id": "C",
+            "name": "Build the dashboard",
+            "note": "A private page, just for you, to see your orders.",
+            "steps": [
+              {
+                "title": "Run Prompt 4, build your dashboard",
+                "body": "Claude builds a second page that reads your orders from Supabase.",
+                "detail": [
+                  "Copy Prompt 4 from the prompts page.",
+                  "Paste it into Claude with your Supabase Project URL and anon key.",
+                  "Claude writes a full dashboard.html."
+                ],
+                "prompt_ref": 4
+              },
+              {
+                "title": "Put it in VS Code",
+                "body": "Save the dashboard next to your order page.",
+                "detail": [
+                  "In VS Code choose File, then New File. Save it as dashboard.html inside the same venture folder.",
+                  "Paste Claude's dashboard code in and save."
+                ]
+              }
+            ]
+          },
+          {
+            "id": "D",
+            "name": "Test it on your own machine",
+            "note": "Find the problems here, on your laptop, before anyone else sees them.",
+            "steps": [
+              {
+                "title": "Open it with Live Server",
+                "body": "Run your site locally with one click.",
+                "detail": [
+                  "In VS Code right click index.html and choose Open with Live Server. Your order page opens in your browser.",
+                  "This is your site running on your own machine. Nobody else can see it yet."
+                ]
+              },
+              {
+                "title": "Place a test order",
+                "body": "Use your own page the way a customer would.",
+                "detail": [
+                  "Pick an offering, set a quantity, fill in your own name and phone, and tap Place order.",
+                  "You should see the confirmation on screen."
+                ]
+              },
+              {
+                "title": "Check all three landed",
+                "body": "One order should show up in three places.",
+                "detail": [
+                  "Your email: an order email should arrive in the inbox you connected to EmailJS. Check spam too.",
+                  "Your database: open Supabase, Table Editor, the orders table. Your test order should be a new row.",
+                  "Your dashboard: open dashboard.html with Live Server. Your order should appear in the list."
+                ]
+              },
+              {
+                "title": "Run Prompt 5 if anything is off",
+                "body": "Something not working? This is your fix-it prompt.",
+                "detail": [
+                  "If the page looks wrong, the email did not arrive, or the order did not save, do not panic.",
+                  "Copy Prompt 5 from the prompts page. Tell Claude exactly what you did and what happened, paste any red error text from the browser console (press F12), and paste your file.",
+                  "Claude returns a corrected file. Replace your VS Code file, save, and test again. Repeat until all three land."
+                ],
+                "prompt_ref": 5
+              }
+            ]
+          },
+          {
+            "id": "E",
+            "name": "Put it live",
+            "note": "Now the whole world can use it.",
+            "steps": [
+              {
+                "title": "Publish with GitHub Desktop",
+                "body": "Send your folder to GitHub in a few clicks.",
+                "detail": [
+                  "Open GitHub Desktop. Choose File, then Add Local Repository, and pick your venture folder. If it asks, click to create a repository, then Create.",
+                  "Your files show up as changes. At the bottom left type a short summary like first version and click Commit to main.",
+                  "Click Publish repository at the top. Keep it private if you like. Your code is now on GitHub."
+                ],
+                "tool": "GitHub Desktop (desktop.github.com)"
+              },
+              {
+                "title": "Connect Netlify and go live",
+                "body": "Netlify turns your GitHub project into a live website.",
+                "detail": [
+                  "In Netlify click Add new site, then Import an existing project, then GitHub. Pick your venture repository.",
+                  "Leave the build settings empty, this is a plain site, and click Deploy.",
+                  "In under a minute Netlify gives you a live web address like yourname.netlify.app. That is your order page, live. Your dashboard is the same address with /dashboard.html on the end.",
+                  "From now on, whenever you commit and push in GitHub Desktop, Netlify updates your live site on its own."
+                ],
+                "tool": "Netlify (netlify.com)"
+              },
+              {
+                "title": "Test the real thing on your phone",
+                "body": "Open the live site on your phone, as a customer.",
+                "detail": [
+                  "Open your netlify.app address on your phone and place a real order.",
+                  "Ask a friend to open it on their phone and order too. This is a real customer using your real product."
+                ]
+              },
+              {
+                "title": "Confirm it all works live",
+                "body": "The same three checks, now in the real world.",
+                "detail": [
+                  "The order email arrived in your inbox.",
+                  "The order is a new row in your Supabase orders table.",
+                  "The order shows on your live dashboard at /dashboard.html."
+                ]
+              }
+            ]
+          },
+          {
+            "id": "F",
+            "name": "You are live",
+            "note": "",
+            "steps": [
+              {
+                "title": "Declare success",
+                "body": "You built and launched a real working product, powered by AI.",
+                "detail": [
+                  "Your order page is live and takes real orders.",
+                  "You get an email for every order, every order is saved, and you have a dashboard to see them all.",
+                  "Save two links for your portfolio: your live order page, and your live dashboard. Paste them into the cohort form."
+                ]
+              }
+            ]
+          }
+        ]
+      }
     },
     {
       "id": "4",

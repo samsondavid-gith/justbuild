@@ -172,40 +172,40 @@
       "duration_minutes": 120,
       "break_after": true,
       "break_duration_minutes": 15,
-      "set_the_stage": "You have an idea and a user. Now you build the real thing.\n\nToday you build a working product for your venture. Not a slide, not a mockup. A real page on the internet that shows what you offer, lets a customer place an order, emails you the moment it comes in, saves every order to a database, and gives you a dashboard to see them all.\n\nYou do not write the code. Claude does. You tell it about your venture in plain words, paste in your own details, and put the pieces together one layer at a time. Tiffin, plants, sarees, tutoring, it does not matter what you sell. The steps are the same.\n\nWe go in order: set up your tools, build the order page, add the email, save to the database, build the dashboard, test it on your laptop, then put it live. By the end you have a real web address you can send to a real customer.\n\nFollow the steps on screen. The exact prompts to copy are on the prompts page on your laptop. When you get stuck, the fix-it prompt is there for you.",
+      "set_the_stage": "You have an idea and a user. Now you build the real thing.\n\nToday you build a working product for your venture. Not a slide, not a mockup. A real page on the internet that shows what you offer, lets a customer place an order, emails you the moment it comes in, saves every order to a database, and gives you a dashboard to see them all.\n\nYou do not write the code. Gemini does. You tell it about your venture in plain words, paste in your own details, and put the pieces together one layer at a time. Tiffin, plants, sarees, tutoring, it does not matter what you sell. The steps are the same.\n\nWe go in order: set up your tools, build the order page, add the email, save to the database, build the dashboard, test it on your laptop, then put it live. By the end you have a real web address you can send to a real customer.\n\nFollow the steps on screen. The exact prompts to copy are on the prompts page on your laptop. When you get stuck, the fix-it prompt is there for you.",
       "prompts": [
         {
           "number": 1,
           "title": "Build your order page",
-          "tool": "Claude (claude.ai)",
+          "tool": "Gemini (gemini.google.com)",
           "desc": "Creates index.html: shows your offerings, lets a customer choose, and place an order.",
           "content": "I am building a simple website for my small venture. It is not an AI product. I am just using you to write the code for me. I will host it as one plain HTML file, with no backend.\n\nHere is my venture:\n- What I sell: [one line, for example home tiffins, rented plants, handloom sarees, exam tutoring]\n- Who buys it: [one line, my customer]\n- My offerings, one per line as Name | photo link or leave blank | short description or details like nutrition, size, material | price in rupees:\n  [Name] | [photo link or blank] | [description or details] | [price]\n  [Name] | [photo link or blank] | [description or details] | [price]\n  (add as many as you have)\n- If my offerings are grouped, the grouping is: [by day, by collection, by plan, or none]\n\nBuild me one file called index.html that does this:\n- Shows my venture name and a one line tagline at the top.\n- Shows each offering as a card with its name, its photo (use the link if I gave one, otherwise a neat placeholder I can swap later), its description or details, and its price. Group them if I said so.\n- Lets the customer add an offering to their order and choose a quantity.\n- Shows a running list of what they picked and the total in rupees.\n- Has a short form for the customer name and phone number, and an optional note.\n- Has one clear button labelled Place order, not Submit.\n- After they place the order, shows a friendly confirmation on the screen with their order summary.\n\nKeep it clean and easy to read on a phone. Simple colours, nothing flashy. Put all my offerings near the top of the file so I can edit them easily later. No payment, no login, no backend yet. Do not add email or database steps yet, I will ask for those next. Give me the full index.html."
         },
         {
           "number": 2,
           "title": "Add the email notification",
-          "tool": "Claude (claude.ai)",
+          "tool": "Gemini (gemini.google.com)",
           "desc": "Wires EmailJS in so you get an email the moment an order comes in.",
           "content": "Here is my current index.html:\n\n[paste your full index.html]\n\nI want an email to reach me every time a customer places an order. I am using EmailJS. From my EmailJS account I have:\n- Public key: [paste]\n- Service ID: [paste]\n- Template ID: [paste]\n\nMy EmailJS template uses these fields: customer_name, customer_phone, order_details, order_total, customer_note.\n\nAdd EmailJS to my page so that when the customer taps Place order, it sends me an email with their name, phone, the list of items they ordered as readable text, the total, and their note. Load the EmailJS library from their CDN. Keep everything else working exactly as it is now. If the email ever fails, still show the customer their confirmation and log the error to the console. Give me the full updated index.html."
         },
         {
           "number": 3,
           "title": "Save orders to your database",
-          "tool": "Claude (claude.ai)",
+          "tool": "Gemini (gemini.google.com)",
           "desc": "Wires Supabase in so every order is saved and never lost.",
           "content": "Here is my current index.html:\n\n[paste your full index.html]\n\nI also want every order saved to my database so I never lose one. I am using Supabase. I have:\n- Project URL: [paste]\n- Anon public key: [paste]\n- A table called orders with these columns: customer_name (text), customer_phone (text), items (text), total (number), note (text). Supabase adds id and created_at on its own.\n\nAdd Supabase to my page using their JavaScript library from the CDN. When the customer taps Place order, save the order into the orders table at the same time as sending the email. Put all the items they picked into the items column as readable text. Keep the email and the on screen confirmation working. If saving ever fails, still show the confirmation and log the error to the console. Give me the full updated index.html."
         },
         {
           "number": 4,
           "title": "Build your orders dashboard",
-          "tool": "Claude (claude.ai)",
+          "tool": "Gemini (gemini.google.com)",
           "desc": "Creates dashboard.html: a private page where you see every order.",
           "content": "Build me a second file called dashboard.html. This is a private page where I, the venture owner, can see all my orders.\n\nIt reads from my Supabase database. I have:\n- Project URL: [paste]\n- Anon public key: [paste]\n- A table called orders with columns: id, created_at, customer_name, customer_phone, items, total, note.\n\nThe page should:\n- Load all orders from the orders table, newest first.\n- Show them in a clean list or table: when it came in, customer name, phone, what they ordered, the total, and the note.\n- Show the number of orders and the total rupees at the top.\n- Have a Refresh button to load the latest orders.\n- Look clean and readable on a phone and a laptop.\n\nNo login for now, it is just for me. Use the Supabase JavaScript library from the CDN. Give me the full dashboard.html."
         },
         {
           "number": 5,
           "title": "Fix it when something breaks",
-          "tool": "Claude (claude.ai)",
+          "tool": "Gemini (gemini.google.com)",
           "desc": "Your go-to whenever a step does not work. Paste the error and your file.",
           "content": "Something on my page is not working. Here is what is happening:\n\n[describe exactly what you did, what you expected, and what actually happened. If there is red error text in the browser console, press F12 to open it and paste the error here.]\n\nHere is my current file:\n\n[paste the whole file]\n\nFind the problem and give me back the full corrected file. Tell me in one or two plain lines what was wrong, so I understand it. Do not change anything that is already working."
         }
@@ -284,24 +284,24 @@
           {
             "id": "B",
             "name": "Build the order app",
-            "note": "Now you build, one layer at a time, with Claude. Each prompt adds one piece.",
+            "note": "Now you build, one layer at a time, with Gemini. Each prompt adds one piece.",
             "steps": [
               {
                 "title": "Run Prompt 1, build your order page",
-                "body": "Open Claude and run Prompt 1. Fill the brackets with your real venture and offerings. Claude gives you a full index.html.",
+                "body": "Open Gemini and run Prompt 1. Fill the brackets with your real venture and offerings. Gemini gives you a full index.html.",
                 "detail": [
                   "Open the prompts page on your laptop and copy Prompt 1.",
-                  "Paste it into Claude. Replace every part in brackets with your own venture, your offerings, their prices, and details.",
-                  "Claude writes a full index.html. Read what it made. If something is off, tell Claude in plain words and it will fix it."
+                  "Paste it into Gemini. Replace every part in brackets with your own venture, your offerings, their prices, and details.",
+                  "Gemini writes a full index.html. Read what it made. If something is off, tell Gemini in plain words and it will fix it."
                 ],
                 "prompt_ref": 1
               },
               {
                 "title": "Put it in VS Code",
-                "body": "Get Claude's code into a real file on your computer.",
+                "body": "Get Gemini's code into a real file on your computer.",
                 "detail": [
                   "In VS Code choose File, then New File. Save it as index.html inside your venture folder.",
-                  "Copy all of Claude's code, paste it into that file, and save. Ctrl S on Windows, Cmd S on Mac."
+                  "Copy all of Gemini's code, paste it into that file, and save. Ctrl S on Windows, Cmd S on Mac."
                 ]
               },
               {
@@ -309,8 +309,8 @@
                 "body": "Now make it email you on every order, using your EmailJS keys.",
                 "detail": [
                   "Copy Prompt 2 from the prompts page.",
-                  "Paste it into the same Claude chat. Paste your full index.html where it asks, and paste your three EmailJS values.",
-                  "Claude returns the updated index.html. Copy it back into your VS Code file, replacing what was there, and save."
+                  "Paste it into the same Gemini chat. Paste your full index.html where it asks, and paste your three EmailJS values.",
+                  "Gemini returns the updated index.html. Copy it back into your VS Code file, replacing what was there, and save."
                 ],
                 "prompt_ref": 2
               },
@@ -319,8 +319,8 @@
                 "body": "Now make every order save to Supabase as well.",
                 "detail": [
                   "Copy Prompt 3 from the prompts page.",
-                  "Paste it into the same Claude chat. Paste your current index.html and your Supabase Project URL and anon key.",
-                  "Claude returns the updated index.html. Copy it back into your VS Code file, replacing what was there, and save."
+                  "Paste it into the same Gemini chat. Paste your current index.html and your Supabase Project URL and anon key.",
+                  "Gemini returns the updated index.html. Copy it back into your VS Code file, replacing what was there, and save."
                 ],
                 "prompt_ref": 3
               }
@@ -333,11 +333,11 @@
             "steps": [
               {
                 "title": "Run Prompt 4, build your dashboard",
-                "body": "Claude builds a second page that reads your orders from Supabase.",
+                "body": "Gemini builds a second page that reads your orders from Supabase.",
                 "detail": [
                   "Copy Prompt 4 from the prompts page.",
-                  "Paste it into Claude with your Supabase Project URL and anon key.",
-                  "Claude writes a full dashboard.html."
+                  "Paste it into Gemini with your Supabase Project URL and anon key.",
+                  "Gemini writes a full dashboard.html."
                 ],
                 "prompt_ref": 4
               },
@@ -346,7 +346,7 @@
                 "body": "Save the dashboard next to your order page.",
                 "detail": [
                   "In VS Code choose File, then New File. Save it as dashboard.html inside the same venture folder.",
-                  "Paste Claude's dashboard code in and save."
+                  "Paste Gemini's dashboard code in and save."
                 ]
               }
             ]
@@ -386,8 +386,8 @@
                 "body": "Something not working? This is your fix-it prompt.",
                 "detail": [
                   "If the page looks wrong, the email did not arrive, or the order did not save, do not panic.",
-                  "Copy Prompt 5 from the prompts page. Tell Claude exactly what you did and what happened, paste any red error text from the browser console (press F12), and paste your file.",
-                  "Claude returns a corrected file. Replace your VS Code file, save, and test again. Repeat until all three land."
+                  "Copy Prompt 5 from the prompts page. Tell Gemini exactly what you did and what happened, paste any red error text from the browser console (press F12), and paste your file.",
+                  "Gemini returns a corrected file. Replace your VS Code file, save, and test again. Repeat until all three land."
                 ],
                 "prompt_ref": 5
               }
@@ -469,125 +469,95 @@
       "duration_minutes": 105,
       "break_after": false,
       "break_duration_minutes": 0,
-      "set_the_stage": "You ship the website tomorrow morning. Tonight, you plan it.\n\nA solopreneur without a website is like a shopkeeper without a shopfront. Your website is a conversation with a stranger who has never heard of you. A conversation that has to answer three questions in thirty seconds. What is this? Is this for me? What do I do next?\n\nThe biggest reason websites take twice as long as they should is that founders try to write copy live, in the website builder, while staring at a blank page. We are not doing that. In this block you write all the copy in a doc. Tomorrow you just drop it in.\n\nThree pages of website copy. One ninety-second video script. One one-page brochure. By the end of this session you walk out with five documents, ready to use tomorrow morning.\n\nNo Carrd tonight. No recording. No design. Just writing.",
-      "questions": [
-        {
-          "title": "What does your landing page say in thirty seconds?",
-          "body": "If a stranger gives you thirty seconds, what three things must they take away? Write those three sentences. They become your headline, your sub-headline, and your call to action."
-        },
-        {
-          "title": "What is the one specific outcome you promise?",
-          "body": "Not 'helps you study better'. A specific, namable outcome. 'Three resume versions in five minutes that match the role you actually want.' 'A flashcard set generated from your chapter PDF in under a minute.' Specific outcomes pull people in. Vague benefits push them away."
-        },
-        {
-          "title": "What goes on the about page?",
-          "body": "Why did you build this? Not the business reason. The personal one. What did you see in your own life, or in someone close to you, that made this feel worth six weeks of your time? People do not trust products. They trust the person behind the product. The about page is where they meet you."
-        },
-        {
-          "title": "What goes on the how-it-works page?",
-          "body": "Three steps. The user does step one, the AI does step two, the user gets step three. Plain language, no AI jargon. If someone read this section and then tried your app, would their expectations match what actually happens?"
-        },
-        {
-          "title": "What does your ninety-second video say?",
-          "body": "Three beats. The problem you saw. The thing you built. What it does for someone. Ninety seconds, three beats, thirty seconds each. Write the script as if you were speaking to one person, not a crowd."
-        },
-        {
-          "title": "What does your one-page brochure include?",
-          "body": "A brochure is read at arm's length, not studied. Big headline. Three short sections. One QR code or URL at the bottom. What are the three sections that earn their space on a single page?"
-        }
-      ],
-      "hmv": [
-        {
-          "dimension": "Humanics",
-          "techniques": [
-            "Count 'you' versus 'I' or 'we'. 'You' should appear far more than 'I' or 'we'.",
-            "Would your target user read the headline and think 'this is written about me'?",
-            "Read the copy out loud as if speaking directly to your target user."
-          ]
-        },
-        {
-          "dimension": "Mechanics",
-          "techniques": [
-            "Does the website describe what the product actually does, not what you wish it did?",
-            "Does the how-it-works page describe what the AI does in plain language?",
-            "After reading, does the visitor have an accurate expectation of what will happen when they try the app?"
-          ]
-        },
-        {
-          "dimension": "Valuenomics",
-          "techniques": [
-            "After thirty seconds, can someone say what the product does and who it is for?",
-            "Does the website name a specific outcome, in words a real user would use?",
-            "Does the website help the visitor understand why this is better than what they currently do?"
-          ]
-        }
-      ],
+      "set_the_stage": "You ship the website tomorrow morning. Tonight, you plan it.\n\nA solopreneur without a website is like a shopkeeper without a shopfront. Your website is a conversation with a stranger who has never heard of you. A conversation that has to answer three questions in thirty seconds. What is this? Is this for me? What do I do next?\n\nThe biggest reason websites take twice as long as they should is that founders try to write copy live, in the builder, staring at a blank page. We are not doing that. Tonight you write all your copy in a document. Tomorrow you just drop it in.\n\nThree pages of copy: landing, about, and how it works. By the end of this session you walk out with your website copy written and ready for the morning.\n\nNo builder tonight. No design. Just writing.",
       "prompts": [
         {
           "number": 1,
-          "title": "Draft the landing page copy",
+          "title": "Write your landing page copy",
           "tool": "Claude (claude.ai)",
-          "content": "I am writing the copy for the landing page of an AI product I just built. I want the copy first, in a doc. Tomorrow morning I will drop it into Carrd.\n\nThe product: [one sentence, what it does]\nThe user: [one sentence, who specifically uses it]\nThe outcome they get: [one sentence, the specific thing they walk away with]\nThe live URL of the AI app: [paste your Netlify URL]\n\nWrite me the copy for a single-page landing on Carrd with these sections.\n\nHeadline. Under ten words. Names the outcome. Sounds like a real person said it.\nSub-headline. One sentence. Names the specific user.\nHow it works. Three short steps. Plain language. What the user does and what they get back.\nWhy this is better than what they do today. Three sentences naming the current way and why it is not good enough.\nCall to action. One button. Specific verb. Leads to the AI app URL.\n\nAvoid the AI-website voice. No 'revolutionary', no 'powerful', no 'seamless', no 'leverage'. Write it like one person describing what they made, to one other person."
+          "desc": "The words a stranger reads first: what this is, who it is for, and what to do next.",
+          "content": "I am writing the copy for the landing page of my small venture's website. It is not an AI product, I just want clear words that make a stranger understand and act.\n\nMy venture:\n- What I sell: [one line]\n- Who it is for: [one line, my customer]\n- The problem I solve for them: [one line]\n- What makes me different or trustworthy: [one or two lines]\n- The one action I want a visitor to take: [for example place an order, message me, sign up]\n\nWrite landing page copy that answers three things fast: what is this, is it for me, what do I do next. Give me:\n- A headline under 10 words.\n- A one line subheadline.\n- Three short sections, each with a small heading and two or three lines.\n- The wording for one clear button.\n- A short closing line.\n\nPlain, warm, simple English. Short sentences. No buzzwords, no jargon. Indian context is fine. Give it as plain text I can paste into a document."
         },
         {
           "number": 2,
-          "title": "Draft the about page copy",
+          "title": "Write your about page copy",
           "tool": "Claude (claude.ai)",
-          "content": "I am writing the about page for the same product. The visitor has read the landing page and now wants to know who built this and why.\n\nThe product: [paste from previous]\nThe user: [paste from previous]\n\nHere is the personal story behind this product. [Tell Claude your real reason for picking this idea. Be honest. Was it a problem you watched a family member struggle with? A frustration you had? Something you noticed at college? Two or three sentences in your own voice.]\n\nWrite me the about page copy with these sections.\n\nA heading that introduces me by name.\nA paragraph about where I saw the problem. Specific, not abstract. The actual moment or person.\nA paragraph about why I think AI is the right tool for this, in plain words.\nA paragraph about what I want to do with this beyond just building it.\n\nFirst person. My name. My voice. Not corporate. Not 'our mission is'. Just one person talking about why they made the thing."
+          "desc": "The human story that turns a visitor into someone who trusts you.",
+          "content": "Write the About page copy for my venture's website. This page builds trust by telling the human story.\n\nMy venture:\n- What I sell: [one line]\n- Who I am: [your name, one line about you]\n- Why I started this: [one or two lines, the real reason]\n- Who I serve and what I promise them: [one or two lines]\n\nWrite a short About page: a warm opening line, one short paragraph on why this exists, one short paragraph on who I am, and a closing line that invites the next step. Honest and human, not corporate. Plain English, short sentences. Give it as plain text I can paste into a document."
         },
         {
           "number": 3,
-          "title": "Draft the how-it-works page copy",
+          "title": "Write your how-it-works page copy",
           "tool": "Claude (claude.ai)",
-          "content": "I am writing the how-it-works page. This page is for visitors who liked the landing page and want to understand the mechanics before they try the app.\n\nThe product: [paste]\nThe user: [paste]\nWhat the AI is actually doing: [the verb you committed to in the AI app session]\nWhat the user puts in: [paste]\nWhat the user gets out: [paste]\n\nWrite me the how-it-works copy with three sections.\n\nStep 1. What the user does to start.\nStep 2. What the AI does in the background.\nStep 3. What the user gets and what they can do with it.\n\nFor each step, two or three sentences. Plain language. No AI jargon. If a parent or a relative read this, they should understand what is happening at every step. End with a button that says 'Try it now' and links to the AI app URL."
-        },
-        {
-          "number": 4,
-          "title": "Draft the ninety-second video script",
-          "tool": "Claude (claude.ai)",
-          "content": "I am recording a ninety-second founder video tomorrow morning. Screen recording of me using the product, with me narrating over it. I will use the script you write tonight to record cleanly tomorrow.\n\nThe product: [paste]\nThe user: [paste]\nThe outcome: [paste]\n\nWrite me a ninety-second script in three beats of thirty seconds each.\n\nBeat 1 (seconds 0 to 30). The problem I saw. Be specific. A real situation, not abstract pain. End on the sentence that names what I built.\n\nBeat 2 (seconds 30 to 60). What it does. I am showing my screen during this beat. Tell me what I am doing on screen and what I am saying out loud at each moment.\n\nBeat 3 (seconds 60 to 90). Who this is for, and what they get. End with my AI app URL spoken aloud.\n\nWrite it in spoken English, not written English. Short sentences. Real pauses. No 'in conclusion' or 'in summary'. The way an Indian college student actually talks to a friend, not how textbooks sound.\n\nFlag any line that will be hard to say in one take and suggest a smoother alternative."
-        },
-        {
-          "number": 5,
-          "title": "Outline a one-page brochure",
-          "tool": "Claude (claude.ai)",
-          "content": "I am generating a one-page brochure tomorrow morning. PDF. I will use Canva or a similar tool. I need the text content tonight so tomorrow I just drop it into a template.\n\nThe product: [paste]\nThe user: [paste]\nThe outcome: [paste]\nThe URL: [paste]\n\nGive me the text for a one-page brochure, in the order it should appear, with each block labelled.\n\nHero line. Same as website headline, can be slightly different if it works better in print.\nThe problem. Three sentences.\nThe product. Three sentences.\nHow it works. Three bullets.\nWho this is for. One sentence.\nCall to action. One line with the URL.\n\nKeep the total word count under 250 words. A brochure is read at arm's length, not studied."
+          "desc": "The steps that remove doubt and make ordering feel easy.",
+          "content": "Write the How it works page copy for my venture's website. This page removes doubt by showing the steps clearly.\n\nMy venture:\n- What I sell: [one line]\n- How a customer gets it start to finish: [list the real steps, for example they browse, they order, I confirm, I deliver]\n- Anything they should know: [timing, area served, payment method, etc.]\n\nWrite a simple How it works page: a one line intro, then three or four numbered steps each with a short heading and one or two lines, then a short reassurance line and the wording for a button to start. Plain English, no jargon. Give it as plain text I can paste into a document."
         }
       ],
-      "build": [
-        {
-          "title": "Save five documents",
-          "instructions": "Five Google Docs or Notion pages. Landing page copy. About page copy. How-it-works copy. Video script. Brochure copy. Title them clearly. You will need all five in your hand tomorrow morning."
-        },
-        {
-          "title": "Read everything out loud, once",
-          "instructions": "Read the landing copy out loud. Read the about page out loud. Read the video script out loud. Whatever sounds awkward gets fixed tonight, not tomorrow."
-        },
-        {
-          "title": "Show one peer in the room",
-          "instructions": "Find one person, swap your video scripts. Read theirs. Tell them the one sentence that does not yet sound like a real human saying it. Receive the same. Edit."
-        }
-      ],
-      "test_output": [
-        {
-          "title": "The five-docs test",
-          "description": "Do you have five documents saved with landing copy, about copy, how-it-works copy, video script, brochure copy? If yes, pass."
-        },
-        {
-          "title": "The thirty-second test",
-          "description": "If a stranger read only your headline and sub-headline, would they know what your product does and who it is for? If yes, pass."
-        },
-        {
-          "title": "The about-page test",
-          "description": "Does your about page read like one specific person wrote it, not like a corporate 'about us' template? If yes, pass."
-        },
-        {
-          "title": "The spoken test",
-          "description": "Does your video script sound like spoken English, not written English? Read it once more if you are unsure. If yes, pass."
-        }
-      ],
-      "output_capture": null,
-      "stage": "Launch"
+      "stage": "Launch",
+      "procedure": {
+        "sections": [
+          {
+            "id": "A",
+            "name": "Write your website copy",
+            "note": "Tonight you only write. Tomorrow you build. Writing first means no blank page in the morning.",
+            "steps": [
+              {
+                "title": "Run Prompt 1, landing page copy",
+                "body": "Claude writes the words a stranger reads first.",
+                "detail": [
+                  "Open the build guide on your laptop and copy Prompt 1.",
+                  "Paste it into Claude and fill the brackets with your venture.",
+                  "Read what it wrote. If a line feels off, tell Claude and it will redo it."
+                ],
+                "prompt_ref": 1
+              },
+              {
+                "title": "Run Prompt 2, about page copy",
+                "body": "Claude writes your human story.",
+                "detail": [
+                  "Copy Prompt 2 and paste it into Claude with your details.",
+                  "Make sure it sounds like you, not a brochure."
+                ],
+                "prompt_ref": 2
+              },
+              {
+                "title": "Run Prompt 3, how it works copy",
+                "body": "Claude writes the simple steps a customer follows.",
+                "detail": [
+                  "Copy Prompt 3 and paste it into Claude with your real steps.",
+                  "Check the steps match how you actually work."
+                ],
+                "prompt_ref": 3
+              },
+              {
+                "title": "Save all three in one document",
+                "body": "Keep your copy in one place for the morning.",
+                "detail": [
+                  "Open a Google Doc or a Word file. Title it your venture website copy.",
+                  "Paste all three pages in, each under a clear heading: Landing, About, How it works.",
+                  "Save it where you can find it tomorrow."
+                ]
+              },
+              {
+                "title": "Read it out loud, once",
+                "body": "Your ear catches what your eye misses.",
+                "detail": [
+                  "Read all three pages out loud.",
+                  "Fix any line that is hard to say or sounds stiff."
+                ]
+              },
+              {
+                "title": "Show one peer in the room",
+                "body": "A fresh reader finds the confusing bits fast.",
+                "detail": [
+                  "Hand your laptop to one person near you.",
+                  "Watch where they slow down or look puzzled. Fix those lines."
+                ]
+              }
+            ]
+          }
+        ]
+      }
     },
     {
       "id": "5",
@@ -602,89 +572,182 @@
       "duration_minutes": 180,
       "break_after": false,
       "break_duration_minutes": 0,
-      "set_the_stage": "Three hours. You walked in with three pages of website copy written and ready. You walk out with a live three-page website at a real URL , landing page, about page, how-it-works page , all linked to each other, all looking like they belong together, with a working button that takes a visitor to your AI app.\n\nThis is Launch. The shopfront opens. The audio, the founder video, and the brochure all come next, in the Brand session after lunch. Right now, the priority is the website skeleton , three pages, copy in place, mobile-ready, AI app linked.\n\nThe facilitator walks the room continuously. If you finish your three pages early, do not race ahead to Brand. Polish what you have. Open it on a friend's phone. Read it aloud once more. The Brand session begins together, after lunch.",
-      "questions": [
-        {
-          "title": "Which page does the visitor see first?",
-          "body": "Most visitors will land on your landing page. That page has to do the most work in the least time. The about page and the how-it-works page are for visitors who already want to know more. Plan accordingly."
-        },
-        {
-          "title": "Are the three pages clearly linked?",
-          "body": "A visitor on the landing page should be able to reach about and how-it-works in one click. A visitor on the about page should be able to come back to landing in one click. Test the navigation on a phone, not just a laptop."
-        },
-        {
-          "title": "Does it look like one person built this?",
-          "body": "Same fonts. Same colours. Same voice. The three pages must feel like one site, not three separate sites stitched together. Walk through all three before you call yourself done."
-        }
-      ],
-      "hmv": [
-        {
-          "dimension": "Humanics",
-          "techniques": [
-            "Open your published Carrd site as if you have never seen it. Where do your eyes go first?",
-            "Read every word aloud. Cut anything that sounds like marketing.",
-            "Would a stranger know what to do within three seconds of landing?"
-          ]
-        },
-        {
-          "dimension": "Mechanics",
-          "techniques": [
-            "Test the link from the website to the AI app. Does it open in a new tab and load?",
-            "Test page-to-page navigation. Landing to about. About to how-it-works. How-it-works back to landing.",
-            "Test on a phone. Do the buttons reach the thumb? Does the text reflow without horizontal scrolling?"
-          ]
-        },
-        {
-          "dimension": "Valuenomics",
-          "techniques": [
-            "Does each page earn its place? If the about page is empty, cut it. If how-it-works just repeats the landing page, rewrite it.",
-            "Does the website point the visitor toward trying the AI app?",
-            "Would a recruiter who landed on this take it seriously?"
-          ]
-        }
-      ],
+      "set_the_stage": "Three hours. You walked in with three pages of copy written and ready. You walk out with a live three-page website at a real URL: a landing page, an about page, and a how-it-works page, all linked together, all looking like they belong, with a working button that takes a visitor to your app.\n\nThis is Launch. The shopfront opens. The audio, the founder video, and the brochure all come next, in the Brand session after lunch. Right now the priority is the website itself: three pages, your copy in place, mobile ready, app linked.\n\nYou build it the same way you built the app: the AI writes the HTML, you paste it into VS Code, and you put it live with the same GitHub and Netlify you set up yesterday. The facilitator walks the room. If you finish early, do not race ahead to Brand. Polish what you have, open it on a friend's phone, read it aloud once more.",
       "prompts": [
         {
           "number": 1,
-          "title": "Website production helper",
+          "title": "Build your landing page",
           "tool": "Claude (claude.ai)",
-          "content": "I have my website copy in three docs: landing page, about page, how-it-works page. I am about to drop them into Carrd. Walk me through, in order, what to do. Create the account, pick a template that supports multiple pages, paste each page's copy in the right place, set up the navigation between the three pages, link the AI app button to my Netlify URL, publish.\n\nKeep it tight. Tell me the click sequence, not the theory."
-        }
-      ],
-      "build": [
-        {
-          "title": "Hour 1, website skeleton",
-          "instructions": "Carrd account. Template chosen that supports multiple pages. Landing, about, and how-it-works pages all created. Copy pasted into the right sections. Link to the AI app live. Site published to a yourname.carrd.co URL. Do not polish yet, just get it up."
+          "desc": "Turns your landing copy into a real index.html, with an Order button to your app.",
+          "content": "I am building the landing page for my venture's website. I want one HTML file I can host for free, with no backend.\n\nHere is my landing page copy:\n\n[paste your landing page copy from last night]\n\nMy venture name is [name]. My order app is already live at [paste your app URL].\n\nBuild me one file called index.html that:\n- Lays out my copy cleanly: headline, subheadline, the sections, and the closing line.\n- Has a clear Order now button that links to my order app URL and opens it.\n- Has a simple top menu linking to About and How it works. Name those links about.html and how-it-works.html. I will build those pages next.\n- Looks clean and modern, reads well on a phone, simple colours, my venture name at the top.\n- Leaves a little space just under the headline where I will add a short audio clip later.\n\nGive me the full index.html."
         },
         {
-          "title": "Hour 2, navigation and pages talk to each other",
-          "instructions": "Every page has a clear way to get to the other two. Landing → about. About → how-it-works. How-it-works → landing (and to the AI app button). Test on a phone."
+          "number": 2,
+          "title": "Build your about and how-it-works pages",
+          "tool": "Claude (claude.ai)",
+          "desc": "Builds the other two pages to match the landing page, all linked together.",
+          "content": "Here is my landing page so the new pages match its look:\n\n[paste your index.html]\n\nUsing the same colours, fonts, header, and menu, build me two more pages.\n\n1. about.html, using this copy:\n[paste your about page copy]\n\n2. how-it-works.html, using this copy:\n[paste your how it works page copy]\n\nBoth pages must have the same top menu linking Home (index.html), About (about.html), and How it works (how-it-works.html), so all three link to each other. Keep the Order now button on every page, linking to my app. Give me both files in full."
         },
         {
-          "title": "Hour 3, polish all three pages",
-          "instructions": "Whitespace. Fonts. Mobile preview. One photo of you on the about page. Make sure the three pages feel like they belong to each other. Test every link including page-to-page navigation. Test on a friend's phone if you can."
-        }
-      ],
-      "test_output": [
-        {
-          "title": "The three-page test",
-          "description": "Does yourname.carrd.co have a landing page, an about page, and a how-it-works page, all linked to each other and all looking like they belong together? If yes, pass."
-        },
-        {
-          "title": "The phone test",
-          "description": "Does the site look good and work cleanly on a phone, with page-to-page navigation reachable by thumb? If yes, pass."
-        },
-        {
-          "title": "The AI app link test",
-          "description": "Does the AI app button on the landing page open your live Netlify app in a new tab? If yes, pass."
+          "number": 3,
+          "title": "Fix it when something breaks",
+          "tool": "Claude (claude.ai)",
+          "desc": "Your go-to whenever a page looks wrong or a link does not work.",
+          "content": "Something on my page is not working. Here is what is happening:\n\n[describe what you did, what you expected, and what actually happened. If there is red error text in the browser console, press F12 and paste it here.]\n\nHere is my current file:\n\n[paste the whole file]\n\nFind the problem and give me back the full corrected file. Tell me in one or two plain lines what was wrong. Do not change anything that is already working."
         }
       ],
       "output_capture": {
         "artifact": "Website",
-        "ask": "Paste the live URL of your three-page Carrd website.",
-        "placeholder": "https://yourname.carrd.co",
+        "ask": "Paste the live URL of your website.",
+        "placeholder": "https://yourname.netlify.app",
         "kind": "url",
-        "guidance": "This is the published Carrd URL, not the editor URL. Confirm all three pages load on a phone and the AI app button works. Audio, video link, and brochure all come in the Brand session after lunch."
+        "guidance": "This is the Netlify address for your website. Check all three pages load on a phone and the Order now button opens your app. Audio, video, and brochure come next, in the Brand session."
+      },
+      "procedure": {
+        "sections": [
+          {
+            "id": "A",
+            "name": "Use yesterday's tools",
+            "note": "You already set these up for the app. No new accounts today.",
+            "steps": [
+              {
+                "title": "You have everything you need",
+                "body": "VS Code, GitHub Desktop, and Netlify are ready from yesterday.",
+                "detail": [
+                  "Make a new folder on your computer for your website, separate from your app folder.",
+                  "In VS Code, File then Open Folder, and pick it.",
+                  "Have your three pages of copy from last night open in another window."
+                ]
+              }
+            ]
+          },
+          {
+            "id": "B",
+            "name": "Build the pages with Claude",
+            "note": "Build the landing page first, then the other two to match.",
+            "steps": [
+              {
+                "title": "Run Prompt 1, build your landing page",
+                "body": "Claude builds index.html from your copy, with the Order button pointing to your app.",
+                "detail": [
+                  "Copy Prompt 1 from the build guide.",
+                  "Paste it into Claude with your landing copy, your venture name, and your live app URL.",
+                  "Claude writes a full index.html. If something looks off, tell it in plain words."
+                ],
+                "prompt_ref": 1
+              },
+              {
+                "title": "Put it in VS Code",
+                "body": "Save the landing page.",
+                "detail": [
+                  "In VS Code, File then New File. Save as index.html in your website folder.",
+                  "Paste Claude's code in and save."
+                ]
+              },
+              {
+                "title": "Run Prompt 2, build the other two pages",
+                "body": "Claude builds about.html and how-it-works.html to match.",
+                "detail": [
+                  "Copy Prompt 2. Paste in your index.html and your about and how it works copy.",
+                  "Claude returns both files."
+                ],
+                "prompt_ref": 2
+              },
+              {
+                "title": "Put them in VS Code",
+                "body": "Save both new pages next to the landing page.",
+                "detail": [
+                  "Save one as about.html and the other as how-it-works.html, in the same folder.",
+                  "Paste each one's code in and save."
+                ]
+              }
+            ]
+          },
+          {
+            "id": "C",
+            "name": "Test it on your machine",
+            "note": "Click every link before anyone else sees it.",
+            "steps": [
+              {
+                "title": "Open it with Live Server",
+                "body": "Run your site locally.",
+                "detail": [
+                  "Right click index.html and choose Open with Live Server.",
+                  "Your landing page opens in the browser."
+                ]
+              },
+              {
+                "title": "Click through everything",
+                "body": "Make sure the pages talk to each other and the app link works.",
+                "detail": [
+                  "Click the menu: Home, About, How it works. All three should open and link back.",
+                  "Click Order now. It should open your live app.",
+                  "Read every line on a narrow window. Fix anything awkward with Prompt 3."
+                ]
+              },
+              {
+                "title": "Run Prompt 3 if anything is off",
+                "body": "A page looks wrong or a link is broken? This is your fix-it prompt.",
+                "detail": [
+                  "Copy Prompt 3 from the build guide. Tell Claude what you did and what happened, and paste the file.",
+                  "Claude returns a corrected file. Paste it back into VS Code, save, and test again."
+                ],
+                "prompt_ref": 3
+              }
+            ]
+          },
+          {
+            "id": "D",
+            "name": "Put it live",
+            "note": "Same flow as the app.",
+            "steps": [
+              {
+                "title": "Publish with GitHub Desktop",
+                "body": "Send your website folder to GitHub.",
+                "detail": [
+                  "Open GitHub Desktop, File, Add Local Repository, pick your website folder, create the repository.",
+                  "Type a short summary like website first version and click Commit to main.",
+                  "Click Publish repository."
+                ],
+                "tool": "GitHub Desktop (desktop.github.com)"
+              },
+              {
+                "title": "Connect Netlify and go live",
+                "body": "Netlify gives your website a live address.",
+                "detail": [
+                  "In Netlify, Add new site, Import an existing project, GitHub, pick your website repository.",
+                  "Leave the build settings empty and click Deploy.",
+                  "Netlify gives you a live address like yourname.netlify.app. That is your website."
+                ],
+                "tool": "Netlify (netlify.com)"
+              },
+              {
+                "title": "Test the live site on your phone",
+                "body": "See it the way a visitor will.",
+                "detail": [
+                  "Open your website address on your phone.",
+                  "Click through all three pages and the Order now button."
+                ]
+              }
+            ]
+          },
+          {
+            "id": "E",
+            "name": "You are live",
+            "note": "",
+            "steps": [
+              {
+                "title": "Save your website URL",
+                "body": "Your shopfront is open.",
+                "detail": [
+                  "Your three pages are live and link to each other.",
+                  "Your Order now button takes visitors to your working app.",
+                  "Save your website URL and paste it into the cohort form."
+                ]
+              }
+            ]
+          }
+        ]
       }
     },
     {
@@ -701,98 +764,41 @@
       "break_after": false,
       "break_duration_minutes": 0,
       "set_the_stage": "Three hours. The website is live. Now you give it a voice, a face, and something a visitor can carry away with them.\n\nThis is Brand. Three pieces. Sixty seconds of audio in your voice, generated from your script, embedded on the landing page right after the headline. Ninety seconds of founder video, screen-recorded with your voice over it, posted as a native video on LinkedIn. One one-page brochure, generated as a PDF, linked from your website for visitors who want to share it with a parent or relative.\n\nAll three exist for the same reason: trust. A website is a stranger reading words. Audio, video, and brochure turn that stranger into someone who has met you.\n\nThe facilitator walks the room continuously. Lunch is the first 30 minutes of this block if you have not eaten yet , take it now. Be done by 15:00. Interim demo at 15:00. Hard deadline.",
-      "questions": [
-        {
-          "title": "Where does the audio belong on the page?",
-          "body": "Audio is most powerful when it lands right after the headline. The visitor reads your headline, hears your voice say what the product is, and then continues scrolling. Less powerful at the bottom. Worst at the very top before any context. Place it right after the headline."
-        },
-        {
-          "title": "What does your LinkedIn post caption say?",
-          "body": "The video lives on LinkedIn. The caption above the video is what most people read instead of watching. Two lines. The first names the problem. The second names what you built and where to try it. The video then earns the click for those who want more."
-        },
-        {
-          "title": "Where does the brochure link belong?",
-          "body": "Not at the top. The brochure is for visitors who already trust you and want something to share with someone else (a parent, a relative, a teacher). Place the download link low on the page, near a 'tell someone you know' invitation."
-        },
-        {
-          "title": "Do all three sound like the same person?",
-          "body": "Your website voice, your audio voice, your video voice. They should be the same person. If your audio sounds nothing like your website, the website voice was probably not yours to start with. Read all three out loud, in order, before you call them done."
-        }
-      ],
-      "hmv": [
-        {
-          "dimension": "Humanics",
-          "techniques": [
-            "Listen to the audio without watching the screen. Does it sound like a person, or like an announcement?",
-            "Watch the founder video with the sound off. Does the screen activity hold attention even without your voice?",
-            "Read the brochure at arm's length. Does the eye know where to land first, second, third?"
-          ]
-        },
-        {
-          "dimension": "Mechanics",
-          "techniques": [
-            "Test the audio on a phone, not just a laptop. Does it autoplay or does the visitor have to tap?",
-            "Test the LinkedIn post in your feed. Does the video autoplay? Is the caption two lines visible without expanding?",
-            "Test the brochure download. Does the PDF open on a phone and a laptop both?"
-          ]
-        },
-        {
-          "dimension": "Valuenomics",
-          "techniques": [
-            "Does the whole presence feel like it was made by one person, not stitched together?",
-            "Does every asset point the visitor toward trying the AI app?",
-            "Would a parent who saw the brochure understand what their child built?"
-          ]
-        }
-      ],
       "prompts": [
         {
           "number": 1,
-          "title": "Audio production",
-          "tool": "ElevenLabs (elevenlabs.io)",
-          "content": "I want to generate a 60-second audio piece from this script.\n\n[paste your video script, the first 60 seconds, or a tightened version]\n\nGive me the ElevenLabs settings to use. Voice selection, stability, similarity, style. I want it to sound like a calm, real person and not a typical AI voice-over. Warm, slightly understated, and one notch slower than the default pace."
+          "title": "Write your 60-second audio script",
+          "tool": "ChatGPT (chatgpt.com)",
+          "desc": "A short, warm script in your voice, to play on your landing page.",
+          "content": "Write me a 60-second audio script for my venture, in my voice, to play on my website's landing page.\n\nMy venture:\n- What I sell: [one line]\n- Who it is for: [one line]\n- The problem I solve: [one line]\n- What I want the listener to do after: [one line]\n\nWrite it to be spoken in about 60 seconds, so roughly 140 to 150 words. Warm, friendly, first person, like I am talking to one person. Short sentences, no jargon. Start with a hook, say what I offer and why it helps, end with a gentle invitation to act. Give me just the script text."
         },
         {
           "number": 2,
-          "title": "LinkedIn post caption",
-          "tool": "Claude (claude.ai)",
-          "content": "I am about to post my ninety-second founder video on LinkedIn. The video is embedded as a native video, not a link. I need a two-line caption that earns the click for people who scroll past without watching.\n\nThe product: [paste]\nThe user: [paste]\nThe outcome: [paste]\n\nWrite me three caption options. Each option is exactly two lines. The first line names the problem in a way that someone in my LinkedIn network would recognise. The second line names what I built and includes the AI app URL.\n\nNo hashtags in the caption itself. Suggest three to five hashtags separately."
-        }
-      ],
-      "build": [
-        {
-          "title": "Hour 1, audio recorded and embedded",
-          "instructions": "60 seconds of audio generated in ElevenLabs, downloaded as MP3, embedded on the landing page right after the headline. Test on a phone."
+          "title": "Add the audio to your landing page",
+          "tool": "ChatGPT (chatgpt.com)",
+          "desc": "Adds a small audio player to your landing page, just under the headline.",
+          "content": "Here is my landing page:\n\n[paste your index.html]\n\nI have an audio file called voice.mp3 that I will put in the same folder. Add a clean, simple audio player to my landing page, just below the headline, with a small label like: Hear it from me in 60 seconds. Keep everything else exactly as it is. Give me the full updated index.html."
         },
         {
-          "title": "Hour 2, founder video recorded and posted",
-          "instructions": "Loom or QuickTime screen recording, you narrating live with the script in your peripheral vision. Aim for ninety seconds. Re-record up to three times if needed, but no more. Upload to LinkedIn as a native video post with the two-line caption. Pin the post to your profile. Copy the post URL , you will paste it on the site."
+          "number": 3,
+          "title": "Write your 90-second founder video script",
+          "tool": "ChatGPT (chatgpt.com)",
+          "desc": "What you say while screen-recording a walk through your site and app.",
+          "content": "Write me a 90-second founder video script. I will screen-record myself walking through my website and app while I talk.\n\nMy venture:\n- What I sell: [one line]\n- Who I am: [name, one line]\n- Why I built this: [one line]\n- What I will show on screen: my website and my order app\n\nWrite it as what I say out loud, about 90 seconds, roughly 200 to 220 words, with short notes in brackets for what to show on screen at each part. First person, warm, confident, plain English. Start by introducing myself and the problem, walk through the site and app, end by inviting people to try it or share it. Give me just the script with the on-screen notes."
         },
         {
-          "title": "Hour 3, brochure to PDF",
-          "instructions": "Canva, one-page template. Drop in the brochure copy. Export PDF. Upload the PDF to Drive, set link to anyone-with-link can view. Copy the link, add a 'Download brochure' button to the website low on the landing page."
+          "number": 4,
+          "title": "Write your LinkedIn caption",
+          "tool": "ChatGPT (chatgpt.com)",
+          "desc": "The post that goes out with your founder video.",
+          "content": "Write a short LinkedIn caption to post with my 90-second founder video.\n\nMy venture: [one line on what I sell and who it is for]\nWhat I built: a working website and app, on my own, powered by AI\nThe link I want people to visit: [your website URL]\n\nWrite a warm, genuine caption, about 4 to 6 short lines, first person. Open with a hook, say what I built and why, invite people to watch and try it, end with the link. A few relevant hashtags at the end. No corporate tone, no exaggeration. Give me just the caption."
         },
         {
-          "title": "Final smoke test",
-          "instructions": "Open your website on a phone, on mobile data. Land on the home page. Listen to the audio. Click through to the about page. Read it. Click through to how-it-works. Read it. Click the AI app button. Use the app. Come back. Click the LinkedIn video link. Watch it. Download the brochure. The full visitor journey, in one walkthrough. Anything that does not work gets fixed before the interim demo."
-        }
-      ],
-      "test_output": [
-        {
-          "title": "The audio test",
-          "description": "Does the audio play when you tap the play button on a phone, right after the headline on the landing page? If yes, pass."
-        },
-        {
-          "title": "The video test",
-          "description": "Is the founder video live on your LinkedIn, with a real two-line caption, with the post pinned to your profile, and with the post linked from your website? If yes, pass."
-        },
-        {
-          "title": "The brochure test",
-          "description": "Does the brochure download as a PDF from the website link, on both laptop and phone? If yes, pass."
-        },
-        {
-          "title": "The full-journey test",
-          "description": "Did you walk a friend through the full journey, all three pages, audio, video, brochure, AI app, on a phone, before the interim demo? If yes, pass."
+          "number": 5,
+          "title": "Write your one-page brochure copy",
+          "tool": "ChatGPT (chatgpt.com)",
+          "desc": "Copy in clean blocks to drop into a Canva template.",
+          "content": "Write the copy for a one-page brochure for my venture. I will put it into a Canva template and export it as a PDF.\n\nMy venture:\n- What I sell: [one line]\n- Who it is for: [one line]\n- The problem I solve: [one line]\n- My offerings, briefly: [list a few]\n- How to order or reach me: [your website URL, phone, area served]\n\nWrite brochure copy in clear blocks I can drop into a template: a headline, a one line tagline, a short who-this-is-for line, three or four short benefit points, a brief how-to-order line, and my contact details. Plain English, short, scannable. Label each block clearly."
         }
       ],
       "output_capture": {
@@ -801,6 +807,187 @@
         "placeholder": "https://www.linkedin.com/posts/...",
         "kind": "url",
         "guidance": "Audio and brochure live on your website (already captured in the Launch session). The founder video is the one new public URL from Brand , pinned to your LinkedIn profile and linked from your website."
+      },
+      "procedure": {
+        "sections": [
+          {
+            "id": "A",
+            "name": "Set up your tools",
+            "note": "Three free accounts. Make them now, before you start. Writing today is on ChatGPT.",
+            "steps": [
+              {
+                "title": "Set up ElevenLabs",
+                "body": "Turns your script into natural speech in a voice you choose.",
+                "detail": [
+                  "Go to elevenlabs.io and create a free account.",
+                  "Open the text to speech tool. You will paste your script here in the audio step.",
+                  "Browse the voices so you know where to pick one."
+                ],
+                "tool": "ElevenLabs (elevenlabs.io)"
+              },
+              {
+                "title": "Set up Loom",
+                "body": "Records your screen and your voice at the same time.",
+                "detail": [
+                  "Go to loom.com, create a free account, and install the Loom app or browser extension.",
+                  "Allow it to use your microphone and screen.",
+                  "Do a 5 second test recording so you know Start and Stop."
+                ],
+                "tool": "Loom (loom.com)"
+              },
+              {
+                "title": "Set up Canva",
+                "body": "Makes your one-page brochure look designed, then exports a PDF.",
+                "detail": [
+                  "Go to canva.com and create a free account.",
+                  "You will search for a flyer or one-page template in the brochure step."
+                ],
+                "tool": "Canva (canva.com)"
+              }
+            ]
+          },
+          {
+            "id": "B",
+            "name": "Audio, 60 seconds in your voice",
+            "note": "Script, generate, embed.",
+            "steps": [
+              {
+                "title": "Run Prompt 1, write your audio script",
+                "body": "ChatGPT writes a 60-second script in your voice.",
+                "detail": [
+                  "Copy Prompt 1 from the build guide and paste it into ChatGPT with your venture details.",
+                  "Read the script out loud. Tweak any line that does not sound like you."
+                ],
+                "prompt_ref": 1
+              },
+              {
+                "title": "Generate the audio in ElevenLabs",
+                "body": "Turn the script into a voice clip.",
+                "detail": [
+                  "Paste your script into the text to speech box.",
+                  "Pick a voice you like.",
+                  "Generate, listen, and when happy download the file. Rename it voice.mp3.",
+                  "Put voice.mp3 into your website folder, next to index.html."
+                ],
+                "tool": "ElevenLabs (elevenlabs.io)"
+              },
+              {
+                "title": "Run Prompt 2, add the audio to your page",
+                "body": "ChatGPT adds a small player to your landing page.",
+                "detail": [
+                  "Copy Prompt 2 and paste your index.html into ChatGPT.",
+                  "It returns the updated index.html. Paste it back into VS Code and save.",
+                  "In GitHub Desktop, commit and push. Netlify updates your live site. Refresh and hear it play."
+                ],
+                "prompt_ref": 2
+              }
+            ]
+          },
+          {
+            "id": "C",
+            "name": "Founder video, 90 seconds",
+            "note": "Script, record, caption, post.",
+            "steps": [
+              {
+                "title": "Run Prompt 3, write your video script",
+                "body": "ChatGPT writes a 90-second script with on-screen notes.",
+                "detail": [
+                  "Copy Prompt 3 and paste it into ChatGPT with your details.",
+                  "Read it out loud once and adjust to sound natural."
+                ],
+                "prompt_ref": 3
+              },
+              {
+                "title": "Record it with Loom",
+                "body": "Walk through your site and app with your voice.",
+                "detail": [
+                  "Open your website and app in your browser.",
+                  "Start a Loom recording of your screen with your microphone on.",
+                  "Walk through your site and app while you say your script. Keep it under 2 minutes.",
+                  "Stop. Loom gives you a shareable link. Copy it."
+                ],
+                "tool": "Loom (loom.com)"
+              },
+              {
+                "title": "Run Prompt 4, write your LinkedIn caption",
+                "body": "ChatGPT writes the post caption.",
+                "detail": [
+                  "Copy Prompt 4 and paste it into ChatGPT with your website link.",
+                  "Adjust the wording to sound like you."
+                ],
+                "prompt_ref": 4
+              },
+              {
+                "title": "Post it to LinkedIn",
+                "body": "Put your founder video out in the world.",
+                "detail": [
+                  "On LinkedIn, start a new post and upload your Loom video, or paste the Loom link.",
+                  "Add your caption and post it.",
+                  "Copy the link to your post."
+                ],
+                "tool": "LinkedIn (linkedin.com)"
+              }
+            ]
+          },
+          {
+            "id": "D",
+            "name": "Brochure, one page",
+            "note": "Copy, then design, then PDF.",
+            "steps": [
+              {
+                "title": "Run Prompt 5, write your brochure copy",
+                "body": "ChatGPT writes the copy in ready-to-drop blocks.",
+                "detail": [
+                  "Copy Prompt 5 and paste it into ChatGPT with your venture details.",
+                  "You now have a headline, tagline, benefits, and contact details ready."
+                ],
+                "prompt_ref": 5
+              },
+              {
+                "title": "Build it in Canva and export a PDF",
+                "body": "Drop your copy into a template and download.",
+                "detail": [
+                  "In Canva, search for a one-page flyer or brochure template you like.",
+                  "Drop your copy into the blocks. Add your logo and one good photo.",
+                  "Download it as a PDF. Put the PDF in your website folder if you want to link it from your site."
+                ],
+                "tool": "Canva (canva.com)"
+              }
+            ]
+          },
+          {
+            "id": "E",
+            "name": "Test everything",
+            "note": "All three, working, in the real world.",
+            "steps": [
+              {
+                "title": "Check all three are live",
+                "body": "Audio, video, brochure.",
+                "detail": [
+                  "Open your live website on your phone. The audio plays.",
+                  "Open your LinkedIn post. The video plays.",
+                  "Open your brochure PDF. It looks clean and the details are right."
+                ]
+              }
+            ]
+          },
+          {
+            "id": "F",
+            "name": "You are done",
+            "note": "",
+            "steps": [
+              {
+                "title": "Save your links",
+                "body": "You gave your venture a voice, a face, and something to share.",
+                "detail": [
+                  "Save your LinkedIn video post URL.",
+                  "Your audio and brochure live on your website.",
+                  "Paste your LinkedIn video URL into the cohort form."
+                ]
+              }
+            ]
+          }
+        ]
       }
     },
     {

@@ -373,6 +373,22 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
   const WORKSHOP_NAME = 'Built by Her';
   const EMAILJS_PUBLIC_KEY = '4oFdVRvbVQ8mQHUnZ';
   const EMAILJS_SERVICE_ID = 'service_w32avyy';
+
+  const ENROLL_ENDPOINT = 'https://swish.orangecaterpillar.com/api/enroll';
+  function recordEnrollment(params) {
+    // Best-effort: also store the enrollment in the SWISH analytics DB. The
+    // EmailJS email stays the primary confirmation path, so any failure here
+    // is silent and never blocks the applicant.
+    try {
+      fetch(ENROLL_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(params),
+        keepalive: true
+      }).catch(function () {});
+    } catch (e) {}
+  }
+
   const EMAILJS_WAITLIST_TEMPLATE_ID = 'template_dxrfj69';
 
   function isEmailJSConfigured() {
@@ -464,6 +480,7 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
     submitBtn.textContent = 'Submitting…';
 
     const params = buildWaitlistParams();
+    recordEnrollment(params);
 
     try {
       if (isEmailJSConfigured()) {

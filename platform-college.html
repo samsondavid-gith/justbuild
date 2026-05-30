@@ -2283,8 +2283,61 @@
   }
 
 </style>
+<!-- CONCEPT MODULE (HMV teaching slides) -->
+<style>
+  .concept-slide { flex: 1 1 auto; display: flex; flex-direction: column; justify-content: flex-start; max-width: 70ch; }
+  .concept-opener { justify-content: center; }
+  .concept-lens-tag { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+  .concept-lens-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .concept-lens-name { font-family: var(--mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 500; }
+  .lens-h .concept-lens-dot { background: #E8B53A; } .lens-h .concept-lens-name { color: #E8B53A; }
+  .lens-m .concept-lens-dot { background: #C17D2A; } .lens-m .concept-lens-name { color: #C17D2A; }
+  .lens-v .concept-lens-dot { background: #6FBF8B; } .lens-v .concept-lens-name { color: #6FBF8B; }
+  .concept-practice { font-family: var(--mono); font-size: 11px; letter-spacing: 0.04em; color: var(--text-faint); margin-left: 4px; }
+  .concept-headline { font-family: var(--serif); font-size: clamp(28px, 4vw, 52px); font-weight: 500; line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 22px; }
+  .concept-headline em { font-style: italic; color: var(--accent); }
+  .concept-body p { font-size: clamp(15px, 1.5vw, 18px); line-height: 1.6; color: var(--text-soft); margin-bottom: 14px; }
+  .concept-body p.concept-lead { color: var(--text); }
+  .concept-body b { color: var(--text); font-weight: 600; }
+  .concept-ba { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 6px 0 18px; }
+  @media (max-width: 760px) { .concept-ba { grid-template-columns: 1fr; } }
+  .concept-ba-card { border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; background: rgba(255,255,255,0.015); }
+  .concept-ba-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 8px; }
+  .concept-bad .concept-ba-label { color: var(--danger); } .concept-good .concept-ba-label { color: #6FBF8B; }
+  .concept-ba-card p { font-size: 15px; line-height: 1.5; color: var(--text-soft); margin: 0; }
+  .concept-example { border-left: 3px solid var(--accent); background: var(--accent-soft); padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 4px 0 18px; }
+  .concept-example p { font-size: 16px; line-height: 1.55; color: var(--text); font-style: italic; margin: 0; }
+  .concept-artifact { display: inline-flex; align-items: baseline; gap: 10px; border: 1px dashed var(--line-strong); border-radius: 999px; padding: 9px 18px; margin-top: 8px; align-self: flex-start; }
+  .concept-a-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); }
+  .concept-a-text { font-size: 14px; color: var(--text); }
+  /* opener */
+  .concept-opener .concept-stage-num { font-family: var(--mono); color: var(--accent); letter-spacing: 0.3em; font-size: 13px; margin-bottom: 18px; }
+  .concept-opener-title { font-family: var(--serif); font-size: clamp(40px, 6.5vw, 86px); font-weight: 600; letter-spacing: -0.03em; line-height: 0.99; margin-bottom: 22px; }
+  .concept-opener-sub { font-family: var(--serif); font-style: italic; font-size: clamp(18px, 2.3vw, 26px); color: var(--text-soft); }
+  .concept-three { display: flex; gap: 26px; margin-top: 38px; flex-wrap: wrap; }
+  .concept-t { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--text-muted); }
+  .concept-t b { color: var(--text); font-weight: 600; }
+  .concept-td { width: 9px; height: 9px; border-radius: 50%; }
+
+  /* Caterpillar buddy (shown only on concept slides) */
+  #concept-cat { position: fixed; right: clamp(16px, 3.5vw, 56px); bottom: 86px; width: clamp(130px, 14vw, 190px); z-index: 50; display: none; pointer-events: none; }
+  #concept-cat-img { width: 100%; display: block; filter: drop-shadow(0 8px 24px rgba(0,0,0,0.55)); animation: concept-bob 3.6s ease-in-out infinite; }
+  @keyframes concept-bob { 0%,100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-8px) rotate(1deg); } }
+  .concept-bubble { position: absolute; right: 76%; bottom: 56%; background: #fff; color: #1A1A1A; font-size: 13px; line-height: 1.4; padding: 10px 13px; border-radius: 13px; width: max-content; max-width: 200px; box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
+  .concept-bubble::after { content: ""; position: absolute; right: -8px; bottom: 16px; border: 8px solid transparent; border-left-color: #fff; border-right: 0; }
+  .concept-bubble b { color: var(--accent); }
+  .concept-prop { position: absolute; right: 82%; top: 4%; }
+  .concept-prop svg { display: block; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.4)); }
+  @media print { #concept-cat { display: none !important; } }
+</style>
 </head>
 <body>
+
+<div id="concept-cat" aria-hidden="true">
+  <div class="concept-prop" id="concept-cat-prop"></div>
+  <div class="concept-bubble" id="concept-cat-bubble"></div>
+  <img id="concept-cat-img" src="funny-caterpillar.png" alt="" onerror="this.style.display='none'">
+</div>
 
 <div class="login-overlay" id="login-overlay">
   <div class="login-card" id="login-card">
@@ -2351,6 +2404,61 @@
 let WORKSHOP = null;          // sessions-college.json workshop block
 let SESSIONS = [];            // sessions array
 let IDEAS = [];               // ideas array (top-level of sessions-college.json)
+
+// ---- Concept modules: HMV teaching slides inserted before a stage's sessions ----
+const CONCEPT_PROPS = {
+  glass: '<svg width="44" height="44" viewBox="0 0 46 46"><circle cx="19" cy="19" r="12" fill="none" stroke="#E8B53A" stroke-width="3"/><line x1="28" y1="28" x2="40" y2="40" stroke="#E8B53A" stroke-width="4" stroke-linecap="round"/></svg>',
+  hat:   '<svg width="48" height="38" viewBox="0 0 50 40"><path d="M6 30 Q25 6 44 30 Z" fill="#C17D2A"/><rect x="2" y="30" width="46" height="6" rx="3" fill="#9c641f"/><rect x="22" y="9" width="6" height="14" rx="3" fill="#9c641f"/></svg>',
+  coin:  '<svg width="44" height="44" viewBox="0 0 46 46"><ellipse cx="23" cy="34" rx="15" ry="6" fill="#6FBF8B"/><ellipse cx="23" cy="24" rx="15" ry="6" fill="#7fd49b"/><ellipse cx="23" cy="14" rx="15" ry="6" fill="#8fe0aa"/><text x="23" y="18" text-anchor="middle" font-family="monospace" font-size="11" fill="#0A0A0A" font-weight="700">&#8377;</text></svg>'
+};
+
+const CONCEPT_MODULES = {
+  "Ideate": {
+    before_session: "1",
+    stage_number: "01",
+    stage_name: "Ideate",
+    slides: [
+      { lens: "opener",
+        headline: "Find the idea worth building.",
+        sub: "Before you build anything, get three things right." },
+      { lens: "humanics", practice: "The Mom Test",
+        headline: "Talk to 5 real people. *Don't sell, just listen.*",
+        lead: "Before building anything, find 5 people who actually have the problem and ask what they *did*, not what they think of your idea. Pitch your idea and they will just be polite, and you learn nothing.",
+        bad: "\"Would you use an app for this?\" Everyone says yes to be nice.",
+        good: "\"Last time this happened, what did you actually do? How much time or money did it cost?\"",
+        artifact: "Notes from 5 people, plus the one complaint you heard most, in their words.",
+        prop: "glass", bubble: "Talk less, listen more. <b>No selling!</b>" },
+      { lens: "humanics", practice: "Define, jobs to be done",
+        headline: "Get specific: *which exact person, at which exact moment.*",
+        lead: "\"People who eat tiffin\" is not someone you can build for. Picture one real human at one real moment.",
+        example: "The bachelor in a PG who, every Sunday night, has no idea what this week's tiffin menu is, so he gives up, orders Swiggy twice, and pays double.",
+        paras: ["Look what that one sentence hands you: exactly <b>what to build</b> (show the week's menu, let him pick ahead), exactly <b>who to interview</b>, and exactly <b>who to show v1 to</b>. Vague customer, vague product."],
+        artifact: "One line: the exact person, the exact moment, and what they do today instead.",
+        prop: "glass", bubble: "One person. One moment. Boom, clarity." },
+      { lens: "mechanics", practice: "Lean MVP, do things that don't scale",
+        headline: "Pick something AI can *actually build* by the deadline.",
+        lead: "You have a weekend plus four weeks, with AI doing the heavy lifting. Choose an idea those tools can actually finish in that time.",
+        paras: ["Show trees, pick one, book it (Rent-a-Tree): very buildable. A live Swiggy-style delivery network: not. Build only the core first, the one thing that makes it useful. Everything else, do by hand or add later. For Rent-a-Tree, v1 is just: see trees, pick, book. No payment gateway (take money in person), no dashboard."],
+        artifact: "\"The smallest version I can build with AI by Sunday\", plus what I will do by hand for now.",
+        prop: "hat", bubble: "Can't build it by Sunday? Too big, boss." },
+      { lens: "valuenomics", practice: "YC: make something people want",
+        headline: "Build something people *genuinely want.*",
+        lead: "Better to have 100 people who really want it than 10,000 who say \"ok, nice.\"",
+        paras: ["List the person's top 3 headaches and top 3 wishes. Your app should kill at least one headache properly, not poke at all of them weakly."],
+        artifact: "Their top 3 headaches, plus how your build solves at least one.",
+        prop: "coin", bubble: "100 who love it beats 10,000 who shrug." },
+      { lens: "valuenomics", practice: "Unit economics, why now",
+        headline: "Check the money on *just one order.*",
+        lead: "Forget lakhs and crores. One customer, one order.",
+        paras: [
+          "What do they pay you, and what does it cost <b>you</b> to deliver: the plants, the food, the auto fare, your hours? If one order does not make sense, a thousand will not. (Building the app with AI is basically free. The real cost is the actual stuff you deliver.)",
+          "Then ask: <b>why now?</b> What changed, cheap AI, everyone on a phone, that makes this possible today and not three years ago?"
+        ],
+        artifact: "Rough maths on one order (in, out, what's left), plus one line on \"why now.\"",
+        prop: "coin", bubble: "Make the maths work on <b>one</b> order first." }
+    ]
+  }
+};
 let SCREENS = [];             // flat array of all screens with metadata
 
 let currentScreenIdx = 0;
@@ -2436,6 +2544,23 @@ function buildScreenSequence() {
     if (phase === "demo_day" && prevPhase !== "demo_day") {
       SCREENS.push({ type: "phase-break", to: "demo_day" });
     }
+
+    // Concept module (HMV teaching slides), inserted before the stage's keyed session
+    Object.keys(CONCEPT_MODULES).forEach((stageKey) => {
+      const mod = CONCEPT_MODULES[stageKey];
+      if (mod && mod.before_session === session.id) {
+        mod.slides.forEach((slide, sIdx) => {
+          SCREENS.push({
+            type: "concept",
+            slide: slide,
+            stageNumber: mod.stage_number,
+            stageName: mod.stage_name,
+            conceptIndex: sIdx,
+            conceptTotal: mod.slides.length
+          });
+        });
+      }
+    });
 
     SCREENS.push({ type: "session-start", session });
     SCREENS.push({ type: "stage", session });
@@ -2582,9 +2707,23 @@ function renderCurrent() {
                     || screen.type === "day2-checkin"
                     || screen.type === "phase-break"
                     || screen.type === "portfolio-reveal" || screen.type === "closing";
-  const noChrome = isWelcomeLayer || isInterlude || screen.type === "workshop-complete" || screen.type === "break";
+  const noChrome = isWelcomeLayer || isInterlude || screen.type === "workshop-complete" || screen.type === "break" || screen.type === "concept";
   topbar.classList.toggle("hidden", noChrome);
   bottombar.classList.toggle("hidden", screen.type === "welcome");
+
+  // Concept caterpillar buddy, shown only on concept slides
+  const cat = document.getElementById("concept-cat");
+  if (cat) {
+    if (screen.type === "concept") {
+      const sl = screen.slide || {};
+      document.getElementById("concept-cat-prop").innerHTML = sl.prop ? (CONCEPT_PROPS[sl.prop] || "") : "";
+      const bub = document.getElementById("concept-cat-bubble");
+      if (sl.bubble) { bub.innerHTML = sl.bubble; bub.style.display = ""; } else { bub.style.display = "none"; }
+      cat.style.display = "block";
+    } else {
+      cat.style.display = "none";
+    }
+  }
 
   // Update topbar context
   if (screen.session) {
@@ -2604,7 +2743,7 @@ function renderCurrent() {
   // Reset/start timer for sessions
   if (screen.session && screen.type === "session-start") {
     setupTimer(screen.session);
-  } else if (isWelcomeLayer || isInterlude || screen.type === "workshop-complete") {
+  } else if (isWelcomeLayer || isInterlude || screen.type === "workshop-complete" || screen.type === "concept") {
     stopTimer();
   }
 
@@ -2617,6 +2756,7 @@ function renderCurrent() {
     case "journey-map":        html = renderJourneyMap(); break;
     case "tools-landscape":    html = renderToolsLandscape(); break;
     case "idea-cards":         html = renderIdeaCards(); break;
+    case "concept":            html = renderConcept(screen); break;
     case "day1-photo":         html = renderDay1Photo(); break;
     case "day2-checkin":       html = renderDay2Checkin(); break;
     case "phase-break":        html = renderPhaseBreak(screen); break;
@@ -2992,6 +3132,54 @@ function renderToolsLandscape() {
    Cohort Wall, Day 1 Photo, Day 2 Check-in,
    Feedback Prompt, Portfolio Reveal, Output Capture
    ============================================ */
+
+function conceptEm(s) {
+  return String(s || "").replace(/\*([^*]+)\*/g, "<em>$1</em>");
+}
+
+function renderConcept(screen) {
+  const sl = screen.slide || {};
+  if (sl.lens === "opener") {
+    return `
+      <div class="concept-slide concept-opener">
+        <div class="concept-stage-num">STAGE ${escapeHtml(screen.stageNumber || "")} &middot; ${escapeHtml((screen.stageName || "").toUpperCase())}</div>
+        <h1 class="concept-opener-title">${conceptEm(sl.headline)}</h1>
+        <div class="concept-opener-sub">${conceptEm(sl.sub)}</div>
+        <div class="concept-three">
+          <div class="concept-t"><span class="concept-td" style="background:#E8B53A"></span> <b>Humanics</b> the person</div>
+          <div class="concept-t"><span class="concept-td" style="background:#C17D2A"></span> <b>Mechanics</b> the build</div>
+          <div class="concept-t"><span class="concept-td" style="background:#6FBF8B"></span> <b>Valuenomics</b> the money</div>
+        </div>
+      </div>`;
+  }
+  const lensMap = {
+    humanics:    { name: "Humanics, the person", cls: "lens-h" },
+    mechanics:   { name: "Mechanics, the build", cls: "lens-m" },
+    valuenomics: { name: "Valuenomics, the money", cls: "lens-v" }
+  };
+  const L = lensMap[sl.lens] || lensMap.humanics;
+  let body = "";
+  if (sl.lead) body += `<p class="concept-lead">${conceptEm(sl.lead)}</p>`;
+  if (sl.bad || sl.good) {
+    body += `<div class="concept-ba">`;
+    if (sl.bad)  body += `<div class="concept-ba-card concept-bad"><div class="concept-ba-label">Don't ask</div><p>${sl.bad}</p></div>`;
+    if (sl.good) body += `<div class="concept-ba-card concept-good"><div class="concept-ba-label">Ask</div><p>${sl.good}</p></div>`;
+    body += `</div>`;
+  }
+  if (sl.example) body += `<div class="concept-example"><p>${sl.example}</p></div>`;
+  (sl.paras || []).forEach((p) => { body += `<p>${conceptEm(p)}</p>`; });
+  return `
+    <div class="concept-slide ${L.cls}">
+      <div class="concept-lens-tag">
+        <span class="concept-lens-dot"></span>
+        <span class="concept-lens-name">${escapeHtml(L.name)}</span>
+        ${sl.practice ? `<span class="concept-practice">[ ${escapeHtml(sl.practice)} ]</span>` : ""}
+      </div>
+      <h1 class="concept-headline">${conceptEm(sl.headline)}</h1>
+      <div class="concept-body">${body}</div>
+      ${sl.artifact ? `<div class="concept-artifact"><span class="concept-a-label">You walk out with</span><span class="concept-a-text">${sl.artifact}</span></div>` : ""}
+    </div>`;
+}
 
 function renderIdeaCards() {
   const all = IDEAS || [];

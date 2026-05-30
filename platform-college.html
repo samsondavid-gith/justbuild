@@ -3371,87 +3371,65 @@ function renderToolsLandscape() {
   const categories = [
     {
       name: "Chat & Reasoning",
-      use: "Thinking partner. Drafting. Analysis. System prompts.",
+      use: "Your thinking partner. Drafting, analysis, and the prompts that build everything else.",
       tools: [
         { name: "Claude", pick: true },
         { name: "ChatGPT", pick: true },
         { name: "Gemini", pick: true },
-        { name: "Grok", pick: true },
-        { name: "DeepSeek", pick: false },
-        { name: "Mistral", pick: false },
-        { name: "Llama", pick: false },
-        { name: "Qwen", pick: false },
-        { name: "Copilot", pick: false },
-        { name: "Pi", pick: false },
+        { name: "Mistral", pick: true },
       ],
     },
     {
       name: "Search & Research",
-      use: "Finding real evidence. Validating that problems exist.",
+      use: "Finding real proof that a problem exists before you build for it.",
       tools: [
         { name: "Perplexity", pick: true },
-        { name: "You.com", pick: false },
-        { name: "Phind", pick: false },
-        { name: "Exa", pick: false },
-        { name: "Consensus", pick: false },
-        { name: "Elicit", pick: false },
       ],
     },
     {
-      name: "Sites & Pages",
-      use: "Publishing a real URL without writing code.",
+      name: "Build & Deploy",
+      use: "Writing your code and putting it live on the internet for free.",
       tools: [
-        { name: "Carrd", pick: true },
-        { name: "Webflow", pick: false },
-        { name: "Framer", pick: false },
-        { name: "Bolt", pick: false },
-        { name: "Lovable", pick: false },
-        { name: "v0", pick: false },
-        { name: "Replit", pick: false },
-        { name: "Wix", pick: false },
-        { name: "Squarespace", pick: false },
+        { name: "VS Code", pick: true },
+        { name: "GitHub", pick: true },
+        { name: "Netlify", pick: true },
       ],
     },
     {
-      name: "Conversation",
-      use: "Building chatbots that handle questions while you sleep.",
+      name: "Email & Database",
+      use: "Taking orders, saving them, and emailing you and your customer.",
       tools: [
-        { name: "Voiceflow", pick: true },
-        { name: "Botpress", pick: false },
-        { name: "Landbot", pick: false },
-        { name: "Chatbase", pick: false },
-        { name: "Tidio", pick: false },
-        { name: "Intercom Fin", pick: false },
-        { name: "Drift", pick: false },
+        { name: "EmailJS", pick: true },
+        { name: "Supabase", pick: true },
       ],
     },
     {
       name: "Audio & Video",
-      use: "Giving your product a voice and showing it in action.",
+      use: "Giving your venture a voice and showing the founder behind it.",
       tools: [
         { name: "ElevenLabs", pick: true },
         { name: "Loom", pick: true },
-        { name: "Suno", pick: false },
-        { name: "Runway", pick: false },
-        { name: "HeyGen", pick: false },
-        { name: "Descript", pick: false },
-        { name: "Synthesia", pick: false },
-        { name: "PlayHT", pick: false },
-        { name: "Pika", pick: false },
-        { name: "Veo", pick: false },
       ],
     },
     {
-      name: "Automation",
-      use: "Wiring things together. Agents that run without you.",
+      name: "Design",
+      use: "Making a clean one-page brochure people can keep.",
+      tools: [
+        { name: "Canva", pick: true },
+      ],
+    },
+    {
+      name: "Automation & Agents",
+      use: "Work that runs on its own after an order comes in.",
       tools: [
         { name: "Make.com", pick: true },
-        { name: "Zapier", pick: false },
-        { name: "n8n", pick: false },
-        { name: "Activepieces", pick: false },
-        { name: "Pipedream", pick: false },
-        { name: "Lindy", pick: false },
-        { name: "Relay", pick: false },
+      ],
+    },
+    {
+      name: "Presentation",
+      use: "Turning your story into an investor-ready deck.",
+      tools: [
+        { name: "Gamma", pick: true },
       ],
     },
   ];
@@ -3470,15 +3448,15 @@ function renderToolsLandscape() {
   `).join("");
   return `
     <div class="wl-screen">
-      <div class="wl-eyebrow">The AI landscape</div>
+      <div class="wl-eyebrow">The builder's landscape</div>
       <h1 class="wl-title">Pick the tool. Get the job done.</h1>
-      <p class="wl-sub">The map keeps changing. The shape of the work does not. Six categories cover almost everything a builder needs. We picked one or two in each for the workshop, marked with a star. Take the map. The choices are yours after.</p>
+      <p class="wl-sub">These are the tools you will use across the six weeks, grouped by the job each one does. Every one is free to start, no card needed. The world has more options in every box, but the job is what matters. Learn the job, and you can swap the tool later.</p>
 
       <div class="cat-grid">
         ${cards}
       </div>
 
-      <p class="wl-footer">Stars are what you use this weekend. The rest is the wider field. Both matter.</p>
+      <p class="wl-footer">Eight jobs. Each star is a tool you use in the workshop. Learn the work first, the logo second.</p>
     </div>
   `;
 }
@@ -3605,21 +3583,26 @@ function renderHousekeeping() {
         </div>
 
         <div class="hk-card">
-          <div class="hk-label">Accounts you need today (all free)</div>
+          <div class="hk-label">Free accounts you will need</div>
           <div class="hk-tools">
             <span class="hk-tool">Claude</span>
             <span class="hk-tool">ChatGPT</span>
             <span class="hk-tool">Gemini</span>
-            <span class="hk-tool">Grok</span>
+            <span class="hk-tool">Mistral</span>
+            <span class="hk-tool">Perplexity</span>
+            <span class="hk-tool">VS Code</span>
+            <span class="hk-tool">GitHub</span>
             <span class="hk-tool">Netlify</span>
-            <span class="hk-tool">Carrd</span>
-            <span class="hk-tool">Voiceflow</span>
+            <span class="hk-tool">EmailJS</span>
+            <span class="hk-tool">Supabase</span>
             <span class="hk-tool">ElevenLabs</span>
             <span class="hk-tool">Loom</span>
-            <span class="hk-tool">LinkedIn</span>
+            <span class="hk-tool">Canva</span>
             <span class="hk-tool">Make.com</span>
+            <span class="hk-tool">Gamma</span>
+            <span class="hk-tool">LinkedIn</span>
           </div>
-          <p class="hk-note">If you do not have any of these, sign up now. Your facilitator will pause for two minutes.</p>
+          <p class="hk-note">Sign up for the ones you do not have yet. Your facilitator will pause for two minutes. Mistral, Make.com, and Gamma get set up later, in their own sessions, so you do not need those today.</p>
         </div>
 
         <div class="hk-card">
@@ -3634,7 +3617,7 @@ function renderHousekeeping() {
         </div>
       </div>
 
-      <p class="wl-footer">Two links open. Eleven accounts ready. Hand up if stuck. Now we build.</p>
+      <p class="wl-footer">Two links open. Accounts ready. Hand up if stuck. Now we build.</p>
     </div>
   `;
 }

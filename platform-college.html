@@ -1532,100 +1532,81 @@
     letter-spacing: 0.02em;
   }
 
-  /* ----- Journey Wave (new five-stage visualization) ----- */
-  .journey-wave-screen {
-    max-width: 1280px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  .journey-wave-title {
-    font-size: clamp(28px, 4vw, 48px) !important;
-    line-height: 1.05 !important;
-    margin-bottom: 8px !important;
-  }
-  .journey-wave-title em {
-    font-style: italic;
-    color: var(--text);
-    font-weight: 300;
-  }
-  .journey-wave-sub {
-    margin-bottom: 12px !important;
-    font-style: italic;
-    color: var(--text-soft);
-    font-size: clamp(14px, 1.3vw, 17px) !important;
-  }
-  .journey-wave-wrap {
+
+  /* ----- Journey Cover (light full-bleed metamorphosis slide) ----- */
+  .journey-cover {
+    flex: 1 1 auto;
     width: 100%;
-    margin: 4px auto 12px;
-    padding: 4px 4px 8px;
-    background: var(--bg-elev-1);
-    border: 1px solid var(--line);
-    border-radius: 8px;
+    box-sizing: border-box;
+    margin: -32px -60px -64px;  /* cancel the .stage padding for a true full bleed */
+    padding: clamp(28px, 5vh, 56px) clamp(24px, 6vw, 96px) clamp(22px, 4vh, 44px);
+    background: linear-gradient(180deg, #FBF4EA 0%, #F6E9D6 50%, #EFDBC0 100%);
+    color: #2A2018;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
   }
-  .journey-wave-svg {
+  .journey-cover-eyebrow {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #C2691B;
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .journey-cover-title {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(34px, 6vw, 76px);
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    color: #241B12;
+    margin: 0 0 14px;
+  }
+  .journey-cover-sub {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(15px, 1.9vw, 22px);
+    color: #5A4A3A;
+    margin: 0 0 6px;
+  }
+  .journey-cover-art {
     display: block;
     width: 100%;
     max-width: 1180px;
-    max-height: 60vh;  /* prevent the wave from eating the whole screen */
-    margin: 0 auto;
-    height: auto;
+    max-height: 56vh;
+    object-fit: contain;
+    margin: 8px auto 6px;
   }
-  /* SVG text classes — applied via class attribute on <text> */
-  .journey-label-main {
+  .journey-cover-fallback {
+    width: 100%;
+    max-width: 760px;
+    min-height: 200px;
+    margin: 18px auto;
+    border: 2px dashed #C9A87C;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    color: #8A6A45;
+    font-family: var(--mono);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .journey-cover-footer {
     font-family: var(--serif);
-    font-size: 28px;
-    font-weight: 500;
-    fill: var(--text);
-    letter-spacing: -0.01em;
-  }
-  .journey-label-sub {
-    font-family: var(--sans);
-    font-size: 15px;
-    fill: var(--text-soft);
-    letter-spacing: 0.005em;
-  }
-  .journey-bookend-label {
-    font-family: var(--serif);
-    font-size: 22px;
-    font-weight: 500;
-    fill: var(--text);
-    letter-spacing: -0.005em;
-  }
-  /* Subtle pulse on nodes — purely cosmetic */
-  .journey-node {
-    transform-origin: center;
-    animation: nodePulse 3.6s ease-in-out infinite;
-  }
-  .journey-node:nth-child(2) { animation-delay: 0s; }
-  .journey-node:nth-child(4) { animation-delay: 0.7s; }
-  .journey-node:nth-child(6) { animation-delay: 1.4s; }
-  .journey-node:nth-child(8) { animation-delay: 2.1s; }
-  .journey-node:nth-child(10) { animation-delay: 2.8s; }
-  @keyframes nodePulse {
-    0%, 100% { opacity: 0.95; }
-    50% { opacity: 1; }
-  }
-  .journey-wave-rule {
-    width: 80px;
-    height: 1px;
-    background: var(--accent);
-    border: none;
-    margin: 4px auto 10px;
-  }
-  .journey-wave-footer {
-    font-family: var(--serif);
-    font-size: clamp(13px, 1.2vw, 16px);
-    color: var(--text-soft);
     font-style: italic;
-    max-width: 900px;
-    margin: 0 auto;
+    font-size: clamp(14px, 1.5vw, 19px);
+    color: #4A3B2C;
+    max-width: 980px;
+    margin: 8px auto 0;
     line-height: 1.45;
-  }
-
-  @media (max-width: 880px) {
-    .journey-label-main { font-size: 22px; }
-    .journey-label-sub { font-size: 13px; }
-    .journey-bookend-label { font-size: 18px; }
   }
 
   /* ----- Tools Landscape ----- */
@@ -3262,106 +3243,27 @@ function renderTwoDoors() {
 }
 
 function renderJourneyMap() {
-  // Five stages of the founder journey. Wave alternates peak (above) and trough (below).
-  // Positioned to fit a 1200x520 viewBox.
-  // Peaks: Ideate, Launch, Automate.  Troughs: Build, Brand.
-  // Caterpillar sits at x≈90 (Day one), butterfly at x≈1110 (Ready to show).
-
+  // Light full-bleed cover slide. The metamorphosis artwork is a hosted raster at
+  // journey-college.png (the scene plus the per stage labels, no title or tagline).
+  // Title, subtitle and tagline render here in HTML so the copy stays crisp and correct.
+  // College scale stays six weeks, eight builds (image draft used school numbers).
   return `
-    <div class="wl-screen journey-wave-screen">
-      <div class="wl-eyebrow">JUST BUILD with AI</div>
-      <h1 class="wl-title journey-wave-title"><em>Learning AI by founding a micro-venture</em></h1>
-      <p class="wl-sub journey-wave-sub"><em>Six weeks of metamorphosis. A working AI portfolio with eight builds.</em></p>
+    <div class="journey-cover">
+      <div class="journey-cover-eyebrow">JUST BUILD with AI</div>
+      <h1 class="journey-cover-title">Learning AI by Building</h1>
+      <p class="journey-cover-sub">Six weeks of metamorphosis. A working AI portfolio with eight builds.</p>
 
-      <div class="journey-wave-wrap">
-        <svg class="journey-wave-svg" viewBox="0 0 1200 540" xmlns="http://www.w3.org/2000/svg" aria-label="Five-stage journey from caterpillar to butterfly">
-
-          <!-- Wave path: a sine curve through five stations -->
-          <defs>
-            <radialGradient id="nodeGlow" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="rgba(193,125,42,0.55)"/>
-              <stop offset="60%" stop-color="rgba(193,125,42,0.18)"/>
-              <stop offset="100%" stop-color="rgba(193,125,42,0)"/>
-            </radialGradient>
-          </defs>
-
-          <!-- Connecting wave line: starts faint at caterpillar, brighter through wave, fades into butterfly -->
-          <path d="M 130 280
-                   C 200 280, 240 200, 290 200
-                   C 340 200, 370 200, 400 200
-                   C 460 200, 480 380, 540 380
-                   C 600 380, 620 200, 680 200
-                   C 740 200, 760 200, 780 200
-                   C 840 200, 860 380, 920 380
-                   C 980 380, 1000 200, 1060 200
-                   C 1090 200, 1110 240, 1130 280"
-                fill="none"
-                stroke="rgba(193,125,42,0.85)"
-                stroke-width="3"
-                stroke-linecap="round"/>
-
-          <!-- Node 1: Ideate (peak) -->
-          <g class="journey-node">
-            <circle cx="345" cy="200" r="40" fill="url(#nodeGlow)"/>
-            <circle cx="345" cy="200" r="22" fill="#FFFFFF" stroke="rgba(193,125,42,0.5)" stroke-width="1"/>
-            <circle cx="345" cy="200" r="8" fill="#C17D2A"/>
-          </g>
-          <text x="345" y="105" text-anchor="middle" class="journey-label-main">Ideate</text>
-          <text x="345" y="135" text-anchor="middle" class="journey-label-sub">Find a real problem</text>
-
-          <!-- Node 2: Build (trough) -->
-          <g class="journey-node">
-            <circle cx="540" cy="380" r="40" fill="url(#nodeGlow)"/>
-            <circle cx="540" cy="380" r="22" fill="#FFFFFF" stroke="rgba(193,125,42,0.5)" stroke-width="1"/>
-            <circle cx="540" cy="380" r="8" fill="#C17D2A"/>
-          </g>
-          <text x="540" y="455" text-anchor="middle" class="journey-label-main">Build</text>
-          <text x="540" y="485" text-anchor="middle" class="journey-label-sub">AI app at the core</text>
-
-          <!-- Node 3: Launch (peak) -->
-          <g class="journey-node">
-            <circle cx="730" cy="200" r="40" fill="url(#nodeGlow)"/>
-            <circle cx="730" cy="200" r="22" fill="#FFFFFF" stroke="rgba(193,125,42,0.5)" stroke-width="1"/>
-            <circle cx="730" cy="200" r="8" fill="#C17D2A"/>
-          </g>
-          <text x="730" y="105" text-anchor="middle" class="journey-label-main">Launch</text>
-          <text x="730" y="135" text-anchor="middle" class="journey-label-sub">Website and chatbot</text>
-
-          <!-- Node 4: Brand (trough) -->
-          <g class="journey-node">
-            <circle cx="920" cy="380" r="40" fill="url(#nodeGlow)"/>
-            <circle cx="920" cy="380" r="22" fill="#FFFFFF" stroke="rgba(193,125,42,0.5)" stroke-width="1"/>
-            <circle cx="920" cy="380" r="8" fill="#C17D2A"/>
-          </g>
-          <text x="920" y="455" text-anchor="middle" class="journey-label-main">Brand</text>
-          <text x="920" y="485" text-anchor="middle" class="journey-label-sub">Audio · video · brochure</text>
-
-          <!-- Node 5: Automate (peak) -->
-          <g class="journey-node">
-            <circle cx="1075" cy="200" r="40" fill="url(#nodeGlow)"/>
-            <circle cx="1075" cy="200" r="22" fill="#FFFFFF" stroke="rgba(193,125,42,0.5)" stroke-width="1"/>
-            <circle cx="1075" cy="200" r="8" fill="#C17D2A"/>
-          </g>
-          <text x="1075" y="105" text-anchor="middle" class="journey-label-main">Automate</text>
-          <text x="1075" y="135" text-anchor="middle" class="journey-label-sub">AI agent runs ops</text>
-
-          <!-- Caterpillar (left): your real artwork at caterpillar.png -->
-          <image href="caterpillar.png" x="20" y="240" width="160" height="120"
-                 preserveAspectRatio="xMidYMid meet"
-                 onerror="this.style.display='none'"/>
-          <text x="100" y="395" text-anchor="middle" class="journey-bookend-label">Day one</text>
-
-          <!-- Butterfly (right): your real artwork at butterfly.png -->
-          <image href="butterfly.png" x="1080" y="200" width="170" height="170"
-                 preserveAspectRatio="xMidYMid meet"
-                 onerror="this.style.display='none'"/>
-          <text x="1165" y="395" text-anchor="middle" class="journey-bookend-label">Ready to show</text>
-
-        </svg>
+      <img class="journey-cover-art" src="journey-college.png"
+           alt="From day one to ready to show: ideate, build, launch, brand, automate."
+           onerror="this.style.display='none'; var f=document.getElementById('journey-art-fallback'); if (f) { f.style.display='flex'; }"/>
+      <div class="journey-cover-fallback" id="journey-art-fallback" style="display:none;">
+        <div>
+          Add your metamorphosis artwork as <b>journey-college.png</b> in the repo root.<br/>
+          Export the scene and the stage labels only. Leave out the title and tagline, they are on the slide already.
+        </div>
       </div>
 
-      <hr class="journey-wave-rule">
-      <p class="journey-wave-footer">The student does not learn AI and then apply it. You build a real micro-venture, and the AI capability emerges from doing so.</p>
+      <p class="journey-cover-footer">The student does not learn AI and then apply it. You build a real micro-venture, and the AI capability emerges from doing so.</p>
     </div>
   `;
 }

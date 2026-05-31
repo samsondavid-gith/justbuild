@@ -1533,46 +1533,41 @@
   }
 
 
-  /* ----- Journey Cover (light full-bleed metamorphosis slide) ----- */
+  /* ----- Journey Cover (dark metamorphosis slide, matches the deck) ----- */
   .journey-cover {
-    flex: 1 1 auto;
-    width: 100%;
-    box-sizing: border-box;
-    margin: -32px -60px -64px;  /* cancel the .stage padding for a true full bleed */
-    padding: clamp(28px, 5vh, 56px) clamp(24px, 6vw, 96px) clamp(22px, 4vh, 44px);
-    background: linear-gradient(180deg, #FBF4EA 0%, #F6E9D6 50%, #EFDBC0 100%);
-    color: #2A2018;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px 8px;
+    text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    text-align: center;
-    overflow: hidden;
   }
   .journey-cover-eyebrow {
     font-family: var(--mono);
     font-size: 12px;
     letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: #C2691B;
+    color: var(--accent);
     font-weight: 600;
     margin-bottom: 14px;
   }
   .journey-cover-title {
     font-family: var(--serif);
     font-style: italic;
-    font-weight: 500;
+    font-weight: 300;
     font-size: clamp(34px, 6vw, 76px);
     line-height: 1.0;
     letter-spacing: -0.02em;
-    color: #241B12;
+    color: var(--text);
     margin: 0 0 14px;
   }
   .journey-cover-sub {
     font-family: var(--serif);
     font-style: italic;
     font-size: clamp(15px, 1.9vw, 22px);
-    color: #5A4A3A;
+    color: var(--text-soft);
     margin: 0 0 6px;
   }
   .journey-cover-art {
@@ -1588,13 +1583,13 @@
     max-width: 760px;
     min-height: 200px;
     margin: 18px auto;
-    border: 2px dashed #C9A87C;
+    border: 2px dashed var(--line-strong);
     border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 24px;
-    color: #8A6A45;
+    color: var(--text-muted);
     font-family: var(--mono);
     font-size: 14px;
     line-height: 1.7;
@@ -1603,7 +1598,7 @@
     font-family: var(--serif);
     font-style: italic;
     font-size: clamp(14px, 1.5vw, 19px);
-    color: #4A3B2C;
+    color: var(--text-soft);
     max-width: 980px;
     margin: 8px auto 0;
     line-height: 1.45;

@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crumbs · Neighbourhood Bakery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6EDD9;--paper-2:#FCF6E8;--card:#FFFBF0;--ink:#3A2A18;--ink-soft:#8A7250;
+    --crust:#A85D24;--crust-2:#D98B3A;--butter:#E3AE33;--jam:#9C3A2C;--green:#5C7A3C;--line:#E8D6B4;
+    --shadow:0 1px 0 #fff inset, 0 16px 38px -28px rgba(58,42,24,.55);--r:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Hanken Grotesk",sans-serif;color:var(--ink);background:var(--paper);line-height:1.55;-webkit-font-smoothing:antialiased;
+    background-image:radial-gradient(circle at 10% 4%,rgba(217,139,58,.16),transparent 42%),radial-gradient(circle at 90% 0,rgba(227,174,51,.16),transparent 40%);}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.045'/%3E%3C/svg%3E");}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 22px;position:relative;z-index:1}
+  h1,h2,h3,h4,.disp{font-family:"Fraunces",serif;font-weight:600;letter-spacing:-.01em;line-height:1.07}
+  .price{font-family:"Fraunces",serif;font-weight:600}
+  .cover{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+
+  header{background:rgba(246,237,217,.92);border-bottom:1px solid var(--line);backdrop-filter:blur(8px)}
+  .bar{display:flex;align-items:center;justify-content:space-between;height:66px;gap:16px}
+  .brand{display:flex;align-items:center;gap:11px}
+  .brand svg{width:34px;height:34px}
+  .brand .nm{font-family:"Fraunces",serif;font-weight:700;font-size:26px;color:var(--crust);letter-spacing:.01em;line-height:1}
+  .brand .tg{font-size:10.5px;color:var(--ink-soft);letter-spacing:.2em;text-transform:uppercase;margin-top:2px}
+  .openchip{font-size:12.5px;color:var(--green);font-weight:700;display:flex;align-items:center;gap:7px}
+  .openchip i{width:8px;height:8px;border-radius:50%;background:var(--green);display:inline-block;box-shadow:0 0 0 3px rgba(92,122,60,.2)}
+
+  .stages{position:sticky;top:0;z-index:30;background:rgba(246,237,217,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .stagebar{display:flex;gap:5px;padding:14px 0;overflow-x:auto}
+  .stage-tab{flex:1;min-width:142px;display:flex;align-items:center;gap:11px;padding:11px 14px;border-radius:13px;border:1.5px solid transparent;background:transparent;cursor:pointer;font:inherit;text-align:left;transition:.22s;position:relative}
+  .stage-tab .n{width:28px;height:28px;flex:none;border-radius:50%;display:grid;place-items:center;font-family:"Fraunces",serif;font-weight:700;font-size:14px;background:#ecdcb8;color:var(--ink-soft);transition:.22s}
+  .stage-tab .lbl{font-weight:700;font-size:14.5px;line-height:1.1}
+  .stage-tab .sub{font-size:11px;color:var(--ink-soft);font-weight:500}
+  .stage-tab.active{background:var(--card);border-color:var(--butter);box-shadow:var(--shadow)}
+  .stage-tab.active .n{background:var(--butter);color:#fff}
+  .stage-tab.done .n{background:var(--crust);color:#fff}
+  .stage-tab.done .lbl,.stage-tab.active .lbl{color:var(--ink)}
+  .stage-tab.locked{opacity:.42;cursor:not-allowed}
+  .stage-tab:not(.locked):not(.active):hover{background:rgba(168,93,36,.08)}
+  .stage-tab .arrow{position:absolute;right:-9px;color:var(--line);font-size:17px}
+  .stage-tab:last-child .arrow{display:none}
+
+  .view{display:none;padding:30px 0 80px;animation:fade .4s ease}
+  .view.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .lead{margin-bottom:22px}
+  .lead h1{font-size:clamp(30px,4.5vw,42px)}
+  .lead p{color:var(--ink-soft);margin-top:6px;max-width:62ch}
+  .eyebrow{display:inline-block;font-weight:700;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--crust);margin-bottom:8px}
+
+  .cta-cake{display:flex;align-items:center;gap:18px;background:linear-gradient(120deg,#fff5e1,#f6e3bd);border:1.5px solid var(--line);border-radius:var(--r);padding:18px 22px;margin-bottom:22px;cursor:pointer;transition:.2s;box-shadow:var(--shadow)}
+  .cta-cake:hover{border-color:var(--crust);transform:translateY(-2px)}
+  .cta-cake .ic{font-size:30px;flex:none}
+  .cta-cake h3{font-size:20px}
+  .cta-cake p{font-size:13px;color:var(--ink-soft);margin-top:2px}
+  .cta-cake .go{margin-left:auto;font-weight:700;color:var(--jam);white-space:nowrap}
+
+  .toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:4px 0 22px}
+  .chips{display:flex;gap:8px;flex-wrap:wrap}
+  .chip{font:inherit;font-weight:600;font-size:13.5px;border:1px solid var(--line);background:var(--card);color:var(--ink-soft);padding:8px 15px;border-radius:99px;cursor:pointer;transition:.2s}
+  .chip:hover{border-color:var(--crust)}
+  .chip.on{background:var(--crust);color:#fdf3e2;border-color:var(--crust)}
+  .chip.egg{margin-left:6px}
+  .chip.egg.on{background:var(--green);border-color:var(--green)}
+  .toolbar .count{margin-left:auto;color:var(--ink-soft);font-size:14px}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));gap:20px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;cursor:pointer;transition:.25s;box-shadow:var(--shadow);display:flex;flex-direction:column}
+  .card:hover{transform:translateY(-4px);border-color:var(--crust)}
+  .card.soldout{opacity:.62;cursor:default}
+  .card.soldout:hover{transform:none;border-color:var(--line)}
+  .canopy{height:172px;position:relative;display:grid;place-items:center;overflow:hidden}
+  .canopy svg{width:76px;height:76px}
+  .badge{position:absolute;top:11px;left:11px;z-index:2;font-size:11px;font-weight:700;letter-spacing:.02em;padding:5px 10px;border-radius:99px;background:rgba(255,251,240,.95)}
+  .st-just{color:var(--green)}.st-few{color:#B5731C}.st-by{color:var(--ink-soft)}.st-sold{color:var(--jam)}
+  .card-body{padding:14px 16px 16px;display:flex;flex-direction:column;flex:1}
+  .card-body h3{font-size:18px}
+  .desc{font-size:12.5px;color:var(--ink-soft);margin-top:3px;flex:1}
+  .price-row{display:flex;align-items:baseline;justify-content:space-between;margin-top:12px;padding-top:11px;border-top:1px dashed var(--line)}
+  .price-row .price{font-size:19px;color:var(--crust)}
+  .price-row small{font-family:"Hanken Grotesk";font-size:12px;color:var(--ink-soft);font-weight:500}
+  .nextbatch{font-size:11.5px;color:var(--jam);font-weight:600;margin-top:8px}
+
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start}
+  .gallery{border-radius:22px;height:360px;display:grid;place-items:center;position:relative;overflow:hidden;box-shadow:var(--shadow)}
+  .gallery svg{width:150px;height:150px}
+  .gallery .tag{position:absolute;bottom:15px;left:15px;z-index:2;background:rgba(255,251,240,.95);padding:7px 13px;border-radius:99px;font-size:12.5px;font-weight:700;color:var(--crust)}
+  .split h1{font-size:32px}
+  .story{font-size:14.5px;color:#5b4a33;font-style:italic;border-left:3px solid var(--butter);padding-left:15px;margin:6px 0 20px}
+  .sectlabel{font-weight:600;margin-bottom:9px;font-size:14px;margin-top:4px}
+  .seg{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+  .seg button{flex:1;min-width:74px;font:inherit;font-weight:600;font-size:13.5px;padding:11px 8px;border:1.5px solid var(--line);border-radius:11px;background:var(--card);color:var(--ink-soft);cursor:pointer;transition:.2s}
+  .seg button.on{border-color:var(--crust);background:#f7e9d3;color:var(--ink);box-shadow:0 0 0 3px rgba(168,93,36,.12)}
+  .seg button small{display:block;font-weight:500;font-size:11px;color:var(--ink-soft);margin-top:2px}
+  .stepper{display:flex;align-items:center;gap:16px;margin:6px 0 18px}
+  .stepper button{width:42px;height:42px;border-radius:12px;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:22px;font-weight:600;color:var(--crust);cursor:pointer}
+  .stepper .q{font-family:"Fraunces",serif;font-size:24px;min-width:34px;text-align:center}
+  .breakup{background:var(--paper-2);border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin:6px 0 18px}
+  .breakup h4{font-size:15px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}
+  .breakup .livedot{font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--crust);background:#f3e6cc;border-radius:99px;padding:3px 9px;font-family:"Hanken Grotesk"}
+  .brow{display:flex;justify-content:space-between;font-size:14px;margin:8px 0;color:var(--ink-soft)}
+  .brow b{color:var(--ink);font-weight:600}
+  .brow .sm{font-size:11.5px;color:var(--ink-soft)}
+  .btot{display:flex;justify-content:space-between;align-items:baseline;margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+  .btot .price{font-size:26px;color:var(--crust)}
+  .field input,.field textarea{width:100%;font:inherit;font-size:14.5px;padding:11px 14px;border:1.5px solid var(--line);border-radius:11px;background:var(--paper-2);color:var(--ink);margin-bottom:14px}
+  .field input:focus,.field textarea:focus{outline:none;border-color:var(--crust);background:#fff}
+  .check{display:flex;align-items:center;gap:10px;font-size:14px;cursor:pointer;margin:4px 0 14px}
+  .check input{width:18px;height:18px;accent-color:var(--crust)}
+
+  .btn{font:inherit;font-weight:700;font-size:15px;border:none;cursor:pointer;border-radius:99px;padding:14px 24px;transition:.2s}
+  .btn-primary{background:var(--jam);color:#fdeede;width:100%}
+  .btn-primary:hover{background:#86301f}
+  .btn-ghost{background:none;border:1.5px solid var(--crust);color:var(--crust)}
+  .btn-ghost:hover{background:var(--crust);color:#fdf3e2}
+  .back{background:none;border:none;font:inherit;font-weight:600;color:var(--crust);cursor:pointer;margin-bottom:18px;font-size:14px}
+
+  .checkout{display:grid;grid-template-columns:1.05fr .95fr;gap:34px;align-items:start}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px;box-shadow:var(--shadow)}
+  .panel h2{font-size:22px;margin-bottom:16px}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .field label{display:block;font-size:13px;font-weight:600;color:var(--ink-soft);margin-bottom:6px}
+  .pay-opt{display:flex;align-items:center;gap:11px;border:1.5px solid var(--line);border-radius:12px;padding:13px 15px;margin-bottom:10px;cursor:pointer;font-size:14px;transition:.2s}
+  .pay-opt:hover{border-color:var(--crust)}.pay-opt.on{border-color:var(--crust);background:#f7e9d3}
+  .pay-opt .r{width:18px;height:18px;border-radius:50%;border:2px solid var(--line);flex:none}
+  .pay-opt.on .r{border-color:var(--crust);background:var(--crust);box-shadow:0 0 0 3px #fff inset}
+  .pay-opt .sm{margin-left:auto;color:var(--ink-soft);font-size:12.5px}
+  .thumb{width:58px;height:58px;border-radius:12px;position:relative;overflow:hidden;display:grid;place-items:center}
+  .thumb svg{width:34px;height:34px}
+  .note{font-size:12px;color:var(--ink-soft);background:var(--paper-2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-top:12px}
+
+  .banner{display:flex;align-items:center;gap:12px;background:#eef3e6;border:1px solid #d3e0c2;border-radius:14px;padding:14px 18px;margin-bottom:22px;color:var(--green);font-weight:600}
+  .subtabs{display:flex;gap:7px;flex-wrap:wrap;margin:4px 0 22px}
+  .subtab{font:inherit;font-weight:600;font-size:12.5px;border:1px solid var(--line);background:var(--card);color:var(--ink-soft);padding:7px 13px;border-radius:99px;cursor:pointer;transition:.2s}
+  .subtab:hover{border-color:var(--crust)}.subtab.on{background:var(--crust);color:#fdf3e2;border-color:var(--crust)}
+  .subtab .ct{opacity:.7;font-weight:700;margin-left:4px}
+  .empty{text-align:center;padding:54px 20px;color:var(--ink-soft)}
+  .order{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;margin-bottom:18px;box-shadow:var(--shadow);display:grid;grid-template-columns:64px 1fr;gap:18px}
+  .order .av{height:64px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(140deg,#f0d9a8,#d98b3a)}
+  .order .av svg{width:38px;height:38px}
+  .order h3{font-size:19px}.order .sub{font-size:13px;color:var(--ink-soft);margin-top:2px}
+  .timeline{display:flex;margin:18px 0 6px}
+  .timeline .st{flex:1;text-align:center;position:relative;font-size:10.5px;color:var(--ink-soft)}
+  .timeline .st::before{content:"";position:absolute;top:8px;left:-50%;width:100%;height:2px;background:var(--line);z-index:0}
+  .timeline .st:first-child::before{display:none}
+  .timeline .dot{width:18px;height:18px;border-radius:50%;background:var(--paper);border:2px solid var(--line);margin:0 auto 7px;z-index:1;position:relative}
+  .timeline .st.done .dot{background:var(--crust);border-color:var(--crust)}
+  .timeline .st.done::before{background:var(--crust)}
+  .timeline .st.now .dot{background:var(--butter);border-color:var(--butter);box-shadow:0 0 0 5px rgba(227,174,51,.25)}
+  .timeline .st.done,.timeline .st.now{color:var(--ink);font-weight:600}
+  .ship{display:flex;align-items:center;gap:10px;background:var(--paper-2);border:1px solid var(--line);border-radius:12px;padding:11px 14px;font-size:13.5px;margin-top:14px;color:var(--ink-soft)}
+  .ship b{color:var(--ink)}.ship .btn{margin-left:auto;padding:8px 16px;font-size:13px}
+  .standing{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin-bottom:12px;box-shadow:var(--shadow)}
+  .standing .ic{font-size:24px}.standing b{font-family:"Fraunces",serif}
+  .standing .x{margin-left:auto;background:none;border:none;color:var(--jam);font:inherit;font-weight:600;cursor:pointer;font-size:13px}
+  .care-msg{font-size:13px;color:var(--green);font-weight:600;margin-top:10px}
+
+  footer{border-top:1px solid var(--line);padding:28px 0;text-align:center;color:var(--ink-soft);font-size:13px;position:relative;z-index:1}
+  @media(max-width:820px){.split,.checkout{grid-template-columns:1fr}.stage-tab{min-width:140px}}
+</style>
+</head>
+<body>
+
+<header><div class="wrap bar">
+  <div class="brand">
+    <svg viewBox="0 0 36 36" fill="none"><path d="M6 22c0-7 5.4-12 12-12s12 5 12 12v2H6v-2z" fill="#E3AE33" stroke="#A85D24" stroke-width="1.6" stroke-linejoin="round"/><path d="M6 24h24v3.2c0 1-.8 1.8-1.8 1.8H7.8C6.8 29 6 28.2 6 27.2V24z" fill="#D98B3A" stroke="#A85D24" stroke-width="1.6"/><path d="M13 16l-1.4 6M18 14.5v7.5M23 16l1.4 6" stroke="#A85D24" stroke-width="1.4" stroke-linecap="round"/></svg>
+    <div><div class="nm">Crumbs</div><div class="tg">Neighbourhood Bakery</div></div>
+  </div>
+  <div class="openchip"><i></i> Open · fresh till 8pm</div>
+</div></header>
+
+<div class="stages"><div class="wrap"><div class="stagebar" id="stagebar"></div></div></div>
+
+<section id="today" class="view active"><div class="wrap">
+  <div class="lead"><span class="eyebrow">Stage 1 · Today</span><h1>Fresh off the trays</h1>
+    <p>What's baking right now — reserve before it sells out, or design a celebration cake from scratch.</p></div>
+  <div class="cta-cake" onclick="designCake()"><span class="ic">🎂</span>
+    <div><h3>Celebration cake?</h3><p>Design your own — eggless options, any flavour, photo cakes. From ₹500/kg.</p></div>
+    <span class="go">Start designing →</span></div>
+  <div class="toolbar"><div class="chips" id="chips"></div><span class="count" id="count"></span></div>
+  <div class="grid" id="grid"></div>
+</div></div></section>
+
+<section id="build" class="view"><div class="wrap" id="buildBody"></div></section>
+<section id="schedule" class="view"><div class="wrap" id="scheduleBody"></div></section>
+<section id="pay" class="view"><div class="wrap" id="payBody"></div></section>
+
+<section id="track" class="view"><div class="wrap">
+  <div class="lead"><span class="eyebrow">Stage 5 · Track</span><h1>In the kitchen</h1>
+    <p>Your orders as they're baked, decorated and made ready.</p></div>
+  <div id="banner"></div><div class="subtabs" id="subtabs"></div><div id="trackBody"></div>
+</div></div></section>
+
+<section id="daily" class="view"><div class="wrap">
+  <div class="lead"><span class="eyebrow">Stage 6 · Daily</span><h1>Standing order</h1>
+    <p>Have your daily bread arrive without asking — set it once, change it anytime.</p></div>
+  <div id="dailyBody"></div>
+</div></div></section>
+
+<footer class="wrap">Crumbs · a demo of the customer workflow · runs entirely in your browser</footer>
+
+<script>
+const ICON={
+  puff:`<svg viewBox="0 0 64 64"><path d="M10 42 L32 13 L54 42 Z" fill="#e8b86a" stroke="#a86a28" stroke-width="2.6" stroke-linejoin="round"/><path d="M16 42h32" stroke="#a86a28" stroke-width="2.2"/><path d="M25 30l4 4M33 27l4 4" stroke="#a86a28" stroke-width="2" stroke-linecap="round"/></svg>`,
+  bun:`<svg viewBox="0 0 64 64"><path d="M9 45a23 15 0 0 1 46 0z" fill="#d99a4e" stroke="#a86a28" stroke-width="2.6" stroke-linejoin="round"/><path d="M9 45h46" stroke="#a86a28" stroke-width="2.2"/><path d="M22 31c2 2 4 2 6 0M36 31c2 2 4 2 6 0" stroke="#a86a28" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>`,
+  biscuit:`<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="21" fill="#e0b46a" stroke="#a86a28" stroke-width="2.6"/><circle cx="26" cy="27" r="2.3" fill="#7a4a18"/><circle cx="39" cy="26" r="2.3" fill="#7a4a18"/><circle cx="35" cy="39" r="2.3" fill="#7a4a18"/><circle cx="24" cy="39" r="2" fill="#7a4a18"/></svg>`,
+  cake:`<svg viewBox="0 0 64 64"><path d="M14 28h36v22H14z" fill="#f1e1c2" stroke="#a86a28" stroke-width="2.6"/><path d="M14 28h36v7H14z" fill="#c97b6a" stroke="#a86a28" stroke-width="2.6"/><path d="M32 28V19" stroke="#a86a28" stroke-width="2"/><circle cx="32" cy="17" r="3.2" fill="#9e3b2e"/></svg>`,
+  bread:`<svg viewBox="0 0 64 64"><path d="M12 40a20 14 0 0 1 40 0v6H12z" fill="#d99a4e" stroke="#a86a28" stroke-width="2.6" stroke-linejoin="round"/><path d="M25 28l-3 14M32 26v16M39 28l3 14" stroke="#a86a28" stroke-width="1.8" stroke-linecap="round"/></svg>`
+};
+const GRAD="linear-gradient(140deg,#f0d9a8,#d98b3a)";
+const B="https://commons.wikimedia.org/wiki/Special:FilePath/";
+
+const ITEMS=[
+  {id:"c1",name:"Veg Puff",cat:"puff",grp:"savoury",eggless:true,price:25,img:null,status:{k:"few",n:4},desc:"Flaky pastry with spiced potato-pea filling — the four o'clock classic."},
+  {id:"c2",name:"Egg Puff",cat:"puff",grp:"savoury",eggless:false,price:30,img:null,status:{k:"just"},desc:"Half a spiced egg wrapped in crisp, buttery layers."},
+  {id:"c3",name:"Masala Bun",cat:"bun",grp:"savoury",eggless:true,price:35,img:B+"Vegetable_Donner_Bun.jpg?width=900",status:{k:"by",t:"11 am"},desc:"Soft bun stuffed with spiced vegetables, warm from the oven."},
+  {id:"c4",name:"Nankhatai",cat:"biscuit",grp:"biscuit",eggless:true,price:120,unit:"box of 6",img:B+"Nankhatai.jpg?width=900",status:{k:"just"},desc:"Melt-in-the-mouth cardamom & ghee shortbread."},
+  {id:"c5",name:"Almond Biscuit",cat:"biscuit",grp:"biscuit",eggless:true,price:160,unit:"250g box",img:B+"Almond_Biscuit_Bakery.JPG?width=900",status:{k:"few",n:6},desc:"Crisp, nutty almond biscuits — the tea-time regular."},
+  {id:"c6",name:"Black Forest Pastry",cat:"cake",grp:"cake",eggless:false,price:70,unit:"slice",img:B+"Black_Forest_gateau.jpg?width=900",status:{k:"just"},desc:"Chocolate sponge layered with cherries and fresh cream."},
+  {id:"c7",name:"Marble Cake",cat:"cake",grp:"cake",eggless:true,price:60,unit:"slice",img:B+"Choco-vanila_marble_cake.jpg?width=900",status:{k:"by",t:"10 am"},desc:"Choco-vanilla marble loaf — eggless, everyday."},
+  {id:"c8",name:"Red Velvet Pastry",cat:"cake",grp:"cake",eggless:false,price:80,unit:"slice",img:B+"Red_velvet_cake_and_Black_forest_cake.jpg?width=900",status:{k:"sold"},desc:"Cocoa-kissed red velvet with cream-cheese frosting."}
+];
+
+/* cake builder pricing */
+const CAKE_BASE={vanilla:500,pineapple:600,butterscotch:650,mango:700,blackforest:700,truffle:800};
+const FLAV_LABEL={vanilla:"Vanilla",pineapple:"Pineapple",butterscotch:"Butterscotch",mango:"Mango",blackforest:"Black Forest",truffle:"Choco Truffle"};
+const EGGLESS_PREM=50, PHOTO_FEE=200, CANDLE_FEE=50;
+const FINISH={cream:0,whipped:100,fondant:400}, FINISH_LABEL={cream:"Fresh cream",whipped:"Whipped cream",fondant:"Fondant"};
+function priceBuild(c){return (CAKE_BASE[c.flavour]+(c.egg?0:EGGLESS_PREM))*c.weight + FINISH[c.finish] + (c.photo?PHOTO_FEE:0) + (c.candles?CANDLE_FEE:0);}
+
+const TL={counter:["Reserved","Baking","Ready","Collected"],cake:["Placed","Batter","Baking","Decorating","Ready","Collected"]};
+const STAGES=[
+  {key:"today",label:"Today",sub:"Fresh off the trays"},
+  {key:"build",label:"Build",sub:"Pick & customise"},
+  {key:"schedule",label:"Schedule",sub:"Pickup or delivery"},
+  {key:"pay",label:"Pay",sub:"Checkout"},
+  {key:"track",label:"Track",sub:"In the kitchen"},
+  {key:"daily",label:"Daily",sub:"Standing order"}
+];
+const ORDER=["today","build","schedule","pay"];
+
+let current="today",filter="all",egglessOnly=false,sub="all",justOrdered=null,sel=null;
+let payOpt="full",tip=false,fulfil="pickup",slot=null;
+let orders=[
+  {type:"counter",label:"Black Forest Pastry × 2",sub:"Pickup · today 1:30 pm",total:140,stage:2},
+  {type:"cake",label:"1 kg Butterscotch cake · eggless · photo",sub:"Pickup · Saturday 5 pm",total:850,stage:3}
+];
+let standing=[{item:"Ladi Pav",freq:"Every day",when:"by 8 am"}];
+
+const $=s=>document.querySelector(s);
+const money=n=>"₹"+Math.round(n).toLocaleString("en-IN");
+const cap=s=>s[0].toUpperCase()+s.slice(1);
+const bookingActive=()=>!!sel;
+function visual(it){return (ICON[it.cat]||ICON.cake)+(it.img?`<img class="cover" src="${it.img}" alt="${it.name}" onerror="this.remove()">`:"");}
+function statusBadge(s){
+  if(s.k==="just")return `<span class="badge st-just">● Just baked</span>`;
+  if(s.k==="few")return `<span class="badge st-few">Only ${s.n} left</span>`;
+  if(s.k==="by")return `<span class="badge st-by">Ready by ${s.t}</span>`;
+  return `<span class="badge st-sold">Sold out</span>`;
+}
+
+/* tabs */
+function tabState(key){
+  if(key===current)return"active";
+  if(key==="track"||key==="daily")return"avail";
+  if(!bookingActive())return key==="today"?"avail":"locked";
+  const ci=ORDER.indexOf(current); if(ci===-1)return"avail";
+  return ORDER.indexOf(key)<ci?"done":"avail";
+}
+function renderStages(){
+  $("#stagebar").innerHTML=STAGES.map((s,i)=>{const st=tabState(s.key),lock=st==="locked";
+    return `<button class="stage-tab ${st==='active'?'active':''} ${st==='done'?'done':''} ${lock?'locked':''}" ${lock?'':`onclick="goStage('${s.key}')"`}>
+      <span class="n">${st==='done'?'✓':i+1}</span><span><span class="lbl">${s.label}</span><br><span class="sub">${s.sub}</span></span><span class="arrow">›</span></button>`;}).join("");
+}
+function goStage(key){
+  if(["build","schedule","pay"].includes(key)&&!bookingActive())return;
+  current=key;document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));$("#"+key).classList.add("active");
+  if(key==="build")renderBuild();if(key==="schedule")renderSchedule();if(key==="pay")renderPay();if(key==="track")renderTrack();if(key==="daily")renderDaily();
+  renderStages();window.scrollTo({top:0,behavior:"smooth"});
+}
+
+/* today / discover */
+function renderChips(){
+  const c=[["all","Everything"],["savoury","Puffs & Buns"],["biscuit","Biscuits"],["cake","Cakes"]];
+  $("#chips").innerHTML=c.map(([k,l])=>`<button class="chip ${filter===k?'on':''}" onclick="setFilter('${k}')">${l}</button>`).join("")
+    +`<button class="chip egg ${egglessOnly?'on':''}" onclick="toggleEggless()">${egglessOnly?'✓ ':''}Eggless only</button>`;
+}
+function setFilter(f){filter=f;renderChips();renderGrid();}
+function toggleEggless(){egglessOnly=!egglessOnly;renderChips();renderGrid();}
+function renderGrid(){
+  const list=ITEMS.filter(it=>(filter==="all"||it.grp===filter)&&(!egglessOnly||it.eggless));
+  $("#count").textContent=list.length+" on the counter";
+  $("#grid").innerHTML=list.map(it=>{const sold=it.status.k==="sold";
+    return `<div class="card ${sold?'soldout':''}" ${sold?'':`onclick="pickCounter('${it.id}')"`}>
+      <div class="canopy" style="background:${GRAD}">${statusBadge(it.status)}${visual(it)}</div>
+      <div class="card-body"><h3>${it.name}</h3><div class="desc">${it.desc}</div>
+        <div class="price-row"><span class="price">${money(it.price)}<small>${it.unit?' / '+it.unit:' each'}</small></span>${it.eggless?'<small>🌱 eggless</small>':''}</div>
+        ${sold?'<div class="nextbatch">Next batch at 4 pm</div>':''}</div></div>`;}).join("");
+}
+function pickCounter(id){sel={mode:"counter",item:ITEMS.find(it=>it.id===id),qty:1};goStage("build");}
+function designCake(){sel={mode:"cake",cake:{egg:false,weight:1,flavour:"pineapple",finish:"cream",photo:false,candles:false,message:""}};goStage("build");}
+
+/* build */
+function renderBuild(){
+  if(sel.mode==="counter")return renderBuildCounter();
+  return renderBuildCake();
+}
+function renderBuildCounter(){
+  const it=sel.item,total=it.price*sel.qty;
+  $("#buildBody").innerHTML=`
+   <button class="back" onclick="goStage('today')">← Back to the counter</button>
+   <span class="eyebrow">Stage 2 · Build</span>
+   <div class="split" style="margin-top:8px">
+     <div class="gallery" style="background:${GRAD}">${visual(it)}<span class="tag">${it.status.k==='few'?'Only '+it.status.n+' left':'Fresh today'}</span></div>
+     <div><h1>${it.name}</h1><p class="story">${it.desc}</p>
+       <div class="sectlabel">How many?</div>
+       <div class="stepper"><button onclick="setQty(-1)">–</button><span class="q">${sel.qty}</span><button onclick="setQty(1)">+</button>
+         <span style="margin-left:auto;color:var(--ink-soft);font-size:13px">${money(it.price)}${it.unit?' / '+it.unit:' each'}</span></div>
+       <div class="breakup"><h4>Your order</h4>
+         <div class="brow"><span>${it.name} × ${sel.qty}</span><b>${money(total)}</b></div>
+         <div class="btot"><span style="font-weight:700">Total</span><span class="price">${money(total)}</span></div></div>
+       <button class="btn btn-primary" onclick="goStage('schedule')">Continue to pickup →</button>
+     </div></div>`;
+}
+function setQty(d){sel.qty=Math.max(1,Math.min(20,sel.qty+d));renderBuild();}
+function renderBuildCake(){
+  const c=sel.cake,total=priceBuild(c);
+  const flavBtns=Object.keys(CAKE_BASE).map(f=>`<button class="${c.flavour===f?'on':''}" onclick="setCake('flavour','${f}')">${FLAV_LABEL[f]}<small>₹${CAKE_BASE[f]}/kg</small></button>`).join("");
+  const wBtns=[0.5,1,1.5,2].map(w=>`<button class="${c.weight===w?'on':''}" onclick="setCake('weight',${w})">${w} kg</button>`).join("");
+  const fBtns=Object.keys(FINISH).map(f=>`<button class="${c.finish===f?'on':''}" onclick="setCake('finish','${f}')">${FINISH_LABEL[f]}<small>${FINISH[f]?'+₹'+FINISH[f]:'included'}</small></button>`).join("");
+  $("#buildBody").innerHTML=`
+   <button class="back" onclick="goStage('today')">← Back to the counter</button>
+   <span class="eyebrow">Stage 2 · Build · Custom cake</span>
+   <div class="split" style="margin-top:8px">
+     <div>
+       <div class="gallery" style="background:${GRAD}">${ICON.cake}<img class="cover" src="${B}Black_Forest_gateau.jpg?width=900" onerror="this.remove()"><span class="tag">Made to order · ${c.weight} kg</span></div>
+       <p class="story" style="margin-top:16px">Built fresh for your date. Eggless by default — every flavour can be made with or without egg.</p>
+     </div>
+     <div><h1>Design your cake</h1>
+       <div class="sectlabel">Egg or eggless</div>
+       <div class="seg"><button class="${!c.egg?'on':''}" onclick="setCake('egg',false)">Eggless<small>+₹50/kg</small></button><button class="${c.egg?'on':''}" onclick="setCake('egg',true)">With egg<small>standard</small></button></div>
+       <div class="sectlabel">Weight</div><div class="seg">${wBtns}</div>
+       <div class="sectlabel">Flavour</div><div class="seg">${flavBtns}</div>
+       <div class="sectlabel">Finish</div><div class="seg">${fBtns}</div>
+       <label class="check"><input type="checkbox" ${c.photo?'checked':''} onchange="setCake('photo',this.checked)"> Edible photo print <span style="margin-left:auto;color:var(--ink-soft)">+₹200</span></label>
+       <label class="check"><input type="checkbox" ${c.candles?'checked':''} onchange="setCake('candles',this.checked)"> Candles & topper <span style="margin-left:auto;color:var(--ink-soft)">+₹50</span></label>
+       <div class="field"><label>Message on cake (optional)</label><input maxlength="30" placeholder="Happy Birthday Aai!" value="${c.message}" oninput="sel.cake.message=this.value"></div>
+       <div class="breakup"><h4>Price <span class="livedot">updates live</span></h4>
+         <div class="brow"><div><span>${FLAV_LABEL[c.flavour]} sponge</span><div class="sm">${c.weight} kg × ₹${CAKE_BASE[c.flavour]+(c.egg?0:EGGLESS_PREM)}/kg${c.egg?'':' (incl. eggless)'}</div></div><b>${money((CAKE_BASE[c.flavour]+(c.egg?0:EGGLESS_PREM))*c.weight)}</b></div>
+         ${FINISH[c.finish]?`<div class="brow"><span>${FINISH_LABEL[c.finish]}</span><b>${money(FINISH[c.finish])}</b></div>`:''}
+         ${c.photo?`<div class="brow"><span>Photo print</span><b>${money(PHOTO_FEE)}</b></div>`:''}
+         ${c.candles?`<div class="brow"><span>Candles & topper</span><b>${money(CANDLE_FEE)}</b></div>`:''}
+         <div class="btot"><span style="font-weight:700">Total</span><span class="price">${money(total)}</span></div></div>
+       <button class="btn btn-primary" onclick="goStage('schedule')">Continue to schedule →</button>
+     </div></div>`;
+}
+function setCake(k,v){sel.cake[k]=v;renderBuild();}
+
+/* schedule */
+function renderSchedule(){
+  const isCake=sel.mode==="cake";
+  let opts="";
+  if(isCake){
+    const days=["Thu","Fri","Sat","Sun","Mon"]; // earliest = +2 (lead time)
+    const dates=days.map((d,i)=>`<button class="${slot===('d'+i)?'on':''}" onclick="setSlot('d${i}','${d}')">${d}<small>${i+2} days</small></button>`).join("");
+    opts=`<div class="note">⏳ Custom cakes need a <b>48-hour</b> lead time so we can bake and decorate properly.</div>
+      <div class="sectlabel" style="margin-top:16px">Collection date</div><div class="seg">${dates}</div>
+      <div class="sectlabel">Time</div><div class="seg">${["11 am","2 pm","5 pm","7 pm"].map(t=>`<button class="${slot==='t'+t?'on':''}" onclick="setSlot('t${t}','${t}')">${t}</button>`).join("")}</div>`;
+  }else{
+    opts=`<div class="sectlabel">Pickup window (today)</div><div class="seg">${["Ready now","12:30 pm","1:30 pm","5:00 pm"].map(t=>`<button class="${slot==='s'+t?'on':''}" onclick="setSlot('s${t}','${t}')">${t}</button>`).join("")}</div>`;
+  }
+  $("#scheduleBody").innerHTML=`
+   <button class="back" onclick="goStage('build')">← Back</button>
+   <span class="eyebrow">Stage 3 · Schedule</span>
+   <h1 style="font-size:32px;margin:8px 0 4px">When & how</h1>
+   <p style="color:var(--ink-soft);margin-bottom:22px;max-width:60ch">${isCake?'Pick a collection date for your cake.':'Reserve a pickup window — we hold it warm at the counter.'} Delivery available within 4 km.</p>
+   <div style="max-width:560px">
+     <div class="sectlabel">Fulfilment</div>
+     <div class="seg"><button class="${fulfil==='pickup'?'on':''}" onclick="setFulfil('pickup')">🛍️ Pickup<small>free</small></button><button class="${fulfil==='delivery'?'on':''}" onclick="setFulfil('delivery')">🛵 Delivery<small>+₹40 · within 4 km</small></button></div>
+     ${opts}
+     <button class="btn btn-primary" style="margin-top:10px" onclick="goStage('pay')">Continue to pay →</button>
+   </div>`;
+}
+function setFulfil(f){fulfil=f;renderSchedule();}
+function setSlot(id,label){ if(id[0]==='d'||id[0]==='s'){sel._date=label;} else {sel._time=label;} slot=id; // simple: store last tapped per group
+  // track separately
+  if(id[0]==='t'){sel._time=label;} renderSchedule();}
+
+/* pay */
+function orderTotal(){
+  let base = sel.mode==="counter" ? sel.item.price*sel.qty : priceBuild(sel.cake);
+  return base + (tip?20:0) + (fulfil==="delivery"?40:0);
+}
+function renderPay(){
+  const isCake=sel.mode==="cake", base=sel.mode==="counter"?sel.item.price*sel.qty:priceBuild(sel.cake);
+  const grand=orderTotal(), advance=Math.round(grand*0.25);
+  const label=sel.mode==="counter"?`${sel.item.name} × ${sel.qty}`:`${sel.cake.weight} kg ${FLAV_LABEL[sel.cake.flavour]} cake`;
+  const sublabel=sel.mode==="counter"?(sel.item.eggless?'eggless':'contains egg'):`${sel.cake.egg?'with egg':'eggless'} · ${FINISH_LABEL[sel.cake.finish].toLowerCase()}${sel.cake.photo?' · photo':''}`;
+  const pays=[["full","Pay in full",money(grand)]];
+  if(isCake)pays.push(["advance","Pay 25% advance now",money(advance)+" now"]);
+  pays.push(["counter","Pay at counter","on collection"]);
+  $("#payBody").innerHTML=`
+   <button class="back" onclick="goStage('schedule')">← Back to schedule</button>
+   <span class="eyebrow">Stage 4 · Pay</span>
+   <div class="checkout" style="margin-top:8px">
+     <div class="panel"><h2>Your details</h2>
+       <div class="two"><div class="field"><label>First name</label><input value="Vaibhav"></div><div class="field"><label>Last name</label><input value="Suryavanshi"></div></div>
+       <div class="field"><label>Phone</label><input value="+91 98XXX XXXXX"></div>
+       ${fulfil==="delivery"?`<div class="field"><label>Delivery address (within 4 km)</label><input placeholder="Flat 4B, Indiranagar"></div>`:''}
+       <div class="sectlabel">Payment</div>
+       ${pays.map(([k,l,s])=>`<div class="pay-opt ${payOpt===k?'on':''}" onclick="setPay('${k}')"><span class="r"></span>${l}<span class="sm">${s}</span></div>`).join("")}
+       <label class="check" style="margin-top:6px"><input type="checkbox" ${tip?'checked':''} onchange="tip=!tip;renderPay()"> Tip the bakers <span style="margin-left:auto;color:var(--ink-soft)">+₹20</span></label>
+       <div class="note">🌱 ${isCake?(sel.cake.egg?'This cake will be made <b>with egg</b> as selected.':'This cake will be made <b>eggless</b>.'):(sel.item.eggless?'This item is <b>eggless</b>.':'This item <b>contains egg</b>.')} Tell us about allergies in the order note. This is a demo — no real payment is taken.</div>
+       <button class="btn btn-primary" style="margin-top:16px" onclick="placeOrder()">Confirm order · ${payOpt==='advance'?money(advance)+' now':money(grand)}</button>
+     </div>
+     <div class="panel"><h2>Order summary</h2>
+       <div style="display:flex;gap:14px;align-items:center;margin-bottom:16px">
+         <div class="thumb" style="background:${GRAD}">${sel.mode==='counter'?visual(sel.item):ICON.cake}</div>
+         <div><div style="font-family:'Fraunces',serif;font-size:18px">${label}</div><div style="font-size:13px;color:var(--ink-soft)">${sublabel}</div></div></div>
+       <div class="brow"><span>${label}</span><b>${money(base)}</b></div>
+       ${sel.mode==='cake'&&sel.cake.message?`<div class="brow"><span>Message: “${sel.cake.message}”</span><b>free</b></div>`:''}
+       ${fulfil==="delivery"?`<div class="brow"><span>Delivery</span><b>₹40</b></div>`:''}
+       ${tip?`<div class="brow"><span>Tip</span><b>₹20</b></div>`:''}
+       <div class="brow"><span>${fulfil==='delivery'?'Deliver':'Collect'} ${sel._date?'· '+sel._date:''} ${sel._time?'· '+sel._time:''}</span><b></b></div>
+       <div class="btot"><span style="font-weight:700">Total</span><span class="price">${money(grand)}</span></div>
+       ${payOpt==='advance'?`<div style="font-size:12.5px;color:var(--ink-soft);margin-top:8px">${money(advance)} now · ${money(grand-advance)} on collection</div>`:''}
+     </div></div>`;
+}
+function setPay(k){payOpt=k;renderPay();}
+function placeOrder(){
+  const isCake=sel.mode==="cake";
+  const label=sel.mode==="counter"?`${sel.item.name} × ${sel.qty}`:`${sel.cake.weight} kg ${FLAV_LABEL[sel.cake.flavour]} cake${sel.cake.egg?'':' · eggless'}${sel.cake.photo?' · photo':''}`;
+  const when=`${fulfil==='delivery'?'Delivery':'Pickup'}${sel._date?' · '+sel._date:''}${sel._time?' '+sel._time:''}`;
+  orders.unshift({type:isCake?"cake":"counter",label,sub:when,total:orderTotal(),stage:0});
+  justOrdered=label;sel=null;sub="all";tip=false;payOpt="full";fulfil="pickup";slot=null;
+  goStage("track");
+}
+
+/* track */
+function bucket(o){const last=TL[o.type].length-1;return o.stage>=last?"done":o.stage>=last-1?"ready":"prep";}
+function renderSubtabs(){
+  const counts={all:orders.length,prep:0,ready:0,done:0};orders.forEach(o=>counts[bucket(o)]++);
+  const tabs=[["all","All"],["prep","Preparing"],["ready","Ready"],["done","Collected"]];
+  $("#subtabs").innerHTML=tabs.map(([k,l])=>`<button class="subtab ${sub===k?'on':''}" onclick="setSub('${k}')">${l}<span class="ct">${counts[k]}</span></button>`).join("");
+}
+function setSub(k){sub=k;renderTrack();}
+function renderTrack(){
+  $("#banner").innerHTML=justOrdered?`<div class="banner">🥐 <span>Order in! Your <b>${justOrdered}</b> is with the bakers — follow it below.</span></div>`:"";justOrdered=null;
+  renderSubtabs();
+  const list=sub==="all"?orders:orders.filter(o=>bucket(o)===sub);
+  if(!list.length){$("#trackBody").innerHTML=`<div class="empty">Nothing here right now.</div>`;return;}
+  $("#trackBody").innerHTML=list.map(o=>{const i=orders.indexOf(o),steps=TL[o.type],last=steps.length-1;
+    const tl=steps.map((g,gi)=>`<div class="st ${gi<o.stage?'done':gi===o.stage?'now':''}"><div class="dot"></div>${g}</div>`).join("");
+    const ic=o.type==='cake'?ICON.cake:ICON.bun;
+    const ship=o.stage>=last?`<div class="ship">✅ <b>Collected.</b> Order #CR${100+i} · hope it was delicious!</div>`:`<div class="ship">🛠️ Now <b>${steps[o.stage].toLowerCase()}</b>.${o.stage<last?` Next: ${steps[o.stage+1].toLowerCase()}.`:''}<button class="btn btn-ghost" onclick="advance(${i})">Advance →</button></div>`;
+    return `<div class="order"><div class="av">${ic}</div>
+      <div><h3>${o.label}</h3><div class="sub">${o.sub} · ${money(o.total)}</div>
+      <div class="timeline">${tl}</div>${ship}</div></div>`;}).join("");
+}
+function advance(i){const last=TL[orders[i].type].length-1;if(orders[i].stage<last){orders[i].stage++;renderTrack();}}
+
+/* daily standing order */
+let dItem="Ladi Pav",dFreq="Every day";
+function renderDaily(){
+  const items=["Ladi Pav","Milk Bread","Brun Pav"],freqs=["Every day","Alternate days","Every Sunday"];
+  const list=standing.length?standing.map((s,i)=>`<div class="standing"><span class="ic">🥖</span><div><b>${s.item}</b><div style="font-size:13px;color:var(--ink-soft)">${s.freq} · delivered ${s.when}</div></div><button class="x" onclick="cancelStanding(${i})">Cancel</button></div>`).join(""):`<div class="empty">No standing orders yet.</div>`;
+  $("#dailyBody").innerHTML=`
+   <div class="split" style="align-items:start">
+     <div class="panel"><h2>Set a standing order</h2>
+       <div class="sectlabel">What</div><div class="seg">${items.map(x=>`<button class="${dItem===x?'on':''}" onclick="dItem='${x}';renderDaily()">${x}</button>`).join("")}</div>
+       <div class="sectlabel">How often</div><div class="seg">${freqs.map(x=>`<button class="${dFreq===x?'on':''}" onclick="dFreq='${x}';renderDaily()">${x}</button>`).join("")}</div>
+       <div class="note">Delivered fresh to your door by 8 am. Pause or cancel anytime — no commitment.</div>
+       <button class="btn btn-primary" style="margin-top:14px" onclick="addStanding()">Start standing order</button>
+     </div>
+     <div><h2 style="font-size:22px;margin-bottom:14px">Your standing orders</h2>${list}</div>
+   </div>`;
+}
+function addStanding(){standing.push({item:dItem,freq:dFreq,when:"by 8 am"});renderDaily();}
+function cancelStanding(i){standing.splice(i,1);renderDaily();}
+
+renderStages();renderChips();renderGrid();
+</script>
+</body>
+</html>

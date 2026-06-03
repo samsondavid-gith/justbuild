@@ -31,6 +31,14 @@
       "participant_name": "Jemima Rodrigues",
       "description": "A neighbourhood Indian bakery for fresh daily bakes and made-to-order cakes.",
       "url": "https://justbuild.orangecaterpillar.com/showcase/crumbs.html"
+    },
+    {
+      "cohort_number": 3,
+      "cohort_location": "Bangalore",
+      "product_name": "Pallu",
+      "participant_name": "Shafali Verma",
+      "description": "A handloom saree boutique where you choose the weave, drape and blouse tailoring with a live price.",
+      "url": "https://justbuild.orangecaterpillar.com/showcase/pallu.html"
     }
   ]
 }

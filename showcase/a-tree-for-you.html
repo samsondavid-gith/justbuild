@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Tree for You</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F0E2;--paper-2:#FBF7EC;--card:#FFFDF6;--ink:#23291E;--ink-soft:#5A5E4E;
+    --green:#33492F;--green-deep:#222E1E;--mango:#E48A2E;--line:#E2D9C4;
+    --shadow:0 1px 0 #fff inset, 0 18px 40px -28px rgba(35,41,30,.45);--r:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Hanken Grotesk",sans-serif;color:var(--ink);background:var(--paper);line-height:1.55;
+    -webkit-font-smoothing:antialiased;background-image:
+      radial-gradient(circle at 12% 6%, rgba(228,138,46,.10), transparent 40%),
+      radial-gradient(circle at 88% 0%, rgba(51,73,47,.10), transparent 38%);}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.045'/%3E%3C/svg%3E");}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 22px;position:relative;z-index:1}
+  h1,h2,h3,.disp{font-family:"Fraunces",serif;font-weight:600;letter-spacing:-.01em;line-height:1.06}
+  .price{font-family:"Fraunces",serif;font-weight:600;color:var(--green-deep)}
+  .cover{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+
+  header{background:rgba(246,240,226,.9);border-bottom:1px solid var(--line);backdrop-filter:blur(8px)}
+  .bar{display:flex;align-items:center;justify-content:space-between;height:66px}
+  .brand{display:flex;align-items:center;gap:11px}
+  .brand svg{width:32px;height:32px}
+  .brand .nm{font-family:"Fraunces",serif;font-weight:600;font-size:21px;color:var(--green-deep);letter-spacing:.01em;line-height:1.05}
+  .brand .tg{font-size:11px;color:var(--ink-soft);letter-spacing:.14em;text-transform:uppercase;margin-top:-2px}
+
+  .stages{position:sticky;top:0;z-index:30;background:rgba(246,240,226,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .stagebar{display:flex;gap:6px;padding:14px 0;overflow-x:auto}
+  .stage-tab{flex:1;min-width:150px;display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:14px;
+    border:1.5px solid transparent;background:transparent;cursor:pointer;font:inherit;text-align:left;transition:.22s;position:relative}
+  .stage-tab .n{width:30px;height:30px;flex:none;border-radius:50%;display:grid;place-items:center;font-family:"Fraunces",serif;font-weight:700;font-size:15px;background:#e7ddc7;color:var(--ink-soft);transition:.22s}
+  .stage-tab .lbl{font-weight:700;font-size:15px;line-height:1.1}
+  .stage-tab .sub{font-size:11.5px;color:var(--ink-soft);font-weight:500}
+  .stage-tab.active{background:var(--card);border-color:var(--mango);box-shadow:var(--shadow)}
+  .stage-tab.active .n{background:var(--mango);color:#fff}
+  .stage-tab.done .n{background:var(--green);color:#fff}
+  .stage-tab.done .lbl,.stage-tab.active .lbl{color:var(--ink)}
+  .stage-tab.locked{opacity:.45;cursor:not-allowed}
+  .stage-tab:not(.locked):not(.active):hover{background:rgba(51,73,47,.07)}
+  .stage-tab .arrow{position:absolute;right:-10px;color:var(--line);font-size:18px}
+  .stage-tab:last-child .arrow{display:none}
+
+  .view{display:none;padding:34px 0 80px;animation:fade .45s ease}
+  .view.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .lead{margin-bottom:24px}
+  .lead h1{font-size:clamp(30px,4.5vw,42px)}
+  .lead p{color:var(--ink-soft);margin-top:6px;max-width:60ch}
+  .eyebrow{display:inline-block;font-weight:700;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--green);margin-bottom:8px}
+
+  .toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:4px 0 24px}
+  .chips{display:flex;gap:8px;flex-wrap:wrap}
+  .chip{font:inherit;font-weight:600;font-size:13.5px;border:1px solid var(--line);background:var(--card);color:var(--ink-soft);padding:8px 15px;border-radius:99px;cursor:pointer;transition:.2s}
+  .chip:hover{border-color:var(--green)}
+  .chip.on{background:var(--green);color:#FBF7EC;border-color:var(--green)}
+  .toolbar .count{margin-left:auto;color:var(--ink-soft);font-size:14px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:22px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;cursor:pointer;transition:.25s;box-shadow:var(--shadow);display:flex;flex-direction:column}
+  .card:hover{transform:translateY(-4px);border-color:var(--green)}
+  .canopy{height:150px;position:relative;display:grid;place-items:center;overflow:hidden}
+  .canopy svg{width:76px;height:76px;filter:drop-shadow(0 6px 10px rgba(0,0,0,.18))}
+  .badge{position:absolute;top:12px;left:12px;z-index:2;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:5px 10px;border-radius:99px;background:rgba(255,253,246,.92);color:var(--green)}
+  .badge.out{color:#9a4a2e}
+  .card-body{padding:15px 16px 17px}
+  .card-body h3{font-size:21px}
+  .variety{font-size:13px;color:var(--ink-soft);margin-top:2px}
+  .meta{display:flex;gap:14px;margin-top:12px;font-size:12.5px;color:var(--ink-soft)}
+  .meta b{color:var(--ink);font-weight:600}
+  .price-row{display:flex;align-items:baseline;justify-content:space-between;margin-top:14px;padding-top:12px;border-top:1px dashed var(--line)}
+  .price-row .price{font-size:22px}
+  .price-row small{font-family:"Hanken Grotesk";font-size:12px;color:var(--ink-soft);font-weight:500}
+
+  .reserve{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start}
+  .gallery{border-radius:22px;height:340px;display:grid;place-items:center;position:relative;overflow:hidden;box-shadow:var(--shadow)}
+  .gallery svg{width:150px;height:150px;filter:drop-shadow(0 12px 16px rgba(0,0,0,.22))}
+  .gallery .tag{position:absolute;bottom:16px;left:16px;z-index:2;background:rgba(255,253,246,.92);padding:7px 13px;border-radius:99px;font-size:12.5px;font-weight:700;color:var(--green)}
+  .reserve h1{font-size:38px}
+  .facts{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:20px 0}
+  .facts div{background:var(--card);padding:12px 15px}
+  .facts span{display:block;font-size:11.5px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.06em}
+  .facts b{font-family:"Fraunces",serif;font-size:17px;font-weight:600}
+  .story{font-size:14.5px;color:#494d3e;font-style:italic;border-left:3px solid var(--mango);padding-left:15px;margin:4px 0 20px}
+  .cal{display:flex;gap:5px;margin:6px 0 20px}
+  .cal div{flex:1;text-align:center;font-size:11px;color:var(--ink-soft);padding:7px 2px;border-radius:8px;background:var(--paper-2);border:1px solid var(--line)}
+  .cal div.hot{background:var(--mango);color:#fff;border-color:var(--mango);font-weight:700}
+  .sectlabel{font-weight:600;margin-bottom:9px;font-size:14px}
+  .term{display:flex;gap:12px;margin:6px 0 18px}
+  .term label{flex:1;border:1.5px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.2s;background:var(--card)}
+  .term label:hover{border-color:var(--green)}
+  .term label.sel{border-color:var(--green);background:#f3f6ec;box-shadow:0 0 0 3px rgba(51,73,47,.12)}
+  .term .t-top{display:flex;justify-content:space-between;align-items:center}
+  .term strong{font-family:"Fraunces",serif;font-size:17px}
+  .term .tp{font-family:"Fraunces",serif;font-weight:600;color:var(--green-deep)}
+  .term small{font-size:12px;color:var(--ink-soft)}
+  .addons{display:flex;flex-direction:column;gap:9px;margin:4px 0 22px}
+  .addon{display:flex;align-items:center;gap:11px;font-size:14px;cursor:pointer}
+  .addon input{width:18px;height:18px;accent-color:var(--green)}
+  .addon .ap{margin-left:auto;color:var(--ink-soft);font-weight:600}
+  .total-line{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px}
+  .total-line .price{font-size:28px}
+
+  .btn{font:inherit;font-weight:700;font-size:15px;border:none;cursor:pointer;border-radius:99px;padding:14px 24px;transition:.2s}
+  .btn-primary{background:var(--mango);color:#2a1c0c;width:100%}
+  .btn-primary:hover{background:#d97c20}
+  .btn-primary:disabled{background:#d9cdb6;color:#8c8470;cursor:not-allowed}
+  .btn-ghost{background:none;border:1.5px solid var(--green);color:var(--green)}
+  .btn-ghost:hover{background:var(--green);color:#FBF7EC}
+  .back{background:none;border:none;font:inherit;font-weight:600;color:var(--green);cursor:pointer;margin-bottom:18px;font-size:14px}
+
+  .checkout{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:start}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;box-shadow:var(--shadow)}
+  .panel h2{font-size:23px;margin-bottom:18px}
+  .field{margin-bottom:15px}
+  .field label{display:block;font-size:13px;font-weight:600;color:var(--ink-soft);margin-bottom:6px}
+  .field input{width:100%;font:inherit;font-size:15px;padding:12px 14px;border:1.5px solid var(--line);border-radius:11px;background:var(--paper-2);color:var(--ink);transition:.2s}
+  .field input:focus{outline:none;border-color:var(--green);background:#fff}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .thumb{width:58px;height:58px;border-radius:12px;position:relative;overflow:hidden;display:grid;place-items:center}
+  .thumb svg{width:34px;height:34px}
+  .summary-row{display:flex;justify-content:space-between;font-size:14.5px;margin:9px 0;color:var(--ink-soft)}
+  .summary-row b{color:var(--ink);font-weight:600}
+  .summary-total{display:flex;justify-content:space-between;align-items:baseline;margin-top:14px;padding-top:14px;border-top:1px dashed var(--line)}
+  .mock-note{font-size:12.5px;color:var(--ink-soft);text-align:center;margin-top:12px}
+
+  .banner{display:flex;align-items:center;gap:12px;background:#eaf0e0;border:1px solid #cdd9bb;border-radius:14px;padding:14px 18px;margin-bottom:22px;color:var(--green-deep);font-weight:600}
+  .subtabs{display:flex;gap:7px;flex-wrap:wrap;margin:4px 0 22px}
+  .subtab{font:inherit;font-weight:600;font-size:13px;border:1px solid var(--line);background:var(--card);color:var(--ink-soft);padding:7px 14px;border-radius:99px;cursor:pointer;transition:.2s}
+  .subtab:hover{border-color:var(--green)}
+  .subtab.on{background:var(--green);color:#FBF7EC;border-color:var(--green)}
+  .subtab .ct{opacity:.7;font-weight:700;margin-left:4px}
+  .empty{text-align:center;padding:54px 20px;color:var(--ink-soft)}
+  .my-tree{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;margin-bottom:18px;box-shadow:var(--shadow);display:grid;grid-template-columns:90px 1fr;gap:20px}
+  .my-tree .av{height:90px;border-radius:14px;display:grid;place-items:center;position:relative;overflow:hidden}
+  .my-tree .av svg{width:50px;height:50px}
+  .my-tree h3{font-size:21px}
+  .my-tree .sub{font-size:13px;color:var(--ink-soft);margin-top:2px}
+  .timeline{display:flex;margin:18px 0 6px}
+  .timeline .st{flex:1;text-align:center;position:relative;font-size:11.5px;color:var(--ink-soft)}
+  .timeline .st::before{content:"";position:absolute;top:9px;left:-50%;width:100%;height:2px;background:var(--line);z-index:0}
+  .timeline .st:first-child::before{display:none}
+  .timeline .dot{width:20px;height:20px;border-radius:50%;background:var(--paper);border:2px solid var(--line);margin:0 auto 8px;z-index:1;position:relative}
+  .timeline .st.done .dot{background:var(--green);border-color:var(--green)}
+  .timeline .st.done::before{background:var(--green)}
+  .timeline .st.now .dot{background:var(--mango);border-color:var(--mango);box-shadow:0 0 0 5px rgba(228,138,46,.22)}
+  .timeline .st.done,.timeline .st.now{color:var(--ink);font-weight:600}
+  .ship{display:flex;align-items:center;gap:10px;background:var(--paper-2);border:1px solid var(--line);border-radius:12px;padding:11px 14px;font-size:13.5px;margin-top:14px;color:var(--ink-soft)}
+  .ship b{color:var(--ink)}
+  .ship .btn{margin-left:auto;padding:8px 16px;font-size:13px}
+
+  footer{border-top:1px solid var(--line);padding:28px 0;text-align:center;color:var(--ink-soft);font-size:13px;position:relative;z-index:1}
+  @media(max-width:760px){.reserve,.checkout{grid-template-columns:1fr}.brand .tg{display:none}.stage-tab{min-width:138px}}
+</style>
+</head>
+<body>
+
+<header><div class="wrap bar">
+  <div class="brand">
+    <svg viewBox="0 0 32 32" fill="none"><path d="M16 29v-8" stroke="#7a5230" stroke-width="2.4" stroke-linecap="round"/><path d="M16 23c-7 0-11-4-11-9 0-2 1-4 3-5-1-3 1-6 4-6 2 0 3 1 4 3 1-2 2-3 4-3 3 0 5 3 4 6 2 1 3 3 3 5 0 5-4 9-11 9z" fill="#3a5230"/><circle cx="11" cy="13" r="1.6" fill="#E48A2E"/><circle cx="20" cy="12" r="1.6" fill="#E48A2E"/><circle cx="16" cy="17" r="1.6" fill="#E48A2E"/></svg>
+    <div><div class="nm">A Tree for You</div><div class="tg">Rent a tree · reap the harvest</div></div>
+  </div>
+  <div style="font-size:13px;color:var(--ink-soft)">Customer workflow demo</div>
+</div></header>
+
+<div class="stages"><div class="wrap"><div class="stagebar" id="stagebar"></div></div></div>
+
+<section id="discover" class="view active"><div class="wrap">
+  <div class="lead"><span class="eyebrow">Stage 1 · Discover</span>
+    <h1>Find a tree to call your own</h1>
+    <p>Browse the orchard, filter by fruit, and meet each variety. Every tree is rentable by a single family per term.</p></div>
+  <div class="toolbar"><div class="chips" id="chips"></div><span class="count" id="count"></span></div>
+  <div class="grid" id="grid"></div>
+</div></section>
+
+<section id="reserve" class="view"><div class="wrap" id="reserveBody"></div></section>
+<section id="pay" class="view"><div class="wrap" id="payBody"></div></section>
+
+<section id="track" class="view"><div class="wrap">
+  <div class="lead"><span class="eyebrow">Stage 4 · Track</span>
+    <h1>My grove</h1>
+    <p>Every rented tree, grouped by where it is in its growing lifecycle.</p></div>
+  <div id="banner"></div>
+  <div class="subtabs" id="subtabs"></div>
+  <div id="trackBody"></div>
+</div></section>
+
+<footer class="wrap">A Tree for You · a demo of the customer workflow · runs entirely in your browser</footer>
+
+<script>
+/* fruit illustrations — used as fallback when a tree has no photo */
+const FRUIT={
+  mango:{grad:"linear-gradient(150deg,#f3c66a,#d97c20)",svg:`<svg viewBox="0 0 64 64"><path d="M40 8c10 4 18 16 14 30-3 12-16 20-28 18C13 54 6 42 9 30 13 14 28 4 40 8z" fill="#E8A33D"/><path d="M40 8c8 4 12 14 11 24-9-6-22-8-34-4 6-12 13-22 23-20z" fill="#f2c55f"/><path d="M40 8c2-3 6-4 9-2-2 3-5 4-9 2z" fill="#5a7a3a"/></svg>`},
+  chickoo:{grad:"linear-gradient(150deg,#bd8c5e,#7a5230)",svg:`<svg viewBox="0 0 64 64"><ellipse cx="32" cy="36" rx="24" ry="22" fill="#9A6B43"/><ellipse cx="25" cy="28" rx="7" ry="5" fill="#b58a5d" opacity=".6"/><path d="M32 14c0-4 3-7 6-7-1 4-3 6-6 7z" fill="#5a7a3a"/><circle cx="32" cy="14" r="2.5" fill="#6b4a2c"/></svg>`},
+  guava:{grad:"linear-gradient(150deg,#a7c47e,#5d7d3e)",svg:`<svg viewBox="0 0 64 64"><circle cx="32" cy="34" r="23" fill="#8FB069"/><circle cx="32" cy="34" r="11" fill="#E59AA6" opacity=".8"/><path d="M32 11c1-4 4-6 7-6-1 4-4 6-7 6z" fill="#5a7a3a"/></svg>`}
+};
+
+/* TREES — name is the variety. `img` is the photo slot: paste a real photo and it loads here.
+   Leave img:"" to show the illustration fallback. */
+const TREES=[
+  {id:"t1",name:"Alphonso",fruit:"mango",sub:"Mango · 14-yr tree",age:14,yield:"60–80 kg",window:"Apr–Jun",season:4500,img:"https://commons.wikimedia.org/wiki/Special:FilePath/Alphonso_mango.jpg?width=900",
+    story:"The king of mangoes — saffron-fleshed, honey-sweet Alphonsos from a mature tree in the south block.",windowSet:[2,3,4]},
+  {id:"t2",name:"Kesar",fruit:"mango",sub:"Mango · 9-yr tree",age:9,yield:"45–60 kg",window:"May–Jun",season:3800,img:"https://commons.wikimedia.org/wiki/Special:FilePath/Mango_kesar_variety.JPG?width=900",
+    story:"A graceful Kesar near the well, prized for its fragrance and deep orange, fibre-free flesh.",windowSet:[4,5]},
+  {id:"t3",name:"Dasheri",fruit:"mango",sub:"Mango · 18-yr tree",age:18,yield:"70–90 kg",window:"Jun–Jul",season:4200,img:"https://commons.wikimedia.org/wiki/Special:FilePath/Dosehri.JPG?width=900",
+    story:"Tall, shady and prolific. Long, sweet Dasheris that are made for slurping straight from the skin.",windowSet:[5,6]},
+  {id:"t4",name:"Cricket Ball",fruit:"chickoo",sub:"Chickoo · 11-yr tree",age:11,yield:"50–70 kg",window:"Dec–Mar",season:3200,img:"https://commons.wikimedia.org/wiki/Special:FilePath/Sapota.JPG?width=900",
+    story:"A heavy-bearing sapota with large, round, malty-sweet fruit — the first one the kids raid each winter.",windowSet:[11,0,1,2]},
+  {id:"t5",name:"Kalipatti",fruit:"chickoo",sub:"Chickoo · 7-yr tree",age:7,yield:"40–55 kg",window:"Jan–Mar",season:2900,img:"https://commons.wikimedia.org/wiki/Special:FilePath/Chikoo.JPG?width=900",
+    story:"A tidy Kalipatti that fruits like clockwork — smaller fruit, deeper caramel flavour.",windowSet:[0,1,2]},
+  {id:"t6",name:"Pala",fruit:"chickoo",sub:"Chickoo · 5-yr tree",age:5,yield:"30–45 kg",window:"Dec–Feb",season:2400,img:"https://commons.wikimedia.org/wiki/Special:FilePath/Chikku_(5193856169).jpg?width=900",
+    story:"Our youngest sapota — eager, sweet, and just hitting its stride.",windowSet:[11,0,1]},
+  {id:"t7",name:"Allahabad Safeda",fruit:"guava",sub:"Guava · 8-yr tree",age:8,yield:"40–55 kg",window:"Aug–Dec",season:2800,img:"https://commons.wikimedia.org/wiki/Special:FilePath/Psidium_guajava_fruit.jpg?width=900",
+    story:"Crisp white-fleshed guavas, low on seeds and high on crunch — a late-monsoon favourite.",windowSet:[7,8,9,10,11]},
+  {id:"t8",name:"Lalit",fruit:"guava",sub:"Guava · 6-yr tree",age:6,yield:"35–50 kg",window:"Aug–Nov",season:2600,img:"https://commons.wikimedia.org/wiki/Special:FilePath/Red_Diamond_guava_fruit.jpg?width=900",
+    story:"Blush-pink inside and fragrant — best eaten warm off the branch with a pinch of salt.",windowSet:[7,8,9,10]}
+];
+const MONTHS=["J","F","M","A","M","J","J","A","S","O","N","D"];
+const ADDONS=[{id:"gift",label:"Gift wrapping & a hand-written card",price:400},{id:"care",label:"Premium care (extra mulch + monthly photos)",price:900},{id:"visit",label:"Farm visit pass (2 people)",price:1200}];
+const ANNUAL_MULT=1.6;
+const GROW=["Flowering","Fruiting","Harvest","Shipped"];
+const STAGES=[{key:"discover",label:"Discover",sub:"Browse the orchard"},{key:"reserve",label:"Reserve",sub:"Pick tree & term"},{key:"pay",label:"Pay",sub:"Checkout"},{key:"track",label:"Track",sub:"Grow & harvest"}];
+
+let current="discover",filter="all",sub="all",justOrdered=null;
+let sel={tree:null,term:"season",addons:[]};
+let rentals=[
+  {tree:TREES[0],term:"season",addons:[],stage:1,total:4500},
+  {tree:TREES[7],term:"year",addons:["gift"],stage:3,total:Math.round(2600*1.6)+400}
+];
+
+const $=s=>document.querySelector(s);
+const money=n=>"₹"+n.toLocaleString("en-IN");
+const isRented=id=>rentals.some(r=>r.tree.id===id);
+const bookingActive=()=>!!sel.tree;
+/* photo if present, else illustration; photo falls back to illustration on load error */
+function visual(t){const f=FRUIT[t.fruit];return f.svg+(t.img?`<img class="cover" src="${t.img}" alt="${t.name}" onerror="this.remove()">`:"");}
+
+function tabState(key){
+  if(key===current)return"active";
+  if(key==="discover")return bookingActive()?"done":"avail";
+  if(key==="reserve")return bookingActive()?(current==="pay"?"done":"avail"):"locked";
+  if(key==="pay")return bookingActive()?"avail":"locked";
+  if(key==="track")return"avail";
+  return"locked";
+}
+function renderStages(){
+  $("#stagebar").innerHTML=STAGES.map((s,i)=>{const st=tabState(s.key),lock=st==="locked";
+    return `<button class="stage-tab ${st==='active'?'active':''} ${st==='done'?'done':''} ${lock?'locked':''}" ${lock?'':`onclick="goStage('${s.key}')"`}>
+      <span class="n">${st==='done'?'✓':i+1}</span><span><span class="lbl">${s.label}</span><br><span class="sub">${s.sub}</span></span><span class="arrow">›</span></button>`;}).join("");
+}
+function goStage(key){
+  if((key==="reserve"||key==="pay")&&!bookingActive())return;
+  current=key;document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));$("#"+key).classList.add("active");
+  if(key==="reserve")renderReserve();if(key==="pay")renderPay();if(key==="track")renderTrack();
+  renderStages();window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function renderChips(){
+  const cats=[["all","All trees"],["mango","Mango 🥭"],["chickoo","Chickoo"],["guava","Guava"]];
+  $("#chips").innerHTML=cats.map(([k,l])=>`<button class="chip ${filter===k?'on':''}" onclick="setFilter('${k}')">${l}</button>`).join("");
+}
+function setFilter(f){filter=f;renderChips();renderGrid();}
+function renderGrid(){
+  const list=TREES.filter(t=>filter==="all"||t.fruit===filter);
+  $("#count").textContent=list.length+" trees";
+  $("#grid").innerHTML=list.map(t=>{const f=FRUIT[t.fruit],out=isRented(t.id);
+    return `<div class="card" onclick="pickTree('${t.id}')">
+      <div class="canopy" style="background:${f.grad}"><span class="badge ${out?'out':''}">${out?'Rented':'Available'}</span>${visual(t)}</div>
+      <div class="card-body"><h3>${t.name}</h3><div class="variety">${t.sub}</div>
+        <div class="meta"><span>Yield <b>${t.yield}</b></span><span>Harvest <b>${t.window}</b></span></div>
+        <div class="price-row"><span class="price">${money(t.season)}<small> /season</small></span></div></div></div>`;}).join("");
+}
+function pickTree(id){sel={tree:TREES.find(t=>t.id===id),term:"season",addons:[]};goStage("reserve");}
+
+function renderReserve(){
+  const t=sel.tree,f=FRUIT[t.fruit];
+  const cal=MONTHS.map((m,i)=>`<div class="${t.windowSet.includes(i)?'hot':''}">${m}</div>`).join("");
+  $("#reserveBody").innerHTML=`
+   <button class="back" onclick="goStage('discover')">← Back to all trees</button>
+   <span class="eyebrow">Stage 2 · Reserve</span>
+   <div class="reserve" style="margin-top:8px">
+     <div>
+       <div class="gallery" style="background:${f.grad}">${visual(t)}<span class="tag">📍 South block · the orchard</span></div>
+       <div class="facts"><div><span>Fruit</span><b>${t.fruit[0].toUpperCase()+t.fruit.slice(1)}</b></div><div><span>Tree age</span><b>${t.age} years</b></div><div><span>Expected yield</span><b>${t.yield}</b></div><div><span>Harvest window</span><b>${t.window}</b></div></div>
+       <div style="font-size:11.5px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.08em;margin-bottom:7px">Fruiting calendar</div>
+       <div class="cal">${cal}</div>
+     </div>
+     <div>
+       <h1>${t.name}</h1><div class="variety">${t.sub}</div>
+       <p class="story">${t.story}</p>
+       <div class="sectlabel">Choose your term</div><div class="term" id="term"></div>
+       <div class="sectlabel">Add-ons</div><div class="addons" id="addons"></div>
+       <div class="total-line"><span>Total today</span><span class="price" id="rTotal"></span></div>
+       <button class="btn btn-primary" id="contBtn" onclick="goStage('pay')">${isRented(t.id)?'Already rented this season':'Continue to payment →'}</button>
+     </div></div>`;
+  renderTerm();renderAddons();updateTotal();if(isRented(t.id))$("#contBtn").disabled=true;
+}
+function renderTerm(){
+  const t=sel.tree,annual=Math.round(t.season*ANNUAL_MULT);
+  const opt=(k,l,p,s)=>`<label class="${sel.term===k?'sel':''}" onclick="setTerm('${k}')"><div class="t-top"><strong>${l}</strong><span class="tp">${money(p)}</span></div><small>${s}</small></label>`;
+  $("#term").innerHTML=opt("season","One season",t.season,"This harvest, shipped fresh")+opt("year","Full year",annual,"All harvests for 12 months · best value");
+}
+function setTerm(k){sel.term=k;renderTerm();updateTotal();}
+function renderAddons(){$("#addons").innerHTML=ADDONS.map(a=>`<label class="addon"><input type="checkbox" ${sel.addons.includes(a.id)?'checked':''} onchange="toggleAddon('${a.id}')"> ${a.label}<span class="ap">+${money(a.price)}</span></label>`).join("");}
+function toggleAddon(id){sel.addons=sel.addons.includes(id)?sel.addons.filter(x=>x!==id):[...sel.addons,id];updateTotal();}
+function calcTotal(){const base=sel.term==="year"?Math.round(sel.tree.season*ANNUAL_MULT):sel.tree.season;return base+ADDONS.filter(a=>sel.addons.includes(a.id)).reduce((s,a)=>s+a.price,0);}
+function updateTotal(){const e=$("#rTotal");if(e)e.textContent=money(calcTotal());}
+
+function renderPay(){
+  const t=sel.tree,base=sel.term==="year"?Math.round(t.season*ANNUAL_MULT):t.season,adds=ADDONS.filter(a=>sel.addons.includes(a.id));
+  $("#payBody").innerHTML=`
+   <button class="back" onclick="goStage('reserve')">← Back to ${t.name}</button>
+   <span class="eyebrow">Stage 3 · Pay</span>
+   <div class="checkout" style="margin-top:8px">
+     <div class="panel"><h2>Where should we ship the harvest?</h2>
+       <div class="two"><div class="field"><label>First name</label><input placeholder="Aanya"></div><div class="field"><label>Last name</label><input placeholder="Rao"></div></div>
+       <div class="field"><label>Email</label><input placeholder="you@email.com"></div>
+       <div class="field"><label>Shipping address</label><input placeholder="Flat 4B, Indiranagar, Bengaluru"></div>
+       <div class="two"><div class="field"><label>Card number</label><input placeholder="4242 4242 4242 4242"></div><div class="field"><label>Expiry / CVC</label><input placeholder="04/27 · 123"></div></div>
+       <button class="btn btn-primary" onclick="placeOrder()">Confirm & pay ${money(calcTotal())}</button>
+       <div class="mock-note">🔒 Demo checkout — no real payment is taken.</div></div>
+     <div class="panel"><h2>Your rental</h2>
+       <div style="display:flex;gap:14px;align-items:center;margin-bottom:16px">
+         <div class="thumb" style="background:${FRUIT[t.fruit].grad}">${visual(t)}</div>
+         <div><div style="font-family:'Fraunces',serif;font-size:19px">${t.name}</div><div style="font-size:13px;color:var(--ink-soft)">${t.sub}</div></div></div>
+       <div class="summary-row"><span>${sel.term==="year"?"Full-year rental":"Seasonal rental"}</span><b>${money(base)}</b></div>
+       ${adds.map(a=>`<div class="summary-row"><span>${a.label}</span><b>${money(a.price)}</b></div>`).join("")}
+       <div class="summary-total"><span style="font-weight:600">Total</span><span class="price" style="font-size:26px">${money(calcTotal())}</span></div></div>
+   </div>`;
+}
+function placeOrder(){
+  rentals.push({tree:sel.tree,term:sel.term,addons:[...sel.addons],stage:0,total:calcTotal()});
+  justOrdered=sel.tree.name;sel={tree:null,term:"season",addons:[]};sub="all";
+  goStage("track");renderGrid();
+}
+
+function renderSubtabs(){
+  const counts={all:rentals.length};GROW.forEach((g,i)=>counts[i]=rentals.filter(r=>r.stage===i).length);
+  const tabs=[["all","All"],...GROW.map((g,i)=>[String(i),g])];
+  $("#subtabs").innerHTML=tabs.map(([k,l])=>{const c=k==="all"?counts.all:counts[k];return `<button class="subtab ${sub===k?'on':''}" onclick="setSub('${k}')">${l}<span class="ct">${c}</span></button>`;}).join("");
+}
+function setSub(k){sub=k;renderTrack();}
+function renderTrack(){
+  $("#banner").innerHTML=justOrdered?`<div class="banner">🌱 <span><b>${justOrdered}</b> is yours! We've told the farmer — watch it move through the stages below.</span></div>`:"";justOrdered=null;
+  renderSubtabs();
+  const list=sub==="all"?rentals:rentals.filter(r=>r.stage===+sub);
+  if(!list.length){$("#trackBody").innerHTML=`<div class="empty">No trees in this stage.</div>`;return;}
+  $("#trackBody").innerHTML=list.map(r=>{const i=rentals.indexOf(r),t=r.tree,f=FRUIT[t.fruit];
+    const stages=GROW.map((s,si)=>`<div class="st ${si<r.stage?'done':si===r.stage?'now':''}"><div class="dot"></div>${s}</div>`).join("");
+    const ship=r.stage>=3?`<div class="ship">📦 <b>Harvest shipped!</b> Tracking #ATY${1000+i} · arriving in 2–3 days.</div>`:`<div class="ship">🌳 Currently <b>${GROW[r.stage].toLowerCase()}</b>. ${r.stage<3?`Next: ${GROW[r.stage+1].toLowerCase()}.`:""}<button class="btn btn-ghost" onclick="advance(${i})">Advance stage →</button></div>`;
+    return `<div class="my-tree"><div class="av" style="background:${f.grad}">${visual(t)}</div>
+      <div><h3>${t.name}</h3><div class="sub">${t.sub} · ${r.term==="year"?"Annual":"Seasonal"} · ${money(r.total)}</div>
+      <div class="timeline">${stages}</div>${ship}</div></div>`;}).join("");
+}
+function advance(i){if(rentals[i].stage<3){rentals[i].stage++;renderTrack();}}
+
+renderStages();renderChips();renderGrid();
+</script>
+</body>
+</html>

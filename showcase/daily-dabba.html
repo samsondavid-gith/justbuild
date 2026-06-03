@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Dabba</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F4EAD4;--paper-2:#FBF4E4;--card:#FFFCF3;--ink:#2B2016;--ink-soft:#6E6151;
+    --deep:#5B271A;--marigold:#E29A2C;--tandoori:#C24A2E;--green:#5A7338;--line:#E7DAC0;
+    --shadow:0 1px 0 #fff inset, 0 18px 40px -28px rgba(43,32,22,.5);--r:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Hanken Grotesk",sans-serif;color:var(--ink);background:var(--paper);line-height:1.55;
+    -webkit-font-smoothing:antialiased;background-image:
+      radial-gradient(circle at 12% 6%, rgba(226,154,44,.12), transparent 42%),
+      radial-gradient(circle at 88% 0%, rgba(194,74,46,.10), transparent 40%);}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.045'/%3E%3C/svg%3E");}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 22px;position:relative;z-index:1}
+  h1,h2,h3,.disp{font-family:"Fraunces",serif;font-weight:600;letter-spacing:-.01em;line-height:1.06}
+  .price{font-family:"Fraunces",serif;font-weight:600;color:var(--deep)}
+  .cover{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+
+  header{background:rgba(244,234,212,.9);border-bottom:1px solid var(--line);backdrop-filter:blur(8px)}
+  .bar{display:flex;align-items:center;justify-content:space-between;height:66px}
+  .brand{display:flex;align-items:center;gap:11px}
+  .brand svg{width:32px;height:32px}
+  .brand .nm{font-family:"Fraunces",serif;font-weight:600;font-size:23px;color:var(--deep);letter-spacing:.01em;line-height:1.05}
+  .brand .tg{font-size:11px;color:var(--ink-soft);letter-spacing:.14em;text-transform:uppercase;margin-top:-2px}
+
+  .stages{position:sticky;top:0;z-index:30;background:rgba(244,234,212,.93);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .stagebar{display:flex;gap:6px;padding:14px 0;overflow-x:auto}
+  .stage-tab{flex:1;min-width:150px;display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:14px;
+    border:1.5px solid transparent;background:transparent;cursor:pointer;font:inherit;text-align:left;transition:.22s;position:relative}
+  .stage-tab .n{width:30px;height:30px;flex:none;border-radius:50%;display:grid;place-items:center;font-family:"Fraunces",serif;font-weight:700;font-size:15px;background:#e8dcc2;color:var(--ink-soft);transition:.22s}
+  .stage-tab .lbl{font-weight:700;font-size:15px;line-height:1.1}
+  .stage-tab .sub{font-size:11.5px;color:var(--ink-soft);font-weight:500}
+  .stage-tab.active{background:var(--card);border-color:var(--marigold);box-shadow:var(--shadow)}
+  .stage-tab.active .n{background:var(--marigold);color:#fff}
+  .stage-tab.done .n{background:var(--green);color:#fff}
+  .stage-tab.done .lbl,.stage-tab.active .lbl{color:var(--ink)}
+  .stage-tab.locked{opacity:.45;cursor:not-allowed}
+  .stage-tab:not(.locked):not(.active):hover{background:rgba(90,115,56,.08)}
+  .stage-tab .arrow{position:absolute;right:-10px;color:var(--line);font-size:18px}
+  .stage-tab:last-child .arrow{display:none}
+
+  .view{display:none;padding:34px 0 80px;animation:fade .45s ease}
+  .view.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .lead{margin-bottom:24px}
+  .lead h1{font-size:clamp(30px,4.5vw,42px)}
+  .lead p{color:var(--ink-soft);margin-top:6px;max-width:62ch}
+  .eyebrow{display:inline-block;font-weight:700;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--tandoori);margin-bottom:8px}
+
+  .toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:4px 0 24px}
+  .chips{display:flex;gap:8px;flex-wrap:wrap}
+  .chip{font:inherit;font-weight:600;font-size:13.5px;border:1px solid var(--line);background:var(--card);color:var(--ink-soft);padding:8px 15px;border-radius:99px;cursor:pointer;transition:.2s}
+  .chip:hover{border-color:var(--green)}
+  .chip.on{background:var(--green);color:#FBF4E4;border-color:var(--green)}
+  .toolbar .count{margin-left:auto;color:var(--ink-soft);font-size:14px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:22px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;cursor:pointer;transition:.25s;box-shadow:var(--shadow);display:flex;flex-direction:column}
+  .card:hover{transform:translateY(-4px);border-color:var(--green)}
+  .canopy{height:152px;position:relative;display:grid;place-items:center;overflow:hidden}
+  .canopy svg{width:84px;height:84px;filter:drop-shadow(0 6px 10px rgba(0,0,0,.16))}
+  .badge{position:absolute;top:12px;left:12px;z-index:2;display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:5px 10px;border-radius:99px;background:rgba(255,252,243,.94)}
+  .badge .d{width:9px;height:9px;border-radius:3px;border:1.5px solid currentColor}
+  .badge.veg{color:var(--green)}
+  .badge.nonveg{color:var(--tandoori)}
+  .card-body{padding:15px 16px 17px}
+  .card-body h3{font-size:20px}
+  .variety{font-size:13px;color:var(--ink-soft);margin-top:2px}
+  .meta{display:flex;gap:14px;margin-top:12px;font-size:12.5px;color:var(--ink-soft)}
+  .meta b{color:var(--ink);font-weight:600}
+  .price-row{display:flex;align-items:baseline;justify-content:space-between;margin-top:14px;padding-top:12px;border-top:1px dashed var(--line)}
+  .price-row .price{font-size:22px}
+  .price-row small{font-family:"Hanken Grotesk";font-size:12px;color:var(--ink-soft);font-weight:500}
+
+  .reserve{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start}
+  .gallery{border-radius:22px;height:340px;display:grid;place-items:center;position:relative;overflow:hidden;box-shadow:var(--shadow)}
+  .gallery svg{width:160px;height:160px;filter:drop-shadow(0 12px 16px rgba(0,0,0,.2))}
+  .gallery .tag{position:absolute;bottom:16px;left:16px;z-index:2;background:rgba(255,252,243,.94);padding:7px 13px;border-radius:99px;font-size:12.5px;font-weight:700;color:var(--green)}
+  .reserve h1{font-size:36px}
+  .facts{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:20px 0}
+  .facts div{background:var(--card);padding:12px 15px}
+  .facts span{display:block;font-size:11.5px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.06em}
+  .facts b{font-family:"Fraunces",serif;font-size:17px;font-weight:600}
+  .story{font-size:14.5px;color:#4d4536;font-style:italic;border-left:3px solid var(--marigold);padding-left:15px;margin:4px 0 20px}
+  .cal{display:flex;gap:5px;margin:6px 0 20px}
+  .cal div{flex:1;text-align:center;font-size:11px;color:var(--ink-soft);padding:7px 2px;border-radius:8px;background:var(--paper-2);border:1px solid var(--line)}
+  .cal div.hot{background:var(--marigold);color:#fff;border-color:var(--marigold);font-weight:700}
+  .sectlabel{font-weight:600;margin-bottom:9px;font-size:14px}
+  .term{display:flex;gap:12px;margin:6px 0 18px}
+  .term label{flex:1;border:1.5px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.2s;background:var(--card)}
+  .term label:hover{border-color:var(--green)}
+  .term label.sel{border-color:var(--green);background:#f1f4e7;box-shadow:0 0 0 3px rgba(90,115,56,.14)}
+  .term .t-top{display:flex;justify-content:space-between;align-items:center}
+  .term strong{font-family:"Fraunces",serif;font-size:17px}
+  .term .tp{font-family:"Fraunces",serif;font-weight:600;color:var(--deep)}
+  .term small{font-size:12px;color:var(--ink-soft)}
+  .addons{display:flex;flex-direction:column;gap:9px;margin:4px 0 22px}
+  .addon{display:flex;align-items:center;gap:11px;font-size:14px;cursor:pointer}
+  .addon input{width:18px;height:18px;accent-color:var(--green)}
+  .addon .ap{margin-left:auto;color:var(--ink-soft);font-weight:600}
+  .total-line{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px}
+  .total-line .price{font-size:28px}
+
+  .btn{font:inherit;font-weight:700;font-size:15px;border:none;cursor:pointer;border-radius:99px;padding:14px 24px;transition:.2s}
+  .btn-primary{background:var(--tandoori);color:#fff;width:100%}
+  .btn-primary:hover{background:#a93f27}
+  .btn-primary:disabled{background:#d9cdb6;color:#8c8470;cursor:not-allowed}
+  .btn-ghost{background:none;border:1.5px solid var(--green);color:var(--green)}
+  .btn-ghost:hover{background:var(--green);color:#FBF4E4}
+  .back{background:none;border:none;font:inherit;font-weight:600;color:var(--green);cursor:pointer;margin-bottom:18px;font-size:14px}
+
+  .checkout{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:start}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;box-shadow:var(--shadow)}
+  .panel h2{font-size:23px;margin-bottom:18px}
+  .field{margin-bottom:15px}
+  .field label{display:block;font-size:13px;font-weight:600;color:var(--ink-soft);margin-bottom:6px}
+  .field input{width:100%;font:inherit;font-size:15px;padding:12px 14px;border:1.5px solid var(--line);border-radius:11px;background:var(--paper-2);color:var(--ink);transition:.2s}
+  .field input:focus{outline:none;border-color:var(--green);background:#fff}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .thumb{width:58px;height:58px;border-radius:12px;position:relative;overflow:hidden;display:grid;place-items:center}
+  .thumb svg{width:40px;height:40px}
+  .summary-row{display:flex;justify-content:space-between;font-size:14.5px;margin:9px 0;color:var(--ink-soft)}
+  .summary-row b{color:var(--ink);font-weight:600}
+  .summary-total{display:flex;justify-content:space-between;align-items:baseline;margin-top:14px;padding-top:14px;border-top:1px dashed var(--line)}
+  .mock-note{font-size:12.5px;color:var(--ink-soft);text-align:center;margin-top:12px}
+
+  .banner{display:flex;align-items:center;gap:12px;background:#f0ead6;border:1px solid #d9caa6;border-radius:14px;padding:14px 18px;margin-bottom:22px;color:var(--deep);font-weight:600}
+  .subtabs{display:flex;gap:7px;flex-wrap:wrap;margin:4px 0 22px}
+  .subtab{font:inherit;font-weight:600;font-size:13px;border:1px solid var(--line);background:var(--card);color:var(--ink-soft);padding:7px 14px;border-radius:99px;cursor:pointer;transition:.2s}
+  .subtab:hover{border-color:var(--green)}
+  .subtab.on{background:var(--green);color:#FBF4E4;border-color:var(--green)}
+  .subtab .ct{opacity:.7;font-weight:700;margin-left:4px}
+  .empty{text-align:center;padding:54px 20px;color:var(--ink-soft)}
+  .my-tree{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;margin-bottom:18px;box-shadow:var(--shadow);display:grid;grid-template-columns:90px 1fr;gap:20px}
+  .my-tree .av{height:90px;border-radius:14px;display:grid;place-items:center;position:relative;overflow:hidden}
+  .my-tree .av svg{width:54px;height:54px}
+  .my-tree h3{font-size:20px}
+  .my-tree .sub{font-size:13px;color:var(--ink-soft);margin-top:2px}
+  .timeline{display:flex;margin:18px 0 6px}
+  .timeline .st{flex:1;text-align:center;position:relative;font-size:11.5px;color:var(--ink-soft)}
+  .timeline .st::before{content:"";position:absolute;top:9px;left:-50%;width:100%;height:2px;background:var(--line);z-index:0}
+  .timeline .st:first-child::before{display:none}
+  .timeline .dot{width:20px;height:20px;border-radius:50%;background:var(--paper);border:2px solid var(--line);margin:0 auto 8px;z-index:1;position:relative}
+  .timeline .st.done .dot{background:var(--green);border-color:var(--green)}
+  .timeline .st.done::before{background:var(--green)}
+  .timeline .st.now .dot{background:var(--marigold);border-color:var(--marigold);box-shadow:0 0 0 5px rgba(226,154,44,.22)}
+  .timeline .st.done,.timeline .st.now{color:var(--ink);font-weight:600}
+  .ship{display:flex;align-items:center;gap:10px;background:var(--paper-2);border:1px solid var(--line);border-radius:12px;padding:11px 14px;font-size:13.5px;margin-top:14px;color:var(--ink-soft)}
+  .ship b{color:var(--ink)}
+  .ship .btn{margin-left:auto;padding:8px 16px;font-size:13px}
+
+  footer{border-top:1px solid var(--line);padding:28px 0;text-align:center;color:var(--ink-soft);font-size:13px;position:relative;z-index:1}
+  @media(max-width:760px){.reserve,.checkout{grid-template-columns:1fr}.brand .tg{display:none}.stage-tab{min-width:140px}}
+</style>
+</head>
+<body>
+
+<header><div class="wrap bar">
+  <div class="brand">
+    <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="17" r="11" fill="#E29A2C"/><circle cx="16" cy="17" r="11" stroke="#5B271A" stroke-width="1.6"/><circle cx="11.5" cy="13.5" r="3" fill="#5A7338"/><circle cx="20.5" cy="13.5" r="3" fill="#C24A2E"/><circle cx="16" cy="21" r="3.4" fill="#8a3320"/><path d="M16 6V3M11 6.5 9.5 4M21 6.5 22.5 4" stroke="#5B271A" stroke-width="1.6" stroke-linecap="round"/></svg>
+    <div><div class="nm">Daily Dabba</div><div class="tg">Home-cooked, your way</div></div>
+  </div>
+  <div style="font-size:13px;color:var(--ink-soft)">Customer workflow demo</div>
+</div></header>
+
+<div class="stages"><div class="wrap"><div class="stagebar" id="stagebar"></div></div></div>
+
+<section id="discover" class="view active"><div class="wrap">
+  <div class="lead"><span class="eyebrow">Stage 1 · Discover</span>
+    <h1>This week's home-cooked menu</h1>
+    <p>Browse today's thalis and meals, pick what you love, then we deliver a fresh tiffin to your door — your choice, every day.</p></div>
+  <div class="toolbar"><div class="chips" id="chips"></div><span class="count" id="count"></span></div>
+  <div class="grid" id="grid"></div>
+</div></section>
+
+<section id="reserve" class="view"><div class="wrap" id="reserveBody"></div></section>
+<section id="pay" class="view"><div class="wrap" id="payBody"></div></section>
+
+<section id="track" class="view"><div class="wrap">
+  <div class="lead"><span class="eyebrow">Stage 4 · Track</span>
+    <h1>My tiffins</h1>
+    <p>Every subscription, grouped by where today's tiffin is on its way to you.</p></div>
+  <div id="banner"></div>
+  <div class="subtabs" id="subtabs"></div>
+  <div id="trackBody"></div>
+</div></section>
+
+<footer class="wrap">Daily Dabba · a demo of the customer workflow · runs entirely in your browser</footer>
+
+<script>
+/* veg / non-veg plate illustrations — fallback when a dish has no photo */
+const FOOD={
+  veg:{grad:"linear-gradient(150deg,#cdd9a6,#8aa256)",svg:`<svg viewBox="0 0 64 64"><circle cx="32" cy="34" r="24" fill="#FBF3E0" stroke="#b48f3e" stroke-width="2"/><circle cx="24" cy="27" r="7" fill="#7a9b4e"/><circle cx="40" cy="27" r="7" fill="#d98b3a"/><circle cx="32" cy="43" r="8" fill="#b9712b"/><circle cx="32" cy="34" r="4" fill="#e8c879"/></svg>`},
+  nonveg:{grad:"linear-gradient(150deg,#e7a878,#bb5230)",svg:`<svg viewBox="0 0 64 64"><circle cx="32" cy="34" r="24" fill="#FBF3E0" stroke="#a4502f" stroke-width="2"/><circle cx="24" cy="27" r="7" fill="#b33a26"/><circle cx="40" cy="27" r="7" fill="#d98b3a"/><circle cx="32" cy="43" r="8" fill="#8a3320"/><circle cx="32" cy="34" r="4" fill="#e8c879"/></svg>`}
+};
+
+const B="https://commons.wikimedia.org/wiki/Special:FilePath/";
+/* ITEMS — name is the dish. `img` is the photo slot (real photo loads; falls back to plate art). */
+const ITEMS=[
+  {id:"m1",name:"North Indian Thali",type:"veg",cuisine:"North Indian",portion:"Serves 1",spice:"Medium",perMeal:130,days:[0,1,2,3,4,5],img:B+"Delicious_North_Indian_Thali.jpg?width=900",
+    desc:"Dal, a seasonal sabzi, rice, three rotis, salad and a sweet — the classic comforting North Indian spread."},
+  {id:"m2",name:"South Indian Meals",type:"veg",cuisine:"South Indian",portion:"Serves 1",spice:"Mild",perMeal:110,days:[0,1,2,3,4,5],img:B+"Tamil_Nadu_thali.jpg?width=900",
+    desc:"Sambar, rasam, two poriyals, curd, rice and pappadam on a banana leaf — light, wholesome, everyday."},
+  {id:"m3",name:"Gujarati Thali",type:"veg",cuisine:"Gujarati",portion:"Serves 1",spice:"Mild-sweet",perMeal:120,days:[0,1,2,3,4,5],img:B+"Gujarati_thali.jpg?width=900",
+    desc:"Shaak, dal, kadhi, rotli, rice and farsan with a gentle sweetness — a perfectly balanced Gujarati plate."},
+  {id:"m4",name:"Homestyle Veg Thali",type:"veg",cuisine:"Homestyle",portion:"Serves 1",spice:"Medium",perMeal:100,days:[0,1,2,3,4,5],img:B+"Indian_Veg_Thali.JPG?width=900",
+    desc:"Simple ghar-ka-khana — one dal, one sabzi, rice, hot rotis and pickle. Honest everyday food."},
+  {id:"m5",name:"Rajasthani Thali",type:"veg",cuisine:"Rajasthani",portion:"Serves 1",spice:"Spicy",perMeal:125,days:[0,1,2,3,4,5],img:B+"Kutchi_thali.JPG?width=900",
+    desc:"Gatte ki sabzi, dal, bajra roti, rice and a dollop of ghee — hearty flavours of the desert."},
+  {id:"m6",name:"Hyderabadi Chicken Biryani",type:"nonveg",cuisine:"Hyderabadi",portion:"Serves 1",spice:"Spicy",perMeal:190,days:[1,3,5],img:B+"Chicken_Hyderabadi_Biryani.JPG?width=900",
+    desc:"Fragrant dum biryani with tender chicken, raita and salan — our weekend-style indulgence."},
+  {id:"m7",name:"Bengali Fish Thali",type:"nonveg",cuisine:"Bengali",portion:"Serves 1",spice:"Medium",perMeal:170,days:[0,2,4],img:B+"Bengali_fish_curry.jpg?width=900",
+    desc:"Rice with macher jhol, a fish fry and dal — a true Bengali lunch, light and soulful."},
+  {id:"m8",name:"Egg Curry & Parota",type:"nonveg",cuisine:"Home-style",portion:"Serves 1",spice:"Medium",perMeal:140,days:[0,1,2,3,4,5],img:B+"Malabar_Parota_and_egg_curry.JPG?width=900",
+    desc:"Flaky parotas with a spiced egg curry and salad — a satisfying everyday non-veg meal."}
+];
+const WEEK=["M","T","W","T","F","S","S"];
+const ADDONS=[{id:"roti",label:"Extra 2 rotis every meal",price:250},{id:"sweet",label:"A daily sweet",price:350},{id:"salad",label:"Salad & curd add-on",price:200}];
+const MONTH_MEALS=26, WEEK_MEALS=6, MONTH_OFF=0.85;
+const GROW=["Cooking","Packed","Out for delivery","Delivered"];
+const STAGES=[{key:"discover",label:"Discover",sub:"Browse the menu"},{key:"reserve",label:"Choose",sub:"Plan & dishes"},{key:"pay",label:"Pay",sub:"Checkout"},{key:"track",label:"Track",sub:"Cooking → your door"}];
+
+let current="discover",filter="all",sub="all",justOrdered=null;
+let sel={item:null,plan:"weekly",addons:[]};
+let subs=[
+  {item:ITEMS[0],plan:"weekly",addons:[],stage:2,total:130*WEEK_MEALS},
+  {item:ITEMS[5],plan:"monthly",addons:["sweet"],stage:3,total:Math.round(190*MONTH_MEALS*MONTH_OFF)+350}
+];
+
+const $=s=>document.querySelector(s);
+const money=n=>"₹"+n.toLocaleString("en-IN");
+const bookingActive=()=>!!sel.item;
+function visual(it){const f=FOOD[it.type];return f.svg+(it.img?`<img class="cover" src="${it.img}" alt="${it.name}" onerror="this.remove()">`:"");}
+
+function tabState(key){
+  if(key===current)return"active";
+  if(key==="discover")return bookingActive()?"done":"avail";
+  if(key==="reserve")return bookingActive()?(current==="pay"?"done":"avail"):"locked";
+  if(key==="pay")return bookingActive()?"avail":"locked";
+  if(key==="track")return"avail";
+  return"locked";
+}
+function renderStages(){
+  $("#stagebar").innerHTML=STAGES.map((s,i)=>{const st=tabState(s.key),lock=st==="locked";
+    return `<button class="stage-tab ${st==='active'?'active':''} ${st==='done'?'done':''} ${lock?'locked':''}" ${lock?'':`onclick="goStage('${s.key}')"`}>
+      <span class="n">${st==='done'?'✓':i+1}</span><span><span class="lbl">${s.label}</span><br><span class="sub">${s.sub}</span></span><span class="arrow">›</span></button>`;}).join("");
+}
+function goStage(key){
+  if((key==="reserve"||key==="pay")&&!bookingActive())return;
+  current=key;document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));$("#"+key).classList.add("active");
+  if(key==="reserve")renderReserve();if(key==="pay")renderPay();if(key==="track")renderTrack();
+  renderStages();window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function renderChips(){
+  const cats=[["all","All meals"],["veg","Veg 🥗"],["nonveg","Non-veg 🍗"]];
+  $("#chips").innerHTML=cats.map(([k,l])=>`<button class="chip ${filter===k?'on':''}" onclick="setFilter('${k}')">${l}</button>`).join("");
+}
+function setFilter(f){filter=f;renderChips();renderGrid();}
+function renderGrid(){
+  const list=ITEMS.filter(it=>filter==="all"||it.type===filter);
+  $("#count").textContent=list.length+" meals";
+  $("#grid").innerHTML=list.map(it=>{const f=FOOD[it.type];
+    return `<div class="card" onclick="pick('${it.id}')">
+      <div class="canopy" style="background:${f.grad}"><span class="badge ${it.type}"><span class="d"></span>${it.type==='veg'?'Veg':'Non-veg'}</span>${visual(it)}</div>
+      <div class="card-body"><h3>${it.name}</h3><div class="variety">${it.cuisine}</div>
+        <div class="meta"><span>Spice <b>${it.spice}</b></span><span>${it.portion}</span></div>
+        <div class="price-row"><span class="price">${money(it.perMeal)}<small> /meal</small></span></div></div></div>`;}).join("");
+}
+function pick(id){sel={item:ITEMS.find(it=>it.id===id),plan:"weekly",addons:[]};goStage("reserve");}
+
+function renderReserve(){
+  const it=sel.item,f=FOOD[it.type];
+  const cal=WEEK.map((d,i)=>`<div class="${it.days.includes(i)?'hot':''}">${d}</div>`).join("");
+  $("#reserveBody").innerHTML=`
+   <button class="back" onclick="goStage('discover')">← Back to the menu</button>
+   <span class="eyebrow">Stage 2 · Choose</span>
+   <div class="reserve" style="margin-top:8px">
+     <div>
+       <div class="gallery" style="background:${f.grad}">${visual(it)}<span class="tag">👩‍🍳 Cooked fresh · home kitchen</span></div>
+       <div class="facts"><div><span>Cuisine</span><b>${it.cuisine}</b></div><div><span>Type</span><b>${it.type==='veg'?'Vegetarian':'Non-veg'}</b></div><div><span>Portion</span><b>${it.portion}</b></div><div><span>Spice</span><b>${it.spice}</b></div></div>
+       <div style="font-size:11.5px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.08em;margin-bottom:7px">Delivery days</div>
+       <div class="cal">${cal}</div>
+     </div>
+     <div>
+       <h1>${it.name}</h1><div class="variety">${it.cuisine} · ${it.type==='veg'?'Vegetarian':'Non-veg'}</div>
+       <p class="story">${it.desc}</p>
+       <div class="sectlabel">Choose your plan</div><div class="term" id="term"></div>
+       <div class="sectlabel">Add-ons</div><div class="addons" id="addons"></div>
+       <div class="total-line"><span>Total today</span><span class="price" id="rTotal"></span></div>
+       <button class="btn btn-primary" onclick="goStage('pay')">Continue to payment →</button>
+     </div></div>`;
+  renderTerm();renderAddons();updateTotal();
+}
+function planPrice(it,plan){return plan==="monthly"?Math.round(it.perMeal*MONTH_MEALS*MONTH_OFF):it.perMeal*WEEK_MEALS;}
+function renderTerm(){
+  const it=sel.item;
+  const opt=(k,l,p,s)=>`<label class="${sel.plan===k?'sel':''}" onclick="setPlan('${k}')"><div class="t-top"><strong>${l}</strong><span class="tp">${money(p)}</span></div><small>${s}</small></label>`;
+  $("#term").innerHTML=opt("weekly","Weekly",planPrice(it,"weekly"),WEEK_MEALS+" tiffins this week")+opt("monthly","Monthly",planPrice(it,"monthly"),MONTH_MEALS+" tiffins · save 15%");
+}
+function setPlan(k){sel.plan=k;renderTerm();updateTotal();}
+function renderAddons(){$("#addons").innerHTML=ADDONS.map(a=>`<label class="addon"><input type="checkbox" ${sel.addons.includes(a.id)?'checked':''} onchange="toggleAddon('${a.id}')"> ${a.label}<span class="ap">+${money(a.price)}</span></label>`).join("");}
+function toggleAddon(id){sel.addons=sel.addons.includes(id)?sel.addons.filter(x=>x!==id):[...sel.addons,id];updateTotal();}
+function calcTotal(){return planPrice(sel.item,sel.plan)+ADDONS.filter(a=>sel.addons.includes(a.id)).reduce((s,a)=>s+a.price,0);}
+function updateTotal(){const e=$("#rTotal");if(e)e.textContent=money(calcTotal());}
+
+function renderPay(){
+  const it=sel.item,base=planPrice(it,sel.plan),adds=ADDONS.filter(a=>sel.addons.includes(a.id));
+  $("#payBody").innerHTML=`
+   <button class="back" onclick="goStage('reserve')">← Back to ${it.name}</button>
+   <span class="eyebrow">Stage 3 · Pay</span>
+   <div class="checkout" style="margin-top:8px">
+     <div class="panel"><h2>Where should we deliver your tiffin?</h2>
+       <div class="two"><div class="field"><label>First name</label><input placeholder="Aanya"></div><div class="field"><label>Last name</label><input placeholder="Rao"></div></div>
+       <div class="field"><label>Phone</label><input placeholder="+91 98xxx xxxxx"></div>
+       <div class="field"><label>Delivery address</label><input placeholder="Flat 4B, Indiranagar, Bengaluru"></div>
+       <div class="two"><div class="field"><label>Card number</label><input placeholder="4242 4242 4242 4242"></div><div class="field"><label>Expiry / CVC</label><input placeholder="04/27 · 123"></div></div>
+       <button class="btn btn-primary" onclick="placeOrder()">Confirm & pay ${money(calcTotal())}</button>
+       <div class="mock-note">🔒 Demo checkout — no real payment is taken.</div></div>
+     <div class="panel"><h2>Your subscription</h2>
+       <div style="display:flex;gap:14px;align-items:center;margin-bottom:16px">
+         <div class="thumb" style="background:${FOOD[it.type].grad}">${visual(it)}</div>
+         <div><div style="font-family:'Fraunces',serif;font-size:18px">${it.name}</div><div style="font-size:13px;color:var(--ink-soft)">${it.cuisine} · ${it.type==='veg'?'Veg':'Non-veg'}</div></div></div>
+       <div class="summary-row"><span>${sel.plan==="monthly"?"Monthly plan · 26 tiffins":"Weekly plan · 6 tiffins"}</span><b>${money(base)}</b></div>
+       ${adds.map(a=>`<div class="summary-row"><span>${a.label}</span><b>${money(a.price)}</b></div>`).join("")}
+       <div class="summary-total"><span style="font-weight:600">Total</span><span class="price" style="font-size:26px">${money(calcTotal())}</span></div></div>
+   </div>`;
+}
+function placeOrder(){
+  subs.push({item:sel.item,plan:sel.plan,addons:[...sel.addons],stage:0,total:calcTotal()});
+  justOrdered=sel.item.name;sel={item:null,plan:"weekly",addons:[]};sub="all";
+  goStage("track");
+}
+
+function renderSubtabs(){
+  const counts={all:subs.length};GROW.forEach((g,i)=>counts[i]=subs.filter(s=>s.stage===i).length);
+  const tabs=[["all","All"],...GROW.map((g,i)=>[String(i),g])];
+  $("#subtabs").innerHTML=tabs.map(([k,l])=>{const c=k==="all"?counts.all:counts[k];return `<button class="subtab ${sub===k?'on':''}" onclick="setSub('${k}')">${l}<span class="ct">${c}</span></button>`;}).join("");
+}
+function setSub(k){sub=k;renderTrack();}
+function renderTrack(){
+  $("#banner").innerHTML=justOrdered?`<div class="banner">🍱 <span>Your <b>${justOrdered}</b> subscription is live! Today's tiffin is already moving through the kitchen below.</span></div>`:"";justOrdered=null;
+  renderSubtabs();
+  const list=sub==="all"?subs:subs.filter(s=>s.stage===+sub);
+  if(!list.length){$("#trackBody").innerHTML=`<div class="empty">No tiffins in this stage right now.</div>`;return;}
+  $("#trackBody").innerHTML=list.map(s=>{const i=subs.indexOf(s),it=s.item,f=FOOD[it.type];
+    const stages=GROW.map((g,gi)=>`<div class="st ${gi<s.stage?'done':gi===s.stage?'now':''}"><div class="dot"></div>${g}</div>`).join("");
+    const ship=s.stage>=3?`<div class="ship">✅ <b>Delivered!</b> Order #DD${1000+i} · enjoy your meal. Next tiffin tomorrow.</div>`:`<div class="ship">🍳 Today's tiffin is <b>${GROW[s.stage].toLowerCase()}</b>. ${s.stage<3?`Next: ${GROW[s.stage+1].toLowerCase()}.`:""}<button class="btn btn-ghost" onclick="advance(${i})">Advance stage →</button></div>`;
+    return `<div class="my-tree"><div class="av" style="background:${f.grad}">${visual(it)}</div>
+      <div><h3>${it.name}</h3><div class="sub">${it.cuisine} · ${s.plan==="monthly"?"Monthly":"Weekly"} · ${money(s.total)}</div>
+      <div class="timeline">${stages}</div>${ship}</div></div>`;}).join("");
+}
+function advance(i){if(subs[i].stage<3){subs[i].stage++;renderTrack();}}
+
+renderStages();renderChips();renderGrid();
+</script>
+</body>
+</html>

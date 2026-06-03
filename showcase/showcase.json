@@ -3,74 +3,34 @@
     {
       "cohort_number": 3,
       "cohort_location": "Bangalore",
-      "product_name": "Capsule",
-      "participant_name": "Anjali Rao",
-      "description": "A personal stylist for women rebuilding their wardrobe after pregnancy. Five questions about body changes and lifestyle return a 12-piece capsule shopping list with direct purchase links.",
-      "url": "https://capsule-wardrobe.example.com"
+      "product_name": "A Tree for You",
+      "participant_name": "Samson David",
+      "description": "Rent a fruit tree for the season and have its harvest shipped to your door.",
+      "url": "https://justbuild.orangecaterpillar.com/showcase/a-tree-for-you.html"
     },
     {
       "cohort_number": 3,
       "cohort_location": "Bangalore",
-      "product_name": "Saadhana",
-      "participant_name": "Vikram Iyer",
-      "description": "An AI practice partner for Carnatic vocal students. Listens to your daily riyaaz, flags pitch drift between guru sessions, and gives one specific thing to work on tomorrow.",
-      "url": "https://saadhana-music.example.com"
+      "product_name": "Daily Dabba",
+      "participant_name": "Samson David",
+      "description": "A home-cooked tiffin subscription where you choose every meal, delivered daily.",
+      "url": "https://justbuild.orangecaterpillar.com/showcase/daily-dabba.html"
     },
     {
       "cohort_number": 3,
       "cohort_location": "Bangalore",
-      "product_name": "Curry Calendar",
-      "participant_name": "Lakshmi Menon",
-      "description": "A weekly meal planner for South Indian home cooks who default to the same five dishes. Builds a seven-day plan around what's already in your kitchen and what's seasonal at the local market.",
-      "url": "https://currycalendar.example.com"
+      "product_name": "Zevar",
+      "participant_name": "Samson David",
+      "description": "Fine jewellery with a live, itemised price breakup and lifetime buyback.",
+      "url": "https://justbuild.orangecaterpillar.com/showcase/zevar.html"
     },
     {
       "cohort_number": 3,
       "cohort_location": "Bangalore",
-      "product_name": "Pause",
-      "participant_name": "Rohan Krishnan",
-      "description": "A five-minute journaling companion for first-time parents in the early postpartum months. Three prompts a day, no streaks, no pressure \u2014 just a record of how the first year actually felt.",
-      "url": "https://pause-journal.example.com"
-    },
-    {
-      "cohort_number": 2,
-      "cohort_location": "Mumbai",
-      "product_name": "Speak Easy",
-      "participant_name": "Priya Bhat",
-      "description": "A spoken English coach for working professionals preparing for client calls. Roleplays the scenario, flags filler words and unclear phrasing, gives you a short script before the meeting.",
-      "url": "https://speakeasy-india.example.com"
-    },
-    {
-      "cohort_number": 2,
-      "cohort_location": "Mumbai",
-      "product_name": "Rupee Rhythm",
-      "participant_name": "Arjun Desai",
-      "description": "A budget tracker built around irregular freelancer income cycles. Smooths feast-and-famine months into a steady drawable allowance and warns you before the lean weeks bite.",
-      "url": "https://rupeerhythm.example.com"
-    },
-    {
-      "cohort_number": 2,
-      "cohort_location": "Mumbai",
-      "product_name": "Sugar Smart",
-      "participant_name": "Meera Pillai",
-      "description": "A dietary tracker for type-2 diabetics built around Indian home meals. Logs photos of your thali, estimates the carb load, and suggests one small swap for the next meal.",
-      "url": "https://sugarsmart.example.com"
-    },
-    {
-      "cohort_number": 1,
-      "cohort_location": "Bangalore",
-      "product_name": "Step One",
-      "participant_name": "Suresh Nair",
-      "description": "A resume rewriter for mid-career professionals making lateral switches. Translates your last role into the language of the role you actually want and produces three tailored versions in five minutes.",
-      "url": "https://stepone.example.com"
-    },
-    {
-      "cohort_number": 1,
-      "cohort_location": "Bangalore",
-      "product_name": "Bandhu",
-      "participant_name": "Divya Sharma",
-      "description": "A wedding planning copilot for couples managing parents and vendors in parallel. Holds the Google Sheet, the WhatsApp threads, and the family expectations in one place so nothing falls through.",
-      "url": "https://bandhu-weddings.example.com"
+      "product_name": "Crumbs",
+      "participant_name": "Samson David",
+      "description": "A neighbourhood Indian bakery for fresh daily bakes and made-to-order cakes.",
+      "url": "https://justbuild.orangecaterpillar.com/showcase/crumbs.html"
     }
   ]
 }

@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zevar · Fine Jewellery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F1E6;--paper-2:#FCF8EF;--card:#FFFDF8;--ink:#23201A;--ink-soft:#6E665A;
+    --gold:#A8842F;--gold-2:#D9B85F;--emerald:#1F3A30;--onyx:#211F1A;--line:#E6DCC6;
+    --shadow:0 1px 0 #fff inset, 0 18px 40px -28px rgba(35,32,26,.5);--r:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Hanken Grotesk",sans-serif;color:var(--ink);background:var(--paper);line-height:1.55;
+    -webkit-font-smoothing:antialiased;background-image:
+      radial-gradient(circle at 12% 6%, rgba(168,132,47,.12), transparent 42%),
+      radial-gradient(circle at 88% 0%, rgba(31,58,48,.10), transparent 40%);}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 22px;position:relative;z-index:1}
+  h1,h2,h3,h4,.disp{font-family:"Fraunces",serif;font-weight:600;letter-spacing:-.01em;line-height:1.06}
+  .price{font-family:"Fraunces",serif;font-weight:600;color:var(--emerald)}
+  .cover{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+
+  header{background:rgba(246,241,230,.92);border-bottom:1px solid var(--line);backdrop-filter:blur(8px)}
+  .bar{display:flex;align-items:center;justify-content:space-between;height:66px;gap:16px}
+  .brand{display:flex;align-items:center;gap:11px}
+  .brand svg{width:30px;height:30px}
+  .brand .nm{font-family:"Fraunces",serif;font-weight:600;font-size:25px;color:var(--emerald);letter-spacing:.04em;line-height:1}
+  .brand .tg{font-size:10.5px;color:var(--gold);letter-spacing:.22em;text-transform:uppercase;margin-top:1px}
+  .ticker{font-size:12px;color:var(--ink-soft);letter-spacing:.02em;white-space:nowrap}
+  .ticker b{color:var(--gold);font-weight:700}
+
+  .stages{position:sticky;top:0;z-index:30;background:rgba(246,241,230,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .stagebar{display:flex;gap:5px;padding:14px 0;overflow-x:auto}
+  .stage-tab{flex:1;min-width:148px;display:flex;align-items:center;gap:11px;padding:11px 14px;border-radius:13px;
+    border:1.5px solid transparent;background:transparent;cursor:pointer;font:inherit;text-align:left;transition:.22s;position:relative}
+  .stage-tab .n{width:28px;height:28px;flex:none;border-radius:50%;display:grid;place-items:center;font-family:"Fraunces",serif;font-weight:700;font-size:14px;background:#e9ddc3;color:var(--ink-soft);transition:.22s}
+  .stage-tab .lbl{font-weight:700;font-size:14.5px;line-height:1.1}
+  .stage-tab .sub{font-size:11px;color:var(--ink-soft);font-weight:500}
+  .stage-tab.active{background:var(--card);border-color:var(--gold);box-shadow:var(--shadow)}
+  .stage-tab.active .n{background:var(--gold);color:#fff}
+  .stage-tab.done .n{background:var(--emerald);color:#fff}
+  .stage-tab.done .lbl,.stage-tab.active .lbl{color:var(--ink)}
+  .stage-tab.locked{opacity:.42;cursor:not-allowed}
+  .stage-tab:not(.locked):not(.active):hover{background:rgba(31,58,48,.07)}
+  .stage-tab .arrow{position:absolute;right:-9px;color:var(--line);font-size:17px}
+  .stage-tab:last-child .arrow{display:none}
+
+  .view{display:none;padding:32px 0 80px;animation:fade .45s ease}
+  .view.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .lead{margin-bottom:24px}
+  .lead h1{font-size:clamp(30px,4.5vw,42px)}
+  .lead p{color:var(--ink-soft);margin-top:6px;max-width:62ch}
+  .eyebrow{display:inline-block;font-weight:700;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+
+  .toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:4px 0 24px}
+  .chips{display:flex;gap:8px;flex-wrap:wrap}
+  .chip{font:inherit;font-weight:600;font-size:13.5px;border:1px solid var(--line);background:var(--card);color:var(--ink-soft);padding:8px 15px;border-radius:99px;cursor:pointer;transition:.2s}
+  .chip:hover{border-color:var(--emerald)}
+  .chip.on{background:var(--emerald);color:#F6EFD8;border-color:var(--emerald)}
+  .toolbar .count{margin-left:auto;color:var(--ink-soft);font-size:14px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:22px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;cursor:pointer;transition:.25s;box-shadow:var(--shadow);display:flex;flex-direction:column}
+  .card:hover{transform:translateY(-4px);border-color:var(--gold)}
+  .canopy{height:200px;position:relative;display:grid;place-items:center;overflow:hidden}
+  .canopy svg{width:74px;height:74px;opacity:.9}
+  .badge{position:absolute;top:12px;left:12px;z-index:2;font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 10px;border-radius:99px;background:rgba(255,253,248,.94);color:var(--emerald)}
+  .card-body{padding:15px 16px 17px}
+  .card-body h3{font-size:19px}
+  .variety{font-size:13px;color:var(--ink-soft);margin-top:2px}
+  .meta{display:flex;gap:14px;margin-top:12px;font-size:12.5px;color:var(--ink-soft)}
+  .meta b{color:var(--ink);font-weight:600}
+  .price-row{display:flex;align-items:baseline;justify-content:space-between;margin-top:14px;padding-top:12px;border-top:1px dashed var(--line)}
+  .price-row .price{font-size:20px}
+  .price-row small{font-family:"Hanken Grotesk";font-size:12px;color:var(--ink-soft);font-weight:500}
+
+  .reserve{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start}
+  .gallery{border-radius:22px;height:380px;display:grid;place-items:center;position:relative;overflow:hidden;box-shadow:var(--shadow)}
+  .gallery svg{width:150px;height:150px;opacity:.9}
+  .gallery .tag{position:absolute;bottom:16px;left:16px;z-index:2;background:rgba(255,253,248,.94);padding:7px 13px;border-radius:99px;font-size:12.5px;font-weight:700;color:var(--emerald)}
+  .certstrip{display:flex;gap:8px;margin:14px 0 18px;flex-wrap:wrap}
+  .certbadge{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:600;color:var(--emerald);background:#eef2ec;border:1px solid #d4e0ce;border-radius:99px;padding:7px 12px}
+  .reserve h1{font-size:34px}
+  .facts{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:6px 0 0}
+  .facts div{background:var(--card);padding:12px 15px}
+  .facts span{display:block;font-size:11.5px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.06em}
+  .facts b{font-family:"Fraunces",serif;font-size:16px;font-weight:600}
+  .story{font-size:14.5px;color:#4d473b;font-style:italic;border-left:3px solid var(--gold);padding-left:15px;margin:4px 0 20px}
+  .sectlabel{font-weight:600;margin-bottom:9px;font-size:14px}
+  .seg{display:flex;gap:8px;margin-bottom:16px}
+  .seg button{flex:1;font:inherit;font-weight:600;font-size:13.5px;padding:11px 8px;border:1.5px solid var(--line);border-radius:11px;background:var(--card);color:var(--ink-soft);cursor:pointer;transition:.2s}
+  .seg button.on{border-color:var(--emerald);background:#eef2ec;color:var(--ink);box-shadow:0 0 0 3px rgba(31,58,48,.12)}
+  .seg button small{display:block;font-weight:500;font-size:11px;color:var(--ink-soft);margin-top:2px}
+  .swatches{display:flex;gap:12px;margin-bottom:16px;align-items:center}
+  .swatch{width:34px;height:34px;border-radius:50%;cursor:pointer;box-shadow:0 0 0 1px var(--line);transition:.15s}
+  .swatch.on{box-shadow:0 0 0 2px var(--emerald),0 0 0 4px #fff inset}
+  .swatch span{display:none}
+  .breakup{background:var(--paper-2);border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin:6px 0 18px}
+  .breakup h4{font-size:15px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}
+  .breakup .livedot{font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);background:#f3ecd6;border-radius:99px;padding:3px 9px;font-family:"Hanken Grotesk"}
+  .brow{display:flex;justify-content:space-between;font-size:14px;margin:8px 0;color:var(--ink-soft)}
+  .brow b{color:var(--ink);font-weight:600}
+  .brow .lbl2{display:flex;flex-direction:column}
+  .brow .sm{font-size:11.5px;color:var(--ink-soft)}
+  .btot{display:flex;justify-content:space-between;align-items:baseline;margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+  .btot .price{font-size:26px}
+
+  .btn{font:inherit;font-weight:700;font-size:15px;border:none;cursor:pointer;border-radius:99px;padding:14px 24px;transition:.2s}
+  .btn-primary{background:var(--onyx);color:#F4E7C4;width:100%}
+  .btn-primary:hover{background:#332f25}
+  .btn-ghost{background:none;border:1.5px solid var(--emerald);color:var(--emerald)}
+  .btn-ghost:hover{background:var(--emerald);color:#F6EFD8}
+  .back{background:none;border:none;font:inherit;font-weight:600;color:var(--emerald);cursor:pointer;margin-bottom:18px;font-size:14px}
+
+  .trygrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .trycard{border:1.5px solid var(--line);border-radius:16px;padding:20px;cursor:pointer;background:var(--card);transition:.2s}
+  .trycard:hover{border-color:var(--emerald)}
+  .trycard.on{border-color:var(--emerald);background:#eef2ec;box-shadow:0 0 0 3px rgba(31,58,48,.1)}
+  .trycard .ic{font-size:26px}
+  .trycard h3{font-size:16px;margin:10px 0 4px}
+  .trycard p{font-size:12.5px;color:var(--ink-soft)}
+  .trydetail{background:var(--paper-2);border:1px solid var(--line);border-radius:16px;padding:20px;margin-top:18px;display:flex;gap:18px;align-items:center}
+  .trydetail .frame{width:120px;height:120px;border-radius:14px;position:relative;overflow:hidden;flex:none;display:grid;place-items:center;border:2px dashed var(--gold)}
+  .trydetail h3{font-size:18px;margin-bottom:5px}
+  .trydetail p{font-size:13.5px;color:var(--ink-soft)}
+  .slots{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+  .slots button{font:inherit;font-size:12.5px;font-weight:600;border:1px solid var(--line);background:var(--card);border-radius:9px;padding:7px 12px;cursor:pointer}
+  .slots button.on{border-color:var(--emerald);background:#eef2ec}
+
+  .checkout{display:grid;grid-template-columns:1.05fr .95fr;gap:36px;align-items:start}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;box-shadow:var(--shadow)}
+  .panel h2{font-size:22px;margin-bottom:18px}
+  .field{margin-bottom:15px}
+  .field label{display:block;font-size:13px;font-weight:600;color:var(--ink-soft);margin-bottom:6px}
+  .field input{width:100%;font:inherit;font-size:15px;padding:12px 14px;border:1.5px solid var(--line);border-radius:11px;background:var(--paper-2);color:var(--ink);transition:.2s}
+  .field input:focus{outline:none;border-color:var(--emerald);background:#fff}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .pay-opt{display:flex;align-items:center;gap:11px;border:1.5px solid var(--line);border-radius:12px;padding:13px 15px;margin-bottom:10px;cursor:pointer;font-size:14px;transition:.2s}
+  .pay-opt:hover{border-color:var(--emerald)}
+  .pay-opt.on{border-color:var(--emerald);background:#eef2ec}
+  .pay-opt .r{width:18px;height:18px;border-radius:50%;border:2px solid var(--line);flex:none}
+  .pay-opt.on .r{border-color:var(--emerald);background:var(--emerald);box-shadow:0 0 0 3px #fff inset}
+  .pay-opt .sm{margin-left:auto;color:var(--ink-soft);font-size:12.5px}
+  .extra{display:flex;align-items:center;gap:11px;font-size:14px;cursor:pointer;margin:9px 0}
+  .extra input{width:18px;height:18px;accent-color:var(--emerald)}
+  .extra .ap{margin-left:auto;color:var(--ink-soft);font-weight:600}
+  .thumb{width:58px;height:58px;border-radius:12px;position:relative;overflow:hidden;display:grid;place-items:center}
+  .thumb svg{width:34px;height:34px}
+  .kyc{font-size:12px;color:var(--ink-soft);background:var(--paper-2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-top:12px}
+
+  .banner{display:flex;align-items:center;gap:12px;background:#eef2ec;border:1px solid #d4e0ce;border-radius:14px;padding:14px 18px;margin-bottom:22px;color:var(--emerald);font-weight:600}
+  .subtabs{display:flex;gap:7px;flex-wrap:wrap;margin:4px 0 22px}
+  .subtab{font:inherit;font-weight:600;font-size:12.5px;border:1px solid var(--line);background:var(--card);color:var(--ink-soft);padding:7px 13px;border-radius:99px;cursor:pointer;transition:.2s}
+  .subtab:hover{border-color:var(--emerald)}
+  .subtab.on{background:var(--emerald);color:#F6EFD8;border-color:var(--emerald)}
+  .subtab .ct{opacity:.7;font-weight:700;margin-left:4px}
+  .empty{text-align:center;padding:54px 20px;color:var(--ink-soft)}
+  .my-tree{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;margin-bottom:18px;box-shadow:var(--shadow);display:grid;grid-template-columns:90px 1fr;gap:20px}
+  .my-tree .av{height:90px;border-radius:14px;display:grid;place-items:center;position:relative;overflow:hidden}
+  .my-tree .av svg{width:50px;height:50px}
+  .my-tree h3{font-size:19px}
+  .my-tree .sub{font-size:13px;color:var(--ink-soft);margin-top:2px}
+  .timeline{display:flex;margin:18px 0 6px}
+  .timeline .st{flex:1;text-align:center;position:relative;font-size:10.5px;color:var(--ink-soft)}
+  .timeline .st::before{content:"";position:absolute;top:8px;left:-50%;width:100%;height:2px;background:var(--line);z-index:0}
+  .timeline .st:first-child::before{display:none}
+  .timeline .dot{width:18px;height:18px;border-radius:50%;background:var(--paper);border:2px solid var(--line);margin:0 auto 7px;z-index:1;position:relative}
+  .timeline .st.done .dot{background:var(--emerald);border-color:var(--emerald)}
+  .timeline .st.done::before{background:var(--emerald)}
+  .timeline .st.now .dot{background:var(--gold);border-color:var(--gold);box-shadow:0 0 0 5px rgba(168,132,47,.22)}
+  .timeline .st.done,.timeline .st.now{color:var(--ink);font-weight:600}
+  .ship{display:flex;align-items:center;gap:10px;background:var(--paper-2);border:1px solid var(--line);border-radius:12px;padding:11px 14px;font-size:13.5px;margin-top:14px;color:var(--ink-soft)}
+  .ship b{color:var(--ink)}
+  .ship .btn{margin-left:auto;padding:8px 16px;font-size:13px}
+  .cert{background:var(--paper-2);border:1px dashed var(--line);border-radius:12px;padding:10px 14px;margin-top:12px;font-size:12.5px;color:var(--ink-soft);display:flex;gap:18px;flex-wrap:wrap}
+  .cert b{color:var(--ink)}
+  .buyback{display:flex;justify-content:space-between;align-items:center;background:#eef2ec;border:1px solid #d4e0ce;border-radius:12px;padding:11px 15px;margin-top:12px;font-size:13.5px}
+  .buyback .price{font-size:18px}
+  .care-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+  .care-actions .btn{padding:8px 14px;font-size:12.5px}
+  .care-msg{font-size:12.5px;color:var(--emerald);font-weight:600;margin-top:10px}
+
+  footer{border-top:1px solid var(--line);padding:28px 0;text-align:center;color:var(--ink-soft);font-size:13px;position:relative;z-index:1}
+  @media(max-width:820px){.reserve,.checkout{grid-template-columns:1fr}.trygrid{grid-template-columns:1fr}.ticker{display:none}.stage-tab{min-width:140px}}
+</style>
+</head>
+<body>
+
+<header><div class="wrap bar">
+  <div class="brand">
+    <svg viewBox="0 0 32 32" fill="none"><path d="M16 4l4 7h8l-12 17L4 11h8l4-7z" fill="#D9B85F" stroke="#1F3A30" stroke-width="1.4" stroke-linejoin="round"/><path d="M12 11h8M16 4l-4 7 4 17 4-17-4-7z" stroke="#1F3A30" stroke-width="1.1" fill="none"/></svg>
+    <div><div class="nm">ZEVAR</div><div class="tg">Fine Jewellery</div></div>
+  </div>
+  <div class="ticker">GOLD &nbsp;<b>22K ₹6,650</b> · <b>18K ₹5,450</b>&nbsp;/g &nbsp;<span style="color:var(--emerald)">▲ today</span></div>
+</div></header>
+
+<div class="stages"><div class="wrap"><div class="stagebar" id="stagebar"></div></div></div>
+
+<section id="discover" class="view active"><div class="wrap">
+  <div class="lead"><span class="eyebrow">Stage 1 · Discover</span>
+    <h1>Fine jewellery, with nothing hidden</h1>
+    <p>Browse the collection — every piece carries a live, itemised price, is hallmarked and certified, and is backed by lifetime exchange and buyback.</p></div>
+  <div class="toolbar"><div class="chips" id="chips"></div><span class="count" id="count"></span></div>
+  <div class="grid" id="grid"></div>
+</div></section>
+
+<section id="customise" class="view"><div class="wrap" id="customiseBody"></div></section>
+<section id="try" class="view"><div class="wrap" id="tryBody"></div></section>
+<section id="buy" class="view"><div class="wrap" id="buyBody"></div></section>
+
+<section id="track" class="view"><div class="wrap">
+  <div class="lead"><span class="eyebrow">Stage 5 · Track</span><h1>In the workshop</h1>
+    <p>Your orders as they're crafted, certified and dispatched — grouped by stage.</p></div>
+  <div id="banner"></div><div class="subtabs" id="subtabs"></div><div id="trackBody"></div>
+</div></section>
+
+<section id="care" class="view"><div class="wrap">
+  <div class="lead"><span class="eyebrow">Stage 6 · Care</span><h1>My jewellery box</h1>
+    <p>Pieces you own — with their certificates, lifetime care, and a live buyback value at today's rate.</p></div>
+  <div id="careBody"></div>
+</div></section>
+
+<footer class="wrap">Zevar · a demo of the customer workflow · runs entirely in your browser</footer>
+
+<script>
+/* category line-art (fallback when a piece has no photo) */
+const ICON={
+  ring:`<svg viewBox="0 0 64 64" fill="none" stroke="#8a6d28" stroke-width="3"><circle cx="32" cy="40" r="15"/><path d="M25 24l7-11 7 11z" fill="#cda94e" stroke="none"/></svg>`,
+  necklace:`<svg viewBox="0 0 64 64" fill="none" stroke="#8a6d28" stroke-width="3"><path d="M12 16c8 19 32 19 40 0"/><path d="M32 35l5 7-5 7-5-7z" fill="#cda94e" stroke="none"/></svg>`,
+  earrings:`<svg viewBox="0 0 64 64" fill="none" stroke="#8a6d28" stroke-width="3"><circle cx="23" cy="18" r="3"/><path d="M23 21v8"/><circle cx="23" cy="40" r="8" fill="#cda94e" stroke="none"/><circle cx="42" cy="18" r="3"/><path d="M42 21v8"/><circle cx="42" cy="40" r="8" fill="#cda94e" stroke="none"/></svg>`,
+  bangle:`<svg viewBox="0 0 64 64" fill="none" stroke="#cda94e" stroke-width="6"><circle cx="32" cy="32" r="20"/></svg>`,
+  pendant:`<svg viewBox="0 0 64 64" fill="none" stroke="#8a6d28" stroke-width="3"><path d="M14 18c6 15 30 15 36 0"/><path d="M32 30l7 9-7 9-7-9z" fill="#cda94e" stroke="none"/></svg>`
+};
+const GRAD="linear-gradient(140deg,#efe3c1,#d7bd77)";
+
+const B="https://commons.wikimedia.org/wiki/Special:FilePath/";
+/* pricing inputs */
+const RATES={"22":6650,"18":5450,"14":4250};        // ₹ per gram
+const DIAMOND={"SI":45000,"VS":70000,"VVS":110000}; // ₹ per carat
+const GST=0.03, ENGRAVE_FEE=500;
+
+const ITEMS=[
+  {id:"j1",name:"Solitaire Ring",cat:"ring",occasion:"bridal",weight:3.5,hasDiamond:true,carat:0.50,makingPct:0.14,img:B+"Solitary_ring_and_diamond.JPG?width=900",
+    desc:"A single brilliant-cut diamond on a slim band — the classic promise, made to last."},
+  {id:"j2",name:"Cocktail Ring",cat:"ring",occasion:"gifting",weight:5.0,hasDiamond:true,carat:0.70,makingPct:0.13,img:B+"Gold_ring_with_diamonds_and_garnets_2.jpg?width=900",
+    desc:"A statement ring set with diamonds and coloured stones — for the evenings that matter."},
+  {id:"j3",name:"Bridal Necklace",cat:"necklace",occasion:"bridal",weight:32,hasDiamond:false,carat:0,makingPct:0.16,img:B+"WLA_vanda_marriage_necklace.jpg?width=900",
+    desc:"A heavy, hand-finished gold necklace in the traditional bridal style — heirloom weight and presence."},
+  {id:"j4",name:"Mangalsutra",cat:"necklace",occasion:"bridal",weight:14,hasDiamond:true,carat:0.25,makingPct:0.15,img:B+"Thirumaangalyam_or_Thaali.jpg?width=900",
+    desc:"Black-bead mangalsutra with a diamond-set pendant — sacred, everyday, and beautifully made."},
+  {id:"j5",name:"Gold Jhumkas",cat:"earrings",occasion:"daily",weight:8,hasDiamond:false,carat:0,makingPct:0.14,img:B+"Jhumkas.jpg?width=900",
+    desc:"Bell-shaped gold jhumkas with fine granulation — equally at home with a sari or a kurta."},
+  {id:"j6",name:"Gold Bracelet",cat:"bangle",occasion:"daily",weight:12,hasDiamond:false,carat:0,makingPct:0.12,img:B+"Gold_charm_bracelet.JPG?width=900",
+    desc:"A supple everyday gold bracelet — light enough to never take off."},
+  {id:"j7",name:"Diamond Pendant",cat:"pendant",occasion:"gifting",weight:3,hasDiamond:true,carat:0.40,makingPct:0.12,img:B+"Diamond_jewellery_(24847541297).jpg?width=900",
+    desc:"A diamond pendant that catches the light — the easy gift that's always right."},
+  {id:"j8",name:"Gold Chain",cat:"necklace",occasion:"daily",weight:10,hasDiamond:false,carat:0,makingPct:0.10,img:B+"Handmade_Gold_Necklace.jpg?width=900",
+    desc:"A classic hand-made gold chain — versatile on its own or with any pendant."}
+];
+const COLORS={yellow:"#E3C063",white:"#E6E6E0",rose:"#E6B89C"};
+const SIZES={ring:["12","14","16","18"],bangle:["2.4","2.6","2.8"]};
+const GROW=["Confirmed","Crafting","Setting","Hallmark","QC","Dispatched","Delivered"];
+const STAGES=[
+  {key:"discover",label:"Discover",sub:"Browse the collection"},
+  {key:"customise",label:"Customise",sub:"Metal, stone & size"},
+  {key:"try",label:"Try",sub:"Be sure first"},
+  {key:"buy",label:"Buy",sub:"Transparent checkout"},
+  {key:"track",label:"Track",sub:"In the workshop"},
+  {key:"care",label:"Care",sub:"Own & aftercare"}
+];
+const ORDER=["discover","customise","try","buy"];
+
+let current="discover",filter="all",sub="all",justOrdered=null;
+let sel=null;
+function defaults(it){return {item:it,purity:it.hasDiamond?"18":"22",color:"yellow",size:SIZES[it.cat]?SIZES[it.cat][1]:null,grade:it.hasDiamond?"VS":null,engraving:false,engraveText:"",tryMethod:"virtual"};}
+let orders=[
+  {item:ITEMS[0],purity:"18",color:"yellow",grade:"VS",stage:1},
+  {item:ITEMS[2],purity:"22",color:"yellow",grade:null,stage:5}
+].map(o=>({...o,total:breakup(o.item,o).total}));
+let owned=[
+  {item:ITEMS[3],purity:"22",color:"yellow",grade:"VS",paid:96000,certBIS:"BIS-916-7XK2",certIGI:"IGI-LG552310",msg:""},
+  {item:ITEMS[5],purity:"22",color:"yellow",grade:null,paid:82000,certBIS:"BIS-916-3QW9",certIGI:null,msg:""}
+];
+
+const $=s=>document.querySelector(s);
+const money=n=>"₹"+Math.round(n).toLocaleString("en-IN");
+const cap=s=>s[0].toUpperCase()+s.slice(1);
+const bookingActive=()=>!!sel;
+function visual(it){return (ICON[it.cat]||"")+(it.img?`<img class="cover" src="${it.img}" alt="${it.name}" onerror="this.remove()">`:"");}
+
+function breakup(item,o){
+  const rate=RATES[o.purity];
+  const metal=item.weight*rate;
+  const making=metal*item.makingPct;
+  const stones=item.hasDiamond?item.carat*DIAMOND[o.grade||"VS"]:0;
+  const engrave=o.engraving?ENGRAVE_FEE:0;
+  const subtotal=metal+making+stones+engrave;
+  const gst=subtotal*GST;
+  return {rate,metal,making,stones,engrave,gst,total:subtotal+gst};
+}
+
+/* tabs */
+function tabState(key){
+  if(key===current)return"active";
+  if(key==="track"||key==="care")return"avail";
+  if(!bookingActive())return key==="discover"?"avail":"locked";
+  const ci=ORDER.indexOf(current);
+  if(ci===-1)return"avail";
+  return ORDER.indexOf(key)<ci?"done":"avail";
+}
+function renderStages(){
+  $("#stagebar").innerHTML=STAGES.map((s,i)=>{const st=tabState(s.key),lock=st==="locked";
+    return `<button class="stage-tab ${st==='active'?'active':''} ${st==='done'?'done':''} ${lock?'locked':''}" ${lock?'':`onclick="goStage('${s.key}')"`}>
+      <span class="n">${st==='done'?'✓':i+1}</span><span><span class="lbl">${s.label}</span><br><span class="sub">${s.sub}</span></span><span class="arrow">›</span></button>`;}).join("");
+}
+function goStage(key){
+  if(["customise","try","buy"].includes(key)&&!bookingActive())return;
+  current=key;document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));$("#"+key).classList.add("active");
+  if(key==="customise")renderCustomise();if(key==="try")renderTry();if(key==="buy")renderBuy();if(key==="track")renderTrack();if(key==="care")renderCare();
+  renderStages();window.scrollTo({top:0,behavior:"smooth"});
+}
+
+/* discover */
+function renderChips(){
+  const cats=[["all","Everything"],["bridal","Bridal"],["daily","Daily wear"],["gifting","Gifting"]];
+  $("#chips").innerHTML=cats.map(([k,l])=>`<button class="chip ${filter===k?'on':''}" onclick="setFilter('${k}')">${l}</button>`).join("");
+}
+function setFilter(f){filter=f;renderChips();renderGrid();}
+function fromPrice(it){return breakup(it,{purity:it.hasDiamond?"18":"22",grade:"VS"}).total;}
+function renderGrid(){
+  const list=ITEMS.filter(it=>filter==="all"||it.occasion===filter);
+  $("#count").textContent=list.length+" pieces";
+  $("#grid").innerHTML=list.map(it=>`<div class="card" onclick="pick('${it.id}')">
+      <div class="canopy" style="background:${GRAD}"><span class="badge">${cap(it.occasion)}</span>${visual(it)}</div>
+      <div class="card-body"><h3>${it.name}</h3><div class="variety">${cap(it.cat)} · ${it.hasDiamond?'gold & diamond':'gold'}</div>
+        <div class="meta"><span>${it.weight}g</span>${it.hasDiamond?`<span>${it.carat}ct</span>`:''}</div>
+        <div class="price-row"><span class="price">${money(fromPrice(it))}<small> onwards</small></span></div></div></div>`).join("");
+}
+function pick(id){sel=defaults(ITEMS.find(it=>it.id===id));goStage("customise");}
+
+/* customise */
+function renderCustomise(){
+  const it=sel.item,b=breakup(it,sel);
+  const purities=["22","18","14"].map(p=>`<button class="${sel.purity===p?'on':''}" onclick="setOpt('purity','${p}')">${p}K<small>₹${RATES[p].toLocaleString('en-IN')}/g</small></button>`).join("");
+  const swatches=Object.entries(COLORS).map(([k,c])=>`<div class="swatch ${sel.color===k?'on':''}" style="background:${c}" title="${cap(k)} gold" onclick="setOpt('color','${k}')"></div>`).join("");
+  const sizeBlock=SIZES[it.cat]?`<div class="sectlabel">${it.cat==='ring'?'Ring size':'Bangle size (inches)'}</div><div class="seg">${SIZES[it.cat].map(s=>`<button class="${sel.size===s?'on':''}" onclick="setOpt('size','${s}')">${s}</button>`).join("")}</div>`:"";
+  const gradeBlock=it.hasDiamond?`<div class="sectlabel">Diamond grade</div><div class="seg">${["SI","VS","VVS"].map(g=>`<button class="${sel.grade===g?'on':''}" onclick="setOpt('grade','${g}')">${g}<small>₹${(DIAMOND[g]/1000)}k/ct</small></button>`).join("")}</div>`:"";
+  $("#customiseBody").innerHTML=`
+   <button class="back" onclick="goStage('discover')">← Back to the collection</button>
+   <span class="eyebrow">Stage 2 · Customise</span>
+   <div class="reserve" style="margin-top:8px">
+     <div>
+       <div class="gallery" style="background:${GRAD}">${visual(it)}<span class="tag">✦ Made to order · ${it.weight}g</span></div>
+       <div class="certstrip"><span class="certbadge">✓ BIS Hallmarked ${sel.purity}K</span>${it.hasDiamond?`<span class="certbadge">✓ IGI Certified diamond</span>`:''}<span class="certbadge">✓ Lifetime buyback</span></div>
+       <div class="facts"><div><span>Type</span><b>${cap(it.cat)}</b></div><div><span>Metal</span><b>${sel.purity}K ${cap(sel.color)}</b></div><div><span>Net weight</span><b>${it.weight} g</b></div><div><span>${it.hasDiamond?'Diamond':'Occasion'}</span><b>${it.hasDiamond?it.carat+' ct · '+sel.grade:cap(it.occasion)}</b></div></div>
+     </div>
+     <div>
+       <h1>${it.name}</h1><div class="variety">${cap(it.occasion)} · ${it.hasDiamond?'gold & diamond':'gold'}</div>
+       <p class="story">${it.desc}</p>
+       <div class="sectlabel">Purity</div><div class="seg">${purities}</div>
+       <div class="sectlabel">Metal colour</div><div class="swatches">${swatches}<span style="font-size:12.5px;color:var(--ink-soft)">${cap(sel.color)} gold</span></div>
+       ${sizeBlock}${gradeBlock}
+       <label class="extra" style="margin-bottom:14px"><input type="checkbox" ${sel.engraving?'checked':''} onchange="toggleEngrave()"> Add engraving<span class="ap">+${money(ENGRAVE_FEE)}</span></label>
+       ${sel.engraving?`<input class="field" style="width:100%;font:inherit;font-size:14px;padding:10px 13px;border:1.5px solid var(--line);border-radius:11px;background:var(--paper-2);margin:-6px 0 16px" maxlength="20" placeholder="Up to 20 characters" value="${sel.engraveText}" oninput="sel.engraveText=this.value">`:''}
+       <div class="breakup">
+         <h4>Price breakup <span class="livedot">updates live</span></h4>
+         <div class="brow"><div class="lbl2">Gold value<span class="sm">${it.weight}g × ${sel.purity}K @ ${money(b.rate)}/g</span></div><b>${money(b.metal)}</b></div>
+         <div class="brow"><div class="lbl2">Making charges<span class="sm">${Math.round(it.makingPct*100)}% of gold value</span></div><b>${money(b.making)}</b></div>
+         ${it.hasDiamond?`<div class="brow"><div class="lbl2">Diamonds<span class="sm">${it.carat}ct · ${sel.grade} grade</span></div><b>${money(b.stones)}</b></div>`:''}
+         ${sel.engraving?`<div class="brow"><div class="lbl2">Engraving</div><b>${money(b.engrave)}</b></div>`:''}
+         <div class="brow"><div class="lbl2">GST<span class="sm">3%</span></div><b>${money(b.gst)}</b></div>
+         <div class="btot"><span style="font-weight:700">Total</span><span class="price">${money(b.total)}</span></div>
+       </div>
+       <button class="btn btn-primary" onclick="goStage('try')">Continue to try-on →</button>
+     </div></div>`;
+}
+function setOpt(k,v){sel[k]=v;renderCustomise();}
+function toggleEngrave(){sel.engraving=!sel.engraving;renderCustomise();}
+
+/* try */
+function renderTry(){
+  const it=sel.item;
+  const opts=[["virtual","✨","Virtual try-on","Point your camera and see it on you, instantly."],["home","📦","Try at home","We send insured replicas for 5 days, free."],["appointment","📅","Book an appointment","Meet a consultant in-store or over video."]];
+  const cards=opts.map(([k,ic,t,p])=>`<div class="trycard ${sel.tryMethod===k?'on':''}" onclick="selectTry('${k}')"><div class="ic">${ic}</div><h3>${t}</h3><p>${p}</p></div>`).join("");
+  let detail="";
+  if(sel.tryMethod==="virtual")detail=`<div class="trydetail"><div class="frame" style="background:${GRAD}">${visual(it)}</div><div><h3>Virtual try-on</h3><p>Here's ${it.name} rendered for AR. On a phone you'd point the camera at your hand or neck and see it placed live, true to size.</p></div></div>`;
+  if(sel.tryMethod==="home")detail=`<div class="trydetail"><div class="frame" style="border-style:solid;border-color:var(--line)">📦</div><div><h3>Try at home</h3><p>We'll deliver insured replicas of ${it.name} (and up to 2 more pieces) to try for 5 days. Keep what you love, send back the rest — free.</p></div></div>`;
+  if(sel.tryMethod==="appointment")detail=`<div class="trydetail"><div class="frame" style="border-style:solid;border-color:var(--line)">📅</div><div><h3>Book an appointment</h3><p>Pick a slot with a Zevar consultant:</p><div class="slots">${["Sat 11:00","Sat 4:30","Sun 12:00","Video call"].map((s,i)=>`<button class="${i===0?'on':''}" onclick="this.parentElement.querySelectorAll('button').forEach(b=>b.classList.remove('on'));this.classList.add('on')">${s}</button>`).join("")}</div></div></div>`;
+  $("#tryBody").innerHTML=`
+   <button class="back" onclick="goStage('customise')">← Back to customise</button>
+   <span class="eyebrow">Stage 3 · Try</span>
+   <h1 style="font-size:32px;margin:8px 0 4px">See it before you commit</h1>
+   <p style="color:var(--ink-soft);margin-bottom:22px;max-width:60ch">No fine piece should be bought sight unseen. Choose how you'd like to try ${it.name}.</p>
+   <div class="trygrid">${cards}</div>${detail}
+   <div style="display:flex;gap:12px;margin-top:24px;flex-wrap:wrap">
+     <button class="btn btn-primary" style="max-width:280px" onclick="goStage('buy')">Continue to buy →</button>
+     <button class="btn btn-ghost" onclick="goStage('buy')">Skip — I'm ready</button>
+   </div>`;
+}
+function selectTry(m){sel.tryMethod=m;renderTry();}
+
+/* buy */
+let payOpt="full", insure=false, giftwrap=false;
+function renderBuy(){
+  const it=sel.item,b=breakup(it,sel);
+  let extra=(insure?b.total*0.01:0)+(giftwrap?300:0);
+  const grand=b.total+extra;
+  const pays=[["full","Pay in full",money(grand)],["emi","EMI · 6 months","No-cost · "+money(grand/6)+"/mo"],["scheme","Redeem gold savings","Balance ₹40,000 available"]];
+  $("#buyBody").innerHTML=`
+   <button class="back" onclick="goStage('try')">← Back to try-on</button>
+   <span class="eyebrow">Stage 4 · Buy</span>
+   <div class="checkout" style="margin-top:8px">
+     <div class="panel"><h2>Delivery & payment</h2>
+       <div class="two"><div class="field"><label>First name</label><input value="Vaibhav"></div><div class="field"><label>Last name</label><input value="Suryavanshi"></div></div>
+       <div class="field"><label>Delivery address</label><input placeholder="Flat 4B, Indiranagar, Bengaluru"></div>
+       <div class="sectlabel">Payment</div>
+       ${pays.map(([k,l,s])=>`<div class="pay-opt ${payOpt===k?'on':''}" onclick="setPay('${k}')"><span class="r"></span>${l}<span class="sm">${s}</span></div>`).join("")}
+       <label class="extra"><input type="checkbox" ${insure?'checked':''} onchange="insure=!insure;renderBuy()"> Jewellery insurance (1 year)<span class="ap">+${money(b.total*0.01)}</span></label>
+       <label class="extra"><input type="checkbox" ${giftwrap?'checked':''} onchange="giftwrap=!giftwrap;renderBuy()"> Gift packaging<span class="ap">+₹300</span></label>
+       <div class="kyc">🔒 For orders above ₹2,00,000, a quick KYC (PAN) is collected at delivery, per regulation. This is a demo — no real payment is taken.</div>
+       <button class="btn btn-primary" style="margin-top:16px" onclick="placeOrder()">Confirm order · ${money(grand)}</button>
+     </div>
+     <div class="panel"><h2>Your order</h2>
+       <div style="display:flex;gap:14px;align-items:center;margin-bottom:16px">
+         <div class="thumb" style="background:${GRAD}">${visual(it)}</div>
+         <div><div style="font-family:'Fraunces',serif;font-size:18px">${it.name}</div><div style="font-size:13px;color:var(--ink-soft)">${sel.purity}K ${cap(sel.color)} · ${it.cat==='ring'||it.cat==='bangle'?'size '+sel.size+' · ':''}${it.hasDiamond?it.carat+'ct '+sel.grade:'gold'}</div></div></div>
+       <div class="brow"><div class="lbl2">Gold value<span class="sm">${it.weight}g × ${sel.purity}K @ ${money(b.rate)}/g</span></div><b>${money(b.metal)}</b></div>
+       <div class="brow"><span>Making charges</span><b>${money(b.making)}</b></div>
+       ${it.hasDiamond?`<div class="brow"><span>Diamonds (${it.carat}ct ${sel.grade})</span><b>${money(b.stones)}</b></div>`:''}
+       ${sel.engraving?`<div class="brow"><span>Engraving</span><b>${money(b.engrave)}</b></div>`:''}
+       <div class="brow"><span>GST (3%)</span><b>${money(b.gst)}</b></div>
+       ${insure?`<div class="brow"><span>Insurance</span><b>${money(b.total*0.01)}</b></div>`:''}
+       ${giftwrap?`<div class="brow"><span>Gift packaging</span><b>₹300</b></div>`:''}
+       <div class="btot"><span style="font-weight:700">Total</span><span class="price">${money(grand)}</span></div>
+       ${payOpt==='emi'?`<div style="font-size:12.5px;color:var(--ink-soft);margin-top:8px">6 no-cost EMIs of <b>${money(grand/6)}</b></div>`:''}
+     </div>
+   </div>`;
+}
+function setPay(k){payOpt=k;renderBuy();}
+function placeOrder(){
+  orders.push({item:sel.item,purity:sel.purity,color:sel.color,grade:sel.grade,total:breakup(sel.item,sel).total,stage:0});
+  justOrdered=sel.item.name;sel=null;sub="all";insure=false;giftwrap=false;payOpt="full";
+  goStage("track");
+}
+
+/* track */
+function renderSubtabs(){
+  const counts={all:orders.length};GROW.forEach((g,i)=>counts[i]=orders.filter(o=>o.stage===i).length);
+  const tabs=[["all","All"],...GROW.map((g,i)=>[String(i),g])];
+  $("#subtabs").innerHTML=tabs.map(([k,l])=>{const c=k==="all"?counts.all:counts[k];return `<button class="subtab ${sub===k?'on':''}" onclick="setSub('${k}')">${l}<span class="ct">${c}</span></button>`;}).join("");
+}
+function setSub(k){sub=k;renderTrack();}
+function renderTrack(){
+  $("#banner").innerHTML=justOrdered?`<div class="banner">💎 <span>Your <b>${justOrdered}</b> is confirmed! Follow it through the workshop below — design, crafting, certification and dispatch.</span></div>`:"";justOrdered=null;
+  renderSubtabs();
+  const list=sub==="all"?orders:orders.filter(o=>o.stage===+sub);
+  if(!list.length){$("#trackBody").innerHTML=`<div class="empty">No orders in this stage.</div>`;return;}
+  $("#trackBody").innerHTML=list.map(o=>{const i=orders.indexOf(o),it=o.item;
+    const stages=GROW.map((g,gi)=>`<div class="st ${gi<o.stage?'done':gi===o.stage?'now':''}"><div class="dot"></div>${g}</div>`).join("");
+    const ship=o.stage>=6?`<div class="ship">✅ <b>Delivered & insured.</b> Order #ZV${1000+i} · find it under Care.</div>`:`<div class="ship">🛠️ Now <b>${GROW[o.stage].toLowerCase()}</b>. ${o.stage<6?`Next: ${GROW[o.stage+1].toLowerCase()}.`:""}<button class="btn btn-ghost" onclick="advance(${i})">Advance stage →</button></div>`;
+    return `<div class="my-tree"><div class="av" style="background:${GRAD}">${visual(it)}</div>
+      <div><h3>${it.name}</h3><div class="sub">${o.purity}K ${cap(o.color)} · ${it.hasDiamond?it.carat+'ct '+o.grade:'gold'} · ${money(o.total)}</div>
+      <div class="timeline">${stages}</div>${ship}</div></div>`;}).join("");
+}
+function advance(i){if(orders[i].stage<6){orders[i].stage++;renderTrack();}}
+
+/* care */
+function buyback(o){const b=breakup(o.item,o);return o.item.weight*RATES[o.purity]*0.95 + (o.item.hasDiamond?o.item.carat*DIAMOND[o.grade]*0.7:0);}
+function renderCare(){
+  $("#careBody").innerHTML=owned.map((o,i)=>{const it=o.item,bb=buyback(o);
+    const cert=`<div class="cert"><span>BIS Hallmark · <b>${o.certBIS}</b></span>${o.certIGI?`<span>IGI Report · <b>${o.certIGI}</b></span>`:''}<span>Purity · <b>${o.purity}K ${cap(o.color)}</b></span></div>`;
+    const acts=["Clean & polish","Resize / repair","Exchange","Sell back"].map(a=>`<button class="btn btn-ghost" onclick="careAct(${i},'${a}')">${a}</button>`).join("");
+    return `<div class="my-tree"><div class="av" style="background:${GRAD}">${visual(it)}</div>
+      <div><h3>${it.name}</h3><div class="sub">Owned · paid ${money(o.paid)}</div>
+        ${cert}
+        <div class="buyback"><span>Buyback value today <span style="color:var(--ink-soft);font-size:12px">(at live gold rate)</span></span><span class="price">${money(bb)}</span></div>
+        <div class="care-actions">${acts}</div>
+        ${o.msg?`<div class="care-msg">${o.msg}</div>`:''}
+      </div></div>`;}).join("");
+}
+function careAct(i,a){
+  const m={"Clean & polish":"✓ Free polish booked — we'll pick it up and return it within 3 days.","Resize / repair":"✓ Repair request raised — a consultant will call to confirm details.","Exchange":"✓ Exchange started — full value applied against any new piece.","Sell back":"✓ Buyback offer locked at today's rate. Bring the piece and certificate in-store."};
+  owned[i].msg=m[a];renderCare();
+}
+
+renderStages();renderChips();renderGrid();
+</script>
+</body>
+</html>

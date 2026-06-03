@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pallu · Handloom Sarees, Tailored to You</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F7EEE6; --paper-2:#FBF5EE; --card:#FFFDFA;
+    --ink:#2A1B22; --ink-soft:#6C5A60;
+    --teal:#134E48; --teal-2:#1C6B62;
+    --gold:#B0883B; --gold-2:#E2C275; --gold-soft:#F0E2C4;
+    --rani:#9E2B5E; --rani-2:#B8497A;
+    --line:#E9D8C6; --line-2:#EFE4D6;
+    --green:#2F6B4F;
+    --shadow:0 1px 2px rgba(42,27,34,.04),0 10px 30px rgba(42,27,34,.06);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    font-family:"Hanken Grotesk",system-ui,sans-serif;
+    color:var(--ink); background:var(--paper);
+    background-image:
+      radial-gradient(rgba(176,136,59,.05) 1px, transparent 1px);
+    background-size:22px 22px;
+    -webkit-font-smoothing:antialiased; line-height:1.55;
+  }
+  .wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+  .serif{font-family:"Fraunces",Georgia,serif;font-optical-sizing:auto}
+  .eyebrow{font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:600}
+  .rule{height:1px;border:0;background:linear-gradient(90deg,transparent,var(--gold-2),transparent);opacity:.7;margin:0}
+  button{font-family:inherit;cursor:pointer}
+  img{display:block}
+
+  /* ---------- Header ---------- */
+  header.top{
+    background:linear-gradient(180deg,#0F423D,#134E48);
+    color:#F4EAD9; position:relative; overflow:hidden;
+  }
+  header.top::after{content:"";position:absolute;inset:0;
+    background-image:radial-gradient(rgba(226,194,117,.16) 1px,transparent 1px);
+    background-size:16px 16px;opacity:.5;pointer-events:none}
+  .top .wrap{display:flex;align-items:center;justify-content:space-between;padding:16px 22px;position:relative;z-index:1}
+  .brand{display:flex;align-items:baseline;gap:12px}
+  .brand .logo{font-family:"Fraunces",serif;font-weight:600;font-size:30px;letter-spacing:.01em;color:#fff}
+  .brand .logo span{color:var(--gold-2)}
+  .brand .tag{font-size:12.5px;color:#CFE0DA;letter-spacing:.04em}
+  .top .meta{font-size:12.5px;color:#BcD3CC;color:#BDD3CC;text-align:right}
+  .top .meta b{color:var(--gold-2);font-weight:600}
+
+  /* ---------- Stepper ---------- */
+  nav.steps{position:sticky;top:0;z-index:30;background:rgba(247,238,230,.92);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .steps .wrap{display:flex;gap:6px;overflow-x:auto;padding:10px 22px;scrollbar-width:none}
+  .steps .wrap::-webkit-scrollbar{display:none}
+  .step{flex:0 0 auto;display:flex;align-items:center;gap:9px;border:1px solid var(--line);
+    background:var(--card);padding:8px 15px;border-radius:999px;font-size:13.5px;color:var(--ink-soft);
+    font-weight:500;white-space:nowrap;transition:.18s;position:relative}
+  .step .n{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:11.5px;
+    background:var(--line-2);color:var(--ink-soft);font-weight:700}
+  .step.locked{opacity:.45;cursor:not-allowed}
+  .step.active{border-color:var(--gold);background:#fff;color:var(--ink);box-shadow:0 2px 10px rgba(176,136,59,.18)}
+  .step.active .n{background:var(--gold);color:#fff}
+  .step.done{color:var(--teal);border-color:#CFE6DD;background:#F1F8F4}
+  .step.done .n{background:var(--teal);color:#fff}
+  .step.clickable{cursor:pointer}
+  .step.clickable:hover{border-color:var(--gold-2)}
+
+  /* ---------- Stage shell ---------- */
+  main{padding:34px 0 90px}
+  .stage{display:none;animation:fade .35s ease both}
+  .stage.on{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .head{margin-bottom:22px}
+  .head h1{font-weight:500;font-size:clamp(28px,4vw,40px);margin:.18em 0 .12em;letter-spacing:-.01em}
+  .head p{margin:0;color:var(--ink-soft);max-width:60ch;font-size:15.5px}
+
+  /* ---------- Discover hero ---------- */
+  .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:26px;align-items:stretch;margin-bottom:30px}
+  .hero-copy{padding:6px 0}
+  .hero-copy h2{font-family:"Fraunces",serif;font-weight:500;font-size:clamp(30px,4.4vw,46px);line-height:1.04;margin:.25em 0 .35em;letter-spacing:-.015em}
+  .hero-copy h2 em{font-style:italic;color:var(--rani)}
+  .hero-copy p{color:var(--ink-soft);font-size:16px;max-width:42ch;margin:0 0 18px}
+  .hero-figure{border-radius:18px;overflow:hidden;min-height:340px;position:relative;box-shadow:var(--shadow);border:1px solid var(--line)}
+  .hero-figure .ph{height:100%}
+  .hero-badge{position:absolute;left:16px;bottom:16px;background:rgba(15,66,61,.86);color:#F4EAD9;
+    backdrop-filter:blur(4px);padding:9px 14px;border-radius:11px;font-size:12.5px;letter-spacing:.02em}
+  .hero-badge b{color:var(--gold-2);font-weight:600}
+
+  /* ---------- Filters ---------- */
+  .filters{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:6px 0 22px}
+  .filters .lbl{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin-right:4px}
+  .chip{border:1px solid var(--line);background:var(--card);padding:7px 14px;border-radius:999px;font-size:13px;color:var(--ink-soft);font-weight:500;transition:.16s}
+  .chip:hover{border-color:var(--gold-2)}
+  .chip.on{background:var(--teal);border-color:var(--teal);color:#F4EAD9}
+
+  /* ---------- Catalogue grid ---------- */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(248px,1fr));gap:20px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;
+    box-shadow:var(--shadow);transition:.2s;display:flex;flex-direction:column}
+  .card:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(42,27,34,.12);border-color:var(--gold-2)}
+  .ph{position:relative;aspect-ratio:4/5;background:linear-gradient(135deg,#F0E2C4,#EBD9C2);overflow:hidden}
+  .ph svg{position:absolute;inset:0;width:100%;height:100%}
+  .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:.5s}
+  .card:hover .ph img{transform:scale(1.05)}
+  .ph .occ{position:absolute;top:11px;left:11px;background:rgba(255,253,250,.92);color:var(--teal);
+    font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:4px 9px;border-radius:7px}
+  .card .body{padding:15px 16px 17px;display:flex;flex-direction:column;gap:3px;flex:1}
+  .card h3{font-family:"Fraunces",serif;font-weight:500;font-size:19px;margin:0;letter-spacing:-.01em}
+  .card .reg{font-size:12.5px;color:var(--gold);font-weight:600;letter-spacing:.02em}
+  .card .weave{font-size:13px;color:var(--ink-soft);margin-top:2px}
+  .card .foot{display:flex;align-items:center;justify-content:space-between;margin-top:13px;padding-top:13px;border-top:1px solid var(--line-2)}
+  .price{font-family:"Fraunces",serif;font-size:20px;font-weight:500}
+  .price small{font-family:"Hanken Grotesk";font-size:11.5px;color:var(--ink-soft);font-weight:500}
+
+  /* ---------- Buttons ---------- */
+  .btn{border:0;border-radius:11px;padding:11px 20px;font-size:14px;font-weight:600;letter-spacing:.01em;transition:.16s}
+  .btn-rani{background:var(--rani);color:#FBF1F5}
+  .btn-rani:hover{background:#8A2351}
+  .btn-teal{background:var(--teal);color:#F4EAD9}
+  .btn-teal:hover{background:#0F423D}
+  .btn-ghost{background:#fff;border:1px solid var(--line);color:var(--ink)}
+  .btn-ghost:hover{border-color:var(--gold)}
+  .btn-sm{padding:8px 14px;font-size:13px;border-radius:9px}
+  .btn:disabled{opacity:.5;cursor:not-allowed}
+
+  /* ---------- Two-col layout for Style/Tailor/Buy ---------- */
+  .split{display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:start}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--shadow)}
+  .panel + .panel{margin-top:18px}
+  .panel h3{font-family:"Fraunces",serif;font-weight:500;font-size:21px;margin:0 0 4px}
+  .panel .sub{color:var(--ink-soft);font-size:13.5px;margin:0 0 16px}
+  .field{margin-bottom:18px}
+  .field > label{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin-bottom:9px}
+
+  /* selected saree preview */
+  .selpic{display:flex;gap:16px;align-items:center;margin-bottom:6px}
+  .selpic .ph{width:88px;flex:0 0 88px;aspect-ratio:4/5;border-radius:11px;border:1px solid var(--line)}
+  .selpic h2{font-family:"Fraunces",serif;font-weight:500;font-size:23px;margin:0 0 2px}
+  .selpic .reg{color:var(--gold);font-size:13px;font-weight:600}
+  .selpic .weave{color:var(--ink-soft);font-size:13px}
+
+  /* option pills */
+  .opts{display:flex;flex-wrap:wrap;gap:10px}
+  .opt{border:1px solid var(--line);background:#fff;border-radius:12px;padding:11px 14px;font-size:13.5px;
+    color:var(--ink);transition:.16s;text-align:left;min-width:0}
+  .opt:hover{border-color:var(--gold-2)}
+  .opt.on{border-color:var(--teal);background:#F1F8F4;box-shadow:0 2px 10px rgba(19,78,72,.12)}
+  .opt .ot{font-weight:600;display:block}
+  .opt .od{font-size:12px;color:var(--ink-soft);display:block;margin-top:1px}
+  .opt .op{font-size:12px;color:var(--gold);font-weight:600}
+
+  .drapes{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:11px}
+  .drape{border:1px solid var(--line);border-radius:13px;padding:13px;background:#fff;transition:.16s;text-align:center}
+  .drape:hover{border-color:var(--gold-2)}
+  .drape.on{border-color:var(--teal);background:#F1F8F4}
+  .drape svg{width:46px;height:58px;margin:0 auto 8px;display:block}
+  .drape .dn{font-family:"Fraunces",serif;font-size:16px;font-weight:500}
+  .drape .dd{font-size:11.5px;color:var(--ink-soft);line-height:1.4;margin-top:3px}
+
+  .swatches{display:flex;flex-wrap:wrap;gap:12px}
+  .sw{width:40px;height:40px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px var(--line);
+    position:relative;transition:.15s}
+  .sw:hover{transform:scale(1.07)}
+  .sw.on{box-shadow:0 0 0 2px var(--gold),0 2px 8px rgba(0,0,0,.15)}
+  .sw.on::after{content:"✓";position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-size:15px;
+    text-shadow:0 1px 2px rgba(0,0,0,.4)}
+  .swname{font-size:13px;color:var(--ink-soft);margin-top:10px}
+  .swname b{color:var(--ink);font-weight:600}
+
+  .toggle{display:flex;align-items:center;justify-content:space-between;gap:12px;
+    border:1px solid var(--line);border-radius:12px;padding:12px 15px;background:#fff;margin-bottom:10px}
+  .toggle .tt{font-weight:600;font-size:14px}
+  .toggle .td{font-size:12.5px;color:var(--ink-soft)}
+  .toggle .tp{font-family:"Fraunces",serif;font-size:15px;margin-right:4px}
+  .sw-tg{width:46px;height:26px;border-radius:999px;background:var(--line);position:relative;transition:.18s;flex:0 0 auto;border:0}
+  .sw-tg::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:.18s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+  .sw-tg.on{background:var(--teal)}
+  .sw-tg.on::after{left:23px}
+
+  .seg{display:inline-flex;border:1px solid var(--line);border-radius:11px;overflow:hidden;background:#fff;flex-wrap:wrap}
+  .seg button{border:0;background:transparent;padding:9px 16px;font-size:13.5px;color:var(--ink-soft);font-weight:500;border-right:1px solid var(--line-2)}
+  .seg button:last-child{border-right:0}
+  .seg button.on{background:var(--teal);color:#F4EAD9}
+
+  /* price card */
+  .pricecard{position:sticky;top:74px}
+  .pricecard h4{font-family:"Fraunces",serif;font-weight:500;font-size:18px;margin:0 0 14px}
+  .pl{display:flex;justify-content:space-between;align-items:baseline;font-size:14px;margin:9px 0;color:var(--ink-soft)}
+  .pl span:last-child{color:var(--ink);font-weight:500;font-variant-numeric:tabular-nums}
+  .pl.mut span:last-child{color:var(--ink-soft);font-weight:400}
+  .pl.tot{margin-top:14px;padding-top:14px;border-top:1px solid var(--line);font-size:15px}
+  .pl.tot .big{font-family:"Fraunces",serif;font-size:26px;font-weight:600;color:var(--ink)}
+  .note{font-size:12px;color:var(--ink-soft);margin-top:14px;line-height:1.5}
+
+  .input{width:100%;border:1px solid var(--line);border-radius:10px;padding:11px 13px;font-family:inherit;font-size:14px;color:var(--ink);background:#fff}
+  .input:focus{outline:0;border-color:var(--gold)}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+  /* ---------- Track ---------- */
+  .orders{display:flex;flex-direction:column;gap:16px}
+  .order{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:var(--shadow)}
+  .order .ohead{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap}
+  .order .oid{font-family:"Fraunces",serif;font-size:20px;font-weight:500}
+  .order .osub{font-size:13px;color:var(--ink-soft)}
+  .order .ostat{font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:5px 11px;border-radius:8px;background:var(--gold-soft);color:var(--gold)}
+  .order .ostat.done{background:#E7F2EB;color:var(--green)}
+  .timeline{display:flex;gap:0;margin:20px 0 4px;overflow-x:auto;scrollbar-width:none}
+  .timeline::-webkit-scrollbar{display:none}
+  .tl{flex:1;min-width:96px;text-align:center;position:relative;padding-top:24px}
+  .tl::before{content:"";position:absolute;top:8px;left:50%;right:-50%;height:2px;background:var(--line)}
+  .tl:last-child::before{display:none}
+  .tl .dot{position:absolute;top:2px;left:calc(50% - 7px);width:14px;height:14px;border-radius:50%;background:#fff;border:2px solid var(--line);z-index:1}
+  .tl.done .dot{background:var(--teal);border-color:var(--teal)}
+  .tl.done::before{background:var(--teal)}
+  .tl.cur .dot{background:var(--gold);border-color:var(--gold);box-shadow:0 0 0 4px rgba(176,136,59,.18)}
+  .tl .tlab{font-size:11.5px;color:var(--ink-soft);line-height:1.3}
+  .tl.done .tlab,.tl.cur .tlab{color:var(--ink);font-weight:600}
+  .order .ofoot{display:flex;justify-content:space-between;align-items:center;margin-top:18px;padding-top:16px;border-top:1px solid var(--line-2);flex-wrap:wrap;gap:10px}
+  .order .otot{font-family:"Fraunces",serif;font-size:18px;font-weight:500}
+
+  /* ---------- Care ---------- */
+  .care-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+  .care{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:var(--shadow)}
+  .care h3{font-family:"Fraunces",serif;font-weight:500;font-size:18px;margin:0 0 4px}
+  .care p{font-size:13px;color:var(--ink-soft);margin:0 0 14px;min-height:38px}
+  .care .cp{font-family:"Fraunces",serif;font-size:17px;font-weight:500}
+
+  /* toast */
+  #toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);opacity:0;
+    background:var(--teal);color:#F4EAD9;padding:13px 22px;border-radius:12px;font-size:14px;font-weight:500;
+    box-shadow:0 12px 30px rgba(0,0,0,.2);transition:.3s;z-index:60;pointer-events:none;max-width:90vw}
+  #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  .empty{text-align:center;color:var(--ink-soft);padding:50px 20px}
+  .backline{margin-top:20px}
+
+  @media(max-width:880px){
+    .hero,.split{grid-template-columns:1fr}
+    .pricecard{position:static}
+    .hero-figure{min-height:300px}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand">
+      <div class="logo">Pa<span>l</span>lu</div>
+      <div class="tag">Handloom sarees, tailored to you</div>
+    </div>
+    <div class="meta">Free fall &amp; pico this week · <b>Ships pan-India</b></div>
+  </div>
+</header>
+
+<nav class="steps"><div class="wrap" id="steps"></div></nav>
+
+<main class="wrap">
+
+  <!-- ================= DISCOVER ================= -->
+  <section class="stage" id="st-discover">
+    <div class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow">The Pallu edit · Cohort 3</div>
+        <h2 class="serif">Six yards,<br>woven by <em>hand</em>.</h2>
+        <p>Sourced straight from the looms of Kanchipuram, Varanasi, Phulia and Kutch — then tailored, draped and finished exactly how you like. Pick a weave to begin.</p>
+        <button class="btn btn-rani" onclick="document.getElementById('catalogue').scrollIntoView({behavior:'smooth'})">Browse the looms</button>
+      </div>
+      <div class="hero-figure">
+        <div class="ph" id="heroph"></div>
+        <div class="hero-badge"><b>Banarasi</b> gold zari · woven by hand</div>
+      </div>
+    </div>
+
+    <hr class="rule">
+
+    <div class="head" id="catalogue" style="margin-top:26px">
+      <div class="eyebrow">The collection</div>
+      <h1 class="serif">Choose your weave</h1>
+      <p>Eight handloom traditions. Every price is the bare saree — you'll tailor the blouse, fall and drape next.</p>
+    </div>
+
+    <div class="filters" id="filters">
+      <span class="lbl">Occasion</span>
+    </div>
+
+    <div class="grid" id="cat"></div>
+  </section>
+
+  <!-- ================= STYLE ================= -->
+  <section class="stage" id="st-style">
+    <div class="head">
+      <div class="eyebrow">Step 2 · Style it</div>
+      <h1 class="serif">The drape &amp; the contrast</h1>
+      <p>How you wear it changes everything. Choose a drape style and a blouse contrast — this is the look, the tailoring comes next.</p>
+    </div>
+    <div class="split">
+      <div>
+        <div class="panel">
+          <div class="selpic" id="selpic"></div>
+        </div>
+        <div class="panel">
+          <h3>Drape style</h3>
+          <p class="sub">Each region drapes its saree differently. The pleats and pallu fall change with the style.</p>
+          <div class="drapes" id="drapes"></div>
+        </div>
+        <div class="panel">
+          <h3>Blouse contrast</h3>
+          <p class="sub">Pick the colour we'll match the blouse and fall to.</p>
+          <div class="swatches" id="swatches"></div>
+          <div class="swname" id="swname"></div>
+        </div>
+        <div class="backline">
+          <button class="btn btn-ghost btn-sm" onclick="go('discover')">← Back to collection</button>
+        </div>
+      </div>
+      <div>
+        <div class="panel pricecard">
+          <div class="eyebrow">Your look</div>
+          <div id="stylesummary" style="margin:12px 0 6px"></div>
+          <button class="btn btn-teal" style="width:100%" onclick="unlocked.tailor=1;go('tailor')">Continue to tailoring →</button>
+          <p class="note">No payment yet. You'll see the full price once you've chosen the stitching.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TAILOR ================= -->
+  <section class="stage" id="st-tailor">
+    <div class="head">
+      <div class="eyebrow">Step 3 · Tailor it</div>
+      <h1 class="serif">Blouse, fall &amp; finish</h1>
+      <p>The atelier stitches to order. Build your blouse and finishing — the price updates live on the right.</p>
+    </div>
+    <div class="split">
+      <div>
+        <div class="panel">
+          <h3>Blouse stitching</h3>
+          <p class="sub">Tailored from the matching blouse piece that comes with your saree.</p>
+          <div class="opts" id="blouse"></div>
+          <div class="field" style="margin-top:18px">
+            <label>Fit</label>
+            <div class="seg" id="fit"></div>
+          </div>
+          <div class="field" style="margin-bottom:0">
+            <label>Sleeve</label>
+            <div class="seg" id="sleeve"></div>
+          </div>
+        </div>
+        <div class="panel">
+          <h3>Finishing &amp; add-ons</h3>
+          <p class="sub">The little things that make it ready to wear out of the box.</p>
+          <div id="addons"></div>
+        </div>
+        <div class="backline">
+          <button class="btn btn-ghost btn-sm" onclick="go('style')">← Back to styling</button>
+        </div>
+      </div>
+      <div>
+        <div class="panel pricecard">
+          <div class="eyebrow">Price breakup</div>
+          <h4 class="serif" id="tlrname" style="margin-top:10px"></h4>
+          <div id="breakup"></div>
+          <button class="btn btn-rani" style="width:100%;margin-top:16px" onclick="addToBag()">Add to bag →</button>
+          <p class="note">Inclusive of tailoring. GST at 5% on apparel. Ships in 7–10 days (3 days on express).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= BUY ================= -->
+  <section class="stage" id="st-buy">
+    <div class="head">
+      <div class="eyebrow">Step 4 · Checkout</div>
+      <h1 class="serif">Where shall we send it?</h1>
+      <p>Delivery details and payment. This is a demo — no real payment is taken.</p>
+    </div>
+    <div class="split">
+      <div>
+        <div class="panel">
+          <h3>Delivery address</h3>
+          <p class="sub">Pre-filled for the demo.</p>
+          <div class="field"><label>Full name</label><input class="input" id="b-name" value="Ananya Iyer"></div>
+          <div class="field"><label>Address</label><input class="input" id="b-addr" value="14, Cunningham Road, Vasanth Nagar"></div>
+          <div class="row2">
+            <div class="field"><label>City</label><input class="input" id="b-city" value="Bengaluru"></div>
+            <div class="field"><label>PIN</label><input class="input" id="b-pin" value="560052"></div>
+          </div>
+          <div class="field" style="margin-bottom:0"><label>Phone</label><input class="input" id="b-ph" value="+91 98861 40031"></div>
+        </div>
+        <div class="panel">
+          <h3>Payment</h3>
+          <div class="field" style="margin-bottom:14px">
+            <label>Method</label>
+            <div class="seg" id="pay"></div>
+          </div>
+          <div id="giftrow"></div>
+        </div>
+        <div class="backline">
+          <button class="btn btn-ghost btn-sm" onclick="go('tailor')">← Back to tailoring</button>
+        </div>
+      </div>
+      <div>
+        <div class="panel pricecard">
+          <div class="eyebrow">Order summary</div>
+          <h4 class="serif" id="buyname" style="margin-top:10px"></h4>
+          <div id="buybreak"></div>
+          <button class="btn btn-teal" style="width:100%;margin-top:16px" id="paybtn" onclick="placeOrder()"></button>
+          <p class="note">By placing the order you agree to Pallu's made-to-order &amp; returns policy.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TRACK ================= -->
+  <section class="stage" id="st-track">
+    <div class="head">
+      <div class="eyebrow">Step 5 · Track</div>
+      <h1 class="serif">Your orders</h1>
+      <p>From the loom to your door. Tap "Advance stage" on any order to see it move through the atelier.</p>
+    </div>
+    <div class="orders" id="orders"></div>
+  </section>
+
+  <!-- ================= CARE ================= -->
+  <section class="stage" id="st-care">
+    <div class="head">
+      <div class="eyebrow">The Saree Spa</div>
+      <h1 class="serif">Care &amp; restoration</h1>
+      <p>Silk lasts generations when it's looked after. Book a service for any saree — old or new.</p>
+    </div>
+    <div class="panel" style="margin-bottom:22px">
+      <h3>Your wardrobe</h3>
+      <p class="sub">Sarees you've bought from Pallu.</p>
+      <div id="wardrobe"></div>
+    </div>
+    <div class="eyebrow" style="margin:0 0 12px">Services</div>
+    <div class="care-grid" id="care"></div>
+  </section>
+
+</main>
+
+<div id="toast"></div>
+
+<script>
+const B="https://commons.wikimedia.org/wiki/Special:FilePath/";
+const rupee=n=>"₹"+n.toLocaleString("en-IN");
+
+/* inline fallback if a photo fails */
+function sariSVG(){
+  return `<svg viewBox="0 0 120 150" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <rect width="120" height="150" fill="#F0E2C4"/>
+    <rect width="120" height="150" fill="url(#g)" opacity=".5"/>
+    <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#E2C275"/><stop offset="1" stop-color="#D8B98F"/></linearGradient></defs>
+    <g stroke="#B0883B" stroke-width="1.4" fill="none" opacity=".55">
+      <path d="M20 18 C 50 40, 70 40, 100 18"/>
+      <path d="M18 132 H102"/><path d="M18 124 H102"/>
+      <path d="M30 60 q30 22 60 0"/><path d="M30 84 q30 22 60 0"/>
+    </g>
+    <g fill="#9E2B5E" opacity=".5">
+      <circle cx="40" cy="50" r="2.2"/><circle cx="60" cy="58" r="2.2"/><circle cx="80" cy="50" r="2.2"/>
+      <circle cx="50" cy="74" r="2.2"/><circle cx="70" cy="74" r="2.2"/><circle cx="60" cy="96" r="2.2"/>
+    </g>
+  </svg>`;
+}
+function visual(file,alt){
+  return `<div class="ph">${sariSVG()}<img src="${B+encodeURI(file)}?width=800" alt="${alt}" loading="lazy" onerror="this.remove()"></div>`;
+}
+/* small drape glyphs */
+function drapeIcon(id){
+  const body='<rect x="14" y="6" width="18" height="46" rx="3" fill="#1C6B62"/>';
+  const map={
+    nivi:'<path d="M23 6 L40 52 L30 52 Z" fill="#9E2B5E" opacity=".8"/>',
+    bengali:'<path d="M8 12 L23 6 L38 12 L34 22 L12 22 Z" fill="#9E2B5E" opacity=".8"/>',
+    gujarati:'<path d="M23 6 L8 50 L18 50 Z" fill="#9E2B5E" opacity=".8"/>',
+    maharashtrian:'<path d="M14 30 L32 30 L36 52 L10 52 Z" fill="#9E2B5E" opacity=".8"/>',
+    mermaid:'<path d="M16 30 L30 30 L40 52 L6 52 Z" fill="#9E2B5E" opacity=".8"/>'
+  };
+  return `<svg viewBox="0 0 46 58" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="23" cy="6" r="5" fill="#B0883B"/>${body}${map[id]||''}
+    <rect x="14" y="48" width="18" height="4" fill="#B0883B"/></svg>`;
+}
+
+/* ---------- data ---------- */
+const SAREES=[
+ {id:'s1',name:'Kanjeevaram Pattu',region:'Kanchipuram, Tamil Nadu',weave:'Pure mulberry silk · gold zari',occ:'Bridal',price:18500,file:'Sari,_Varanasi,_Uttar_Pradesh,_India,_1960s,_silk,_gold_thread,_satin_-_Textile_Museum_of_Canada_-_DSC00943.JPG'},
+ {id:'s2',name:'Banarasi Katan',region:'Varanasi, Uttar Pradesh',weave:'Katan silk · brocade buti',occ:'Bridal',price:14200,file:'Saree_on_display_at_Dilli_Haat.JPG'},
+ {id:'s3',name:'Paithani',region:'Yeola, Maharashtra',weave:'Silk · peacock pallu',occ:'Festive',price:16800,file:'Paithani_Bridal_Sari_LACMA_M.75.4.23_(1_of_2).jpg'},
+ {id:'s4',name:'Bandhani Silk',region:'Kutch, Gujarat',weave:'Bandhej tie-dye · fine silk',occ:'Festive',price:6800,file:'India,_19th_century_-_Part_of_a_Sari_-_1925.671_-_Cleveland_Museum_of_Art.jpg'},
+ {id:'s5',name:'Dhakai Jamdani',region:'Bengal',weave:'Fine muslin · inlay weave',occ:'Festive',price:7900,file:'Sari_from_India,_Varanasi,_18th_century,_Honolulu_Museum_of_Art_10911.1.JPG'},
+ {id:'s6',name:'Chanderi',region:'Chanderi, Madhya Pradesh',weave:'Silk-cotton · sheer glow',occ:'Office',price:5600,file:'India_(Madhya_Pradesh),_sari,_1980s_-_Bunka_Gakuen_Costume_Museum_-_DSC05305.JPG'},
+ {id:'s7',name:'Patola',region:'Patan, Gujarat',weave:'Double-ikat silk · popat-kunjar',occ:'Bridal',price:24000,file:"'Patola'_(ritual_heirloom_cloth)_from_Gujarat,_India,_late_18th_or_early_19th_century.jpg"},
+ {id:'s8',name:'Mysore Silk',region:'Mysuru, Karnataka',weave:'KSIC silk · zari border',occ:'Office',price:4300,file:'Sari,_Orissa,_India,_view_2,_2000,_silk,_gold_thread_-_Textile_Museum_of_Canada_-_DSC00962.JPG'},
+];
+const HERO_CANDIDATES=['Banarasi_sari_pallu_by_ashish4.JPG','Sari,_Varanasi,_Uttar_Pradesh,_India,_view_1,_20th_century,_silk,_gold_thread_-_Textile_Museum_of_Canada_-_DSC00954.JPG','Saree_on_display_at_Dilli_Haat.JPG'];
+let heroIx=0;
+function loadHero(){const f=HERO_CANDIDATES[heroIx];document.getElementById('heroph').innerHTML=sariSVG()+`<img src="${B+encodeURI(f)}?width=1000" alt="Pallu — handloom silk" onerror="nextHero()">`;}
+function nextHero(){heroIx++;if(HERO_CANDIDATES[heroIx]){loadHero();}else{const im=document.querySelector('#heroph img');if(im)im.remove();}}
+
+const DRAPES=[
+ {id:'nivi',name:'Nivi',desc:'Pleats in front, pallu over the left shoulder.'},
+ {id:'bengali',name:'Bengali',desc:'Box pleats, pallu over both shoulders.'},
+ {id:'gujarati',name:'Seedha Pallu',desc:'Pallu draped to the front, right side.'},
+ {id:'maharashtrian',name:'Nauvari',desc:'Nine-yard dhoti-style drape.'},
+ {id:'mermaid',name:'Mermaid',desc:'Fitted body, flared fishtail finish.'},
+];
+const CONTRAST=[
+ {n:'Antique Gold',c:'#C9A24B'},{n:'Maroon',c:'#7A1F3D'},{n:'Emerald',c:'#0E5C4A'},
+ {n:'Royal Blue',c:'#27407A'},{n:'Onyx',c:'#1E1A1C'},{n:'Ivory',c:'#ECDFC9'},
+ {n:'Rani Pink',c:'#9E2B5E'},{n:'Mustard',c:'#C98A1E'},
+];
+const BLOUSE={none:{t:'Ready to wear',d:'No stitching — wear your own blouse.',p:0},
+ standard:{t:'Standard stitch',d:'Lined, hooked, hemmed to size.',p:700},
+ designer:{t:'Designer stitch',d:'Boat neck, deep back, piping & latkans.',p:1400}};
+const ADDONS=[
+ {k:'fallpico',t:'Fall & pico',d:'Edge finishing so the saree falls right.',p:150,on:true},
+ {k:'petticoat',t:'Matching petticoat',d:'Cotton-satin, dyed to the saree.',p:450,on:false},
+ {k:'predrape',t:'Pre-draped & pinned',d:'Stitched ready-to-wear — step in and go.',p:1200,on:false},
+ {k:'express',t:'Express (3-day)',d:'Jump the atelier queue.',p:600,on:false},
+];
+const TRACK_STAGES=['Confirmed','Fall & pico','Blouse stitching','Quality check','Dispatched','Delivered'];
+
+const CARE=[
+ {n:'Silk dry-clean',p:450,d:'Gentle solvent clean, safe for zari.'},
+ {n:'Roll-press & fold',p:120,d:'Crease-free roll pressing.'},
+ {n:'Fall re-stitch',p:180,d:'Fresh fall and pico edging.'},
+ {n:'Blouse alteration',p:350,d:'Resize or restyle an old blouse.'},
+ {n:'Zari polish',p:600,d:'Restore the shine of tarnished zari.'},
+ {n:'Pre-pleating',p:250,d:'Ready-to-wear pleating & pinning.'},
+];
+
+/* ---------- state ---------- */
+let cur='discover';
+let pick=null;
+let cfg={drape:'nivi',contrast:'#C9A24B',contrastName:'Antique Gold'};
+let tlr={blouse:'standard',fit:'M',sleeve:'short',fallpico:true,petticoat:false,predrape:false,express:false};
+let pay='full', giftwrap=false;
+let unlocked={discover:1,style:0,tailor:0,buy:0,track:1,care:1};
+let filt='All';
+let orders=[
+ {id:'#PL-4471',name:'Kanjeevaram Pattu',drape:'Nivi',file:'Sari,_Varanasi,_Uttar_Pradesh,_India,_1960s,_silk,_gold_thread,_satin_-_Textile_Museum_of_Canada_-_DSC00943.JPG',total:21520,stage:2,placed:'29 May',eta:'12 Jun'},
+ {id:'#PL-4458',name:'Chanderi',drape:'Seedha Pallu',file:'India_(Madhya_Pradesh),_sari,_1980s_-_Bunka_Gakuen_Costume_Museum_-_DSC05305.JPG',total:6878,stage:5,placed:'18 May',eta:'Delivered 27 May'},
+];
+let wardrobe=[
+ {id:'#PL-4458',name:'Chanderi',file:'India_(Madhya_Pradesh),_sari,_1980s_-_Bunka_Gakuen_Costume_Museum_-_DSC05305.JPG'},
+];
+
+/* ---------- price ---------- */
+function priceParts(){
+  const base=pick?pick.price:0;
+  const blouse=BLOUSE[tlr.blouse].p;
+  const fitFee=tlr.fit==='Custom'?200:0;
+  const fp=tlr.fallpico?150:0;
+  const pc=tlr.petticoat?450:0;
+  const pd=tlr.predrape?1200:0;
+  const ex=tlr.express?600:0;
+  const gw=giftwrap?180:0;
+  const sub=base+blouse+fitFee+fp+pc+pd+ex+gw;
+  const gst=Math.round(sub*0.05);
+  return {base,blouse,fitFee,fp,pc,pd,ex,gw,sub,gst,total:sub+gst};
+}
+
+/* ---------- stepper ---------- */
+const STEPS=[['discover','Discover'],['style','Style'],['tailor','Tailor'],['buy','Buy'],['track','Track'],['care','Care']];
+const FLOW=['discover','style','tailor','buy'];
+function renderSteps(){
+  const box=document.getElementById('steps');box.innerHTML='';
+  STEPS.forEach(([id,label],i)=>{
+    const el=document.createElement('button');
+    const isFlow=FLOW.includes(id);
+    const flowIdx=FLOW.indexOf(id), curIdx=FLOW.indexOf(cur);
+    let cls='step';
+    if(id===cur) cls+=' active';
+    else if(isFlow && unlocked[id] && flowIdx<curIdx) cls+=' done';
+    if(!unlocked[id]) cls+=' locked'; else if(id!==cur) cls+=' clickable';
+    el.className=cls;
+    const mark=(cls.includes('done'))?'✓':(i+1);
+    el.innerHTML=`<span class="n">${mark}</span>${label}`;
+    if(unlocked[id]) el.onclick=()=>go(id);
+    box.appendChild(el);
+  });
+}
+function go(id){
+  if(!unlocked[id])return;
+  cur=id;
+  document.querySelectorAll('.stage').forEach(s=>s.classList.remove('on'));
+  document.getElementById('st-'+id).classList.add('on');
+  renderSteps();
+  if(id==='style')renderStyle();
+  if(id==='tailor')renderTailor();
+  if(id==='buy')renderBuy();
+  if(id==='track')renderOrders();
+  if(id==='care')renderCare();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ---------- discover ---------- */
+function renderFilters(){
+  const occ=['All','Bridal','Festive','Office','Daily'];
+  const box=document.getElementById('filters');
+  box.querySelectorAll('.chip').forEach(c=>c.remove());
+  occ.forEach(o=>{
+    const b=document.createElement('button');
+    b.className='chip'+(filt===o?' on':'');
+    b.textContent=o;
+    b.onclick=()=>{filt=o;renderFilters();renderCat();};
+    box.appendChild(b);
+  });
+}
+function renderCat(){
+  const box=document.getElementById('cat');box.innerHTML='';
+  SAREES.filter(s=>filt==='All'||s.occ===filt).forEach(s=>{
+    const c=document.createElement('div');c.className='card';
+    c.innerHTML=`
+      ${visual(s.file,s.name).replace('class="ph"','class="ph"').replace('</div>',`<span class="occ">${s.occ}</span></div>`)}
+      <div class="body">
+        <span class="reg">${s.region}</span>
+        <h3 class="serif">${s.name}</h3>
+        <div class="weave">${s.weave}</div>
+        <div class="foot">
+          <div class="price serif">${rupee(s.price)} <small>+ tailoring</small></div>
+          <button class="btn btn-rani btn-sm">Style it</button>
+        </div>
+      </div>`;
+    c.querySelector('button').onclick=()=>selectSaree(s.id);
+    box.appendChild(c);
+  });
+}
+function selectSaree(id){
+  pick=SAREES.find(s=>s.id===id);
+  unlocked.style=1;
+  go('style');
+}
+
+/* ---------- style ---------- */
+function renderStyle(){
+  document.getElementById('selpic').innerHTML=`
+    ${visual(pick.file,pick.name)}
+    <div>
+      <div class="eyebrow">Now styling</div>
+      <h2 class="serif">${pick.name}</h2>
+      <div class="reg">${pick.region}</div>
+      <div class="weave">${pick.weave}</div>
+    </div>`;
+  const dbox=document.getElementById('drapes');dbox.innerHTML='';
+  DRAPES.forEach(d=>{
+    const el=document.createElement('button');
+    el.className='drape'+(cfg.drape===d.id?' on':'');
+    el.innerHTML=`${drapeIcon(d.id)}<div class="dn serif">${d.name}</div><div class="dd">${d.desc}</div>`;
+    el.onclick=()=>{cfg.drape=d.id;renderStyle();};
+    dbox.appendChild(el);
+  });
+  const sbox=document.getElementById('swatches');sbox.innerHTML='';
+  CONTRAST.forEach(s=>{
+    const el=document.createElement('button');
+    el.className='sw'+(cfg.contrast===s.c?' on':'');
+    el.style.background=s.c;el.title=s.n;
+    el.onclick=()=>{cfg.contrast=s.c;cfg.contrastName=s.n;renderStyle();};
+    sbox.appendChild(el);
+  });
+  document.getElementById('swname').innerHTML=`Blouse & fall in <b>${cfg.contrastName}</b>`;
+  const dn=DRAPES.find(d=>d.id===cfg.drape).name;
+  document.getElementById('stylesummary').innerHTML=`
+    <div class="pl"><span>Weave</span><span>${pick.name}</span></div>
+    <div class="pl"><span>Drape</span><span>${dn}</span></div>
+    <div class="pl"><span>Contrast</span><span>${cfg.contrastName}</span></div>`;
+}
+
+/* ---------- tailor ---------- */
+function renderTailor(){
+  unlocked.tailor=1;
+  const bbox=document.getElementById('blouse');bbox.innerHTML='';
+  Object.entries(BLOUSE).forEach(([k,v])=>{
+    const el=document.createElement('button');
+    el.className='opt'+(tlr.blouse===k?' on':'');
+    el.style.flex='1 1 150px';
+    el.innerHTML=`<span class="ot">${v.t}</span><span class="od">${v.d}</span><span class="op">${v.p?'+'+rupee(v.p):'included'}</span>`;
+    el.onclick=()=>{tlr.blouse=k;renderTailor();};
+    bbox.appendChild(el);
+  });
+  seg('fit',['XS','S','M','L','XL','Custom'],tlr.fit,v=>{tlr.fit=v;renderTailor();});
+  seg('sleeve',['Sleeveless','Short','Elbow','3/4'],tlr.sleeve,v=>{tlr.sleeve=v;renderTailor();},
+      {Sleeveless:'sleeveless',Short:'short',Elbow:'elbow','3/4':'threequarter'});
+  const abox=document.getElementById('addons');abox.innerHTML='';
+  ADDONS.forEach(a=>{
+    const el=document.createElement('div');el.className='toggle';
+    el.innerHTML=`<div><div class="tt">${a.t}</div><div class="td">${a.d}</div></div>
+      <div style="display:flex;align-items:center"><span class="tp serif">+${rupee(a.p)}</span>
+      <button class="sw-tg${tlr[a.k]?' on':''}" aria-label="${a.t}"></button></div>`;
+    el.querySelector('.sw-tg').onclick=()=>{tlr[a.k]=!tlr[a.k];renderTailor();};
+    abox.appendChild(el);
+  });
+  document.getElementById('tlrname').textContent=pick.name+' · '+DRAPES.find(d=>d.id===cfg.drape).name;
+  document.getElementById('breakup').innerHTML=breakHTML(priceParts());
+}
+function seg(id,opts,val,fn,map){
+  const box=document.getElementById(id);box.innerHTML='';
+  opts.forEach(o=>{
+    const b=document.createElement('button');
+    b.textContent=o;b.className=(val===o?'on':'');
+    b.onclick=()=>fn(o);
+    box.appendChild(b);
+  });
+}
+function breakHTML(p){
+  let h=`<div class="pl"><span>${pick.name}</span><span>${rupee(p.base)}</span></div>`;
+  h+=`<div class="pl"><span>${BLOUSE[tlr.blouse].t}${tlr.blouse!=='none'?' ('+tlr.sleeve+', '+tlr.fit+')':''}</span><span>${p.blouse?rupee(p.blouse):'—'}</span></div>`;
+  if(p.fitFee)h+=`<div class="pl"><span>Custom measurements</span><span>${rupee(p.fitFee)}</span></div>`;
+  if(p.fp)h+=`<div class="pl"><span>Fall & pico</span><span>${rupee(p.fp)}</span></div>`;
+  if(p.pc)h+=`<div class="pl"><span>Matching petticoat</span><span>${rupee(p.pc)}</span></div>`;
+  if(p.pd)h+=`<div class="pl"><span>Pre-draped & pinned</span><span>${rupee(p.pd)}</span></div>`;
+  if(p.ex)h+=`<div class="pl"><span>Express (3-day)</span><span>${rupee(p.ex)}</span></div>`;
+  if(p.gw)h+=`<div class="pl"><span>Gift wrap</span><span>${rupee(p.gw)}</span></div>`;
+  h+=`<div class="pl mut"><span>GST (5%)</span><span>${rupee(p.gst)}</span></div>`;
+  h+=`<div class="pl tot"><span>Total</span><span class="big">${rupee(p.total)}</span></div>`;
+  return h;
+}
+function addToBag(){unlocked.buy=1;go('buy');showToast('Added to bag · '+pick.name);}
+
+/* ---------- buy ---------- */
+function renderBuy(){
+  seg('pay',['Full payment','EMI (3 mo)','Cash on delivery'],
+      pay==='full'?'Full payment':pay==='emi'?'EMI (3 mo)':'Cash on delivery',
+      v=>{pay=v.startsWith('Full')?'full':v.startsWith('EMI')?'emi':'cod';renderBuy();});
+  document.getElementById('giftrow').innerHTML=`
+    <div class="toggle"><div><div class="tt">Gift wrap</div><div class="td">Hand-folded in tissue with a silk ribbon & note.</div></div>
+      <div style="display:flex;align-items:center"><span class="tp serif">+₹180</span>
+      <button class="sw-tg${giftwrap?' on':''}" id="gwtg"></button></div></div>`;
+  document.getElementById('gwtg').onclick=()=>{giftwrap=!giftwrap;renderBuy();};
+  const p=priceParts();
+  document.getElementById('buyname').textContent=pick.name+' · '+DRAPES.find(d=>d.id===cfg.drape).name;
+  document.getElementById('buybreak').innerHTML=breakHTML(p);
+  const lbl=pay==='emi'?`Pay ${rupee(Math.round(p.total/3))}/mo →`:pay==='cod'?'Place order (COD) →':`Pay ${rupee(p.total)} →`;
+  document.getElementById('paybtn').textContent=lbl;
+}
+function placeOrder(){
+  const p=priceParts();
+  const id='#PL-'+(4480+Math.floor(Math.random()*90));
+  const o={id,name:pick.name,drape:DRAPES.find(d=>d.id===cfg.drape).name,file:pick.file,total:p.total,stage:0,placed:'Today',eta:tlr.express?'in 3 days':'in 7–10 days'};
+  orders.unshift(o);
+  if(!wardrobe.find(w=>w.name===pick.name))wardrobe.push({id,name:pick.name,file:pick.file});
+  unlocked.track=1;
+  /* reset flow */
+  go('track');
+  showToast('Order placed · '+id);
+}
+
+/* ---------- track ---------- */
+function renderOrders(){
+  const box=document.getElementById('orders');box.innerHTML='';
+  if(!orders.length){box.innerHTML='<div class="empty">No orders yet.</div>';return;}
+  orders.forEach((o,idx)=>{
+    const done=o.stage>=TRACK_STAGES.length-1;
+    const statLabel=done?'Delivered':TRACK_STAGES[o.stage];
+    const el=document.createElement('div');el.className='order';
+    let tl='';
+    TRACK_STAGES.forEach((s,i)=>{
+      const c=i<o.stage?'done':i===o.stage?'cur':'';
+      tl+=`<div class="tl ${c}"><span class="dot"></span><div class="tlab">${s}</div></div>`;
+    });
+    el.innerHTML=`
+      <div class="ohead">
+        <div style="display:flex;gap:14px;align-items:center">
+          <div style="width:54px;flex:0 0 54px">${visual(o.file,o.name)}</div>
+          <div><div class="oid serif">${o.id}</div>
+          <div class="osub">${o.name} · ${o.drape} drape · placed ${o.placed}</div></div>
+        </div>
+        <span class="ostat ${done?'done':''}">${statLabel}</span>
+      </div>
+      <div class="timeline">${tl}</div>
+      <div class="ofoot">
+        <div class="otot serif">${rupee(o.total)} <span style="font-family:'Hanken Grotesk';font-size:12.5px;color:var(--ink-soft);font-weight:400">· ${done?o.eta:'arrives '+o.eta}</span></div>
+        ${done?'<span class="osub">Thank you — enjoy your saree.</span>':'<button class="btn btn-teal btn-sm" data-i="'+idx+'">Advance stage →</button>'}
+      </div>`;
+    const adv=el.querySelector('button[data-i]');
+    if(adv)adv.onclick=()=>{orders[idx].stage++;if(orders[idx].stage>=TRACK_STAGES.length-1){orders[idx].eta='Delivered today';}renderOrders();showToast(o.id+' → '+TRACK_STAGES[orders[idx].stage]);};
+    box.appendChild(el);
+  });
+}
+
+/* ---------- care ---------- */
+function renderCare(){
+  const wbox=document.getElementById('wardrobe');wbox.innerHTML='';
+  if(!wardrobe.length){wbox.innerHTML='<div class="osub">Sarees you buy will appear here.</div>';}
+  else{
+    const row=document.createElement('div');row.style.cssText='display:flex;flex-wrap:wrap;gap:14px';
+    wardrobe.forEach(w=>{
+      const c=document.createElement('div');
+      c.style.cssText='display:flex;gap:11px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:10px 14px 10px 10px;background:#fff';
+      c.innerHTML=`<div style="width:42px;flex:0 0 42px">${visual(w.file,w.name)}</div>
+        <div><div style="font-family:Fraunces,serif;font-size:15px">${w.name}</div><div class="osub">${w.id}</div></div>`;
+      row.appendChild(c);
+    });
+    wbox.appendChild(row);
+  }
+  const cbox=document.getElementById('care');cbox.innerHTML='';
+  CARE.forEach(s=>{
+    const el=document.createElement('div');el.className='care';
+    el.innerHTML=`<h3 class="serif">${s.n}</h3><p>${s.d}</p>
+      <div style="display:flex;align-items:center;justify-content:space-between">
+      <span class="cp serif">${rupee(s.p)}</span>
+      <button class="btn btn-ghost btn-sm">Book →</button></div>`;
+    el.querySelector('button').onclick=()=>showToast('Pickup booked · '+s.n);
+    cbox.appendChild(el);
+  });
+}
+
+/* ---------- toast ---------- */
+let toastT;
+function showToast(msg){
+  const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
+  clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),2200);
+}
+
+/* ---------- init ---------- */
+loadHero();
+renderSteps();renderFilters();renderCat();
+document.getElementById('st-discover').classList.add('on');
+</script>
+</body>
+</html>

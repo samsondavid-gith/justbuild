@@ -6,229 +6,373 @@
 <title>Zevar · Fine Jewellery</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Mulish:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
-    --paper:#F6F1E6;--paper-2:#FCF8EF;--card:#FFFDF8;--ink:#23201A;--ink-soft:#6E665A;
-    --gold:#A8842F;--gold-2:#D9B85F;--emerald:#1F3A30;--onyx:#211F1A;--line:#E6DCC6;
-    --shadow:0 1px 0 #fff inset, 0 18px 40px -28px rgba(35,32,26,.5);--r:18px;
+    --bg:#FFF8F3;--paper:#FFF8F3;--paper-2:#FFF1E8;--card:#FFFFFF;
+    --ink:#2B1A1F;--ink-soft:#917B80;
+    --line:#F1E1DA;--line-2:#E8CCC3;
+    --ruby:#C0143C;--ruby-d:#9C0F30;--maroon:#7A1228;--pink:#FBE6EA;
+    --gold:#BE8E36;--gold-2:#E0BE6E;--gold-soft:#F8ECCF;
+    --emerald:#0E6B53;
+    --shadow:0 20px 44px -26px rgba(122,18,40,.32);--r:16px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:"Hanken Grotesk",sans-serif;color:var(--ink);background:var(--paper);line-height:1.55;
-    -webkit-font-smoothing:antialiased;background-image:
-      radial-gradient(circle at 12% 6%, rgba(168,132,47,.12), transparent 42%),
-      radial-gradient(circle at 88% 0%, rgba(31,58,48,.10), transparent 40%);}
-  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");}
-  .wrap{max-width:1100px;margin:0 auto;padding:0 22px;position:relative;z-index:1}
-  h1,h2,h3,h4,.disp{font-family:"Fraunces",serif;font-weight:600;letter-spacing:-.01em;line-height:1.06}
-  .price{font-family:"Fraunces",serif;font-weight:600;color:var(--emerald)}
+  body{font-family:"Mulish",system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4,.serif,.price,.logo{font-family:"Marcellus",Georgia,serif;font-weight:400;letter-spacing:.01em}
+  img{display:block}
+  button{font-family:inherit;cursor:pointer;color:inherit}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 22px}
   .cover{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+  svg.cover-ph{position:absolute;inset:0;width:100%;height:100%;z-index:0}
 
-  header{background:rgba(246,241,230,.92);border-bottom:1px solid var(--line);backdrop-filter:blur(8px)}
-  .bar{display:flex;align-items:center;justify-content:space-between;height:66px;gap:16px}
-  .brand{display:flex;align-items:center;gap:11px}
-  .brand svg{width:30px;height:30px}
-  .brand .nm{font-family:"Fraunces",serif;font-weight:600;font-size:25px;color:var(--emerald);letter-spacing:.04em;line-height:1}
-  .brand .tg{font-size:10.5px;color:var(--gold);letter-spacing:.22em;text-transform:uppercase;margin-top:1px}
-  .ticker{font-size:12px;color:var(--ink-soft);letter-spacing:.02em;white-space:nowrap}
-  .ticker b{color:var(--gold);font-weight:700}
+  /* promo */
+  .promo{background:linear-gradient(90deg,var(--maroon),var(--ruby));color:#fff;text-align:center;font-size:13px;font-weight:600;padding:9px 16px;letter-spacing:.02em;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
+  .promo .cd{font-variant-numeric:tabular-nums;background:rgba(255,255,255,.18);padding:3px 10px;border-radius:7px;font-weight:700;letter-spacing:.06em}
+  .promo b{color:var(--gold-2)}
 
-  .stages{position:sticky;top:0;z-index:30;background:rgba(246,241,230,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-  .stagebar{display:flex;gap:5px;padding:14px 0;overflow-x:auto}
-  .stage-tab{flex:1;min-width:148px;display:flex;align-items:center;gap:11px;padding:11px 14px;border-radius:13px;
-    border:1.5px solid transparent;background:transparent;cursor:pointer;font:inherit;text-align:left;transition:.22s;position:relative}
-  .stage-tab .n{width:28px;height:28px;flex:none;border-radius:50%;display:grid;place-items:center;font-family:"Fraunces",serif;font-weight:700;font-size:14px;background:#e9ddc3;color:var(--ink-soft);transition:.22s}
-  .stage-tab .lbl{font-weight:700;font-size:14.5px;line-height:1.1}
-  .stage-tab .sub{font-size:11px;color:var(--ink-soft);font-weight:500}
-  .stage-tab.active{background:var(--card);border-color:var(--gold);box-shadow:var(--shadow)}
-  .stage-tab.active .n{background:var(--gold);color:#fff}
-  .stage-tab.done .n{background:var(--emerald);color:#fff}
-  .stage-tab.done .lbl,.stage-tab.active .lbl{color:var(--ink)}
-  .stage-tab.locked{opacity:.42;cursor:not-allowed}
-  .stage-tab:not(.locked):not(.active):hover{background:rgba(31,58,48,.07)}
-  .stage-tab .arrow{position:absolute;right:-9px;color:var(--line);font-size:17px}
-  .stage-tab:last-child .arrow{display:none}
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,248,243,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .hwrap{display:flex;align-items:center;gap:18px;height:64px;max-width:1140px;margin:0 auto;padding:0 22px}
+  .logo{font-size:28px;color:var(--maroon);letter-spacing:.18em;text-indent:.18em;line-height:1}
+  .logo small{display:block;font-family:"Mulish";font-size:8.5px;letter-spacing:.34em;color:var(--gold);font-weight:700;text-indent:.34em;margin-top:1px}
+  nav#nav{display:flex;gap:2px;margin:0 auto;overflow-x:auto;scrollbar-width:none}
+  nav#nav::-webkit-scrollbar{display:none}
+  .navlink{background:none;border:0;padding:10px 14px;font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);white-space:nowrap;position:relative;transition:.15s}
+  .navlink:hover{color:var(--ink)}
+  .navlink.active{color:var(--ruby)}
+  .navlink.active::after{content:"";position:absolute;left:14px;right:14px;bottom:4px;height:2px;border-radius:2px;background:var(--ruby)}
+  .navlink.done{color:var(--maroon)}
+  .navlink.locked{opacity:.35;cursor:default}
+  .hutils{display:flex;align-items:center;gap:12px;margin-left:auto}
+  .rate{font-size:11px;font-weight:700;color:var(--maroon);background:var(--gold-soft);border:1px solid var(--line-2);padding:6px 11px;border-radius:99px;white-space:nowrap}
+  .rate b{color:var(--gold)}
+  .bag{position:relative;width:42px;height:42px;border-radius:50%;background:var(--card);border:1px solid var(--line-2);display:grid;place-items:center;transition:.15s}
+  .bag:hover{border-color:var(--ruby)}
+  .bag svg{width:20px;height:20px;stroke:var(--maroon)}
+  #bagct{position:absolute;top:-4px;right:-4px;min-width:18px;height:18px;border-radius:99px;background:var(--ruby);color:#fff;font-size:10.5px;font-weight:800;display:grid;place-items:center;padding:0 4px;font-family:"Mulish"}
 
-  .view{display:none;padding:32px 0 80px;animation:fade .45s ease}
+  .view{display:none;animation:fade .35s ease}
   .view.active{display:block}
   @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-  .lead{margin-bottom:24px}
-  .lead h1{font-size:clamp(30px,4.5vw,42px)}
-  .lead p{color:var(--ink-soft);margin-top:6px;max-width:62ch}
-  .eyebrow{display:inline-block;font-weight:700;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
 
-  .toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:4px 0 24px}
-  .chips{display:flex;gap:8px;flex-wrap:wrap}
-  .chip{font:inherit;font-weight:600;font-size:13.5px;border:1px solid var(--line);background:var(--card);color:var(--ink-soft);padding:8px 15px;border-radius:99px;cursor:pointer;transition:.2s}
-  .chip:hover{border-color:var(--emerald)}
-  .chip.on{background:var(--emerald);color:#F6EFD8;border-color:var(--emerald)}
-  .toolbar .count{margin-left:auto;color:var(--ink-soft);font-size:14px}
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:22px}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;cursor:pointer;transition:.25s;box-shadow:var(--shadow);display:flex;flex-direction:column}
-  .card:hover{transform:translateY(-4px);border-color:var(--gold)}
-  .canopy{height:200px;position:relative;display:grid;place-items:center;overflow:hidden}
-  .canopy svg{width:74px;height:74px;opacity:.9}
-  .badge{position:absolute;top:12px;left:12px;z-index:2;font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 10px;border-radius:99px;background:rgba(255,253,248,.94);color:var(--emerald)}
-  .card-body{padding:15px 16px 17px}
-  .card-body h3{font-size:19px}
-  .variety{font-size:13px;color:var(--ink-soft);margin-top:2px}
-  .meta{display:flex;gap:14px;margin-top:12px;font-size:12.5px;color:var(--ink-soft)}
-  .meta b{color:var(--ink);font-weight:600}
-  .price-row{display:flex;align-items:baseline;justify-content:space-between;margin-top:14px;padding-top:12px;border-top:1px dashed var(--line)}
-  .price-row .price{font-size:20px}
-  .price-row small{font-family:"Hanken Grotesk";font-size:12px;color:var(--ink-soft);font-weight:500}
+  /* hero */
+  .hero{background:linear-gradient(120deg,#fff,#FBE9DC 55%,#F7DCC4);border-bottom:1px solid var(--line);overflow:hidden}
+  .hero-in{max-width:1140px;margin:0 auto;padding:46px 22px;display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center}
+  .h-ey{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--ruby);background:var(--pink);padding:6px 14px;border-radius:99px}
+  .hero h1{font-size:clamp(34px,5vw,54px);line-height:1.04;margin:16px 0 12px}
+  .hero h1 em{font-style:italic;color:var(--gold)}
+  .hero p{color:var(--ink-soft);max-width:46ch;margin-bottom:22px;font-size:15px}
+  .hero-im{aspect-ratio:4/3;border-radius:20px;overflow:hidden;position:relative;background:linear-gradient(150deg,#FBEEE2,#F4DCC2);box-shadow:var(--shadow);border:1px solid var(--line-2)}
+  .hero-im img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 
+  /* section frames */
+  .sec{padding:42px 0 4px}
+  .sec-h{text-align:center;margin-bottom:24px}
+  .sec-h .k{font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+  .sec-h h2{font-size:clamp(26px,3.4vw,36px);margin-top:5px}
+
+  /* category tiles */
+  .cattiles{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .cattile{background:none;border:0;display:flex;flex-direction:column;align-items:center;gap:9px;width:92px}
+  .cattile .ring-c{width:74px;height:74px;border-radius:50%;background:var(--card);border:1px solid var(--line-2);display:grid;place-items:center;transition:.18s;box-shadow:0 8px 20px -16px rgba(122,18,40,.5)}
+  .cattile .ring-c svg{width:38px;height:38px}
+  .cattile:hover .ring-c{transform:translateY(-3px);border-color:var(--gold)}
+  .cattile.on .ring-c{background:var(--maroon);border-color:var(--maroon)}
+  .cattile.on .ring-c svg *{stroke:#F7DCC4 !important}
+  .cattile.on .ring-c svg [fill]:not([fill="none"]){fill:var(--gold-2) !important}
+  .cattile span{font-size:12px;font-weight:700;color:var(--ink)}
+
+  /* occasion chips */
+  .chips{display:flex;gap:9px;justify-content:center;flex-wrap:wrap;margin:8px 0 6px}
+  .chip{background:var(--card);border:1px solid var(--line-2);color:var(--ink-soft);font-weight:700;font-size:12.5px;padding:8px 17px;border-radius:99px;transition:.15s}
+  .chip:hover{color:var(--ink);border-color:var(--gold)}
+  .chip.on{background:var(--ruby);border-color:var(--ruby);color:#fff}
+  .count{text-align:center;color:var(--ink-soft);font-size:12.5px;margin:6px 0 18px}
+
+  /* grid + cards */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));gap:22px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;cursor:pointer;transition:.2s;box-shadow:0 12px 30px -24px rgba(122,18,40,.5)}
+  .card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:var(--line-2)}
+  .shot{position:relative;aspect-ratio:1/1;display:grid;place-items:center;overflow:hidden}
+  .shot svg:not(.cover){width:64px;height:64px;position:relative;z-index:0}
+  .ribbon{position:absolute;top:12px;left:12px;z-index:3;background:rgba(255,255,255,.92);color:var(--maroon);font-size:10.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;padding:5px 11px;border-radius:99px;box-shadow:0 4px 10px -6px rgba(0,0,0,.4)}
+  .quick{position:absolute;left:12px;right:12px;bottom:12px;z-index:3;background:var(--maroon);color:#fff;text-align:center;font-size:12.5px;font-weight:700;padding:9px;border-radius:10px;opacity:0;transform:translateY(8px);transition:.2s}
+  .card:hover .quick{opacity:1;transform:none}
+  .card:hover .shot .cover{transform:scale(1.05)}
+  .shot .cover{transition:.6s ease}
+  .cbody{padding:14px 15px 16px}
+  .cbody h3{font-size:19px;line-height:1.1}
+  .vsub{font-size:11.5px;color:var(--ink-soft);margin-top:3px}
+  .swrow{display:flex;gap:6px;margin:10px 0}
+  .cdot{width:15px;height:15px;border-radius:50%;border:1px solid rgba(0,0,0,.12);box-shadow:inset 0 0 0 2px #fff}
+  .prow{display:flex;align-items:baseline;gap:6px}
+  .prow .price{font-size:20px;color:var(--ink)}
+  .prow small{color:var(--ink-soft);font-size:11px}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:11px}
+  .tg{font-size:10px;font-weight:700;color:var(--emerald);background:#EAF5F0;border:1px solid #CFE8DF;padding:3px 8px;border-radius:6px}
+  .tg.gold{color:var(--gold);background:var(--gold-soft);border-color:#EAD9AE}
+
+  /* budget tiles */
+  .budget{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px}
+  .budtile{position:relative;border:1px solid var(--line-2);border-radius:14px;padding:20px 18px;background:linear-gradient(140deg,#fff,var(--pink));text-align:left;transition:.18s;overflow:hidden}
+  .budtile:hover{transform:translateY(-3px);border-color:var(--ruby)}
+  .budtile.on{border-color:var(--ruby);box-shadow:0 0 0 1px var(--ruby) inset}
+  .budtile .bk{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--ruby)}
+  .budtile .bv{font-family:"Marcellus",serif;font-size:21px;margin-top:5px;color:var(--ink)}
+  .budtile .ba{font-size:11.5px;color:var(--ink-soft);margin-top:3px}
+
+  /* trust strip */
+  .trust{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 28px;padding:26px 22px;margin-top:34px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--paper-2)}
+  .trust span{font-size:12.5px;font-weight:700;color:var(--maroon);display:flex;align-items:center;gap:6px}
+  .trust span::before{content:"✦";color:var(--gold)}
+
+  /* shared content blocks */
+  .pad{padding:30px 0 80px}
+  .back{background:none;border:0;color:var(--ruby);font-weight:700;font-size:13px;margin-bottom:8px}
+  .eyebrow{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
   .reserve{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start}
-  .gallery{border-radius:22px;height:380px;display:grid;place-items:center;position:relative;overflow:hidden;box-shadow:var(--shadow)}
-  .gallery svg{width:150px;height:150px;opacity:.9}
-  .gallery .tag{position:absolute;bottom:16px;left:16px;z-index:2;background:rgba(255,253,248,.94);padding:7px 13px;border-radius:99px;font-size:12.5px;font-weight:700;color:var(--emerald)}
-  .certstrip{display:flex;gap:8px;margin:14px 0 18px;flex-wrap:wrap}
-  .certbadge{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:600;color:var(--emerald);background:#eef2ec;border:1px solid #d4e0ce;border-radius:99px;padding:7px 12px}
-  .reserve h1{font-size:34px}
-  .facts{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:6px 0 0}
-  .facts div{background:var(--card);padding:12px 15px}
-  .facts span{display:block;font-size:11.5px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.06em}
-  .facts b{font-family:"Fraunces",serif;font-size:16px;font-weight:600}
-  .story{font-size:14.5px;color:#4d473b;font-style:italic;border-left:3px solid var(--gold);padding-left:15px;margin:4px 0 20px}
-  .sectlabel{font-weight:600;margin-bottom:9px;font-size:14px}
-  .seg{display:flex;gap:8px;margin-bottom:16px}
-  .seg button{flex:1;font:inherit;font-weight:600;font-size:13.5px;padding:11px 8px;border:1.5px solid var(--line);border-radius:11px;background:var(--card);color:var(--ink-soft);cursor:pointer;transition:.2s}
-  .seg button.on{border-color:var(--emerald);background:#eef2ec;color:var(--ink);box-shadow:0 0 0 3px rgba(31,58,48,.12)}
-  .seg button small{display:block;font-weight:500;font-size:11px;color:var(--ink-soft);margin-top:2px}
-  .swatches{display:flex;gap:12px;margin-bottom:16px;align-items:center}
-  .swatch{width:34px;height:34px;border-radius:50%;cursor:pointer;box-shadow:0 0 0 1px var(--line);transition:.15s}
-  .swatch.on{box-shadow:0 0 0 2px var(--emerald),0 0 0 4px #fff inset}
-  .swatch span{display:none}
-  .breakup{background:var(--paper-2);border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin:6px 0 18px}
-  .breakup h4{font-size:15px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}
-  .breakup .livedot{font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);background:#f3ecd6;border-radius:99px;padding:3px 9px;font-family:"Hanken Grotesk"}
-  .brow{display:flex;justify-content:space-between;font-size:14px;margin:8px 0;color:var(--ink-soft)}
-  .brow b{color:var(--ink);font-weight:600}
-  .brow .lbl2{display:flex;flex-direction:column}
-  .brow .sm{font-size:11.5px;color:var(--ink-soft)}
-  .btot{display:flex;justify-content:space-between;align-items:baseline;margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
-  .btot .price{font-size:26px}
+  .gallery{position:relative;aspect-ratio:1/1;border-radius:18px;overflow:hidden;display:grid;place-items:center;box-shadow:var(--shadow);border:1px solid var(--line-2)}
+  .gallery svg:not(.cover){width:96px;height:96px;z-index:0}
+  .gallery .tag{position:absolute;bottom:12px;left:12px;z-index:3;background:rgba(255,255,255,.92);color:var(--maroon);font-size:12px;font-weight:700;padding:6px 13px;border-radius:99px}
+  .certstrip{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .certbadge{font-size:11.5px;font-weight:700;color:var(--emerald);background:#EAF5F0;border:1px solid #CFE8DF;padding:6px 11px;border-radius:8px}
+  .facts{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:14px}
+  .facts>div{background:var(--card);padding:11px 14px}
+  .facts span{font-size:11px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.06em}
+  .facts b{display:block;font-size:14px;margin-top:2px}
+  .reserve h1{font-size:34px;line-height:1.04}
+  .variety{color:var(--ink-soft);font-size:13px;margin-top:3px}
+  .story{color:var(--ink-soft);font-size:14px;margin:14px 0 18px;line-height:1.6}
+  .sectlabel{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);margin:18px 0 9px}
+  .seg{display:flex;flex-wrap:wrap;gap:9px}
+  .seg button{flex:1;min-width:fit-content;background:var(--card);border:1.5px solid var(--line-2);color:var(--ink);border-radius:11px;padding:11px 13px;font-weight:700;font-size:13.5px;display:flex;flex-direction:column;align-items:center;gap:2px;transition:.15s}
+  .seg button small{font-weight:600;font-size:10.5px;color:var(--ink-soft)}
+  .seg button:hover{border-color:var(--gold)}
+  .seg button.on{border-color:var(--ruby);background:var(--pink)}
+  .seg button.on small{color:var(--ruby)}
+  .swatches{display:flex;align-items:center;gap:11px}
+  .swatch{width:30px;height:30px;border-radius:50%;border:1px solid rgba(0,0,0,.12);cursor:pointer;box-shadow:inset 0 0 0 3px #fff;transition:.15s}
+  .swatch:hover{transform:scale(1.1)}
+  .swatch.on{box-shadow:inset 0 0 0 3px #fff,0 0 0 2px var(--ruby)}
+  .extra{display:flex;align-items:center;gap:11px;font-size:14px;font-weight:600;padding:12px 0;cursor:pointer}
+  .extra input{width:18px;height:18px;accent-color:var(--ruby)}
+  .extra .ap{margin-left:auto;color:var(--ink-soft);font-weight:700}
+  .field label{display:block;font-size:11px;font-weight:700;color:var(--ink-soft);margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em}
+  .field input{width:100%;font:inherit;font-size:14px;padding:11px 13px;border:1.5px solid var(--line-2);border-radius:11px;background:var(--card);color:var(--ink)}
+  .field input:focus{outline:0;border-color:var(--ruby)}
 
-  .btn{font:inherit;font-weight:700;font-size:15px;border:none;cursor:pointer;border-radius:99px;padding:14px 24px;transition:.2s}
-  .btn-primary{background:var(--onyx);color:#F4E7C4;width:100%}
-  .btn-primary:hover{background:#332f25}
-  .btn-ghost{background:none;border:1.5px solid var(--emerald);color:var(--emerald)}
-  .btn-ghost:hover{background:var(--emerald);color:#F6EFD8}
-  .back{background:none;border:none;font:inherit;font-weight:600;color:var(--emerald);cursor:pointer;margin-bottom:18px;font-size:14px}
+  .breakup{background:var(--paper-2);border:1px solid var(--line-2);border-radius:14px;padding:18px;margin:18px 0}
+  .breakup h4{font-size:18px;display:flex;align-items:center;gap:10px;margin-bottom:6px}
+  .livedot{font-family:"Mulish";font-size:11px;font-weight:700;color:var(--emerald);background:#EAF5F0;padding:2px 9px;border-radius:99px}
+  .brow{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:8px 0;font-size:14px;color:var(--ink-soft)}
+  .brow b{color:var(--ink);font-weight:700;white-space:nowrap}
+  .lbl2{display:flex;flex-direction:column}
+  .lbl2 .sm,.brow .sm{font-size:11.5px;color:var(--ink-soft);font-weight:400}
+  .btot{display:flex;justify-content:space-between;align-items:baseline;margin-top:10px;padding-top:12px;border-top:1px dashed var(--line-2)}
+  .btot .price{font-size:26px;color:var(--ruby)}
+  .price{color:var(--ink)}
 
-  .trygrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-  .trycard{border:1.5px solid var(--line);border-radius:16px;padding:20px;cursor:pointer;background:var(--card);transition:.2s}
-  .trycard:hover{border-color:var(--emerald)}
-  .trycard.on{border-color:var(--emerald);background:#eef2ec;box-shadow:0 0 0 3px rgba(31,58,48,.1)}
-  .trycard .ic{font-size:26px}
-  .trycard h3{font-size:16px;margin:10px 0 4px}
+  .btn{border:0;border-radius:12px;font-weight:700;font-size:14.5px;padding:13px 24px;transition:.16s;font-family:"Mulish"}
+  .btn-primary{background:var(--ruby);color:#fff}.btn-primary:hover{background:var(--ruby-d)}
+  .btn-ghost{background:var(--card);border:1.5px solid var(--line-2);color:var(--maroon)}.btn-ghost:hover{border-color:var(--ruby)}
+  .btn-wide{width:100%}
+  .cust-cta{display:flex;gap:11px;flex-wrap:wrap}
+  .cust-cta .btn-primary{flex:1;min-width:200px}
+
+  /* try */
+  .trygrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}
+  .trycard{background:var(--card);border:1.5px solid var(--line-2);border-radius:14px;padding:22px 20px;text-align:center;cursor:pointer;transition:.18s}
+  .trycard:hover{border-color:var(--gold);transform:translateY(-2px)}
+  .trycard.on{border-color:var(--ruby);background:var(--pink)}
+  .trycard .ic{font-size:30px}
+  .trycard h3{font-size:18px;margin:9px 0 5px}
   .trycard p{font-size:12.5px;color:var(--ink-soft)}
-  .trydetail{background:var(--paper-2);border:1px solid var(--line);border-radius:16px;padding:20px;margin-top:18px;display:flex;gap:18px;align-items:center}
-  .trydetail .frame{width:120px;height:120px;border-radius:14px;position:relative;overflow:hidden;flex:none;display:grid;place-items:center;border:2px dashed var(--gold)}
-  .trydetail h3{font-size:18px;margin-bottom:5px}
+  .trydetail{display:flex;gap:20px;align-items:center;background:var(--paper-2);border:1px solid var(--line-2);border-radius:16px;padding:20px;margin-top:20px;flex-wrap:wrap}
+  .trydetail .frame{width:120px;height:120px;flex:none;border-radius:14px;display:grid;place-items:center;font-size:38px;position:relative;overflow:hidden}
+  .trydetail h3{font-size:20px;margin-bottom:5px}
   .trydetail p{font-size:13.5px;color:var(--ink-soft)}
-  .slots{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-  .slots button{font:inherit;font-size:12.5px;font-weight:600;border:1px solid var(--line);background:var(--card);border-radius:9px;padding:7px 12px;cursor:pointer}
-  .slots button.on{border-color:var(--emerald);background:#eef2ec}
+  .slots{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}
+  .slots button{background:var(--card);border:1.5px solid var(--line-2);border-radius:9px;padding:9px 14px;font-weight:700;font-size:12.5px}
+  .slots button.on{border-color:var(--ruby);background:var(--pink)}
 
-  .checkout{display:grid;grid-template-columns:1.05fr .95fr;gap:36px;align-items:start}
-  .panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;box-shadow:var(--shadow)}
-  .panel h2{font-size:22px;margin-bottom:18px}
-  .field{margin-bottom:15px}
-  .field label{display:block;font-size:13px;font-weight:600;color:var(--ink-soft);margin-bottom:6px}
-  .field input{width:100%;font:inherit;font-size:15px;padding:12px 14px;border:1.5px solid var(--line);border-radius:11px;background:var(--paper-2);color:var(--ink);transition:.2s}
-  .field input:focus{outline:none;border-color:var(--emerald);background:#fff}
-  .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-  .pay-opt{display:flex;align-items:center;gap:11px;border:1.5px solid var(--line);border-radius:12px;padding:13px 15px;margin-bottom:10px;cursor:pointer;font-size:14px;transition:.2s}
-  .pay-opt:hover{border-color:var(--emerald)}
-  .pay-opt.on{border-color:var(--emerald);background:#eef2ec}
-  .pay-opt .r{width:18px;height:18px;border-radius:50%;border:2px solid var(--line);flex:none}
-  .pay-opt.on .r{border-color:var(--emerald);background:var(--emerald);box-shadow:0 0 0 3px #fff inset}
-  .pay-opt .sm{margin-left:auto;color:var(--ink-soft);font-size:12.5px}
-  .extra{display:flex;align-items:center;gap:11px;font-size:14px;cursor:pointer;margin:9px 0}
-  .extra input{width:18px;height:18px;accent-color:var(--emerald)}
-  .extra .ap{margin-left:auto;color:var(--ink-soft);font-weight:600}
-  .thumb{width:58px;height:58px;border-radius:12px;position:relative;overflow:hidden;display:grid;place-items:center}
-  .thumb svg{width:34px;height:34px}
-  .kyc{font-size:12px;color:var(--ink-soft);background:var(--paper-2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-top:12px}
+  /* buy */
+  .checkout{display:grid;grid-template-columns:1fr 380px;gap:28px;align-items:start}
+  .panel{background:var(--card);border:1px solid var(--line-2);border-radius:16px;padding:24px;box-shadow:0 12px 30px -26px rgba(122,18,40,.5)}
+  .panel h2{font-size:21px;margin-bottom:16px}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+  .field{margin-bottom:14px}
+  .pay-opt{display:flex;align-items:center;gap:12px;border:1.5px solid var(--line-2);border-radius:12px;padding:13px 15px;margin-bottom:9px;font-weight:700;font-size:14px;cursor:pointer;transition:.15s}
+  .pay-opt:hover{border-color:var(--gold)}
+  .pay-opt.on{border-color:var(--ruby);background:var(--pink)}
+  .pay-opt .r{width:18px;height:18px;border-radius:50%;border:2px solid var(--line-2);flex:none}
+  .pay-opt.on .r{border-color:var(--ruby);background:radial-gradient(circle,var(--ruby) 38%,transparent 42%)}
+  .pay-opt .sm{margin-left:auto;color:var(--ink-soft);font-weight:600;font-size:12px}
+  .kyc{background:var(--gold-soft);border:1px solid #EAD9AE;border-radius:11px;padding:12px 14px;font-size:12.5px;color:var(--maroon);margin:14px 0}
+  .thumb{width:64px;height:64px;border-radius:12px;overflow:hidden;position:relative;display:grid;place-items:center;flex:none}
+  .thumb svg:not(.cover){width:36px;height:36px}
 
-  .banner{display:flex;align-items:center;gap:12px;background:#eef2ec;border:1px solid #d4e0ce;border-radius:14px;padding:14px 18px;margin-bottom:22px;color:var(--emerald);font-weight:600}
-  .subtabs{display:flex;gap:7px;flex-wrap:wrap;margin:4px 0 22px}
-  .subtab{font:inherit;font-weight:600;font-size:12.5px;border:1px solid var(--line);background:var(--card);color:var(--ink-soft);padding:7px 13px;border-radius:99px;cursor:pointer;transition:.2s}
-  .subtab:hover{border-color:var(--emerald)}
-  .subtab.on{background:var(--emerald);color:#F6EFD8;border-color:var(--emerald)}
-  .subtab .ct{opacity:.7;font-weight:700;margin-left:4px}
-  .empty{text-align:center;padding:54px 20px;color:var(--ink-soft)}
-  .my-tree{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;margin-bottom:18px;box-shadow:var(--shadow);display:grid;grid-template-columns:90px 1fr;gap:20px}
-  .my-tree .av{height:90px;border-radius:14px;display:grid;place-items:center;position:relative;overflow:hidden}
-  .my-tree .av svg{width:50px;height:50px}
+  /* track + care */
+  .lead{margin-bottom:22px}.lead h1{font-size:clamp(28px,4vw,40px)}
+  .lead p{color:var(--ink-soft);margin-top:6px;max-width:60ch}
+  .banner{display:flex;align-items:center;gap:11px;background:linear-gradient(100deg,var(--pink),#fff);border:1px solid var(--line-2);border-radius:14px;padding:14px 18px;margin-bottom:20px;font-size:14px}
+  .banner b{color:var(--ruby)}
+  .subtabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+  .subtab{background:var(--card);border:1px solid var(--line-2);color:var(--ink-soft);font-weight:700;font-size:12.5px;padding:8px 14px;border-radius:99px}
+  .subtab:hover{color:var(--ink);border-color:var(--gold)}
+  .subtab.on{background:var(--maroon);color:#fff;border-color:var(--maroon)}
+  .subtab .ct{opacity:.7;margin-left:5px}
+  .my-tree{background:var(--card);border:1px solid var(--line-2);border-radius:16px;padding:20px;margin-bottom:16px;display:grid;grid-template-columns:74px 1fr;gap:18px;box-shadow:0 12px 30px -26px rgba(122,18,40,.5)}
+  .my-tree .av{width:74px;height:74px;border-radius:13px;overflow:hidden;position:relative;display:grid;place-items:center}
+  .my-tree .av svg:not(.cover){width:44px;height:44px}
   .my-tree h3{font-size:19px}
   .my-tree .sub{font-size:13px;color:var(--ink-soft);margin-top:2px}
-  .timeline{display:flex;margin:18px 0 6px}
-  .timeline .st{flex:1;text-align:center;position:relative;font-size:10.5px;color:var(--ink-soft)}
+  .timeline{display:flex;margin:16px 0 6px;flex-wrap:wrap;gap:8px 0}
+  .timeline .st{flex:1;min-width:66px;text-align:center;position:relative;font-size:10.5px;color:var(--ink-soft)}
   .timeline .st::before{content:"";position:absolute;top:8px;left:-50%;width:100%;height:2px;background:var(--line);z-index:0}
   .timeline .st:first-child::before{display:none}
-  .timeline .dot{width:18px;height:18px;border-radius:50%;background:var(--paper);border:2px solid var(--line);margin:0 auto 7px;z-index:1;position:relative}
-  .timeline .st.done .dot{background:var(--emerald);border-color:var(--emerald)}
-  .timeline .st.done::before{background:var(--emerald)}
-  .timeline .st.now .dot{background:var(--gold);border-color:var(--gold);box-shadow:0 0 0 5px rgba(168,132,47,.22)}
-  .timeline .st.done,.timeline .st.now{color:var(--ink);font-weight:600}
-  .ship{display:flex;align-items:center;gap:10px;background:var(--paper-2);border:1px solid var(--line);border-radius:12px;padding:11px 14px;font-size:13.5px;margin-top:14px;color:var(--ink-soft)}
-  .ship b{color:var(--ink)}
-  .ship .btn{margin-left:auto;padding:8px 16px;font-size:13px}
-  .cert{background:var(--paper-2);border:1px dashed var(--line);border-radius:12px;padding:10px 14px;margin-top:12px;font-size:12.5px;color:var(--ink-soft);display:flex;gap:18px;flex-wrap:wrap}
+  .timeline .dot{width:16px;height:16px;border-radius:50%;background:var(--card);border:2px solid var(--line-2);margin:0 auto 7px;position:relative;z-index:1}
+  .timeline .st.done .dot{background:var(--gold);border-color:var(--gold)}.timeline .st.done::before{background:var(--gold)}
+  .timeline .st.now .dot{background:var(--ruby);border-color:var(--ruby);box-shadow:0 0 0 5px var(--pink)}
+  .timeline .st.done,.timeline .st.now{color:var(--ink);font-weight:700}
+  .ship{display:flex;align-items:center;gap:10px;background:var(--paper-2);border:1px solid var(--line-2);border-radius:12px;padding:11px 14px;font-size:13px;color:var(--ink-soft);margin-top:14px;flex-wrap:wrap}
+  .ship b{color:var(--ink)}.ship .btn{margin-left:auto;padding:8px 15px;font-size:12.5px}
+  .cert{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+  .cert span{font-size:11.5px;color:var(--ink-soft);background:var(--paper-2);border:1px solid var(--line);padding:5px 10px;border-radius:7px}
   .cert b{color:var(--ink)}
-  .buyback{display:flex;justify-content:space-between;align-items:center;background:#eef2ec;border:1px solid #d4e0ce;border-radius:12px;padding:11px 15px;margin-top:12px;font-size:13.5px}
-  .buyback .price{font-size:18px}
-  .care-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-  .care-actions .btn{padding:8px 14px;font-size:12.5px}
-  .care-msg{font-size:12.5px;color:var(--emerald);font-weight:600;margin-top:10px}
+  .buyback{display:flex;justify-content:space-between;align-items:center;gap:12px;background:var(--gold-soft);border:1px solid #EAD9AE;border-radius:12px;padding:12px 15px;margin:12px 0;flex-wrap:wrap}
+  .buyback .price{font-size:20px;color:var(--maroon)}
+  .care-actions{display:flex;gap:9px;flex-wrap:wrap}
+  .care-actions .btn{padding:9px 15px;font-size:12.5px}
+  .care-msg{margin-top:11px;background:#EAF5F0;border:1px solid #CFE8DF;color:var(--emerald);border-radius:10px;padding:10px 13px;font-size:13px;font-weight:600}
+  .empty{text-align:center;color:var(--ink-soft);padding:50px 20px}
 
-  footer{border-top:1px solid var(--line);padding:28px 0;text-align:center;color:var(--ink-soft);font-size:13px;position:relative;z-index:1}
-  @media(max-width:820px){.reserve,.checkout{grid-template-columns:1fr}.trygrid{grid-template-columns:1fr}.ticker{display:none}.stage-tab{min-width:140px}}
+  /* cart drawer */
+  #scrim{position:fixed;inset:0;background:rgba(43,26,31,.5);opacity:0;pointer-events:none;transition:.25s;z-index:60}
+  body.cart-open #scrim{opacity:1;pointer-events:auto}
+  #cart{position:fixed;top:0;right:0;bottom:0;width:380px;max-width:90vw;background:var(--bg);z-index:70;transform:translateX(100%);transition:.3s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;box-shadow:-20px 0 50px -20px rgba(0,0,0,.5)}
+  body.cart-open #cart{transform:none}
+  .cart-head{display:flex;align-items:center;justify-content:space-between;padding:20px 22px;border-bottom:1px solid var(--line)}
+  .cart-head span{font-family:"Marcellus",serif;font-size:21px}
+  .cart-head button{background:none;border:0;font-size:20px;color:var(--ink-soft)}
+  .cart-body{flex:1;overflow-y:auto;padding:18px 22px}
+  .cart-empty{text-align:center;padding:50px 10px;color:var(--ink-soft)}
+  .cart-empty .ce-ic{font-size:40px;margin-bottom:10px}
+  .cart-empty p{margin-bottom:16px}
+  .cart-item{display:flex;gap:14px}
+  .ci-shot{width:80px;height:80px;flex:none;border-radius:12px;overflow:hidden;position:relative;display:grid;place-items:center}
+  .ci-shot svg:not(.cover){width:44px;height:44px}
+  .ci-nm{font-family:"Marcellus",serif;font-size:18px}
+  .ci-sub{font-size:12px;color:var(--ink-soft);margin:3px 0 6px}
+  .ci-pr{font-family:"Marcellus",serif;font-size:18px;color:var(--ruby)}
+  .cart-prog{margin:20px 0}
+  .cart-prog .bar{height:7px;border-radius:99px;background:var(--line);overflow:hidden}
+  .cart-prog .bar span{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--ruby));border-radius:99px;transition:.3s}
+  .cart-prog .pl{font-size:12px;color:var(--ink-soft);margin-top:8px}
+  .cart-prog .pl b{color:var(--maroon)}
+  .cart-perks{list-style:none;margin-top:18px;border-top:1px dashed var(--line-2);padding-top:16px}
+  .cart-perks li{font-size:12.5px;color:var(--ink-soft);padding:5px 0}
+  .cart-foot{border-top:1px solid var(--line);padding:18px 22px;background:var(--card)}
+  .cart-tot{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}
+  .cart-tot b{font-family:"Marcellus",serif;font-size:24px;color:var(--ruby)}
+  .cart-foot .btn{margin-bottom:9px}
+
+  #toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,16px);opacity:0;pointer-events:none;background:var(--maroon);color:#fff;font-weight:700;font-size:13.5px;padding:13px 22px;border-radius:12px;box-shadow:0 16px 36px rgba(0,0,0,.4);transition:.28s;z-index:90}
+  #toast.show{opacity:1;transform:translate(-50%,0)}
+  footer{text-align:center;padding:34px 22px;color:var(--ink-soft);font-size:12.5px;border-top:1px solid var(--line)}
+
+  @media(max-width:820px){
+    .reserve,.checkout,.hero-in{grid-template-columns:1fr}
+    .hero-im{order:-1}
+  }
 </style>
 </head>
 <body>
 
-<header><div class="wrap bar">
-  <div class="brand">
-    <svg viewBox="0 0 32 32" fill="none"><path d="M16 4l4 7h8l-12 17L4 11h8l4-7z" fill="#D9B85F" stroke="#1F3A30" stroke-width="1.4" stroke-linejoin="round"/><path d="M12 11h8M16 4l-4 7 4 17 4-17-4-7z" stroke="#1F3A30" stroke-width="1.1" fill="none"/></svg>
-    <div><div class="nm">ZEVAR</div><div class="tg">Fine Jewellery</div></div>
+<div class="promo">✦ The Festive Edit · <b>Free insured shipping &amp; lifetime buyback</b> on every piece · Offer ends in <span class="cd" id="cd">06:00:00</span></div>
+
+<header><div class="hwrap">
+  <div class="logo">ZEVAR<small>FINE JEWELLERY</small></div>
+  <nav id="nav"></nav>
+  <div class="hutils">
+    <span class="rate">22K <b id="r22"></b> · 18K <b id="r18"></b></span>
+    <button class="bag" onclick="openCart()" aria-label="Your bag">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M6 7h12l1 13H5L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+      <span id="bagct">0</span>
+    </button>
   </div>
-  <div class="ticker">GOLD &nbsp;<b>22K ₹6,650</b> · <b>18K ₹5,450</b>&nbsp;/g &nbsp;<span style="color:var(--emerald)">▲ today</span></div>
 </div></header>
 
-<div class="stages"><div class="wrap"><div class="stagebar" id="stagebar"></div></div></div>
+<main>
+  <!-- DISCOVER -->
+  <section id="discover" class="view active">
+    <div class="hero"><div class="hero-in">
+      <div>
+        <span class="h-ey">The Festive Edit · 2026</span>
+        <h1>Fine jewellery,<br><em>honestly priced.</em></h1>
+        <p>Every piece itemised to the gram — gold value, making charges, stones and GST, shown live as you customise. BIS hallmarked, IGI certified, lifetime buyback.</p>
+        <button class="btn btn-primary" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">Shop the collection →</button>
+      </div>
+      <div class="hero-im"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Jewelry_for_Indian_Wedding.jpg?width=1000" alt="Bridal jewellery" onerror="this.style.display='none'"></div>
+    </div></div>
 
-<section id="discover" class="view active"><div class="wrap">
-  <div class="lead"><span class="eyebrow">Stage 1 · Discover</span>
-    <h1>Fine jewellery, with nothing hidden</h1>
-    <p>Browse the collection — every piece carries a live, itemised price, is hallmarked and certified, and is backed by lifetime exchange and buyback.</p></div>
-  <div class="toolbar"><div class="chips" id="chips"></div><span class="count" id="count"></span></div>
-  <div class="grid" id="grid"></div>
-</div></section>
+    <div class="wrap sec">
+      <div class="sec-h"><div class="k">Shop by category</div><h2>Find your piece</h2></div>
+      <div class="cattiles" id="cattiles"></div>
+    </div>
 
-<section id="customise" class="view"><div class="wrap" id="customiseBody"></div></section>
-<section id="try" class="view"><div class="wrap" id="tryBody"></div></section>
-<section id="buy" class="view"><div class="wrap" id="buyBody"></div></section>
+    <div class="wrap sec" id="shop">
+      <div class="sec-h"><div class="k">The collection</div><h2>Curated for the season</h2></div>
+      <div class="chips" id="chips"></div>
+      <div class="count" id="count"></div>
+      <div class="grid" id="grid"></div>
+    </div>
 
-<section id="track" class="view"><div class="wrap">
-  <div class="lead"><span class="eyebrow">Stage 5 · Track</span><h1>In the workshop</h1>
-    <p>Your orders as they're crafted, certified and dispatched — grouped by stage.</p></div>
-  <div id="banner"></div><div class="subtabs" id="subtabs"></div><div id="trackBody"></div>
-</div></section>
+    <div class="wrap sec">
+      <div class="sec-h"><div class="k">Shop by budget</div><h2>Something for every occasion</h2></div>
+      <div class="budget" id="budget"></div>
+    </div>
 
-<section id="care" class="view"><div class="wrap">
-  <div class="lead"><span class="eyebrow">Stage 6 · Care</span><h1>My jewellery box</h1>
-    <p>Pieces you own — with their certificates, lifetime care, and a live buyback value at today's rate.</p></div>
-  <div id="careBody"></div>
-</div></section>
+    <div class="trust">
+      <span>BIS Hallmarked</span><span>IGI Certified Diamonds</span><span>100% Transparent Pricing</span><span>Lifetime Buyback</span><span>Free Insured Shipping</span>
+    </div>
+  </section>
 
-<footer class="wrap">Zevar · a demo of the customer workflow · runs entirely in your browser</footer>
+  <!-- CUSTOMISE -->
+  <section id="customise" class="view"><div class="wrap pad" id="customiseBody"></div></section>
+  <!-- TRY -->
+  <section id="try" class="view"><div class="wrap pad" id="tryBody"></div></section>
+  <!-- BUY -->
+  <section id="buy" class="view"><div class="wrap pad" id="buyBody"></div></section>
+
+  <!-- TRACK -->
+  <section id="track" class="view"><div class="wrap pad">
+    <div class="lead"><span class="eyebrow">In the workshop</span><h1>Track your orders</h1>
+      <p>From confirmation to your door — design, crafting, certification and dispatch. Advance any order to watch it move.</p></div>
+    <div id="banner"></div>
+    <div class="subtabs" id="subtabs"></div>
+    <div id="trackBody"></div>
+  </div></section>
+
+  <!-- CARE -->
+  <section id="care" class="view"><div class="wrap pad">
+    <div class="lead"><span class="eyebrow">Own &amp; aftercare</span><h1>Your jewellery box</h1>
+      <p>Certificates, live buyback value and free aftercare for every piece you own.</p></div>
+    <div id="careBody"></div>
+  </div></section>
+</main>
+
+<footer>Zevar · a demo of the customer workflow · runs entirely in your browser · prices illustrative</footer>
+
+<div id="scrim" onclick="closeCart()"></div>
+<aside id="cart" aria-label="Your bag">
+  <div class="cart-head"><span>Your bag</span><button onclick="closeCart()" aria-label="Close">✕</button></div>
+  <div class="cart-body" id="cartBody"></div>
+  <div class="cart-foot" id="cartFoot"></div>
+</aside>
+<div id="toast"></div>
 
 <script>
-/* category line-art (fallback when a piece has no photo) */
 const ICON={
   ring:`<svg viewBox="0 0 64 64" fill="none" stroke="#8a6d28" stroke-width="3"><circle cx="32" cy="40" r="15"/><path d="M25 24l7-11 7 11z" fill="#cda94e" stroke="none"/></svg>`,
   necklace:`<svg viewBox="0 0 64 64" fill="none" stroke="#8a6d28" stroke-width="3"><path d="M12 16c8 19 32 19 40 0"/><path d="M32 35l5 7-5 7-5-7z" fill="#cda94e" stroke="none"/></svg>`,
@@ -236,12 +380,10 @@ const ICON={
   bangle:`<svg viewBox="0 0 64 64" fill="none" stroke="#cda94e" stroke-width="6"><circle cx="32" cy="32" r="20"/></svg>`,
   pendant:`<svg viewBox="0 0 64 64" fill="none" stroke="#8a6d28" stroke-width="3"><path d="M14 18c6 15 30 15 36 0"/><path d="M32 30l7 9-7 9-7-9z" fill="#cda94e" stroke="none"/></svg>`
 };
-const GRAD="linear-gradient(140deg,#efe3c1,#d7bd77)";
-
+const GRAD="linear-gradient(150deg,#FBEEE2,#F4DCC2)";
 const B="https://commons.wikimedia.org/wiki/Special:FilePath/";
-/* pricing inputs */
-const RATES={"22":6650,"18":5450,"14":4250};        // ₹ per gram
-const DIAMOND={"SI":45000,"VS":70000,"VVS":110000}; // ₹ per carat
+const RATES={"22":6650,"18":5450,"14":4250};
+const DIAMOND={"SI":45000,"VS":70000,"VVS":110000};
 const GST=0.03, ENGRAVE_FEE=500;
 
 const ITEMS=[
@@ -249,18 +391,34 @@ const ITEMS=[
     desc:"A single brilliant-cut diamond on a slim band — the classic promise, made to last."},
   {id:"j2",name:"Cocktail Ring",cat:"ring",occasion:"gifting",weight:5.0,hasDiamond:true,carat:0.70,makingPct:0.13,img:B+"Gold_ring_with_diamonds_and_garnets_2.jpg?width=900",
     desc:"A statement ring set with diamonds and coloured stones — for the evenings that matter."},
-  {id:"j3",name:"Bridal Necklace",cat:"necklace",occasion:"bridal",weight:32,hasDiamond:false,carat:0,makingPct:0.16,img:B+"WLA_vanda_marriage_necklace.jpg?width=900",
+  {id:"j3",name:"Bridal Necklace",cat:"necklace",occasion:"bridal",weight:32,hasDiamond:false,carat:0,makingPct:0.16,img:B+"Jewelry_for_Indian_Wedding.jpg?width=900",
     desc:"A heavy, hand-finished gold necklace in the traditional bridal style — heirloom weight and presence."},
-  {id:"j4",name:"Mangalsutra",cat:"necklace",occasion:"bridal",weight:14,hasDiamond:true,carat:0.25,makingPct:0.15,img:B+"Thirumaangalyam_or_Thaali.jpg?width=900",
-    desc:"Black-bead mangalsutra with a diamond-set pendant — sacred, everyday, and beautifully made."},
-  {id:"j5",name:"Gold Jhumkas",cat:"earrings",occasion:"daily",weight:8,hasDiamond:false,carat:0,makingPct:0.14,img:B+"Jhumkas.jpg?width=900",
+  {id:"j4",name:"Chandbali Earrings",cat:"earrings",occasion:"bridal",weight:7,hasDiamond:true,carat:0.30,makingPct:0.14,img:B+"Ear_Ring_for_Indian_Wedding_4.jpg?width=900",
+    desc:"Crescent-shaped chandbali earrings with diamond and pearl detailing — regal, traditional and a true statement."},
+  {id:"j5",name:"Gold Jhumkas",cat:"earrings",occasion:"daily",weight:8,hasDiamond:false,carat:0,makingPct:0.14,img:B+"Ear_Ring_for_Indian_Wedding_1.jpg?width=900",
     desc:"Bell-shaped gold jhumkas with fine granulation — equally at home with a sari or a kurta."},
   {id:"j6",name:"Gold Bracelet",cat:"bangle",occasion:"daily",weight:12,hasDiamond:false,carat:0,makingPct:0.12,img:B+"Gold_charm_bracelet.JPG?width=900",
     desc:"A supple everyday gold bracelet — light enough to never take off."},
   {id:"j7",name:"Diamond Pendant",cat:"pendant",occasion:"gifting",weight:3,hasDiamond:true,carat:0.40,makingPct:0.12,img:B+"Diamond_jewellery_(24847541297).jpg?width=900",
     desc:"A diamond pendant that catches the light — the easy gift that's always right."},
-  {id:"j8",name:"Gold Chain",cat:"necklace",occasion:"daily",weight:10,hasDiamond:false,carat:0,makingPct:0.10,img:B+"Handmade_Gold_Necklace.jpg?width=900",
-    desc:"A classic hand-made gold chain — versatile on its own or with any pendant."}
+  {id:"j8",name:"Mango Mala",cat:"necklace",occasion:"gifting",weight:18,hasDiamond:false,carat:0,makingPct:0.15,img:B+"India_del_sud,_collana_a_mango,_in_oro,_argento,_rubini,_diamanti_smeraldi,_xix_secolo,_01.jpg?width=900",
+    desc:"A traditional South Indian mango-motif gold necklace — richly worked and festive."},
+  {id:"j9",name:"Navratna Ring",cat:"ring",occasion:"gifting",weight:6,hasDiamond:false,carat:0,makingPct:0.16,img:B+"Ring,_Mughal_India,_18th_century.jpg?width=900",
+    desc:"A heritage gold ring set with the nine auspicious stones — colour and meaning in equal measure."},
+  {id:"j10",name:"Garuda Temple Jhumkas",cat:"earrings",occasion:"gifting",weight:16,hasDiamond:false,carat:0,makingPct:0.15,img:B+"Pair_of_Earrings_in_an_Abstract_Form_of_Garuda_LACMA_M.2000.53.1a-b.jpg?width=900",
+    desc:"Temple-style gold jhumkas worked in the form of Garuda — ceremonial weight and presence."},
+  {id:"j11",name:"Elephant Drop Earrings",cat:"earrings",occasion:"daily",weight:6,hasDiamond:false,carat:0,makingPct:0.14,img:B+"Pair_of_Earrings_in_the_Form_of_Dancing_Elephants_LACMA_M.86.49a-b.jpg?width=900",
+    desc:"Dancing-elephant gold drops — light, characterful and easy to wear every day."},
+  {id:"j12",name:"Temple Necklace",cat:"necklace",occasion:"bridal",weight:28,hasDiamond:false,carat:0,makingPct:0.16,img:B+"Necklace_with_Shiva's_Family_LACMA_M.85.140.jpg?width=900",
+    desc:"A South Indian temple necklace with deity motifs — heirloom gold at bridal weight."},
+  {id:"j13",name:"Antique Gold Pendant",cat:"pendant",occasion:"gifting",weight:5,hasDiamond:false,carat:0,makingPct:0.14,img:B+"Pendant_LACMA_AC1996.168.1.jpg?width=900",
+    desc:"A finely chased gold pendant in the antique manner — a quiet, lasting gift."},
+  {id:"j14",name:"Heritage Pendant",cat:"pendant",occasion:"daily",weight:4,hasDiamond:false,carat:0,makingPct:0.15,img:B+"Pendant_-_1700s_-_Cleveland_Museum_of_Art_(29983613250).jpg?width=900",
+    desc:"An eighteenth-century-style gold pendant — small, ornate and everyday-elegant."},
+  {id:"j15",name:"Peacock Bracelet Pair",cat:"bangle",occasion:"bridal",weight:22,hasDiamond:false,carat:0,makingPct:0.15,img:B+"Pair_of_Bracelets_with_Peacocks_LACMA_M.76.2.26a-b.jpg?width=900",
+    desc:"A pair of gold bracelets with facing peacocks — traditional, substantial, made to pair."},
+  {id:"j16",name:"Enamelled Gold Kada",cat:"bangle",occasion:"bridal",weight:38,hasDiamond:false,carat:0,makingPct:0.15,img:B+"Antique_Gold_Swiss_Enamel_Bracelet.jpg?width=900",
+    desc:"A broad enamelled gold kada — meenakari colour on heirloom-weight gold, for the trousseau."}
 ];
 const COLORS={yellow:"#E3C063",white:"#E6E6E0",rose:"#E6B89C"};
 const SIZES={ring:["12","14","16","18"],bangle:["2.4","2.6","2.8"]};
@@ -275,7 +433,7 @@ const STAGES=[
 ];
 const ORDER=["discover","customise","try","buy"];
 
-let current="discover",filter="all",sub="all",justOrdered=null;
+let current="discover",filter="all",catF="all",budgetF="all",sub="all",justOrdered=null;
 let sel=null;
 function defaults(it){return {item:it,purity:it.hasDiamond?"18":"22",color:"yellow",size:SIZES[it.cat]?SIZES[it.cat][1]:null,grade:it.hasDiamond?"VS":null,engraving:false,engraveText:"",tryMethod:"virtual"};}
 let orders=[
@@ -304,7 +462,7 @@ function breakup(item,o){
   return {rate,metal,making,stones,engrave,gst,total:subtotal+gst};
 }
 
-/* tabs */
+/* nav */
 function tabState(key){
   if(key===current)return"active";
   if(key==="track"||key==="care")return"avail";
@@ -313,35 +471,55 @@ function tabState(key){
   if(ci===-1)return"avail";
   return ORDER.indexOf(key)<ci?"done":"avail";
 }
-function renderStages(){
-  $("#stagebar").innerHTML=STAGES.map((s,i)=>{const st=tabState(s.key),lock=st==="locked";
-    return `<button class="stage-tab ${st==='active'?'active':''} ${st==='done'?'done':''} ${lock?'locked':''}" ${lock?'':`onclick="goStage('${s.key}')"`}>
-      <span class="n">${st==='done'?'✓':i+1}</span><span><span class="lbl">${s.label}</span><br><span class="sub">${s.sub}</span></span><span class="arrow">›</span></button>`;}).join("");
+function renderNav(){
+  $("#nav").innerHTML=STAGES.map(s=>{const st=tabState(s.key),lock=st==="locked";
+    return `<button class="navlink ${st==='active'?'active':''} ${st==='done'?'done':''} ${lock?'locked':''}" ${lock?'':`onclick="goStage('${s.key}')"`}>${s.label}</button>`;}).join("");
 }
 function goStage(key){
   if(["customise","try","buy"].includes(key)&&!bookingActive())return;
   current=key;document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));$("#"+key).classList.add("active");
   if(key==="customise")renderCustomise();if(key==="try")renderTry();if(key==="buy")renderBuy();if(key==="track")renderTrack();if(key==="care")renderCare();
-  renderStages();window.scrollTo({top:0,behavior:"smooth"});
+  renderNav();updateBag();window.scrollTo({top:0,behavior:"smooth"});
 }
 
 /* discover */
+const CATS=[["all","All"],["ring","Rings"],["earrings","Earrings"],["necklace","Necklaces"],["bangle","Bangles"],["pendant","Pendants"]];
+function renderCatTiles(){
+  $("#cattiles").innerHTML=CATS.map(([k,l])=>{
+    const ic=k==="all"?`<svg viewBox="0 0 64 64" fill="none" stroke="#8a6d28" stroke-width="3"><path d="M32 10l5 12 13 1-10 9 3 13-11-7-11 7 3-13-10-9 13-1z" fill="#cda94e" stroke="none"/></svg>`:ICON[k];
+    return `<button class="cattile ${catF===k?'on':''}" onclick="setCat('${k}')"><span class="ring-c">${ic}</span><span>${l}</span></button>`;
+  }).join("");
+}
+function syncControls(){renderCatTiles();renderChips();renderBudget();}
+function setCat(k){catF=k;filter="all";budgetF="all";syncControls();renderGrid();document.getElementById('shop').scrollIntoView({behavior:'smooth'});}
 function renderChips(){
   const cats=[["all","Everything"],["bridal","Bridal"],["daily","Daily wear"],["gifting","Gifting"]];
   $("#chips").innerHTML=cats.map(([k,l])=>`<button class="chip ${filter===k?'on':''}" onclick="setFilter('${k}')">${l}</button>`).join("");
 }
-function setFilter(f){filter=f;renderChips();renderGrid();}
+function setFilter(f){filter=f;catF="all";budgetF="all";syncControls();renderGrid();document.getElementById('shop').scrollIntoView({behavior:'smooth'});}
+const BUDGETS=[["all","All prices","Browse everything"],["0","Under ₹50,000","Everyday & gifting"],["1","₹50,000 – ₹1L","Statement pieces"],["2","₹1L – ₹2L","Festive & heirloom"],["3","Above ₹2L","Bridal grandeur"]];
+function inBudget(p,k){return k==="0"?p<50000:k==="1"?p>=50000&&p<100000:k==="2"?p>=100000&&p<200000:p>=200000;}
+function renderBudget(){
+  $("#budget").innerHTML=BUDGETS.map(([k,v,a])=>`<button class="budtile ${budgetF===k?'on':''}" onclick="setBudget('${k}')"><div class="bk">${k==='all'?'Everything':'Shop'}</div><div class="bv">${v}</div><div class="ba">${a}</div></button>`).join("");
+}
+function setBudget(k){budgetF=k;filter="all";catF="all";syncControls();renderGrid();document.getElementById('shop').scrollIntoView({behavior:'smooth'});}
 function fromPrice(it){return breakup(it,{purity:it.hasDiamond?"18":"22",grade:"VS"}).total;}
 function renderGrid(){
-  const list=ITEMS.filter(it=>filter==="all"||it.occasion===filter);
-  $("#count").textContent=list.length+" pieces";
-  $("#grid").innerHTML=list.map(it=>`<div class="card" onclick="pick('${it.id}')">
-      <div class="canopy" style="background:${GRAD}"><span class="badge">${cap(it.occasion)}</span>${visual(it)}</div>
-      <div class="card-body"><h3>${it.name}</h3><div class="variety">${cap(it.cat)} · ${it.hasDiamond?'gold & diamond':'gold'}</div>
-        <div class="meta"><span>${it.weight}g</span>${it.hasDiamond?`<span>${it.carat}ct</span>`:''}</div>
-        <div class="price-row"><span class="price">${money(fromPrice(it))}<small> onwards</small></span></div></div></div>`).join("");
+  const list=ITEMS.filter(it=>(filter==="all"||it.occasion===filter)&&(catF==="all"||it.cat===catF)&&(budgetF==="all"||inBudget(fromPrice(it),budgetF)));
+  $("#count").textContent=list.length+(list.length===1?" piece":" pieces");
+  if(!list.length){$("#grid").innerHTML=`<div class="empty">No pieces match these filters — try widening them.</div>`;return;}
+  $("#grid").innerHTML=list.map(it=>{
+    const sw=Object.entries(COLORS).map(([k,c])=>`<span class="cdot" style="background:${c}" title="${cap(k)} gold"></span>`).join("");
+    return `<div class="card" onclick="pick('${it.id}')">
+      <div class="shot" style="background:${GRAD}"><span class="ribbon">${cap(it.occasion)}</span>${visual(it)}<span class="quick">Customise →</span></div>
+      <div class="cbody"><h3>${it.name}</h3>
+        <div class="vsub">${cap(it.cat)} · ${it.hasDiamond?'gold & diamond':'gold'} · ${it.weight}g${it.hasDiamond?' · '+it.carat+'ct':''}</div>
+        <div class="swrow">${sw}</div>
+        <div class="prow"><span class="price">${money(fromPrice(it))}</span><small>onwards</small></div>
+        <div class="tags"><span class="tg">✓ BIS Hallmarked</span>${it.hasDiamond?'<span class="tg">✓ IGI</span>':''}<span class="tg gold">Lifetime buyback</span></div>
+      </div></div>`;}).join("");
 }
-function pick(id){sel=defaults(ITEMS.find(it=>it.id===id));goStage("customise");}
+function pick(id){sel=defaults(ITEMS.find(it=>it.id===id));updateBag();goStage("customise");}
 
 /* customise */
 function renderCustomise(){
@@ -352,7 +530,7 @@ function renderCustomise(){
   const gradeBlock=it.hasDiamond?`<div class="sectlabel">Diamond grade</div><div class="seg">${["SI","VS","VVS"].map(g=>`<button class="${sel.grade===g?'on':''}" onclick="setOpt('grade','${g}')">${g}<small>₹${(DIAMOND[g]/1000)}k/ct</small></button>`).join("")}</div>`:"";
   $("#customiseBody").innerHTML=`
    <button class="back" onclick="goStage('discover')">← Back to the collection</button>
-   <span class="eyebrow">Stage 2 · Customise</span>
+   <span class="eyebrow">Step 2 · Customise</span>
    <div class="reserve" style="margin-top:8px">
      <div>
        <div class="gallery" style="background:${GRAD}">${visual(it)}<span class="tag">✦ Made to order · ${it.weight}g</span></div>
@@ -366,7 +544,7 @@ function renderCustomise(){
        <div class="sectlabel">Metal colour</div><div class="swatches">${swatches}<span style="font-size:12.5px;color:var(--ink-soft)">${cap(sel.color)} gold</span></div>
        ${sizeBlock}${gradeBlock}
        <label class="extra" style="margin-bottom:14px"><input type="checkbox" ${sel.engraving?'checked':''} onchange="toggleEngrave()"> Add engraving<span class="ap">+${money(ENGRAVE_FEE)}</span></label>
-       ${sel.engraving?`<input class="field" style="width:100%;font:inherit;font-size:14px;padding:10px 13px;border:1.5px solid var(--line);border-radius:11px;background:var(--paper-2);margin:-6px 0 16px" maxlength="20" placeholder="Up to 20 characters" value="${sel.engraveText}" oninput="sel.engraveText=this.value">`:''}
+       ${sel.engraving?`<input class="field" style="width:100%;font:inherit;font-size:14px;padding:10px 13px;border:1.5px solid var(--line-2);border-radius:11px;background:var(--card);margin:-6px 0 16px" maxlength="20" placeholder="Up to 20 characters" value="${sel.engraveText}" oninput="sel.engraveText=this.value">`:''}
        <div class="breakup">
          <h4>Price breakup <span class="livedot">updates live</span></h4>
          <div class="brow"><div class="lbl2">Gold value<span class="sm">${it.weight}g × ${sel.purity}K @ ${money(b.rate)}/g</span></div><b>${money(b.metal)}</b></div>
@@ -376,7 +554,7 @@ function renderCustomise(){
          <div class="brow"><div class="lbl2">GST<span class="sm">3%</span></div><b>${money(b.gst)}</b></div>
          <div class="btot"><span style="font-weight:700">Total</span><span class="price">${money(b.total)}</span></div>
        </div>
-       <button class="btn btn-primary" onclick="goStage('try')">Continue to try-on →</button>
+       <div class="cust-cta"><button class="btn btn-primary" onclick="goStage('try')">Continue to try-on →</button><button class="btn btn-ghost" onclick="openCart()">Add to bag</button></div>
      </div></div>`;
 }
 function setOpt(k,v){sel[k]=v;renderCustomise();}
@@ -389,11 +567,11 @@ function renderTry(){
   const cards=opts.map(([k,ic,t,p])=>`<div class="trycard ${sel.tryMethod===k?'on':''}" onclick="selectTry('${k}')"><div class="ic">${ic}</div><h3>${t}</h3><p>${p}</p></div>`).join("");
   let detail="";
   if(sel.tryMethod==="virtual")detail=`<div class="trydetail"><div class="frame" style="background:${GRAD}">${visual(it)}</div><div><h3>Virtual try-on</h3><p>Here's ${it.name} rendered for AR. On a phone you'd point the camera at your hand or neck and see it placed live, true to size.</p></div></div>`;
-  if(sel.tryMethod==="home")detail=`<div class="trydetail"><div class="frame" style="border-style:solid;border-color:var(--line)">📦</div><div><h3>Try at home</h3><p>We'll deliver insured replicas of ${it.name} (and up to 2 more pieces) to try for 5 days. Keep what you love, send back the rest — free.</p></div></div>`;
-  if(sel.tryMethod==="appointment")detail=`<div class="trydetail"><div class="frame" style="border-style:solid;border-color:var(--line)">📅</div><div><h3>Book an appointment</h3><p>Pick a slot with a Zevar consultant:</p><div class="slots">${["Sat 11:00","Sat 4:30","Sun 12:00","Video call"].map((s,i)=>`<button class="${i===0?'on':''}" onclick="this.parentElement.querySelectorAll('button').forEach(b=>b.classList.remove('on'));this.classList.add('on')">${s}</button>`).join("")}</div></div></div>`;
+  if(sel.tryMethod==="home")detail=`<div class="trydetail"><div class="frame" style="border:1.5px solid var(--line-2)">📦</div><div><h3>Try at home</h3><p>We'll deliver insured replicas of ${it.name} (and up to 2 more pieces) to try for 5 days. Keep what you love, send back the rest — free.</p></div></div>`;
+  if(sel.tryMethod==="appointment")detail=`<div class="trydetail"><div class="frame" style="border:1.5px solid var(--line-2)">📅</div><div><h3>Book an appointment</h3><p>Pick a slot with a Zevar consultant:</p><div class="slots">${["Sat 11:00","Sat 4:30","Sun 12:00","Video call"].map((s,i)=>`<button class="${i===0?'on':''}" onclick="this.parentElement.querySelectorAll('button').forEach(b=>b.classList.remove('on'));this.classList.add('on')">${s}</button>`).join("")}</div></div></div>`;
   $("#tryBody").innerHTML=`
    <button class="back" onclick="goStage('customise')">← Back to customise</button>
-   <span class="eyebrow">Stage 3 · Try</span>
+   <span class="eyebrow">Step 3 · Try</span>
    <h1 style="font-size:32px;margin:8px 0 4px">See it before you commit</h1>
    <p style="color:var(--ink-soft);margin-bottom:22px;max-width:60ch">No fine piece should be bought sight unseen. Choose how you'd like to try ${it.name}.</p>
    <div class="trygrid">${cards}</div>${detail}
@@ -413,11 +591,11 @@ function renderBuy(){
   const pays=[["full","Pay in full",money(grand)],["emi","EMI · 6 months","No-cost · "+money(grand/6)+"/mo"],["scheme","Redeem gold savings","Balance ₹40,000 available"]];
   $("#buyBody").innerHTML=`
    <button class="back" onclick="goStage('try')">← Back to try-on</button>
-   <span class="eyebrow">Stage 4 · Buy</span>
+   <span class="eyebrow">Step 4 · Buy</span>
    <div class="checkout" style="margin-top:8px">
-     <div class="panel"><h2>Delivery & payment</h2>
+     <div class="panel"><h2>Delivery &amp; payment</h2>
        <div class="two"><div class="field"><label>First name</label><input value="Vaibhav"></div><div class="field"><label>Last name</label><input value="Suryavanshi"></div></div>
-       <div class="field"><label>Delivery address</label><input placeholder="Flat 4B, Indiranagar, Bengaluru"></div>
+       <div class="field"><label>Delivery address</label><input value="Flat 4B, 12th Main, Indiranagar, Bengaluru"></div>
        <div class="sectlabel">Payment</div>
        ${pays.map(([k,l,s])=>`<div class="pay-opt ${payOpt===k?'on':''}" onclick="setPay('${k}')"><span class="r"></span>${l}<span class="sm">${s}</span></div>`).join("")}
        <label class="extra"><input type="checkbox" ${insure?'checked':''} onchange="insure=!insure;renderBuy()"> Jewellery insurance (1 year)<span class="ap">+${money(b.total*0.01)}</span></label>
@@ -428,7 +606,7 @@ function renderBuy(){
      <div class="panel"><h2>Your order</h2>
        <div style="display:flex;gap:14px;align-items:center;margin-bottom:16px">
          <div class="thumb" style="background:${GRAD}">${visual(it)}</div>
-         <div><div style="font-family:'Fraunces',serif;font-size:18px">${it.name}</div><div style="font-size:13px;color:var(--ink-soft)">${sel.purity}K ${cap(sel.color)} · ${it.cat==='ring'||it.cat==='bangle'?'size '+sel.size+' · ':''}${it.hasDiamond?it.carat+'ct '+sel.grade:'gold'}</div></div></div>
+         <div><div style="font-family:'Marcellus',serif;font-size:18px">${it.name}</div><div style="font-size:13px;color:var(--ink-soft)">${sel.purity}K ${cap(sel.color)} · ${it.cat==='ring'||it.cat==='bangle'?'size '+sel.size+' · ':''}${it.hasDiamond?it.carat+'ct '+sel.grade:'gold'}</div></div></div>
        <div class="brow"><div class="lbl2">Gold value<span class="sm">${it.weight}g × ${sel.purity}K @ ${money(b.rate)}/g</span></div><b>${money(b.metal)}</b></div>
        <div class="brow"><span>Making charges</span><b>${money(b.making)}</b></div>
        ${it.hasDiamond?`<div class="brow"><span>Diamonds (${it.carat}ct ${sel.grade})</span><b>${money(b.stones)}</b></div>`:''}
@@ -445,7 +623,7 @@ function setPay(k){payOpt=k;renderBuy();}
 function placeOrder(){
   orders.push({item:sel.item,purity:sel.purity,color:sel.color,grade:sel.grade,total:breakup(sel.item,sel).total,stage:0});
   justOrdered=sel.item.name;sel=null;sub="all";insure=false;giftwrap=false;payOpt="full";
-  goStage("track");
+  updateBag();closeCart();goStage("track");
 }
 
 /* track */
@@ -488,7 +666,40 @@ function careAct(i,a){
   owned[i].msg=m[a];renderCare();
 }
 
-renderStages();renderChips();renderGrid();
+/* cart drawer */
+function updateBag(){const n=sel?1:0;const el=$("#bagct");el.textContent=n;el.style.display=n?"grid":"none";}
+function renderCart(){
+  updateBag();
+  const body=$("#cartBody"),foot=$("#cartFoot");
+  if(!sel){body.innerHTML=`<div class="cart-empty"><div class="ce-ic">💍</div><p>Your bag is empty.<br>Find something you love.</p><button class="btn btn-ghost" onclick="closeCart();goStage('discover')">Browse the collection</button></div>`;foot.innerHTML="";return;}
+  const it=sel.item,b=breakup(it,sel),thr=50000,pct=Math.min(100,Math.round(b.total/thr*100));
+  const prog=b.total>=thr?`<b>✓ Free gift packaging unlocked</b>`:`Add <b>${money(thr-b.total)}</b> more for free gift packaging`;
+  body.innerHTML=`
+    <div class="cart-item"><div class="ci-shot" style="background:${GRAD}">${visual(it)}</div>
+      <div><div class="ci-nm">${it.name}</div><div class="ci-sub">${sel.purity}K ${cap(sel.color)} gold${it.hasDiamond?' · '+it.carat+'ct '+sel.grade:''}${SIZES[it.cat]?' · size '+sel.size:''}${sel.engraving?' · engraved':''}</div><div class="ci-pr">${money(b.total)}</div></div></div>
+    <div class="cart-prog"><div class="bar"><span style="width:${pct}%"></span></div><div class="pl">${prog}</div></div>
+    <ul class="cart-perks"><li>✓ BIS Hallmarked · 100% transparent pricing</li><li>✓ Lifetime buyback at live gold rate</li><li>✓ Free insured shipping & 15-day returns</li></ul>`;
+  foot.innerHTML=`<div class="cart-tot"><span>Total</span><b>${money(b.total)}</b></div>
+    <button class="btn btn-primary btn-wide" onclick="closeCart();goStage('try')">Continue to try-on →</button>
+    <button class="btn btn-ghost btn-wide" onclick="closeCart();goStage('buy')">Skip to checkout</button>`;
+}
+function openCart(){renderCart();document.body.classList.add("cart-open");}
+function closeCart(){document.body.classList.remove("cart-open");}
+
+/* toast */
+let toastT;
+function showToast(msg){const t=$("#toast");t.textContent=msg;t.classList.add("show");clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove("show"),2000);}
+
+/* countdown */
+const pad=n=>String(n).padStart(2,"0");
+let cdLeft=6*3600;
+function tick(){const h=Math.floor(cdLeft/3600),m=Math.floor(cdLeft%3600/60),s=cdLeft%60;$("#cd").textContent=`${pad(h)}:${pad(m)}:${pad(s)}`;cdLeft--;if(cdLeft<0)cdLeft=6*3600;}
+
+/* init */
+$("#r22").textContent="₹"+RATES["22"].toLocaleString("en-IN");
+$("#r18").textContent="₹"+RATES["18"].toLocaleString("en-IN");
+tick();setInterval(tick,1000);
+renderNav();renderCatTiles();renderChips();renderBudget();renderGrid();updateBag();
 </script>
 </body>
 </html>

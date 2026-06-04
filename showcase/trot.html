@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trot · Happy dog walks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FFF8EC;--paper:#FFFFFF;--soft:#FFF2DD;
+    --ink:#3A3026;--ink-soft:#8B7E6E;--ink-dim:#B3A795;
+    --sky:#8FD0EE;--sky-2:#BDE6F7;--sky-ink:#2E7090;
+    --grass:#74B84E;--grass-d:#4E8A35;--leaf:#5FA244;
+    --sun:#FCC83A;--sun-2:#FFDC73;
+    --coral:#FF8A5B;--coral-d:#F0703F;--coral-soft:#FFE4D6;
+    --berry:#E8607A;--lilac:#9B8BD9;
+    --line:#F0E6D4;--line-2:#E6D7BF;
+    --shadow:0 22px 48px -28px rgba(120,86,40,.45);--shadow-sm:0 10px 26px -20px rgba(120,86,40,.5);
+    --r:24px;--r-sm:16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Nunito",system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55;font-weight:500;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  h1,h2,h3,h4,.disp{font-family:"Fredoka",sans-serif;font-weight:600;letter-spacing:-.01em;line-height:1.08}
+  img{display:block}
+  button{font-family:inherit;cursor:pointer;color:inherit}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+  .cover{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+  .ph{position:relative;overflow:hidden;background:linear-gradient(150deg,#FFE9C9,#FFD9B0)}
+  .ph svg.fb{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,248,236,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .bar{display:flex;align-items:center;gap:18px;height:70px}
+  .brand{display:flex;align-items:center;gap:10px}
+  .brand .mk{width:42px;height:42px;border-radius:14px;background:linear-gradient(145deg,var(--coral),var(--berry));display:grid;place-items:center;box-shadow:0 8px 18px -8px rgba(232,96,122,.7);flex:none}
+  .brand .nm{font-family:"Fredoka";font-weight:700;font-size:27px;color:var(--ink);line-height:1}
+  .brand .tg{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--coral-d);font-weight:800;margin-top:1px}
+  nav{display:flex;gap:3px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+  nav::-webkit-scrollbar{display:none}
+  .nav-b{background:none;border:0;padding:9px 15px;border-radius:99px;font-size:14px;font-weight:700;color:var(--ink-soft);white-space:nowrap;transition:.16s}
+  .nav-b:hover{color:var(--ink);background:var(--soft)}
+  .nav-b.on{color:#fff;background:var(--coral)}
+  .nav-b.locked{opacity:.35;cursor:default}
+  .nav-b.locked:hover{background:none;color:var(--ink-soft)}
+  .owner{display:flex;align-items:center;gap:8px;padding-left:14px;border-left:1px solid var(--line)}
+  .owner .hi{font-size:13px;font-weight:700;color:var(--ink-soft);white-space:nowrap}
+  .ava-row{display:flex}
+  .ava{width:34px;height:34px;border-radius:50%;border:2.5px solid var(--bg);overflow:hidden;position:relative;margin-left:-10px;background:var(--soft)}
+  .ava:first-child{margin-left:0}
+
+  .view{display:none;animation:rise .45s cubic-bezier(.2,.7,.3,1) both}
+  .view.active{display:block}
+  @keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  .pad{padding:26px 0 90px}
+  .back{background:none;border:0;color:var(--coral-d);font-weight:800;font-size:14px;margin-bottom:10px;display:inline-flex;gap:6px;align-items:center}
+  .kicker{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--coral-d)}
+
+  /* hero */
+  .hero{position:relative;border-radius:var(--r);overflow:hidden;margin:24px 0 30px;min-height:330px;display:grid;grid-template-columns:1.05fr .95fr;box-shadow:var(--shadow)}
+  .hero-scene{position:absolute;inset:0;z-index:0}
+  .hero-l{position:relative;z-index:2;padding:42px 38px;display:flex;flex-direction:column;justify-content:center}
+  .hero-l .kicker{color:#fff;opacity:.95}
+  .hero-l h1{font-size:clamp(32px,4.6vw,50px);color:#fff;margin:12px 0 10px;text-shadow:0 2px 16px rgba(40,80,100,.28)}
+  .hero-l p{color:#fff;font-weight:600;max-width:34ch;margin-bottom:22px;text-shadow:0 1px 10px rgba(40,80,100,.25)}
+  .hero-r{position:relative;z-index:2;margin:24px 24px 24px 0;border-radius:20px;overflow:hidden;box-shadow:0 16px 30px -16px rgba(40,40,30,.5);border:5px solid #fff}
+  .hero-r .ph{position:absolute;inset:0}
+  .hero .stk{position:absolute;z-index:3;font-size:30px;filter:drop-shadow(0 4px 6px rgba(0,0,0,.18))}
+
+  .btn{border:0;border-radius:99px;font-family:"Fredoka";font-weight:600;font-size:15.5px;padding:13px 26px;transition:.16s;display:inline-flex;align-items:center;gap:8px;box-shadow:0 10px 22px -12px rgba(240,112,63,.8)}
+  .btn-coral{background:var(--coral);color:#fff}.btn-coral:hover{background:var(--coral-d);transform:translateY(-2px)}
+  .btn-cream{background:#fff;color:var(--ink);box-shadow:var(--shadow-sm)}.btn-cream:hover{transform:translateY(-2px)}
+  .btn-ghost{background:transparent;border:2px solid var(--line-2);color:var(--ink);box-shadow:none}.btn-ghost:hover{border-color:var(--coral)}
+  .btn-wide{width:100%;justify-content:center}
+  .btn-sm{padding:9px 16px;font-size:13.5px;box-shadow:none}
+
+  /* section heads */
+  .shead{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin:30px 0 16px;flex-wrap:wrap}
+  .shead h2{font-size:26px}
+  .shead p{color:var(--ink-soft);font-size:14px;font-weight:600}
+
+  /* filter chips */
+  .chips{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:22px}
+  .chip{background:#fff;border:2px solid var(--line);color:var(--ink-soft);font-weight:800;font-size:13.5px;padding:9px 17px;border-radius:99px;transition:.15s}
+  .chip:hover{border-color:var(--coral);color:var(--ink)}
+  .chip.on{background:var(--coral);border-color:var(--coral);color:#fff}
+
+  /* walker grid */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(258px,1fr));gap:20px}
+  .walker{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:20px;box-shadow:var(--shadow-sm);transition:.2s;cursor:pointer;position:relative}
+  .walker:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+  .walker .top{display:flex;gap:14px;align-items:center}
+  .wava{width:58px;height:58px;border-radius:18px;display:grid;place-items:center;font-family:"Fredoka";font-weight:700;font-size:22px;color:#fff;flex:none;position:relative}
+  .wava .pawbadge{position:absolute;bottom:-4px;right:-4px;width:22px;height:22px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:var(--shadow-sm)}
+  .walker h3{font-size:19px}
+  .wmeta{font-size:12.5px;color:var(--ink-soft);font-weight:700}
+  .rating{display:inline-flex;align-items:center;gap:4px;font-weight:800;font-size:13px;color:var(--ink)}
+  .rating .s{color:var(--sun)}
+  .wbio{font-size:13.5px;color:var(--ink-soft);font-weight:600;margin:12px 0 12px;min-height:38px}
+  .tagrow{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+  .tag{font-size:11px;font-weight:800;padding:4px 10px;border-radius:99px;background:var(--soft);color:var(--coral-d)}
+  .tag.safe{background:#E8F5E2;color:var(--grass-d)}
+  .wfoot{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding-top:14px}
+  .rate{font-family:"Fredoka";font-weight:600;font-size:17px}.rate small{font-family:"Nunito";font-size:11.5px;color:var(--ink-soft);font-weight:700}
+  .avail{font-size:11.5px;font-weight:800;color:var(--grass-d);display:flex;align-items:center;gap:5px}
+  .avail i{width:7px;height:7px;border-radius:50%;background:var(--grass);box-shadow:0 0 0 3px #E8F5E2}
+  .avail.soon{color:var(--ink-soft)}.avail.soon i{background:var(--ink-dim);box-shadow:0 0 0 3px var(--soft)}
+
+  /* two-column stage */
+  .split{display:grid;grid-template-columns:1fr 360px;gap:30px;align-items:start}
+  .panel{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:24px;box-shadow:var(--shadow-sm)}
+  .panel+.panel{margin-top:18px}
+  .panel h3{font-size:21px;margin-bottom:3px}
+  .panel .sub{color:var(--ink-soft);font-size:13px;font-weight:600;margin-bottom:16px}
+  .seclbl{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin:18px 0 9px}
+  .seclbl:first-child{margin-top:0}
+
+  /* selected walker strip */
+  .selstrip{display:flex;align-items:center;gap:14px;background:linear-gradient(120deg,var(--coral-soft),#fff);border:1px solid var(--line);border-radius:var(--r);padding:16px 20px;margin-bottom:18px}
+  .selstrip .wava{width:50px;height:50px;border-radius:15px;font-size:19px}
+  .selstrip h3{font-size:18px}
+
+  /* dog pick */
+  .dogpick{display:flex;gap:12px;flex-wrap:wrap}
+  .dogchip{display:flex;align-items:center;gap:11px;border:2px solid var(--line);border-radius:18px;padding:8px 16px 8px 8px;background:#fff;transition:.15s}
+  .dogchip:hover{border-color:var(--coral)}
+  .dogchip.on{border-color:var(--coral);background:var(--coral-soft)}
+  .dogchip .ph{width:42px;height:42px;border-radius:50%;flex:none}
+  .dogchip .dn{font-family:"Fredoka";font-weight:600;font-size:16px;line-height:1}
+  .dogchip .db{font-size:11.5px;color:var(--ink-soft);font-weight:700}
+  .dogchip .tk{margin-left:4px;width:22px;height:22px;border-radius:50%;border:2px solid var(--line-2);display:grid;place-items:center;color:#fff;font-size:12px;transition:.15s}
+  .dogchip.on .tk{background:var(--coral);border-color:var(--coral)}
+
+  /* segmented */
+  .seg{display:flex;flex-wrap:wrap;gap:9px}
+  .seg button{flex:1;min-width:fit-content;background:#fff;border:2px solid var(--line);color:var(--ink);border-radius:14px;padding:11px 14px;font-weight:800;font-size:14px;display:flex;flex-direction:column;align-items:center;gap:2px;transition:.15s}
+  .seg button small{font-weight:700;font-size:11px;color:var(--ink-soft)}
+  .seg button:hover{border-color:var(--coral)}
+  .seg button.on{border-color:var(--coral);background:var(--coral-soft)}
+  .seg button.on small{color:var(--coral-d)}
+  .seg .peaktag{font-size:9.5px;font-weight:800;color:var(--berry);text-transform:uppercase;letter-spacing:.04em}
+
+  /* toggles */
+  .toggle{display:flex;align-items:center;gap:13px;border:1px solid var(--line);border-radius:16px;padding:13px 16px;margin-bottom:10px;background:#fff}
+  .toggle .tt{font-family:"Fredoka";font-weight:500;font-size:15.5px}
+  .toggle .td{font-size:12px;color:var(--ink-soft);font-weight:600}
+  .toggle .tp{font-weight:800;color:var(--coral-d);margin-left:auto;white-space:nowrap}
+  .toggle .inc{font-weight:800;color:var(--grass-d);margin-left:auto;font-size:13px}
+  .sw{width:46px;height:26px;border-radius:99px;background:#E7DECF;position:relative;transition:.2s;flex:none;border:0}
+  .sw::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:.2s;box-shadow:0 2px 5px rgba(0,0,0,.2)}
+  .sw.on{background:var(--coral)}.sw.on::after{left:23px}
+
+  /* price card */
+  .pricecard{position:sticky;top:84px;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:22px;box-shadow:var(--shadow)}
+  .pricecard h4{font-size:19px;display:flex;align-items:center;gap:9px;margin-bottom:6px}
+  .livedot{font-family:"Nunito";font-size:11px;font-weight:800;color:var(--grass-d);background:#E8F5E2;padding:3px 9px;border-radius:99px}
+  .prow{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:7px 0;font-size:14px;color:var(--ink-soft);font-weight:600}
+  .prow b{color:var(--ink);font-weight:800;white-space:nowrap}
+  .prow .sm{font-size:11.5px;color:var(--ink-dim);font-weight:700}
+  .prow.disc b{color:var(--grass-d)}
+  .ptot{display:flex;justify-content:space-between;align-items:baseline;margin-top:10px;padding-top:12px;border-top:2px dashed var(--line-2)}
+  .ptot .big{font-family:"Fredoka";font-weight:600;font-size:27px;color:var(--coral-d)}
+  .weekly{margin-top:8px;font-size:13px;color:var(--ink-soft);font-weight:700;text-align:center;background:var(--soft);border-radius:12px;padding:9px}
+  .weekly b{color:var(--ink)}
+  .note{font-size:12px;color:var(--ink-soft);font-weight:600;margin-top:14px;line-height:1.5}
+
+  /* dog profile cards (meet) */
+  .dogcard{display:flex;gap:16px;border:1px solid var(--line);border-radius:var(--r-sm);padding:16px;margin-bottom:14px;background:#fff}
+  .dogcard .ph{width:88px;height:88px;border-radius:18px;flex:none}
+  .dogcard h4{font-size:18px}
+  .dogcard .meta{font-size:12.5px;color:var(--ink-soft);font-weight:700;margin-bottom:8px}
+  .field label{display:block;font-size:12px;font-weight:800;color:var(--ink-soft);margin-bottom:6px}
+  .field input,.field textarea{width:100%;font:inherit;font-weight:600;font-size:14px;padding:11px 13px;border:2px solid var(--line);border-radius:13px;background:#fff;color:var(--ink);resize:none}
+  .field input:focus,.field textarea:focus{outline:0;border-color:var(--coral)}
+  .field{margin-bottom:14px}
+  .check{display:flex;align-items:center;gap:11px;padding:10px 0;font-weight:700;font-size:14px}
+  .check .dot{width:24px;height:24px;border-radius:50%;background:#E8F5E2;color:var(--grass-d);display:grid;place-items:center;font-weight:800;flex:none}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+  .slots{display:flex;gap:9px;flex-wrap:wrap}
+  .slots button{background:#fff;border:2px solid var(--line);border-radius:12px;padding:10px 15px;font-weight:800;font-size:13px}
+  .slots button.on{border-color:var(--coral);background:var(--coral-soft)}
+
+  /* pay */
+  .pay-opt{display:flex;align-items:center;gap:12px;border:2px solid var(--line);border-radius:15px;padding:14px 16px;margin-bottom:10px;font-weight:800;font-size:14.5px;transition:.15s}
+  .pay-opt:hover{border-color:var(--coral)}
+  .pay-opt.on{border-color:var(--coral);background:var(--coral-soft)}
+  .pay-opt .r{width:20px;height:20px;border-radius:50%;border:2.5px solid var(--line-2);flex:none}
+  .pay-opt.on .r{border-color:var(--coral);background:radial-gradient(circle,var(--coral) 40%,transparent 44%)}
+  .pay-opt .sm{margin-left:auto;color:var(--ink-soft);font-weight:700;font-size:12.5px}
+
+  /* walks / track */
+  .walkcard{background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-bottom:22px;box-shadow:var(--shadow-sm)}
+  .route{display:block;width:100%;height:188px}
+  .routedash{stroke-linecap:round}
+  .trot{animation:bob .45s ease-in-out infinite alternate}
+  @keyframes bob{from{transform:translateY(0)}to{transform:translateY(-2px)}}
+  .wc-body{padding:20px 22px}
+  .wc-head{display:flex;align-items:center;gap:13px;flex-wrap:wrap}
+  .wc-head .wava{width:46px;height:46px;border-radius:14px;font-size:17px}
+  .wc-head h3{font-size:19px}
+  .wc-head .id{margin-left:auto;font-size:12px;font-weight:800;color:var(--ink-dim)}
+  .wc-sub{font-size:13px;color:var(--ink-soft);font-weight:700;margin-top:2px}
+  .live-pill{display:inline-flex;align-items:center;gap:6px;background:#E8F5E2;color:var(--grass-d);font-weight:800;font-size:12px;padding:4px 11px;border-radius:99px}
+  .live-pill i{width:8px;height:8px;border-radius:50%;background:var(--grass);animation:pulse 1.3s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(116,184,78,.6)}70%{box-shadow:0 0 0 7px rgba(116,184,78,0)}100%{box-shadow:0 0 0 0 rgba(116,184,78,0)}}
+  .timeline{display:flex;margin:18px 0 6px;flex-wrap:wrap;gap:8px 0}
+  .timeline .st{flex:1;min-width:62px;text-align:center;position:relative;font-size:10.5px;color:var(--ink-dim);font-weight:700}
+  .timeline .st::before{content:"";position:absolute;top:8px;left:-50%;width:100%;height:3px;background:var(--line);z-index:0}
+  .timeline .st:first-child::before{display:none}
+  .timeline .dot{width:18px;height:18px;border-radius:50%;background:#fff;border:3px solid var(--line);margin:0 auto 7px;position:relative;z-index:1}
+  .timeline .st.done .dot{background:var(--grass);border-color:var(--grass)}.timeline .st.done::before{background:var(--grass)}
+  .timeline .st.now .dot{background:var(--coral);border-color:var(--coral);box-shadow:0 0 0 5px var(--coral-soft)}
+  .timeline .st.done,.timeline .st.now{color:var(--ink);font-weight:800}
+  .liveinfo{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+  .stat{flex:1;min-width:90px;background:var(--soft);border-radius:14px;padding:11px 14px;text-align:center}
+  .stat .v{font-family:"Fredoka";font-weight:600;font-size:19px;color:var(--ink)}
+  .stat .k{font-size:11px;color:var(--ink-soft);font-weight:800;text-transform:uppercase;letter-spacing:.04em}
+  .wc-foot{display:flex;align-items:center;gap:12px;margin-top:8px;flex-wrap:wrap}
+  .wc-foot .msg{font-size:13px;color:var(--ink-soft);font-weight:700}
+  .wc-foot .btn{margin-left:auto}
+
+  /* polaroid report */
+  .polaroid{background:#fff;border-radius:8px;padding:12px 12px 0;box-shadow:0 14px 30px -16px rgba(60,48,38,.5);border:1px solid var(--line)}
+  .polaroid .pic{border-radius:5px;overflow:hidden;position:relative;aspect-ratio:4/3}
+  .polaroid .cap{padding:13px 6px 16px;text-align:center}
+  .polaroid .cap .ttl{font-family:"Fredoka";font-weight:600;font-size:18px}
+  .polaroid .cap .meta{font-size:12px;color:var(--ink-soft);font-weight:700;margin:3px 0 8px}
+  .happy{display:inline-flex;gap:3px;margin-bottom:8px}
+  .happy span{font-size:15px;filter:grayscale(1);opacity:.3}
+  .happy span.fill{filter:none;opacity:1}
+  .pnote{font-size:13.5px;color:var(--ink);font-weight:600;font-style:italic;line-height:1.5;background:var(--soft);border-radius:12px;padding:11px 13px;text-align:left}
+  .pnote .who{display:block;font-style:normal;font-weight:800;font-size:11.5px;color:var(--ink-soft);margin-top:6px}
+  .report-wrap{display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;margin-top:14px;background:linear-gradient(120deg,#FFF6FB,#FFF8EC);border:1px solid var(--line);border-radius:var(--r-sm);padding:16px}
+  .report-wrap .polaroid{width:240px;flex:none;transform:rotate(-2deg)}
+  .report-wrap .rtxt{flex:1;min-width:200px}
+  .report-wrap .rtxt h4{font-size:18px;margin-bottom:6px}
+
+  /* journal */
+  .jdog{display:flex;gap:18px;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:20px;box-shadow:var(--shadow-sm);margin-bottom:18px;flex-wrap:wrap}
+  .jdog .ph{width:120px;height:120px;border-radius:22px;flex:none}
+  .jdog h3{font-size:23px}
+  .jdog .meta{font-size:13px;color:var(--ink-soft);font-weight:700}
+  .jdog .pnote2{font-size:14px;color:var(--ink);font-weight:600;font-style:italic;margin:8px 0 12px}
+  .jstats{display:flex;gap:10px;flex-wrap:wrap}
+  .jstat{background:var(--soft);border-radius:14px;padding:9px 16px;text-align:center}
+  .jstat .v{font-family:"Fredoka";font-weight:600;font-size:20px}
+  .jstat .k{font-size:10.5px;color:var(--ink-soft);font-weight:800;text-transform:uppercase}
+  .planbox{display:flex;align-items:center;gap:14px;background:linear-gradient(120deg,#EAF6FF,#fff);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;margin-bottom:22px;flex-wrap:wrap}
+  .planbox .ic{width:46px;height:46px;border-radius:14px;background:var(--sky);display:grid;place-items:center;flex:none}
+  .planbox .pt{font-family:"Fredoka";font-weight:600;font-size:17px}
+  .planbox .ps{font-size:13px;color:var(--ink-soft);font-weight:700}
+  .planbox .acts{margin-left:auto;display:flex;gap:9px;flex-wrap:wrap}
+  .scrap{display:flex;gap:22px;flex-wrap:wrap}
+  .scrap .polaroid{width:230px}
+  .scrap .polaroid:nth-child(2n){transform:rotate(1.5deg)}
+  .scrap .polaroid:nth-child(3n){transform:rotate(-2deg)}
+  .moments{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;margin-top:14px}
+  .moments .ph{aspect-ratio:1/1;border-radius:18px;box-shadow:var(--shadow-sm)}
+
+  .empty{text-align:center;color:var(--ink-soft);padding:50px 20px;font-weight:700}
+  /* toast + hearts */
+  #toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,18px);opacity:0;pointer-events:none;background:var(--ink);color:#fff;font-weight:800;font-size:14px;padding:13px 24px;border-radius:99px;box-shadow:0 16px 36px rgba(0,0,0,.35);transition:.3s;z-index:90}
+  #toast.show{opacity:1;transform:translate(-50%,0)}
+  .heart{position:fixed;z-index:95;font-size:26px;pointer-events:none;animation:float 1.5s ease-out forwards}
+  @keyframes float{0%{opacity:0;transform:translateY(0) scale(.5)}15%{opacity:1}100%{opacity:0;transform:translateY(-160px) scale(1.3)}}
+  footer{text-align:center;padding:30px;color:var(--ink-soft);font-size:13px;font-weight:700;border-top:1px solid var(--line)}
+
+  @media(max-width:880px){
+    .split{grid-template-columns:1fr}.pricecard{position:static}
+    .hero{grid-template-columns:1fr;min-height:0}.hero-r{height:240px;margin:0 24px 24px}
+    .owner .hi{display:none}
+  }
+</style>
+</head>
+<body>
+
+<header><div class="wrap bar">
+  <div class="brand">
+    <div class="mk"><svg viewBox="0 0 32 32" width="24" height="24" fill="#fff"><circle cx="16" cy="20" r="6"/><circle cx="8" cy="11" r="3.1"/><circle cx="16" cy="7.5" r="3.1"/><circle cx="24" cy="11" r="3.1"/></svg></div>
+    <div><div class="nm">Trot</div><div class="tg">Happy dog walks</div></div>
+  </div>
+  <nav id="nav"></nav>
+  <div class="owner"><span class="hi">Hey, Aarav</span><div class="ava-row" id="avarow"></div></div>
+</div></header>
+
+<main class="wrap">
+  <!-- WALKERS -->
+  <section id="walkers" class="view active"><div class="pad" style="padding-top:0">
+    <div class="hero">
+      <div class="hero-scene">
+        <svg viewBox="0 0 600 340" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%">
+          <defs><linearGradient id="hsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8FD0EE"/><stop offset="1" stop-color="#CFEFF7"/></linearGradient></defs>
+          <rect width="600" height="340" fill="url(#hsky)"/>
+          <circle cx="498" cy="64" r="42" fill="#FFDC73"/><circle cx="498" cy="64" r="58" fill="#FFDC73" opacity=".28"/>
+          <g fill="#fff" opacity=".9"><ellipse cx="120" cy="70" rx="46" ry="20"/><ellipse cx="160" cy="62" rx="34" ry="17"/><ellipse cx="86" cy="62" rx="30" ry="15"/></g>
+          <g fill="#fff" opacity=".8"><ellipse cx="360" cy="44" rx="38" ry="16"/><ellipse cx="392" cy="38" rx="26" ry="13"/></g>
+          <path d="M0 250 Q150 200 300 245 T600 235 V340 H0 Z" fill="#86C46A"/>
+          <path d="M0 285 Q180 245 360 285 T600 280 V340 H0 Z" fill="#6FB04A"/>
+          <g fill="#4E8A35"><circle cx="70" cy="250" r="4"/><circle cx="150" cy="270" r="4"/><circle cx="250" cy="258" r="4"/><circle cx="470" cy="268" r="4"/></g>
+        </svg>
+      </div>
+      <div class="hero-l">
+        <span class="kicker">On-demand · vetted walkers</span>
+        <h1>Their favourite part of the day.</h1>
+        <p>Book a kind, verified walker near you — then watch the whole happy adventure, live.</p>
+        <div><button class="btn btn-cream" onclick="document.getElementById('wgrid').scrollIntoView({behavior:'smooth'})">🐾 Find a walker</button></div>
+      </div>
+      <div class="hero-r"><div class="ph" id="heroph"></div></div>
+      <span class="stk" style="top:18px;left:48%">🐶</span>
+    </div>
+
+    <div class="shead" id="wgrid"><div><span class="kicker">Near you · Indiranagar</span><h2>Walkers your dog will adore</h2></div>
+      <p>Every walker is background-checked &amp; insured.</p></div>
+    <div class="chips" id="chips"></div>
+    <div class="grid" id="walkerGrid"></div>
+  </div></section>
+
+  <!-- PLAN -->
+  <section id="plan" class="view"><div class="pad">
+    <button class="back" onclick="go('walkers')">← All walkers</button>
+    <div class="split">
+      <div>
+        <div class="selstrip" id="selstrip"></div>
+        <div class="panel">
+          <h3>Who's going?</h3><p class="sub">Pick one or both — extra dogs from the same home get a discount.</p>
+          <div class="dogpick" id="dogpick"></div>
+          <div class="seclbl">Walk length</div><div class="seg" id="durseg"></div>
+          <div class="seclbl">Walk style</div><div class="seg" id="typeseg"></div>
+        </div>
+        <div class="panel">
+          <h3>When &amp; how often</h3><p class="sub">One-off, or set a routine and save on every walk.</p>
+          <div class="seclbl">Frequency</div><div class="seg" id="freqseg"></div>
+          <div class="seclbl">Time slot</div><div class="seg" id="slotseg"></div>
+        </div>
+        <div class="panel">
+          <h3>Add a little extra</h3><p class="sub">Tailor the walk to your dog's day.</p>
+          <div id="addons"></div>
+        </div>
+      </div>
+      <div><div class="pricecard">
+        <h4>The walk <span class="livedot">live total</span></h4>
+        <div id="breakdown"></div>
+        <button class="btn btn-coral btn-wide" style="margin-top:16px" onclick="toMeet()">Meet your walker →</button>
+        <p class="note">No charge yet. You'll always do a free meet &amp; greet before the first walk.</p>
+      </div></div>
+    </div>
+  </div></section>
+
+  <!-- MEET -->
+  <section id="meet" class="view"><div class="pad">
+    <button class="back" onclick="go('plan')">← Plan the walk</button>
+    <div class="split">
+      <div>
+        <div class="panel"><h3>A free hello, first</h3><p class="sub">Before any walk, your walker meets the pack — no pressure, no charge. Tell them what makes your dog, your dog.</p>
+          <div id="meetDogs"></div></div>
+        <div class="panel"><h3>How would you like to meet?</h3>
+          <div class="seg" id="meetMethod" style="margin-bottom:16px"></div>
+          <div class="seclbl">Pick a time</div><div class="slots" id="meetSlots"></div></div>
+      </div>
+      <div><div class="pricecard">
+        <h4>Peace of mind</h4>
+        <div class="check"><span class="dot">✓</span> Police-verified &amp; background-checked</div>
+        <div class="check"><span class="dot">✓</span> Pet first-aid trained</div>
+        <div class="check"><span class="dot">✓</span> Vaccinations on file for both dogs</div>
+        <div class="check"><span class="dot">✓</span> Live GPS &amp; photo updates, every walk</div>
+        <div class="check"><span class="dot">✓</span> ₹1,00,000 walk insurance included</div>
+        <button class="btn btn-coral btn-wide" style="margin-top:14px" onclick="toBook()">Looks good — continue →</button>
+        <p class="note">You can cancel the intro any time. We only match you with walkers who love your dog's energy.</p>
+      </div></div>
+    </div>
+  </div></section>
+
+  <!-- BOOK -->
+  <section id="book" class="view"><div class="pad">
+    <button class="back" onclick="go('meet')">← Meet &amp; greet</button>
+    <div class="split">
+      <div>
+        <div class="panel"><h3>Your details</h3><p class="sub">Pre-filled for the demo — nothing here is real.</p>
+          <div class="two"><div class="field"><label>Name</label><input value="Aarav Mehta"></div><div class="field"><label>Phone</label><input value="+91 98861 40031"></div></div>
+          <div class="field"><label>Home address</label><input value="22, 4th Cross, Indiranagar, Bengaluru"></div>
+          <div class="field" style="margin-bottom:0"><label>Where's the key / how to get in?</label><input value="Lockbox by the gate — code on file with building security"></div>
+        </div>
+        <div class="panel"><h3>Payment</h3>
+          <div id="payOpts" style="margin:6px 0 4px"></div>
+          <div class="toggle" style="margin-top:6px"><div><div class="tt">Tip your walker</div><div class="td">100% goes to them, added to each walk.</div></div><span class="tp">+₹50</span><button class="sw" id="tipSw" onclick="tip=!tip;syncTip();renderBook()"></button></div>
+          <div class="toggle"><div><div class="tt">Emergency vet authorization</div><div class="td">Lets your walker rush to the vet if ever needed.</div></div><button class="sw on" id="vetSw" onclick="vet=!vet;document.getElementById('vetSw').classList.toggle('on',vet)"></button></div>
+        </div>
+      </div>
+      <div><div class="pricecard">
+        <h4>Your booking</h4>
+        <div id="bookSummary"></div>
+        <button class="btn btn-coral btn-wide" style="margin-top:14px" id="confirmBtn" onclick="placeBooking()"></button>
+        <p class="note">Free cancellation up to 2 hours before. This is a demo — no payment is taken.</p>
+      </div></div>
+    </div>
+  </div></section>
+
+  <!-- WALKS -->
+  <section id="walks" class="view"><div class="pad">
+    <div class="shead"><div><span class="kicker">In progress &amp; upcoming</span><h2>Your walks</h2></div>
+      <p>Tap “Next step” to move a walk along.</p></div>
+    <div id="banner"></div>
+    <div id="walksBody"></div>
+  </div></section>
+
+  <!-- JOURNAL -->
+  <section id="journal" class="view"><div class="pad">
+    <div class="shead"><div><span class="kicker">The pack journal</span><h2>Simba &amp; Pixel's adventures</h2></div>
+      <p>Every walk, remembered.</p></div>
+    <div class="planbox">
+      <div class="ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#fff" stroke-width="2.2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg></div>
+      <div><div class="pt">Mon · Wed · Fri with Divya</div><div class="ps">Next walk — Wednesday, 4:00 pm · Simba</div></div>
+      <div class="acts"><button class="btn btn-ghost btn-sm" onclick="showToast('Wednesday\'s walk skipped 🐾')">Skip next</button><button class="btn btn-ghost btn-sm" onclick="showToast('Routine paused — resume any time')">Pause</button></div>
+    </div>
+    <div id="journalDogs"></div>
+    <div class="shead"><div><h2 style="font-size:22px">Walk reports</h2></div></div>
+    <div class="scrap" id="scrap"></div>
+    <div class="shead"><div><h2 style="font-size:22px">Favourite moments</h2></div></div>
+    <div class="moments" id="moments"></div>
+  </div></section>
+</main>
+
+<footer>Trot · a demo of the customer workflow · runs entirely in your browser 🐾</footer>
+<div id="toast"></div>
+
+<script>
+const B="https://commons.wikimedia.org/wiki/Special:FilePath/";
+const money=n=>"₹"+Math.round(n).toLocaleString("en-IN");
+/* charming fallback pup behind every photo */
+function pupSVG(){return `<svg class="fb" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice"><rect width="100" height="100" fill="#FFE3C4"/><g transform="translate(50,54)"><ellipse cx="-20" cy="-14" rx="9" ry="15" fill="#C98A52" transform="rotate(-18 -20 -14)"/><ellipse cx="20" cy="-14" rx="9" ry="15" fill="#C98A52" transform="rotate(18 20 -14)"/><circle cx="0" cy="4" r="22" fill="#E0A86A"/><circle cx="-8" cy="0" r="2.6" fill="#3A3026"/><circle cx="8" cy="0" r="2.6" fill="#3A3026"/><ellipse cx="0" cy="9" rx="4.5" ry="3.2" fill="#3A3026"/><path d="M0 12 v5 M0 17 q-5 2 -8 0 M0 17 q5 2 8 0" stroke="#3A3026" stroke-width="1.6" fill="none" stroke-linecap="round"/></g></svg>`;}
+const imgTag=(file,alt)=>`<img class="cover" src="${B+encodeURI(file)}?width=900" alt="${alt}" loading="lazy" onerror="this.remove()">`;
+const dogPh=(file,alt)=>`<div class="ph">${pupSVG()}${imgTag(file,alt)}</div>`;
+const pawMark=`<g transform="translate(-6,-7)"><circle cx="6" cy="9" r="4" fill="#FF8A5B"/><circle cx="1.5" cy="3.5" r="2" fill="#FF8A5B"/><circle cx="6" cy="1.5" r="2" fill="#FF8A5B"/><circle cx="10.5" cy="3.5" r="2" fill="#FF8A5B"/></g>`;
+
+/* ---------------- data ---------------- */
+const DOGS=[
+  {id:"simba",name:"Simba",breed:"Golden Retriever",age:"3 yrs",photo:"Golden Retriever Hund Dog.JPG",
+   note:"Loves everyone. Pulls a little. Would trade his soul for a tennis ball.",walks:142,km:386,fav:"Divya"},
+  {id:"pixel",name:"Pixel",breed:"Pug",age:"2 yrs",photo:"Uber cute pug.jpg",
+   note:"Shy for five minutes, then your shadow. Not a fan of thunder.",walks:88,km:201,fav:"Aisha"}
+];
+const dogById=id=>DOGS.find(d=>d.id===id);
+const HERO=["Golden Retriever with red ball.jpg","Golden Retriever puppy.jpg","Golden retriever.jpg"];
+const MOMENTS=["Golden Retriever puppy.jpg","Uber cute pug.jpg","Golden Retriever with red ball.jpg","Pugs.JPG","Puggle puppy.jpg"];
+
+const WALKERS=[
+  {id:"meera",name:"Meera K.",init:"M",col:"#FF8A5B",area:"Indiranagar",dist:0.4,rate:300,rating:4.9,walks:312,tags:["puppies","anxious"],bio:"Gentle pace, lots of sniff-breaks. Your nervous pup's new best friend.",avail:1},
+  {id:"rohan",name:"Rohan D.",init:"R",col:"#5FA244",area:"Koramangala",dist:1.2,rate:280,rating:4.8,walks:198,tags:["energy","pack"],bio:"Runner. Big dogs welcome — we'll burn through that zoomie energy.",avail:1},
+  {id:"aisha",name:"Aisha P.",init:"A",col:"#9B8BD9",area:"HSR Layout",dist:2.1,rate:320,rating:5.0,walks:421,tags:["senior","anxious"],bio:"Slow, kind strolls for golden oldies — and meds right on schedule.",avail:1},
+  {id:"karthik",name:"Karthik S.",init:"K",col:"#3A9BC4",area:"Jayanagar",dist:1.8,rate:260,rating:4.7,walks:140,tags:["pack","energy"],bio:"Pack walks with the neighbourhood crew. New friends, guaranteed.",avail:0},
+  {id:"sneha",name:"Sneha R.",init:"S",col:"#E8607A",area:"Indiranagar",dist:0.7,rate:300,rating:4.9,walks:276,tags:["puppies","training"],bio:"Walk plus manners — we practise loose-leash on every single outing.",avail:1},
+  {id:"imran",name:"Imran A.",init:"I",col:"#E0A33A",area:"Frazer Town",dist:1.5,rate:290,rating:4.8,walks:203,tags:["anxious","senior"],bio:"Calm one-on-one walks for dogs who need space. No surprises.",avail:1},
+  {id:"divya",name:"Divya N.",init:"D",col:"#FF8A5B",area:"Indiranagar",dist:0.5,rate:310,rating:4.9,walks:358,tags:["puppies","photos"],bio:"Lots of photos, lots of love — you'll get the full story every walk.",avail:1},
+  {id:"arjun",name:"Arjun M.",init:"A",col:"#5FA244",area:"Bellandur",dist:3.0,rate:270,rating:4.6,walks:96,tags:["energy","senior"],bio:"Trail explorer. Hills, lakes, and very happy, very tired dogs.",avail:0}
+];
+const FILTERS=[["all","All walkers"],["puppies","Puppies"],["anxious","Anxious & reactive"],["energy","High-energy"],["senior","Senior dogs"],["pack","Pack walks"]];
+const TAGLABEL={puppies:"Puppies",anxious:"Anxious & reactive",energy:"High-energy",senior:"Senior dogs",pack:"Pack walks",training:"Training",photos:"Photo updates"};
+
+const RATE={solo:{30:300,45:420,60:540},pack:{30:220,45:320,60:400}};
+const EXTRA_DOG=120, PEAK=60, GST=0.18;
+const ADDONS=[
+  {k:"feed",t:"Feeding & fresh water",d:"A meal or a top-up, on your schedule.",p:80},
+  {k:"wipe",t:"Paw wipe-down",d:"Clean paws before they head back inside.",p:50},
+  {k:"train",t:"Training reinforcement",d:"Loose-leash & recall practice on the walk.",p:150},
+  {k:"meds",t:"Medication",d:"Given exactly as your vet instructs.",p:100}
+];
+const FREQ={once:{label:"One-off",per:1,off:0,sub:"single walk"},w3:{label:"3× / week",per:3,off:0.10,sub:"save 10%"},w5:{label:"5× / week",per:5,off:0.15,sub:"save 15%"}};
+const SLOTS=[{t:"7–9 am",peak:true},{t:"11 am",peak:false},{t:"1 pm",peak:false},{t:"4 pm",peak:false},{t:"6–8 pm",peak:true}];
+const WALK_STAGES=["Booked","Walker en route","Walk started","On the walk","Dropped home","Report sent"];
+const PROG=[0,0.07,0.2,0.56,0.92,1];
+
+/* ---------------- state ---------------- */
+let current="walkers",filter="all",sel=null;
+let plan={dogs:["simba"],dur:30,type:"solo",freq:"once",slot:"4 pm",addons:{feed:false,wipe:false,train:false,meds:false}};
+let meet={method:"video",slot:"Today, 6:00 pm"};
+let payOpt="perwalk",tip=false,vet=true;
+let walks=[
+  {id:"#TR-2204",walkerId:"divya",dogs:["simba"],when:"Today · 4:00 pm",freq:"once",perWalk:366,weekly:0,stage:3,live:{km:"1.4",min:"22"},report:null},
+  {id:"#TR-2198",walkerId:"aisha",dogs:["pixel"],when:"Today · 8:30 am",freq:"once",perWalk:436,weekly:0,stage:5,
+   report:{km:"2.1",dur:"45 min",happy:5,friends:2,photo:"Uber cute pug.jpg",
+   note:"Pixel was shy for the first five minutes, then trotted the whole lake loop with the biggest grin. Said hello to two new friends and fell fast asleep in the car on the way home.",who:"— Aisha"}}
+];
+let justBooked=null;
+
+const $=s=>document.querySelector(s);
+const walkerById=id=>WALKERS.find(w=>w.id===id);
+
+/* ---------------- nav ---------------- */
+const STAGES=[["walkers","Walkers"],["plan","Plan"],["meet","Meet"],["book","Book"],["walks","Walks"],["journal","Journal"]];
+const FLOW=["walkers","plan","meet","book"];
+let unlocked={walkers:1,plan:0,meet:0,book:0,walks:1,journal:1};
+function renderNav(){
+  $("#nav").innerHTML=STAGES.map(([k,l])=>{
+    const lock=!unlocked[k]&&k!==current;
+    return `<button class="nav-b ${current===k?'on':''} ${lock?'locked':''}" ${lock?'':`onclick="go('${k}')"`}>${l}</button>`;
+  }).join("");
+}
+function go(key){
+  if(!unlocked[key])return;
+  current=key;document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));$("#"+key).classList.add("active");
+  if(key==="plan")renderPlan();
+  if(key==="meet")renderMeet();
+  if(key==="book")renderBook();
+  if(key==="walks")renderWalks();
+  if(key==="journal")renderJournal();
+  renderNav();window.scrollTo({top:0,behavior:"smooth"});
+}
+
+/* ---------------- walkers ---------------- */
+let heroIx=0;
+function loadHero(){const f=HERO[heroIx];$("#heroph").innerHTML=pupSVG()+`<img class="cover" src="${B+encodeURI(f)}?width=1000" alt="A happy dog" onerror="heroNext()">`;}
+function heroNext(){heroIx++;if(HERO[heroIx])loadHero();else{const im=$("#heroph img");if(im)im.remove();}}
+function renderAva(){$("#avarow").innerHTML=DOGS.map(d=>`<div class="ava">${dogPh(d.photo,d.name)}</div>`).join("");}
+function renderChips(){$("#chips").innerHTML=FILTERS.map(([k,l])=>`<button class="chip ${filter===k?'on':''}" onclick="setFilter('${k}')">${l}</button>`).join("");}
+function setFilter(f){filter=f;renderChips();renderWalkerGrid();}
+function star(r){return `<span class="rating"><span class="s">★</span> ${r.toFixed(1)}</span>`;}
+function renderWalkerGrid(){
+  const list=WALKERS.filter(w=>filter==="all"||w.tags.includes(filter));
+  $("#walkerGrid").innerHTML=list.map(w=>`
+    <div class="walker" onclick="pickWalker('${w.id}')">
+      <div class="top">
+        <div class="wava" style="background:${w.col}">${w.init}<span class="pawbadge"><svg viewBox="0 0 16 16" width="12" height="12">${pawMark.replace('translate(-6,-7)','translate(2,1.5) scale(.7)')}</svg></span></div>
+        <div><h3>${w.name}</h3><div class="wmeta">${w.area} · ${w.dist} km away</div>
+          <div style="margin-top:3px">${star(w.rating)} <span class="wmeta">· ${w.walks} walks</span></div></div>
+      </div>
+      <div class="wbio">${w.bio}</div>
+      <div class="tagrow"><span class="tag safe">✓ Verified</span>${w.tags.slice(0,2).map(t=>`<span class="tag">${TAGLABEL[t]}</span>`).join("")}</div>
+      <div class="wfoot">
+        <div class="rate">₹${w.rate}<small> / 30 min</small></div>
+        <div class="avail ${w.avail?'':'soon'}"><i></i>${w.avail?'Available today':'Free tomorrow'}</div>
+      </div></div>`).join("");
+}
+function pickWalker(id){sel=walkerById(id);unlocked.plan=1;go("plan");}
+
+/* ---------------- plan ---------------- */
+function dogsLabel(ids){return ids.map(i=>dogById(i).name).join(" & ");}
+function planPrice(){
+  const base=RATE[plan.type][plan.dur];
+  const dogsFee=(plan.dogs.length-1)*EXTRA_DOG;
+  const addon=ADDONS.reduce((s,a)=>s+(plan.addons[a.k]?a.p:0),0);
+  const peak=(SLOTS.find(s=>s.t===plan.slot)||{}).peak?PEAK:0;
+  const gross=base+dogsFee+addon+peak;
+  const off=FREQ[plan.freq].off, disc=gross*off, net=gross-disc, gst=net*GST, perWalk=net+gst;
+  return {base,dogsFee,addon,peak,gross,off,disc,net,gst,perWalk,weekly:perWalk*FREQ[plan.freq].per};
+}
+function renderPlan(){
+  $("#selstrip").innerHTML=`<div class="wava" style="background:${sel.col}">${sel.init}</div>
+    <div><div class="kicker">Your walker</div><h3>${sel.name}</h3><div class="wmeta">${sel.area} · ${star(sel.rating)} · ${sel.walks} walks</div></div>`;
+  $("#dogpick").innerHTML=DOGS.map(d=>{const on=plan.dogs.includes(d.id);
+    return `<button class="dogchip ${on?'on':''}" onclick="toggleDog('${d.id}')"><div class="ph">${dogPh(d.photo,d.name)}</div><div><div class="dn">${d.name}</div><div class="db">${d.breed} · ${d.age}</div></div><span class="tk">${on?'✓':''}</span></button>`;}).join("");
+  $("#durseg").innerHTML=[30,45,60].map(d=>`<button class="${plan.dur===d?'on':''}" onclick="setPlan('dur',${d})">${d} min<small>${RATE[plan.type][d]?'₹'+RATE[plan.type][d]:''}</small></button>`).join("");
+  $("#typeseg").innerHTML=[["solo","Solo walk","just your dog"],["pack","Group pack","social & cheaper"]].map(([k,t,s])=>`<button class="${plan.type===k?'on':''}" onclick="setPlan('type','${k}')">${t}<small>${s}</small></button>`).join("");
+  $("#freqseg").innerHTML=Object.entries(FREQ).map(([k,v])=>`<button class="${plan.freq===k?'on':''}" onclick="setPlan('freq','${k}')">${v.label}<small>${v.sub}</small></button>`).join("");
+  $("#slotseg").innerHTML=SLOTS.map(s=>`<button class="${plan.slot===s.t?'on':''}" onclick="setPlan('slot','${s.t}')">${s.t}${s.peak?'<small class="peaktag">peak +₹60</small>':'<small>off-peak</small>'}</button>`).join("");
+  $("#addons").innerHTML=`<div class="toggle"><div><div class="tt">Live GPS + photo report</div><div class="td">Follow the walk live; get a photo story after.</div></div><span class="inc">Included</span></div>`+
+    ADDONS.map(a=>`<div class="toggle"><div><div class="tt">${a.t}</div><div class="td">${a.d}</div></div><span class="tp">+₹${a.p}</span><button class="sw ${plan.addons[a.k]?'on':''}" onclick="toggleAddon('${a.k}')"></button></div>`).join("");
+  renderBreakdown();
+}
+function setPlan(k,v){plan[k]=v;renderPlan();}
+function toggleDog(id){const i=plan.dogs.indexOf(id);if(i<0)plan.dogs.push(id);else if(plan.dogs.length>1)plan.dogs.splice(i,1);renderPlan();}
+function toggleAddon(k){plan.addons[k]=!plan.addons[k];renderPlan();}
+function renderBreakdown(){
+  const p=planPrice(),f=FREQ[plan.freq];
+  let h=`<div class="prow"><div>${plan.type==='pack'?'Group':'Solo'} walk<div class="sm">${plan.dur} min · ${dogsLabel(plan.dogs)}</div></div><b>${money(p.base)}</b></div>`;
+  if(p.dogsFee)h+=`<div class="prow"><div>Extra dog<div class="sm">${plan.dogs.length} dogs together</div></div><b>+${money(p.dogsFee)}</b></div>`;
+  ADDONS.forEach(a=>{if(plan.addons[a.k])h+=`<div class="prow"><span>${a.t}</span><b>+${money(a.p)}</b></div>`;});
+  if(p.peak)h+=`<div class="prow"><span>Peak-time slot</span><b>+${money(p.peak)}</b></div>`;
+  if(p.disc)h+=`<div class="prow disc"><span>${f.label} discount</span><b>−${money(p.disc)}</b></div>`;
+  h+=`<div class="prow"><span>GST (18%)</span><b>${money(p.gst)}</b></div>`;
+  h+=`<div class="ptot"><span style="font-weight:800">Per walk</span><span class="big">${money(p.perWalk)}</span></div>`;
+  if(f.per>1)h+=`<div class="weekly">${f.label} · <b>${money(p.weekly)}/week</b></div>`;
+  $("#breakdown").innerHTML=h;
+}
+function toMeet(){unlocked.meet=1;go("meet");}
+
+/* ---------------- meet ---------------- */
+function renderMeet(){
+  $("#meetDogs").innerHTML=plan.dogs.map(id=>{const d=dogById(id);
+    return `<div class="dogcard"><div class="ph">${dogPh(d.photo,d.name)}</div><div style="flex:1">
+      <h4>${d.name}</h4><div class="meta">${d.breed} · ${d.age}</div>
+      <div class="field" style="margin:0"><label>What should ${sel.name.split(' ')[0]} know?</label><textarea rows="2">${d.note}</textarea></div></div></div>`;}).join("");
+  $("#meetMethod").innerHTML=[["video","📹 Video call","15 minutes"],["person","🏠 At your home","20 minutes"]].map(([k,t,s])=>`<button class="${meet.method===k?'on':''}" onclick="meet.method='${k}';renderMeet()">${t}<small>${s}</small></button>`).join("");
+  const slots=["Today, 6:00 pm","Tomorrow, 9:00 am","Tomorrow, 5:30 pm"];
+  $("#meetSlots").innerHTML=slots.map(s=>`<button class="${meet.slot===s?'on':''}" onclick="meet.slot='${s}';renderMeet()">${s}</button>`).join("");
+}
+function toBook(){unlocked.book=1;go("book");}
+
+/* ---------------- book ---------------- */
+function syncTip(){$("#tipSw").classList.toggle("on",tip);}
+function renderBook(){
+  const p=planPrice(),f=FREQ[plan.freq];
+  const pays=[["perwalk","Pay per walk",money(p.perWalk)+" each"],["weekly","Weekly auto-pay",f.per>1?money(p.weekly)+"/wk":"set a routine first"],["wallet","Trot wallet","₹2,400 balance"]];
+  $("#payOpts").innerHTML=pays.map(([k,l,s])=>`<div class="pay-opt ${payOpt===k?'on':''}" onclick="payOpt='${k}';renderBook()"><span class="r"></span>${l}<span class="sm">${s}</span></div>`).join("");
+  const tipAmt=tip?50:0;
+  $("#bookSummary").innerHTML=`
+    <div class="prow"><div>${sel.name}<div class="sm">${plan.type==='pack'?'Group':'Solo'} · ${plan.dur} min · ${meet.slot.split(',')[0]} slot ${plan.slot}</div></div><b></b></div>
+    <div class="prow"><span>Walking</span><b>${dogsLabel(plan.dogs)}</b></div>
+    <div class="prow"><span>Per walk</span><b>${money(p.perWalk)}</b></div>
+    ${tip?`<div class="prow"><span>Tip</span><b>+₹50</b></div>`:''}
+    <div class="ptot"><span style="font-weight:800">${f.per>1?'Weekly':'Today'}</span><span class="big">${money((f.per>1?p.weekly:p.perWalk)+tipAmt*f.per)}</span></div>
+    <div class="weekly">🐾 First a free meet &amp; greet · ${meet.slot}</div>`;
+  $("#confirmBtn").textContent=`Confirm & book · ${money(p.perWalk+tipAmt)}`;
+}
+function placeBooking(){
+  const p=planPrice();
+  walks.unshift({id:"#TR-"+(2210+Math.floor(Math.random()*80)),walkerId:sel.id,dogs:[...plan.dogs],
+    when:"Tomorrow · "+plan.slot,freq:plan.freq,perWalk:p.perWalk,weekly:p.weekly,stage:0,report:null});
+  justBooked=dogsLabel(plan.dogs);
+  unlocked.walks=1;go("walks");showToast("Booked! "+sel.name.split(' ')[0]+" can't wait to meet "+justBooked+" 🐾");
+}
+
+/* ---------------- walks / track ---------------- */
+function routeMap(i,prog,live){
+  const off=(1-prog).toFixed(3);
+  const d="M22 150 C 70 108 108 156 150 116 S 232 70 272 104 S 348 120 360 70";
+  return `<svg class="route" viewBox="0 0 380 175" preserveAspectRatio="xMidYMid slice">
+    <defs><linearGradient id="rs${i}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#BDE6F7"/><stop offset="1" stop-color="#E9F7E3"/></linearGradient>
+    <path id="rp${i}" d="${d}" fill="none"/></defs>
+    <rect width="380" height="175" fill="url(#rs${i})"/>
+    <circle cx="328" cy="34" r="18" fill="#FFDC73"/>
+    <g fill="#86C46A"><ellipse cx="70" cy="178" rx="120" ry="34"/><ellipse cx="300" cy="182" rx="140" ry="36"/></g>
+    ${[[58,128],[120,100],[214,128],[296,98]].map(([x,y])=>`<g transform="translate(${x},${y})"><rect x="-3" y="0" width="6" height="13" fill="#9b6b3f"/><circle cx="0" cy="-4" r="12" fill="#5FA244"/></g>`).join("")}
+    <use href="#rp${i}" stroke="#CFEBC0" stroke-width="7" stroke-linecap="round"/>
+    <path d="${d}" fill="none" stroke="#FF8A5B" stroke-width="4.5" stroke-linecap="round" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:${off};transition:stroke-dashoffset 1.1s ease"/>
+    <circle cx="22" cy="150" r="6" fill="#fff" stroke="#FF8A5B" stroke-width="3"/>
+    <g transform="translate(360,64)"><path d="M-10 0 L0 -10 L10 0 Z" fill="#FF8A5B" stroke="#fff" stroke-width="2"/><rect x="-7" y="0" width="14" height="11" rx="1.5" fill="#fff" stroke="#FF8A5B" stroke-width="2"/></g>
+    ${live?`<g class="trot"><animateMotion dur="6s" repeatCount="indefinite" rotate="0"><mpath href="#rp${i}"/></animateMotion>${pawMark}</g>`:''}
+  </svg>`;
+}
+function happyRow(n){return `<div class="happy">${[1,2,3,4,5].map(i=>`<span class="${i<=n?'fill':''}">🐾</span>`).join("")}</div>`;}
+function polaroid(r,dogName,walkerName){
+  return `<div class="polaroid"><div class="pic">${dogPh(r.photo,dogName)}</div>
+    <div class="cap"><div class="ttl">${dogName}'s walk</div><div class="meta">${r.km} km · ${r.dur}</div>
+      ${happyRow(r.happy)}
+      <div class="pnote">“${r.note}”<span class="who">${r.who||'— '+walkerName} · made ${r.friends} new friend${r.friends===1?'':'s'}</span></div></div></div>`;
+}
+function genReport(w){
+  const d=dogById(w.dogs[0]),km=(1.6+Math.random()*1.4).toFixed(1);
+  const notes=["had the zoomies at the park, made a friend, and is now completely worn out (in the best way).","walked like a champion, sniffed every single bush, and got loads of pats from strangers.","found a sunny patch, rolled in the grass, and trotted home grinning ear to ear."];
+  return {km,dur:plan.dur?plan.dur+" min":"30 min",happy:5,friends:1+Math.floor(Math.random()*2),photo:d.photo,
+    note:`${d.name} ${notes[Math.floor(Math.random()*notes.length)]}`,who:"— "+walkerById(w.walkerId).name};
+}
+function renderWalks(){
+  $("#banner").innerHTML=justBooked?`<div class="planbox" style="background:linear-gradient(120deg,#FFF0E8,#fff)"><div class="ic" style="background:var(--coral)"><span style="font-size:22px">🐾</span></div><div><div class="pt">All booked!</div><div class="ps">${justBooked}'s walk is confirmed — follow it right here.</div></div></div>`:"";justBooked=null;
+  if(!walks.length){$("#walksBody").innerHTML=`<div class="empty">No walks yet — book one and watch the magic.</div>`;return;}
+  $("#walksBody").innerHTML=walks.map((w,i)=>{
+    const wk=walkerById(w.walkerId),done=w.stage>=5,live=w.stage>=1&&w.stage<5;
+    const tl=WALK_STAGES.map((s,gi)=>`<div class="st ${gi<w.stage?'done':gi===w.stage?'now':''}"><div class="dot"></div>${s}</div>`).join("");
+    let foot;
+    if(done){
+      const r=w.report||genReport(w);w.report=r;
+      foot=`<div class="report-wrap"><div class="polaroid" style="width:240px;transform:rotate(-2deg)"><div class="pic">${dogPh(r.photo,dogsLabel(w.dogs))}</div>
+        <div class="cap"><div class="ttl">${dogsLabel(w.dogs)}'s walk</div><div class="meta">${r.km} km · ${r.dur}</div>${happyRow(r.happy)}</div></div>
+        <div class="rtxt"><h4>Home safe &amp; happy 💛</h4><div class="pnote">“${r.note}”<span class="who">${r.who} · made ${r.friends} new friend${r.friends===1?'':'s'}</span></div>
+        <div style="margin-top:12px"><button class="btn btn-ghost btn-sm" onclick="go('journal')">See in journal →</button> <button class="btn btn-coral btn-sm" onclick="showToast('Thanks! ${wk.name.split(' ')[0]} will be so happy ⭐')">Rate this walk</button></div></div></div>`;
+    } else {
+      const liveStats=live?`<div class="liveinfo"><div class="stat"><div class="v">${w.live?w.live.km:'0.0'} km</div><div class="k">so far</div></div><div class="stat"><div class="v">${w.live?w.live.min:'0'} min</div><div class="k">walking</div></div><div class="stat"><div class="v">${w.stage>=3?'2':'0'}</div><div class="k">pee stops</div></div></div>`:"";
+      foot=liveStats+`<div class="wc-foot"><span class="msg">${w.stage===0?'Waiting for the walk to start.':'Now: <b>'+WALK_STAGES[w.stage].toLowerCase()+'</b>.'} ${w.stage<5?'Next: '+WALK_STAGES[w.stage+1].toLowerCase()+'.':''}</span><button class="btn btn-coral btn-sm" onclick="advance(${i})">Next step →</button></div>`;
+    }
+    return `<div class="walkcard">${routeMap(i,PROG[w.stage],live)}<div class="wc-body">
+      <div class="wc-head"><div class="wava" style="background:${wk.col}">${wk.init}</div>
+        <div><h3>${dogsLabel(w.dogs)} with ${wk.name.split(' ')[0]}</h3><div class="wc-sub">${w.when} · ${money(w.perWalk)}</div></div>
+        ${live?'<span class="live-pill"><i></i>Live</span>':done?'<span class="id">'+w.id+' ✓</span>':'<span class="id">'+w.id+'</span>'}</div>
+      <div class="timeline">${tl}</div>${foot}</div></div>`;
+  }).join("");
+}
+function advance(i){
+  if(walks[i].stage<5){
+    walks[i].stage++;
+    if(walks[i].stage===3)walks[i].live={km:"0.6",min:"8"};
+    if(walks[i].stage===4)walks[i].live={km:(1.4+Math.random()).toFixed(1),min:"24"};
+    if(walks[i].stage===5){walks[i].report=walks[i].report||genReport(walks[i]);burstHearts();showToast(dogsLabel(walks[i].dogs)+" is home safe 💛");}
+    renderWalks();
+  }
+}
+
+/* ---------------- journal ---------------- */
+function renderJournal(){
+  $("#journalDogs").innerHTML=DOGS.map(d=>`
+    <div class="jdog"><div class="ph">${dogPh(d.photo,d.name)}</div>
+      <div style="flex:1;min-width:200px"><h3>${d.name}</h3><div class="meta">${d.breed} · ${d.age}</div>
+        <div class="pnote2">“${d.note}”</div>
+        <div class="jstats"><div class="jstat"><div class="v">${d.walks}</div><div class="k">walks</div></div><div class="jstat"><div class="v">${d.km}</div><div class="k">km together</div></div><div class="jstat"><div class="v">${d.fav}</div><div class="k">fav walker</div></div></div>
+      </div>
+      <div style="align-self:center"><button class="btn btn-coral btn-sm" onclick="go('walkers')">Book a walk</button></div></div>`).join("");
+  const reports=walks.filter(w=>w.stage>=5&&w.report);
+  $("#scrap").innerHTML=reports.length?reports.map(w=>polaroid(w.report,dogsLabel(w.dogs),walkerById(w.walkerId).name)).join(""):`<div class="empty">Completed walks and their photo reports will collect here.</div>`;
+  $("#moments").innerHTML=MOMENTS.map(f=>`<div class="ph">${dogPh(f,"A happy moment")}</div>`).join("");
+}
+
+/* ---------------- effects ---------------- */
+let toastT;
+function showToast(m){const t=$("#toast");t.textContent=m;t.classList.add("show");clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove("show"),2400);}
+function burstHearts(){const ic=["💛","🐾","💛","🧡","🐾"];for(let i=0;i<14;i++){const h=document.createElement("div");h.className="heart";h.textContent=ic[i%ic.length];h.style.left=(20+Math.random()*60)+"%";h.style.bottom=(20+Math.random()*30)+"%";h.style.animationDelay=(Math.random()*.4)+"s";h.style.fontSize=(20+Math.random()*16)+"px";document.body.appendChild(h);setTimeout(()=>h.remove(),2000);}}
+
+/* ---------------- init ---------------- */
+loadHero();renderAva();renderNav();renderChips();renderWalkerGrid();
+</script>
+</body>
+</html>

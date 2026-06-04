@@ -7,378 +7,177 @@
 <meta name="description" content="Real products built by Just Build participants. Live URLs. Two days. By Orange Caterpillar.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Inter:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;700&family=Inter:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@400;500;600&family=DM+Serif+Display&family=DM+Sans:wght@400;500;700&family=Caveat:wght@600;700&family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800&family=Marcellus&family=Mulish:wght@400;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,500&family=Hanken+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-  /* ========================================
-     Just Build — Showcase
-     Light. Editorial. A gallery, not a list.
-     ======================================== */
+  :root{
+    --bg:#F5F0E8; --bg-soft:#EDE6D9; --line:rgba(26,26,26,.10); --line-strong:rgba(26,26,26,.20);
+    --text:#1A1A1A; --text-soft:#4A4A4A; --text-muted:#888; --accent:#C17D2A;
+    --sans:'Inter',system-ui,sans-serif; --serif:'Plus Jakarta Sans',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;min-height:100vh}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;background-image:radial-gradient(rgba(26,26,26,.018) 1px,transparent 1px);background-size:3px 3px;z-index:0}
+  .container{max-width:1240px;margin:0 auto;padding:0 32px;position:relative;z-index:1}
 
-  :root {
-    --bg:           #F5F0E8;
-    --bg-soft:      #EDE6D9;
-    --bg-card:     #FFFFFF;
-    --line:         rgba(26, 26, 26, 0.10);
-    --line-strong:  rgba(26, 26, 26, 0.20);
-    --text:         #1A1A1A;
-    --text-soft:    #4A4A4A;
-    --text-muted:   #888888;
-    --accent:       #C17D2A;
-    --accent-soft:  rgba(193, 125, 42, 0.08);
-    --serif:        'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-    --sans:         'Inter', system-ui, -apple-system, sans-serif;
-  }
+  .brand-strip{padding:28px 0 0}
+  .brand-mark{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:500;text-decoration:none}
+  .brand-mark:hover{opacity:.7}
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+  .hero{padding:56px 0 60px;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;right:-40px;top:0;width:380px;height:340px;border-radius:50%;
+    background:radial-gradient(circle at 28% 30%,rgba(255,138,91,.20),transparent 60%),radial-gradient(circle at 72% 55%,rgba(91,140,62,.16),transparent 60%),radial-gradient(circle at 50% 85%,rgba(181,34,59,.13),transparent 60%);
+    filter:blur(22px);pointer-events:none;z-index:0}
+  .hero>*{position:relative;z-index:1}
+  .hero-eyebrow{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:30px}
+  .hero h1{font-family:var(--serif);font-size:clamp(46px,7vw,100px);font-weight:300;line-height:.96;letter-spacing:-.035em;margin-bottom:28px;max-width:18ch}
+  .hero h1 em{font-style:italic;color:var(--accent);font-weight:400}
+  .hero-sub{font-family:var(--serif);font-size:clamp(19px,2.1vw,27px);color:var(--text-soft);font-weight:300;font-style:italic;max-width:38ch;line-height:1.4}
+  .hero-rule{width:56px;height:1px;background:var(--accent);border:none;margin:36px 0 0}
 
-  html { scroll-behavior: smooth; }
+  .filters{display:flex;align-items:center;flex-wrap:wrap;gap:12px;padding:30px 0;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10;background:rgba(245,240,232,.9);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+  .filter-label{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--text-muted);margin-right:12px;font-weight:500}
+  .filter-btn{padding:8px 18px;background:transparent;color:var(--text-soft);border:1px solid var(--line);font-family:var(--sans);font-size:13px;font-weight:500;letter-spacing:.04em;cursor:pointer;border-radius:999px;transition:all .18s}
+  .filter-btn:hover{border-color:var(--text);color:var(--text)}
+  .filter-btn.active{background:var(--text);color:var(--bg);border-color:var(--text)}
+  .filter-count{margin-left:auto;font-size:13px;color:var(--text-muted)}
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--sans);
-    font-size: 17px;
-    line-height: 1.55;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-    min-height: 100vh;
-  }
+  /* ---------- WALL ---------- */
+  .wall{padding:50px 0 96px;display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+  @media(max-width:980px){.wall{grid-template-columns:repeat(2,1fr);gap:20px}}
+  @media(max-width:640px){.wall{grid-template-columns:1fr;padding:40px 0 64px}}
 
-  /* Subtle paper grain on the cream background */
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    background-image: radial-gradient(rgba(26,26,26,0.018) 1px, transparent 1px);
-    background-size: 3px 3px;
-    z-index: 0;
-  }
+  /* base card */
+  .card{position:relative;overflow:hidden;border-radius:10px;padding:30px 28px 26px;min-height:332px;
+    display:flex;flex-direction:column;gap:13px;text-decoration:none;isolation:isolate;
+    border:1px solid var(--line);transition:transform .3s cubic-bezier(.2,.7,.3,1),box-shadow .3s;
+    animation:cardIn .55s cubic-bezier(.2,.7,.2,1) backwards}
+  .card-bg{position:absolute;inset:0;z-index:-2}
+  .card-deco{position:absolute;top:20px;right:20px;z-index:1;line-height:0}
+  .card-rail{display:none}
+  .card:hover{transform:translateY(-6px)}
+  .card-top{display:flex;flex-direction:column;gap:5px;padding-right:64px}
+  .card-cohort{font-size:10px;letter-spacing:.24em;text-transform:uppercase;font-weight:700}
+  .card-kind{font-size:12px;font-weight:700;letter-spacing:.02em}
+  .card-name{font-size:38px;line-height:1.02;margin-top:4px}
+  .card-participant{font-size:13px;font-weight:500;letter-spacing:.01em}
+  .card-description{font-size:14.5px;line-height:1.5;flex-grow:1}
+  .card-rule{height:1px;width:40px;margin-top:2px}
+  .card-cta{display:inline-flex;align-items:center;gap:9px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+  .card-cta svg{transition:transform .2s}
+  .card:hover .card-cta svg{transform:translate(3px,-3px)}
+  @keyframes cardIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+  .card:nth-child(1){animation-delay:.04s}.card:nth-child(2){animation-delay:.10s}.card:nth-child(3){animation-delay:.16s}
+  .card:nth-child(4){animation-delay:.22s}.card:nth-child(5){animation-delay:.28s}.card:nth-child(6){animation-delay:.34s}
+  .card:nth-child(n+7){animation-delay:.4s}
 
-  .container {
-    max-width: 1240px;
-    margin: 0 auto;
-    padding: 0 32px;
-    position: relative;
-    z-index: 1;
-  }
+  /* default fallback theme */
+  .t-default .card-bg{background:#fff}
+  .t-default .card-cohort,.t-default .card-cta{color:var(--accent)}
+  .t-default .card-name{font-family:var(--serif);color:var(--text)}
+  .t-default .card-kind{color:var(--text-muted)}
+  .t-default .card-participant{color:var(--text-muted)}.t-default .card-participant strong{color:var(--text-soft)}
+  .t-default .card-description{color:var(--text-soft)}
+  .t-default .card-rule{background:var(--accent)}
 
-  /* ----- Top brand strip ----- */
-  .brand-strip {
-    padding: 28px 0 0;
-  }
-  .brand-mark {
-    font-family: var(--sans);
-    font-size: 12px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--accent);
-    font-weight: 500;
-    text-decoration: none;
-  }
-  .brand-mark:hover { opacity: 0.7; }
+  /* ---------- PALLU · oxblood + antique gold ---------- */
+  .t-pallu{border-color:rgba(232,195,107,.28)}
+  .t-pallu .card-bg{background:radial-gradient(120% 80% at 82% -10%,rgba(232,195,107,.18),transparent 58%),linear-gradient(160deg,#5C121E,#3A0B12)}
+  .t-pallu::before{content:"";position:absolute;inset:0;z-index:-1;opacity:.11;background-image:radial-gradient(circle,#E8C36B 1.1px,transparent 1.3px);background-size:21px 21px}
+  .t-pallu .card-cohort{color:#E8C36B}
+  .t-pallu .card-kind{color:#D9A1A8;font-family:'Jost'}
+  .t-pallu .card-name{font-family:'Cormorant Garamond';font-weight:600;color:#EBD9A6;font-size:46px;letter-spacing:.01em}
+  .t-pallu .card-participant{color:#CF969D;font-family:'Jost'}.t-pallu .card-participant strong{color:#EBD9A6;font-weight:500}
+  .t-pallu .card-description{color:#E6CCC4;font-family:'Jost';font-weight:400}
+  .t-pallu .card-rule{background:#E8C36B;width:54px;height:2px}
+  .t-pallu .card-cta{color:#E8C36B;font-family:'Jost';font-weight:600}
+  .t-pallu:hover{box-shadow:0 28px 58px -24px rgba(120,20,32,.85)}
 
-  /* ----- Hero ----- */
-  .hero {
-    padding: 56px 0 72px;
-    border-bottom: 1px solid var(--line);
-  }
-  .hero-eyebrow {
-    font-size: 11px;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: var(--accent);
-    font-weight: 500;
-    margin-bottom: 32px;
-  }
-  .hero h1 {
-    font-family: var(--serif);
-    font-size: clamp(48px, 7.5vw, 108px);
-    font-weight: 300;
-    line-height: 0.96;
-    letter-spacing: -0.035em;
-    margin-bottom: 32px;
-    max-width: 18ch;
-  }
-  .hero h1 em {
-    font-style: italic;
-    color: var(--accent);
-    font-weight: 400;
-  }
-  .hero-sub {
-    font-family: var(--serif);
-    font-size: clamp(20px, 2.2vw, 28px);
-    color: var(--text-soft);
-    font-weight: 300;
-    font-style: italic;
-    letter-spacing: -0.005em;
-    max-width: 36ch;
-    line-height: 1.4;
-  }
-  .hero-rule {
-    width: 56px;
-    height: 1px;
-    background: var(--accent);
-    border: none;
-    margin: 40px 0 0;
-  }
+  /* ---------- CRUMBS · after-hours bakery ---------- */
+  .t-crumbs{border-color:rgba(224,163,58,.22)}
+  .t-crumbs .card-bg{background:radial-gradient(85% 70% at 16% -5%,rgba(231,170,66,.26),transparent 55%),linear-gradient(165deg,#2D1C12,#160C07)}
+  .t-crumbs .card-cohort{color:#E8AE45}
+  .t-crumbs .card-kind{color:#C49A6B;font-family:'DM Sans'}
+  .t-crumbs .card-name{font-family:'DM Serif Display';color:#F6E7CF;font-size:42px}
+  .t-crumbs .card-participant{color:#B59777;font-family:'DM Sans'}.t-crumbs .card-participant strong{color:#F2D8A8;font-weight:500}
+  .t-crumbs .card-description{color:#D6BD9C;font-family:'DM Sans'}
+  .t-crumbs .card-rule{background:#E0A33A;width:46px}
+  .t-crumbs .card-cta{color:#EBC982;font-family:'DM Sans';font-weight:700}
+  .t-crumbs:hover{box-shadow:0 28px 58px -24px rgba(40,22,10,.95)}
+  .t-crumbs .chalk{font-family:'Caveat';font-weight:700;font-size:23px;color:#EBC982;transform:rotate(-7deg);display:inline-block;opacity:.92}
 
-  /* ----- Filter bar ----- */
-  .filters {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 12px;
-    padding: 32px 0;
-    border-bottom: 1px solid var(--line);
-    position: sticky;
-    top: 0;
-    background: var(--bg);
-    z-index: 10;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    background: rgba(245, 240, 232, 0.88);
-  }
-  .filter-label {
-    font-size: 11px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-right: 12px;
-    font-weight: 500;
-  }
-  .filter-btn {
-    padding: 8px 18px;
-    background: transparent;
-    color: var(--text-soft);
-    border: 1px solid var(--line);
-    font-family: var(--sans);
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    cursor: pointer;
-    border-radius: 999px;
-    transition: all 0.18s ease;
-  }
-  .filter-btn:hover {
-    border-color: var(--text);
-    color: var(--text);
-  }
-  .filter-btn.active {
-    background: var(--text);
-    color: var(--bg);
-    border-color: var(--text);
-  }
-  .filter-count {
-    margin-left: auto;
-    font-size: 13px;
-    color: var(--text-muted);
-    letter-spacing: 0.02em;
-  }
+  /* ---------- TROT · sunny meadow ---------- */
+  .t-trot{border-color:rgba(255,138,91,.28);border-radius:22px}
+  .t-trot .card-bg{background:linear-gradient(165deg,#C2E8F8 0%,#DFF2DD 56%,#FFFDF6 100%)}
+  .t-trot .card-cohort{color:#E07A45}
+  .t-trot .card-kind{color:#3F7C92;font-family:'Nunito';font-weight:800}
+  .t-trot .card-name{font-family:'Fredoka';font-weight:600;color:#2C5468;font-size:44px}
+  .t-trot .card-participant{color:#5B7D8A;font-family:'Nunito';font-weight:700}.t-trot .card-participant strong{color:#2C5468}
+  .t-trot .card-description{color:#4D6B75;font-family:'Nunito';font-weight:600}
+  .t-trot .card-rule{background:#FF8A5B;width:46px;height:3px;border-radius:2px}
+  .t-trot .card-cta{color:#E07A45;font-family:'Fredoka';font-weight:600;letter-spacing:.1em}
+  .t-trot:hover{box-shadow:0 28px 56px -22px rgba(110,180,205,.75)}
 
-  /* ----- Grid ----- */
-  .wall {
-    padding: 56px 0 96px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 28px;
-  }
-  @media (max-width: 980px) { .wall { grid-template-columns: repeat(2, 1fr); gap: 20px; } }
-  @media (max-width: 640px) { .wall { grid-template-columns: 1fr; padding: 40px 0 64px; } }
+  /* ---------- ZEVAR · blush + gold ---------- */
+  .t-zevar{border-color:rgba(201,162,75,.4)}
+  .t-zevar .card-bg{background:linear-gradient(170deg,#FDF2F4,#FBE7EB)}
+  .t-zevar::before{content:"";position:absolute;inset:9px;z-index:-1;border:1px solid rgba(201,162,75,.5);border-radius:6px}
+  .t-zevar .card-cohort{color:#B5223B}
+  .t-zevar .card-kind{color:#B0883A;font-family:'Mulish';font-weight:800;letter-spacing:.14em;text-transform:uppercase;font-size:10.5px}
+  .t-zevar .card-name{font-family:'Marcellus';color:#5A2230;font-size:42px}
+  .t-zevar .card-participant{color:#9C6B76;font-family:'Mulish'}.t-zevar .card-participant strong{color:#5A2230;font-weight:800}
+  .t-zevar .card-description{color:#8A5E69;font-family:'Mulish'}
+  .t-zevar .card-rule{background:linear-gradient(90deg,#C9A24B,#B5223B);width:52px;height:2px}
+  .t-zevar .card-cta{color:#B5223B;font-family:'Mulish';font-weight:800}
+  .t-zevar:hover{box-shadow:0 26px 56px -24px rgba(181,34,59,.42)}
 
-  /* ----- Card ----- */
-  .card {
-    background: var(--bg-card);
-    border: 1px solid var(--line);
-    border-radius: 4px;
-    padding: 32px 28px 28px;
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-    text-decoration: none;
-    color: inherit;
-    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-    min-height: 280px;
-    position: relative;
-    overflow: hidden;
-  }
-  .card::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: var(--accent);
-    opacity: 0;
-    transition: opacity 0.25s ease;
-  }
-  .card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 18px 48px -20px rgba(193, 125, 42, 0.32), 0 1px 0 var(--line);
-    border-color: var(--line-strong);
-  }
-  .card:hover::before { opacity: 1; }
+  /* ---------- DAILY DABBA · dashboard rail ---------- */
+  .t-daily-dabba{border-color:rgba(43,33,28,.14);padding-left:76px}
+  .t-daily-dabba .card-bg{background:#FBF7F0}
+  .t-daily-dabba .card-rail{display:flex;position:absolute;left:0;top:0;bottom:0;width:54px;background:linear-gradient(180deg,#312419,#221913);flex-direction:column;align-items:center;padding-top:22px;gap:13px;z-index:2}
+  .t-daily-dabba .card-rail .logo{width:26px;height:26px;border-radius:9px;background:linear-gradient(145deg,#E5533A,#F2A93B);box-shadow:0 4px 10px -4px rgba(229,83,58,.8)}
+  .t-daily-dabba .card-rail .nav{width:18px;height:5px;border-radius:3px;background:rgba(255,255,255,.16)}
+  .t-daily-dabba .card-rail .nav.on{background:#F2A93B;width:24px}
+  .t-daily-dabba .card-cohort{color:#E5533A}
+  .t-daily-dabba .card-kind{color:#9A7D52;font-family:'Inter';font-weight:600}
+  .t-daily-dabba .card-name{font-family:'Space Grotesk';font-weight:600;color:#2E231D;font-size:38px;letter-spacing:-.02em}
+  .t-daily-dabba .card-participant{color:#8A7D6E;font-family:'Inter'}.t-daily-dabba .card-participant strong{color:#2E231D;font-weight:600}
+  .t-daily-dabba .card-description{color:#6B5F52;font-family:'Inter'}
+  .t-daily-dabba .card-rule{background:#E5533A;width:42px}
+  .t-daily-dabba .card-cta{color:#E5533A;font-family:'Space Grotesk';font-weight:600}
+  .t-daily-dabba:hover{box-shadow:0 26px 52px -24px rgba(229,83,58,.42)}
 
-  .card-cohort {
-    font-size: 10px;
-    letter-spacing: 0.26em;
-    text-transform: uppercase;
-    color: var(--accent);
-    font-weight: 600;
-  }
-  .card-name {
-    font-family: var(--serif);
-    font-size: 32px;
-    font-weight: 500;
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    color: var(--text);
-  }
-  .card-participant {
-    font-size: 13px;
-    color: var(--text-muted);
-    letter-spacing: 0.02em;
-  }
-  .card-participant strong {
-    font-weight: 500;
-    color: var(--text-soft);
-  }
-  .card-description {
-    color: var(--text-soft);
-    font-size: 15.5px;
-    line-height: 1.55;
-    flex-grow: 1;
-  }
-  .card-rule {
-    height: 1px;
-    background: var(--accent);
-    width: 32px;
-    margin-top: 4px;
-  }
-  .card-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    color: var(--accent);
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    padding-top: 4px;
-  }
-  .card-cta svg {
-    transition: transform 0.2s ease;
-  }
-  .card:hover .card-cta svg { transform: translate(2px, -2px); }
+  /* ---------- A TREE FOR YOU · editorial paper ---------- */
+  .t-a-tree-for-you{border-color:rgba(91,140,62,.22)}
+  .t-a-tree-for-you .card-bg{background:radial-gradient(100% 70% at 100% 0,rgba(232,146,58,.14),transparent 55%),linear-gradient(165deg,#FAF6EA,#F2F0DB)}
+  .t-a-tree-for-you .card-cohort{color:#5B8C3E}
+  .t-a-tree-for-you .card-kind{color:#9A7B3A;font-family:'Hanken Grotesk';font-weight:700}
+  .t-a-tree-for-you .card-name{font-family:'Fraunces';font-weight:560;color:#2F3D22;font-size:40px;letter-spacing:-.01em}
+  .t-a-tree-for-you .card-participant{color:#7D8163;font-family:'Hanken Grotesk'}.t-a-tree-for-you .card-participant strong{color:#2F3D22;font-weight:600}
+  .t-a-tree-for-you .card-description{color:#5F6347;font-family:'Hanken Grotesk'}
+  .t-a-tree-for-you .card-rule{background:#E8923A;width:46px}
+  .t-a-tree-for-you .card-cta{color:#5B8C3E;font-family:'Hanken Grotesk';font-weight:700}
+  .t-a-tree-for-you:hover{box-shadow:0 26px 52px -24px rgba(91,140,62,.48)}
 
-  /* ----- Empty / loading / error ----- */
-  .placeholder {
-    padding: 96px 0;
-    text-align: center;
-    border: 1px dashed var(--line-strong);
-    border-radius: 4px;
-    background: var(--accent-soft);
-    margin: 56px 0 96px;
-  }
-  .placeholder-eyebrow {
-    font-size: 11px;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: var(--accent);
-    font-weight: 500;
-    margin-bottom: 24px;
-  }
-  .placeholder h2 {
-    font-family: var(--serif);
-    font-size: clamp(32px, 4.5vw, 56px);
-    font-weight: 400;
-    color: var(--text);
-    margin-bottom: 16px;
-    letter-spacing: -0.02em;
-    max-width: 18ch;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.1;
-  }
-  .placeholder p {
-    color: var(--text-soft);
-    font-family: var(--serif);
-    font-size: 18px;
-    font-style: italic;
-    max-width: 40ch;
-    margin: 0 auto;
-    line-height: 1.5;
-  }
+  /* states */
+  .loading-state,.error-state{padding:80px 32px;text-align:center;color:var(--text-muted);font-family:var(--serif);font-style:italic;font-size:18px}
+  .error-state code{font-family:'SF Mono',Menlo,monospace;background:var(--bg-soft);padding:2px 8px;border-radius:2px;font-size:14px;font-style:normal;color:var(--accent)}
+  .placeholder{padding:96px 0;text-align:center;border:1px dashed var(--line-strong);border-radius:4px;background:rgba(193,125,42,.08);margin:50px 0 96px}
+  .placeholder-eyebrow{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:20px}
+  .placeholder h2{font-family:var(--serif);font-size:clamp(30px,4.5vw,52px);font-weight:400;margin-bottom:14px;letter-spacing:-.02em}
+  .placeholder p{color:var(--text-soft);font-family:var(--serif);font-style:italic;font-size:18px;max-width:40ch;margin:0 auto}
 
-  .loading-state, .error-state {
-    padding: 80px 32px;
-    text-align: center;
-    color: var(--text-muted);
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 18px;
-  }
-  .error-state code {
-    font-family: 'SF Mono', Menlo, monospace;
-    background: var(--bg-soft);
-    padding: 2px 8px;
-    border-radius: 2px;
-    font-size: 14px;
-    font-style: normal;
-    color: var(--accent);
-  }
+  footer{padding:48px 0 64px;border-top:1px solid var(--line);text-align:center;color:var(--text-muted);font-size:14px}
+  footer a{color:var(--text-soft);text-decoration:none;border-bottom:1px solid var(--line);transition:.18s}
+  footer a:hover{color:var(--accent);border-color:var(--accent)}
+  .footer-rule{width:32px;height:1px;background:var(--accent);margin:0 auto 24px;border:none}
 
-  /* ----- Footer ----- */
-  footer {
-    padding: 48px 0 64px;
-    border-top: 1px solid var(--line);
-    text-align: center;
-    color: var(--text-muted);
-    font-size: 14px;
-    letter-spacing: 0.02em;
-  }
-  footer a {
-    color: var(--text-soft);
-    text-decoration: none;
-    border-bottom: 1px solid var(--line);
-    transition: border-color 0.18s ease, color 0.18s ease;
-  }
-  footer a:hover { color: var(--accent); border-color: var(--accent); }
-  .footer-rule {
-    width: 32px;
-    height: 1px;
-    background: var(--accent);
-    margin: 0 auto 24px;
-    border: none;
-  }
-
-  /* ----- Stagger reveal ----- */
-  .card { animation: cardIn 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) backwards; }
-  .card:nth-child(1) { animation-delay: 0.04s; }
-  .card:nth-child(2) { animation-delay: 0.10s; }
-  .card:nth-child(3) { animation-delay: 0.16s; }
-  .card:nth-child(4) { animation-delay: 0.22s; }
-  .card:nth-child(5) { animation-delay: 0.28s; }
-  .card:nth-child(6) { animation-delay: 0.34s; }
-  .card:nth-child(n+7) { animation-delay: 0.4s; }
-  @keyframes cardIn {
-    from { opacity: 0; transform: translateY(16px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  @media (max-width: 640px) {
-    .container { padding: 0 22px; }
-    .hero { padding: 40px 0 48px; }
-    .filters { padding: 22px 0; }
-  }
+  @media(max-width:640px){.container{padding:0 22px}.hero{padding:40px 0 44px}.filters{padding:22px 0}}
 </style>
 </head>
 <body>
-
 <div class="container">
-
-  <div class="brand-strip">
-    <a href="https://justbuild.orangecaterpillar.com" class="brand-mark">Just Build &middot; by Orange Caterpillar</a>
-  </div>
+  <div class="brand-strip"><a href="https://justbuild.orangecaterpillar.com" class="brand-mark">Just Build &middot; by Orange Caterpillar</a></div>
 
   <section class="hero">
     <div class="hero-eyebrow">The Showcase</div>
@@ -393,151 +192,100 @@
     <span class="filter-count" id="filter-count"></span>
   </section>
 
-  <section id="content">
-    <div class="loading-state">Loading the wall…</div>
-  </section>
+  <section id="content"><div class="loading-state">Loading the wall…</div></section>
 
-  <footer>
-    <hr class="footer-rule">
-    Built at Just Build, by <a href="https://justbuild.orangecaterpillar.com">Orange Caterpillar</a>.
-  </footer>
-
+  <footer><hr class="footer-rule">Built at Just Build, by <a href="https://justbuild.orangecaterpillar.com">Orange Caterpillar</a>.</footer>
 </div>
 
 <script>
-let DATA = null;
-let activeCohort = "all";
+let DATA=null, activeCohort="all";
 
-async function loadShowcase() {
-  try {
-    const res = await fetch("./showcase.json", { cache: "no-cache" });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    DATA = await res.json();
-    if (DATA.showcase) {
-      if (DATA.showcase.title) {
-        document.getElementById("hero-title").innerHTML = formatTitle(DATA.showcase.title);
-      }
-      if (DATA.showcase.subtitle) {
-        document.getElementById("hero-sub").textContent = DATA.showcase.subtitle;
-      }
-    }
-    buildFilters();
-    render();
-  } catch (err) {
-    document.getElementById("content").innerHTML = `
-      <div class="error-state">
-        <p>Could not load <code>showcase.json</code>.</p>
-        <p style="margin-top:12px; font-size:14px; opacity:0.7;">${escapeHtml(err.message)}</p>
-      </div>`;
+/* per-app card themes: palette & fonts live in CSS (.t-<slug>); JS supplies the kicker + corner motif */
+const THEMES={
+  "pallu":{kind:"Handloom saree house",
+    deco:`<svg width="44" height="44" viewBox="0 0 44 44" fill="none" stroke="#E8C36B" stroke-width="1.4" opacity=".85"><path d="M29 6c8 4 9 16 1 21S10 30 9 22c-.7-5 3.5-9 8-8 2.8.7 4.3 4 2.4 6.4"/><circle cx="20.5" cy="21" r="2" fill="#E8C36B" stroke="none"/></svg>`},
+  "crumbs":{kind:"After-hours bakery",
+    deco:`<span class="chalk">fresh daily</span>`},
+  "trot":{kind:"Dog walking, on demand",
+    deco:`<svg width="60" height="48" viewBox="0 0 60 48"><g stroke="#F7C843" stroke-width="2" stroke-linecap="round"><line x1="48" y1="1" x2="48" y2="5"/><line x1="59" y1="13" x2="55" y2="13"/><line x1="40" y1="5" x2="42.5" y2="7.5"/><line x1="56" y1="5" x2="53.5" y2="7.5"/></g><circle cx="48" cy="14" r="8.5" fill="#FBCB3E"/><g fill="#FF8A5B" opacity=".9"><g transform="translate(6,28)"><circle cx="6" cy="9" r="3.5"/><circle cx="1.4" cy="3" r="1.9"/><circle cx="6" cy="1" r="1.9"/><circle cx="10.6" cy="3" r="1.9"/></g><g transform="translate(26,33) scale(.78)"><circle cx="6" cy="9" r="3.5"/><circle cx="1.4" cy="3" r="1.9"/><circle cx="6" cy="1" r="1.9"/><circle cx="10.6" cy="3" r="1.9"/></g></g></svg>`},
+  "zevar":{kind:"Fine jewellery",
+    deco:`<svg width="46" height="44" viewBox="0 0 46 44" fill="#C9A24B"><path d="M31 3l2.3 7.1L40 12.4l-7 2.3L31 22l-2.3-7.3-7-2.3 7-2.3z"/><path d="M14 21l1.5 4.5L20 27l-4.5 1.6L14 33l-1.5-4.4L8 27l4.5-1.5z" opacity=".8"/></svg>`},
+  "daily-dabba":{kind:"Tiffin subscription", deco:``},
+  "a-tree-for-you":{kind:"Rent a fruit tree",
+    deco:`<svg width="80" height="22" viewBox="0 0 80 22"><circle cx="10" cy="11" r="9.5" fill="#5B8C3E"/><text x="10" y="14.5" font-family="'Hanken Grotesk',sans-serif" font-size="10" font-weight="700" fill="#fff" text-anchor="middle">1</text><line x1="20" y1="11" x2="30" y2="11" stroke="#C9BD97" stroke-width="2"/><circle cx="37" cy="11" r="6.5" fill="none" stroke="#C9BD97" stroke-width="2"/><line x1="44" y1="11" x2="54" y2="11" stroke="#C9BD97" stroke-width="2"/><circle cx="61" cy="11" r="6.5" fill="none" stroke="#C9BD97" stroke-width="2"/></svg>`}
+};
+const slugify=s=>String(s||"default").toLowerCase().replace(/[^a-z0-9-]/g,"")||"default";
+
+async function loadShowcase(){
+  try{
+    const res=await fetch("./showcase.json",{cache:"no-cache"});
+    if(!res.ok) throw new Error(`HTTP ${res.status}`);
+    DATA=await res.json();
+    buildFilters(); render();
+  }catch(err){
+    document.getElementById("content").innerHTML=`<div class="error-state"><p>Could not load <code>showcase.json</code>.</p><p style="margin-top:12px;font-size:14px;opacity:.7">${escapeHtml(err.message)}</p></div>`;
   }
 }
 
-function formatTitle(title) {
-  // Italicise the last word in the title for a small editorial flourish
-  const words = title.split(" ");
-  if (words.length < 2) return escapeHtml(title);
-  const last = words.pop();
-  return `${escapeHtml(words.join(" "))} <em>${escapeHtml(last)}</em>.`;
+function buildFilters(){
+  const builds=DATA.builds||[];
+  const cohorts=[...new Set(builds.map(b=>b.cohort_number))].sort((a,b)=>a-b);
+  const bar=document.getElementById("filters");
+  bar.querySelectorAll(".filter-btn[data-cohort]:not([data-cohort='all'])").forEach(b=>b.remove());
+  const countSpan=bar.querySelector(".filter-count");
+  cohorts.forEach(c=>{const btn=document.createElement("button");btn.className="filter-btn";btn.dataset.cohort=c;btn.textContent=`Cohort ${c}`;bar.insertBefore(btn,countSpan);});
+  bar.querySelectorAll(".filter-btn").forEach(btn=>{btn.addEventListener("click",()=>{activeCohort=btn.dataset.cohort;bar.querySelectorAll(".filter-btn").forEach(b=>b.classList.toggle("active",b===btn));render();});});
+  bar.style.display=builds.length===0?"none":"flex";
 }
 
-function buildFilters() {
-  const builds = DATA.builds || [];
-  const cohorts = [...new Set(builds.map(b => b.cohort_number))].sort((a, b) => a - b);
-  const filterBar = document.getElementById("filters");
-  // Remove existing dynamic filter buttons (keep label, "All", and count span)
-  filterBar.querySelectorAll(".filter-btn[data-cohort]:not([data-cohort='all'])").forEach(b => b.remove());
-  const countSpan = filterBar.querySelector(".filter-count");
-  cohorts.forEach(c => {
-    const btn = document.createElement("button");
-    btn.className = "filter-btn";
-    btn.dataset.cohort = c;
-    btn.textContent = `Cohort ${c}`;
-    filterBar.insertBefore(btn, countSpan);
-  });
-  filterBar.querySelectorAll(".filter-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-      activeCohort = btn.dataset.cohort;
-      filterBar.querySelectorAll(".filter-btn").forEach(b => b.classList.toggle("active", b === btn));
-      render();
-    });
-  });
-  // Hide entire filter bar if no builds
-  filterBar.style.display = (builds.length === 0) ? "none" : "flex";
-}
+function render(){
+  const builds=DATA.builds||[];
+  const filtered=activeCohort==="all"?builds:builds.filter(b=>String(b.cohort_number)===String(activeCohort));
+  const content=document.getElementById("content");
+  const countSpan=document.getElementById("filter-count");
+  countSpan.textContent=filtered.length===1?"1 build":`${filtered.length} builds`;
 
-function render() {
-  const builds = DATA.builds || [];
-  const filtered = activeCohort === "all"
-    ? builds
-    : builds.filter(b => String(b.cohort_number) === String(activeCohort));
+  if(builds.length===0){content.innerHTML=`<div class="placeholder"><div class="placeholder-eyebrow">In Progress</div><h2>Something is being built here.</h2><p>After the first demo day this wall fills with real products. Check back soon.</p></div>`;return;}
+  if(filtered.length===0){content.innerHTML=`<div class="placeholder"><div class="placeholder-eyebrow">Empty</div><h2>No builds in this cohort yet.</h2><p>Try a different cohort, or come back after the next demo day.</p></div>`;return;}
 
-  const content = document.getElementById("content");
-  const countSpan = document.getElementById("filter-count");
-
-  countSpan.textContent = filtered.length === 1
-    ? "1 build"
-    : `${filtered.length} builds`;
-
-  if (builds.length === 0) {
-    content.innerHTML = `
-      <div class="placeholder">
-        <div class="placeholder-eyebrow">In Progress</div>
-        <h2>Something is being built here.</h2>
-        <p>After the first demo day this wall fills with real products. Check back soon.</p>
-      </div>`;
-    return;
-  }
-
-  if (filtered.length === 0) {
-    content.innerHTML = `
-      <div class="placeholder">
-        <div class="placeholder-eyebrow">Empty</div>
-        <h2>No builds in this cohort yet.</h2>
-        <p>Try a different cohort, or come back after the next demo day.</p>
-      </div>`;
-    return;
-  }
-
-  // Sort by cohort descending (newest first), then by name
-  const sorted = [...filtered].sort((a, b) => {
-    if (a.cohort_number !== b.cohort_number) return b.cohort_number - a.cohort_number;
-    return (a.product_name || "").localeCompare(b.product_name || "");
+  /* newest cohort first, then explicit order, then name */
+  const sorted=[...filtered].sort((a,b)=>{
+    if(a.cohort_number!==b.cohort_number) return b.cohort_number-a.cohort_number;
+    const ao=a.order??999, bo=b.order??999;
+    if(ao!==bo) return ao-bo;
+    return (a.product_name||"").localeCompare(b.product_name||"");
   });
 
-  const cardsHtml = sorted.map(b => `
-    <a class="card" href="${escapeAttr(b.url)}" target="_blank" rel="noopener noreferrer">
-      <div class="card-cohort">Cohort ${escapeHtml(String(b.cohort_number))}${b.cohort_location ? " &middot; " + escapeHtml(b.cohort_location) : ""}</div>
-      <h3 class="card-name">${escapeHtml(b.product_name)}</h3>
-      <div class="card-participant">Built by <strong>${escapeHtml(b.participant_name)}</strong></div>
-      <p class="card-description">${escapeHtml(b.description)}</p>
-      <div class="card-rule"></div>
-      <span class="card-cta">
-        Visit product
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
-          <path d="M3.5 8.5 L8.5 3.5 M4 3.5 H8.5 V8"></path>
-        </svg>
-      </span>
-    </a>
-  `).join("");
-
-  content.innerHTML = `<div class="wall">${cardsHtml}</div>`;
+  content.innerHTML=`<div class="wall">${sorted.map(cardHtml).join("")}</div>`;
 }
 
-function escapeHtml(str) {
-  if (str === null || str === undefined) return "";
-  return String(str)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
+function cardHtml(b){
+  const slug=slugify(b.slug||b.product_name);
+  const theme=THEMES[slug]||{kind:"Just Build product",deco:""};
+  const cls=THEMES[slug]?("t-"+slug):"t-default";
+  const loc=b.cohort_location?" &middot; "+escapeHtml(b.cohort_location):"";
+  return `<a class="card ${cls}" href="${escapeAttr(b.url)}" target="_blank" rel="noopener noreferrer">
+    <div class="card-bg"></div>
+    <div class="card-rail"><div class="logo"></div><div class="nav on"></div><div class="nav"></div><div class="nav"></div><div class="nav"></div></div>
+    <div class="card-deco">${theme.deco||""}</div>
+    <div class="card-top">
+      <span class="card-cohort">Cohort ${escapeHtml(String(b.cohort_number))}${loc}</span>
+      <span class="card-kind">${escapeHtml(theme.kind)}</span>
+    </div>
+    <h3 class="card-name">${escapeHtml(b.product_name)}</h3>
+    <div class="card-participant">Built by <strong>${escapeHtml(b.participant_name)}</strong></div>
+    <p class="card-description">${escapeHtml(b.description)}</p>
+    <div class="card-rule"></div>
+    <span class="card-cta">Open ${escapeHtml(b.product_name)}
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3.5 8.5 L8.5 3.5 M4 3.5 H8.5 V8"></path></svg>
+    </span>
+  </a>`;
 }
-function escapeAttr(str) {
-  return escapeHtml(str);
-}
+
+function escapeHtml(s){if(s==null)return "";return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");}
+function escapeAttr(s){return escapeHtml(s);}
 
 loadShowcase();
 </script>
-
 </body>
 </html>

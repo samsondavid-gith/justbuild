@@ -1,44 +1,10 @@
 {
   "builds": [
-    {
-      "cohort_number": 3,
-      "cohort_location": "Bangalore",
-      "product_name": "A Tree for You",
-      "participant_name": "Vaibhav Sooryavanshi",
-      "description": "Rent a fruit tree for the season and have its harvest shipped to your door.",
-      "url": "https://justbuild.orangecaterpillar.com/showcase/a-tree-for-you.html"
-    },
-    {
-      "cohort_number": 3,
-      "cohort_location": "Bangalore",
-      "product_name": "Daily Dabba",
-      "participant_name": "Harmanpreet Kaur",
-      "description": "A home-cooked tiffin subscription where you choose every meal, delivered daily.",
-      "url": "https://justbuild.orangecaterpillar.com/showcase/daily-dabba.html"
-    },
-    {
-      "cohort_number": 3,
-      "cohort_location": "Bangalore",
-      "product_name": "Zevar",
-      "participant_name": "Smriti Mandhana",
-      "description": "Fine jewellery with a live, itemised price breakup and lifetime buyback.",
-      "url": "https://justbuild.orangecaterpillar.com/showcase/zevar.html"
-    },
-    {
-      "cohort_number": 3,
-      "cohort_location": "Bangalore",
-      "product_name": "Crumbs",
-      "participant_name": "Jemima Rodrigues",
-      "description": "A neighbourhood Indian bakery for fresh daily bakes and made-to-order cakes.",
-      "url": "https://justbuild.orangecaterpillar.com/showcase/crumbs.html"
-    },
-    {
-      "cohort_number": 3,
-      "cohort_location": "Bangalore",
-      "product_name": "Pallu",
-      "participant_name": "Shafali Verma",
-      "description": "A handloom saree boutique where you choose the weave, drape and blouse tailoring with a live price.",
-      "url": "https://justbuild.orangecaterpillar.com/showcase/pallu.html"
-    }
+    { "cohort_number": 3, "cohort_location": "Bangalore", "product_name": "Pallu", "slug": "pallu", "order": 1, "participant_name": "Shafali Verma", "description": "A handloom saree house where you choose the weave, the drape and the blouse tailoring \u2014 with a live, itemised price.", "url": "https://justbuild.orangecaterpillar.com/showcase/pallu.html" },
+    { "cohort_number": 3, "cohort_location": "Bangalore", "product_name": "Crumbs", "slug": "crumbs", "order": 2, "participant_name": "Jemima Rodrigues", "description": "A neighbourhood Indian bakery for fresh daily bakes and made-to-order cakes, built around a running order pad.", "url": "https://justbuild.orangecaterpillar.com/showcase/crumbs.html" },
+    { "cohort_number": 3, "cohort_location": "Bangalore", "product_name": "Trot", "slug": "trot", "order": 3, "participant_name": "Richa Ghosh", "description": "On-demand dog walking \u2014 book a vetted walker, follow every walk live, and get a photo report when they're home.", "url": "https://justbuild.orangecaterpillar.com/showcase/trot.html" },
+    { "cohort_number": 3, "cohort_location": "Bangalore", "product_name": "Zevar", "slug": "zevar", "order": 4, "participant_name": "Smriti Mandhana", "description": "Fine jewellery with a live, itemised price breakup, BIS & IGI certification and lifetime buyback.", "url": "https://justbuild.orangecaterpillar.com/showcase/zevar.html" },
+    { "cohort_number": 3, "cohort_location": "Bangalore", "product_name": "Daily Dabba", "slug": "daily-dabba", "order": 5, "participant_name": "Harmanpreet Kaur", "description": "A home-cooked tiffin subscription where you choose every meal, managed from a clean daily dashboard.", "url": "https://justbuild.orangecaterpillar.com/showcase/daily-dabba.html" },
+    { "cohort_number": 3, "cohort_location": "Bangalore", "product_name": "A Tree for You", "slug": "a-tree-for-you", "order": 6, "participant_name": "Vaibhav Sooryavanshi", "description": "Rent a fruit tree for the season and have its harvest picked, packed and shipped to your door.", "url": "https://justbuild.orangecaterpillar.com/showcase/a-tree-for-you.html" }
   ]
 }

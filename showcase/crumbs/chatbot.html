@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crumbs · Ask us</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500..600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--ink:#2E1B0E;--soft:#6E5640;--muted:#9E8770;--cream:#FBF1E0;--cream2:#F4E3C8;--paper:#FFFDF7;--line:#E8D6BC;
+ --caramel:#D98A2B;--caramel2:#B26C16;--amber:#F0B23E;}
+body{font-family:'Hanken Grotesk',sans-serif;background:radial-gradient(120% 120% at 50% 0%,#F6E6CB,#EFD9B4);min-height:100vh;
+ display:flex;align-items:center;justify-content:center;padding:24px;color:var(--ink)}
+.panel{width:100%;max-width:440px;height:min(660px,92vh);background:var(--paper);border-radius:24px;overflow:hidden;
+ display:flex;flex-direction:column;box-shadow:0 30px 70px -28px rgba(46,27,14,.5);border:1px solid var(--line)}
+.top{background:linear-gradient(135deg,#2C1B0D,#171005);padding:20px 22px;display:flex;align-items:center;gap:13px;color:#fff}
+.avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--caramel),var(--amber));display:grid;place-items:center;flex:none;
+ font-family:'Fraunces';font-weight:600;font-size:20px;color:#231}
+.top h1{font-family:'Fraunces';font-weight:600;font-size:19px}
+.top .st{font-size:12.5px;color:#E8D2AD;display:flex;align-items:center;gap:6px;margin-top:2px}
+.top .st::before{content:"";width:7px;height:7px;border-radius:50%;background:#7ED08A;display:inline-block}
+.thread{flex:1;overflow-y:auto;padding:20px 18px;display:flex;flex-direction:column;gap:12px;background:
+ radial-gradient(rgba(217,138,43,.06) 1px,transparent 1px);background-size:20px 20px}
+.msg{max-width:84%;padding:12px 15px;border-radius:16px;font-size:14.5px;line-height:1.5;animation:pop .26s ease}
+@keyframes pop{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.bot{align-self:flex-start;background:var(--cream2);color:var(--ink);border-bottom-left-radius:5px}
+.me{align-self:flex-end;background:linear-gradient(135deg,var(--caramel),var(--caramel2));color:#fff;border-bottom-right-radius:5px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding:0 18px 12px}
+.chip{border:1.5px solid var(--line);background:var(--paper);color:var(--caramel2);font-weight:700;font-size:12.5px;
+ padding:8px 13px;border-radius:18px;cursor:pointer;transition:.15s;font-family:inherit}
+.chip:hover{border-color:var(--caramel);background:#FBEAD2}
+.bar{display:flex;gap:9px;padding:14px 16px;border-top:1px solid var(--line);background:var(--paper)}
+.bar input{flex:1;border:1.5px solid var(--line);border-radius:22px;padding:12px 16px;font-size:14.5px;font-family:inherit;outline:none;color:var(--ink)}
+.bar input:focus{border-color:var(--caramel)}
+.bar button{border:none;background:linear-gradient(135deg,var(--caramel),var(--caramel2));color:#fff;font-weight:800;
+ border-radius:22px;padding:0 20px;cursor:pointer;font-family:inherit;font-size:14px}
+.foot{text-align:center;font-size:12px;color:var(--muted);padding:0 0 12px}
+.foot a{color:var(--caramel2);font-weight:700;text-decoration:none}
+</style></head><body>
+<div class="panel">
+ <div class="top"><div class="avatar">C</div><div><h1>Crumbs</h1><div class="st">Ask about our bakes</div></div></div>
+ <div class="thread" id="thread"></div>
+ <div class="chips" id="chips"></div>
+ <div class="bar"><input id="inp" placeholder="Ask about eggless, cakes, delivery..." autocomplete="off"><button id="send">Send</button></div>
+ <div class="foot">Want to order? <a href="app.html">See the menu</a></div>
+</div>
+<script>
+var FAQ=[{"q": ["egg", "eggless", "veg"], "a": "Yes, we make eggless bakes. Most of our cakes, breads and treats can be made eggless. Just choose eggless in the order pad when you order."}, {"q": ["notice", "how long", "advance", "when", "custom cake", "order ahead", "time"], "a": "For a custom cake, a day or two is ideal. Bigger or tiered cakes need a little more. The order pad always shows the soonest date we can bake for you."}, {"q": ["deliver", "delivery", "pickup", "pick up", "collect", "area"], "a": "Yes, nearby. You can collect it warm from the bakery, or we drop it close by the same day. Check if your area is covered in the order pad."}, {"q": ["bake", "daily", "fresh", "menu", "what do you", "today", "bread"], "a": "Fresh every morning: breads, croissants, cookies and cupcakes, plus celebration cakes made to order. The day's menu changes, so see what is fresh right now in the order pad."}, {"q": ["pay", "payment", "upi", "cash", "card"], "a": "Pay on pickup or delivery, by cash or UPI. Simple, with no app store and no gateway needed."}, {"q": ["where", "location", "address", "near"], "a": "Crumbs is a small neighbourhood bakery in Bengaluru. Pop your area into the order pad to see pickup and delivery options near you."}, {"q": ["price", "cost", "how much", "rate"], "a": "Daily bakes start small, and cakes are priced by size and design. The live price for every item is in the order pad, no guessing."}], CHIPS=["Do you make eggless cakes?", "How much notice for a custom cake?", "Do you deliver?", "What is fresh today?", "How do I pay?"], GREET="Hi, welcome to Crumbs. Ask me about our bakes, eggless cakes, custom orders, delivery or how to pay. Or tap a question below.", FALL="I am not sure about that one. The quickest way is to open the order pad and see today's bakes, or ask me about eggless cakes, custom orders, delivery or payment.";
+var thread=document.getElementById("thread"), chips=document.getElementById("chips"), inp=document.getElementById("inp");
+function add(t,who){var d=document.createElement("div");d.className="msg "+who;d.textContent=t;thread.appendChild(d);thread.scrollTop=thread.scrollHeight;}
+function answer(q){
+ var s=q.toLowerCase(), best=null, score=0;
+ for(var i=0;i<FAQ.length;i++){var n=0;for(var j=0;j<FAQ[i].q.length;j++){if(s.indexOf(FAQ[i].q[j])>-1)n++;}if(n>score){score=n;best=FAQ[i];}}
+ return score>0?best.a:FALL;
+}
+function ask(q){add(q,"me");setTimeout(function(){add(answer(q),"bot");},260);}
+document.getElementById("send").addEventListener("click",function(){var v=inp.value.trim();if(v){ask(v);inp.value="";}});
+inp.addEventListener("keydown",function(e){if(e.key==="Enter"){var v=inp.value.trim();if(v){ask(v);inp.value="";}}});
+CHIPS.forEach(function(c){var b=document.createElement("button");b.className="chip";b.textContent=c;b.addEventListener("click",function(){ask(c);});chips.appendChild(b);});
+add(GREET,"bot");
+</script></body></html>

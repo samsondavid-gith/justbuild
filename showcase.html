@@ -225,7 +225,7 @@
   <section class="hero">
     <div class="hero-eyebrow">The Showcase</div>
     <h1 id="hero-title">What Just Build participants <em>built</em>.</h1>
-    <p class="hero-sub" id="hero-sub">Real products. Real people. Built in two days.</p>
+    <p class="hero-sub" id="hero-sub">Real products, built by students in our cohorts.</p>
     <hr class="hero-rule">
   </section>
 
@@ -322,6 +322,8 @@ function cardHtml(b){
   if(b.website) have.push("Website");
   if(b.brochure) have.push("Brochure");
   if(b.pitch) have.push("Pitch");
+  if(b.chatbot) have.push("Chatbot");
+  if(b.agent) have.push("Agent");
   const pills=have.map(p=>`<span>${p}</span>`).join("");
   return `<div class="card ${cls}" role="button" tabindex="0" data-slug="${escapeAttr(slug)}" style="--taccent:${accent}" aria-label="Open the ${escapeAttr(b.product_name)} folder">
     <div class="card-bg"></div>
@@ -355,7 +357,11 @@ const ART_TYPES=[
   {key:"brochure",label:"Brochure",      verb:"Open PDF",      kind:"link",
     icon:`<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M5 2.5h6l4 4V17a.5.5 0 0 1-.5.5h-9A.5.5 0 0 1 5 17z"/><path d="M11 2.5V6.5h4M7.5 11h5M7.5 13.5h5"/></svg>`},
   {key:"pitch",   label:"Pitch deck",    verb:"Open PDF",      kind:"link",
-    icon:`<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><rect x="3" y="3.5" width="14" height="9" rx="1.5"/><path d="M10 12.5v3M7.5 17.5l2.5-2 2.5 2"/><path d="M6.5 9.5l2-2 2 1.5 3-3.5"/></svg>`}
+    icon:`<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><rect x="3" y="3.5" width="14" height="9" rx="1.5"/><path d="M10 12.5v3M7.5 17.5l2.5-2 2.5 2"/><path d="M6.5 9.5l2-2 2 1.5 3-3.5"/></svg>`},
+  {key:"chatbot", label:"Chatbot",       verb:"Open chat",     kind:"link",
+    icon:`<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><rect x="3" y="4" width="14" height="10" rx="2.5"/><path d="M7 14v3l3.5-3"/><circle cx="7.5" cy="9" r=".7" fill="currentColor" stroke="none"/><circle cx="10" cy="9" r=".7" fill="currentColor" stroke="none"/><circle cx="12.5" cy="9" r=".7" fill="currentColor" stroke="none"/></svg>`},
+  {key:"agent",   label:"AI agent",      verb:"See the agent", kind:"link",
+    icon:`<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><circle cx="5" cy="6" r="2"/><circle cx="15" cy="6" r="2"/><circle cx="10" cy="14.5" r="2"/><path d="M7 6h6M6.3 7.7 9 12.6M13.7 7.7 11 12.6"/></svg>`}
 ];
 
 function openFolder(slug){

@@ -190,6 +190,8 @@
     entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
   },{threshold:.14});
   document.querySelectorAll(".reveal").forEach(function(el){ io.observe(el); });
+  var nav=document.querySelector(".nav");
+  if(nav){ var onScroll=function(){ if(window.scrollY>40){ nav.classList.add("scrolled"); } else { nav.classList.remove("scrolled"); } }; onScroll(); window.addEventListener("scroll",onScroll,{passive:true}); }
   var burger=document.getElementById("burger");
   if(burger){ burger.addEventListener("click",function(){ location.href="app.html"; }); }
 </script>

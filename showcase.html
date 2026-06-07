@@ -319,6 +319,8 @@ function cardHtml(b){
   const have=[];
   if(b.url) have.push("App");
   if(b.video) have.push("Video");
+  if(b.website) have.push("Website");
+  if(b.brochure) have.push("Brochure");
   const pills=have.map(p=>`<span>${p}</span>`).join("");
   return `<div class="card ${cls}" role="button" tabindex="0" data-slug="${escapeAttr(slug)}" style="--taccent:${accent}" aria-label="Open the ${escapeAttr(b.product_name)} folder">
     <div class="card-bg"></div>

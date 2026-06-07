@@ -167,6 +167,8 @@
     entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
   },{threshold:.16});
   document.querySelectorAll(".reveal").forEach(function(el){ io.observe(el); });
+  var nav=document.querySelector(".nav");
+  if(nav){ var onScroll=function(){ if(window.scrollY>40){ nav.classList.add("scrolled"); } else { nav.classList.remove("scrolled"); } }; onScroll(); window.addEventListener("scroll",onScroll,{passive:true}); }
 
   // mobile menu: jump to the app menu since nav links collapse
   var burger=document.getElementById("burger");

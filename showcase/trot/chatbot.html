@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trot . Ask us</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--cream:#FFF7EF;--paper:#FFFFFF;--coral:#E07A45;--coral2:#F2924E;--coral-d:#C85F2E;--grass:#3FA35A;--sky:#5BB8D4;--sun:#F4B83E;
+ --ink:#2B2018;--soft:#6E5E50;--mut:#9A8A78;--line:rgba(43,32,24,.10);}
+body{font-family:'Nunito',sans-serif;background:linear-gradient(180deg,#EAF3F8,#FFF7EF 70%);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;color:var(--ink);font-weight:600}
+.panel{width:100%;max-width:440px;height:min(660px,92vh);background:var(--cream);border:1px solid var(--line);border-radius:26px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 30px 70px -28px rgba(43,32,24,.5)}
+.top{padding:18px 22px;display:flex;align-items:center;gap:13px;background:var(--coral);color:#fff}
+.avatar{width:44px;height:44px;border-radius:50%;background:#fff;display:grid;place-items:center;flex:none}
+.avatar svg{width:26px;height:26px}
+.top h1{font-family:'Fredoka';font-weight:600;font-size:21px}
+.top .st{font-size:12px;font-weight:700;color:rgba(255,255,255,.85);margin-top:2px}
+.thread{flex:1;overflow-y:auto;padding:20px 18px;display:flex;flex-direction:column;gap:12px}
+.msg{max-width:84%;padding:12px 15px;border-radius:16px;font-size:14.5px;line-height:1.55;animation:pop .26s ease}
+@keyframes pop{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.bot{align-self:flex-start;background:#fff;color:var(--ink);border:1px solid var(--line);border-bottom-left-radius:5px}
+.me{align-self:flex-end;background:var(--coral);color:#fff;border-bottom-right-radius:5px;font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding:0 18px 12px}
+.chip{border:1.5px solid var(--line);background:#fff;color:var(--coral-d);font-size:12.5px;padding:8px 14px;border-radius:999px;cursor:pointer;transition:.15s;font-family:'Fredoka';font-weight:500}
+.chip:hover{background:var(--coral);color:#fff;border-color:var(--coral)}
+.bar{display:flex;gap:9px;padding:14px 16px;border-top:1px solid var(--line);background:#fff}
+.bar input{flex:1;background:var(--cream);border:1.5px solid var(--line);border-radius:999px;padding:12px 16px;font-size:14px;font-family:inherit;outline:none;color:var(--ink);font-weight:600}
+.bar input::placeholder{color:var(--mut)} .bar input:focus{border-color:var(--coral)}
+.bar button{border:none;background:var(--coral);color:#fff;font-family:'Fredoka';font-weight:600;border-radius:999px;padding:0 22px;cursor:pointer;font-size:14px}
+.foot{text-align:center;font-size:13px;color:var(--mut);padding:0 0 13px;font-weight:700}
+.foot a{color:var(--coral-d);text-decoration:none;font-weight:800}
+</style></head><body>
+<div class="panel">
+ <div class="top"><div class="avatar"><svg viewBox="0 0 48 48" fill="#E07A45"><ellipse cx="24" cy="32" rx="11" ry="9"/><circle cx="12" cy="20" r="4.5"/><circle cx="20" cy="14" r="4.5"/><circle cx="28" cy="14" r="4.5"/><circle cx="36" cy="20" r="4.5"/></svg></div><div><h1>Trot</h1><div class="st">Here to help</div></div></div>
+ <div class="thread" id="thread"></div>
+ <div class="chips" id="chips"></div>
+ <div class="bar"><input id="inp" placeholder="Ask about walkers, tracking, booking..." autocomplete="off"><button id="send">Send</button></div>
+ <div class="foot">Ready for a walk? <a href="app.html">Book a walk</a></div>
+</div>
+<script>
+var FAQ=[{"q": ["vet", "vetted", "background", "checked", "safe", "trust", "who", "stranger", "verified", "trained"], "a": "Every Trot walker is ID verified and background checked before they take a single leash, trained in safe dog handling and basic first aid, and rated by real pet parents. You can also save a favourite walker and request them every time."}, {"q": ["track", "live", "map", "gps", "follow", "where", "watch", "location"], "a": "Yes. Once the walk starts you can follow the whole route on a live map, with distance and walk time updating in real time, plus a ping when the walk starts and ends."}, {"q": ["photo", "report", "report card", "picture", "proof", "after", "note"], "a": "When your dog is home safe you get a report card: a fresh photo, the route they took, the distance, the walk time, whether they did their business, and a friendly note from the walker."}, {"q": ["book", "booking", "how do i", "order", "time", "schedule", "on demand", "demand"], "a": "Open the app, pick a time, and choose a vetted walker near you. Need one right now? Book on demand and a walker is on the way. It takes a few taps."}, {"q": ["insure", "insured", "insurance", "liability", "hurt", "injury"], "a": "Every Trot walk is insured. And if anything ever feels off during a walk, our team is one tap away."}, {"q": ["same walker", "favourite", "favorite", "regular", "again"], "a": "Yes. If you love a walker, save them as a favourite and request the same person for every walk, so your dog sees a familiar face."}, {"q": ["cost", "price", "how much", "fee", "charge", "pay", "plan", "pack", "subscription"], "a": "You pay a simple fee per walk, and there are walk packs and daily plans for regulars. The exact price for your area shows in the app before you confirm."}, {"q": ["area", "areas", "where do you", "location", "city", "neighbourhood", "neighborhood", "bengaluru", "bangalore"], "a": "Trot is starting in select Bengaluru neighbourhoods as a pilot, and growing block by block. Open the app to see if your area is covered yet."}], CHIPS=["Are walkers vetted?", "Can I track the walk?", "What is a photo report?", "How do I book?", "Is every walk insured?"], GREET="Hi! I am the Trot helper. Ask me about our vetted walkers, live tracking, photo reports, booking or insured walks.", FALL="I can help with vetted walkers, live tracking, photo reports, booking, insurance or which areas we cover. To book a walk, tap the button below.";
+var thread=document.getElementById("thread"), chips=document.getElementById("chips"), inp=document.getElementById("inp");
+function add(t,who){var d=document.createElement("div");d.className="msg "+who;d.textContent=t;thread.appendChild(d);thread.scrollTop=thread.scrollHeight;}
+function answer(q){var s=q.toLowerCase(),best=null,sc=0;
+ for(var i=0;i<FAQ.length;i++){var n=0;for(var j=0;j<FAQ[i].q.length;j++){if(s.indexOf(FAQ[i].q[j])>-1)n++;}if(n>sc){sc=n;best=FAQ[i];}}
+ return sc>0?best.a:FALL;}
+function ask(q){add(q,"me");setTimeout(function(){add(answer(q),"bot");},260);}
+document.getElementById("send").addEventListener("click",function(){var v=inp.value.trim();if(v){ask(v);inp.value="";}});
+inp.addEventListener("keydown",function(e){if(e.key==="Enter"){var v=inp.value.trim();if(v){ask(v);inp.value="";}}});
+CHIPS.forEach(function(c){var b=document.createElement("button");b.className="chip";b.textContent=c;b.addEventListener("click",function(){ask(c);});chips.appendChild(b);});
+add(GREET,"bot");
+</script></body></html>

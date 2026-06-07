@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Just Build — Showcase</title>
+<title>Just Build · Showcase</title>
 <meta name="description" content="Real products built by Just Build participants. Live URLs. Two days. By Orange Caterpillar.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -159,6 +159,49 @@
   .t-a-tree-for-you .card-cta{color:#5B8C3E;font-family:'Hanken Grotesk';font-weight:700}
   .t-a-tree-for-you:hover{box-shadow:0 26px 52px -24px rgba(91,140,62,.48)}
 
+  /* ---------- folder card + artefact pills ---------- */
+  .card[role="button"]{cursor:pointer;-webkit-tap-highlight-color:transparent;text-align:left;font:inherit;width:100%}
+  .card[role="button"]:focus-visible{outline:2px solid var(--taccent,var(--accent));outline-offset:3px}
+  .card-arte{display:flex;flex-wrap:wrap;gap:7px;margin-top:-2px}
+  .card-arte span{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:999px;border:1px solid var(--taccent,var(--accent));color:var(--taccent,var(--accent));opacity:.9}
+  .card-cta svg{transition:transform .2s}
+  .card:hover .card-cta svg{transform:translateY(-2px)}
+
+  /* ---------- folder modal ---------- */
+  .modal-overlay{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:24px;
+    background:rgba(26,26,26,.55);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px)}
+  .modal-overlay.open{display:flex;animation:overlayIn .2s ease}
+  @keyframes overlayIn{from{opacity:0}to{opacity:1}}
+  .modal-panel{--taccent:var(--accent);position:relative;width:100%;max-width:620px;max-height:88vh;overflow:auto;
+    background:#FBF7EF;border:1px solid var(--line);border-radius:16px;box-shadow:0 40px 90px -30px rgba(0,0,0,.65);
+    animation:panelIn .26s cubic-bezier(.2,.7,.2,1)}
+  @keyframes panelIn{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:none}}
+  .modal-panel::before{content:"";display:block;height:6px;background:var(--taccent);border-radius:16px 16px 0 0}
+  .modal-close{position:absolute;top:14px;right:16px;width:34px;height:34px;border:none;border-radius:50%;
+    background:rgba(26,26,26,.06);color:var(--text-soft);font-size:22px;line-height:1;cursor:pointer;transition:.18s;z-index:2}
+  .modal-close:hover{background:rgba(26,26,26,.13);color:var(--text)}
+  .modal-inner{padding:34px 34px 32px}
+  .modal-kind{font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--taccent);margin-bottom:8px}
+  .modal-name{font-family:var(--serif);font-size:clamp(28px,4vw,36px);font-weight:300;letter-spacing:-.02em;line-height:1.05;margin-bottom:12px}
+  .modal-desc{font-size:15px;color:var(--text-soft);line-height:1.55;margin-bottom:26px}
+  .arte-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .arte{display:flex;align-items:center;gap:14px;padding:15px 16px;border:1px solid var(--line);border-radius:11px;background:#fff;
+    font-family:var(--sans);text-align:left;width:100%}
+  button.arte{cursor:pointer;transition:transform .18s,box-shadow .18s,border-color .18s}
+  button.arte:hover{border-color:var(--taccent);transform:translateY(-2px);box-shadow:0 14px 28px -18px rgba(0,0,0,.5)}
+  button.arte:focus-visible{outline:2px solid var(--taccent);outline-offset:2px}
+  .arte-icon{width:40px;height:40px;flex:none;display:flex;align-items:center;justify-content:center;border-radius:10px;background:rgba(26,26,26,.05);color:var(--taccent)}
+  .arte-text{display:flex;flex-direction:column;gap:2px;min-width:0}
+  .arte-label{font-weight:700;font-size:14px;color:var(--text)}
+  .arte-status{font-size:11.5px;letter-spacing:.04em;color:var(--text-muted)}
+  .arte.is-soon{opacity:.5}
+  .arte.is-soon .arte-icon{color:var(--text-muted)}
+  .modal-back{border:none;background:none;color:var(--taccent);font-family:var(--sans);font-size:13px;font-weight:700;
+    letter-spacing:.04em;cursor:pointer;padding:0;margin-bottom:14px}
+  .modal-back:hover{opacity:.7}
+  .modal-video{width:100%;border-radius:11px;background:#000;max-height:62vh;display:block}
+  @media(max-width:560px){.arte-grid{grid-template-columns:1fr}.modal-inner{padding:28px 22px 26px}}
+
   /* states */
   .loading-state,.error-state{padding:80px 32px;text-align:center;color:var(--text-muted);font-family:var(--serif);font-style:italic;font-size:18px}
   .error-state code{font-family:'SF Mono',Menlo,monospace;background:var(--bg-soft);padding:2px 8px;border-radius:2px;font-size:14px;font-style:normal;color:var(--accent)}
@@ -202,16 +245,16 @@ let DATA=null, activeCohort="all";
 
 /* per-app card themes: palette & fonts live in CSS (.t-<slug>); JS supplies the kicker + corner motif */
 const THEMES={
-  "pallu":{kind:"Handloom saree house",
+  "pallu":{kind:"Handloom saree house", accent:"#C79A2E",
     deco:`<svg width="44" height="44" viewBox="0 0 44 44" fill="none" stroke="#E8C36B" stroke-width="1.4" opacity=".85"><path d="M29 6c8 4 9 16 1 21S10 30 9 22c-.7-5 3.5-9 8-8 2.8.7 4.3 4 2.4 6.4"/><circle cx="20.5" cy="21" r="2" fill="#E8C36B" stroke="none"/></svg>`},
-  "crumbs":{kind:"After-hours bakery",
+  "crumbs":{kind:"After-hours bakery", accent:"#E0A33A",
     deco:`<span class="chalk">fresh daily</span>`},
-  "trot":{kind:"Dog walking, on demand",
+  "trot":{kind:"Dog walking, on demand", accent:"#E07A45",
     deco:`<svg width="60" height="48" viewBox="0 0 60 48"><g stroke="#F7C843" stroke-width="2" stroke-linecap="round"><line x1="48" y1="1" x2="48" y2="5"/><line x1="59" y1="13" x2="55" y2="13"/><line x1="40" y1="5" x2="42.5" y2="7.5"/><line x1="56" y1="5" x2="53.5" y2="7.5"/></g><circle cx="48" cy="14" r="8.5" fill="#FBCB3E"/><g fill="#FF8A5B" opacity=".9"><g transform="translate(6,28)"><circle cx="6" cy="9" r="3.5"/><circle cx="1.4" cy="3" r="1.9"/><circle cx="6" cy="1" r="1.9"/><circle cx="10.6" cy="3" r="1.9"/></g><g transform="translate(26,33) scale(.78)"><circle cx="6" cy="9" r="3.5"/><circle cx="1.4" cy="3" r="1.9"/><circle cx="6" cy="1" r="1.9"/><circle cx="10.6" cy="3" r="1.9"/></g></g></svg>`},
-  "zevar":{kind:"Fine jewellery",
+  "zevar":{kind:"Fine jewellery", accent:"#B5223B",
     deco:`<svg width="46" height="44" viewBox="0 0 46 44" fill="#C9A24B"><path d="M31 3l2.3 7.1L40 12.4l-7 2.3L31 22l-2.3-7.3-7-2.3 7-2.3z"/><path d="M14 21l1.5 4.5L20 27l-4.5 1.6L14 33l-1.5-4.4L8 27l4.5-1.5z" opacity=".8"/></svg>`},
-  "daily-dabba":{kind:"Tiffin subscription", deco:``},
-  "a-tree-for-you":{kind:"Rent a fruit tree",
+  "daily-dabba":{kind:"Tiffin subscription", accent:"#E5533A", deco:``},
+  "a-tree-for-you":{kind:"Rent a fruit tree", accent:"#5B8C3E",
     deco:`<svg width="80" height="22" viewBox="0 0 80 22"><circle cx="10" cy="11" r="9.5" fill="#5B8C3E"/><text x="10" y="14.5" font-family="'Hanken Grotesk',sans-serif" font-size="10" font-weight="700" fill="#fff" text-anchor="middle">1</text><line x1="20" y1="11" x2="30" y2="11" stroke="#C9BD97" stroke-width="2"/><circle cx="37" cy="11" r="6.5" fill="none" stroke="#C9BD97" stroke-width="2"/><line x1="44" y1="11" x2="54" y2="11" stroke="#C9BD97" stroke-width="2"/><circle cx="61" cy="11" r="6.5" fill="none" stroke="#C9BD97" stroke-width="2"/></svg>`}
 };
 const slugify=s=>String(s||"default").toLowerCase().replace(/[^a-z0-9-]/g,"")||"default";
@@ -261,10 +304,16 @@ function render(){
 
 function cardHtml(b){
   const slug=slugify(b.slug||b.product_name);
-  const theme=THEMES[slug]||{kind:"Just Build product",deco:""};
+  const theme=THEMES[slug]||{kind:"Just Build product",deco:"",accent:"var(--accent)"};
   const cls=THEMES[slug]?("t-"+slug):"t-default";
+  const accent=theme.accent||"var(--accent)";
   const loc=b.cohort_location?" &middot; "+escapeHtml(b.cohort_location):"";
-  return `<a class="card ${cls}" href="${escapeAttr(b.url)}" target="_blank" rel="noopener noreferrer">
+  /* preview the artefacts that actually exist (app always, video where present) */
+  const have=[];
+  if(b.url) have.push("App");
+  if(b.video) have.push("Video");
+  const pills=have.map(p=>`<span>${p}</span>`).join("");
+  return `<div class="card ${cls}" role="button" tabindex="0" data-slug="${escapeAttr(slug)}" style="--taccent:${accent}" aria-label="Open the ${escapeAttr(b.product_name)} folder">
     <div class="card-bg"></div>
     <div class="card-rail"><div class="logo"></div><div class="nav on"></div><div class="nav"></div><div class="nav"></div><div class="nav"></div></div>
     <div class="card-deco">${theme.deco||""}</div>
@@ -273,19 +322,108 @@ function cardHtml(b){
       <span class="card-kind">${escapeHtml(theme.kind)}</span>
     </div>
     <h3 class="card-name">${escapeHtml(b.product_name)}</h3>
-    <div class="card-participant">Built by <strong>${escapeHtml(b.participant_name)}</strong></div>
+    <div class="card-arte">${pills}</div>
     <p class="card-description">${escapeHtml(b.description)}</p>
     <div class="card-rule"></div>
-    <span class="card-cta">Open ${escapeHtml(b.product_name)}
-      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3.5 8.5 L8.5 3.5 M4 3.5 H8.5 V8"></path></svg>
+    <span class="card-cta">Open folder
+      <svg width="14" height="13" viewBox="0 0 14 13" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><path d="M1 3.2c0-.7.5-1.2 1.2-1.2h2.7l1.3 1.5h4.6c.7 0 1.2.5 1.2 1.2V10c0 .7-.5 1.2-1.2 1.2H2.2C1.5 11.2 1 10.7 1 10z"/></svg>
     </span>
-  </a>`;
+  </div>`;
 }
 
 function escapeHtml(s){if(s==null)return "";return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");}
 function escapeAttr(s){return escapeHtml(s);}
 
+/* ---------- Folder modal ---------- */
+const ART_TYPES=[
+  {key:"url",     label:"App",           verb:"Open live app", kind:"link",
+    icon:`<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><rect x="2.5" y="3" width="15" height="14" rx="2"/><path d="M2.5 7h15"/><circle cx="5" cy="5" r=".6" fill="currentColor"/></svg>`},
+  {key:"video",   label:"Product Video", verb:"Watch",         kind:"video",
+    icon:`<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><circle cx="10" cy="10" r="7.5"/><path d="M8.2 7.2 13 10l-4.8 2.8z" fill="currentColor" stroke="none"/></svg>`},
+  {key:"website", label:"Website",       verb:"Visit site",    kind:"link",
+    icon:`<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><circle cx="10" cy="10" r="7.5"/><path d="M2.5 10h15M10 2.5c2.2 2 2.2 13 0 15M10 2.5c-2.2 2-2.2 13 0 15"/></svg>`},
+  {key:"brochure",label:"Brochure",      verb:"Open PDF",      kind:"link",
+    icon:`<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M5 2.5h6l4 4V17a.5.5 0 0 1-.5.5h-9A.5.5 0 0 1 5 17z"/><path d="M11 2.5V6.5h4M7.5 11h5M7.5 13.5h5"/></svg>`}
+];
+
+function openFolder(slug){
+  const b=(DATA&&DATA.builds||[]).find(x=>slugify(x.slug||x.product_name)===slug);
+  if(!b) return;
+  const accent=(THEMES[slug]||{}).accent||"var(--accent)";
+  document.querySelector("#folder-modal .modal-panel").style.setProperty("--taccent",accent);
+  renderFolderBody(b,slug);
+  const m=document.getElementById("folder-modal");
+  m.classList.add("open"); m.setAttribute("aria-hidden","false");
+  const c=document.getElementById("modal-close"); if(c) c.focus();
+}
+
+function renderFolderBody(b,slug){
+  const kind=(THEMES[slug]||{}).kind||"Just Build product";
+  const tiles=ART_TYPES.map(t=>{
+    const val=b[t.key];
+    if(val){
+      return `<button class="arte is-live" data-action="${t.kind}" data-url="${escapeAttr(val)}">
+        <span class="arte-icon">${t.icon}</span>
+        <span class="arte-text"><span class="arte-label">${t.label}</span><span class="arte-status">${t.verb}</span></span>
+      </button>`;
+    }
+    return `<div class="arte is-soon" aria-disabled="true">
+      <span class="arte-icon">${t.icon}</span>
+      <span class="arte-text"><span class="arte-label">${t.label}</span><span class="arte-status">Coming soon</span></span>
+    </div>`;
+  }).join("");
+  document.getElementById("modal-body").innerHTML=`<div class="modal-inner">
+    <div class="modal-kind">${escapeHtml(kind)}</div>
+    <h2 class="modal-name" id="modal-name">${escapeHtml(b.product_name)}</h2>
+    <p class="modal-desc">${escapeHtml(b.description)}</p>
+    <div class="arte-grid">${tiles}</div>
+  </div>`;
+  document.querySelectorAll("#modal-body .arte.is-live").forEach(el=>{
+    el.addEventListener("click",()=>{
+      if(el.dataset.action==="video") showVideo(b,slug,el.dataset.url);
+      else window.open(el.dataset.url,"_blank","noopener");
+    });
+  });
+}
+
+function showVideo(b,slug,url){
+  const kind=(THEMES[slug]||{}).kind||"";
+  document.getElementById("modal-body").innerHTML=`<div class="modal-inner">
+    <button class="modal-back" id="modal-back">&#8249; Back to folder</button>
+    <div class="modal-kind">${escapeHtml(kind)}</div>
+    <h2 class="modal-name">${escapeHtml(b.product_name)} &middot; Product video</h2>
+    <video class="modal-video" src="${escapeAttr(url)}" controls autoplay playsinline></video>
+  </div>`;
+  document.getElementById("modal-back").addEventListener("click",()=>renderFolderBody(b,slug));
+}
+
+function closeFolder(){
+  const m=document.getElementById("folder-modal");
+  const v=m.querySelector("video"); if(v) v.pause();
+  m.classList.remove("open"); m.setAttribute("aria-hidden","true");
+}
+
+function wireFolderModal(){
+  const content=document.getElementById("content");
+  content.addEventListener("click",e=>{const card=e.target.closest(".card[data-slug]"); if(card) openFolder(card.dataset.slug);});
+  content.addEventListener("keydown",e=>{
+    if(e.key==="Enter"||e.key===" "){const card=e.target.closest(".card[data-slug]"); if(card){e.preventDefault(); openFolder(card.dataset.slug);}}
+  });
+  const m=document.getElementById("folder-modal");
+  document.getElementById("modal-close").addEventListener("click",closeFolder);
+  m.addEventListener("click",e=>{if(e.target===m) closeFolder();});
+  document.addEventListener("keydown",e=>{if(e.key==="Escape"&&m.classList.contains("open")) closeFolder();});
+}
+wireFolderModal();
+
 loadShowcase();
 </script>
+<div class="modal-overlay" id="folder-modal" aria-hidden="true">
+  <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-name">
+    <button class="modal-close" id="modal-close" aria-label="Close folder">&times;</button>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
 </body>
 </html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daily Dabba · Our kitchen</title>
+<meta name="description" content="The Daily Dabba kitchen: fresh ingredients bought each morning, small batch home cooking, and the kind of care a hired cook rarely gives.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a href="index.html" class="logo"><span class="dot"></span>Daily Dabba</a>
+    <div class="nav-links">
+      <a href="how-it-works.html">How it works</a>
+      <a href="our-kitchen.html">Our kitchen</a>
+      <a href="app.html">This week's menu</a>
+      <a href="app.html" class="nav-cta">Start your dabba</a>
+    </div>
+    <button class="nav-burger" id="burger" aria-label="Menu">&#9776;</button>
+  </div>
+</nav>
+
+<header class="khero">
+  <div class="khero-media">
+    <img src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=2000&q=80" alt="A spread of freshly cooked home style Indian food" onerror="this.style.display='none'">
+  </div>
+  <div class="khero-scrim"></div>
+  <div class="wrap">
+    <div class="sec-eyebrow">Our kitchen</div>
+    <h1>The kind of care a hired cook rarely gives.</h1>
+  </div>
+</header>
+
+<section class="story">
+  <div class="wrap">
+    <div class="story-grid">
+      <div class="story-text reveal">
+        <p class="story-lead">Daily Dabba started with a simple, slightly stubborn idea: <em>nobody far from home should have to eat sad food.</em></p>
+        <div class="story-body" style="margin-top:24px">
+          <p>So we built a kitchen that cooks the way a home does. Vegetables and meat are bought fresh each morning, not stocked for the week. The meals are made in small batches, tasted before they leave, and packed warm.</p>
+          <p>There is no central factory churning out trays of the same gravy. There are people who cook like they are feeding their own family, because the difference between fine and wonderful is almost always just care.</p>
+        </div>
+      </div>
+      <div class="story-photo reveal">
+        <img src="https://images.unsplash.com/photo-1742281257687-092746ad6021?auto=format&fit=crop&w=1200&q=80" alt="A fresh home style thali" onerror="this.parentNode.style.background='linear-gradient(150deg,#FDEAD2,#F2B49C)'">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="promises">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow">What we promise</div>
+      <h2>Five things we will not cut corners on.</h2>
+    </div>
+    <div class="prom-grid">
+      <div class="prom reveal"><span class="pn">01</span><div><h4>Cooked the same day</h4><p>Your dabba is made the morning it reaches you. No three day old curry, ever.</p></div></div>
+      <div class="prom reveal"><span class="pn">02</span><div><h4>Fresh ingredients</h4><p>Produce and meat bought each morning, not pulled from a deep freezer.</p></div></div>
+      <div class="prom reveal"><span class="pn">03</span><div><h4>A clean kitchen</h4><p>Hygiene is not a slogan here. The place your food is cooked is kept the way you would keep your own.</p></div></div>
+      <div class="prom reveal"><span class="pn">04</span><div><h4>Honest portions</h4><p>Enough to actually fill you up after a long morning. No styled, half empty boxes.</p></div></div>
+      <div class="prom reveal"><span class="pn">05</span><div><h4>Real home taste</h4><p>Spiced like home, not like a restaurant trying to impress. Comfort over flash.</p></div></div>
+      <div class="prom reveal"><span class="pn">06</span><div><h4>We own our mistakes</h4><p>A bad dabba is on us. Tell us and we make it right, simply.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="pull">
+  <div class="wrap reveal">
+    <p>You cannot fake food that tastes like <span>someone cared</span> while cooking it.</p>
+  </div>
+</section>
+
+<section class="close">
+  <div class="wrap reveal">
+    <span class="steam">Today's lunch is already cooking</span>
+    <h2>Let us cook for you tomorrow.</h2>
+    <a href="app.html" class="btn btn-primary">See this week's menu
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="index.html" class="logo"><span class="dot"></span>Daily Dabba</a>
+    <div class="foot-links">
+      <a href="how-it-works.html">How it works</a>
+      <a href="our-kitchen.html">Our kitchen</a>
+      <a href="app.html">Menu</a>
+    </div>
+    <div>A Just Build venture, Bengaluru.</div>
+  </div>
+</footer>
+
+<script>
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+  },{threshold:.14});
+  document.querySelectorAll(".reveal").forEach(function(el){ io.observe(el); });
+  var burger=document.getElementById("burger");
+  if(burger){ burger.addEventListener("click",function(){ location.href="app.html"; }); }
+</script>
+</body>
+</html>

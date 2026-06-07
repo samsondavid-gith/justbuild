@@ -324,6 +324,7 @@ function cardHtml(b){
   if(b.pitch) have.push("Pitch");
   if(b.chatbot) have.push("Chatbot");
   if(b.agent) have.push("Agent");
+  if(b.idea_board) have.push("Idea board");
   const pills=have.map(p=>`<span>${p}</span>`).join("");
   return `<div class="card ${cls}" role="button" tabindex="0" data-slug="${escapeAttr(slug)}" style="--taccent:${accent}" aria-label="Open the ${escapeAttr(b.product_name)} folder">
     <div class="card-bg"></div>
@@ -361,7 +362,9 @@ const ART_TYPES=[
   {key:"chatbot", label:"Chatbot",       verb:"Open chat",     kind:"link",
     icon:`<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><rect x="3" y="4" width="14" height="10" rx="2.5"/><path d="M7 14v3l3.5-3"/><circle cx="7.5" cy="9" r=".7" fill="currentColor" stroke="none"/><circle cx="10" cy="9" r=".7" fill="currentColor" stroke="none"/><circle cx="12.5" cy="9" r=".7" fill="currentColor" stroke="none"/></svg>`},
   {key:"agent",   label:"AI agent",      verb:"See the agent", kind:"link",
-    icon:`<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><circle cx="5" cy="6" r="2"/><circle cx="15" cy="6" r="2"/><circle cx="10" cy="14.5" r="2"/><path d="M7 6h6M6.3 7.7 9 12.6M13.7 7.7 11 12.6"/></svg>`}
+    icon:`<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><circle cx="5" cy="6" r="2"/><circle cx="15" cy="6" r="2"/><circle cx="10" cy="14.5" r="2"/><path d="M7 6h6M6.3 7.7 9 12.6M13.7 7.7 11 12.6"/></svg>`},
+  {key:"idea_board",label:"Idea board",   verb:"Open board",    kind:"link",
+    icon:`<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M10 2.5a5 5 0 0 0-3 9c.7.5 1.05 1.2 1.15 2h3.7c.1-.8.45-1.5 1.15-2a5 5 0 0 0-3-9z"/><path d="M8 16h4M8.6 18h2.8"/></svg>`}
 ];
 
 function openFolder(slug){

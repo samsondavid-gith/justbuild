@@ -240,6 +240,13 @@
   <footer><hr class="footer-rule">Built at Just Build, by <a href="https://justbuild.orangecaterpillar.com">Orange Caterpillar</a>.</footer>
 </div>
 
+<div class="modal-overlay" id="folder-modal" aria-hidden="true">
+  <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-name">
+    <button class="modal-close" id="modal-close" aria-label="Close folder">&times;</button>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
 <script>
 let DATA=null, activeCohort="all";
 
@@ -414,16 +421,14 @@ function wireFolderModal(){
   m.addEventListener("click",e=>{if(e.target===m) closeFolder();});
   document.addEventListener("keydown",e=>{if(e.key==="Escape"&&m.classList.contains("open")) closeFolder();});
 }
-wireFolderModal();
+if(document.readyState==="loading"){
+  document.addEventListener("DOMContentLoaded",wireFolderModal);
+}else{
+  wireFolderModal();
+}
 
 loadShowcase();
 </script>
-<div class="modal-overlay" id="folder-modal" aria-hidden="true">
-  <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-name">
-    <button class="modal-close" id="modal-close" aria-label="Close folder">&times;</button>
-    <div class="modal-body" id="modal-body"></div>
-  </div>
-</div>
 
 </body>
 </html>

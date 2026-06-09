@@ -2560,6 +2560,18 @@
   .principle-big-p { font-size:clamp(14px,1.6vw,16.5px); color:var(--text-soft); line-height:1.55; }
   @media (max-width:760px){ .principles-big{grid-template-columns:1fr;} }
 </style>
+<style>
+  /* ===== Foundation batch 6 ===== */
+  /* Idea cards: never clip the problem text. Cards size to content; grid scrolls if needed. */
+  .fit-viewport .ideas-grid { grid-template-rows: auto !important; grid-auto-rows: auto !important; overflow-y: auto !important; align-content: start; padding-right: 6px; }
+  .fit-viewport .idea-card { overflow: visible !important; }
+  .fit-viewport .ideas-grid::-webkit-scrollbar { width: 6px; }
+  .fit-viewport .ideas-grid::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 3px; }
+  /* Awards: caterpillar wearing a golden crown */
+  .awards-hero { position:relative; width:clamp(150px,17vw,208px); margin:0 auto 8px; }
+  .awards-cat { width:100%; display:block; filter:drop-shadow(0 10px 28px rgba(0,0,0,0.5)); }
+  .awards-crown { position:absolute; top:-13%; left:51%; transform:translateX(-50%) rotate(-6deg); width:50%; z-index:2; filter:drop-shadow(0 4px 10px rgba(0,0,0,0.45)); }
+</style>
 </head>
 <body>
 
@@ -4702,6 +4714,23 @@ function renderSwishRetake() {
 function renderAwards() {
   return `
     <div class="closing-screen">
+      <div class="awards-hero">
+        <svg class="awards-crown" viewBox="0 0 120 92" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="ocGold" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#FFE89A"/>
+              <stop offset="0.5" stop-color="#F4C24C"/>
+              <stop offset="1" stop-color="#CE9226"/>
+            </linearGradient>
+          </defs>
+          <path d="M10 80 L18 30 L42 56 L60 20 L78 56 L102 30 L110 80 Z" fill="url(#ocGold)" stroke="#A9741A" stroke-width="3.5" stroke-linejoin="round"/>
+          <rect x="9" y="76" width="102" height="14" rx="4" fill="url(#ocGold)" stroke="#A9741A" stroke-width="3.5"/>
+          <circle cx="18" cy="28" r="6.5" fill="#FFE89A" stroke="#A9741A" stroke-width="2.5"/>
+          <circle cx="60" cy="16" r="8" fill="#FF6B57" stroke="#A9741A" stroke-width="2.5"/>
+          <circle cx="102" cy="28" r="6.5" fill="#FFE89A" stroke="#A9741A" stroke-width="2.5"/>
+        </svg>
+        <img class="awards-cat" src="funny-caterpillar.png" alt="" onerror="this.style.display='none'">
+      </div>
       <div class="closing-eyebrow">The moment</div>
       <h1 class="closing-title">Awards.</h1>
       <p class="closing-sub" style="max-width:60ch;">Every single person here shipped a real, working venture in two days. Everyone earns the Shipped It certificate. But the room voted, the scores are in, and a few builds stood out.</p>
@@ -4711,11 +4740,11 @@ function renderAwards() {
           <div><div class="awards-h">Build of the Day</div><div class="awards-p">The highest-scored venture on the floor. Come up, take a bow.</div></div>
         </li>
         <li>
-          <span class="awards-ico">&#129296;</span>
+          <span class="awards-ico">&#129506;</span>
           <div><div class="awards-h">The Orange Caterpillar Cap</div><div class="awards-p">Worn today by the standout builder. There is only one. Cap on, photo time.</div></div>
         </li>
       </ul>
-      <p class="closing-sub" style="margin-top:26px;">Winners, come up. Everyone else, you built something real today. That is the prize.</p>
+      <p class="closing-sub" style="margin-top:24px;">Winners, come up. Everyone else, you built something real today. That is the prize.</p>
     </div>
   `;
 }

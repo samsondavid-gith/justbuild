@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Just Build  /  Build Guide</title>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Inter:ital,wght@0,300..700;1,300..700&family=JetBrains+Mono:wght@400..600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:            #0A0A0A;
+    --bg-elev-1:    #141414;
+    --bg-elev-2:    #1C1C1C;
+    --line:          rgba(255,255,255,0.08);
+    --line-strong:   rgba(255,255,255,0.16);
+    --text:          #FFFFFF;
+    --text-soft:     #C8C8C8;
+    --text-muted:    #8A8A8A;
+    --text-faint:    #5A5A5A;
+    --accent:        #C17D2A;
+    --accent-soft:   rgba(193, 125, 42, 0.18);
+    --warning:       #E8B53A;
+    --serif:         'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --sans:          'Inter', system-ui, -apple-system, sans-serif;
+    --mono:          'JetBrains Mono', 'SF Mono', Menlo, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+  .container { max-width: 900px; margin: 0 auto; padding: 48px 28px 80px; }
+  .header { text-align: center; margin-bottom: 40px; padding-bottom: 36px; border-bottom: 1px solid var(--line); }
+  .header-logo { width: 64px; height: auto; margin-bottom: 18px; opacity: 0.95; }
+  .header-eyebrow { font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin-bottom: 12px; }
+  .header-title { font-family: var(--serif); font-size: clamp(32px, 5vw, 48px); font-weight: 400; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 14px; }
+  .header-sub { font-family: var(--serif); font-size: clamp(15px, 2vw, 18px); font-style: italic; color: var(--text-soft); font-weight: 300; max-width: 52ch; margin: 0 auto; }
+  .howto { background: var(--bg-elev-1); border: 1px solid var(--line); border-radius: 8px; padding: 20px 24px; margin-bottom: 28px; font-size: 14.5px; color: var(--text-soft); line-height: 1.6; }
+  .howto strong { color: var(--accent); font-weight: 500; }
+
+  /* Jump index */
+  .prompt-index { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 52px; }
+  .prompt-index a { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.04em; color: var(--text-soft); text-decoration: none; padding: 7px 12px; border: 1px solid var(--line); border-radius: 999px; transition: all 0.15s; white-space: nowrap; }
+  .prompt-index a:hover { color: var(--accent); border-color: var(--accent-soft); background: rgba(193,125,42,0.05); }
+
+  /* Session group header */
+  .session-group { margin: 52px 0 22px; scroll-margin-top: 18px; }
+  .session-group:first-of-type { margin-top: 8px; }
+  .session-group-num { font-family: var(--mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin-bottom: 7px; }
+  .session-group-title { font-family: var(--serif); font-size: clamp(22px, 3vw, 28px); font-weight: 500; letter-spacing: -0.01em; color: var(--text); }
+
+  /* Section break (within the build procedure) */
+  .section-break { display: flex; align-items: flex-start; gap: 14px; margin: 34px 0 18px; padding-top: 22px; border-top: 1px solid var(--line); }
+  .section-break:first-of-type { border-top: none; padding-top: 6px; }
+  .section-break-id { flex: 0 0 auto; width: 34px; height: 34px; border-radius: 7px; background: var(--accent); color: #fff; font-family: var(--mono); font-size: 15px; font-weight: 600; display: flex; align-items: center; justify-content: center; }
+  .section-break-name { font-family: var(--serif); font-size: 20px; font-weight: 600; letter-spacing: -0.01em; color: var(--text); }
+  .section-break-note { font-size: 13.5px; color: var(--text-muted); line-height: 1.5; margin-top: 3px; max-width: 60ch; }
+
+  /* Step block */
+  .step-block { margin: 0 0 14px; padding: 16px 18px; background: var(--bg-elev-1); border: 1px solid var(--line); border-radius: 9px; }
+  .step-block-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 5px; }
+  .step-block-code { flex: 0 0 auto; font-family: var(--mono); font-size: 12px; font-weight: 600; letter-spacing: 0.04em; color: var(--accent); }
+  .step-block-title { font-family: var(--serif); font-size: 17px; font-weight: 600; color: var(--text); }
+  .step-block-lead { font-size: 14px; color: var(--text-soft); line-height: 1.5; margin-bottom: 10px; }
+  .tool-chip { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.02em; color: var(--accent); text-decoration: none; border: 1px solid var(--accent-soft); border-radius: 999px; padding: 5px 11px; background: rgba(193,125,42,0.06); margin-bottom: 12px; }
+  .tool-chip:hover { background: rgba(193,125,42,0.14); }
+  .step-block-detail { margin: 4px 0 0; padding-left: 22px; }
+  .step-block-detail li { font-size: 14px; color: var(--text-soft); line-height: 1.55; margin-bottom: 6px; }
+  .step-block-detail li:last-child { margin-bottom: 0; }
+  .step-block .prompt-card { margin-top: 14px; margin-bottom: 0; }
+
+  .prompt-card { margin-bottom: 20px; background: var(--bg-elev-1); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; transition: border-color 0.2s; }
+  .prompt-card:hover { border-color: var(--accent-soft); }
+  .prompt-card-header { padding: 20px 24px; border-bottom: 1px solid var(--line); background: var(--bg-elev-2); }
+  .prompt-card-meta { display: flex; gap: 14px; align-items: center; margin-bottom: 8px; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-muted); flex-wrap: wrap; }
+  .prompt-card-meta-tag { color: var(--accent); font-weight: 500; }
+  .prompt-card-meta-tool { padding: 3px 10px; border: 1px solid var(--accent-soft); border-radius: 12px; background: rgba(193,125,42,0.06); color: var(--accent); font-weight: 500; letter-spacing: 0.12em; }
+  .prompt-card-title { font-family: var(--serif); font-size: 22px; font-weight: 500; letter-spacing: -0.01em; color: var(--text); margin-bottom: 6px; }
+  .prompt-card-desc { font-size: 13.5px; color: var(--text-muted); line-height: 1.55; }
+  .prompt-card-body { padding: 22px 24px; }
+  .prompt-text { font-family: var(--mono); font-size: 13px; line-height: 1.65; color: var(--text-soft); white-space: pre-wrap; word-break: break-word; background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 18px 20px; max-height: 380px; overflow-y: auto; margin-bottom: 18px; }
+  .prompt-text::-webkit-scrollbar { width: 6px; }
+  .prompt-text::-webkit-scrollbar-track { background: transparent; }
+  .prompt-text::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 3px; }
+  .copy-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+  .copy-btn { flex: 1; min-width: 200px; background: var(--accent); color: #FFFFFF; border: none; padding: 14px 22px; border-radius: 6px; font-family: var(--sans); font-size: 15px; font-weight: 500; letter-spacing: 0.04em; cursor: pointer; transition: background 0.15s; display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+  .copy-btn:hover { background: #A86A24; }
+  .copy-btn.copied { background: var(--warning); color: #0A0A0A; }
+  .copy-btn svg { width: 16px; height: 16px; }
+  .tool-link { background: transparent; color: var(--text-soft); border: 1px solid var(--line-strong); padding: 13px 18px; border-radius: 6px; text-decoration: none; font-size: 14px; font-weight: 500; letter-spacing: 0.04em; transition: all 0.15s; display: inline-flex; align-items: center; gap: 6px; }
+  .tool-link:hover { color: var(--accent); border-color: var(--accent-soft); background: rgba(193,125,42,0.04); }
+  .state-msg { text-align: center; color: var(--text-muted); font-size: 15px; padding: 60px 0; }
+  .footer { margin-top: 64px; padding-top: 32px; border-top: 1px solid var(--line); text-align: center; font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+  .footer a { color: var(--accent); text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+  @media (max-width: 600px) {
+    .container { padding: 32px 18px 56px; }
+    .prompt-card-header, .prompt-card-body { padding: 16px 18px; }
+    .copy-row { flex-direction: column; align-items: stretch; }
+    .copy-btn, .tool-link { width: 100%; text-align: center; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <header class="header">
+    <img class="header-logo" src="logo.png" alt="Orange Caterpillar" onerror="this.style.display='none'">
+    <div class="header-eyebrow">Just Build &middot; College</div>
+    <h1 class="header-title">Build Guide</h1>
+    <p class="header-sub">Every step and every prompt for the workshop, in order. Find the session you are on, then follow along.</p>
+  </header>
+
+  <div class="howto">
+    <strong>How to use this page.</strong> Keep this tab open during the session. Follow the steps in order. When a step has a prompt, click <strong>Copy</strong>, paste it into the tool named on the card, and fill in the parts in [brackets] with your own venture.
+  </div>
+
+  <nav class="prompt-index" id="prompt-index" aria-label="Jump to a session"></nav>
+
+  <div id="prompts">
+    <p class="state-msg" id="state-msg">Loading prompts...</p>
+  </div>
+
+  <footer class="footer">
+    <p>Just Build &middot; <a href="https://justbuild.orangecaterpillar.com">Orange Caterpillar</a></p>
+    <p style="margin-top: 8px; color: var(--text-faint);">Stuck on a step? Ask the facilitator on the call or post in the WhatsApp group.</p>
+    <p style="margin-top: 8px; color: var(--text-faint);">Confidential. For enrolled Just Build students. Please do not share.</p>
+  </footer>
+
+</div>
+
+<script>
+  var COPY_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+  var DONE_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>';
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  }
+
+  // "Claude (claude.ai)" -> {name:'Claude', url:'https://claude.ai'}; "Brainstorm" -> {name, url:null}; "None"/empty -> null
+  function parseTool(t) {
+    if (!t) return null;
+    t = String(t).trim();
+    if (!t || t.toLowerCase() === 'none') return null;
+    var m = t.match(/^(.*?)\s*\(([^)]+)\)\s*$/);
+    if (m) {
+      var domain = m[2].trim().replace(/^https?:\/\//, '').replace(/\/+$/, '');
+      return { name: m[1].trim(), url: 'https://' + domain };
+    }
+    return { name: t, url: null };
+  }
+
+  function shortTitle(t) {
+    t = String(t || '');
+    return t.length > 24 ? t.slice(0, 22).trim() + '\u2026' : t;
+  }
+
+  function attachCopy() {
+    document.querySelectorAll('.copy-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var text = document.getElementById(btn.getAttribute('data-target')).textContent;
+        var done = function () {
+          var original = btn.innerHTML;
+          btn.innerHTML = DONE_SVG + '<span>Copied to clipboard</span>';
+          btn.classList.add('copied');
+          setTimeout(function () { btn.innerHTML = original; btn.classList.remove('copied'); }, 2500);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(done).catch(fallback);
+        } else { fallback(); }
+        function fallback() {
+          var ta = document.createElement('textarea');
+          ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+          document.body.appendChild(ta); ta.select();
+          try { document.execCommand('copy'); done(); }
+          catch (e) { alert('Could not copy automatically. Long-press the prompt and copy manually.'); }
+          document.body.removeChild(ta);
+        }
+      });
+    });
+  }
+
+  function toolChipHtml(toolStr) {
+    var tool = parseTool(toolStr);
+    if (!tool) return '';
+    if (tool.url) {
+      return '<a class="tool-chip" href="' + esc(tool.url) + '" target="_blank" rel="noopener">Open ' + esc(tool.name) + ' \u2197</a>';
+    }
+    return '<span class="tool-chip">' + esc(tool.name) + '</span>';
+  }
+
+  function promptCardHtml(p, k) {
+    var tool = parseTool(p.tool);
+    return '<div class="prompt-card">'
+         +   '<div class="prompt-card-header">'
+         +     (tool ? '<div class="prompt-card-meta"><span class="prompt-card-meta-tag">Prompt ' + esc(p.number) + '</span><span class="prompt-card-meta-tool">' + esc(tool.name) + '</span></div>' : '')
+         +     '<h2 class="prompt-card-title">' + esc(p.title) + '</h2>'
+         +     (p.desc ? '<p class="prompt-card-desc">' + esc(p.desc) + '</p>' : '')
+         +   '</div>'
+         +   '<div class="prompt-card-body">'
+         +     '<div class="prompt-text" id="text-' + k + '">' + esc(p.content) + '</div>'
+         +     '<div class="copy-row">'
+         +       '<button class="copy-btn" data-target="text-' + k + '">' + COPY_SVG + '<span>Copy prompt</span></button>'
+         +       (tool && tool.url ? '<a class="tool-link" href="' + esc(tool.url) + '" target="_blank" rel="noopener">Open ' + esc(tool.name) + ' \u2197</a>' : '')
+         +     '</div>'
+         +   '</div>'
+         + '</div>';
+  }
+
+  function render(sessions) {
+    var idx = document.getElementById('prompt-index');
+    var wrap = document.getElementById('prompts');
+    if (!sessions.length) {
+      idx.innerHTML = '';
+      wrap.innerHTML = '<p class="state-msg">Nothing is configured yet. Steps and prompts will appear here as soon as they are added.</p>';
+      return;
+    }
+    idx.innerHTML = sessions.map(function (s) {
+      return '<a href="#session-' + esc(s.id) + '">' + esc(s.number) + ' &middot; ' + esc(shortTitle(s.title)) + '</a>';
+    }).join('');
+
+    var html = '';
+    var k = 0;
+    sessions.forEach(function (s) {
+      // Session break
+      html += '<div class="session-group" id="session-' + esc(s.id) + '">'
+            +   '<div class="session-group-num">Session ' + esc(s.number) + (s.stage ? ' &middot; ' + esc(s.stage) : '') + '</div>'
+            +   '<h2 class="session-group-title">' + esc(s.title) + '</h2>'
+            + '</div>';
+
+      if (s.procedure && s.procedure.sections) {
+        var byNum = {};
+        (s.prompts || []).forEach(function (p) { byNum[p.number] = p; });
+        s.procedure.sections.forEach(function (section) {
+          // Section break
+          html += '<div class="section-break">'
+                +   '<div class="section-break-id">' + esc(section.id) + '</div>'
+                +   '<div>'
+                +     '<div class="section-break-name">' + esc(section.name) + '</div>'
+                +     (section.note ? '<div class="section-break-note">' + esc(section.note) + '</div>' : '')
+                +   '</div>'
+                + '</div>';
+          (section.steps || []).forEach(function (stp, i) {
+            var code = esc(section.id) + (i + 1);
+            html += '<div class="step-block">'
+                  +   '<div class="step-block-head"><span class="step-block-code">' + code + '</span>'
+                  +     '<span class="step-block-title">' + esc(stp.title) + '</span></div>'
+                  +   (stp.body ? '<p class="step-block-lead">' + esc(stp.body) + '</p>' : '')
+                  +   (stp.tool ? toolChipHtml(stp.tool) : '')
+                  +   ((stp.detail && stp.detail.length)
+                        ? '<ol class="step-block-detail">' + stp.detail.map(function (line) { return '<li>' + esc(line) + '</li>'; }).join('') + '</ol>'
+                        : '');
+            if (stp.prompt_ref && byNum[stp.prompt_ref]) {
+              k++;
+              html += promptCardHtml(byNum[stp.prompt_ref], k);
+            }
+            html += '</div>';
+          });
+        });
+      } else {
+        (s.prompts || []).forEach(function (p) {
+          k++;
+          html += promptCardHtml(p, k);
+        });
+      }
+    });
+    wrap.innerHTML = html;
+    attachCopy();
+  }
+
+  fetch('./sessions-college-foundation.json', { cache: 'no-cache' })
+    .then(function (r) { if (!r.ok) throw new Error('load'); return r.json(); })
+    .then(function (d) {
+      var sessions = (d.sessions || []).filter(function (s) {
+        return (s.prompts || []).length || (s.procedure && s.procedure.sections && s.procedure.sections.length);
+      });
+      render(sessions);
+    })
+    .catch(function () {
+      document.getElementById('prompt-index').innerHTML = '';
+      document.getElementById('prompts').innerHTML =
+        '<p class="state-msg">Could not load the guide. Refresh the page, and make sure sessions-college-foundation.json is published next to this page.</p>';
+    });
+</script>
+
+</body>
+</html>

@@ -2511,7 +2511,7 @@
   .fo-j-eyebrow { font-family:var(--mono); font-size:13px; letter-spacing:0.22em; color:var(--accent); font-weight:700; margin-bottom:14px; }
   .fo-j-title { font-family:var(--serif); font-style:italic; font-size:clamp(28px,4.2vw,50px); color:#2A2622; margin-bottom:12px; line-height:1.05; }
   .fo-j-sub { font-size:clamp(14px,1.6vw,18px); color:#6B6258; font-style:italic; margin-bottom:28px; }
-  .fo-j-stages { display:grid; grid-template-columns:repeat(5,1fr); gap:14px; margin-bottom:26px; }
+  .fo-j-stages { display:grid; grid-template-columns:repeat(6,1fr); gap:12px; margin-bottom:26px; }
   .fo-st { background:#FBF8F2; border:1px solid #E3DACB; border-radius:10px; padding:18px 16px; }
   .fo-st-num { font-family:var(--serif); font-style:italic; font-size:20px; color:#B9AE9C; margin-bottom:14px; }
   .fo-st-name { font-family:var(--mono); font-weight:700; font-size:14px; letter-spacing:0.1em; color:#2A2622; margin-bottom:8px; }
@@ -2522,7 +2522,7 @@
   .fo-tl-d1 { font-family:var(--mono); font-weight:700; letter-spacing:0.1em; color:#F2EDE4; display:flex; align-items:center; gap:10px; white-space:nowrap; }
   .fo-tl-dot { width:10px; height:10px; border-radius:50%; background:var(--accent); }
   .fo-tl-line { flex:1 1 auto; height:2px; background:#4A443D; position:relative; }
-  .fo-tl-line::after { content:"\u2192"; position:absolute; right:-4px; top:-13px; color:var(--accent); font-size:22px; line-height:1; }
+  .fo-tl-line::after { content:"→"; position:absolute; right:-4px; top:-13px; color:var(--accent); font-size:22px; line-height:1; }
   .fo-tl-d2 { font-family:var(--mono); font-weight:700; letter-spacing:0.06em; color:var(--accent); text-align:right; white-space:nowrap; font-size:14px; }
   .fo-tl-d2 span { display:block; font-size:11px; color:#B98E5A; }
   .fo-j-foot { border-left:4px solid var(--accent); padding-left:18px; font-family:var(--serif); font-style:italic; font-weight:600; font-size:clamp(15px,1.8vw,20px); color:#2A2622; }
@@ -2550,6 +2550,15 @@
   .bb-item.current .bb-dot { border-color:var(--accent); box-shadow:0 0 0 3px rgba(193,125,42,0.18); }
   .bb-sep { flex:1 1 auto; min-width:10px; height:1px; background:var(--line); }
   @media (max-width:900px){ .bb-title{display:none;} .bb-item{font-size:10px; padding:0 8px;} }
+</style>
+<style>
+  /* ===== Foundation: prominent principles ===== */
+  .principles-big { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:20px; max-width:92ch; }
+  .principle-big { display:flex; gap:18px; align-items:flex-start; border:1px solid var(--line); border-radius:14px; padding:24px 26px; background:rgba(193,125,42,0.06); }
+  .principle-big-num { flex:0 0 auto; width:40px; height:40px; border-radius:10px; background:var(--accent); color:#fff; font-family:var(--mono); font-weight:700; font-size:18px; display:flex; align-items:center; justify-content:center; }
+  .principle-big-h { font-family:var(--serif); font-size:clamp(20px,2.4vw,26px); font-weight:600; color:var(--text); margin-bottom:8px; }
+  .principle-big-p { font-size:clamp(14px,1.6vw,16.5px); color:var(--text-soft); line-height:1.55; }
+  @media (max-width:760px){ .principles-big{grid-template-columns:1fr;} }
 </style>
 </head>
 <body>
@@ -4056,11 +4065,9 @@ function buildScreenSequence() {
     prevDay = day;
   });
 
-  // Closing inspirational slide
-  SCREENS.push({ type: "closing" });
-
-  // Workshop complete (now "what comes next" — after Demo Day)
+  // What you built first, then the final inspirational slide (closing is the last screen)
   SCREENS.push({ type: "workshop-complete" });
+  SCREENS.push({ type: "closing" });
 }
 
 /* ----- Navigation ----- */
@@ -4231,13 +4238,17 @@ function buildbarState(screen) {
   if (t==="welcome"||t==="founder-welcome"||t==="housekeeping"||t==="two-doors"||t==="journey-map"||t==="tools-landscape") return null;
   if (screen.session) {
     const n = Number(screen.session.number);
-    if (n === 1) return { done: 0, current: -1 };
-    if (n >= 2 && n <= 7) return { done: n-2, current: n-2 };
-    return { done: 6, current: -1 };
+    if (n >= 1 && n <= 7) return { done: n-1, current: n-1 };
+    return { done: 7, current: -1 };
   }
-  if (t === "idea-cards") return { done: 0, current: -1 };
-  if (t === "day1-photo" || t === "day2-checkin") return { done: 3, current: -1 };
-  return { done: 6, current: -1 };
+  if (t === "idea-cards") return { done: 0, current: 0 };
+  if (t === "break") {
+    const nn = screen.nextSession ? Number(screen.nextSession.number) : 0;
+    if (nn >= 1 && nn <= 7) return { done: nn-1, current: -1 };
+    return { done: 7, current: -1 };
+  }
+  if (t === "day1-photo" || t === "day2-checkin") return { done: 4, current: -1 };
+  return { done: 7, current: -1 };
 }
 
 function renderBuildbar(screen) {
@@ -4245,7 +4256,7 @@ function renderBuildbar(screen) {
   if (!bar) return;
   const st = buildbarState(screen);
   if (!st) { bar.classList.add("hidden"); return; }
-  const items = ["App","Website","Chatbot","Brochure","Video","Pitch"];
+  const items = ["Idea Board","App","Website","Chatbot","Brochure","Video","Pitch"];
   let html = '<span class="bb-title">BUILD PROGRESS</span><div class="bb-track">';
   items.forEach(function (name, idx) {
     let cls = "bb-item";
@@ -4353,13 +4364,14 @@ function renderJourneyMap() {
       <div class="fo-j-tick"></div>
       <div class="fo-j-eyebrow">JUST BUILD FOUNDATION</div>
       <h1 class="fo-j-title">The two-day build immersion.</h1>
-      <p class="fo-j-sub">Two days, in person. 30 students. A full starter venture, built live. Mini Demo Day.</p>
+      <p class="fo-j-sub">Two days, in person. A full starter venture, built live. Mini Demo Day.</p>
       <div class="fo-j-stages">
-        <div class="fo-st"><div class="fo-st-num">01</div><div class="fo-st-name">IDEATE</div><div class="fo-st-desc">Micro-venture idea</div></div>
-        <div class="fo-st"><div class="fo-st-num">02</div><div class="fo-st-name">BUILD</div><div class="fo-st-desc">Hosted AI App</div></div>
-        <div class="fo-st"><div class="fo-st-num">03</div><div class="fo-st-name">LAUNCH</div><div class="fo-st-desc">Live Website</div></div>
-        <div class="fo-st"><div class="fo-st-num">04</div><div class="fo-st-name">BRAND</div><div class="fo-st-desc">Brochure + product walkthrough video</div></div>
-        <div class="fo-st"><div class="fo-st-num">05</div><div class="fo-st-name">PITCH</div><div class="fo-st-desc">Y-Combinator style pitch deck</div></div>
+        <div class="fo-st"><div class="fo-st-num">01</div><div class="fo-st-name">IDEATE</div><div class="fo-st-desc">Micro-venture idea board</div></div>
+        <div class="fo-st"><div class="fo-st-num">02</div><div class="fo-st-name">BUILD</div><div class="fo-st-desc">Hosted AI app</div></div>
+        <div class="fo-st"><div class="fo-st-num">03</div><div class="fo-st-name">LAUNCH</div><div class="fo-st-desc">Live website</div></div>
+        <div class="fo-st"><div class="fo-st-num">04</div><div class="fo-st-name">ASSIST</div><div class="fo-st-desc">Website chatbot</div></div>
+        <div class="fo-st"><div class="fo-st-num">05</div><div class="fo-st-name">BRAND</div><div class="fo-st-desc">Brochure + product video</div></div>
+        <div class="fo-st"><div class="fo-st-num">06</div><div class="fo-st-name">PITCH</div><div class="fo-st-desc">Y-Combinator style deck</div></div>
       </div>
       <div class="fo-j-tl">
         <div class="fo-tl-label">FROM DAY ONE TO MINI DEMO DAY</div>
@@ -4376,36 +4388,20 @@ function renderJourneyMap() {
 
 function renderToolsLandscape() {
   const principles = [
-    { h: "You do not need to code", p: "AI writes every line. Your job is to describe what you want, check what it made, and ask for the next thing." },
+    { h: "You do not need to know programming", p: "AI writes every line of code. Your job is to describe what you want, look at what it made, and ask for the next thing." },
     { h: "Vibe coding", p: "Describe it in plain words, the AI builds it, you run it and look. That loop, describe, build, check, fix, is the whole skill." },
-    { h: "One change at a time", p: "Build and test in small steps. Never pile ten features into one prompt. Test each piece before the next." },
+    { h: "One change at a time", p: "Build and test in small steps. Never pile ten features into one prompt. Test each piece before moving to the next." },
     { h: "Finished beats perfect", p: "A rough thing that works and is live beats a beautiful thing stuck on your laptop. Ship it, then improve it." },
   ];
-  const stages = [
-    { name: "Ideate", job: "Pressure-test your idea, then turn it into a board.", tools: "Perplexity, then Gemini" },
-    { name: "App", job: "A working order app, live on the internet.", tools: "Gemini + Netlify" },
-    { name: "Website", job: "A one-page front door that opens your app.", tools: "ChatGPT + Netlify" },
-    { name: "Chatbot", job: "A scripted helper added to your website.", tools: "ChatGPT" },
-    { name: "Brochure", job: "One forwardable flyer with a QR to your site.", tools: "Claude" },
-    { name: "Video", job: "A 90-second walkthrough of your live product.", tools: "Gemini script + Loom" },
-    { name: "Pitch deck", job: "Your story in ten slides, ready to present.", tools: "Claude" },
-  ];
-  const pCards = principles.map(function (p) {
-    return '<div class="principle"><div class="principle-h">' + p.h + '</div><div class="principle-p">' + p.p + '</div></div>';
-  }).join("");
-  const sCards = stages.map(function (st) {
-    return '<div class="cat-card"><h3 class="cat-name">' + st.name + '</h3><p class="cat-use">' + st.job +
-           '</p><div class="cat-tools"><span class="tool-chip tool-pick"><span class="tool-star">\u2605</span>' + st.tools + '</span></div></div>';
+  const pCards = principles.map(function (p, i) {
+    return '<div class="principle-big"><div class="principle-big-num">' + (i+1) + '</div><div><div class="principle-big-h">' + p.h + '</div><div class="principle-big-p">' + p.p + '</div></div></div>';
   }).join("");
   return `
     <div class="wl-screen">
       <div class="wl-eyebrow">How we build</div>
       <h1 class="wl-title">You direct. The AI builds.</h1>
-      <p class="wl-sub">You will not write code. You describe what you want in plain English, the AI builds it, and you check it and ask for the next piece. A handful of free tools, each for one job, no card needed for any of them.</p>
-      <div class="principles">${pCards}</div>
-      <h2 class="wl-title" style="font-size:clamp(20px,2.6vw,28px); margin:6px 0 14px;">The tool for each stage.</h2>
-      <div class="cat-grid">${sCards}</div>
-      <p class="wl-footer">Learn the job, not the logo. The tools may change, the way you build with AI will not.</p>
+      <p class="wl-sub">You will not write code. You describe what you want in plain English, the AI builds it, and you check it and ask for the next piece. Four ideas carry the whole weekend.</p>
+      <div class="principles-big">${pCards}</div>
     </div>
   `;
 }

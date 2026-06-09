@@ -40,7 +40,7 @@
         {
           "number": 2,
           "title": "Build your ideation board",
-          "tool": "Any AI chat tool (Gemini, ChatGPT, Claude, or Perplexity)",
+          "tool": "Gemini (gemini.google.com)",
           "desc": "Turns the validation output into one ideation board: sticky-note zones, a verdict, your founder's bet, and a visual mind map.",
           "content": "I just had my venture idea pressure-tested. Below is the full mentor analysis. Turn it into a single ideation board I can use as my working canvas, laid out like sticky notes on a brainstorm board.\n\nHere is my analysis to work from:\n[paste the entire output from the previous validation prompt]\n\nBuild the board like this. Use my real venture details, keep every sticky note to six words or fewer, be concrete, and use rupees. If the analysis is missing something, make a sensible best guess and mark it with a (guess) tag.\n\nCENTER: my venture in one line (the person, plus what I build for them).\n\nThen these labelled zones, each as a small cluster of sticky notes:\n1. THE PERSON: who they are, the exact moment, the pain in their words.\n2. WHAT THEY DO TODAY: the current workaround and what it costs them.\n3. WHO ELSE AND MY GAP: the main alternatives, and the one gap I own.\n4. MY UNFAIR ADVANTAGE: my way in that a stranger does not have.\n5. WHAT I AM BUILDING: the one core thing my v1 does, in 2 to 3 notes.\n6. CUT OR FAKE FOR NOW: what I do by hand or leave out of v1.\n7. THE MONEY ON ONE ORDER: price in, cost out, what is left.\n8. WHY NOW: the one change that makes this possible today.\n9. FIRST TEN CUSTOMERS: where they come from and how they hear about it.\n10. RISKIEST ASSUMPTION: the belief that could kill it, and my test for today.\n\nThen one VERDICT sticky: build as-is, change one thing (which), or sharpen.\n\nThen my FOUNDER'S BET as one bold line: 'I am betting that [my person] will [the key action, for example pay 50 to lock an order] because [the reason]. If I am wrong about [the riskiest assumption], this fails.' Fill it with my real details.\n\nAfter the board, give me the same thing as a Mermaid mindmap inside a code block (start it with the word mindmap), with short node labels, so I can paste it into any tool that draws a visual mind map."
         }
@@ -1648,10 +1648,10 @@
       "prompts": [
         {
           "number": 1,
-          "title": "Write your 30-second demo script",
+          "title": "Write your 3-minute demo script",
           "tool": "Claude (claude.ai)",
           "desc": "An optional helper that turns your deck and founder's bet into a tight spoken open for your pitch.",
-          "content": "Here is my pitch deck content and my founder's bet: [PASTE]. Write me a 30-second spoken demo script using this shape: who I am, one real person and their problem, what I built and the one thing you do with it, a line to introduce my demo video, one piece of real traction, and my one ask. Make it warm, spoken, and under 70 words."
+          "content": "Here is my pitch deck content and my founder's bet: [PASTE]. Write me a spoken three-minute demo script in four beats: (1) 30 seconds on one real person, their problem, and the one thing I built for them; (2) a single line to hand off to my two-minute demo video; (3) 15 seconds on how it makes money; (4) 15 seconds on the one thing I want the room to remember. Warm, spoken, plain English, no jargon."
         }
       ],
       "build": [],
@@ -1669,7 +1669,7 @@
       "end_time": "16:30",
       "duration_minutes": 210,
       "stage": "Demo Day",
-      "set_the_stage": "Every student stands up and shows a real, working thing. Three minutes each: problem and solution, the product live, how it makes money, and one thing you are taking away."
+      "set_the_stage": "Every student stands up and shows a real, working thing. Three minutes each, in four beats: the problem and your solution, your demo video playing, how it makes money, and the one thing you are taking away. Play your downloaded video so the wifi cannot break your demo. Everyone scores every presenter on the sheet provided, physical or digital. Scores are tallied while the whole room takes the SWISH test again."
     }
   ],
   "ideas": [

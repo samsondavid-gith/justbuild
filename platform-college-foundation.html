@@ -148,26 +148,30 @@
     color: var(--text-muted);
     font-size: 12px;
     letter-spacing: 0.04em;
+    min-width: 0;
   }
   .progress {
-    display: flex;
-    gap: 4px;
-  }
-  .progress-dot {
-    width: 18px;
-    height: 3px;
+    flex: 0 1 auto;
+    width: clamp(80px, 11vw, 160px);
+    min-width: 44px;
+    height: 4px;
+    border-radius: 2px;
     background: var(--line-strong);
-    border-radius: 1px;
-    transition: background 0.3s ease;
+    overflow: hidden;
   }
-  .progress-dot.done { background: var(--text-faint); }
-  .progress-dot.active { background: var(--accent); }
+  .progress-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+  }
 
   /* ----- Jump-to-session picker ----- */
   .jump-wrap {
     position: relative;
     display: inline-flex;
     align-items: center;
+    flex-shrink: 0;
   }
   .jump-btn {
     appearance: none;
@@ -4319,12 +4323,8 @@ function updateProgress() {
   const localIdx = indices.indexOf(currentScreenIdx);
   const total = sessionScreens.length;
 
-  let dotsHtml = "";
-  for (let i = 0; i < total; i++) {
-    const cls = i < localIdx ? "done" : (i === localIdx ? "active" : "");
-    dotsHtml += `<div class="progress-dot ${cls}"></div>`;
-  }
-  $("#progress").innerHTML = dotsHtml;
+  const pct = total <= 1 ? 100 : Math.round((localIdx / (total - 1)) * 100);
+  $("#progress").innerHTML = `<div class="progress-fill" style="width:${pct}%"></div>`;
 }
 
 /* ============================================

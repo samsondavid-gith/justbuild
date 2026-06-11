@@ -4171,7 +4171,7 @@ function renderCurrent() {
   if (screen.session) {
     $("#topbar-eyebrow").textContent = topbarEyebrow(screen.session);
     $("#topbar-title").textContent = screen.session.title;
-    $("#topbar-section").textContent = screen.type === "step" ? "" : sectionLabel(screen);
+    $("#topbar-section").textContent = "";  // section counter removed (redundant, crowded the title)
     updateProgress();
   } else if (screen.type === "idea-cards") {
     const defaultPage = (WORKSHOP && WORKSHOP.cohort_idea_page) || 1;

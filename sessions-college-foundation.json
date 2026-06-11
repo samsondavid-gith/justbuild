@@ -1677,193 +1677,193 @@
       "id": "rent-a-tree",
       "page": 1,
       "name": "Rent a Tree",
-      "for_whom": "You, if your family has a farm, or a relative who has one",
-      "problem": "Small farmers earn 30% of retail; middlemen control distribution. Urban families pay premium for fruit but cannot find a trusted direct source.",
-      "what_app_does": "A catalogue of trees with photos and the farmer's story. The customer books a tree for the season, the order is saved, and the season's photo updates go by WhatsApp. Produce delivers when ripe."
+      "for_whom": "You, if your family or a relative has a farm",
+      "problem": "Farmers earn 30% of retail; families can't find a trusted direct source for fruit.",
+      "what_app_does": "Book a tree for the season, get photo updates on WhatsApp, produce delivered when ripe."
     },
     {
       "id": "tiffin-choice",
       "page": 1,
       "name": "Tiffin Choice",
       "for_whom": "You, if you cook well and could feed 30 office-goers nearby",
-      "problem": "Customers do not know the weekly menu in advance. The cook does not know who wants what until she has already cooked.",
-      "what_app_does": "Shows the upcoming weekly menu. Lets regular customers pick three preferred dishes for next week. Sends preferences to the cook on WhatsApp."
+      "problem": "Customers don't know the weekly menu; the cook doesn't know who wants what.",
+      "what_app_does": "Shows next week's menu, regulars pick their dishes, choices go to the cook on WhatsApp."
     },
     {
       "id": "mehendi-bookings",
       "page": 1,
       "name": "Mehendi Bookings",
-      "for_whom": "You, if you do mehendi, or a friend who does it for events",
-      "problem": "Brides spend a week messaging five artists on Instagram. The artist who responds slowly loses the booking.",
-      "what_app_does": "Shows the artist's portfolio by style and pricing. A booking request with date and details lands on WhatsApp, and the artist confirms availability by hand."
+      "for_whom": "You, if you do mehendi, or a friend who does events",
+      "problem": "Brides message five artists for a week; slow repliers lose the booking.",
+      "what_app_does": "Portfolio by style and price; a dated booking request lands on WhatsApp to confirm."
     },
     {
       "id": "makeup-enquiry",
       "page": 1,
       "name": "Makeup Enquiry",
-      "for_whom": "You, if you do makeup well, or a friend who freelances",
-      "problem": "Bridal makeup is a 15K to 75K booking. Brides spend a week comparing artists on Instagram and never get structured information.",
-      "what_app_does": "Portfolio organised by occasion. Brides answer a guided questionnaire (event, venue, looks, allergies). A complete enquiry arrives on the artist's WhatsApp."
+      "for_whom": "You, if you do makeup, or a friend who freelances",
+      "problem": "A 15K-75K booking, but brides compare artists for a week with no clear info.",
+      "what_app_does": "Portfolio by occasion; a guided questionnaire sends a full enquiry to WhatsApp."
     },
     {
       "id": "jewellery-curator",
       "page": 1,
       "name": "Jewellery Curator",
-      "for_whom": "You, if you have access to a goldsmith, lac-maker, or silver craftsman",
-      "problem": "Indian buyers shifting from showrooms to online want curated pieces with stories, not generic catalogues.",
-      "what_app_does": "Collection by occasion and style. Each piece has the maker's story, weight, and care. Custom orders go to the goldsmith via a guided form, confirmed on WhatsApp."
+      "for_whom": "You, if you know a goldsmith, lac-maker, or silver craftsman",
+      "problem": "Buyers moving online want curated pieces with stories, not generic catalogues.",
+      "what_app_does": "Pieces by occasion with the maker's story; custom orders reach the goldsmith on WhatsApp."
     },
     {
       "id": "alteration-service",
       "page": 1,
       "name": "Alteration Service",
-      "for_whom": "You, if you have access to a tailor, or your mother sews well",
-      "problem": "Working women buy clothes online and most need small alterations. Local tailors do not do pickup-and-delivery.",
-      "what_app_does": "Customers browse pricing and book a pickup slot, the order is saved, and reference photos go by WhatsApp. The tailor returns it altered in a few days."
+      "for_whom": "You, if you know a tailor, or your mother sews well",
+      "problem": "Women buy clothes online and need alterations; tailors don't pick up and deliver.",
+      "what_app_does": "Browse pricing, book a pickup, send photos on WhatsApp, get it back altered."
     },
     {
       "id": "exam-prep",
       "page": 1,
       "name": "Exam Prep",
       "for_whom": "You, if you are strong in one school subject",
-      "problem": "Group tuitions are generic. Online platforms like Vedantu cost 50K-2L and are too broad.",
-      "what_app_does": "The coach's specialisation, a 12 or 24 week program, recent results. Parents see the plan and book a trial class, and the monthly fee is collected offline."
+      "problem": "Group tuitions are generic; platforms like Vedantu cost 50K-2L and are too broad.",
+      "what_app_does": "Your subject, a 12-24 week plan, recent results; parents book a trial, pay offline."
     },
     {
       "id": "hostel-laundry",
       "page": 1,
       "name": "Hostel Laundry",
-      "for_whom": "You, if you live in a hostel or PG and could collect, wash or iron, and return clothes for the students around you",
-      "problem": "Hostel and PG students hate doing laundry and ironing, and the local dhobi is unreliable about pickup, timing, and lost clothes. There is no simple way to book it and know where your clothes are.",
-      "what_app_does": "Shows your services and per-piece or weekly prices. A student places an order with their room number and a pickup time, saved with an order number. You move it through Picked up, Washing, Ready, Returned. They pay on return, and confirmations go on WhatsApp."
+      "for_whom": "You, if you live in a hostel or PG and can collect, wash, and return",
+      "problem": "Students hate laundry; the local dhobi is unreliable and clothes get lost.",
+      "what_app_does": "Order by room and pickup time; track Picked up, Washing, Ready, Returned; pay on return."
     },
     {
       "id": "neighbourhood-bakery",
       "page": 2,
       "name": "Neighbourhood Bakery",
-      "for_whom": "You, if you bake well, or a relative who already bakes for friends",
-      "problem": "Demand grows beyond what WhatsApp can handle. Custom orders for birthdays and festivals get lost in chat history.",
-      "what_app_does": "Bake catalogue with photos and prices. Custom orders use a structured form. Confirmed orders go to the baker as a clean WhatsApp message."
+      "for_whom": "You, if you bake well, or a relative who bakes for friends",
+      "problem": "Custom orders for birthdays and festivals get lost in WhatsApp chat history.",
+      "what_app_does": "Bake catalogue with prices; custom orders use a form and arrive clean on WhatsApp."
     },
     {
       "id": "tutoring-slots",
       "page": 2,
       "name": "Tutoring Slots",
-      "for_whom": "You, if you tutor younger students (Class 5-10), or a friend who does",
-      "problem": "Parents make many calls to book a tutor. The tutor wastes evenings confirming slots over WhatsApp.",
-      "what_app_does": "Tutor's subjects, sample topics, and available time slots. Parents request a free trial slot, saved and sent to WhatsApp, confirmed in person."
+      "for_whom": "You, if you tutor Class 5-10 students, or a friend who does",
+      "problem": "Parents make many calls to book; tutors waste evenings confirming slots.",
+      "what_app_does": "Subjects and open slots; parents request a free trial, sent to WhatsApp to confirm."
     },
     {
       "id": "plant-catalogue",
       "page": 2,
       "name": "Plant Catalogue",
-      "for_whom": "You, if you grow plants at home, or a neighbour aunty who runs a nursery",
-      "problem": "Apartment dwellers want plants but kill them because they pick wrong for their light conditions.",
-      "what_app_does": "Available plants with photos, prices, and a light and care-difficulty filter. Customers pick by their light, order, and the founder delivers."
+      "for_whom": "You, if you grow plants, or know an aunty with a nursery",
+      "problem": "Apartment dwellers want plants but kill them by picking wrong for their light.",
+      "what_app_does": "Plants with a light and care filter; pick by your light, order, founder delivers."
     },
     {
       "id": "direct-dairy",
       "page": 2,
       "name": "Direct Dairy",
-      "for_whom": "You, if your family has a small dairy farm, or a relative does",
-      "problem": "Urban families pay 80-120/L for branded milk that is industrial dairy in fancy packaging. The farmer sells to wholesalers for 40/L.",
-      "what_app_does": "Shows the farm and the cows. Customers start a weekly subscription, saved and sent to WhatsApp. Delivery on a fixed weekly route, payment offline."
+      "for_whom": "You, if your family or a relative has a small dairy farm",
+      "problem": "Families pay 80-120/L for branded milk; the farmer gets 40/L from wholesalers.",
+      "what_app_does": "See the farm; start a weekly subscription on WhatsApp; fixed route, pay offline."
     },
     {
       "id": "handicraft-brand",
       "page": 2,
       "name": "Handicraft Brand",
-      "for_whom": "You, if you have visited one craft cluster (Channapatna, Moradabad, Molela)",
-      "problem": "Urban Indians want Indian-aesthetic decor. FabIndia is sterile and IKEA does not get the language.",
-      "what_app_does": "Curated decor pieces with stories about the cluster and the artisan. New pieces drop monthly. Customers order, founder ships."
+      "for_whom": "You, if you've visited a craft cluster (Channapatna, Molela)",
+      "problem": "Buyers want Indian-aesthetic decor; FabIndia is sterile, IKEA misses the language.",
+      "what_app_does": "Curated decor with the artisan's story; new pieces monthly; order, founder ships."
     },
     {
       "id": "hyperlocal-wash",
       "page": 2,
       "name": "Hyperlocal Wash",
       "for_whom": "You, if you can hire two boys and serve one apartment complex",
-      "problem": "Urban Indians spend 1K-2.5K/month getting their car washed badly. Reliable hyperlocal service does not exist at apartment-complex scale.",
-      "what_app_does": "Residents of one complex subscribe monthly and see the week's wash schedule. After each wash, residents get 'your car is done' on WhatsApp."
+      "problem": "Residents pay 1K-2.5K/month for bad car washes; no reliable complex-scale service.",
+      "what_app_does": "One complex subscribes monthly, sees the schedule, gets 'car done' on WhatsApp."
     },
     {
       "id": "two-wheeler-service",
       "page": 2,
       "name": "Two-Wheeler Service",
-      "for_whom": "You, if you have a relative who runs a bike or scooter repair shop",
-      "problem": "Customers drop their bike at the service shop and have no clarity on what was done or what it cost.",
-      "what_app_does": "Customers submit what is wrong and how urgent, the order is saved, and the mechanic sends the bill and photos on WhatsApp before pickup."
+      "for_whom": "You, if a relative runs a bike or scooter repair shop",
+      "problem": "Customers drop their bike and have no clarity on what was done or the cost.",
+      "what_app_does": "Submit the problem and urgency; mechanic sends the bill and photos before pickup."
     },
     {
       "id": "pre-loved-kids",
       "page": 2,
-      "name": "Pre-Loved Kids",
-      "for_whom": "You, if you can collect good gently-used kids' clothes from parents in your building or college network",
-      "problem": "Kids outgrow good clothes in three months. Parents spend 30K-80K/year on briefly-used clothes and have nowhere trusted to buy gently-used ones.",
-      "what_app_does": "A curated catalogue of gently-used kids' clothes by size and brand, all listed by you. Parents order, you check and hand over or ship, and confirm on WhatsApp. You keep a margin."
+      "name": "Outgrown",
+      "for_whom": "You, if you can collect gently-used kids' clothes from parents nearby",
+      "problem": "Kids outgrow clothes in months; parents have nowhere trusted to buy used ones.",
+      "what_app_does": "A catalogue by size and brand; parents order, you check and hand over, keep a margin."
     },
     {
       "id": "pet-sitter",
       "page": 3,
       "name": "Pet Sitter",
-      "for_whom": "You, if you love pets and have time on weekends",
-      "problem": "Working couples with dogs and cats struggle to find someone trustworthy and nearby to walk or feed their pet.",
-      "what_app_does": "Sitter's profile and weekly availability. Pet owners book a slot, saved and sent to WhatsApp. After each visit, the sitter sends a photo update on WhatsApp."
+      "for_whom": "You, if you love pets and have weekend time",
+      "problem": "Working couples can't find someone trustworthy and nearby to walk or feed their pet.",
+      "what_app_does": "Your profile and slots; owners book on WhatsApp, get a photo update after each visit."
     },
     {
       "id": "fest-photographer",
       "page": 3,
       "name": "Fest Photographer",
-      "for_whom": "You, if you do photography as a hobby and own a decent camera",
-      "problem": "College fest organisers hire expensive professionals or whoever they know. No reliable middle option for student photographers.",
-      "what_app_does": "Photographer's portfolio, packages (raw photos, edited highlights, reels), weekend availability. Organisers see pricing and send a booking request to WhatsApp."
+      "for_whom": "You, if photography is your hobby and you own a decent camera",
+      "problem": "Fest organisers hire pricey pros or whoever they know; no reliable student option.",
+      "what_app_does": "Portfolio, packages, and weekend slots; organisers send a booking request to WhatsApp."
     },
     {
       "id": "saree-curator",
       "page": 3,
       "name": "Saree Curator",
       "for_whom": "You, if you have taste in sarees and a wholesaler contact",
-      "problem": "Working women want curated sarees but online shops show thousands of generic options. Instagram saree sellers are unreliable.",
-      "what_app_does": "Curated collection by region, occasion, or weave. Each saree has the weaver's story and styling notes. Customers order, founder ships."
+      "problem": "Women want curated sarees; online shows thousands, Instagram sellers are unreliable.",
+      "what_app_does": "Curated by region, occasion, or weave with weaver stories; order, founder ships."
     },
     {
       "id": "block-print-brand",
       "page": 3,
       "name": "Block Print Brand",
-      "for_whom": "You, if you have visited Bagru, Sanganer, or another block-printing cluster",
-      "problem": "Urban buyers want authentic block prints but FabIndia is corporate and Instagram resellers are unreliable.",
-      "what_app_does": "Curated collection of block-printed clothes and home goods. Each piece tells the story of the cluster and the printer. New drops monthly."
+      "for_whom": "You, if you've visited Bagru, Sanganer, or a printing cluster",
+      "problem": "Buyers want authentic block prints; FabIndia is corporate, resellers unreliable.",
+      "what_app_does": "Curated block-printed clothes and home goods with the cluster's story; monthly drops."
     },
     {
       "id": "home-pickle",
       "page": 3,
       "name": "Home Pickle",
       "for_whom": "You, if your mother or grandmother makes legendary pickles",
-      "problem": "Industrial pickles have killed the taste people remember from home. Urban Indians cannot find a small home-maker they trust.",
-      "what_app_does": "Product range with stories about recipes and ingredients. Customers order monthly boxes or one-off jars, saved and sent as a clean WhatsApp message. Home-cook ships in courier-friendly packaging."
+      "problem": "Industrial pickles killed the home taste; no trusted small home-maker to buy from.",
+      "what_app_does": "Range with recipe stories; order jars or monthly boxes on WhatsApp, shipped to you."
     },
     {
       "id": "festival-catering",
       "page": 3,
       "name": "Festival Catering",
       "for_whom": "You, if you or your family cook well for groups",
-      "problem": "Big caterers refuse functions below 50 people. Hosts of small birthdays, naming ceremonies, satsangs have nowhere to turn at 300-500/head.",
-      "what_app_does": "Menus by function type at different per-head prices. Hosts pick, specify dietary needs, and lock the date. The order arrives on WhatsApp."
+      "problem": "Big caterers refuse under 50 people; small functions have nowhere to turn.",
+      "what_app_does": "Menus by function and per-head price; pick, set dietary needs, lock the date on WhatsApp."
     },
     {
       "id": "poultry-direct",
       "page": 3,
       "name": "Poultry Direct",
-      "for_whom": "You, if your family raises poultry, or a relative does",
-      "problem": "Urban families pay 80-120/dozen for 'free-range' eggs they cannot verify. The farmer sells to wholesalers for 30.",
-      "what_app_does": "Shows the farm and the chickens. Customers subscribe to weekly or biweekly egg deliveries, saved and sent to WhatsApp. Delivery on a planned route, payment offline."
+      "for_whom": "You, if your family or a relative raises poultry",
+      "problem": "Families pay 80-120/dozen for unverifiable 'free-range' eggs; the farmer gets 30.",
+      "what_app_does": "See the farm; subscribe to weekly egg delivery on WhatsApp; planned route, pay offline."
     },
     {
       "id": "senior-travel",
       "page": 3,
       "name": "Senior Travel",
-      "for_whom": "You, if you have an elderly relative who travels, or you like planning trips",
-      "problem": "Indian seniors have travel budgets but SOTC and Thomas Cook treat them as generic tourists. Trusted senior-paced trips are hard to find.",
-      "what_app_does": "Curated small-group senior tours (pilgrimage, heritage, hill stations). Travellers browse and send a booking request to WhatsApp. Founder handles logistics, payment offline."
+      "for_whom": "You, if you like planning trips or have an elderly relative who travels",
+      "problem": "Seniors have budgets but big agencies treat them as generic tourists.",
+      "what_app_does": "Curated small-group senior tours; browse and request on WhatsApp, founder handles it."
     }
   ]
 }

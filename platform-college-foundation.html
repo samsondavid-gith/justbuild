@@ -60,7 +60,7 @@
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
     gap: 32px;
-    padding: 18px 40px;
+    padding: 10px 40px;
     border-bottom: 1px solid var(--line);
     background: var(--bg);
     z-index: 5;
@@ -71,7 +71,8 @@
     display: flex;
     align-items: center;
     gap: 14px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    min-width: 0;
   }
   .topbar-logo {
     width: 30px;
@@ -96,6 +97,11 @@
     font-size: 13px;
     color: var(--text-muted);
     letter-spacing: 0.04em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 38ch;
+    min-width: 0;
   }
 
   .topbar-center {
@@ -2563,8 +2569,9 @@
 <style>
   /* ===== Foundation batch 6 ===== */
   /* Idea cards: never clip the problem text. Cards size to content; grid scrolls if needed. */
-  .fit-viewport .ideas-grid { grid-template-rows: auto !important; grid-auto-rows: auto !important; overflow-y: auto !important; align-content: start; padding-right: 6px; }
-  .fit-viewport .idea-card { overflow: visible !important; }
+  .fit-viewport .ideas-grid { grid-template-rows: repeat(2, 1fr) !important; grid-auto-rows: 1fr !important; overflow: hidden !important; align-content: stretch; }
+  .fit-viewport .idea-card { overflow: hidden !important; }
+  .fit-viewport .idea-card-value { display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
   .fit-viewport .ideas-grid::-webkit-scrollbar { width: 6px; }
   .fit-viewport .ideas-grid::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 3px; }
   /* Awards: caterpillar wearing a golden crown */
@@ -2849,7 +2856,7 @@ const CONCEPT_MODULES = {
       {
         "lens": "humanics",
         "practice": "Meet them where they are",
-        "headline": "They will open it on a *cheap phone,* not your laptop.",
+        "headline": "They will open it on a *basic phone,* not your laptop.",
         "lead": "Small screen, slow data, one thumb. Build and test there, not on your big bright laptop.",
         "wrong": "It looks great on my laptop, so it's done. (never opened it on a phone)",
         "right": "I opened it on my own phone on mobile data, and the button is big enough to tap with a thumb.",
@@ -4142,7 +4149,7 @@ function renderCurrent() {
   if (screen.session) {
     $("#topbar-eyebrow").textContent = topbarEyebrow(screen.session);
     $("#topbar-title").textContent = screen.session.title;
-    $("#topbar-section").textContent = sectionLabel(screen);
+    $("#topbar-section").textContent = screen.type === "step" ? "" : sectionLabel(screen);
     updateProgress();
   } else if (screen.type === "idea-cards") {
     const defaultPage = (WORKSHOP && WORKSHOP.cohort_idea_page) || 1;

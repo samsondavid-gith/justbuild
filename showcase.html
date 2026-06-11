@@ -351,7 +351,7 @@ function escapeAttr(s){return escapeHtml(s);}
 const ART_TYPES=[
   {key:"url",     label:"App",           verb:"Open live app", kind:"link",
     icon:`<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><rect x="2.5" y="3" width="15" height="14" rx="2"/><path d="M2.5 7h15"/><circle cx="5" cy="5" r=".6" fill="currentColor"/></svg>`},
-  {key:"video",   label:"Product Video", verb:"Watch",         kind:"video",
+  {key:"video",   label:"Marketing Video", verb:"Watch",         kind:"video",
     icon:`<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><circle cx="10" cy="10" r="7.5"/><path d="M8.2 7.2 13 10l-4.8 2.8z" fill="currentColor" stroke="none"/></svg>`},
   {key:"website", label:"Website",       verb:"Visit site",    kind:"link",
     icon:`<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><circle cx="10" cy="10" r="7.5"/><path d="M2.5 10h15M10 2.5c2.2 2 2.2 13 0 15M10 2.5c-2.2 2-2.2 13 0 15"/></svg>`},
@@ -412,7 +412,7 @@ function showVideo(b,slug,url){
   document.getElementById("modal-body").innerHTML=`<div class="modal-inner">
     <button class="modal-back" id="modal-back">&#8249; Back to folder</button>
     <div class="modal-kind">${escapeHtml(kind)}</div>
-    <h2 class="modal-name">${escapeHtml(b.product_name)} &middot; Product video</h2>
+    <h2 class="modal-name">${escapeHtml(b.product_name)} &middot; Marketing video</h2>
     <video class="modal-video" src="${escapeAttr(url)}" controls autoplay playsinline></video>
   </div>`;
   document.getElementById("modal-back").addEventListener("click",()=>renderFolderBody(b,slug));

@@ -1088,7 +1088,7 @@
       ],
       "build": [],
       "test_output": [],
-      "output_capture": "Your product walkthrough video: a shareable Loom link and a downloaded copy as backup.",
+      "output_capture": "Your marketing video: a shareable Loom link and a downloaded copy as backup.",
       "break_after": true,
       "break_duration_minutes": 10,
       "phase": "weekend",
@@ -1366,7 +1366,7 @@
                 "title": "The win",
                 "body": "Your strongest piece of proof.",
                 "detail": [
-                  "You have a real product video: your screen, your voice, your live venture working."
+                  "You have a real marketing video: your screen, your voice, your live venture working."
                 ]
               },
               {

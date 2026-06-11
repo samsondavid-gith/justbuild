@@ -87,12 +87,16 @@
     text-transform: uppercase;
     color: var(--accent);
     font-weight: 500;
+    flex-shrink: 0;
+    white-space: nowrap;
   }
   .topbar-title {
     font-family: var(--serif);
     font-size: 22px;
     font-weight: 400;
     letter-spacing: -0.01em;
+    flex-shrink: 0;
+    white-space: nowrap;
   }
   .topbar-section {
     font-size: 13px;
@@ -103,6 +107,7 @@
     text-overflow: ellipsis;
     max-width: 38ch;
     min-width: 0;
+    flex: 0 1 auto;
   }
 
   .topbar-center {

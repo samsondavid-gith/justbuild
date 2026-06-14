@@ -12,7 +12,7 @@
   gtag('js', new Date());
   gtag('config', 'G-1PXYFN65T8');
 </script>
-<meta name="description" content="A two-day weekend in Bangalore or online, followed by four weeks of structured online build support. By Orange Caterpillar.">
+<meta name="description" content="A two-day in-person weekend followed by four weeks of structured online build support. For college students. By Orange Caterpillar.">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="shortcut icon" href="/favicon.ico">
@@ -53,9 +53,6 @@
   --space-xxl: 7rem;
 }
 
-/* ================================================================
-   RESET + BASE
-   ================================================================ */
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 body {
@@ -75,583 +72,169 @@ img { max-width: 100%; display: block; }
 button { font-family: inherit; }
 input, textarea, select { font-family: inherit; font-size: inherit; }
 
-/* ================================================================
-   LAYOUT
-   ================================================================ */
-.container {
-  width: 100%;
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0 1.5rem;
-}
+.container { width: 100%; max-width: var(--max-width); margin: 0 auto; padding: 0 1.5rem; }
+.section-info, .section-apply, .section-confirmation { padding: var(--space-xl) 0; }
+.section-apply { background: var(--bg-secondary); border-top: 1px solid var(--accent-line); padding: var(--space-xxl) 0 var(--space-xl); }
+.section-confirmation { background: var(--bg-secondary); padding: var(--space-xxl) 0 var(--space-xl); }
 
-.section-info, .section-apply, .section-confirmation {
-  padding: var(--space-xl) 0;
-}
+.eyebrow { font-family: var(--font-body); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin: 0 0 1.25rem 0; }
+.brand-mark { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); margin: 0 0 2rem 0; }
+.headline { font-family: var(--font-display); font-weight: 600; font-size: clamp(1.75rem, 4vw, 2.5rem); line-height: 1.2; letter-spacing: -0.01em; color: var(--text-primary); margin: 0 0 1.5rem 0; }
+.headline-italic { font-style: italic; font-weight: 600; margin: 0.25rem 0 1rem 0; line-height: 1.15; font-size: clamp(2rem, 4.5vw, 2.75rem); }
 
-.section-apply {
-  background: var(--bg-secondary);
-  border-top: 1px solid var(--accent-line);
-  padding: var(--space-xxl) 0 var(--space-xl);
-}
+/* Small accent dash above eyebrow (slide reference) */
+.eyebrow-with-dash::before { content: ""; display: block; width: 38px; height: 3px; background: var(--accent); margin: 0 0 0.85rem 0; }
 
-.section-confirmation {
-  background: var(--bg-secondary);
-  padding: var(--space-xxl) 0 var(--space-xl);
-}
+.spine-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; margin: 1.5rem 0 2rem; }
+@media (min-width: 720px) { .spine-grid { grid-template-columns: 1fr 1fr 1fr; gap: 1rem; } }
 
-/* ================================================================
-   TYPOGRAPHY — display + body
-   ================================================================ */
-.eyebrow {
-  font-family: var(--font-body);
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin: 0 0 1.25rem 0;
-}
+/* Card: thick dark top bar, clean content */
+.spine-card { position: relative; padding: 1.75rem 1.5rem 1.75rem; background: var(--bg-primary); border: 1px solid rgba(0, 0, 0, 0.08); border-radius: 2px; display: flex; flex-direction: column; }
+.spine-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: #4A4541; border-radius: 2px 2px 0 0; }
+.spine-card-emphasis { background: var(--accent-soft); border-color: var(--accent-line); }
 
-.brand-mark {
-  font-family: var(--font-display);
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin: 0 0 2rem 0;
-}
+.spine-label { font-family: var(--font-display); font-size: 0.9rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin: 0.5rem 0 1rem 0; }
 
-.headline {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-  color: var(--text-primary);
-  margin: 0 0 1.5rem 0;
-}
+/* "Builds the X." is now the visual hero of each card */
+.spine-tag { font-family: var(--font-display); font-size: clamp(1.35rem, 2.2vw, 1.6rem); font-style: italic; font-weight: 600; color: var(--text-primary); margin: 0 0 1.5rem 0; line-height: 1.2; letter-spacing: -0.01em; }
 
-.subhead {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 1.25rem;
-  line-height: 1.35;
-  letter-spacing: -0.005em;
-  margin: 2.5rem 0 1rem 0;
-  color: var(--text-primary);
-}
+.spine-body { font-family: var(--font-body); font-size: 0.95rem; line-height: 1.6; color: var(--text-primary); margin: 0; }
 
-.subhead-small {
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 1.1rem;
-  line-height: 1.4;
-  margin: 1.5rem 0 0.5rem 0;
-  color: var(--text-primary);
-}
+/* Bottom callout: orange left bar, italic */
+.spine-summary { font-family: var(--font-body); font-size: 1.0625rem; font-style: italic; font-weight: 600; color: var(--text-primary); margin: 2rem 0 0; padding: 0.75rem 0 0.75rem 1rem; border-left: 4px solid var(--accent); }
+.subhead { font-family: var(--font-display); font-weight: 600; font-size: 1.25rem; line-height: 1.35; letter-spacing: -0.005em; margin: 2.5rem 0 1rem 0; color: var(--text-primary); }
+.subhead-small { font-family: var(--font-body); font-weight: 600; font-size: 1.1rem; line-height: 1.4; margin: 1.5rem 0 0.5rem 0; color: var(--text-primary); }
+.prose { font-family: var(--font-body); font-size: 1.0625rem; line-height: 1.65; color: var(--text-primary); margin: 0 0 1.1rem 0; }
+.prose-italic { font-style: italic; color: var(--text-secondary); }
+.prose-lead { font-family: var(--font-body); font-size: 1.125rem; line-height: 1.55; font-weight: 400; color: var(--text-primary); margin: 0 0 1.25rem 0; }
+.leadword { color: var(--accent); font-weight: 600; }
+.dropcap { float: left; font-family: var(--font-display); font-weight: 700; font-size: 3.5rem; line-height: 0.95; color: var(--accent); padding-right: 0.55rem; padding-top: 0.45rem; margin-bottom: -0.15rem; }
+.section-rule { height: 1px; background: var(--accent-line); border: 0; margin: var(--space-md) 0; }
+.divider-block { margin: var(--space-lg) 0; border-top: 1px solid var(--accent-line); padding-top: var(--space-md); }
+.hero { padding-top: 2rem; }
+.hero-headline { font-family: var(--font-display); font-weight: 600; font-size: clamp(2rem, 5vw, 3rem); line-height: 1.15; letter-spacing: -0.015em; color: var(--text-primary); margin: 0.5rem 0 1.75rem 0; }
+.hero-lede { font-family: var(--font-body); font-size: 1.125rem; line-height: 1.6; font-weight: 400; color: var(--text-primary); margin: 0 0 1.25rem 0; }
 
-.prose {
-  font-family: var(--font-body);
-  font-size: 1.0625rem;
-  line-height: 1.65;
-  color: var(--text-primary);
-  margin: 0 0 1.1rem 0;
-}
+.takeaway { margin: 1.5rem 0; padding-left: 0; }
+.takeaway-title { font-family: var(--font-body); font-size: 1.0625rem; font-weight: 600; color: var(--text-primary); margin: 0 0 0.35rem 0; }
+.takeaway-body { font-size: 1rem; color: var(--text-primary); margin: 0; line-height: 1.55; }
 
-.prose-italic {
-  font-style: italic;
-  color: var(--text-secondary);
-}
+.onething-line { font-family: var(--font-display); font-weight: 600; font-size: clamp(1.5rem, 3.5vw, 2rem); line-height: 1.3; letter-spacing: -0.005em; text-align: center; color: var(--text-primary); padding: var(--space-md) 0; margin: var(--space-sm) 0; }
+.hl-jb { color: var(--accent); font-weight: 700; }
 
-.prose-lead {
-  font-family: var(--font-body);
-  font-size: 1.125rem;
-  line-height: 1.55;
-  font-weight: 400;
-  color: var(--text-primary);
-  margin: 0 0 1.25rem 0;
-}
+.apply-intro { margin-bottom: 3rem; }
+.field { margin: 1.5rem 0; }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+.field-row .field { margin: 0; }
+.field-label { display: block; font-weight: 600; font-size: 1rem; color: var(--text-primary); margin-bottom: 0.25rem; }
+.field-label-optional { color: var(--text-muted); font-weight: 400; font-size: 0.9rem; margin-left: 0.4rem; }
+.field-hint { font-size: 0.9rem; font-style: italic; color: var(--text-secondary); margin: 0 0 0.5rem 0; line-height: 1.45; }
+.field-input, .field-textarea, .field-select { width: 100%; padding: 0.75rem 1rem; background: var(--bg-primary); border: 1.5px solid rgba(0, 0, 0, 0.12); border-radius: 4px; font-size: 1rem; font-family: var(--font-body); color: var(--text-primary); transition: border-color 0.15s ease, background 0.15s ease; }
+.field-select { appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23666' d='M6 8L0 0h12z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; }
+.field-input:focus, .field-textarea:focus, .field-select:focus { outline: none; border-color: var(--accent); background-color: #fff; }
+.field-textarea { resize: vertical; min-height: 100px; line-height: 1.5; }
+.field-input.has-error, .field-textarea.has-error, .field-select.has-error { border-color: var(--error); background-color: var(--error-bg); }
+.field-error { font-size: 0.875rem; color: var(--error); margin: 0.4rem 0 0 0; font-weight: 500; }
+.field-prefill-note { font-size: 0.85rem; font-style: italic; color: var(--text-secondary); margin: 0.4rem 0 0 0; }
 
-.leadword {
-  color: var(--accent);
-  font-weight: 600;
-}
+.field-group-heading { font-family: var(--font-body); font-size: 0.95rem; font-weight: 600; color: var(--text-primary); margin: 2.5rem 0 0.25rem 0; padding-top: 1.5rem; border-top: 1px solid var(--accent-line); letter-spacing: 0.01em; }
+.field-group-sub { font-size: 0.9rem; font-style: italic; color: var(--text-secondary); margin: 0 0 0.75rem 0; line-height: 1.45; }
 
-.dropcap {
-  float: left;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 3.5rem;
-  line-height: 0.95;
-  color: var(--accent);
-  padding-right: 0.55rem;
-  padding-top: 0.45rem;
-  margin-bottom: -0.15rem;
-}
+.btn { display: inline-block; font-family: var(--font-body); font-size: 1rem; font-weight: 500; letter-spacing: 0.01em; padding: 0.95rem 1.75rem; border: 1.5px solid var(--accent); border-radius: 4px; cursor: pointer; transition: all 0.15s ease; text-align: center; text-decoration: none; line-height: 1.2; }
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: #A86A22; border-color: #A86A22; }
+.btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
+.btn-dark { background: var(--text-primary); color: #fff; border-color: var(--text-primary); }
+.btn-dark:hover { background: #000; border-color: #000; }
+.btn-full { width: 100%; display: block; padding: 1.05rem 1.75rem; font-size: 1.05rem; }
 
-.section-rule {
-  height: 1px;
-  background: var(--accent-line);
-  border: 0;
-  margin: var(--space-md) 0;
-}
+.submit-block { margin-top: 2.5rem; }
+.submit-disclaimer { font-size: 0.85rem; font-style: italic; color: var(--text-secondary); text-align: center; margin-top: 0.75rem; }
+.submit-error { background: var(--error-bg); border: 1px solid var(--error); color: var(--error); padding: 0.85rem 1rem; border-radius: 4px; margin-bottom: 1rem; font-size: 0.95rem; font-weight: 500; }
+.confirm-cta { margin-top: 2rem; }
 
-.divider-block {
-  margin: var(--space-lg) 0;
-  border-top: 1px solid var(--accent-line);
-  padding-top: var(--space-md);
-}
+.cred-block { display: grid; grid-template-columns: 1fr 240px; gap: 2rem; align-items: center; margin: 1.25rem 0 1.5rem; }
+.cred-headline { font-family: var(--font-display); font-weight: 700; font-size: 1.5rem; line-height: 1.2; letter-spacing: -0.01em; margin: 0 0 0.35rem; color: var(--text-primary); }
+.cred-role { font-family: var(--font-body); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin: 0 0 1.25rem; }
+.cred-list { list-style: none; padding: 0; margin: 0; }
+.cred-list li { position: relative; padding-left: 0.9rem; margin-bottom: 0.55rem; font-size: 1rem; line-height: 1.55; color: var(--text-primary); }
+.cred-list li::before { content: ""; position: absolute; left: 0; top: 0.5em; width: 3px; height: 0.85em; background: var(--accent); }
+.cred-photo { width: 100%; border-radius: 4px; display: block; }
+@media (max-width: 600px) { .cred-block { grid-template-columns: 1fr; gap: 1.5rem; } .cred-photo { max-width: 200px; } }
 
-/* ================================================================
-   HEADER / HERO
-   ================================================================ */
-.hero {
-  padding-top: 2rem;
-}
-
-.hero-headline {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: clamp(2rem, 5vw, 3rem);
-  line-height: 1.15;
-  letter-spacing: -0.015em;
-  color: var(--text-primary);
-  margin: 0.5rem 0 1.75rem 0;
-}
-
-.hero-lede {
-  font-family: var(--font-body);
-  font-size: 1.125rem;
-  line-height: 1.6;
-  font-weight: 400;
-  color: var(--text-primary);
-  margin: 0 0 1.25rem 0;
-}
-
-/* ================================================================
-   PHASE 3: HOW YOU THINK — trinity display
-   ================================================================ */
-.trinity {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(1.5rem, 3.5vw, 2rem);
-  text-align: center;
-  letter-spacing: -0.005em;
-  color: var(--text-primary);
-  padding: var(--space-md) 0;
-  margin: var(--space-md) 0;
-}
-
-/* ================================================================
-   INTELLECTUAL SPINE — three-card layout
-   ================================================================ */
-.spine-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-  margin: 0 0 2rem;
-}
-
-@media (min-width: 720px) {
-  .spine-grid {
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 0.875rem;
-  }
-}
-
-.spine-card {
-  padding: 1.75rem 1.5rem 1.5rem;
-  background: var(--bg-primary);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 4px;
-  display: flex;
-  flex-direction: column;
-}
-
-.spine-card-emphasis {
-  background: var(--accent-soft);
-  border-color: var(--accent-line);
-}
-
-.spine-num {
-  font-family: var(--font-body);
-  font-style: italic;
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--accent);
-  letter-spacing: 0.04em;
-  margin-bottom: 1.5rem;
-}
-
-.spine-label {
-  font-family: var(--font-display);
-  font-size: 1rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--accent);
-  padding-bottom: 0.75rem;
-  margin-bottom: 1rem;
-  border-bottom: 1px solid var(--accent-line);
-}
-
-.spine-tag {
-  font-family: var(--font-body);
-  font-size: 1.05rem;
-  font-style: italic;
-  color: var(--text-primary);
-  margin: 0 0 1rem;
-  line-height: 1.5;
-}
-
-.spine-detail {
-  border-left: 3px solid var(--accent);
-  padding-left: 0.875rem;
-}
-
-.spine-body {
-  font-family: var(--font-body);
-  font-size: 0.95rem;
-  line-height: 1.55;
-  color: var(--text-primary);
-  margin: 0;
-}
-
-.spine-summary {
-  font-family: var(--font-body);
-  font-size: 1.05rem;
-  font-style: italic;
-  font-weight: 600;
-  color: var(--text-primary);
-  margin: 0 0 1rem;
-  padding: 1rem 1.25rem;
-  border-left: 3px solid var(--accent);
-  background: var(--accent-soft);
-}
-
-/* ================================================================
-   TAKEAWAYS (what you leave with, what continues after)
-   ================================================================ */
-.takeaway {
-  margin: 1.5rem 0;
-  padding-left: 0;
-}
-.takeaway-title {
-  font-family: var(--font-body);
-  font-size: 1.0625rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  margin: 0 0 0.35rem 0;
-}
-.takeaway-body {
-  font-size: 1rem;
-  color: var(--text-primary);
-  margin: 0;
-  line-height: 1.55;
-}
-
-/* ================================================================
-   THE ONE THING — emphasis section
-   ================================================================ */
-.onething-line {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: clamp(1.5rem, 3.5vw, 2rem);
-  line-height: 1.3;
-  letter-spacing: -0.005em;
-  text-align: center;
-  color: var(--text-primary);
-  padding: var(--space-md) 0;
-  margin: var(--space-sm) 0;
-}
-
-.hl-jb {
-  color: var(--accent);
-  font-weight: 700;
-}
-
-/* ================================================================
-   APPLY/WAITLIST SECTION HEADER
-   ================================================================ */
-.apply-intro {
-  margin-bottom: 3rem;
-}
-
-/* ================================================================
-   FORM FIELDS
-   ================================================================ */
-.field {
-  margin: 1.5rem 0;
-}
-
-/* Two-column row for first/last name on wider screens */
-.field-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  margin: 1.5rem 0;
-}
-.field-row .field {
-  margin: 0;
-}
-
-.field-label {
-  display: block;
-  font-weight: 600;
-  font-size: 1rem;
-  color: var(--text-primary);
-  margin-bottom: 0.25rem;
-}
-
-.field-label-optional {
-  color: var(--text-muted);
-  font-weight: 400;
-  font-size: 0.9rem;
-  margin-left: 0.4rem;
-}
-
-.field-hint {
-  font-size: 0.9rem;
-  font-style: italic;
-  color: var(--text-secondary);
-  margin: 0 0 0.5rem 0;
-  line-height: 1.45;
-}
-
-.field-input,
-.field-textarea {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  background: var(--bg-primary);
-  border: 1.5px solid rgba(0, 0, 0, 0.12);
-  border-radius: 4px;
-  font-size: 1rem;
-  font-family: var(--font-body);
-  color: var(--text-primary);
-  transition: border-color 0.15s ease, background 0.15s ease;
-}
-
-.field-input:focus,
-.field-textarea:focus {
-  outline: none;
-  border-color: var(--accent);
-  background: #fff;
-}
-
-.field-textarea {
-  resize: vertical;
-  min-height: 100px;
-  line-height: 1.5;
-}
-
-.field-input.has-error,
-.field-textarea.has-error {
-  border-color: var(--error);
-  background: var(--error-bg);
-}
-
-.field-error {
-  font-size: 0.875rem;
-  color: var(--error);
-  margin: 0.4rem 0 0 0;
-  font-weight: 500;
-}
-
-.field-prefill-note {
-  font-size: 0.85rem;
-  font-style: italic;
-  color: var(--text-secondary);
-  margin: 0.4rem 0 0 0;
-}
-
-/* ================================================================
-   BUTTONS
-   ================================================================ */
-.btn {
-  display: inline-block;
-  font-family: var(--font-body);
-  font-size: 1rem;
-  font-weight: 500;
-  letter-spacing: 0.01em;
-  padding: 0.95rem 1.75rem;
-  border: 1.5px solid var(--accent);
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.15s ease;
-  text-align: center;
-  text-decoration: none;
-  line-height: 1.2;
-}
-.btn-primary {
-  background: var(--accent);
-  color: #fff;
-}
-.btn-primary:hover {
-  background: #A86A22;
-  border-color: #A86A22;
-}
-.btn-primary:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-.btn-dark {
-  background: var(--text-primary);
-  color: #fff;
-  border-color: var(--text-primary);
-}
-.btn-dark:hover {
-  background: #000;
-  border-color: #000;
-}
-.btn-full {
-  width: 100%;
-  display: block;
-  padding: 1.05rem 1.75rem;
-  font-size: 1.05rem;
-}
-
-.submit-block {
-  margin-top: 2.5rem;
-}
-.submit-disclaimer {
-  font-size: 0.85rem;
-  font-style: italic;
-  color: var(--text-secondary);
-  text-align: center;
-  margin-top: 0.75rem;
-}
-.submit-error {
-  background: var(--error-bg);
-  border: 1px solid var(--error);
-  color: var(--error);
-  padding: 0.85rem 1rem;
-  border-radius: 4px;
-  margin-bottom: 1rem;
-  font-size: 0.95rem;
-  font-weight: 500;
-}
-
-/* ================================================================
-   CONFIRMATION SCREEN
-   ================================================================ */
-.confirm-cta {
-  margin-top: 2rem;
-}
-
-/* ================================================================
-   CREDIBILITY — founder profile with photo
-   ================================================================ */
-.cred-block {
-  display: grid;
-  grid-template-columns: 1fr 240px;
-  gap: 2rem;
-  align-items: center;
-  margin: 1.25rem 0 1.5rem;
-}
-
-.cred-headline {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 1.5rem;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-  margin: 0 0 0.35rem;
-  color: var(--text-primary);
-}
-
-.cred-role {
-  font-family: var(--font-body);
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin: 0 0 1.25rem;
-}
-
-.cred-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.cred-list li {
-  position: relative;
-  padding-left: 0.9rem;
-  margin-bottom: 0.55rem;
-  font-size: 1rem;
-  line-height: 1.55;
-  color: var(--text-primary);
-}
-
-.cred-list li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.5em;
-  width: 3px;
-  height: 0.85em;
-  background: var(--accent);
-}
-
-.cred-photo {
-  width: 100%;
-  border-radius: 4px;
-  display: block;
-}
-
-@media (max-width: 600px) {
-  .cred-block {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-  .cred-photo {
-    max-width: 200px;
-  }
-}
-
-/* ================================================================
-   UTILITY
-   ================================================================ */
 .hidden { display: none !important; }
 .center { text-align: center; }
 
-/* ================================================================
-   RESPONSIVE
-   ================================================================ */
 @media (max-width: 768px) {
   body { font-size: 16px; }
   .container { padding: 0 1.1rem; }
-  .section-info, .section-apply, .section-confirmation {
-    padding: 3rem 0;
-  }
-  .section-apply, .section-confirmation {
-    padding-top: 4rem;
-  }
+  .section-info, .section-apply, .section-confirmation { padding: 3rem 0; }
+  .section-apply, .section-confirmation { padding-top: 4rem; }
   .hero-headline { font-size: 2rem; }
   .headline { font-size: 1.85rem; }
   .subhead { font-size: 1.3rem; }
-  .trinity { font-size: 1.4rem; }
   .onething-line { font-size: 1.4rem; }
   .spine-summary { font-size: 1rem; }
-  .field-row {
-    grid-template-columns: 1fr;
-    gap: 0;
-  }
-  .field-row .field {
-    margin: 1.5rem 0;
-  }
+  .field-row { grid-template-columns: 1fr; gap: 0; }
+  .field-row .field { margin: 1.5rem 0; }
 }
+</style>
+<!-- PAGE SECTION NAV (jump-to) -->
+<style>
+  /* Floating, self-contained — does not alter the page layout.
+     JS picks "rail" (persistent, in the gutter) when there's room, else "dropdown". */
+  #enroll-nav, #enroll-nav-toggle { font-family: 'Inter', system-ui, sans-serif; box-sizing: border-box; }
+  #enroll-nav { position: fixed; z-index: 900; display: none; }
+  .enroll-nav-head {
+    font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: #a89c87; padding: 0 0.65rem 0.6rem 0.65rem;
+  }
+  .enroll-nav-list { list-style: none; margin: 0; padding: 0; }
+  .enroll-nav-link {
+    display: block; padding: 0.34rem 0.65rem; font-size: 0.84rem; line-height: 1.3;
+    color: #6b6357; text-decoration: none; border-left: 2px solid transparent;
+    transition: color 0.12s ease, border-color 0.12s ease;
+  }
+  .enroll-nav-link:hover { color: #1A1A1A; }
+  .enroll-nav-link.active { color: #C17D2A; border-left-color: #C17D2A; font-weight: 600; }
 
+  /* Persistent rail — floats in the empty gutter beside the centered column */
+  #enroll-nav.rail {
+    display: block; top: 92px; width: 200px; max-height: calc(100vh - 124px);
+    overflow-y: auto; padding: 0.9rem 0.55rem;
+    background: rgba(255, 255, 255, 0.72); border: 1px solid #e7e0d2;
+    border-radius: 10px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  }
+
+  /* Dropdown fallback — pinned button opens the list (used only when no gutter room) */
+  #enroll-nav-toggle {
+    display: none; align-items: center; gap: 0.4rem;
+    position: fixed; top: 12px; left: 12px; z-index: 1001;
+    background: #ffffff; border: 1px solid #e3dccb; color: #1A1A1A;
+    font-size: 0.8rem; font-weight: 600; padding: 0.5rem 0.8rem;
+    border-radius: 6px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); cursor: pointer;
+  }
+  #enroll-nav-toggle.show { display: inline-flex; }
+  #enroll-nav-toggle::after { content: "▾"; font-size: 0.7rem; }
+  #enroll-nav-toggle[aria-expanded="true"]::after { content: "▴"; }
+  #enroll-nav.dropdown {
+    top: 52px; left: 12px; width: 232px; max-height: 70vh; overflow-y: auto;
+    background: #ffffff; border: 1px solid #e3dccb; border-radius: 8px;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12); padding: 0.5rem; z-index: 1001; display: none;
+  }
+  #enroll-nav.dropdown.open { display: block; }
+  #enroll-nav.dropdown .enroll-nav-head { display: none; }
+
+  @media print { #enroll-nav, #enroll-nav-toggle { display: none !important; } }
 </style>
 </head>
 <body>
+<button type="button" id="enroll-nav-toggle" aria-expanded="false" aria-controls="enroll-nav">On this page</button>
+<nav id="enroll-nav" aria-label="Page sections">
+  <div class="enroll-nav-head">On this page</div>
+  <ul class="enroll-nav-list" id="enroll-nav-list"></ul>
+</nav>
 
-<!-- ============================================================
-     PHASE 1 — INFORMATION (UNCHANGED)
-     ============================================================ -->
 <section class="section-info">
   <div class="container">
 
@@ -667,71 +250,51 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
     <!-- WHO THIS IS FOR -->
     <div>
       <div class="eyebrow">Who this is for</div>
-      <p class="prose">Non-engineers. You do not need to write code. You do not need a technical background.</p>
+      <p class="prose">College students. Undergraduate or postgraduate. Any discipline. You do not need to write code. You do not need a technical background.</p>
       <p class="prose">The new generation of AI tools is the first that can be operated entirely in plain language. The wall between having an idea and shipping a working version of it has dropped. This is built for everyone that wall used to keep out.</p>
     </div>
 
-    <!-- WHAT THIS IS -->
     <div class="divider-block">
       <div class="eyebrow">What this is</div>
-      <p class="prose">A two-day weekend, either in person or online via Zoom, followed by four weeks of structured online build support.</p>
+      <p class="prose">A two-day in-person weekend. Four weeks of online build support. Demo Day.</p>
       <p class="prose prose-italic">The weekend gives you momentum. The next four weeks make it real.</p>
     </div>
 
     <!-- HOW IT WORKS -->
     <div class="divider-block">
       <div class="eyebrow">How it works</div>
-
-      <h2 class="subhead">Phase 1 — The Build Weekend</h2>
-      <p class="prose"><span class="leadword">Day 1 morning —</span> discover your idea, stress test it with AI, and design your solution before you build a single thing.</p>
-      <p class="prose"><span class="leadword">Day 1 afternoon and Day 2 —</span> you build. Six real things. All connected. All live.</p>
-      <p class="prose">By Sunday evening you have a working prototype, a live URL, and your first version in the world.</p>
-
-      <h2 class="subhead">Phase 2 — The Build Month</h2>
-      <p class="prose">Four weeks of structured support to take your build from prototype to something real.</p>
-      <p class="prose"><span class="leadword">Week 1 — Refine.</span> Improve based on specific feedback.</p>
-      <p class="prose"><span class="leadword">Week 2 — Validate.</span> Talk to real users. Not friends.</p>
-      <p class="prose"><span class="leadword">Week 3 — Iterate.</span> Change something substantial.</p>
-      <p class="prose"><span class="leadword">Week 4 — Launch.</span> Demo day. Present your build, what changed, and what comes next.</p>
+      <p class="prose">A weekend kickoff. Four weeks of structured build support. Demo Day.</p>
+      <p class="prose">The weekend gets you from idea to your first working version. By Sunday evening you have something real, a live AI app, that did not exist on Friday.</p>
+      <p class="prose">The four weeks after are when the rough first version becomes something you would be proud to show. Structured online support every week. Real users in the loop. By the end, you present what you built and where it goes next.</p>
     </div>
 
     <!-- HOW YOU THINK WHILE BUILDING -->
     <div class="divider-block">
-      <div class="eyebrow">How you think while building</div>
-      <p class="prose">Everything runs on one lens.</p>
-      <p class="trinity">Humanics. Mechanics. Valuenomics.</p>
-      <p class="prose prose-italic center" style="margin-top:0; margin-bottom:2.5rem;">Not just chasing tools. A fundamental way of thinking about AI.</p>
+      <div class="eyebrow eyebrow-with-dash">Humanics. Mechanics. Valuenomics.</div>
+      <h2 class="headline headline-italic">Not just tools. A way of thinking.</h2>
+      <p class="prose prose-italic">Most AI training teaches what to click. We teach how to think. So when the tools change next year, you still know what to build.</p>
 
       <div class="spine-grid">
         <div class="spine-card">
-          <div class="spine-num">01</div>
           <div class="spine-label">Humanics</div>
           <p class="spine-tag">Builds the builder.</p>
-          <div class="spine-detail">
-            <p class="spine-body">First principles reasoning. Problem framing. Systems thinking. Questions that change trajectories.</p>
-          </div>
+          <p class="spine-body">First principles. Problem framing. Systems thinking. The mental moves that don't go obsolete.</p>
         </div>
 
         <div class="spine-card spine-card-emphasis">
-          <div class="spine-num">02</div>
           <div class="spine-label">Mechanics</div>
           <p class="spine-tag">Builds the AI.</p>
-          <div class="spine-detail">
-            <p class="spine-body">Understand how AI actually works. How models think. Know. Learn. Take action. Communicate. Stay safe.</p>
-          </div>
+          <p class="spine-body">How models actually work. How they think, learn, and act. Beyond the prompt, into the substance.</p>
         </div>
 
         <div class="spine-card">
-          <div class="spine-num">03</div>
           <div class="spine-label">Valuenomics</div>
           <p class="spine-tag">Builds the business.</p>
-          <div class="spine-detail">
-            <p class="spine-body">Turning insight to narrative. Narrative to influence. Influence to outcomes.</p>
-          </div>
+          <p class="spine-body">Turning insight into narrative. Narrative into influence. Influence into outcomes.</p>
         </div>
       </div>
 
-      <p class="spine-summary">Humanics builds the builder. Mechanics builds the AI. Valuenomics builds the business.</p>
+      <p class="spine-summary">Tools change every year. This intellectual spine doesn't.</p>
 
       <p class="prose prose-italic" style="margin-top:2rem;">Not taught as theory. Applied at every decision. By the end it becomes how you think. Not just for this build but for every one after.</p>
     </div>
@@ -760,12 +323,16 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
       <div class="eyebrow">What you leave with</div>
 
       <div class="takeaway">
-        <h3 class="takeaway-title">A real build. Six of them.</h3>
-        <p class="takeaway-body">An AI app with a live URL. A website that markets it. A chatbot embedded on the website. A sixty-second brand audio piece. A ninety-second product demo video posted on LinkedIn. An AI agent running automatically without you. All connected. All live. All built by you.</p>
+        <h3 class="takeaway-title">A working build that lives on the internet</h3>
+        <p class="takeaway-body">Live AI app. Real users can find it. Connected pieces, all of them built by you. The kind of thing you can put in front of a recruiter without explaining.</p>
+      </div>
+      <div class="takeaway">
+        <h3 class="takeaway-title">A working AI portfolio</h3>
+        <p class="takeaway-body">When the question is "show me what you can do with AI," the answer is in your hands. Not described. Demonstrated.</p>
       </div>
       <div class="takeaway">
         <h3 class="takeaway-title">The Just Build Toolkit</h3>
-        <p class="takeaway-body">Frameworks, templates, prompts, and guides. Ready to use on your next build.</p>
+        <p class="takeaway-body">What you use to keep building after the program ends.</p>
       </div>
       <div class="takeaway">
         <h3 class="takeaway-title">The OC Certificate</h3>
@@ -792,11 +359,11 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
       </div>
       <div class="takeaway">
         <h3 class="takeaway-title">Internship opportunities at Orange Caterpillar</h3>
-        <p class="takeaway-body">For students and early career participants. A chance to build inside OC.</p>
+        <p class="takeaway-body">A chance to build inside OC.</p>
       </div>
       <div class="takeaway">
         <h3 class="takeaway-title">The David Foundation Scholarship</h3>
-        <p class="takeaway-body">25% of fees returned to the most innovative build in the cohort. The one that built something real for a real person.</p>
+        <p class="takeaway-body">A scholarship awarded to the most innovative build in the cohort. The one that built something real for a real person.</p>
       </div>
       <div class="takeaway">
         <h3 class="takeaway-title">OC Ventures</h3>
@@ -824,9 +391,6 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
   </div>
 </section>
 
-<!-- ============================================================
-     PHASE 2 — WAITLIST (REPLACES OLD APPLICATION FORM)
-     ============================================================ -->
 <section class="section-apply" id="section-apply">
   <div class="container">
 
@@ -839,7 +403,7 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
 
     <form id="waitlist-form" novalidate>
 
-      <!-- NAME (first + last side by side on wider screens) -->
+      <!-- NAME -->
       <div class="field-row">
         <div class="field">
           <label for="apply-firstname" class="field-label">First name</label>
@@ -870,10 +434,37 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
         <p class="field-error hidden" data-error-for="apply-phone">Please enter a valid number with country code, starting with +.</p>
       </div>
 
+      <!-- CITY (optional) -->
+      <div class="field">
+        <label for="apply-city" class="field-label">City<span class="field-label-optional">(optional)</span></label>
+        <input type="text" id="apply-city" name="city" class="field-input" placeholder="Bangalore" autocomplete="address-level2">
+      </div>
+
+      <!-- COLLEGE (required for Just Build) -->
+      <div class="field">
+        <label for="apply-college" class="field-label">College or university</label>
+        <input type="text" id="apply-college" name="college" class="field-input" required>
+        <p class="field-error hidden" data-error-for="apply-college">Please tell us where you study.</p>
+      </div>
+
+      <!-- YEAR OF STUDY (required for Just Build) -->
+      <div class="field">
+        <label for="apply-year" class="field-label">Year of study</label>
+        <select id="apply-year" name="year_of_study" class="field-select" required>
+          <option value="">Select one</option>
+          <option value="1">First year</option>
+          <option value="2">Second year</option>
+          <option value="3">Third year</option>
+          <option value="4">Fourth year</option>
+          <option value="postgraduate">Postgraduate</option>
+        </select>
+        <p class="field-error hidden" data-error-for="apply-year">Please pick your year of study.</p>
+      </div>
+
       <!-- ABOUT YOU (optional) -->
       <div class="field">
         <label for="apply-note" class="field-label">One line about you<span class="field-label-optional">(optional)</span></label>
-        <textarea id="apply-note" name="note" class="field-textarea" placeholder="What kind of thing you might want to build, where you are in your work, or anything else worth us knowing."></textarea>
+        <textarea id="apply-note" name="note" class="field-textarea" placeholder="What kind of thing you might want to build, or anything else worth us knowing."></textarea>
       </div>
 
       <!-- WHAT HAPPENS NEXT -->
@@ -895,67 +486,53 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
   </div>
 </section>
 
-<!-- ============================================================
-     CONFIRMATION SCREEN (replaces waitlist form after submit)
-     ============================================================ -->
 <section class="section-confirmation hidden" id="section-confirmation">
   <div class="container">
-
     <div class="eyebrow">Submitted</div>
     <h2 class="headline">You are on the list.</h2>
     <p class="prose-lead">When the 2026 cohorts are announced, we will write to you before the page goes public.</p>
     <p class="prose prose-italic">If you have a question in the meantime, you can email us directly.</p>
-
     <div class="confirm-cta">
       <a href="mailto:hello@orangecaterpillar.com?subject=Question%20about%20the%20Just%20Build%20waitlist" class="btn btn-dark btn-full">Email us at hello@orangecaterpillar.com</a>
     </div>
-
   </div>
 </section>
 
-<!-- ============================================================
-     APP LOGIC
-     ============================================================ -->
 <script>
 (function () {
   'use strict';
 
   // ============================================================
-  // EMAILJS CONFIGURATION
+  // CONFIGURATION
   // ============================================================
-  // Public key and service ID match the SWISH/feedback setup.
-  // EMAILJS_WAITLIST_TEMPLATE_ID is a NEW template you'll need to
-  // create in EmailJS — the old application template expects fields
-  // (q1, q2, q3, cohort_name, etc.) that the waitlist does not collect.
-  // The new template should accept these variables:
-  //   {{firstname}}  {{lastname}}  {{full_name}}
-  //   {{email}}  {{phone}}  {{note}}  {{submitted_at}}
-  // Once the template is created in EmailJS, paste its ID below.
+  const WORKSHOP_NAME = 'Just Build';
   const EMAILJS_PUBLIC_KEY = '4oFdVRvbVQ8mQHUnZ';
   const EMAILJS_SERVICE_ID = 'service_w32avyy';
+
+  const ENROLL_ENDPOINT = 'https://swish.orangecaterpillar.com/api/enroll';
+  function recordEnrollment(params) {
+    // Best-effort: also store the enrollment in the SWISH analytics DB. The
+    // EmailJS email stays the primary confirmation path, so any failure here
+    // is silent and never blocks the applicant.
+    try {
+      fetch(ENROLL_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(params),
+        keepalive: true
+      }).catch(function () {});
+    } catch (e) {}
+  }
+
   const EMAILJS_WAITLIST_TEMPLATE_ID = 'template_dxrfj69';
 
   function isEmailJSConfigured() {
-    return !!(
-      EMAILJS_PUBLIC_KEY &&
-      EMAILJS_SERVICE_ID &&
-      EMAILJS_WAITLIST_TEMPLATE_ID &&
-      EMAILJS_WAITLIST_TEMPLATE_ID.indexOf('REPLACE') === -1
-    );
+    return !!(EMAILJS_PUBLIC_KEY && EMAILJS_SERVICE_ID && EMAILJS_WAITLIST_TEMPLATE_ID && EMAILJS_WAITLIST_TEMPLATE_ID.indexOf('REPLACE') === -1);
   }
+  if (EMAILJS_PUBLIC_KEY && typeof emailjs !== 'undefined') { emailjs.init(EMAILJS_PUBLIC_KEY); }
 
-  if (EMAILJS_PUBLIC_KEY && typeof emailjs !== 'undefined') {
-    emailjs.init(EMAILJS_PUBLIC_KEY);
-  }
-
-  // ============================================================
-  // HELPERS
-  // ============================================================
   function $(sel) { return document.querySelector(sel); }
 
-  // ============================================================
-  // EMAIL PRE-FILL FROM URL (?email=... — used by SWISH redirect)
-  // ============================================================
   function prefillEmailFromURL() {
     const params = new URLSearchParams(window.location.search);
     const email = params.get('email');
@@ -968,9 +545,6 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
     }
   }
 
-  // ============================================================
-  // VALIDATION
-  // ============================================================
   function showError(key) {
     const el = document.querySelector('[data-error-for="' + key + '"]');
     if (el) el.classList.remove('hidden');
@@ -988,24 +562,17 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
     let firstErrorEl = null;
     const fail = function (key) {
       showError(key);
-      if (!firstErrorEl) {
-        firstErrorEl = document.querySelector('[data-error-for="' + key + '"]')
-                    || document.getElementById(key);
-      }
+      if (!firstErrorEl) firstErrorEl = document.querySelector('[data-error-for="' + key + '"]') || document.getElementById(key);
     };
 
-    const firstname = $('#apply-firstname').value.trim();
-    if (!firstname) fail('apply-firstname');
-
-    const lastname = $('#apply-lastname').value.trim();
-    if (!lastname) fail('apply-lastname');
-
+    if (!$('#apply-firstname').value.trim()) fail('apply-firstname');
+    if (!$('#apply-lastname').value.trim()) fail('apply-lastname');
     const email = $('#apply-email').value.trim();
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) fail('apply-email');
-
-    // Phone is OPTIONAL — only validate if user entered something
     const phone = $('#apply-phone').value.trim().replace(/[\s\-()]/g, '');
     if (phone && !/^\+\d{8,15}$/.test(phone)) fail('apply-phone');
+    if (!$('#apply-college').value.trim()) fail('apply-college');
+    if (!$('#apply-year').value) fail('apply-year');
 
     if (firstErrorEl) {
       firstErrorEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -1015,26 +582,28 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
   }
 
   function wireLiveErrorClearing() {
-    const ids = ['apply-firstname', 'apply-lastname', 'apply-email', 'apply-phone'];
+    const ids = ['apply-firstname', 'apply-lastname', 'apply-email', 'apply-phone', 'apply-college', 'apply-year'];
     ids.forEach(function (id) {
       const el = document.getElementById(id);
       if (!el) return;
-      el.addEventListener('input', function () { hideError(id); });
+      const evt = (el.tagName === 'SELECT') ? 'change' : 'input';
+      el.addEventListener(evt, function () { hideError(id); });
     });
   }
 
-  // ============================================================
-  // FORM SUBMISSION
-  // ============================================================
   function buildWaitlistParams() {
     const firstname = $('#apply-firstname').value.trim();
     const lastname = $('#apply-lastname').value.trim();
     return {
+      workshop: WORKSHOP_NAME,
       firstname: firstname,
       lastname: lastname,
       full_name: (firstname + ' ' + lastname).trim(),
       email: $('#apply-email').value.trim(),
       phone: $('#apply-phone').value.trim() || '(not provided)',
+      city: $('#apply-city').value.trim() || '(not provided)',
+      college: $('#apply-college').value.trim(),
+      year_of_study: $('#apply-year').value,
       note: $('#apply-note').value.trim() || '(none)',
       submitted_at: new Date().toISOString()
     };
@@ -1043,7 +612,6 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
   async function submitWaitlist(e) {
     e.preventDefault();
     $('#submit-error').classList.add('hidden');
-
     if (!validateForm()) return;
 
     const submitBtn = $('#submit-btn');
@@ -1052,12 +620,12 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
     submitBtn.textContent = 'Submitting…';
 
     const params = buildWaitlistParams();
+    recordEnrollment(params);
 
     try {
       if (isEmailJSConfigured()) {
         await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_WAITLIST_TEMPLATE_ID, params);
       } else {
-        // Template ID still set to placeholder — log to console for visual testing.
         console.info('EmailJS waitlist template not configured. Waitlist data:', params);
         await new Promise(function (r) { setTimeout(r, 400); });
       }
@@ -1075,14 +643,9 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
   function showConfirmation() {
     $('#section-apply').classList.add('hidden');
     $('#section-confirmation').classList.remove('hidden');
-    setTimeout(function () {
-      $('#section-confirmation').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 50);
+    setTimeout(function () { $('#section-confirmation').scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 50);
   }
 
-  // ============================================================
-  // INIT
-  // ============================================================
   document.addEventListener('DOMContentLoaded', function () {
     prefillEmailFromURL();
     wireLiveErrorClearing();
@@ -1092,5 +655,130 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
 })();
 </script>
 
+<!-- PAGE SECTION NAV (jump-to) -->
+<script>
+(function () {
+  'use strict';
+  var nav, toggle, list, observer = null, autoOpened = false, resizeWired = false;
+
+  function gutterContainer() { return document.querySelector('.section-info .container'); }
+
+  function buildNav() {
+    nav = document.getElementById('enroll-nav');
+    toggle = document.getElementById('enroll-nav-toggle');
+    list = document.getElementById('enroll-nav-list');
+    if (!nav || !toggle || !list) return;
+    var info = gutterContainer();
+    if (!info) return;
+
+    list.innerHTML = '';
+    autoOpened = false;
+    if (observer) { observer.disconnect(); observer = null; }
+
+    var items = [], autoId = 0;
+    // Eyebrow-labelled content blocks inside section-info
+    Array.prototype.forEach.call(info.children, function (block) {
+      var eyebrow = block.querySelector(':scope > .eyebrow');
+      if (!eyebrow) return;
+      var label = (eyebrow.textContent || '').trim();
+      if (!label) return;
+      if (!block.id) block.id = 'enroll-sec-' + (++autoId);
+      items.push({ id: block.id, label: label });
+    });
+    // The apply form
+    var apply = document.getElementById('section-apply');
+    if (apply) items.push({ id: 'section-apply', label: 'Apply now' });
+
+    if (items.length < 2) {
+      nav.classList.remove('rail', 'dropdown', 'open');
+      toggle.classList.remove('show');
+      return;
+    }
+
+    items.forEach(function (it) {
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = '#' + it.id;
+      a.className = 'enroll-nav-link';
+      a.dataset.target = it.id;
+      a.textContent = it.label;
+      a.addEventListener('click', onNavClick);
+      li.appendChild(a);
+      list.appendChild(li);
+    });
+
+    setupSpy(items);
+    wireToggle();
+    positionNav();
+    requestAnimationFrame(positionNav);
+    wireResize();
+  }
+
+  function onNavClick(e) {
+    e.preventDefault();
+    var el = document.getElementById(this.dataset.target);
+    if (!el) return;
+    var isDropdown = nav.classList.contains('dropdown');
+    var offset = isDropdown ? 64 : 16;
+    var top = el.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top: top, behavior: 'smooth' });
+    // Stays open — persistent panel.
+  }
+
+  function setupSpy(items) {
+    var links = {};
+    list.querySelectorAll('.enroll-nav-link').forEach(function (a) { links[a.dataset.target] = a; });
+    var visible = new Set();
+    observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) visible.add(en.target.id); else visible.delete(en.target.id); });
+      var activeId = null;
+      for (var i = 0; i < items.length; i++) { if (visible.has(items[i].id)) { activeId = items[i].id; break; } }
+      Object.keys(links).forEach(function (k) { links[k].classList.remove('active'); });
+      if (activeId && links[activeId]) links[activeId].classList.add('active');
+    }, { rootMargin: '-15% 0px -70% 0px', threshold: 0 });
+    items.forEach(function (it) { var el = document.getElementById(it.id); if (el) observer.observe(el); });
+  }
+
+  function positionNav() {
+    if (!list.children.length) return;
+    var info = gutterContainer();
+    if (!info) return;
+    var RAIL_W = 200, GAP = 16;
+    var gutter = info.getBoundingClientRect().left;
+    if (gutter >= RAIL_W + GAP * 2) {
+      var left = Math.max(GAP, Math.round((gutter - RAIL_W) / 2));
+      nav.classList.add('rail');
+      nav.classList.remove('dropdown', 'open');
+      nav.style.left = left + 'px';
+      toggle.classList.remove('show');
+      toggle.setAttribute('aria-expanded', 'false');
+    } else {
+      nav.classList.add('dropdown');
+      nav.classList.remove('rail');
+      nav.style.left = '';
+      toggle.classList.add('show');
+      if (!autoOpened) { nav.classList.add('open'); toggle.setAttribute('aria-expanded', 'true'); autoOpened = true; }
+    }
+  }
+
+  function wireResize() {
+    if (resizeWired) return; resizeWired = true;
+    var raf = null;
+    window.addEventListener('resize', function () { if (raf) cancelAnimationFrame(raf); raf = requestAnimationFrame(positionNav); });
+  }
+
+  function wireToggle() {
+    if (toggle.dataset.wired) return; toggle.dataset.wired = '1';
+    toggle.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var open = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', buildNav);
+  else buildNav();
+})();
+</script>
 </body>
 </html>

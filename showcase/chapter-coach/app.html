@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter Coach · Class 9 Science</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F0E2;--paper-2:#FBF7EC;--card:#FFFDF6;--ink:#23291E;--ink-soft:#5A5E4E;
+    --green:#33492F;--green-deep:#222E1E;--mango:#E48A2E;--line:#E2D9C4;
+    --good:#2f7d4f;--bad:#b34a2e;
+    --shadow:0 1px 0 #fff inset, 0 18px 40px -28px rgba(35,41,30,.45);--r:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Hanken Grotesk",sans-serif;color:var(--ink);background:var(--paper);line-height:1.55;
+    -webkit-font-smoothing:antialiased;background-image:
+      radial-gradient(circle at 12% 6%, rgba(228,138,46,.10), transparent 40%),
+      radial-gradient(circle at 88% 0%, rgba(51,73,47,.10), transparent 38%);}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.045'/%3E%3C/svg%3E");}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 22px;position:relative;z-index:1}
+  h1,h2,h3,.disp{font-family:"Fraunces",serif;font-weight:600;letter-spacing:-.01em;line-height:1.08}
+
+  header{background:rgba(246,240,226,.9);border-bottom:1px solid var(--line);backdrop-filter:blur(8px)}
+  .bar{display:flex;align-items:center;justify-content:space-between;height:66px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand .logo{width:38px;height:38px;flex:none}
+  .brand .nm{font-family:"Fraunces",serif;font-weight:600;font-size:21px;color:var(--green-deep);line-height:1.05}
+  .brand .tg{font-size:11px;color:var(--ink-soft);letter-spacing:.12em;text-transform:uppercase;margin-top:-1px}
+  .pill-note{font-size:11px;color:var(--green);font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+    border:1px solid var(--line);background:var(--card);padding:6px 12px;border-radius:99px}
+
+  .stages{position:sticky;top:0;z-index:30;background:rgba(246,240,226,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .stagebar{display:flex;gap:6px;padding:14px 0;overflow-x:auto}
+  .stage-tab{flex:1;min-width:138px;display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:14px;
+    border:1.5px solid transparent;background:transparent;cursor:pointer;font:inherit;text-align:left;transition:.22s;position:relative}
+  .stage-tab .n{width:30px;height:30px;flex:none;border-radius:50%;display:grid;place-items:center;font-family:"Fraunces",serif;font-weight:700;font-size:15px;background:#e7ddc7;color:var(--ink-soft);transition:.22s}
+  .stage-tab .lbl{font-weight:700;font-size:15px;line-height:1.1}
+  .stage-tab .sub{font-size:11.5px;color:var(--ink-soft);font-weight:500}
+  .stage-tab.active{background:var(--card);border-color:var(--mango);box-shadow:var(--shadow)}
+  .stage-tab.active .n{background:var(--mango);color:#fff}
+  .stage-tab.done .n{background:var(--green);color:#fff}
+  .stage-tab:not(.active):hover{background:rgba(51,73,47,.07)}
+  .stage-tab .arrow{position:absolute;right:-10px;color:var(--line);font-size:18px}
+  .stage-tab:last-child .arrow{display:none}
+
+  .view{display:none;padding:34px 0 80px;animation:fade .45s ease}
+  .view.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .lead{margin-bottom:26px;max-width:64ch}
+  .lead h1{font-size:clamp(28px,4.3vw,40px)}
+  .lead p{color:var(--ink-soft);margin-top:6px}
+  .eyebrow{display:inline-block;font-weight:700;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--green);margin-bottom:8px}
+
+  .btn{font:inherit;font-weight:700;font-size:15px;border:none;cursor:pointer;border-radius:99px;padding:13px 22px;transition:.2s}
+  .btn-primary{background:var(--mango);color:#2a1c0c}
+  .btn-primary:hover{background:#d97c20}
+  .btn-primary:disabled{background:#d9cdb6;color:#8c8470;cursor:not-allowed}
+  .btn-ghost{background:none;border:1.5px solid var(--green);color:var(--green)}
+  .btn-ghost:hover{background:var(--green);color:#FBF7EC}
+
+  /* ---------- LEARN ---------- */
+  .learn{display:grid;grid-template-columns:240px 1fr;gap:30px;align-items:start}
+  .topiclist{display:flex;flex-direction:column;gap:7px;position:sticky;top:96px}
+  .topic-btn{font:inherit;text-align:left;border:1.5px solid var(--line);background:var(--card);color:var(--ink);
+    padding:12px 14px;border-radius:13px;cursor:pointer;transition:.2s;display:flex;gap:11px;align-items:center}
+  .topic-btn .tn{width:24px;height:24px;flex:none;border-radius:7px;display:grid;place-items:center;background:#efe6d2;color:var(--green-deep);font-family:"Fraunces";font-weight:700;font-size:13px}
+  .topic-btn .tt{font-weight:600;font-size:14px;line-height:1.18}
+  .topic-btn:hover{border-color:var(--green)}
+  .topic-btn.on{background:#f3f6ec;border-color:var(--green);box-shadow:0 0 0 3px rgba(51,73,47,.10)}
+  .topic-btn.on .tn{background:var(--green);color:#fff}
+  .concept{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:30px 32px;box-shadow:var(--shadow)}
+  .concept h2{font-size:27px;margin-bottom:14px}
+  .concept p{margin:0 0 13px;color:#42493a}
+  .formula{background:#f3f6ec;border:1px solid #d9e2c9;border-radius:13px;padding:16px 18px;margin:16px 0;
+    font-family:"Fraunces",serif;font-size:21px;color:var(--green-deep);text-align:center}
+  .formula .fn{display:block;font-family:"Hanken Grotesk";font-size:13px;color:var(--ink-soft);font-weight:500;margin-top:8px}
+  .keypts{list-style:none;margin:14px 0}
+  .keypts li{position:relative;padding-left:26px;margin:9px 0;color:#42493a}
+  .keypts li::before{content:"";position:absolute;left:4px;top:9px;width:8px;height:8px;border-radius:50%;background:var(--mango)}
+  .example{background:var(--paper-2);border:1px solid var(--line);border-radius:13px;padding:16px 18px;margin:16px 0}
+  .example .xl{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mango);margin-bottom:7px}
+  .example .xq{font-weight:600;margin-bottom:9px}
+  .example .xs{font-family:"Fraunces",serif;color:var(--green-deep);margin:3px 0;font-size:16px}
+  .defbox{display:flex;gap:12px;align-items:flex-start;border-left:3px solid var(--mango);background:#fdf6ea;padding:13px 16px;border-radius:0 12px 12px 0;margin-top:16px}
+  .defbox .dlabel{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mango);margin-bottom:2px}
+  .whyline{font-style:italic;color:#5a6049;margin-top:15px;font-size:14.5px}
+  .summary{background:var(--green-deep);color:#eef0e6;border-radius:var(--r);padding:26px 30px;margin-top:22px}
+  .summary h3{color:#fff;font-size:20px;margin-bottom:13px}
+  .summary ul{list-style:none}
+  .summary li{position:relative;padding-left:24px;margin:9px 0;font-size:14.5px;color:#dfe3d6}
+  .summary li::before{content:"";position:absolute;left:2px;top:9px;width:7px;height:7px;border-radius:50%;background:var(--mango)}
+
+  /* ---------- FLASHCARDS ---------- */
+  .flashwrap{max-width:560px;margin:0 auto}
+  .flashcard{perspective:1400px;height:300px;cursor:pointer;margin-bottom:18px}
+  .flashcard .inner{position:relative;width:100%;height:100%;transition:transform .55s cubic-bezier(.2,.7,.2,1);transform-style:preserve-3d}
+  .flashcard.flipped .inner{transform:rotateY(180deg)}
+  .face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;
+    border-radius:var(--r);box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:34px}
+  .face .hint{position:absolute;bottom:16px;font-size:12px;color:var(--ink-soft);letter-spacing:.04em}
+  .face.front{background:var(--card);border:1px solid var(--line)}
+  .face.front .term{font-family:"Fraunces",serif;font-size:30px;color:var(--green-deep)}
+  .face.front .tlabel{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--mango);margin-bottom:12px}
+  .face.back{background:var(--green-deep);color:#eef0e6;border:1px solid var(--green-deep);transform:rotateY(180deg)}
+  .face.back .def{font-size:18px;line-height:1.5}
+  .face.back .tlabel{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--mango);margin-bottom:12px}
+  .flashnav{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .flashnav .prog{font-size:14px;color:var(--ink-soft);font-weight:600}
+  .dotrow{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+  .dotrow i{width:8px;height:8px;border-radius:50%;background:var(--line);transition:.2s}
+  .dotrow i.on{background:var(--mango)}
+  .dotrow i.seen{background:var(--green)}
+
+  /* ---------- QUIZ ---------- */
+  .quizwrap{max-width:660px;margin:0 auto}
+  .qhead{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px}
+  .qhead .qn{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft)}
+  .qhead .qsc{font-family:"Fraunces";font-weight:600;color:var(--green-deep)}
+  .qbar{height:7px;border-radius:99px;background:#e7ddc7;overflow:hidden;margin-bottom:24px}
+  .qbar i{display:block;height:100%;background:var(--mango);transition:width .35s}
+  .qcard{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:28px 30px;box-shadow:var(--shadow)}
+  .qtag{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mango);margin-bottom:8px}
+  .qtext{font-family:"Fraunces",serif;font-size:22px;color:var(--green-deep);margin-bottom:20px;line-height:1.3}
+  .qopts{display:flex;flex-direction:column;gap:10px}
+  .qopt{font:inherit;text-align:left;border:1.5px solid var(--line);background:var(--paper-2);color:var(--ink);
+    padding:14px 16px;border-radius:13px;cursor:pointer;transition:.18s;display:flex;align-items:center;gap:12px}
+  .qopt .ol{width:26px;height:26px;flex:none;border-radius:7px;display:grid;place-items:center;background:#efe6d2;font-weight:700;font-size:13px;color:var(--green-deep)}
+  .qopt:not(:disabled):hover{border-color:var(--green)}
+  .qopt:disabled{cursor:default}
+  .qopt.correct{border-color:var(--good);background:#eaf5ed}
+  .qopt.correct .ol{background:var(--good);color:#fff}
+  .qopt.wrong{border-color:var(--bad);background:#fbeee8}
+  .qopt.wrong .ol{background:var(--bad);color:#fff}
+  .feedback{margin-top:18px;border-radius:13px;padding:15px 17px;font-size:14.5px;display:none}
+  .feedback.show{display:block;animation:fade .3s ease}
+  .feedback.ok{background:#eaf5ed;border:1px solid #c2e0cc;color:#1f5235}
+  .feedback.no{background:#fbeee8;border:1px solid #e8c8ba;color:#8a3a22}
+  .feedback .ft{font-weight:700;margin-bottom:3px}
+  .qfoot{display:flex;justify-content:flex-end;margin-top:20px}
+  .scorecard{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:34px;box-shadow:var(--shadow);text-align:center}
+  .scorecard .big{font-family:"Fraunces";font-size:58px;color:var(--green-deep);line-height:1}
+  .scorecard .big small{font-size:26px;color:var(--ink-soft)}
+  .scorecard p{color:var(--ink-soft);margin:10px auto 22px;max-width:42ch}
+  .scorecard .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+  /* ---------- COACH ---------- */
+  .coachwrap{max-width:680px;margin:0 auto}
+  .chatlog{display:flex;flex-direction:column;gap:14px;margin-bottom:18px;min-height:160px}
+  .msg{max-width:84%;padding:14px 17px;border-radius:16px;font-size:14.5px;line-height:1.55}
+  .msg.you{align-self:flex-end;background:var(--green);color:#f4f1e6;border-bottom-right-radius:5px}
+  .msg.coach{align-self:flex-start;background:var(--card);border:1px solid var(--line);border-bottom-left-radius:5px;box-shadow:var(--shadow)}
+  .msg.coach .who{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mango);margin-bottom:5px}
+  .suggest{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+  .suggest button{font:inherit;font-weight:600;font-size:13px;border:1px solid var(--line);background:var(--card);color:var(--green);padding:8px 14px;border-radius:99px;cursor:pointer;transition:.18s}
+  .suggest button:hover{border-color:var(--green);background:#f3f6ec}
+  .askrow{display:flex;gap:10px}
+  .askrow input{flex:1;font:inherit;font-size:15px;padding:14px 16px;border:1.5px solid var(--line);border-radius:14px;background:var(--paper-2);color:var(--ink);transition:.2s}
+  .askrow input:focus{outline:none;border-color:var(--green);background:#fff}
+
+  /* ---------- PLAN ---------- */
+  .planwrap{max-width:720px;margin:0 auto}
+  .planhead{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px 28px;box-shadow:var(--shadow);margin-bottom:22px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+  .planhead .score{font-family:"Fraunces";font-size:40px;color:var(--green-deep);line-height:1}
+  .planhead .score small{font-size:20px;color:var(--ink-soft)}
+  .planhead .pmeta{flex:1;min-width:200px}
+  .planhead .pmeta h3{font-size:19px;margin-bottom:3px}
+  .planhead .pmeta p{font-size:13.5px;color:var(--ink-soft)}
+  .weakwrap{margin-bottom:22px}
+  .weakwrap .wl{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mango);margin-bottom:10px}
+  .weakchips{display:flex;flex-wrap:wrap;gap:9px}
+  .weakchip{font:inherit;font-weight:600;font-size:13.5px;border:1px solid #e8c8ba;background:#fbeee8;color:#8a3a22;padding:9px 15px;border-radius:99px;cursor:pointer;transition:.18s;display:flex;gap:8px;align-items:center}
+  .weakchip:hover{border-color:var(--bad)}
+  .weakchip.solid{border-color:#c2e0cc;background:#eaf5ed;color:#1f5235;cursor:default}
+  .planstep{display:flex;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:13px;box-shadow:var(--shadow)}
+  .planstep .pn{width:34px;height:34px;flex:none;border-radius:50%;display:grid;place-items:center;background:var(--green);color:#fff;font-family:"Fraunces";font-weight:700}
+  .planstep h4{font-size:16px;margin-bottom:3px}
+  .planstep p{font-size:14px;color:var(--ink-soft)}
+  .checklist{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--r);padding:22px 26px;margin-top:24px}
+  .checklist h3{font-size:18px;margin-bottom:12px}
+  .checklist label{display:flex;gap:12px;align-items:flex-start;margin:10px 0;font-size:14.5px;cursor:pointer;color:#42493a}
+  .checklist input{width:18px;height:18px;margin-top:2px;accent-color:var(--green);flex:none}
+  .notice{background:#fdf6ea;border:1px dashed var(--line);border-radius:14px;padding:20px 22px;text-align:center;color:var(--ink-soft)}
+  .notice b{color:var(--ink)}
+
+  footer{border-top:1px solid var(--line);padding:26px 0;text-align:center;color:var(--ink-soft);font-size:13px;position:relative;z-index:1}
+  @media(max-width:760px){.learn{grid-template-columns:1fr}.topiclist{position:static;flex-direction:row;flex-wrap:wrap}.topic-btn{flex:1;min-width:150px}.stage-tab{min-width:130px}.pill-note{display:none}}
+</style>
+</head>
+<body>
+
+<header><div class="wrap bar">
+  <div class="brand">
+    <svg class="logo" viewBox="0 0 40 40" fill="none">
+      <path d="M5 9c5-2.4 10-2.4 14.5.8V32C15 28.8 10 28.8 5 31V9z" fill="#33492F"/>
+      <path d="M35 9c-5-2.4-10-2.4-14.5.8V32C25 28.8 30 28.8 35 31V9z" fill="#46663f"/>
+      <path d="M20 8.5V32" stroke="#2a3a26" stroke-width="1.3"/>
+      <g stroke="#E48A2E" stroke-width="2.1" stroke-linecap="round"><path d="M20 6.5l-2.6-3M20 6.5l2.6-3M20 6.5V2.4"/></g>
+      <circle cx="20" cy="6.5" r="2.7" fill="#E48A2E"/>
+    </svg>
+    <div><div class="nm">Chapter Coach</div><div class="tg">Class 9 Science · Gravitation</div></div>
+  </div>
+  <div class="pill-note">Day 1 · build for myself</div>
+</div></header>
+
+<div class="stages"><div class="wrap"><div class="stagebar" id="stagebar"></div></div></div>
+
+<!-- LEARN -->
+<section id="learn" class="view active"><div class="wrap">
+  <div class="lead"><span class="eyebrow">It explains</span>
+    <h1>Understand Gravitation, simply.</h1>
+    <p>Pick any idea from the chapter. The coach explains it in plain language, shows the key formula, and works an example where it helps.</p></div>
+  <div class="learn">
+    <div class="topiclist" id="topiclist"></div>
+    <div id="conceptBody"></div>
+  </div>
+</div></section>
+
+<!-- FLASHCARDS -->
+<section id="cards" class="view"><div class="wrap">
+  <div class="lead"><span class="eyebrow">It revises</span>
+    <h1>Lock in the key ideas.</h1>
+    <p>Tap a card to flip it. Quiz yourself on the term, then check the meaning. Shuffle to mix them up before a test.</p></div>
+  <div class="flashwrap">
+    <div class="flashcard" id="flashcard" onclick="flipCard()"><div class="inner">
+      <div class="face front"><div class="tlabel">Term</div><div class="term" id="cardTerm"></div><div class="hint">tap to reveal →</div></div>
+      <div class="face back"><div class="tlabel">Means</div><div class="def" id="cardDef"></div><div class="hint">tap to flip back</div></div>
+    </div></div>
+    <div class="flashnav">
+      <button class="btn btn-ghost" onclick="prevCard(event)">← Prev</button>
+      <span class="prog" id="cardProg"></span>
+      <button class="btn btn-ghost" onclick="nextCard(event)">Next →</button>
+    </div>
+    <div class="dotrow" id="cardDots"></div>
+    <div style="text-align:center;margin-top:18px"><button class="btn btn-primary" onclick="shuffleCards()">Shuffle deck</button></div>
+  </div>
+</div></section>
+
+<!-- QUIZ -->
+<section id="quiz" class="view"><div class="wrap">
+  <div class="lead"><span class="eyebrow">It tests</span>
+    <h1>Check what you know.</h1>
+    <p>Ten questions, like a quick mock test. You get instant feedback after each one — and your answers shape the revision plan in the last tab.</p></div>
+  <div class="quizwrap" id="quizBody"></div>
+</div></section>
+
+<!-- COACH -->
+<section id="coach" class="view"><div class="wrap">
+  <div class="lead"><span class="eyebrow">It coaches</span>
+    <h1>Ask the coach anything.</h1>
+    <p>Stuck on a doubt? Ask in your own words. The coach answers from this chapter and points you to the idea behind it.</p></div>
+  <div class="coachwrap">
+    <div class="chatlog" id="chatlog"></div>
+    <div class="suggest" id="suggest"></div>
+    <div class="askrow">
+      <input id="askInput" placeholder="e.g. Why do we weigh less on the Moon?" onkeydown="if(event.key==='Enter')askCoach()">
+      <button class="btn btn-primary" onclick="askCoach()">Ask</button>
+    </div>
+  </div>
+</div></section>
+
+<!-- PLAN -->
+<section id="plan" class="view"><div class="wrap">
+  <div class="lead"><span class="eyebrow">It plans</span>
+    <h1>Your personalised revision plan.</h1>
+    <p>The coach reads your quiz answers, spots the ideas you found tricky, and builds a short plan around exactly those.</p></div>
+  <div class="planwrap" id="planBody"></div>
+</div></section>
+
+<footer class="wrap">Chapter Coach · a Day 1 “build for myself” demo from Just Build · content pre-loaded for one chapter · runs entirely in your browser</footer>
+
+<script>
+/* ============ CHAPTER CONTENT: Class 9 Science · Gravitation ============ */
+const TOPICS=[
+ {id:"law",name:"Universal Law of Gravitation",
+  intro:["Every object in the universe pulls on every other object — you, your desk, the Moon, a distant star. This pull is gravitation.",
+         "Two things set how strong the pull is: how much mass the objects have, and how far apart they are. More mass means a stronger pull. More distance means a weaker pull — and distance matters a lot, because the force drops off with the <em>square</em> of the distance."],
+  formula:"F = G · (m₁ × m₂) / d²",
+  fn:"G = 6.67 × 10⁻¹¹ N·m²/kg² — the gravitational constant, the same everywhere in the universe.",
+  points:["The force acts along the line joining the two centres.","Both objects feel an equal and opposite pull.","Double the distance and the force drops to one-quarter — that is the d² at work."],
+  why:"This one rule explains why we stay on the ground, why the Moon circles the Earth, why planets orbit the Sun, and why the sea has tides.",
+  define:"Gravitation — the force of attraction between any two objects that have mass."},
+ {id:"g",name:"Free Fall & g",
+  intro:["When the only force acting on an object is gravity — no push, no air resistance — we say it is in <em>free fall</em>.",
+         "A falling object speeds up steadily. That steady rate of speeding-up is the acceleration due to gravity, written g."],
+  formula:"g = G · M / R²",
+  fn:"Near Earth's surface, g ≈ 9.8 m/s². (M = mass of Earth, R = radius of Earth.)",
+  points:["g is the same for every object — a coin and a feather fall together in a vacuum.","g is slightly smaller at the equator and larger at the poles.","g decreases as you go higher above the Earth, or deeper inside it."],
+  why:"Because g is the same for everything, an object's mass does not change how fast it falls once air resistance is removed.",
+  define:"Free fall — the motion of an object when gravity is the only force acting on it."},
+ {id:"mw",name:"Mass vs Weight",
+  intro:["Mass and weight sound the same in everyday talk, but in science they are different.",
+         "Mass is how much matter an object contains. It never changes — your mass is the same on Earth, on the Moon, or in space.",
+         "Weight is the force with which a planet pulls the object down. It depends on g, so it changes from place to place."],
+  formula:"W = m × g",
+  fn:"Mass is in kilograms (kg). Weight is a force, measured in newtons (N).",
+  points:["Mass is a scalar and stays constant; weight is a force and varies with g.","On the Moon g is about one-sixth of Earth's, so your weight there is about 1/6 — but your mass is unchanged."],
+  example:{q:"How much does a 10 kg school bag weigh on Earth? (g = 9.8 m/s²)",steps:["W = m × g","W = 10 × 9.8","W = 98 N"]},
+  why:"A weighing scale really measures the gravitational force on you, then shows the mass that matches it on Earth.",
+  define:"Weight — the gravitational force on an object: W = m × g."},
+ {id:"eq",name:"Free-Fall Motion",
+  intro:["Because a freely falling object has a constant acceleration (g), the three equations of motion apply — you just replace a with g."],
+  formula:"v = u + g·t    •    h = u·t + ½·g·t²    •    v² = u² + 2·g·h",
+  fn:"Take downward as positive. For an object thrown upward, g acts against the motion.",
+  points:["For an object dropped from rest, the starting speed u = 0.","The height fallen grows with the square of the time."],
+  example:{q:"A stone is dropped from rest. What is its speed and how far has it fallen after 2 s? (g = 9.8 m/s²)",steps:["Speed: v = u + g·t = 0 + 9.8 × 2 = 19.6 m/s","Distance: h = ½·g·t² = ½ × 9.8 × 2² = 19.6 m"]},
+  why:"These equations let you predict exactly how fast something is moving and how far it has fallen at any instant.",
+  define:"In free fall, use the equations of motion with the acceleration equal to g."},
+ {id:"pr",name:"Thrust & Pressure",
+  intro:["Thrust is simply a force acting at right angles (perpendicular) to a surface.",
+         "Pressure tells you how concentrated that force is — how much force presses on each unit of area."],
+  formula:"Pressure = Thrust ÷ Area = F / A",
+  fn:"The SI unit of pressure is the pascal (Pa), where 1 Pa = 1 N/m².",
+  points:["The same force on a smaller area gives much more pressure.","That is why a sharp knife cuts easily, and why nails and pins are pointed.","A camel's wide feet spread its weight, lowering the pressure so it does not sink into sand."],
+  why:"Pressure explains everyday tools, and why standing on one foot presses harder into soft ground than standing on two.",
+  define:"Pressure — the force acting per unit area of a surface."},
+ {id:"bu",name:"Buoyancy",
+  intro:["When you push an object into water, the water pushes back up on it. That upward push from any fluid is the <em>buoyant force</em>, or upthrust.",
+         "It is why a bucket of water feels lighter while it is still under the surface, and why you feel lighter in a swimming pool."],
+  formula:null,fn:null,
+  points:["Whether an object floats or sinks depends on density.","If the object is less dense than the fluid, it floats. If it is denser, it sinks.","A cork floats on water; an iron nail sinks."],
+  why:"Buoyancy is the reason huge steel ships can float — their shape pushes aside a large amount of water.",
+  define:"Buoyant force (upthrust) — the upward force a fluid exerts on an object placed in it."},
+ {id:"ar",name:"Archimedes & Relative Density",
+  intro:["Archimedes' principle ties buoyancy to a neat idea: the upward push on an object equals the weight of the fluid it shoves out of the way."],
+  formula:"Upthrust = weight of the fluid displaced",
+  fn:"Relative density = density of the substance ÷ density of water. It is a ratio, so it has no unit.",
+  points:["Used to design ships and submarines, and in instruments like hydrometers and lactometers.","Density of water = 1000 kg/m³ (1 g/cm³).","Relative density below 1 → floats on water; above 1 → sinks."],
+  example:{q:"The density of gold is 19300 kg/m³. What is its relative density?",steps:["Relative density = 19300 ÷ 1000","= 19.3 (no unit) — so gold sinks in water."]},
+  why:"This single principle explains floating, sinking, and how we measure how dense or pure a liquid is.",
+  define:"Archimedes' principle — the upthrust on an immersed object equals the weight of the fluid it displaces."}
+];
+
+const SUMMARY=[
+ "Gravitation is the attraction between any two masses: F = G·m₁·m₂/d², with G = 6.67 × 10⁻¹¹ N·m²/kg².",
+ "Near Earth, freely falling objects accelerate at g ≈ 9.8 m/s²; with no air, all objects fall alike.",
+ "Mass (kg) is the amount of matter and never changes; weight W = mg (N) changes with g — on the Moon it is about 1/6.",
+ "Free-fall problems use the equations of motion with the acceleration equal to g.",
+ "Pressure = force ÷ area (pascal); the same force on a smaller area gives more pressure.",
+ "A fluid pushes up on objects (buoyancy); things float when they are less dense than the fluid.",
+ "Archimedes' principle: upthrust = weight of fluid displaced; relative density = density ÷ density of water (no unit)."
+];
+
+const CARDS=[
+ {t:"Universal law of gravitation",d:"Every mass attracts every other mass with F = G·m₁·m₂/d²."},
+ {t:"G — gravitational constant",d:"6.67 × 10⁻¹¹ N·m²/kg²; the same everywhere in the universe."},
+ {t:"g",d:"Acceleration due to gravity, about 9.8 m/s² near Earth's surface."},
+ {t:"Free fall",d:"The motion of an object when gravity is the only force acting on it."},
+ {t:"Mass",d:"The amount of matter in an object; unit kg; the same everywhere."},
+ {t:"Weight",d:"The gravitational force on an object: W = mg; unit newton (N); changes with g."},
+ {t:"Weight on the Moon",d:"About one-sixth of the weight on Earth, because g there is roughly 1/6."},
+ {t:"Thrust",d:"A force acting perpendicular to a surface; measured in newtons."},
+ {t:"Pressure",d:"Force per unit area: P = F/A; SI unit pascal (Pa) = N/m²."},
+ {t:"Buoyant force (upthrust)",d:"The upward force a fluid exerts on an object placed in it."},
+ {t:"Archimedes' principle",d:"Upthrust on an immersed object = weight of the fluid it displaces."},
+ {t:"Relative density",d:"Density of a substance ÷ density of water; a ratio with no unit."}
+];
+
+const QUESTIONS=[
+ {tag:"law",topic:"Universal Law of Gravitation",q:"In F = G·m₁·m₂/d², if the distance between the two objects is doubled, the force becomes…",opts:["Doubled","Halved","One-fourth","Unchanged"],a:2,why:"Force depends on 1/d². Doubling the distance makes it 1/2² = one-fourth."},
+ {tag:"g",topic:"Free Fall & g",q:"The acceleration due to gravity (g) near Earth's surface is about…",opts:["9.8 m/s²","6.67 × 10⁻¹¹ m/s²","98 m/s²","1.6 m/s²"],a:0,why:"g ≈ 9.8 m/s². 6.67 × 10⁻¹¹ is G, and ~1.6 m/s² is the Moon's g."},
+ {tag:"mw",topic:"Mass vs Weight",q:"Which of these stays the same on the Earth and on the Moon?",opts:["Weight","Mass","g","Buoyant force"],a:1,why:"Mass is the amount of matter, so it never changes. Weight changes because g is different."},
+ {tag:"mw",topic:"Mass vs Weight",q:"A 10 kg bag weighs about how much on Earth? (g = 9.8 m/s²)",opts:["10 N","9.8 N","98 N","980 N"],a:2,why:"W = m × g = 10 × 9.8 = 98 N."},
+ {tag:"g",topic:"Free Fall & g",q:"In a vacuum, a heavy ball and a light ball dropped together will…",opts:["Land together","Heavy one lands first","Light one lands first","Float"],a:0,why:"With no air resistance every object falls with the same g, so they land together."},
+ {tag:"pr",topic:"Thrust & Pressure",q:"For the same force, a smaller area produces…",opts:["Less pressure","More pressure","Less force","More mass"],a:1,why:"Pressure = force ÷ area, so a smaller area means greater pressure — that is why sharp blades cut well."},
+ {tag:"pr",topic:"Thrust & Pressure",q:"The SI unit of pressure is the…",opts:["Newton","Joule","Pascal","Kilogram"],a:2,why:"Pressure is measured in pascals (Pa), where 1 Pa = 1 N/m²."},
+ {tag:"bu",topic:"Buoyancy",q:"An object floats in water when its density is…",opts:["Greater than water","Less than water","Exactly zero","Equal to G"],a:1,why:"If the object is less dense than the fluid it floats; if it is denser it sinks."},
+ {tag:"ar",topic:"Archimedes & Relative Density",q:"Archimedes' principle says the upthrust equals the…",opts:["Weight of the object","Weight of the fluid displaced","Mass of the object","Volume of the object"],a:1,why:"Upthrust = the weight of the fluid the object pushes out of the way."},
+ {tag:"ar",topic:"Archimedes & Relative Density",q:"Relative density has…",opts:["The unit kg/m³","The unit pascal","No unit","The unit newton"],a:2,why:"It is a ratio (density ÷ density of water), so it has no unit."}
+];
+
+const COACH=[
+ {keys:["difference between mass","mass and weight","mass vs weight","mass weight"],a:"Mass is how much matter an object has — it is the same everywhere and measured in kilograms. Weight is the force of gravity on that object, W = mg, measured in newtons, and it changes when g changes. So your mass on the Moon is the same as on Earth, but your weight there is only about one-sixth."},
+ {keys:["moon","weigh less","lighter on the","weight on the moon"],a:"Weight is mass × g. The Moon is much smaller and lighter than the Earth, so its g is only about 1/6 of Earth's. Your mass does not change, but with a smaller g your weight (mg) drops to about one-sixth."},
+ {keys:["what is g","value of g","9.8","acceleration due to gravity"],a:"g is the acceleration due to gravity — how quickly a freely falling object speeds up. Near Earth's surface it is about 9.8 m/s², so each second of free fall adds about 9.8 m/s to the speed. It comes from g = GM/R²."},
+ {keys:["feather","fall slower","air resistance","vacuum"],a:"Not because of gravity — gravity gives both the same g. It is air resistance. A feather has a large surface and very little weight, so air slows it a lot. Remove the air (a vacuum) and a feather and a stone fall exactly together."},
+ {keys:["knife","sharp","cut","pointed","nail","pin"],a:"Pressure = force ÷ area. A sharp edge has a very small area, so even a gentle force creates a huge pressure along that tiny line — enough to cut. A blunt edge spreads the same force over more area, so the pressure is lower."},
+ {keys:["ship","float","heavy","iron float","steel"],a:"A ship is shaped to push aside (displace) a large volume of water. By Archimedes' principle the water pushes back up with a force equal to the weight of that displaced water. As long as this upthrust matches the ship's weight, it floats — even though iron itself is denser than water."},
+ {keys:["universal law","law of gravitation","gravitation formula","newton's law"],a:"Every object attracts every other object with a force F = G·m₁·m₂/d². The force grows with the masses and falls off with the square of the distance between them. G is the gravitational constant, 6.67 × 10⁻¹¹ N·m²/kg²."},
+ {keys:["buoyant","buoyancy","upthrust"],a:"It is the upward push a fluid gives to anything placed in it. That is why objects feel lighter under water. If this upward push is big enough to balance the object's weight, the object floats."},
+ {keys:["relative density","density ratio"],a:"Relative density compares a substance's density to that of water: relative density = density of the substance ÷ density of water. It has no unit. Below 1 the substance floats on water; above 1 it sinks."},
+ {keys:["moon revolve","moon orbit","why does the moon","revolve around","orbit the earth"],a:"The Earth's gravity constantly pulls the Moon towards it. But the Moon is also moving sideways, so the pull keeps bending its path into an orbit instead of letting it fall straight in. Gravity provides exactly the inward force needed to keep it circling."},
+ {keys:["what is pressure","define pressure"],a:"Pressure is how concentrated a force is on a surface: pressure = force ÷ area, measured in pascals (Pa). The same force on a smaller area gives more pressure."},
+ {keys:["free fall","freely falling"],a:"Free fall is when gravity is the only force acting on an object — no air resistance, no push. In free fall everything speeds up at the same rate, g ≈ 9.8 m/s², whatever its mass."}
+];
+const FALLBACK="Good question. I am the coach for the Gravitation chapter, so I am best on mass and weight, g and free fall, pressure, buoyancy, and Archimedes' principle. Try rephrasing, tap a suggested question below, or open the Learn tab to read the idea in full.";
+const TOPIC_NAME={law:"Universal Law of Gravitation",g:"Free Fall & g",mw:"Mass vs Weight",eq:"Free-Fall Motion",pr:"Thrust & Pressure",bu:"Buoyancy",ar:"Archimedes & Relative Density"};
+
+const STAGES=[
+ {key:"learn",label:"Learn",sub:"Understand it"},
+ {key:"cards",label:"Flashcards",sub:"Revise it"},
+ {key:"quiz",label:"Quiz",sub:"Test it"},
+ {key:"coach",label:"Coach",sub:"Ask it"},
+ {key:"plan",label:"Plan",sub:"Revise smart"}
+];
+
+/* ============ STATE ============ */
+let current="learn", curTopic="law", showSummary=false;
+let cardOrder=CARDS.map((_,i)=>i), cardPos=0, cardFlipped=false, cardSeen={};
+let quiz={i:0, answered:false, picked:null, score:0, done:false, wrongTags:new Set(), correctTags:new Set()};
+let chat=[];
+const $=s=>document.querySelector(s);
+const esc=s=>String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+
+/* ============ STAGE NAV ============ */
+function renderStages(){
+  $("#stagebar").innerHTML=STAGES.map((s,i)=>{
+    const active=s.key===current;
+    const done=(s.key==="quiz"&&quiz.done);
+    return `<button class="stage-tab ${active?'active':''} ${done&&!active?'done':''}" onclick="goStage('${s.key}')">
+      <span class="n">${done&&!active?'✓':i+1}</span><span><span class="lbl">${s.label}</span><br><span class="sub">${s.sub}</span></span><span class="arrow">›</span></button>`;
+  }).join("");
+}
+function goStage(key){
+  current=key;
+  document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
+  $("#"+key).classList.add("active");
+  if(key==="learn")renderConcept();
+  if(key==="cards")renderCard();
+  if(key==="quiz")renderQuiz();
+  if(key==="coach")renderCoach();
+  if(key==="plan")renderPlan();
+  renderStages();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+/* ============ LEARN ============ */
+function renderTopicList(){
+  $("#topiclist").innerHTML=TOPICS.map((t,i)=>
+    `<button class="topic-btn ${t.id===curTopic?'on':''}" onclick="selectTopic('${t.id}')">
+      <span class="tn">${i+1}</span><span class="tt">${t.name}</span></button>`).join("");
+}
+function selectTopic(id){curTopic=id;showSummary=false;renderConcept();}
+function renderConcept(){
+  renderTopicList();
+  const t=TOPICS.find(x=>x.id===curTopic);
+  const formula=t.formula?`<div class="formula">${t.formula}${t.fn?`<span class="fn">${t.fn}</span>`:""}</div>`:"";
+  const pts=t.points?`<ul class="keypts">${t.points.map(p=>`<li>${p}</li>`).join("")}</ul>`:"";
+  const ex=t.example?`<div class="example"><div class="xl">Worked example</div><div class="xq">${esc(t.example.q)}</div>${t.example.steps.map(s=>`<div class="xs">${s}</div>`).join("")}</div>`:"";
+  const intro=t.intro.map(p=>`<p>${p}</p>`).join("");
+  const summary=showSummary?`<div class="summary"><h3>Whole-chapter summary</h3><ul>${SUMMARY.map(s=>`<li>${s}</li>`).join("")}</ul></div>`:"";
+  $("#conceptBody").innerHTML=`
+    <div class="concept">
+      <h2>${esc(t.name)}</h2>
+      ${intro}${formula}${pts}${ex}
+      <div class="defbox"><div><div class="dlabel">Key definition</div>${esc(t.define)}</div></div>
+      <p class="whyline">Why it matters — ${esc(t.why)}</p>
+    </div>
+    <div style="text-align:center;margin-top:20px">
+      <button class="btn btn-ghost" onclick="toggleSummary()">${showSummary?"Hide chapter summary":"Summarise the whole chapter"}</button>
+    </div>
+    ${summary}`;
+}
+function toggleSummary(){showSummary=!showSummary;renderConcept();}
+
+/* ============ FLASHCARDS ============ */
+function renderCard(){
+  const idx=cardOrder[cardPos], c=CARDS[idx];
+  cardSeen[idx]=true;
+  $("#flashcard").classList.remove("flipped");cardFlipped=false;
+  $("#cardTerm").textContent=c.t;
+  $("#cardDef").textContent=c.d;
+  $("#cardProg").textContent=`Card ${cardPos+1} of ${CARDS.length}`;
+  $("#cardDots").innerHTML=cardOrder.map((oi,p)=>`<i class="${p===cardPos?'on':(cardSeen[oi]?'seen':'')}"></i>`).join("");
+}
+function flipCard(){cardFlipped=!cardFlipped;$("#flashcard").classList.toggle("flipped",cardFlipped);}
+function nextCard(e){if(e)e.stopPropagation();cardPos=(cardPos+1)%CARDS.length;renderCard();}
+function prevCard(e){if(e)e.stopPropagation();cardPos=(cardPos-1+CARDS.length)%CARDS.length;renderCard();}
+function shuffleCards(){for(let i=cardOrder.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[cardOrder[i],cardOrder[j]]=[cardOrder[j],cardOrder[i]];}cardPos=0;cardSeen={};renderCard();}
+
+/* ============ QUIZ ============ */
+function renderQuiz(){
+  if(quiz.done){return renderScore();}
+  const q=QUESTIONS[quiz.i];
+  const pct=Math.round((quiz.i)/QUESTIONS.length*100);
+  $("#quizBody").innerHTML=`
+    <div class="qhead"><span class="qn">Question ${quiz.i+1} of ${QUESTIONS.length}</span><span class="qsc">Score ${quiz.score}/${quiz.i>0||quiz.answered?(quiz.answered?quiz.i+1:quiz.i):0}</span></div>
+    <div class="qbar"><i style="width:${pct}%"></i></div>
+    <div class="qcard">
+      <div class="qtag">${esc(q.topic)}</div>
+      <div class="qtext">${q.q}</div>
+      <div class="qopts" id="qopts">
+        ${q.opts.map((o,i)=>`<button class="qopt" onclick="answerQuiz(${i})"><span class="ol">${"ABCD"[i]}</span><span>${esc(o)}</span></button>`).join("")}
+      </div>
+      <div class="feedback" id="qfeedback"></div>
+      <div class="qfoot" id="qfoot"></div>
+    </div>`;
+}
+function answerQuiz(i){
+  if(quiz.answered)return;
+  quiz.answered=true;quiz.picked=i;
+  const q=QUESTIONS[quiz.i];
+  const correct=i===q.a;
+  if(correct){quiz.score++;quiz.correctTags.add(q.tag);}else{quiz.wrongTags.add(q.tag);}
+  const btns=document.querySelectorAll("#qopts .qopt");
+  btns.forEach((b,bi)=>{b.disabled=true;if(bi===q.a)b.classList.add("correct");if(bi===i&&!correct)b.classList.add("wrong");});
+  const fb=$("#qfeedback");
+  fb.className="feedback show "+(correct?"ok":"no");
+  fb.innerHTML=`<div class="ft">${correct?"Correct!":"Not quite."}</div>${correct?"":`The answer is <b>${esc(q.opts[q.a])}</b>. `}${esc(q.why)}`;
+  const last=quiz.i===QUESTIONS.length-1;
+  $("#qfoot").innerHTML=`<button class="btn btn-primary" onclick="nextQuiz()">${last?"See my score →":"Next question →"}</button>`;
+  $(".qsc").textContent=`Score ${quiz.score}/${quiz.i+1}`;
+}
+function nextQuiz(){
+  if(quiz.i<QUESTIONS.length-1){quiz.i++;quiz.answered=false;quiz.picked=null;renderQuiz();}
+  else{quiz.done=true;renderScore();renderStages();}
+}
+function renderScore(){
+  const total=QUESTIONS.length, sc=quiz.score;
+  const msg=sc===total?"Perfect — you have this chapter cold.":sc>=total*0.7?"Strong work. A little polish on a few ideas and you are set.":sc>=total*0.4?"A solid start. Let's tighten up the tricky bits.":"Good effort. The plan below will rebuild this from the ground up.";
+  $("#quizBody").innerHTML=`
+    <div class="scorecard">
+      <div class="big">${sc}<small>/${total}</small></div>
+      <p>${msg}</p>
+      <div class="row">
+        <button class="btn btn-primary" onclick="goStage('plan')">Build my revision plan →</button>
+        <button class="btn btn-ghost" onclick="restartQuiz()">Retake the quiz</button>
+      </div>
+    </div>`;
+}
+function restartQuiz(){quiz={i:0,answered:false,picked:null,score:0,done:false,wrongTags:new Set(),correctTags:new Set()};renderQuiz();renderStages();}
+
+/* ============ COACH ============ */
+const SUGGEST=["Difference between mass and weight?","Why do we weigh less on the Moon?","Why do heavy ships float?","What is relative density?"];
+function renderCoach(){
+  if(chat.length===0){chat.push({who:"coach",text:"Hi! I'm your coach for Gravitation. Ask me anything from this chapter — or tap a question below to start."});}
+  $("#chatlog").innerHTML=chat.map(m=>m.who==="you"
+    ?`<div class="msg you">${esc(m.text)}</div>`
+    :`<div class="msg coach"><div class="who">Coach</div>${esc(m.text)}</div>`).join("");
+  $("#suggest").innerHTML=SUGGEST.map(s=>`<button onclick="askCoach('${s.replace(/'/g,"\\'")}')">${esc(s)}</button>`).join("");
+  $("#chatlog").scrollTop=$("#chatlog").scrollHeight;
+}
+function answerFor(text){
+  const q=text.toLowerCase();
+  let best=null,bestScore=0;
+  COACH.forEach(item=>{
+    let sc=0;item.keys.forEach(k=>{if(q.includes(k))sc+=k.length;});
+    if(sc>bestScore){bestScore=sc;best=item;}
+  });
+  return best?best.a:FALLBACK;
+}
+function askCoach(preset){
+  const input=$("#askInput");
+  const text=(preset!==undefined?preset:input.value).trim();
+  if(!text)return;
+  chat.push({who:"you",text});
+  chat.push({who:"coach",text:answerFor(text)});
+  if(preset===undefined)input.value="";
+  renderCoach();
+}
+
+/* ============ PLAN ============ */
+function renderPlan(){
+  if(!quiz.done){
+    $("#planBody").innerHTML=`
+      <div class="notice"><b>Take the quiz first.</b><br>Once you've answered the ten questions, the coach reads your results and builds a plan around exactly the ideas you found hardest.<br><br>
+        <button class="btn btn-primary" onclick="goStage('quiz')">Go to the quiz →</button></div>
+      ${checklistHtml()}`;
+    return;
+  }
+  const weak=[...quiz.wrongTags];
+  const total=QUESTIONS.length;
+  let weakHtml,steps;
+  if(weak.length===0){
+    weakHtml=`<div class="weakwrap"><div class="wl">What to revise</div><div class="weakchips"><span class="weakchip solid">✓ No weak spots — full marks</span></div></div>`;
+    steps=[
+      {h:"Keep it warm",p:"Run through the flashcards once more so the definitions stay sharp for exam day."},
+      {h:"Stretch yourself",p:"Re-read the worked examples and try a couple of fresh numericals on weight and pressure from your textbook."},
+      {h:"Teach it",p:"Explain g, buoyancy and Archimedes' principle out loud to a friend — if you can teach it, you know it."}
+    ];
+  }else{
+    const names=weak.map(t=>TOPIC_NAME[t]);
+    weakHtml=`<div class="weakwrap"><div class="wl">Focus on these ideas (tap to revise)</div><div class="weakchips">${weak.map(t=>`<button class="weakchip" onclick="planGoTopic('${t}')">${esc(TOPIC_NAME[t])} →</button>`).join("")}</div></div>`;
+    steps=[
+      {h:"Day 1 · Re-learn",p:`Open the Learn tab for ${names.join(", ")}. Read each one, then redo their flashcards until the meanings come instantly.`},
+      {h:"Day 2 · Re-test",p:`Retake the quiz and aim to fix the ${weak.length===1?"one idea":weak.length+" ideas"} you missed. Anything still shaky, ask the Coach.`},
+      {h:"Day 3 · Recall",p:"With the book closed, write each key definition and formula from memory, then check them against the flashcards."}
+    ];
+  }
+  $("#planBody").innerHTML=`
+    <div class="planhead">
+      <div class="score">${quiz.score}<small>/${total}</small></div>
+      <div class="pmeta"><h3>Here's your plan</h3><p>Built from your quiz — focused on what you actually need.</p></div>
+      <button class="btn btn-ghost" onclick="restartQuiz();goStage('quiz')">Retake quiz</button>
+    </div>
+    ${weakHtml}
+    ${steps.map((s,i)=>`<div class="planstep"><div class="pn">${i+1}</div><div><h4>${esc(s.h)}</h4><p>${esc(s.p)}</p></div></div>`).join("")}
+    ${checklistHtml()}`;
+}
+function checklistHtml(){
+  const items=["Read each idea, then say it back in your own words","Do every numerical by hand — don't just read the solution","Use the flashcards for active recall, not re-reading","Ask the Coach about anything still fuzzy"];
+  return `<div class="checklist"><h3>How to revise this chapter well</h3>${items.map(t=>`<label><input type="checkbox"><span>${esc(t)}</span></label>`).join("")}</div>`;
+}
+function planGoTopic(tag){
+  const map={law:"law",g:"g",mw:"mw",eq:"eq",pr:"pr",bu:"bu",ar:"ar"};
+  curTopic=map[tag]||"law";showSummary=false;goStage("learn");
+}
+
+/* ============ INIT ============ */
+renderStages();renderConcept();
+</script>
+</body>
+</html>

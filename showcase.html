@@ -172,6 +172,19 @@
   .t-chapter-coach .card-cta{color:#2E7D5B;font-family:'Hanken Grotesk';font-weight:700}
   .t-chapter-coach:hover{box-shadow:0 26px 52px -24px rgba(46,125,91,.46)}
 
+  /* ---------- HOMEWORK TRACKER · indigo planner theme ---------- */
+  .t-homework-tracker{border-color:rgba(79,91,213,.20)}
+  .t-homework-tracker .card-bg{background:radial-gradient(90% 70% at 86% -8%,rgba(228,138,46,.10),transparent 55%),linear-gradient(165deg,#EEF0FB,#E5E8F6)}
+  .t-homework-tracker::before{content:"";position:absolute;inset:0;z-index:-1;opacity:.55;background-image:linear-gradient(rgba(79,91,213,.06) 1px,transparent 1px);background-size:100% 28px;background-position:0 42px}
+  .t-homework-tracker .card-cohort{color:#4F5BD5}
+  .t-homework-tracker .card-kind{color:#6E7186;font-family:'Hanken Grotesk';font-weight:700}
+  .t-homework-tracker .card-name{font-family:'Fraunces';font-weight:560;color:#23243A;font-size:38px;letter-spacing:-.01em}
+  .t-homework-tracker .card-participant{color:#7A7E95;font-family:'Hanken Grotesk'}.t-homework-tracker .card-participant strong{color:#23243A;font-weight:600}
+  .t-homework-tracker .card-description{color:#4C4F66;font-family:'Hanken Grotesk'}
+  .t-homework-tracker .card-rule{background:#4F5BD5;width:46px}
+  .t-homework-tracker .card-cta{color:#4F5BD5;font-family:'Hanken Grotesk';font-weight:700}
+  .t-homework-tracker:hover{box-shadow:0 26px 52px -24px rgba(79,91,213,.42)}
+
   /* ---------- folder card + artefact pills ---------- */
   .card[role="button"]{cursor:pointer;-webkit-tap-highlight-color:transparent;text-align:left;font:inherit;width:100%}
   .card[role="button"]:focus-visible{outline:2px solid var(--taccent,var(--accent));outline-offset:3px}
@@ -278,7 +291,9 @@ const THEMES={
     deco:`<svg width="80" height="22" viewBox="0 0 80 22"><circle cx="10" cy="11" r="9.5" fill="#5B8C3E"/><text x="10" y="14.5" font-family="'Hanken Grotesk',sans-serif" font-size="10" font-weight="700" fill="#fff" text-anchor="middle">1</text><line x1="20" y1="11" x2="30" y2="11" stroke="#C9BD97" stroke-width="2"/><circle cx="37" cy="11" r="6.5" fill="none" stroke="#C9BD97" stroke-width="2"/><line x1="44" y1="11" x2="54" y2="11" stroke="#C9BD97" stroke-width="2"/><circle cx="61" cy="11" r="6.5" fill="none" stroke="#C9BD97" stroke-width="2"/></svg>`}
 ,
   "chapter-coach":{kind:"AI study coach", accent:"#2E7D5B",
-    deco:`<svg width="44" height="40" viewBox="0 0 44 40" fill="none"><path d="M6 9c5-2.4 10-2.4 14.5.8V31C16 27.8 11 27.8 6 30V9z" fill="#2E7D5B"/><path d="M38 9c-5-2.4-10-2.4-14.5.8V31C28 27.8 33 27.8 38 30V9z" fill="#3E9E73"/><g stroke="#E8923A" stroke-width="2" stroke-linecap="round"><path d="M22 7l-2.4-2.8M22 7l2.4-2.8M22 7V3.2"/></g><circle cx="22" cy="7" r="2.5" fill="#E8923A"/></svg>`}
+    deco:`<svg width="44" height="40" viewBox="0 0 44 40" fill="none"><path d="M6 9c5-2.4 10-2.4 14.5.8V31C16 27.8 11 27.8 6 30V9z" fill="#2E7D5B"/><path d="M38 9c-5-2.4-10-2.4-14.5.8V31C28 27.8 33 27.8 38 30V9z" fill="#3E9E73"/><g stroke="#E8923A" stroke-width="2" stroke-linecap="round"><path d="M22 7l-2.4-2.8M22 7l2.4-2.8M22 7V3.2"/></g><circle cx="22" cy="7" r="2.5" fill="#E8923A"/></svg>`},
+  "homework-tracker":{kind:"Homework & deadline manager", accent:"#4F5BD5",
+    deco:`<svg width="40" height="44" viewBox="0 0 40 44" fill="none"><rect x="6" y="7" width="28" height="32" rx="4" fill="#fff" stroke="#4F5BD5" stroke-width="2"/><rect x="14" y="4" width="12" height="7" rx="2.5" fill="#4F5BD5"/><g stroke="#E48A2E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l1.8 1.8 3-3.4"/><path d="M12 28l1.8 1.8 3-3.4"/></g><g stroke="#C9CCE6" stroke-width="2" stroke-linecap="round"><path d="M21 19h7M21 28h7"/></g></svg>`}
 };
 const slugify=s=>String(s||"default").toLowerCase().replace(/[^a-z0-9-]/g,"")||"default";
 

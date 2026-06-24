@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Homework Tracker · Just Build</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F0E2;--paper-2:#FBF7EC;--card:#FFFDF6;--ink:#23291E;--ink-soft:#5A5E4E;
+    --green:#33492F;--green-deep:#222E1E;--mango:#E48A2E;--line:#E2D9C4;
+    --high:#b34a2e;--med:#E48A2E;--low:#2f7d4f;--blue:#4F5BD5;
+    --shadow:0 1px 0 #fff inset, 0 18px 40px -28px rgba(35,41,30,.45);--r:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Hanken Grotesk",sans-serif;color:var(--ink);background:var(--paper);line-height:1.5;
+    -webkit-font-smoothing:antialiased;background-image:
+      radial-gradient(circle at 12% 6%, rgba(228,138,46,.10), transparent 40%),
+      radial-gradient(circle at 88% 0%, rgba(51,73,47,.10), transparent 38%);}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.045'/%3E%3C/svg%3E");}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 22px;position:relative;z-index:1}
+  h1,h2,h3,h4,.disp{font-family:"Fraunces",serif;font-weight:600;letter-spacing:-.01em;line-height:1.1}
+  button{font-family:inherit}
+
+  header{background:rgba(246,240,226,.9);border-bottom:1px solid var(--line);backdrop-filter:blur(8px)}
+  .bar{display:flex;align-items:center;justify-content:space-between;height:66px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand .logo{width:38px;height:38px;flex:none}
+  .brand .nm{font-family:"Fraunces",serif;font-weight:600;font-size:21px;color:var(--green-deep);line-height:1.05}
+  .brand .tg{font-size:11px;color:var(--ink-soft);letter-spacing:.1em;text-transform:uppercase;margin-top:-1px}
+  .hbtns{display:flex;gap:9px;align-items:center}
+  .pill-note{font-size:11px;color:var(--green);font-weight:700;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--line);background:var(--card);padding:7px 12px;border-radius:99px}
+  .iconbtn{background:var(--card);border:1px solid var(--line);border-radius:11px;width:38px;height:38px;display:grid;place-items:center;cursor:pointer;color:var(--ink-soft);transition:.18s}
+  .iconbtn:hover{border-color:var(--green);color:var(--green)}
+
+  .stages{position:sticky;top:0;z-index:30;background:rgba(246,240,226,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .stagebar{display:flex;gap:6px;padding:12px 0;overflow-x:auto}
+  .stage-tab{flex:1;min-width:130px;display:flex;align-items:center;gap:11px;padding:11px 14px;border-radius:13px;border:1.5px solid transparent;background:transparent;cursor:pointer;font:inherit;text-align:left;transition:.22s}
+  .stage-tab .n{width:30px;height:30px;flex:none;border-radius:9px;display:grid;place-items:center;background:#e7ddc7;color:var(--ink-soft);transition:.22s}
+  .stage-tab .n svg{width:17px;height:17px}
+  .stage-tab .lbl{font-weight:700;font-size:14.5px;line-height:1.1}
+  .stage-tab .sub{font-size:11px;color:var(--ink-soft);font-weight:500}
+  .stage-tab.active{background:var(--card);border-color:var(--mango);box-shadow:var(--shadow)}
+  .stage-tab.active .n{background:var(--mango);color:#fff}
+  .stage-tab:not(.active):hover{background:rgba(51,73,47,.07)}
+
+  .view{display:none;padding:30px 0 90px;animation:fade .4s ease}
+  .view.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .secthead{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:0 0 16px;flex-wrap:wrap}
+  .secthead h2{font-size:clamp(24px,3.5vw,32px)}
+  .secthead .sub{color:var(--ink-soft);font-size:14px;margin-top:2px}
+  .section-title{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin:26px 0 12px;display:flex;align-items:center;gap:9px}
+  .section-title .ct{background:#e7ddc7;color:var(--green-deep);border-radius:99px;padding:1px 9px;font-size:12px}
+
+  .btn{font:inherit;font-weight:700;font-size:14.5px;border:none;cursor:pointer;border-radius:99px;padding:12px 20px;transition:.2s}
+  .btn-primary{background:var(--mango);color:#2a1c0c}
+  .btn-primary:hover{background:#d97c20}
+  .btn-ghost{background:none;border:1.5px solid var(--green);color:var(--green)}
+  .btn-ghost:hover{background:var(--green);color:#FBF7EC}
+  .btn-sm{padding:8px 15px;font-size:13px}
+
+  /* quick add */
+  .quickadd{display:flex;gap:10px;margin-bottom:22px}
+  .quickadd input{flex:1;font:inherit;font-size:15px;padding:13px 16px;border:1.5px solid var(--line);border-radius:13px;background:var(--card);color:var(--ink);transition:.2s}
+  .quickadd input:focus{outline:none;border-color:var(--green);background:#fff}
+
+  /* stats */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:8px}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;box-shadow:var(--shadow)}
+  .stat .num{font-family:"Fraunces";font-size:34px;line-height:1;color:var(--green-deep)}
+  .stat .lbl{font-size:12.5px;color:var(--ink-soft);margin-top:4px;font-weight:600}
+  .stat.warn .num{color:var(--high)}.stat.good .num{color:var(--low)}.stat.accent .num{color:var(--mango)}
+
+  .todaytop{display:grid;grid-template-columns:1.3fr 1fr;gap:18px;margin:22px 0 6px;align-items:stretch}
+  .ringcard,.upnext{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px 24px;box-shadow:var(--shadow)}
+  .ringcard{display:flex;align-items:center;gap:22px}
+  .ring{position:relative;width:120px;height:120px;flex:none}
+  .ring svg{transform:rotate(-90deg)}
+  .ring .rt{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .ring .rt b{font-family:"Fraunces";font-size:28px;color:var(--green-deep);line-height:1}
+  .ring .rt small{font-size:11px;color:var(--ink-soft);letter-spacing:.04em}
+  .ringcard .rinfo h3{font-size:19px;margin-bottom:4px}
+  .ringcard .rinfo p{font-size:13.5px;color:var(--ink-soft)}
+  .upnext h3{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mango);margin-bottom:10px;font-family:"Hanken Grotesk"}
+  .upnext .ut{font-family:"Fraunces";font-size:21px;color:var(--green-deep);margin-bottom:6px;line-height:1.2}
+  .upnext .um{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+  .upnext .none{color:var(--ink-soft);font-style:italic;padding:8px 0}
+
+  /* task rows */
+  .tasklist{display:flex;flex-direction:column;gap:10px}
+  .task{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;box-shadow:var(--shadow);display:flex;align-items:flex-start;gap:14px;transition:.18s}
+  .task:hover{border-color:#cfc4ac}
+  .task.done{opacity:.62}
+  .check{width:24px;height:24px;flex:none;border-radius:7px;border:2px solid var(--line);background:var(--paper-2);cursor:pointer;display:grid;place-items:center;margin-top:1px;transition:.18s;position:relative}
+  .check:hover{border-color:var(--green)}
+  .check.on{background:var(--green);border-color:var(--green)}
+  .check.on::after{content:"";width:6px;height:11px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg);margin-top:-2px}
+  .tbody{flex:1;min-width:0}
+  .ttitle{font-weight:600;font-size:15.5px;line-height:1.25}
+  .task.done .ttitle{text-decoration:line-through}
+  .tmeta{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;align-items:center}
+  .subj{font-size:12px;font-weight:700;padding:3px 10px;border-radius:99px}
+  .pri{font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:99px;display:inline-flex;align-items:center;gap:5px}
+  .pri .pd{width:7px;height:7px;border-radius:50%}
+  .duepill{font-size:12px;font-weight:600;color:var(--ink-soft);padding:3px 9px;border-radius:99px;background:var(--paper-2);border:1px solid var(--line)}
+  .duepill.overdue{color:#fff;background:var(--high);border-color:var(--high)}
+  .duepill.today{color:#fff;background:var(--mango);border-color:var(--mango)}
+  .duepill.soon{color:#8a4a1e;background:#fdeed9;border-color:#f0d6ad}
+  .est{font-size:12px;color:var(--ink-soft)}
+  .subprog{font-size:12px;color:var(--ink-soft)}
+  .tacts{display:flex;gap:6px;align-items:center;flex:none}
+  .mini{background:var(--paper-2);border:1px solid var(--line);border-radius:9px;width:32px;height:32px;display:grid;place-items:center;cursor:pointer;color:var(--ink-soft);transition:.18s}
+  .mini:hover{border-color:var(--green);color:var(--green)}
+  .mini svg{width:15px;height:15px}
+  .notebar{font-size:13px;color:var(--ink-soft);margin-top:8px;padding-left:2px;border-left:2px solid var(--line);padding-left:10px}
+
+  /* toolbar (list) */
+  .toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:18px}
+  .search{flex:1;min-width:180px;position:relative}
+  .search input{width:100%;font:inherit;font-size:14.5px;padding:11px 14px 11px 38px;border:1.5px solid var(--line);border-radius:11px;background:var(--card);transition:.2s}
+  .search input:focus{outline:none;border-color:var(--green);background:#fff}
+  .search svg{position:absolute;left:13px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:var(--ink-soft)}
+  .chips{display:flex;gap:7px;flex-wrap:wrap}
+  .chip{font:inherit;font-weight:600;font-size:13px;border:1px solid var(--line);background:var(--card);color:var(--ink-soft);padding:8px 13px;border-radius:99px;cursor:pointer;transition:.18s}
+  .chip:hover{border-color:var(--green)}
+  .chip.on{background:var(--green);color:#FBF7EC;border-color:var(--green)}
+  .selwrap{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--ink-soft)}
+  select.sel{font:inherit;font-size:13.5px;padding:9px 12px;border:1.5px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);cursor:pointer}
+  select.sel:focus{outline:none;border-color:var(--green)}
+
+  .empty{text-align:center;padding:56px 20px;color:var(--ink-soft)}
+  .empty .ei{font-size:34px;margin-bottom:10px;opacity:.6}
+
+  /* board */
+  .board{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:start}
+  .col{background:rgba(255,253,246,.6);border:1px solid var(--line);border-radius:var(--r);padding:14px;min-height:160px;transition:.18s}
+  .col.dragover{border-color:var(--mango);background:#fdf3e6}
+  .colhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;padding:0 4px}
+  .colhead h3{font-size:15px;display:flex;align-items:center;gap:8px}
+  .colhead .dotc{width:9px;height:9px;border-radius:50%}
+  .colhead .ct{font-size:12.5px;color:var(--ink-soft);font-weight:600}
+  .kcard{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 13px;box-shadow:var(--shadow);margin-bottom:10px;cursor:grab}
+  .kcard:active{cursor:grabbing}
+  .kcard.dragging{opacity:.45}
+  .kcard .kt{font-weight:600;font-size:14px;line-height:1.25;margin-bottom:8px}
+  .kcard .km{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+  .kmove{display:flex;gap:5px;margin-top:10px;justify-content:space-between}
+  .kmove button{font:inherit;font-size:12px;font-weight:600;border:1px solid var(--line);background:var(--paper-2);color:var(--ink-soft);border-radius:8px;padding:5px 9px;cursor:pointer;transition:.15s}
+  .kmove button:hover{border-color:var(--green);color:var(--green)}
+
+  /* calendar */
+  .calhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+  .calhead h3{font-size:22px}
+  .calnav{display:flex;gap:8px}
+  .calgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+  .dow{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);text-align:center;padding-bottom:4px}
+  .day{background:var(--card);border:1px solid var(--line);border-radius:11px;min-height:96px;padding:8px;cursor:pointer;transition:.16s;display:flex;flex-direction:column;gap:4px}
+  .day:hover{border-color:var(--green)}
+  .day.other{background:transparent;border-color:transparent;cursor:default}
+  .day.today{border-color:var(--mango);box-shadow:0 0 0 2px rgba(228,138,46,.25)}
+  .day .dn{font-size:13px;font-weight:700;color:var(--ink-soft)}
+  .day.today .dn{color:var(--mango)}
+  .cev{font-size:11px;font-weight:600;color:#fff;border-radius:6px;padding:2px 7px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;line-height:1.4}
+  .cev.done{opacity:.5;text-decoration:line-through}
+  .cmore{font-size:11px;color:var(--ink-soft);font-weight:600}
+
+  /* focus */
+  .focuswrap{display:grid;grid-template-columns:1fr 320px;gap:24px;align-items:start}
+  @media(max-width:820px){.focuswrap{grid-template-columns:1fr}}
+  .timerbox{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:30px;box-shadow:var(--shadow);text-align:center}
+  .tring{position:relative;width:230px;height:230px;margin:6px auto 18px}
+  .tring svg{transform:rotate(-90deg)}
+  .tring .tt{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .tring .tt .time{font-family:"Fraunces";font-size:52px;color:var(--green-deep);line-height:1;font-variant-numeric:tabular-nums}
+  .tring .tt .ph{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mango);margin-top:6px}
+  .tctrls{display:flex;gap:10px;justify-content:center;margin-bottom:14px;flex-wrap:wrap}
+  .presets{display:flex;gap:8px;justify-content:center;margin-bottom:18px}
+  .ftask{margin-bottom:18px;text-align:left}
+  .ftask label{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);display:block;margin-bottom:7px}
+  .ftask select{width:100%;font:inherit;font-size:15px;padding:12px 14px;border:1.5px solid var(--line);border-radius:11px;background:var(--paper-2);cursor:pointer}
+  .ftask select:focus{outline:none;border-color:var(--green)}
+  .fside .panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px 22px;box-shadow:var(--shadow);margin-bottom:16px}
+  .fside .panel h3{font-size:16px;margin-bottom:12px}
+  .fbig{font-family:"Fraunces";font-size:32px;color:var(--green-deep)}
+  .fbig small{font-size:15px;color:var(--ink-soft)}
+  .slog{font-size:13px;color:var(--ink-soft);display:flex;justify-content:space-between;padding:7px 0;border-top:1px solid var(--line)}
+  .slog:first-of-type{border-top:none}
+
+  /* insights */
+  .ins-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:16px}
+  @media(max-width:760px){.ins-grid{grid-template-columns:1fr 1fr}}
+  .metric{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px 22px;box-shadow:var(--shadow)}
+  .metric .mn{font-family:"Fraunces";font-size:34px;color:var(--green-deep);line-height:1}
+  .metric .ml{font-size:12.5px;color:var(--ink-soft);margin-top:5px;font-weight:600}
+  .metric .mhint{font-size:11.5px;color:var(--ink-soft);margin-top:8px}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px 24px;box-shadow:var(--shadow);margin-bottom:16px}
+  .panel h3{font-size:17px;margin-bottom:4px}
+  .panel .psub{font-size:13px;color:var(--ink-soft);margin-bottom:16px}
+  .barrow{display:grid;grid-template-columns:130px 1fr 46px;align-items:center;gap:12px;margin:11px 0}
+  .barrow .bl{font-size:13.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .bartrack{height:12px;border-radius:99px;background:#efe6d2;overflow:hidden}
+  .bartrack i{display:block;height:100%;border-radius:99px;transition:width .6s}
+  .barrow .bv{font-size:12.5px;color:var(--ink-soft);text-align:right}
+  .loadrow{display:flex;align-items:flex-end;gap:10px;height:120px;margin-top:8px}
+  .loadrow .lc{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;justify-content:flex-end}
+  .loadrow .lbar{width:100%;max-width:40px;background:#efe6d2;border-radius:6px 6px 0 0;display:flex;align-items:flex-end;overflow:hidden;height:100%}
+  .loadrow .lbar i{width:100%;background:linear-gradient(180deg,var(--mango),var(--green));transition:height .5s;border-radius:6px 6px 0 0}
+  .loadrow .ld{font-size:11px;color:var(--ink-soft);font-weight:600}
+  .loadrow .lv{font-size:12px;font-family:"Fraunces";color:var(--green-deep)}
+
+  /* modal */
+  .ov{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:22px;background:rgba(34,33,27,.5);backdrop-filter:blur(4px)}
+  .ov.open{display:flex;animation:fade .2s ease}
+  .modal{background:var(--paper-2);border:1px solid var(--line);border-radius:18px;width:100%;max-width:540px;max-height:90vh;overflow:auto;box-shadow:0 40px 90px -30px rgba(0,0,0,.6);animation:pop .26s cubic-bezier(.2,.7,.2,1)}
+  @keyframes pop{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}
+  .mhead{display:flex;align-items:center;justify-content:space-between;padding:22px 24px 0}
+  .mhead h2{font-size:23px}
+  .mclose{background:rgba(34,33,27,.06);border:none;border-radius:50%;width:34px;height:34px;font-size:21px;color:var(--ink-soft);cursor:pointer;line-height:1}
+  .mclose:hover{background:rgba(34,33,27,.13)}
+  .mbody{padding:18px 24px 24px}
+  .field{margin-bottom:15px}
+  .field label{display:block;font-size:12.5px;font-weight:700;color:var(--ink-soft);margin-bottom:6px;letter-spacing:.02em}
+  .field input,.field textarea,.field select{width:100%;font:inherit;font-size:15px;padding:11px 13px;border:1.5px solid var(--line);border-radius:11px;background:var(--card);color:var(--ink);transition:.18s}
+  .field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--green);background:#fff}
+  .field textarea{resize:vertical;min-height:70px}
+  .frow{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+  .seg{display:flex;background:#efe6d2;border-radius:11px;padding:4px;gap:4px}
+  .seg button{flex:1;font:inherit;font-weight:600;font-size:13.5px;border:none;background:none;color:var(--ink-soft);padding:9px;border-radius:8px;cursor:pointer;transition:.16s}
+  .seg button.on{background:var(--card);color:var(--green-deep);box-shadow:var(--shadow)}
+  .seg button.on[data-v="high"]{color:var(--high)}.seg button.on[data-v="low"]{color:var(--low)}
+  .subedit{display:flex;flex-direction:column;gap:8px}
+  .strow{display:flex;align-items:center;gap:9px}
+  .strow .stck{width:20px;height:20px;border-radius:6px;border:2px solid var(--line);background:#fff;cursor:pointer;flex:none;display:grid;place-items:center}
+  .strow .stck.on{background:var(--green);border-color:var(--green)}
+  .strow .stck.on::after{content:"";width:5px;height:9px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg);margin-top:-1px}
+  .strow input{flex:1;font:inherit;font-size:14px;padding:8px 11px;border:1.5px solid var(--line);border-radius:9px;background:var(--card)}
+  .strow .stdel{background:none;border:none;color:var(--ink-soft);cursor:pointer;font-size:18px;padding:2px 6px}
+  .addst{font:inherit;font-size:13.5px;font-weight:600;color:var(--green);background:none;border:1.5px dashed var(--line);border-radius:9px;padding:9px;cursor:pointer;transition:.18s}
+  .addst:hover{border-color:var(--green);background:#f3f6ec}
+  .mfoot{display:flex;gap:10px;align-items:center;margin-top:8px}
+  .mfoot .btn-primary{flex:1}
+  .del-link{background:none;border:none;color:var(--high);font:inherit;font-weight:600;font-size:13.5px;cursor:pointer;padding:10px}
+  .del-link:hover{text-decoration:underline}
+
+  /* subjects modal */
+  .sjrow{display:flex;align-items:center;gap:11px;padding:11px 0;border-top:1px solid var(--line)}
+  .sjrow:first-of-type{border-top:none}
+  .swatches{display:flex;gap:6px}
+  .sw{width:22px;height:22px;border-radius:7px;cursor:pointer;border:2px solid transparent;transition:.15s}
+  .sw.on{border-color:var(--ink)}
+  .sjrow input{font:inherit;font-size:14px;padding:8px 10px;border:1.5px solid var(--line);border-radius:9px;background:var(--card)}
+  .sjrow .sjn{flex:1;min-width:90px}.sjrow .sjt{width:120px}
+  .sjrow .sjdel{background:none;border:none;color:var(--ink-soft);cursor:pointer;font-size:18px}
+  .resetbtn{background:none;border:1px solid var(--line);color:var(--high);font:inherit;font-weight:600;font-size:13px;border-radius:99px;padding:9px 16px;cursor:pointer;margin-top:6px}
+  .resetbtn:hover{border-color:var(--high)}
+
+  footer{border-top:1px solid var(--line);padding:26px 0;text-align:center;color:var(--ink-soft);font-size:13px;position:relative;z-index:1}
+  @media(max-width:820px){.stats{grid-template-columns:1fr 1fr}.todaytop{grid-template-columns:1fr}.board{grid-template-columns:1fr}.ins-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:560px){.frow{grid-template-columns:1fr}.calgrid{gap:4px}.day{min-height:74px}.pill-note{display:none}}
+</style>
+</head>
+<body>
+
+<header><div class="wrap bar">
+  <div class="brand">
+    <svg class="logo" viewBox="0 0 40 40" fill="none">
+      <rect x="7" y="7" width="26" height="29" rx="4.5" fill="#FFFDF6" stroke="#33492F" stroke-width="2.2"/>
+      <rect x="14.5" y="4" width="11" height="7" rx="2.5" fill="#33492F"/>
+      <g stroke="#E48A2E" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12.5 18.5l1.8 1.8 3-3.4"/><path d="M12.5 27l1.8 1.8 3-3.4"/></g>
+      <g stroke="#C9BD97" stroke-width="2" stroke-linecap="round"><path d="M21 18.5h6.5M21 27h6.5"/></g>
+    </svg>
+    <div><div class="nm">Homework Tracker</div><div class="tg">Never miss a deadline</div></div>
+  </div>
+  <div class="hbtns">
+    <button class="iconbtn" title="Subjects & settings" onclick="openSubjects()">
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="10" cy="10" r="2.6"/><path d="M10 2v2.2M10 15.8V18M18 10h-2.2M4.2 10H2M15.7 4.3l-1.6 1.6M5.9 14.1l-1.6 1.6M15.7 15.7l-1.6-1.6M5.9 5.9 4.3 4.3"/></svg>
+    </button>
+    <span class="pill-note">Built at Just Build</span>
+  </div>
+</div></header>
+
+<div class="stages"><div class="wrap"><div class="stagebar" id="stagebar"></div></div></div>
+
+<section id="today" class="view active"><div class="wrap" id="todayBody"></div></section>
+<section id="list" class="view"><div class="wrap" id="listBody"></div></section>
+<section id="board" class="view"><div class="wrap" id="boardBody"></div></section>
+<section id="calendar" class="view"><div class="wrap" id="calBody"></div></section>
+<section id="focus" class="view"><div class="wrap" id="focusBody"></div></section>
+<section id="insights" class="view"><div class="wrap" id="insBody"></div></section>
+
+<footer class="wrap">Homework Tracker · a Day 2 “build to help others” demo from Just Build · your data is saved in this browser</footer>
+
+<!-- Assignment editor modal -->
+<div class="ov" id="amodal"><div class="modal">
+  <div class="mhead"><h2 id="aMtitle">New assignment</h2><button class="mclose" onclick="closeEditor()">&times;</button></div>
+  <div class="mbody" id="aMbody"></div>
+</div></div>
+
+<!-- Subjects modal -->
+<div class="ov" id="smodal"><div class="modal">
+  <div class="mhead"><h2>Subjects</h2><button class="mclose" onclick="closeSubjects()">&times;</button></div>
+  <div class="mbody" id="sMbody"></div>
+</div></div>
+
+<script>
+/* ===================== STORAGE (safe, falls back to memory) ===================== */
+const store=(()=>{let mem={},ok=true;try{const k="__hwt__";localStorage.setItem(k,"1");localStorage.removeItem(k);}catch(e){ok=false;}
+  return{get(k){try{return ok?localStorage.getItem(k):mem[k];}catch(e){return mem[k];}},set(k,v){try{ok?localStorage.setItem(k,v):mem[k]=v;}catch(e){mem[k]=v;}}};})();
+
+/* ===================== HELPERS ===================== */
+const $=s=>document.querySelector(s);
+const $$=s=>Array.from(document.querySelectorAll(s));
+const esc=s=>String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const attr=s=>esc(s).replace(/"/g,"&quot;");
+let _id=0;const uid=()=>"a"+(Date.now().toString(36))+(_id++).toString(36)+Math.floor(Math.random()*1e4).toString(36);
+const pad=n=>String(n).padStart(2,"0");
+const dateStr=dt=>`${dt.getFullYear()}-${pad(dt.getMonth()+1)}-${pad(dt.getDate())}`;
+const addDays=(dt,n)=>{const x=new Date(dt);x.setDate(x.getDate()+n);return x;};
+const todayStr=()=>dateStr(new Date());
+const parseD=s=>{const[y,m,d]=s.split("-").map(Number);return new Date(y,m-1,d);};
+const diffDays=s=>Math.round((parseD(s)-parseD(todayStr()))/864e5);
+function hexA(hex,a){const h=hex.replace("#","");const r=parseInt(h.slice(0,2),16),g=parseInt(h.slice(2,4),16),b=parseInt(h.slice(4,6),16);return `rgba(${r},${g},${b},${a})`;}
+function formatDue(s){if(!s)return{txt:"No date",cls:""};const n=diffDays(s);
+  if(n<0)return{txt:n===-1?"Yesterday":`${-n} days ago`,cls:"overdue"};
+  if(n===0)return{txt:"Today",cls:"today"};
+  if(n===1)return{txt:"Tomorrow",cls:"soon"};
+  if(n<7)return{txt:parseD(s).toLocaleDateString("en-US",{weekday:"long"}),cls:"soon"};
+  return{txt:parseD(s).toLocaleDateString("en-US",{day:"numeric",month:"short"}),cls:""};}
+const PRI={high:{l:"High",c:"var(--high)"},med:{l:"Medium",c:"var(--med)"},low:{l:"Low",c:"var(--low)"}};
+const priRank={high:0,med:1,low:2};
+const SUBJECT_COLORS=["#4F5BD5","#33724E","#B5223B","#C77D2A","#2C8C9C","#8A5BB8","#E48A2E","#3F7C92","#A23E6E","#5E7C2F"];
+
+/* ===================== SEED + STATE ===================== */
+function seed(){
+  const d=o=>dateStr(addDays(new Date(),o));
+  const sj=[
+    {id:"s1",name:"Mathematics",teacher:"Ms. Rao",color:"#4F5BD5"},
+    {id:"s2",name:"Science",teacher:"Mr. Iyer",color:"#33724E"},
+    {id:"s3",name:"English",teacher:"Ms. D’Souza",color:"#B5223B"},
+    {id:"s4",name:"History",teacher:"Mr. Khan",color:"#C77D2A"},
+    {id:"s5",name:"Computer Science",teacher:"Ms. Nair",color:"#2C8C9C"},
+    {id:"s6",name:"Art",teacher:"Mr. Bose",color:"#8A5BB8"}
+  ];
+  const A=o=>Object.assign({id:uid(),status:"todo",priority:"med",est:45,notes:"",subtasks:[],createdAt:Date.now()},o);
+  const asg=[
+    A({title:"Algebra problem set 5",subjectId:"s1",due:d(-2),priority:"high",est:60,subtasks:[{id:uid(),text:"Questions 1–5",done:true},{id:uid(),text:"Questions 6–10",done:false}]}),
+    A({title:"Lab report: Gravitation",subjectId:"s2",due:d(0),priority:"high",est:90,status:"doing",notes:"Remember to include the free-fall graph and the data table."}),
+    A({title:"Read “Two Gentlemen”, Act II",subjectId:"s3",due:d(0),priority:"med",est:30}),
+    A({title:"History essay: Mughal trade routes",subjectId:"s4",due:d(1),priority:"med",est:120,subtasks:[{id:uid(),text:"Outline",done:true},{id:uid(),text:"First draft",done:false},{id:uid(),text:"Add sources",done:false}]}),
+    A({title:"Build a calculator (HTML/JS)",subjectId:"s5",due:d(3),priority:"low",est:120,status:"doing"}),
+    A({title:"One-point perspective sketch",subjectId:"s6",due:d(4),priority:"low",est:60}),
+    A({title:"Trigonometry worksheet",subjectId:"s1",due:d(5),priority:"med",est:45}),
+    A({title:"Science quiz revision",subjectId:"s2",due:d(6),priority:"high",est:60}),
+    A({title:"Grammar exercises ch. 4",subjectId:"s3",due:d(-4),priority:"low",est:30,status:"done",completedAt:Date.now()-3*864e5}),
+    A({title:"Map activity: rivers of India",subjectId:"s4",due:d(-1),priority:"med",est:40,status:"done",completedAt:Date.now()-864e5}),
+    A({title:"Python loops practice",subjectId:"s5",due:d(8),priority:"med",est:60}),
+    A({title:"Poster: the water cycle",subjectId:"s2",due:d(11),priority:"low",est:90})
+  ];
+  const fs=[{id:uid(),assignmentId:asg[1].id,minutes:25,date:Date.now()-2*36e5},{id:uid(),assignmentId:asg[4].id,minutes:50,date:Date.now()-36e5}];
+  return{subjects:sj,assignments:asg,focusSessions:fs,settings:{name:"Aanya"},_v:1};
+}
+let state;
+function load(){try{const raw=store.get("hwtracker");if(raw){state=JSON.parse(raw);if(!state.subjects||!state.assignments)throw 0;}else state=seed();}catch(e){state=seed();}}
+function save(){store.set("hwtracker",JSON.stringify(state));}
+const subjById=id=>state.subjects.find(s=>s.id===id)||{name:"—",color:"#8A8276"};
+
+/* ===================== STAGE NAV ===================== */
+const ICON={
+  today:`<svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="9" cy="9" r="7"/><path d="M9 5v4l2.5 1.5"/></svg>`,
+  list:`<svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M6 5h9M6 9h9M6 13h9"/><path d="M3 5h.01M3 9h.01M3 13h.01"/></svg>`,
+  board:`<svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="2.5" y="3" width="4" height="12" rx="1.2"/><rect x="11.5" y="3" width="4" height="8" rx="1.2"/></svg>`,
+  calendar:`<svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="2.5" y="3.5" width="13" height="12" rx="2"/><path d="M2.5 7h13M6 2v3M12 2v3"/></svg>`,
+  focus:`<svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="9" cy="10" r="6"/><path d="M9 10V7M9 2.5h0M7 2.5h4"/></svg>`,
+  insights:`<svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M3 15V8M8 15V4M13 15v-5"/></svg>`
+};
+const STAGES=[
+  {key:"today",label:"Today",sub:"Your day"},
+  {key:"list",label:"Assignments",sub:"Everything"},
+  {key:"board",label:"Board",sub:"Drag & drop"},
+  {key:"calendar",label:"Calendar",sub:"Deadlines"},
+  {key:"focus",label:"Focus",sub:"Study timer"},
+  {key:"insights",label:"Insights",sub:"Your stats"}
+];
+let current="today";
+function renderStages(){
+  $("#stagebar").innerHTML=STAGES.map(s=>`<button class="stage-tab ${s.key===current?'active':''}" onclick="goView('${s.key}')">
+    <span class="n">${ICON[s.key]}</span><span><span class="lbl">${s.label}</span><br><span class="sub">${s.sub}</span></span></button>`).join("");
+}
+function goView(key){
+  current=key;
+  $$(".view").forEach(v=>v.classList.remove("active"));
+  $("#"+key).classList.add("active");
+  renderStages();renderView(key);
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+function renderView(key){
+  if(key==="today")renderToday();
+  if(key==="list")renderList();
+  if(key==="board")renderBoard();
+  if(key==="calendar")renderCalendar();
+  if(key==="focus")renderFocus();
+  if(key==="insights")renderInsights();
+}
+function refresh(){save();renderView(current);}
+
+/* ===================== SHARED RENDER BITS ===================== */
+function subjPill(id){const s=subjById(id);return `<span class="subj" style="background:${hexA(s.color,.16)};color:${s.color}">${esc(s.name)}</span>`;}
+function priPill(p){const x=PRI[p];return `<span class="pri" style="background:${p==='med'?hexA('#E48A2E',.14):p==='high'?hexA('#b34a2e',.13):hexA('#2f7d4f',.13)};color:${x.c}"><span class="pd" style="background:${x.c}"></span>${x.l}</span>`;}
+function duePill(due){const f=formatDue(due);return `<span class="duepill ${f.cls}">${f.txt}</span>`;}
+function taskRow(a){
+  const st=a.subtasks||[];const sd=st.filter(s=>s.done).length;
+  const done=a.status==="done";
+  const note=a.notes?`<div class="notebar">${esc(a.notes)}</div>`:"";
+  return `<div class="task ${done?'done':''}">
+    <div class="check ${done?'on':''}" onclick="toggleDone('${a.id}')" title="Mark ${done?'not done':'done'}"></div>
+    <div class="tbody">
+      <div class="ttitle">${esc(a.title)}</div>
+      <div class="tmeta">
+        ${subjPill(a.subjectId)} ${priPill(a.priority)} ${duePill(a.due)}
+        <span class="est">⏱ ${a.est}m</span>
+        ${st.length?`<span class="subprog">☑ ${sd}/${st.length}</span>`:""}
+        ${a.status==="doing"?`<span class="duepill soon">In progress</span>`:""}
+      </div>${note}
+    </div>
+    <div class="tacts">
+      <button class="mini" title="Focus on this" onclick="focusOn('${a.id}')"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="9" cy="9" r="6.5"/><circle cx="9" cy="9" r="1.8" fill="currentColor" stroke="none"/></svg></button>
+      <button class="mini" title="Edit" onclick="openEditor('${a.id}')"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12.5 3.5l2 2L7 13l-2.6.6L5 11z"/></svg></button>
+      <button class="mini" title="Delete" onclick="deleteAssignment('${a.id}')"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M4 5h10M7 5V3.5h4V5M6 5l.6 9h4.8L12 5"/></svg></button>
+    </div>
+  </div>`;
+}
+
+/* ===================== TODAY ===================== */
+function startOfWeek(){const d=new Date();const wd=(d.getDay()+6)%7;return parseD(dateStr(addDays(d,-wd)));}
+function renderToday(){
+  const a=state.assignments;
+  const open=a.filter(x=>x.status!=="done");
+  const overdue=open.filter(x=>x.due&&diffDays(x.due)<0).sort((p,q)=>p.due.localeCompare(q.due));
+  const dueToday=open.filter(x=>x.due&&diffDays(x.due)===0);
+  const week=open.filter(x=>x.due&&diffDays(x.due)>0&&diffDays(x.due)<7).sort((p,q)=>p.due.localeCompare(q.due));
+  const sow=startOfWeek();
+  const weekDone=a.filter(x=>x.status==="done"&&x.completedAt&&x.completedAt>=sow.getTime()).length;
+  const weekOpen=open.filter(x=>x.due&&diffDays(x.due)<7).length;
+  const ringPct=weekDone+weekOpen?Math.round(weekDone/(weekDone+weekOpen)*100):0;
+  const next=[...open].filter(x=>x.due).sort((p,q)=>{const dd=diffDays(p.due)-diffDays(q.due);return dd||priRank[p.priority]-priRank[q.priority];})[0]
+    ||[...open].sort((p,q)=>priRank[p.priority]-priRank[q.priority])[0];
+  const C=2*Math.PI*52;
+  const list=(arr,empty)=>arr.length?`<div class="tasklist">${arr.map(taskRow).join("")}</div>`:`<div class="empty" style="padding:26px"><div>${empty}</div></div>`;
+  $("#todayBody").innerHTML=`
+    <div class="secthead"><div><h2>${greet()}, ${esc(state.settings.name||"there")}.</h2><div class="sub">${new Date().toLocaleDateString("en-US",{weekday:"long",day:"numeric",month:"long"})}</div></div>
+      <button class="btn btn-primary" onclick="openEditor()">+ New assignment</button></div>
+    <div class="quickadd"><input id="qadd" placeholder="Quick add — type a task and press Enter…" onkeydown="if(event.key==='Enter')quickAdd()"><button class="btn btn-ghost" onclick="quickAdd()">Add</button></div>
+    <div class="stats">
+      <div class="stat ${overdue.length?'warn':''}"><div class="num">${overdue.length}</div><div class="lbl">Overdue</div></div>
+      <div class="stat accent"><div class="num">${dueToday.length}</div><div class="lbl">Due today</div></div>
+      <div class="stat"><div class="num">${week.length}</div><div class="lbl">Next 7 days</div></div>
+      <div class="stat good"><div class="num">${weekDone}</div><div class="lbl">Done this week</div></div>
+    </div>
+    <div class="todaytop">
+      <div class="ringcard">
+        <div class="ring"><svg width="120" height="120"><circle cx="60" cy="60" r="52" fill="none" stroke="#efe6d2" stroke-width="12"/><circle cx="60" cy="60" r="52" fill="none" stroke="var(--mango)" stroke-width="12" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${C*(1-ringPct/100)}"/></svg><div class="rt"><b>${ringPct}%</b><small>this week</small></div></div>
+        <div class="rinfo"><h3>Weekly progress</h3><p>${weekDone} done · ${weekOpen} still to do this week. ${ringPct>=80?"You're crushing it.":ringPct>=40?"Solid pace — keep going.":"Let's chip away at it."}</p></div>
+      </div>
+      <div class="upnext">
+        <h3>⭐ Up next</h3>
+        ${next?`<div class="ut">${esc(next.title)}</div><div class="um">${subjPill(next.subjectId)} ${priPill(next.priority)} ${duePill(next.due)}</div>
+          <button class="btn btn-primary btn-sm" onclick="focusOn('${next.id}')">Start a focus session →</button>`:`<div class="none">Nothing left — you're all caught up! 🎉</div>`}
+      </div>
+    </div>
+    ${overdue.length?`<div class="section-title">Overdue <span class="ct">${overdue.length}</span></div>${list(overdue,"")}`:""}
+    <div class="section-title">Due today <span class="ct">${dueToday.length}</span></div>${list(dueToday,"Nothing due today. 🌤️")}
+    <div class="section-title">Coming up this week <span class="ct">${week.length}</span></div>${list(week,"Clear week ahead.")}`;
+}
+function greet(){const h=new Date().getHours();return h<12?"Good morning":h<17?"Good afternoon":"Good evening";}
+
+/* ===================== ASSIGNMENTS LIST ===================== */
+let filt={q:"",subject:"all",status:"all",sort:"due"};
+function renderList(){
+  const subjChips=`<button class="chip ${filt.subject==='all'?'on':''}" onclick="setFilt('subject','all')">All subjects</button>`+
+    state.subjects.map(s=>`<button class="chip ${filt.subject===s.id?'on':''}" onclick="setFilt('subject','${s.id}')">${esc(s.name)}</button>`).join("");
+  let arr=state.assignments.filter(a=>{
+    if(filt.q&&!(a.title.toLowerCase().includes(filt.q)|| (a.notes||"").toLowerCase().includes(filt.q)))return false;
+    if(filt.subject!=="all"&&a.subjectId!==filt.subject)return false;
+    if(filt.status!=="all"&&a.status!==filt.status)return false;
+    return true;});
+  arr.sort((p,q)=>{
+    if(filt.sort==="due"){if(!p.due)return 1;if(!q.due)return -1;return p.due.localeCompare(q.due)||priRank[p.priority]-priRank[q.priority];}
+    if(filt.sort==="priority")return priRank[p.priority]-priRank[q.priority]||((p.due||"9").localeCompare(q.due||"9"));
+    if(filt.sort==="subject")return subjById(p.subjectId).name.localeCompare(subjById(q.subjectId).name);
+    if(filt.sort==="created")return q.createdAt-p.createdAt;return 0;});
+  $("#listBody").innerHTML=`
+    <div class="secthead"><div><h2>All assignments</h2><div class="sub">${arr.length} shown · ${state.assignments.filter(a=>a.status!=='done').length} still open</div></div>
+      <button class="btn btn-primary" onclick="openEditor()">+ New assignment</button></div>
+    <div class="toolbar">
+      <div class="search"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="8" cy="8" r="5.5"/><path d="M12 12l3.5 3.5"/></svg><input id="searchI" placeholder="Search assignments…" value="${attr(filt.q)}" oninput="setFilt('q',this.value)"></div>
+      <div class="selwrap">Status
+        <select class="sel" onchange="setFilt('status',this.value)">
+          <option value="all" ${filt.status==='all'?'selected':''}>All</option>
+          <option value="todo" ${filt.status==='todo'?'selected':''}>To do</option>
+          <option value="doing" ${filt.status==='doing'?'selected':''}>In progress</option>
+          <option value="done" ${filt.status==='done'?'selected':''}>Done</option>
+        </select></div>
+      <div class="selwrap">Sort
+        <select class="sel" onchange="setFilt('sort',this.value)">
+          <option value="due" ${filt.sort==='due'?'selected':''}>Due date</option>
+          <option value="priority" ${filt.sort==='priority'?'selected':''}>Priority</option>
+          <option value="subject" ${filt.sort==='subject'?'selected':''}>Subject</option>
+          <option value="created" ${filt.sort==='created'?'selected':''}>Newest</option>
+        </select></div>
+    </div>
+    <div class="chips" style="margin-bottom:18px">${subjChips}</div>
+    ${arr.length?`<div class="tasklist">${arr.map(taskRow).join("")}</div>`:`<div class="empty"><div class="ei">📋</div>No assignments match. Try clearing a filter, or add a new one.</div>`}`;
+  const si=$("#searchI");if(si){si.focus();si.setSelectionRange(si.value.length,si.value.length);}
+}
+function setFilt(k,v){filt[k]=k==="q"?v.toLowerCase():v;renderList();}
+
+/* ===================== BOARD ===================== */
+const COLS=[{k:"todo",t:"To Do",c:"#8A8276"},{k:"doing",t:"In Progress",c:"#E48A2E"},{k:"done",t:"Done",c:"#2f7d4f"}];
+function renderBoard(){
+  $("#boardBody").innerHTML=`
+    <div class="secthead"><div><h2>Board</h2><div class="sub">Drag a card between columns, or use the arrows. Click a card to edit.</div></div>
+      <button class="btn btn-primary" onclick="openEditor()">+ New assignment</button></div>
+    <div class="board">${COLS.map(col=>{
+      const items=state.assignments.filter(a=>a.status===col.k);
+      return `<div class="col" data-col="${col.k}" ondragover="event.preventDefault();this.classList.add('dragover')" ondragleave="this.classList.remove('dragover')" ondrop="dropCard(event,'${col.k}')">
+        <div class="colhead"><h3><span class="dotc" style="background:${col.c}"></span>${col.t}</h3><span class="ct">${items.length}</span></div>
+        ${items.map(a=>kcard(a)).join("")||`<div style="color:var(--ink-soft);font-size:13px;padding:8px 4px">Nothing here.</div>`}
+      </div>`;}).join("")}</div>`;
+}
+function kcard(a){
+  const idx=COLS.findIndex(c=>c.k===a.status);
+  const left=idx>0?`<button onclick="event.stopPropagation();setStatus('${a.id}','${COLS[idx-1].k}')">← ${COLS[idx-1].t}</button>`:"<span></span>";
+  const right=idx<2?`<button onclick="event.stopPropagation();setStatus('${a.id}','${COLS[idx+1].k}')">${COLS[idx+1].t} →</button>`:"<span></span>";
+  return `<div class="kcard" draggable="true" ondragstart="dragCard(event,'${a.id}')" ondragend="this.classList.remove('dragging')" onclick="openEditor('${a.id}')">
+    <div class="kt">${esc(a.title)}</div>
+    <div class="km">${subjPill(a.subjectId)} ${priPill(a.priority)} ${duePill(a.due)}</div>
+    <div class="kmove">${left}${right}</div>
+  </div>`;
+}
+let dragId=null;
+function dragCard(e,id){dragId=id;e.dataTransfer.effectAllowed="move";e.currentTarget.classList.add("dragging");}
+function dropCard(e,col){e.preventDefault();$$(".col").forEach(c=>c.classList.remove("dragover"));if(dragId){setStatus(dragId,col);dragId=null;}}
+
+/* ===================== CALENDAR ===================== */
+let calCur={y:new Date().getFullYear(),m:new Date().getMonth()};
+function renderCalendar(){
+  const {y,m}=calCur;const first=new Date(y,m,1);const startWd=(first.getDay()+6)%7;const days=new Date(y,m+1,0).getDate();
+  const byDate={};state.assignments.forEach(a=>{if(a.due){(byDate[a.due]=byDate[a.due]||[]).push(a);}});
+  const dow=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].map(d=>`<div class="dow">${d}</div>`).join("");
+  let cells="";
+  for(let i=0;i<startWd;i++)cells+=`<div class="day other"></div>`;
+  for(let d=1;d<=days;d++){
+    const ds=`${y}-${pad(m+1)}-${pad(d)}`;const items=byDate[ds]||[];const isToday=ds===todayStr();
+    const evs=items.slice(0,3).map(a=>{const s=subjById(a.subjectId);return `<div class="cev ${a.status==='done'?'done':''}" style="background:${s.color}" title="${attr(a.title)}">${esc(a.title)}</div>`;}).join("");
+    const more=items.length>3?`<div class="cmore">+${items.length-3} more</div>`:"";
+    cells+=`<div class="day ${isToday?'today':''}" onclick="openDay('${ds}')"><div class="dn">${d}</div>${evs}${more}</div>`;
+  }
+  const monthName=first.toLocaleDateString("en-US",{month:"long",year:"numeric"});
+  $("#calBody").innerHTML=`
+    <div class="secthead"><div><h2>Calendar</h2><div class="sub">Every deadline, by day. Click a day to add or review.</div></div>
+      <button class="btn btn-primary" onclick="openEditor()">+ New assignment</button></div>
+    <div class="calhead"><h3>${monthName}</h3>
+      <div class="calnav"><button class="btn btn-ghost btn-sm" onclick="calStep(-1)">←</button><button class="btn btn-ghost btn-sm" onclick="calToday()">Today</button><button class="btn btn-ghost btn-sm" onclick="calStep(1)">→</button></div></div>
+    <div class="calgrid">${dow}${cells}</div>`;
+}
+function calStep(n){let m=calCur.m+n,y=calCur.y;if(m<0){m=11;y--;}if(m>11){m=0;y++;}calCur={y,m};renderCalendar();}
+function calToday(){calCur={y:new Date().getFullYear(),m:new Date().getMonth()};renderCalendar();}
+function openDay(ds){openEditor(null,ds);}
+
+/* ===================== FOCUS / POMODORO ===================== */
+let timer={taskId:null,modeF:25,modeB:5,phase:"focus",remaining:25*60,total:25*60,running:false,handle:null};
+const PRESETS=[{l:"25 / 5",f:25,b:5},{l:"50 / 10",f:50,b:10},{l:"15 / 3",f:15,b:3}];
+function renderFocus(){
+  const open=state.assignments.filter(a=>a.status!=="done");
+  const opts=`<option value="">— No task selected —</option>`+open.map(a=>`<option value="${a.id}" ${timer.taskId===a.id?'selected':''}>${esc(a.title)} · ${esc(subjById(a.subjectId).name)}</option>`).join("");
+  const todayMin=state.focusSessions.filter(s=>dateStr(new Date(s.date))===todayStr()).reduce((t,s)=>t+s.minutes,0);
+  const totalMin=state.focusSessions.reduce((t,s)=>t+s.minutes,0);
+  const recent=[...state.focusSessions].sort((a,b)=>b.date-a.date).slice(0,5).map(s=>{const a=state.assignments.find(x=>x.id===s.assignmentId);return `<div class="slog"><span>${a?esc(a.title):"(deleted task)"}</span><b>${s.minutes}m</b></div>`;}).join("")||`<div class="slog"><span>No sessions yet — start one!</span></div>`;
+  const C=2*Math.PI*104;const pct=timer.total?1-timer.remaining/timer.total:0;
+  $("#focusBody").innerHTML=`
+    <div class="secthead"><div><h2>Focus timer</h2><div class="sub">Pick a task, start the clock, and log real study time.</div></div></div>
+    <div class="focuswrap">
+      <div class="timerbox">
+        <div class="ftask"><label>Working on</label><select onchange="timer.taskId=this.value;save()">${opts}</select></div>
+        <div class="presets">${PRESETS.map(p=>`<button class="chip ${timer.modeF===p.f?'on':''}" onclick="setPreset(${p.f},${p.b})">${p.l}</button>`).join("")}</div>
+        <div class="tring"><svg width="230" height="230"><circle cx="115" cy="115" r="104" fill="none" stroke="#efe6d2" stroke-width="14"/><circle id="tringfill" cx="115" cy="115" r="104" fill="none" stroke="${timer.phase==='focus'?'var(--mango)':'var(--low)'}" stroke-width="14" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${C*(1-pct)}"/></svg>
+          <div class="tt"><div class="time" id="tTime">${fmtTime(timer.remaining)}</div><div class="ph" id="tPhase">${timer.phase==='focus'?'Focus':'Break'}</div></div></div>
+        <div class="tctrls">
+          <button class="btn btn-primary" id="tStart" onclick="toggleTimer()">${timer.running?'Pause':'Start'}</button>
+          <button class="btn btn-ghost" onclick="resetTimer()">Reset</button>
+          <button class="btn btn-ghost" onclick="skipPhase()">Skip</button>
+        </div>
+        <div style="font-size:13px;color:var(--ink-soft)">Finish a focus block and it’s logged to your task automatically.</div>
+      </div>
+      <div class="fside">
+        <div class="panel"><h3>Today’s focus</h3><div class="fbig">${todayMin}<small> min</small></div></div>
+        <div class="panel"><h3>All time</h3><div class="fbig">${Math.floor(totalMin/60)}<small>h</small> ${totalMin%60}<small>m</small></div><div style="font-size:12.5px;color:var(--ink-soft);margin-top:4px">${state.focusSessions.length} sessions logged</div></div>
+        <div class="panel"><h3>Recent sessions</h3>${recent}</div>
+      </div>
+    </div>`;
+}
+function fmtTime(s){return `${pad(Math.floor(s/60))}:${pad(s%60)}`;}
+function setPreset(f,b){timer.modeF=f;timer.modeB=b;if(!timer.running){timer.phase="focus";timer.total=f*60;timer.remaining=f*60;}renderFocus();}
+function toggleTimer(){
+  if(timer.running){clearInterval(timer.handle);timer.running=false;renderFocus();return;}
+  timer.running=true;beep();
+  timer.handle=setInterval(()=>{
+    timer.remaining--;
+    if(timer.remaining<=0){phaseComplete();}
+    updateTimerUI();
+  },1000);
+  renderFocus();
+}
+function updateTimerUI(){
+  const t=$("#tTime");if(t)t.textContent=fmtTime(Math.max(0,timer.remaining));
+  const f=$("#tringfill");if(f){const C=2*Math.PI*104;const pct=timer.total?1-Math.max(0,timer.remaining)/timer.total:0;f.setAttribute("stroke-dashoffset",C*(1-pct));}
+}
+function phaseComplete(){
+  clearInterval(timer.handle);timer.running=false;beep(true);
+  if(timer.phase==="focus"){
+    if(timer.taskId){state.focusSessions.push({id:uid(),assignmentId:timer.taskId,minutes:timer.modeF,date:Date.now()});save();}
+    timer.phase="break";timer.total=timer.modeB*60;timer.remaining=timer.modeB*60;
+  }else{timer.phase="focus";timer.total=timer.modeF*60;timer.remaining=timer.modeF*60;}
+  if(current==="focus")renderFocus();
+}
+function skipPhase(){clearInterval(timer.handle);timer.running=false;if(timer.phase==="focus"){timer.phase="break";timer.total=timer.modeB*60;timer.remaining=timer.modeB*60;}else{timer.phase="focus";timer.total=timer.modeF*60;timer.remaining=timer.modeF*60;}renderFocus();}
+function resetTimer(){clearInterval(timer.handle);timer.running=false;timer.phase="focus";timer.total=timer.modeF*60;timer.remaining=timer.modeF*60;renderFocus();}
+function focusOn(id){timer.taskId=id;timer.phase="focus";timer.total=timer.modeF*60;timer.remaining=timer.modeF*60;clearInterval(timer.handle);timer.running=false;save();goView("focus");}
+function beep(strong){try{const ctx=new (window.AudioContext||window.webkitAudioContext)();const o=ctx.createOscillator(),g=ctx.createGain();o.connect(g);g.connect(ctx.destination);o.frequency.value=strong?660:440;g.gain.value=.05;o.start();setTimeout(()=>{o.stop();ctx.close();},strong?260:90);}catch(e){}}
+
+/* ===================== INSIGHTS ===================== */
+function renderInsights(){
+  const a=state.assignments;const total=a.length;const done=a.filter(x=>x.status==="done");
+  const compRate=total?Math.round(done.length/total*100):0;
+  const doneDated=done.filter(x=>x.due&&x.completedAt);
+  const onTime=doneDated.filter(x=>dateStr(new Date(x.completedAt))<=x.due).length;
+  const onTimeRate=doneDated.length?Math.round(onTime/doneDated.length*100):0;
+  /* streak */
+  const dset=new Set(done.filter(x=>x.completedAt).map(x=>dateStr(new Date(x.completedAt))));
+  let streak=0,dd=new Date();while(dset.has(dateStr(dd))){streak++;dd=addDays(dd,-1);}
+  const totalMin=state.focusSessions.reduce((t,s)=>t+s.minutes,0);
+  /* by subject */
+  const bySub=state.subjects.map(s=>{const items=a.filter(x=>x.subjectId===s.id);const dn=items.filter(x=>x.status==="done").length;return{s,total:items.length,done:dn};}).filter(x=>x.total>0).sort((p,q)=>q.total-p.total);
+  const maxSub=Math.max(1,...bySub.map(x=>x.total));
+  const subBars=bySub.map(x=>`<div class="barrow"><div class="bl">${esc(x.s.name)}</div>
+    <div class="bartrack"><i style="width:${x.total/maxSub*100}%;background:${x.s.color}"></i></div>
+    <div class="bv">${x.done}/${x.total}</div></div>`).join("")||`<div style="color:var(--ink-soft);font-size:13.5px">No subjects yet.</div>`;
+  /* workload next 7 days */
+  const loads=[];for(let i=0;i<7;i++){const ds=dateStr(addDays(new Date(),i));const n=a.filter(x=>x.status!=="done"&&x.due===ds).length;loads.push({ds,n,lbl:i===0?"Today":parseD(ds).toLocaleDateString("en-US",{weekday:"short"})});}
+  const maxLoad=Math.max(1,...loads.map(l=>l.n));
+  const loadBars=loads.map(l=>`<div class="lc"><div class="lv">${l.n||""}</div><div class="lbar"><i style="height:${l.n/maxLoad*100}%"></i></div><div class="ld">${l.lbl}</div></div>`).join("");
+  /* priority breakdown of open */
+  const open=a.filter(x=>x.status!=="done");
+  const pc={high:open.filter(x=>x.priority==="high").length,med:open.filter(x=>x.priority==="med").length,low:open.filter(x=>x.priority==="low").length};
+  $("#insBody").innerHTML=`
+    <div class="secthead"><div><h2>Insights</h2><div class="sub">A read on your habits, drawn from everything you’ve tracked.</div></div></div>
+    <div class="ins-grid">
+      <div class="metric"><div class="mn">${compRate}%</div><div class="ml">Completion rate</div><div class="mhint">${done.length} of ${total} assignments done</div></div>
+      <div class="metric"><div class="mn">${onTimeRate}%</div><div class="ml">Submitted on time</div><div class="mhint">${onTime} of ${doneDated.length} finished by the deadline</div></div>
+      <div class="metric"><div class="mn">${streak}<small style="font-size:18px;color:var(--ink-soft)"> day${streak===1?'':'s'}</small></div><div class="ml">Current streak</div><div class="mhint">days in a row with something finished</div></div>
+      <div class="metric"><div class="mn">${Math.floor(totalMin/60)}<small style="font-size:18px;color:var(--ink-soft)">h</small> ${totalMin%60}<small style="font-size:18px;color:var(--ink-soft)">m</small></div><div class="ml">Focus time logged</div><div class="mhint">${state.focusSessions.length} study sessions</div></div>
+      <div class="metric"><div class="mn">${open.length}</div><div class="ml">Still open</div><div class="mhint">${pc.high} high · ${pc.med} medium · ${pc.low} low priority</div></div>
+      <div class="metric"><div class="mn">${a.filter(x=>x.due&&diffDays(x.due)<0&&x.status!=='done').length}</div><div class="ml">Overdue right now</div><div class="mhint">${a.filter(x=>x.due&&diffDays(x.due)<0&&x.status!=='done').length?'Clear these first':'All caught up'}</div></div>
+    </div>
+    <div class="panel"><h3>Work by subject</h3><div class="psub">Total assignments per subject, with how many you’ve finished.</div>${subBars}</div>
+    <div class="panel"><h3>Workload — next 7 days</h3><div class="psub">Open assignments due each day, so you can spot a crunch before it hits.</div><div class="loadrow">${loadBars}</div></div>`;
+}
+
+/* ===================== ASSIGNMENT CRUD ===================== */
+function toggleDone(id){const a=state.assignments.find(x=>x.id===id);if(!a)return;if(a.status==="done"){a.status="todo";a.completedAt=null;}else{a.status="done";a.completedAt=Date.now();}refresh();}
+function setStatus(id,st){const a=state.assignments.find(x=>x.id===id);if(!a)return;a.status=st;a.completedAt=st==="done"?Date.now():null;refresh();}
+function deleteAssignment(id){const a=state.assignments.find(x=>x.id===id);if(!a)return;if(!confirm(`Delete “${a.title}”?`))return;state.assignments=state.assignments.filter(x=>x.id!==id);if(editing&&editing.id===id)closeEditor();refresh();}
+function quickAdd(){const i=$("#qadd");if(!i)return;const t=i.value.trim();if(!t)return;state.assignments.push({id:uid(),title:t,subjectId:state.subjects[0]?.id,due:todayStr(),priority:"med",status:"todo",est:45,notes:"",subtasks:[],createdAt:Date.now()});i.value="";refresh();}
+
+/* ----- editor modal ----- */
+let editing=null;
+function openEditor(id,presetDue){
+  if(id){const a=state.assignments.find(x=>x.id===id);editing=JSON.parse(JSON.stringify(a));}
+  else{editing={id:null,title:"",subjectId:state.subjects[0]?.id,due:presetDue||todayStr(),priority:"med",status:"todo",est:45,notes:"",subtasks:[]};}
+  $("#aMtitle").textContent=id?"Edit assignment":"New assignment";
+  renderEditor();$("#amodal").classList.add("open");
+}
+function renderEditor(){
+  const e=editing;
+  const subjOpts=state.subjects.map(s=>`<option value="${s.id}" ${e.subjectId===s.id?'selected':''}>${esc(s.name)}</option>`).join("");
+  const estOpts=[15,30,45,60,90,120,180].map(v=>`<option value="${v}" ${e.est===v?'selected':''}>${v} min</option>`).join("");
+  const subs=(e.subtasks||[]).map((s,i)=>`<div class="strow"><div class="stck ${s.done?'on':''}" onclick="toggleEditSub(${i})"></div><input value="${attr(s.text)}" oninput="editing.subtasks[${i}].text=this.value"><button class="stdel" onclick="editing.subtasks.splice(${i},1);renderEditor()">&times;</button></div>`).join("");
+  $("#aMbody").innerHTML=`
+    <div class="field"><label>Title</label><input id="eTitle" value="${attr(e.title)}" placeholder="e.g. Algebra problem set 5" oninput="editing.title=this.value"></div>
+    <div class="frow">
+      <div class="field"><label>Subject</label><select onchange="editing.subjectId=this.value">${subjOpts}</select></div>
+      <div class="field"><label>Due date</label><input type="date" value="${attr(e.due||'')}" onchange="editing.due=this.value"></div>
+    </div>
+    <div class="frow">
+      <div class="field"><label>Priority</label><div class="seg">${["low","med","high"].map(p=>`<button data-v="${p}" class="${e.priority===p?'on':''}" onclick="editing.priority='${p}';renderEditor()">${PRI[p].l}</button>`).join("")}</div></div>
+      <div class="field"><label>Estimated time</label><select onchange="editing.est=+this.value">${estOpts}</select></div>
+    </div>
+    <div class="field"><label>Status</label><div class="seg">${[["todo","To do"],["doing","In progress"],["done","Done"]].map(([k,l])=>`<button class="${e.status===k?'on':''}" onclick="editing.status='${k}';renderEditor()">${l}</button>`).join("")}</div></div>
+    <div class="field"><label>Notes</label><textarea placeholder="Anything to remember…" oninput="editing.notes=this.value">${esc(e.notes||"")}</textarea></div>
+    <div class="field"><label>Checklist / subtasks</label><div class="subedit">${subs}<button class="addst" onclick="editing.subtasks.push({id:uid(),text:'',done:false});renderEditor()">+ Add a subtask</button></div></div>
+    <div class="mfoot"><button class="btn btn-primary" onclick="saveAssignment()">${editing.id?'Save changes':'Add assignment'}</button>${editing.id?`<button class="del-link" onclick="deleteAssignment('${editing.id}')">Delete</button>`:''}</div>`;
+  const t=$("#eTitle");if(t&&!editing.id)t.focus();
+}
+function toggleEditSub(i){editing.subtasks[i].done=!editing.subtasks[i].done;renderEditor();}
+function saveAssignment(){
+  const e=editing;if(!e.title.trim()){alert("Give the assignment a title.");return;}
+  e.subtasks=(e.subtasks||[]).filter(s=>s.text.trim());
+  if(e.id){const a=state.assignments.find(x=>x.id===e.id);const wasDone=a.status==="done";Object.assign(a,e);if(a.status==="done"&&!a.completedAt)a.completedAt=Date.now();if(a.status!=="done")a.completedAt=null;}
+  else{e.id=uid();e.createdAt=Date.now();if(e.status==="done")e.completedAt=Date.now();state.assignments.push(e);}
+  closeEditor();refresh();
+}
+function closeEditor(){editing=null;$("#amodal").classList.remove("open");}
+
+/* ===================== SUBJECTS MODAL ===================== */
+function openSubjects(){renderSubjects();$("#smodal").classList.add("open");}
+function closeSubjects(){$("#smodal").classList.remove("open");refresh();}
+function renderSubjects(){
+  const rows=state.subjects.map(s=>`<div class="sjrow">
+    <div class="swatches">${SUBJECT_COLORS.slice(0,6).map(c=>`<div class="sw ${s.color===c?'on':''}" style="background:${c}" onclick="setSubColor('${s.id}','${c}')"></div>`).join("")}</div>
+    <input class="sjn" value="${attr(s.name)}" oninput="subjEdit('${s.id}','name',this.value)">
+    <input class="sjt" value="${attr(s.teacher||'')}" placeholder="Teacher" oninput="subjEdit('${s.id}','teacher',this.value)">
+    <button class="sjdel" title="Delete" onclick="delSubject('${s.id}')">&times;</button>
+  </div>`).join("");
+  $("#sMbody").innerHTML=`
+    <p style="font-size:13.5px;color:var(--ink-soft);margin-bottom:6px">Colour-code your classes. Changes apply everywhere instantly.</p>
+    ${rows}
+    <button class="addst" style="width:100%;margin-top:12px" onclick="addSubject()">+ Add a subject</button>
+    <div style="margin-top:22px;border-top:1px solid var(--line);padding-top:16px">
+      <div style="font-size:12.5px;color:var(--ink-soft);margin-bottom:8px">Student name (for the greeting)</div>
+      <input class="sjn" style="width:100%" value="${attr(state.settings.name||'')}" oninput="state.settings.name=this.value;save()">
+      <button class="resetbtn" onclick="resetDemo()">Reset to demo data</button>
+    </div>`;
+}
+function subjEdit(id,k,v){const s=subjById(id);s[k]=v;save();}
+function setSubColor(id,c){const s=subjById(id);s.color=c;save();renderSubjects();}
+function delSubject(id){if(state.subjects.length<=1){alert("Keep at least one subject.");return;}const used=state.assignments.filter(a=>a.subjectId===id).length;if(used&&!confirm(`${used} assignment(s) use this subject. Delete anyway? They’ll move to another subject.`))return;state.subjects=state.subjects.filter(s=>s.id!==id);const fb=state.subjects[0].id;state.assignments.forEach(a=>{if(a.subjectId===id)a.subjectId=fb;});save();renderSubjects();}
+function addSubject(){const c=SUBJECT_COLORS[state.subjects.length%SUBJECT_COLORS.length];state.subjects.push({id:uid(),name:"New subject",teacher:"",color:c});save();renderSubjects();}
+function resetDemo(){if(!confirm("Reset everything back to the demo data?"))return;state=seed();save();closeSubjects();goView("today");}
+
+/* close modals on backdrop / escape */
+$$(".ov").forEach(o=>o.addEventListener("click",e=>{if(e.target===o){o.classList.remove("open");if(o.id==="amodal")editing=null;refresh();}}));
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){$$(".ov.open").forEach(o=>o.classList.remove("open"));editing=null;}});
+
+/* ===================== INIT ===================== */
+load();renderStages();goView("today");
+</script>
+</body>
+</html>

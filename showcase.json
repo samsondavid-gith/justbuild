@@ -3,6 +3,22 @@
     {
       "cohort_number": 3,
       "cohort_location": "Bangalore",
+      "product_name": "Homework Tracker",
+      "slug": "homework-tracker",
+      "order": 0,
+      "participant_name": "",
+      "description": "A homework command centre that keeps students on top of every assignment: a daily dashboard, a drag-and-drop board, a deadline calendar, a Pomodoro focus timer, and progress insights.",
+      "url": "https://justbuild.orangecaterpillar.com/showcase/homework-tracker/app.html",
+      "video": "",
+      "website": "",
+      "brochure": "",
+      "pitch": "",
+      "chatbot": "",
+      "idea_board": ""
+    },
+    {
+      "cohort_number": 3,
+      "cohort_location": "Bangalore",
       "product_name": "Chapter Coach",
       "slug": "chapter-coach",
       "order": 0,

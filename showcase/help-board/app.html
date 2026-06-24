@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Community Help Board · Just Build</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F0E2;--paper-2:#FBF7EC;--card:#FFFDF6;--ink:#23291E;--ink-soft:#5A5E4E;
+    --green:#33492F;--green-deep:#222E1E;--mango:#E48A2E;--line:#E2D9C4;
+    --req:#C2762A;--offer:#2f7d4f;--urgent:#b34a2e;--blue:#4F5BD5;
+    --shadow:0 1px 0 #fff inset, 0 18px 40px -28px rgba(35,41,30,.45);--r:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Hanken Grotesk",sans-serif;color:var(--ink);background:var(--paper);line-height:1.5;
+    -webkit-font-smoothing:antialiased;background-image:
+      radial-gradient(circle at 12% 6%, rgba(228,138,46,.10), transparent 40%),
+      radial-gradient(circle at 88% 0%, rgba(51,73,47,.10), transparent 38%);}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.045'/%3E%3C/svg%3E");}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 22px;position:relative;z-index:1}
+  h1,h2,h3,h4,.disp{font-family:"Fraunces",serif;font-weight:600;letter-spacing:-.01em;line-height:1.1}
+
+  header{background:rgba(246,240,226,.9);border-bottom:1px solid var(--line);backdrop-filter:blur(8px)}
+  .bar{display:flex;align-items:center;justify-content:space-between;height:66px;gap:14px}
+  .brand{display:flex;align-items:center;gap:12px;min-width:0}
+  .brand .logo{width:38px;height:38px;flex:none}
+  .brand .nm{font-family:"Fraunces",serif;font-weight:600;font-size:21px;color:var(--green-deep);line-height:1.05;white-space:nowrap}
+  .brand .tg{font-size:11px;color:var(--ink-soft);letter-spacing:.1em;text-transform:uppercase;margin-top:-1px;white-space:nowrap}
+  .hbtns{display:flex;gap:9px;align-items:center}
+  .pill-note{font-size:11px;color:var(--green);font-weight:700;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--line);background:var(--card);padding:7px 12px;border-radius:99px}
+  .mechip{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:99px;padding:5px 12px 5px 6px;cursor:pointer;transition:.18s}
+  .mechip:hover{border-color:var(--green)}
+  .mechip .nm2{font-size:13px;font-weight:600}
+
+  .stages{position:sticky;top:0;z-index:30;background:rgba(246,240,226,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .stagebar{display:flex;gap:6px;padding:12px 0;overflow-x:auto}
+  .stage-tab{flex:1;min-width:128px;display:flex;align-items:center;gap:11px;padding:11px 14px;border-radius:13px;border:1.5px solid transparent;background:transparent;cursor:pointer;font:inherit;text-align:left;transition:.22s}
+  .stage-tab .n{width:30px;height:30px;flex:none;border-radius:9px;display:grid;place-items:center;background:#e7ddc7;color:var(--ink-soft);transition:.22s}
+  .stage-tab .n svg{width:17px;height:17px}
+  .stage-tab .lbl{font-weight:700;font-size:14.5px;line-height:1.1}
+  .stage-tab .sub{font-size:11px;color:var(--ink-soft);font-weight:500}
+  .stage-tab.active{background:var(--card);border-color:var(--mango);box-shadow:var(--shadow)}
+  .stage-tab.active .n{background:var(--mango);color:#fff}
+  .stage-tab:not(.active):hover{background:rgba(51,73,47,.07)}
+
+  .view{display:none;padding:30px 0 90px;animation:fade .4s ease}
+  .view.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .secthead{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;margin:0 0 18px;flex-wrap:wrap}
+  .secthead h2{font-size:clamp(24px,3.5vw,32px)}
+  .secthead .sub{color:var(--ink-soft);font-size:14px;margin-top:3px}
+  .section-title{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin:26px 0 13px;display:flex;align-items:center;gap:9px}
+  .section-title .ct{background:#e7ddc7;color:var(--green-deep);border-radius:99px;padding:1px 9px;font-size:12px}
+  .section-title.urgent{color:var(--urgent)}.section-title.urgent .ct{background:#f6dcd2;color:var(--urgent)}
+
+  .btn{font:inherit;font-weight:700;font-size:14.5px;border:none;cursor:pointer;border-radius:99px;padding:12px 20px;transition:.2s}
+  .btn-primary{background:var(--mango);color:#2a1c0c}.btn-primary:hover{background:#d97c20}
+  .btn-green{background:var(--green);color:#FBF7EC}.btn-green:hover{background:#293c25}
+  .btn-ghost{background:none;border:1.5px solid var(--green);color:var(--green)}.btn-ghost:hover{background:var(--green);color:#FBF7EC}
+  .btn-sm{padding:9px 15px;font-size:13px}
+  .btn-row{display:flex;gap:10px;flex-wrap:wrap}
+
+  /* avatars */
+  .av{border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:700;font-family:"Fraunces",serif;flex:none}
+  .avstack{display:flex}.avstack .av{border:2px solid var(--card);margin-left:-8px}.avstack .av:first-child{margin-left:0}
+
+  /* stats */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;box-shadow:var(--shadow)}
+  .stat .num{font-family:"Fraunces";font-size:34px;line-height:1;color:var(--green-deep)}
+  .stat .lbl{font-size:12.5px;color:var(--ink-soft);margin-top:4px;font-weight:600}
+  .stat.req .num{color:var(--req)}.stat.offer .num{color:var(--offer)}.stat.good .num{color:var(--green)}.stat.warn .num{color:var(--urgent)}
+
+  .homegrid{display:grid;grid-template-columns:1.6fr 1fr;gap:18px;margin-top:22px;align-items:start}
+  @media(max-width:860px){.homegrid{grid-template-columns:1fr}}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px 24px;box-shadow:var(--shadow);margin-bottom:16px}
+  .panel h3{font-size:17px;margin-bottom:4px}.panel .psub{font-size:13px;color:var(--ink-soft);margin-bottom:14px}
+
+  /* hero quick post */
+  .hero{background:linear-gradient(150deg,#33492F,#283d24);color:#eef0e6;border-radius:var(--r);padding:26px 28px;box-shadow:var(--shadow);margin-bottom:22px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+  .hero h2{color:#fff;font-size:24px;margin-bottom:4px}
+  .hero p{font-size:14px;color:#cdd3c3;max-width:46ch}
+  .hero .ha{display:flex;gap:10px;flex-wrap:wrap}
+  .hero .btn-primary{background:var(--mango)}
+  .hero .btn-light{background:rgba(255,255,255,.14);color:#fff;border:1.5px solid rgba(255,255,255,.4)}
+  .hero .btn-light:hover{background:rgba(255,255,255,.24)}
+
+  /* post cards */
+  .pgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:720px){.pgrid{grid-template-columns:1fr}}
+  .pcard{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;box-shadow:var(--shadow);cursor:pointer;transition:.2s;display:flex;flex-direction:column;gap:11px;position:relative}
+  .pcard:hover{transform:translateY(-3px);border-color:#cfc4ac}
+  .pcard.resolved{opacity:.72}
+  .pcard.urgentcard{border-color:#e3b9aa}
+  .ptop{display:flex;gap:7px;flex-wrap:wrap;align-items:center}
+  .ptype{font-size:10.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:3px 10px;border-radius:99px}
+  .pcat{font-size:11.5px;font-weight:700;padding:3px 10px;border-radius:99px}
+  .purgent{font-size:10.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#fff;background:var(--urgent);padding:3px 9px;border-radius:99px}
+  .pstatus{font-size:11px;font-weight:700;padding:3px 9px;border-radius:99px;margin-left:auto}
+  .pstatus.open{background:#eef0e2;color:var(--ink-soft)}.pstatus.progress{background:#fdeed9;color:#8a4a1e}.pstatus.resolved{background:#e0efe4;color:var(--offer)}
+  .ptitle{font-family:"Fraunces",serif;font-size:19px;color:var(--green-deep);line-height:1.25}
+  .pbody{font-size:13.5px;color:#4a4f41;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .pmeta{display:flex;align-items:center;gap:9px;font-size:12.5px;color:var(--ink-soft);margin-top:2px}
+  .pmeta .dot{width:3px;height:3px;border-radius:50%;background:var(--line)}
+  .pfoot{display:flex;align-items:center;gap:14px;margin-top:4px;padding-top:12px;border-top:1px dashed var(--line);font-size:12.5px;color:var(--ink-soft)}
+  .pfoot .pf{display:flex;align-items:center;gap:6px}
+  .pfoot .pf svg{width:15px;height:15px}
+  .pfoot .pf.on{color:var(--urgent)}
+  .needbar{flex:1;min-width:60px;height:7px;border-radius:99px;background:#efe6d2;overflow:hidden}
+  .needbar i{display:block;height:100%;background:linear-gradient(90deg,var(--green),var(--mango));transition:width .4s}
+
+  /* activity feed */
+  .feed{display:flex;flex-direction:column}
+  .fitem{display:flex;gap:12px;padding:11px 0;border-top:1px solid var(--line);font-size:13.5px;align-items:flex-start}
+  .fitem:first-child{border-top:none}
+  .fitem .fdot{width:9px;height:9px;border-radius:50%;margin-top:5px;flex:none}
+  .fitem .ft{color:var(--ink-soft)}.fitem .ft b{color:var(--ink);font-weight:600}
+  .fitem .fw{font-size:11.5px;color:var(--ink-soft);margin-top:1px}
+
+  /* mini helpers */
+  .lhrow{display:flex;align-items:center;gap:12px;padding:10px 0;border-top:1px solid var(--line)}
+  .lhrow:first-child{border-top:none}
+  .lhrow .rank{font-family:"Fraunces";font-weight:700;color:var(--ink-soft);width:20px;text-align:center}
+  .lhrow .who{flex:1;min-width:0}.lhrow .who .nm{font-weight:600;font-size:14px}.lhrow .who .ar{font-size:12px;color:var(--ink-soft)}
+  .lhrow .sc{font-family:"Fraunces";font-weight:600;color:var(--green-deep)}
+  .badge2{font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:99px;background:#fdf1e3;color:#a85d12;letter-spacing:.03em}
+  .badge2.gold{background:#fbf0cf;color:#9a7b1e}.badge2.green{background:#e0efe4;color:var(--offer)}
+
+  /* toolbar */
+  .toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+  .search{flex:1;min-width:180px;position:relative}
+  .search input{width:100%;font:inherit;font-size:14.5px;padding:11px 14px 11px 38px;border:1.5px solid var(--line);border-radius:11px;background:var(--card);transition:.2s}
+  .search input:focus{outline:none;border-color:var(--green);background:#fff}
+  .search svg{position:absolute;left:13px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:var(--ink-soft)}
+  .selwrap{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--ink-soft)}
+  select.sel{font:inherit;font-size:13.5px;padding:9px 12px;border:1.5px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);cursor:pointer}
+  select.sel:focus{outline:none;border-color:var(--green)}
+  .chips{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:18px}
+  .chip{font:inherit;font-weight:600;font-size:13px;border:1px solid var(--line);background:var(--card);color:var(--ink-soft);padding:8px 13px;border-radius:99px;cursor:pointer;transition:.18s}
+  .chip:hover{border-color:var(--green)}.chip.on{background:var(--green);color:#FBF7EC;border-color:var(--green)}
+  .seg{display:inline-flex;background:#efe6d2;border-radius:11px;padding:4px;gap:4px;flex-wrap:wrap}
+  .seg button{font:inherit;font-weight:600;font-size:13.5px;border:none;background:none;color:var(--ink-soft);padding:9px 16px;border-radius:8px;cursor:pointer;transition:.16s}
+  .seg button.on{background:var(--card);color:var(--green-deep);box-shadow:var(--shadow)}
+
+  .empty{text-align:center;padding:56px 20px;color:var(--ink-soft)}.empty .ei{font-size:32px;margin-bottom:10px;opacity:.6}
+
+  /* leaderboard */
+  .lbrow{display:grid;grid-template-columns:38px auto 1fr auto;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;box-shadow:var(--shadow);margin-bottom:11px}
+  .lbrow .lrank{font-family:"Fraunces";font-size:22px;font-weight:700;color:var(--ink-soft);text-align:center}
+  .lbrow.top1 .lrank{color:#C9A227}.lbrow.top2 .lrank{color:#9aa0a6}.lbrow.top3 .lrank{color:#B07B43}
+  .lbrow .lwho .nm{font-weight:600;font-size:15.5px}.lbrow .lwho .ar{font-size:12.5px;color:var(--ink-soft)}
+  .lbrow .lbadges{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+  .lbrow .lsc{font-family:"Fraunces";font-size:22px;color:var(--green-deep);text-align:right}
+  .lbrow .lsc small{font-size:12px;color:var(--ink-soft);display:block;font-family:"Hanken Grotesk"}
+  .lbrow.me{border-color:var(--mango);box-shadow:0 0 0 2px rgba(228,138,46,.2)}
+
+  /* charts */
+  .ins-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:16px}
+  @media(max-width:760px){.ins-grid{grid-template-columns:1fr 1fr}}
+  .metric{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px 22px;box-shadow:var(--shadow)}
+  .metric .mn{font-family:"Fraunces";font-size:34px;color:var(--green-deep);line-height:1}
+  .metric .ml{font-size:12.5px;color:var(--ink-soft);margin-top:5px;font-weight:600}
+  .metric .mhint{font-size:11.5px;color:var(--ink-soft);margin-top:8px}
+  .barrow{display:grid;grid-template-columns:140px 1fr 54px;align-items:center;gap:12px;margin:11px 0}
+  .barrow .bl{font-size:13.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .bartrack{height:13px;border-radius:99px;background:#efe6d2;overflow:hidden}.bartrack i{display:block;height:100%;border-radius:99px;transition:width .6s}
+  .barrow .bv{font-size:12.5px;color:var(--ink-soft);text-align:right}
+  .loadrow{display:flex;align-items:flex-end;gap:10px;height:130px;margin-top:8px}
+  .loadrow .lc{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;justify-content:flex-end}
+  .loadrow .lbar{width:100%;max-width:42px;background:#efe6d2;border-radius:6px 6px 0 0;display:flex;align-items:flex-end;overflow:hidden;height:100%}
+  .loadrow .lbar i{width:100%;background:linear-gradient(180deg,var(--mango),var(--green));transition:height .5s;border-radius:6px 6px 0 0}
+  .loadrow .ld{font-size:11px;color:var(--ink-soft);font-weight:600}.loadrow .lv{font-size:12px;font-family:"Fraunces";color:var(--green-deep)}
+  .splitbar{display:flex;height:26px;border-radius:99px;overflow:hidden;border:1px solid var(--line);margin:6px 0 4px}
+  .splitbar i{display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff}
+
+  /* modal */
+  .ov{position:fixed;inset:0;z-index:100;display:none;align-items:flex-start;justify-content:center;padding:30px 22px;background:rgba(34,33,27,.55);backdrop-filter:blur(4px);overflow:auto}
+  .ov.open{display:flex;animation:fade .2s ease}
+  .modal{background:var(--paper-2);border:1px solid var(--line);border-radius:18px;width:100%;max-width:600px;box-shadow:0 40px 90px -30px rgba(0,0,0,.6);animation:pop .26s cubic-bezier(.2,.7,.2,1);margin:auto}
+  @keyframes pop{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}
+  .mhead{display:flex;align-items:flex-start;justify-content:space-between;padding:22px 24px 0;gap:12px}
+  .mhead h2{font-size:23px}
+  .mclose{background:rgba(34,33,27,.06);border:none;border-radius:50%;width:34px;height:34px;font-size:21px;color:var(--ink-soft);cursor:pointer;line-height:1;flex:none}
+  .mclose:hover{background:rgba(34,33,27,.13)}
+  .mbody{padding:16px 24px 24px}
+  .field{margin-bottom:15px}
+  .field label{display:block;font-size:12.5px;font-weight:700;color:var(--ink-soft);margin-bottom:6px;letter-spacing:.02em}
+  .field input,.field textarea,.field select{width:100%;font:inherit;font-size:15px;padding:11px 13px;border:1.5px solid var(--line);border-radius:11px;background:var(--card);color:var(--ink);transition:.18s}
+  .field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--green);background:#fff}
+  .field textarea{resize:vertical;min-height:84px}
+  .frow{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+  @media(max-width:520px){.frow{grid-template-columns:1fr}}
+  .mfoot{display:flex;gap:10px;align-items:center;margin-top:8px}.mfoot .btn-primary,.mfoot .btn-green{flex:1}
+  .del-link{background:none;border:none;color:var(--urgent);font:inherit;font-weight:600;font-size:13.5px;cursor:pointer;padding:10px}.del-link:hover{text-decoration:underline}
+
+  /* detail modal bits */
+  .dchips{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:6px}
+  .dbody{font-size:15px;color:#3f4538;line-height:1.6;margin:10px 0 16px;white-space:pre-wrap}
+  .dmeta{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--ink-soft);margin-bottom:8px}
+  .dpanel{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:15px 17px;margin:14px 0}
+  .dpanel h4{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:11px;font-family:"Hanken Grotesk";font-weight:700}
+  .helpers{display:flex;flex-direction:column;gap:9px}
+  .hprow{display:flex;align-items:center;gap:11px}
+  .hprow .nm{font-weight:600;font-size:14px;flex:1}
+  .needline{display:flex;align-items:center;gap:10px;margin-bottom:12px;font-size:13px;color:var(--ink-soft)}
+  .actionrow{display:flex;gap:9px;flex-wrap:wrap;margin:14px 0}
+  .react{display:flex;align-items:center;gap:7px;font:inherit;font-weight:600;font-size:13.5px;border:1.5px solid var(--line);background:var(--card);color:var(--ink-soft);padding:9px 15px;border-radius:99px;cursor:pointer;transition:.16s}
+  .react:hover{border-color:var(--green)}.react.on{border-color:var(--urgent);color:var(--urgent);background:#fbeee8}
+  .react.onsave{border-color:var(--mango);color:#a85d12;background:#fdf1e3}
+  .react svg{width:16px;height:16px}
+  .thread{display:flex;flex-direction:column;gap:12px;margin-top:6px}
+  .cmt{display:flex;gap:11px}
+  .cmt .cbody{flex:1;background:var(--paper-2);border:1px solid var(--line);border-radius:12px;padding:10px 13px}
+  .cmt .ch{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px}
+  .cmt .ch .nm{font-weight:600;font-size:13.5px}.cmt .ch .w{font-size:11.5px;color:var(--ink-soft)}
+  .cmt .ctext{font-size:14px;color:#3f4538}
+  .cmtbox{display:flex;gap:9px;margin-top:14px}
+  .cmtbox input{flex:1;font:inherit;font-size:14.5px;padding:11px 14px;border:1.5px solid var(--line);border-radius:11px;background:var(--card)}
+  .cmtbox input:focus{outline:none;border-color:var(--green);background:#fff}
+  .thankbtn{font:inherit;font-size:12px;font-weight:600;border:1px solid var(--line);background:var(--paper-2);color:var(--green);border-radius:99px;padding:5px 11px;cursor:pointer;transition:.15s}
+  .thankbtn:hover{border-color:var(--green);background:#f3f6ec}
+  .thankbtn.done{background:#e0efe4;color:var(--offer);border-color:#bfe0c9;cursor:default}
+
+  /* profile swatches */
+  .swatches{display:flex;gap:6px;flex-wrap:wrap}
+  .sw{width:24px;height:24px;border-radius:50%;cursor:pointer;border:2px solid transparent}.sw.on{border-color:var(--ink)}
+  .resetbtn{background:none;border:1px solid var(--line);color:var(--urgent);font:inherit;font-weight:600;font-size:13px;border-radius:99px;padding:9px 16px;cursor:pointer;margin-top:6px}.resetbtn:hover{border-color:var(--urgent)}
+
+  footer{border-top:1px solid var(--line);padding:26px 0;text-align:center;color:var(--ink-soft);font-size:13px;position:relative;z-index:1}
+  @media(max-width:820px){.stats{grid-template-columns:1fr 1fr}.ins-grid{grid-template-columns:1fr 1fr}.pill-note{display:none}}
+</style>
+</head>
+<body>
+
+<header><div class="wrap bar">
+  <div class="brand">
+    <svg class="logo" viewBox="0 0 40 40" fill="none">
+      <circle cx="14" cy="13.5" r="5" fill="#33492F"/><circle cx="26" cy="13.5" r="5" fill="#46663f"/>
+      <path d="M5 31c0-5 4-8.5 9-8.5s9 3.5 9 8.5" fill="#33492F"/>
+      <path d="M17 31c0-5 4-8.5 9-8.5s9 3.5 9 8.5" fill="#46663f"/>
+      <path d="M20 20.5c2.6 0 4.6 1.6 5.6 3.4" stroke="#FBF7EC" stroke-width="1.4"/>
+      <g stroke="#E48A2E" stroke-width="2.1" stroke-linecap="round"><path d="M20 5.2v4.2M17.9 7.3h4.2"/></g>
+    </svg>
+    <div><div class="nm">Community Help Board</div><div class="tg" id="commTag">Neighbours helping neighbours</div></div>
+  </div>
+  <div class="hbtns">
+    <span class="pill-note">Built at Just Build</span>
+    <button class="mechip" onclick="openProfile()"><span class="av" id="meAv" style="width:28px;height:28px;font-size:13px"></span><span class="nm2" id="meName"></span></button>
+  </div>
+</div></header>
+
+<div class="stages"><div class="wrap"><div class="stagebar" id="stagebar"></div></div></div>
+
+<section id="home" class="view active"><div class="wrap" id="homeBody"></div></section>
+<section id="board" class="view"><div class="wrap" id="boardBody"></div></section>
+<section id="myhub" class="view"><div class="wrap" id="hubBody"></div></section>
+<section id="helpers" class="view"><div class="wrap" id="helpersBody"></div></section>
+<section id="insights" class="view"><div class="wrap" id="insBody"></div></section>
+
+<footer class="wrap">Community Help Board · a Day 2 “build to help others” demo from Just Build · your board is saved in this browser</footer>
+
+<div class="ov" id="dmodal"><div class="modal"><div class="mhead"><div id="dHeadChips" class="dchips"></div><button class="mclose" onclick="closeModal('dmodal')">&times;</button></div><div class="mbody" id="dBody"></div></div></div>
+<div class="ov" id="cmodal"><div class="modal"><div class="mhead"><h2 id="cTitle">New post</h2><button class="mclose" onclick="closeModal('cmodal')">&times;</button></div><div class="mbody" id="cBody"></div></div></div>
+<div class="ov" id="pmodal"><div class="modal"><div class="mhead"><h2>Your profile</h2><button class="mclose" onclick="closeModal('pmodal')">&times;</button></div><div class="mbody" id="pBody"></div></div></div>
+
+<script>
+/* ===================== STORAGE ===================== */
+const store=(()=>{let mem={},ok=true;try{const k="__chb__";localStorage.setItem(k,"1");localStorage.removeItem(k);}catch(e){ok=false;}
+  return{get(k){try{return ok?localStorage.getItem(k):mem[k];}catch(e){return mem[k];}},set(k,v){try{ok?localStorage.setItem(k,v):mem[k]=v;}catch(e){mem[k]=v;}}};})();
+/* ===================== HELPERS ===================== */
+const $=s=>document.querySelector(s);const $$=s=>Array.from(document.querySelectorAll(s));
+const esc=s=>String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const attr=s=>esc(s).replace(/"/g,"&quot;");
+let _id=0;const uid=p=>(p||"x")+Date.now().toString(36)+(_id++).toString(36)+Math.floor(Math.random()*1e4).toString(36);
+const pad=n=>String(n).padStart(2,"0");
+function timeAgo(ms){const s=Math.floor((Date.now()-ms)/1000);if(s<60)return"just now";const m=Math.floor(s/60);if(m<60)return m+"m ago";const h=Math.floor(m/60);if(h<24)return h+"h ago";const d=Math.floor(h/24);if(d<7)return d+"d ago";const w=Math.floor(d/7);if(w<5)return w+"w ago";return new Date(ms).toLocaleDateString("en-US",{day:"numeric",month:"short"});}
+function fmtEvent(ms){const d=new Date(ms);return d.toLocaleDateString("en-US",{weekday:"short",day:"numeric",month:"short"})+", "+d.toLocaleTimeString("en-US",{hour:"numeric",minute:"2-digit"});}
+function hexA(hex,a){const h=hex.replace("#","");return `rgba(${parseInt(h.slice(0,2),16)},${parseInt(h.slice(2,4),16)},${parseInt(h.slice(4,6),16)},${a})`;}
+const CATS={
+  errands:{name:"Errands",c:"#C77D2A"},rides:{name:"Rides & transport",c:"#2C8C9C"},tutoring:{name:"Tutoring",c:"#4F5BD5"},
+  food:{name:"Food & meals",c:"#33724E"},repairs:{name:"Repairs & household",c:"#8A5BB8"},care:{name:"Care & wellbeing",c:"#B5223B"},
+  lostfound:{name:"Lost & found",c:"#C2912A"},lending:{name:"Free & lending",c:"#2f7d4f"},events:{name:"Events & volunteering",c:"#E48A2E"},other:{name:"Other",c:"#6E7186"}
+};
+const AVCOLORS=["#4F5BD5","#33724E","#B5223B","#C77D2A","#2C8C9C","#8A5BB8","#E48A2E","#3F7C92","#A23E6E","#5E7C2F"];
+const AREAS=["Maple Street","Riverside","Oak Hill","Greenfield","Downtown"];
+const TYPE={request:{label:"Request",c:"#C2762A"},offer:{label:"Offer",c:"#2f7d4f"}};
+function av(member,size){const c=member.color||"#8A8276";const init=(member.name||"?").trim()[0]?.toUpperCase()||"?";return `<span class="av" style="width:${size}px;height:${size}px;font-size:${size*0.42}px;background:${c}">${init}</span>`;}
+
+/* ===================== SEED ===================== */
+function seed(){
+  const M=[
+    {id:"u1",name:"You",area:"Maple Street",helpScore:2,color:"#4F5BD5"},
+    {id:"u2",name:"Arjun",area:"Riverside",helpScore:14,color:"#33724E"},
+    {id:"u3",name:"Meera",area:"Oak Hill",helpScore:9,color:"#B5223B"},
+    {id:"u4",name:"Sam",area:"Greenfield",helpScore:5,color:"#C77D2A"},
+    {id:"u5",name:"Fatima",area:"Downtown",helpScore:11,color:"#2C8C9C"},
+    {id:"u6",name:"David",area:"Maple Street",helpScore:3,color:"#8A5BB8"},
+    {id:"u7",name:"Lin",area:"Riverside",helpScore:7,color:"#E48A2E"},
+    {id:"u8",name:"Grace",area:"Oak Hill",helpScore:4,color:"#3F7C92"}
+  ];
+  const H=h=>Date.now()-h*36e5, D=d=>Date.now()-d*864e5;
+  const evt=(d,hh)=>{const x=new Date();x.setDate(x.getDate()+d);x.setHours(hh,0,0,0);return x.getTime();};
+  const P=o=>Object.assign({id:uid("p"),type:"request",category:"other",area:"Maple Street",urgency:"normal",status:"open",needed:1,helpers:[],comments:[],boosts:[],savedBy:[],thanked:[],createdAt:Date.now()},o);
+  const posts=[
+    P({type:"request",category:"rides",title:"Ride to the clinic on Thursday morning",body:"My mother has a 9am appointment at Riverside Clinic this Thursday and I can’t get the day off work. Could anyone drop her there and back? She uses a walking stick but is otherwise independent.",area:"Maple Street",urgency:"urgent",authorId:"u6",needed:1,eventAt:evt(2,9),createdAt:H(3),boosts:["u3","u5"],comments:[{id:uid("c"),authorId:"u3",text:"I might be free — what time would she need to leave?",at:H(2)}]}),
+    P({type:"offer",category:"tutoring",title:"Free maths tutoring, grades 6–10",body:"I’m a retired maths teacher and happy to help any kids in the neighbourhood who are struggling. Weekday evenings work best. Just bring your textbook and whatever’s confusing you!",area:"Riverside",authorId:"u2",createdAt:H(20),boosts:["u1","u3","u4","u7"],comments:[{id:uid("c"),authorId:"u4",text:"This is wonderful — my son could really use help with fractions.",at:H(18)}]}),
+    P({type:"request",category:"errands",title:"Weekly groceries for an elderly neighbour",body:"Mr. Patel on Oak Hill Road is recovering from surgery and can’t carry shopping for a few weeks. Looking for 1–2 people to split a weekly grocery run with him (he covers the cost).",area:"Oak Hill",authorId:"u3",needed:2,helpers:["u4"],createdAt:D(1),boosts:["u5"]}),
+    P({type:"request",category:"repairs",title:"Help moving a sofa (2 people)",body:"Need a hand carrying a two-seater sofa down one flight of stairs and into a van. Should take 20 minutes.",area:"Greenfield",authorId:"u4",needed:2,helpers:["u2","u7"],status:"resolved",thanked:["u2","u7"],createdAt:D(4),resolvedAt:D(2)}),
+    P({type:"offer",category:"lending",title:"Lending a pressure washer this weekend",body:"Got a decent electric pressure washer that’s free to borrow Sat–Sun. Great for patios and driveways. Just return it clean!",area:"Downtown",authorId:"u5",createdAt:H(30),boosts:["u6"]}),
+    P({type:"request",category:"lostfound",title:"Lost cat — orange tabby near Oak Hill park",body:"Our cat ‘Mango’ slipped out last night. Orange tabby, white paws, very friendly, answers to his name. Please check sheds and garages! Reward offered.",area:"Oak Hill",urgency:"urgent",authorId:"u8",createdAt:H(6),boosts:["u1","u2","u3","u7"],comments:[{id:uid("c"),authorId:"u7",text:"I think I saw an orange cat near the allotments this morning!",at:H(4)}]}),
+    P({type:"offer",category:"food",title:"Surplus tomatoes & herbs from my garden",body:"My garden went a bit wild this year. Free tomatoes, basil and mint — come grab a bag from my porch on Maple Street any time this week.",area:"Maple Street",authorId:"u1",createdAt:H(26),boosts:["u6","u8"]}),
+    P({type:"request",category:"events",title:"Volunteers for Saturday park clean-up",body:"Greenfield Park needs some love! Bring gloves and a bin bag — we’ll provide tea and biscuits. Family-friendly. Aiming for 8–10 volunteers.",area:"Greenfield",authorId:"u2",needed:8,helpers:["u3","u4","u5"],eventAt:evt(3,10),createdAt:D(1),boosts:["u1","u7","u8"]}),
+    P({type:"request",category:"care",title:"After-school childcare Mon & Wed",body:"Looking for a trusted neighbour to watch my two kids (7 and 9) for an hour after school on Mondays and Wednesdays until I’m back from work. Happy to pay.",area:"Riverside",authorId:"u7",needed:1,createdAt:D(2)}),
+    P({type:"offer",category:"lending",title:"Free kids’ clothes & toys (ages 2–5)",body:"Clearing out — bags of gently used clothes, books and toys for toddlers. All clean and good quality. First come, first served.",area:"Downtown",authorId:"u5",createdAt:D(3),boosts:["u3"]}),
+    P({type:"request",category:"repairs",title:"Fix a slow-leaking kitchen tap",body:"My kitchen tap has been dripping for a week and I’m not handy at all. Anyone able to take a quick look?",area:"Maple Street",authorId:"u6",helpers:["u1"],status:"resolved",thanked:["u1"],createdAt:D(6),resolvedAt:D(5)}),
+    P({type:"request",category:"lending",title:"Borrow a USB-C laptop charger?",body:"Left mine at the office and have a deadline tonight. Could anyone lend a 65W USB-C charger for the evening? Oak Hill area.",area:"Oak Hill",authorId:"u3",createdAt:H(9)}),
+    P({type:"offer",category:"rides",title:"Driving to the city centre on Fridays",body:"I commute to the city centre every Friday morning and have two spare seats. Happy to give neighbours a lift — just chip in for petrol.",area:"Riverside",authorId:"u2",eventAt:evt(4,8),createdAt:D(2),boosts:["u8"]}),
+    P({type:"request",category:"care",title:"Blood donors (O-negative) needed",body:"A neighbour’s family member is having surgery next week and the hospital is short on O-negative. If you’re a donor, please consider booking a slot — every unit helps.",area:"Downtown",urgency:"urgent",authorId:"u5",createdAt:H(14),boosts:["u1","u2","u3","u4","u7"]})
+  ];
+  return{members:M,posts,meId:"u1",settings:{community:"Maple Grove"},_v:1};
+}
+let state;
+function load(){try{const r=store.get("helpboard");if(r){state=JSON.parse(r);if(!state.posts||!state.members)throw 0;}else state=seed();}catch(e){state=seed();}}
+function save(){store.set("helpboard",JSON.stringify(state));}
+const meId=()=>state.meId;
+const me=()=>state.members.find(m=>m.id===state.meId);
+const mem=id=>state.members.find(m=>m.id===id)||{name:"Someone",color:"#8A8276",area:""};
+const postById=id=>state.posts.find(p=>p.id===id);
+
+/* ===================== ICONS ===================== */
+const heartSvg=()=>`<svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 15s-6-3.6-6-8a3.4 3.4 0 0 1 6-2 3.4 3.4 0 0 1 6 2c0 4.4-6 8-6 8z"/></svg>`;
+const chatSvg=()=>`<svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M3 4.5h12v8H8l-3 2.4V12.5H3z"/></svg>`;
+const peopleSvg=()=>`<svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="7" cy="6.3" r="2.5"/><path d="M2.6 14c0-2.4 2-4 4.4-4s4.4 1.6 4.4 4"/><path d="M12.2 4.2a2.4 2.4 0 0 1 0 4.5M13.4 14c0-1.7-.5-2.9-1.4-3.6"/></svg>`;
+const bookmarkSvg=()=>`<svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M5 3h8v12l-4-3-4 3z"/></svg>`;
+const ICON={
+  home:`<svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M3 8l6-5 6 5"/><path d="M4.5 7.5V15h9V7.5"/></svg>`,
+  board:`<svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="2.5" y="3" width="13" height="12" rx="2"/><path d="M2.5 7h13M6.5 7v8"/></svg>`,
+  myhub:`<svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="9" cy="6" r="3"/><path d="M3.5 15c0-3 2.5-5 5.5-5s5.5 2 5.5 5"/></svg>`,
+  helpers:`<svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M9 2.5l1.8 3.7 4 .6-2.9 2.8.7 4L9 11.7 5.4 13.6l.7-4L3.2 6.8l4-.6z"/></svg>`,
+  insights:`<svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M3 15V8M8 15V4M13 15v-5"/></svg>`
+};
+const STAGES=[
+  {key:"home",label:"Home",sub:"Community pulse"},
+  {key:"board",label:"Board",sub:"Browse & post"},
+  {key:"myhub",label:"My Hub",sub:"You & saved"},
+  {key:"helpers",label:"Helpers",sub:"Leaderboard"},
+  {key:"insights",label:"Insights",sub:"Impact"}
+];
+let current="home";
+function renderStages(){
+  $("#stagebar").innerHTML=STAGES.map(s=>`<button class="stage-tab ${s.key===current?'active':''}" onclick="goView('${s.key}')"><span class="n">${ICON[s.key]}</span><span><span class="lbl">${s.label}</span><br><span class="sub">${s.sub}</span></span></button>`).join("");
+}
+function goView(k){current=k;$$(".view").forEach(v=>v.classList.remove("active"));$("#"+k).classList.add("active");renderStages();renderView(k);window.scrollTo({top:0,behavior:"smooth"});}
+function renderView(k){({home:renderHome,board:renderBoard,myhub:renderHub,helpers:renderHelpers,insights:renderInsights}[k])();}
+function refresh(){save();renderView(current);syncHeader();}
+
+/* ===================== SHARED ===================== */
+const isOwner=p=>p.authorId===meId();
+const amHelping=p=>p.helpers.includes(meId());
+const amBoost=p=>p.boosts.includes(meId());
+const amSave=p=>p.savedBy.includes(meId());
+function typeBadge(p){return `<span class="ptype" style="background:${hexA(TYPE[p.type].c,.14)};color:${TYPE[p.type].c}">${TYPE[p.type].label}</span>`;}
+function catPill(c){const cat=CATS[c];return `<span class="pcat" style="background:${hexA(cat.c,.14)};color:${cat.c}">${esc(cat.name)}</span>`;}
+function statusPill(s){return `<span class="pstatus ${s}">${s==='progress'?'In progress':s==='resolved'?'Resolved':'Open'}</span>`;}
+function postCard(p){
+  const a=mem(p.authorId);
+  const helpTxt=p.type==='request'?`${p.helpers.length}${p.needed>1?'/'+p.needed:''} helping`:`${p.helpers.length} interested`;
+  const need=(p.type==='request'&&p.needed>1)?`<div class="needbar"><i style="width:${Math.min(100,p.helpers.length/p.needed*100)}%"></i></div>`:'';
+  return `<div class="pcard ${p.status==='resolved'?'resolved':''} ${p.urgency==='urgent'&&p.status!=='resolved'?'urgentcard':''}" onclick="openDetail('${p.id}')">
+    <div class="ptop">${typeBadge(p)}${catPill(p.category)}${p.urgency==='urgent'&&p.status!=='resolved'?'<span class="purgent">Urgent</span>':''}${statusPill(p.status)}</div>
+    <div class="ptitle">${esc(p.title)}</div>
+    <div class="pbody">${esc(p.body)}</div>
+    ${p.eventAt?`<div class="pmeta">📅 ${fmtEvent(p.eventAt)}</div>`:''}
+    <div class="pmeta">${av(a,22)}<span>${esc(a.name)}</span><span class="dot"></span><span>${esc(p.area)}</span><span class="dot"></span><span>${timeAgo(p.createdAt)}</span></div>
+    <div class="pfoot">
+      <span class="pf ${amBoost(p)?'on':''}">${heartSvg()} ${p.boosts.length}</span>
+      <span class="pf">${chatSvg()} ${p.comments.length}</span>
+      <span class="pf">${peopleSvg()} ${helpTxt}</span>${need}
+    </div></div>`;
+}
+function grid(arr,empty){return arr.length?`<div class="pgrid">${arr.map(postCard).join("")}</div>`:`<div class="empty"><div class="ei">🌱</div>${empty}</div>`;}
+
+/* ===================== HOME ===================== */
+function renderHome(){
+  const P=state.posts, weekAgo=Date.now()-7*864e5;
+  const openReq=P.filter(p=>p.type==='request'&&p.status!=='resolved').length;
+  const offers=P.filter(p=>p.type==='offer'&&p.status!=='resolved').length;
+  const resolvedWk=P.filter(p=>p.status==='resolved'&&p.resolvedAt&&p.resolvedAt>weekAgo).length;
+  const urgent=P.filter(p=>p.urgency==='urgent'&&p.status!=='resolved').sort((a,b)=>b.createdAt-a.createdAt);
+  const soon=P.filter(p=>p.eventAt&&p.eventAt>Date.now()&&p.status!=='resolved').sort((a,b)=>a.eventAt-b.eventAt).slice(0,3);
+  const top=[...state.members].sort((a,b)=>b.helpScore-a.helpScore).slice(0,4);
+  $("#homeBody").innerHTML=`
+    <div class="hero">
+      <div><h2>Hello, ${esc(me().name)} 👋</h2><p>This is the ${esc(state.settings.community)} help board — a place to ask for a hand or offer one. Small acts, big difference.</p></div>
+      <div class="ha"><button class="btn btn-primary" onclick="openCompose('request')">Ask for help</button><button class="btn btn-light" onclick="openCompose('offer')">Offer help</button></div>
+    </div>
+    <div class="stats">
+      <div class="stat req"><div class="num">${openReq}</div><div class="lbl">Open requests</div></div>
+      <div class="stat offer"><div class="num">${offers}</div><div class="lbl">Offers available</div></div>
+      <div class="stat good"><div class="num">${resolvedWk}</div><div class="lbl">Resolved this week</div></div>
+      <div class="stat warn"><div class="num">${urgent.length}</div><div class="lbl">Urgent right now</div></div>
+    </div>
+    ${urgent.length?`<div class="section-title urgent">⚡ Urgent needs <span class="ct">${urgent.length}</span></div>${grid(urgent.slice(0,2),"")}`:""}
+    <div class="homegrid">
+      <div>
+        <div class="panel"><h3>Community activity</h3><div class="psub">The latest from around the neighbourhood.</div><div class="feed">${activityFeed(9)}</div></div>
+      </div>
+      <div>
+        ${soon.length?`<div class="panel"><h3>Happening soon</h3><div class="psub">Events, rides and volunteering coming up.</div>${soon.map(p=>`<div class="lhrow" style="cursor:pointer" onclick="openDetail('${p.id}')"><div class="who"><div class="nm">${esc(p.title)}</div><div class="ar">${fmtEvent(p.eventAt)}</div></div></div>`).join("")}</div>`:""}
+        <div class="panel"><h3>Top helpers</h3><div class="psub">Neighbours who show up for others.</div>
+          ${top.map((m,i)=>`<div class="lhrow"><span class="rank">${i+1}</span>${av(m,34)}<div class="who"><div class="nm">${esc(m.name)}${m.id===meId()?' (you)':''}</div><div class="ar">${esc(m.area)}</div></div><span class="sc">${m.helpScore}</span></div>`).join("")}
+          <div style="margin-top:12px"><button class="btn btn-ghost btn-sm" onclick="goView('helpers')">See full leaderboard →</button></div>
+        </div>
+      </div>
+    </div>`;
+}
+function activityFeed(n){
+  let acts=[];
+  state.posts.forEach(p=>{acts.push({at:p.createdAt,kind:"post",p});if(p.resolvedAt)acts.push({at:p.resolvedAt,kind:"resolved",p});(p.comments||[]).forEach(c=>acts.push({at:c.at,kind:"comment",p,c}));});
+  acts.sort((a,b)=>b.at-a.at);
+  return acts.slice(0,n).map(x=>{
+    const a=mem(x.p.authorId);let dot,txt;
+    if(x.kind==="post"){dot=TYPE[x.p.type].c;txt=`<b>${esc(a.name)}</b> posted ${x.p.type==='request'?'a request':'an offer'} — <b>${esc(x.p.title)}</b>`;}
+    else if(x.kind==="comment"){dot="#4F5BD5";txt=`<b>${esc(mem(x.c.authorId).name)}</b> commented on <b>${esc(x.p.title)}</b>`;}
+    else{dot="#2f7d4f";txt=`<b>${esc(a.name)}</b> marked <b>${esc(x.p.title)}</b> resolved 🎉`;}
+    return `<div class="fitem" style="cursor:pointer" onclick="openDetail('${x.p.id}')"><span class="fdot" style="background:${dot}"></span><div><div class="ft">${txt}</div><div class="fw">${timeAgo(x.at)}</div></div></div>`;
+  }).join("")||`<div class="fw">Nothing yet.</div>`;
+}
+
+/* ===================== BOARD ===================== */
+let bf={q:"",type:"all",cat:"all",status:"all",area:"all",sort:"new"};
+function renderBoard(){
+  const catChips=`<button class="chip ${bf.cat==='all'?'on':''}" onclick="setBF('cat','all')">All categories</button>`+Object.keys(CATS).map(k=>`<button class="chip ${bf.cat===k?'on':''}" onclick="setBF('cat','${k}')">${esc(CATS[k].name)}</button>`).join("");
+  let arr=state.posts.filter(p=>{
+    if(bf.q&&!(p.title.toLowerCase().includes(bf.q)||p.body.toLowerCase().includes(bf.q)))return false;
+    if(bf.type!=='all'&&p.type!==bf.type)return false;
+    if(bf.cat!=='all'&&p.category!==bf.cat)return false;
+    if(bf.status!=='all'&&p.status!==bf.status)return false;
+    if(bf.area!=='all'&&p.area!==bf.area)return false;
+    return true;});
+  arr.sort((a,b)=>{
+    if(bf.sort==="new")return b.createdAt-a.createdAt;
+    if(bf.sort==="urgent"){const u=(b.urgency==='urgent')-(a.urgency==='urgent');return u||b.createdAt-a.createdAt;}
+    if(bf.sort==="supported")return b.boosts.length-a.boosts.length||b.createdAt-a.createdAt;
+    if(bf.sort==="needed"){const g=x=>x.type==='request'&&x.status!=='resolved'?(x.needed-x.helpers.length):-99;return g(b)-g(a);}
+    if(bf.sort==="soon")return (a.eventAt||9e15)-(b.eventAt||9e15);
+    return 0;});
+  $("#boardBody").innerHTML=`
+    <div class="secthead"><div><h2>The board</h2><div class="sub">${arr.length} post${arr.length===1?'':'s'} shown · ${state.posts.filter(p=>p.status!=='resolved').length} active across the community</div></div>
+      <div class="btn-row"><button class="btn btn-primary" onclick="openCompose('request')">Ask for help</button><button class="btn btn-green" onclick="openCompose('offer')">Offer help</button></div></div>
+    <div class="toolbar">
+      <div class="search"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="8" cy="8" r="5.5"/><path d="M12 12l3.5 3.5"/></svg><input id="bsearch" placeholder="Search the board…" value="${attr(bf.q)}" oninput="setBF('q',this.value)"></div>
+      <div class="seg">${[["all","All"],["request","Requests"],["offer","Offers"]].map(([k,l])=>`<button class="${bf.type===k?'on':''}" onclick="setBF('type','${k}')">${l}</button>`).join("")}</div>
+    </div>
+    <div class="toolbar">
+      <div class="selwrap">Status <select class="sel" onchange="setBF('status',this.value)">${[["all","All"],["open","Open"],["progress","In progress"],["resolved","Resolved"]].map(([k,l])=>`<option value="${k}" ${bf.status===k?'selected':''}>${l}</option>`).join("")}</select></div>
+      <div class="selwrap">Area <select class="sel" onchange="setBF('area',this.value)"><option value="all" ${bf.area==='all'?'selected':''}>All areas</option>${AREAS.map(a=>`<option value="${a}" ${bf.area===a?'selected':''}>${a}</option>`).join("")}</select></div>
+      <div class="selwrap">Sort <select class="sel" onchange="setBF('sort',this.value)">${[["new","Newest"],["urgent","Most urgent"],["supported","Most supported"],["needed","Most needed"],["soon","Happening soon"]].map(([k,l])=>`<option value="${k}" ${bf.sort===k?'selected':''}>${l}</option>`).join("")}</select></div>
+    </div>
+    <div class="chips">${catChips}</div>
+    ${grid(arr,"No posts match. Try clearing a filter — or be the first to post here.")}`;
+  const si=$("#bsearch");if(si){si.focus();si.setSelectionRange(si.value.length,si.value.length);}
+}
+function setBF(k,v){bf[k]=k==='q'?v.toLowerCase():v;renderBoard();}
+
+/* ===================== MY HUB ===================== */
+let hubSeg="mine";
+function renderHub(){
+  const P=state.posts;
+  const mine=P.filter(p=>p.authorId===meId());
+  const helping=P.filter(p=>p.helpers.includes(meId())&&p.authorId!==meId());
+  const saved=P.filter(p=>p.savedBy.includes(meId()));
+  const arr=hubSeg==='mine'?mine:hubSeg==='helping'?helping:saved;
+  const emptyTxt={mine:"You haven’t posted yet. Ask for help or offer something!",helping:"You’re not helping with anything yet — find a request on the board.",saved:"Nothing saved yet. Tap the bookmark on any post to keep it here."}[hubSeg];
+  $("#hubBody").innerHTML=`
+    <div class="secthead"><div><h2>My hub</h2><div class="sub">Everything you’ve posted, joined, or saved.</div></div>
+      <button class="btn btn-primary" onclick="openCompose('request')">+ New post</button></div>
+    <div class="stats" style="margin-bottom:20px">
+      <div class="stat good"><div class="num">${me().helpScore}</div><div class="lbl">Your help score</div></div>
+      <div class="stat req"><div class="num">${mine.length}</div><div class="lbl">Posts created</div></div>
+      <div class="stat offer"><div class="num">${helping.length}</div><div class="lbl">Helping with</div></div>
+      <div class="stat"><div class="num">${saved.length}</div><div class="lbl">Saved</div></div>
+    </div>
+    <div class="seg" style="margin-bottom:18px">${[["mine",`My posts (${mine.length})`],["helping",`Helping (${helping.length})`],["saved",`Saved (${saved.length})`]].map(([k,l])=>`<button class="${hubSeg===k?'on':''}" onclick="hubSeg='${k}';renderHub()">${l}</button>`).join("")}</div>
+    ${grid(arr,emptyTxt)}`;
+}
+
+/* ===================== HELPERS / LEADERBOARD ===================== */
+function badgeFor(score){if(score>=10)return `<span class="badge2 gold">Community hero</span>`;if(score>=5)return `<span class="badge2">Super helper</span>`;if(score>=1)return `<span class="badge2 green">Helper</span>`;return "";}
+function renderHelpers(){
+  const ranked=[...state.members].sort((a,b)=>b.helpScore-a.helpScore);
+  const totalHelps=state.members.reduce((t,m)=>t+m.helpScore,0);
+  const reqs=state.posts.filter(p=>p.type==='request');
+  const responded=reqs.filter(p=>p.helpers.length>0).length;
+  const respRate=reqs.length?Math.round(responded/reqs.length*100):0;
+  const resolved=state.posts.filter(p=>p.status==='resolved').length;
+  $("#helpersBody").innerHTML=`
+    <div class="secthead"><div><h2>Helpers</h2><div class="sub">The neighbours making ${esc(state.settings.community)} a kinder place.</div></div></div>
+    <div class="stats" style="margin-bottom:22px">
+      <div class="stat good"><div class="num">${totalHelps}</div><div class="lbl">Helping hands given</div></div>
+      <div class="stat"><div class="num">${state.members.length}</div><div class="lbl">Active neighbours</div></div>
+      <div class="stat offer"><div class="num">${resolved}</div><div class="lbl">Needs resolved</div></div>
+      <div class="stat req"><div class="num">${respRate}%</div><div class="lbl">Requests answered</div></div>
+    </div>
+    <div class="section-title">Leaderboard <span class="ct">${ranked.length}</span></div>
+    ${ranked.map((m,i)=>`<div class="lbrow ${i<3?'top'+(i+1):''} ${m.id===meId()?'me':''}">
+      <div class="lrank">${i+1}</div>${av(m,42)}
+      <div class="lwho"><div class="nm">${esc(m.name)}${m.id===meId()?' · you':''}</div><div class="ar">${esc(m.area)}</div></div>
+      <div style="display:flex;align-items:center;gap:14px"><div class="lbadges">${badgeFor(m.helpScore)}</div><div class="lsc">${m.helpScore}<small>helps</small></div></div>
+    </div>`).join("")}`;
+}
+
+/* ===================== INSIGHTS ===================== */
+function renderInsights(){
+  const P=state.posts;const total=P.length;
+  const reqs=P.filter(p=>p.type==='request');const offers=P.filter(p=>p.type==='offer');
+  const resolved=P.filter(p=>p.status==='resolved');
+  const open=P.filter(p=>p.status!=='resolved');
+  const responded=reqs.filter(p=>p.helpers.length>0).length;
+  const respRate=reqs.length?Math.round(responded/reqs.length*100):0;
+  const avgHelp=resolved.length?(resolved.reduce((t,p)=>t+p.helpers.length,0)/resolved.length).toFixed(1):"0";
+  const urgent=open.filter(p=>p.urgency==='urgent').length;
+  const cats=Object.keys(CATS).map(k=>({k,c:CATS[k],n:P.filter(p=>p.category===k).length})).filter(x=>x.n>0).sort((a,b)=>b.n-a.n);
+  const maxC=Math.max(1,...cats.map(x=>x.n));
+  const catBars=cats.map(x=>`<div class="barrow"><div class="bl">${esc(x.c.name)}</div><div class="bartrack"><i style="width:${x.n/maxC*100}%;background:${x.c.c}"></i></div><div class="bv">${x.n}</div></div>`).join("");
+  const areas=AREAS.map(a=>({a,n:P.filter(p=>p.area===a).length})).filter(x=>x.n>0).sort((a,b)=>b.n-a.n);
+  const maxA=Math.max(1,...areas.map(x=>x.n));
+  const areaBars=areas.map(x=>`<div class="barrow"><div class="bl">${esc(x.a)}</div><div class="bartrack"><i style="width:${x.n/maxA*100}%;background:var(--green)"></i></div><div class="bv">${x.n}</div></div>`).join("");
+  const days=[];for(let i=6;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);d.setHours(0,0,0,0);const s=d.getTime(),e=s+864e5;days.push({lbl:i===0?"Today":d.toLocaleDateString("en-US",{weekday:"short"}),n:P.filter(p=>p.createdAt>=s&&p.createdAt<e).length});}
+  const maxD=Math.max(1,...days.map(d=>d.n));
+  const dayBars=days.map(d=>`<div class="lc"><div class="lv">${d.n||""}</div><div class="lbar"><i style="height:${d.n/maxD*100}%"></i></div><div class="ld">${d.lbl}</div></div>`).join("");
+  const rPct=total?Math.round(reqs.length/total*100):0;
+  $("#insBody").innerHTML=`
+    <div class="secthead"><div><h2>Community impact</h2><div class="sub">How ${esc(state.settings.community)} is showing up for each other.</div></div></div>
+    <div class="ins-grid">
+      <div class="metric"><div class="mn">${total}</div><div class="ml">Total posts</div><div class="mhint">${reqs.length} requests · ${offers.length} offers</div></div>
+      <div class="metric"><div class="mn">${open.length}</div><div class="ml">Active right now</div><div class="mhint">${urgent} urgent</div></div>
+      <div class="metric"><div class="mn">${resolved.length}</div><div class="ml">Needs resolved</div><div class="mhint">${total?Math.round(resolved.length/total*100):0}% of all posts</div></div>
+      <div class="metric"><div class="mn">${respRate}%</div><div class="ml">Requests answered</div><div class="mhint">${responded} of ${reqs.length} have a helper</div></div>
+      <div class="metric"><div class="mn">${avgHelp}</div><div class="ml">Helpers per resolved need</div><div class="mhint">people rallying together</div></div>
+      <div class="metric"><div class="mn">${state.members.reduce((t,m)=>t+m.helpScore,0)}</div><div class="ml">Helping hands given</div><div class="mhint">across ${state.members.length} neighbours</div></div>
+    </div>
+    <div class="panel"><h3>Requests vs offers</h3><div class="psub">A healthy board has both needs and generosity.</div>
+      <div class="splitbar"><i style="width:${rPct}%;background:var(--req)">${rPct>12?reqs.length+' requests':''}</i><i style="width:${100-rPct}%;background:var(--offer)">${100-rPct>12?offers.length+' offers':''}</i></div></div>
+    <div class="panel"><h3>By category</h3><div class="psub">Where the community needs and gives the most.</div>${catBars}</div>
+    <div class="panel"><h3>Posts this week</h3><div class="psub">New posts created each day.</div><div class="loadrow">${dayBars}</div></div>
+    <div class="panel"><h3>By area</h3><div class="psub">Activity across the neighbourhood.</div>${areaBars}</div>`;
+}
+
+/* ===================== DETAIL MODAL ===================== */
+let detailId=null;
+function openDetail(id){detailId=id;renderDetail();$("#dmodal").classList.add("open");}
+function dRefresh(){save();renderDetail();renderView(current);syncHeader();}
+function renderDetail(){
+  const p=postById(detailId);if(!p)return;
+  const a=mem(p.authorId),owner=isOwner(p);
+  $("#dHeadChips").innerHTML=`${typeBadge(p)}${catPill(p.category)}${p.urgency==='urgent'&&p.status!=='resolved'?'<span class="purgent">Urgent</span>':''}${statusPill(p.status)}`;
+  const helpersList=p.helpers.length?p.helpers.map(hid=>{const h=mem(hid);const tk=p.thanked.includes(hid);
+      const tb=(owner&&p.status==='resolved')?(tk?`<span class="thankbtn done">Thanked ✓</span>`:`<button class="thankbtn" onclick="thank('${hid}')">Say thanks</button>`):(tk?`<span class="badge2 green">Thanked</span>`:"");
+      return `<div class="hprow">${av(h,30)}<span class="nm">${esc(h.name)}${hid===meId()?' (you)':''}</span>${tb}</div>`;}).join(""):`<div style="font-size:13.5px;color:var(--ink-soft)">${p.type==='request'?'No one has offered yet — you could be the first.':'No one has shown interest yet.'}</div>`;
+  const needLine=(p.type==='request'&&p.needed>1)?`<div class="needline"><span>${p.helpers.length} of ${p.needed} helpers</span><div class="needbar" style="flex:1"><i style="width:${Math.min(100,p.helpers.length/p.needed*100)}%"></i></div></div>`:"";
+  let actions=`<button class="react ${amBoost(p)?'on':''}" onclick="toggleBoost()">${heartSvg()} ${amBoost(p)?'Supported':'Support'} · ${p.boosts.length}</button>
+    <button class="react ${amSave(p)?'onsave':''}" onclick="toggleSave()">${bookmarkSvg()} ${amSave(p)?'Saved':'Save'}</button>`;
+  if(!owner&&p.status!=='resolved'){
+    const h=amHelping(p);const lbl=p.type==='request'?(h?'You’re helping ✓':'Offer to help'):(h?'You’re interested ✓':'I’m interested');
+    actions+=`<button class="btn ${h?'btn-ghost':'btn-green'} btn-sm" onclick="toggleHelp()">${lbl}</button>`;
+  }
+  if(owner){
+    if(p.status==='open')actions+=`<button class="btn btn-ghost btn-sm" onclick="setStatus('progress')">Mark in progress</button><button class="btn btn-green btn-sm" onclick="setStatus('resolved')">Mark resolved</button>`;
+    else if(p.status==='progress')actions+=`<button class="btn btn-green btn-sm" onclick="setStatus('resolved')">Mark resolved</button><button class="btn btn-ghost btn-sm" onclick="setStatus('open')">Reopen</button>`;
+    else actions+=`<button class="btn btn-ghost btn-sm" onclick="setStatus('open')">Reopen</button>`;
+    actions+=`<button class="btn btn-ghost btn-sm" onclick="openCompose(null,'${p.id}')">Edit</button>`;
+  }
+  const thread=p.comments.length?p.comments.map(c=>{const ca=mem(c.authorId);return `<div class="cmt">${av(ca,32)}<div class="cbody"><div class="ch"><span class="nm">${esc(ca.name)}${c.authorId===meId()?' (you)':''}</span><span class="w">${timeAgo(c.at)}</span></div><div class="ctext">${esc(c.text)}</div></div></div>`;}).join(""):`<div style="font-size:13.5px;color:var(--ink-soft)">No messages yet. Start the conversation below.</div>`;
+  const resolvedNote=(owner&&p.status==='resolved'&&p.helpers.length&&p.thanked.length<p.helpers.length)?`<div style="font-size:13px;color:var(--green);font-weight:600;margin-bottom:8px">✓ Resolved — say thanks to the neighbours who helped!</div>`:"";
+  $("#dBody").innerHTML=`
+    <h2 style="font-size:25px;margin-bottom:8px">${esc(p.title)}</h2>
+    <div class="dmeta">${av(a,26)}<span>${esc(a.name)}</span><span class="dot" style="width:3px;height:3px;border-radius:50%;background:var(--line)"></span><span>${esc(p.area)}</span><span class="dot" style="width:3px;height:3px;border-radius:50%;background:var(--line)"></span><span>${timeAgo(p.createdAt)}</span></div>
+    ${p.eventAt?`<div class="dmeta" style="color:var(--mango);font-weight:600">📅 ${fmtEvent(p.eventAt)}</div>`:""}
+    <div class="dbody">${esc(p.body)}</div>
+    <div class="actionrow">${actions}</div>
+    ${owner?`<div style="margin:-4px 0 10px"><button class="del-link" onclick="deletePost('${p.id}')">Delete this post</button></div>`:""}
+    <div class="dpanel"><h4>${p.type==='request'?'Helpers':'Interested neighbours'}</h4>${needLine}${resolvedNote}<div class="helpers">${helpersList}</div></div>
+    <div class="dpanel"><h4>Conversation</h4><div class="thread">${thread}</div>
+      <div class="cmtbox"><input id="dCmt" placeholder="Write a message…" onkeydown="if(event.key==='Enter')addComment()"><button class="btn btn-primary btn-sm" onclick="addComment()">Send</button></div></div>`;
+}
+function toggleHelp(){const p=postById(detailId);if(amHelping(p))p.helpers=p.helpers.filter(x=>x!==meId());else p.helpers.push(meId());if(p.type==='request'&&p.status==='open'&&p.helpers.length)p.status='progress';dRefresh();}
+function toggleBoost(){const p=postById(detailId);if(amBoost(p))p.boosts=p.boosts.filter(x=>x!==meId());else p.boosts.push(meId());dRefresh();}
+function toggleSave(){const p=postById(detailId);if(amSave(p))p.savedBy=p.savedBy.filter(x=>x!==meId());else p.savedBy.push(meId());dRefresh();}
+function setStatus(s){const p=postById(detailId);p.status=s;p.resolvedAt=s==='resolved'?Date.now():null;dRefresh();}
+function thank(hid){const p=postById(detailId);if(!p.thanked.includes(hid)){p.thanked.push(hid);const m=mem(hid);if(m)m.helpScore=(m.helpScore||0)+1;}dRefresh();}
+function addComment(){const i=$("#dCmt");if(!i)return;const t=i.value.trim();if(!t)return;const p=postById(detailId);p.comments.push({id:uid("c"),authorId:meId(),text:t,at:Date.now()});dRefresh();}
+function deletePost(id){const p=postById(id);if(!confirm(`Delete “${p.title}”?`))return;state.posts=state.posts.filter(x=>x.id!==id);closeModal('dmodal');refresh();}
+
+/* ===================== COMPOSE MODAL ===================== */
+let editing=null;
+function openCompose(type,editId){
+  if(editId){editing=JSON.parse(JSON.stringify(postById(editId)));$("#cTitle").textContent="Edit post";closeModal('dmodal');}
+  else{editing={id:null,type:type||"request",category:"errands",title:"",body:"",area:me().area,urgency:"normal",needed:1,eventAt:null};$("#cTitle").textContent=type==='offer'?"Offer help":"Ask for help";}
+  renderCompose();$("#cmodal").classList.add("open");
+}
+function renderCompose(){
+  const e=editing;const evd=e.eventAt?new Date(e.eventAt):null;
+  const catOpts=Object.keys(CATS).map(k=>`<option value="${k}" ${e.category===k?'selected':''}>${esc(CATS[k].name)}</option>`).join("");
+  const areaOpts=AREAS.map(a=>`<option value="${a}" ${e.area===a?'selected':''}>${a}</option>`).join("");
+  $("#cBody").innerHTML=`
+    <div class="field"><label>I want to…</label><div class="seg">${[["request","Ask for help"],["offer","Offer help"]].map(([k,l])=>`<button class="${e.type===k?'on':''}" onclick="editing.type='${k}';renderCompose()">${l}</button>`).join("")}</div></div>
+    <div class="field"><label>Title</label><input id="cT" value="${attr(e.title)}" placeholder="${e.type==='request'?'e.g. Ride to the clinic on Thursday':'e.g. Free maths tutoring for kids'}" oninput="editing.title=this.value"></div>
+    <div class="field"><label>Details</label><textarea placeholder="Describe what you need or what you’re offering…" oninput="editing.body=this.value">${esc(e.body)}</textarea></div>
+    <div class="frow">
+      <div class="field"><label>Category</label><select onchange="editing.category=this.value">${catOpts}</select></div>
+      <div class="field"><label>Area</label><select onchange="editing.area=this.value">${areaOpts}</select></div>
+    </div>
+    <div class="frow">
+      <div class="field"><label>Urgency</label><div class="seg">${[["normal","Normal"],["urgent","Urgent"]].map(([k,l])=>`<button class="${e.urgency===k?'on':''}" onclick="editing.urgency='${k}';renderCompose()">${l}</button>`).join("")}</div></div>
+      ${e.type==='request'?`<div class="field"><label>Helpers needed</label><select onchange="editing.needed=+this.value">${[1,2,3,4,5,6,8,10].map(n=>`<option value="${n}" ${e.needed===n?'selected':''}>${n}</option>`).join("")}</select></div>`:`<div class="field"><label>Helpers needed</label><input value="—" disabled style="opacity:.5"></div>`}
+    </div>
+    <div class="frow">
+      <div class="field"><label>Date (optional)</label><input type="date" id="cDate" value="${evd?`${evd.getFullYear()}-${pad(evd.getMonth()+1)}-${pad(evd.getDate())}`:''}"></div>
+      <div class="field"><label>Time (optional)</label><input type="time" id="cTime" value="${evd?`${pad(evd.getHours())}:${pad(evd.getMinutes())}`:''}"></div>
+    </div>
+    <div class="mfoot"><button class="btn ${e.type==='offer'?'btn-green':'btn-primary'}" onclick="savePost()">${e.id?'Save changes':(e.type==='offer'?'Post offer':'Post request')}</button></div>`;
+  const t=$("#cT");if(t&&!e.id)t.focus();
+}
+function savePost(){
+  const e=editing;if(!e.title.trim()){alert("Add a title.");return;}if(!e.body.trim()){alert("Add a few details.");return;}
+  const dv=$("#cDate").value,tv=$("#cTime").value;
+  e.eventAt=dv?new Date(`${dv}T${tv||'09:00'}`).getTime():null;
+  if(e.id){Object.assign(postById(e.id),e);}
+  else{Object.assign(e,{id:uid("p"),authorId:meId(),createdAt:Date.now(),status:"open",helpers:[],comments:[],boosts:[],savedBy:[],thanked:[]});state.posts.unshift(e);}
+  closeModal('cmodal');refresh();
+}
+
+/* ===================== PROFILE ===================== */
+function openProfile(){renderProfile();$("#pmodal").classList.add("open");}
+function renderProfile(){
+  const m=me();
+  $("#pBody").innerHTML=`
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px">${av(m,52)}<div><div style="font-family:'Fraunces';font-size:20px">${esc(m.name)}</div><div style="font-size:13px;color:var(--ink-soft)">${esc(m.area)} · ${m.helpScore} helps given</div></div></div>
+    <div class="field"><label>Your name</label><input value="${attr(m.name)}" oninput="m_set('name',this.value)"></div>
+    <div class="field"><label>Your area</label><select onchange="m_set('area',this.value)">${AREAS.map(a=>`<option value="${a}" ${m.area===a?'selected':''}>${a}</option>`).join("")}</select></div>
+    <div class="field"><label>Avatar colour</label><div class="swatches">${AVCOLORS.map(c=>`<div class="sw ${m.color===c?'on':''}" style="background:${c}" onclick="m_set('color','${c}')"></div>`).join("")}</div></div>
+    <div class="field"><label>Community name</label><input value="${attr(state.settings.community)}" oninput="state.settings.community=this.value;save();syncHeader()"></div>
+    <button class="resetbtn" onclick="resetDemo()">Reset to demo data</button>`;
+}
+function m_set(k,v){me()[k]=v;save();renderProfile();syncHeader();}
+function resetDemo(){if(!confirm("Reset the whole board back to the demo data?"))return;state=seed();save();closeModal('pmodal');goView("home");}
+
+/* ===================== MODALS / HEADER ===================== */
+function closeModal(id){$("#"+id).classList.remove("open");if(id==='cmodal')editing=null;}
+function syncHeader(){const m=me();$("#meName").textContent=m.name;$("#meAv").style.background=m.color;$("#meAv").textContent=(m.name||"?").trim()[0]?.toUpperCase()||"?";$("#commTag").textContent=state.settings.community+" · neighbours helping neighbours";}
+$$(".ov").forEach(o=>o.addEventListener("click",e=>{if(e.target===o){o.classList.remove("open");if(o.id==='cmodal')editing=null;}}));
+document.addEventListener("keydown",e=>{if(e.key==="Escape")$$(".ov.open").forEach(o=>{o.classList.remove("open");if(o.id==='cmodal')editing=null;});});
+
+/* ===================== INIT ===================== */
+load();syncHeader();renderStages();goView("home");
+</script>
+</body>
+</html>

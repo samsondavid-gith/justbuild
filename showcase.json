@@ -3,6 +3,22 @@
     {
       "cohort_number": 3,
       "cohort_location": "Bangalore",
+      "product_name": "Community Help Board",
+      "slug": "help-board",
+      "order": 0,
+      "participant_name": "",
+      "description": "A neighbourhood mutual-aid board where people post requests and offers, coordinate through comment threads, support and save posts, and a kudos-driven leaderboard celebrates the community's most generous helpers.",
+      "url": "https://justbuild.orangecaterpillar.com/showcase/help-board/app.html",
+      "video": "",
+      "website": "",
+      "brochure": "",
+      "pitch": "",
+      "chatbot": "",
+      "idea_board": ""
+    },
+    {
+      "cohort_number": 3,
+      "cohort_location": "Bangalore",
       "product_name": "Homework Tracker",
       "slug": "homework-tracker",
       "order": 0,

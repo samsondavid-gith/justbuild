@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Just Build — Stop learning AI. Start building with it.</title>
+<title>Just Build · Stop learning AI. Start building with it.</title>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-1PXYFN65T8"></script>
 <script>
@@ -87,6 +87,7 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
 
 .spine-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; margin: 1.5rem 0 2rem; }
 @media (min-width: 720px) { .spine-grid { grid-template-columns: 1fr 1fr 1fr; gap: 1rem; } }
+@media (min-width: 720px) { .spine-grid.spine-grid-two { grid-template-columns: 1fr 1fr; gap: 1.25rem; } }
 
 /* Card: thick dark top bar, clean content */
 .spine-card { position: relative; padding: 1.75rem 1.5rem 1.75rem; background: var(--bg-primary); border: 1px solid rgba(0, 0, 0, 0.08); border-radius: 2px; display: flex; flex-direction: column; }
@@ -258,6 +259,29 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
       <div class="eyebrow">What this is</div>
       <p class="prose">A two-day in-person weekend. Four weeks of online build support. Demo Day.</p>
       <p class="prose prose-italic">The weekend gives you momentum. The next four weeks make it real.</p>
+    </div>
+
+    <!-- TWO TRACKS -->
+    <div class="divider-block">
+      <div class="eyebrow eyebrow-with-dash">Two tracks</div>
+      <h2 class="headline headline-italic">Same build. Two destinations.</h2>
+      <p class="prose prose-italic">Same weekend. Same build month. Same intellectual spine. The track you pick shapes what you build, and what you do with it after.</p>
+
+      <div class="spine-grid spine-grid-two">
+        <div class="spine-card">
+          <div class="spine-label">Foundation</div>
+          <p class="spine-tag">Built for placements.</p>
+          <p class="spine-body">Build a working AI portfolio piece. By placement season, when the recruiter asks "show me what you can do with AI," your answer is already in your hands.</p>
+        </div>
+
+        <div class="spine-card">
+          <div class="spine-label">Ventures</div>
+          <p class="spine-tag">Built for your own venture.</p>
+          <p class="spine-body">Pick from a curated palette of twenty-four buildable ideas, or bring your own. Leave with a real working venture you can keep building.</p>
+        </div>
+      </div>
+
+      <p class="spine-summary">You pick a track when you apply. Not sure yet? Tell us. We'll help you decide.</p>
     </div>
 
     <!-- HOW IT WORKS -->
@@ -461,6 +485,19 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
         <p class="field-error hidden" data-error-for="apply-year">Please pick your year of study.</p>
       </div>
 
+      <!-- TRACK (required for Just Build) -->
+      <div class="field">
+        <label for="apply-track" class="field-label">Which track?</label>
+        <p class="field-hint">Foundation prepares you for placements. Ventures helps you build your own venture. Not sure? Pick the last option and we will help you decide.</p>
+        <select id="apply-track" name="track" class="field-select" required>
+          <option value="">Select one</option>
+          <option value="foundation">Foundation: focused on placements and career</option>
+          <option value="ventures">Ventures: focused on building my own venture</option>
+          <option value="unsure">I'm not sure yet</option>
+        </select>
+        <p class="field-error hidden" data-error-for="apply-track">Please pick a track.</p>
+      </div>
+
       <!-- ABOUT YOU (optional) -->
       <div class="field">
         <label for="apply-note" class="field-label">One line about you<span class="field-label-optional">(optional)</span></label>
@@ -573,6 +610,7 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
     if (phone && !/^\+\d{8,15}$/.test(phone)) fail('apply-phone');
     if (!$('#apply-college').value.trim()) fail('apply-college');
     if (!$('#apply-year').value) fail('apply-year');
+    if (!$('#apply-track').value) fail('apply-track');
 
     if (firstErrorEl) {
       firstErrorEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -582,7 +620,7 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
   }
 
   function wireLiveErrorClearing() {
-    const ids = ['apply-firstname', 'apply-lastname', 'apply-email', 'apply-phone', 'apply-college', 'apply-year'];
+    const ids = ['apply-firstname', 'apply-lastname', 'apply-email', 'apply-phone', 'apply-college', 'apply-year', 'apply-track'];
     ids.forEach(function (id) {
       const el = document.getElementById(id);
       if (!el) return;
@@ -604,6 +642,7 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
       city: $('#apply-city').value.trim() || '(not provided)',
       college: $('#apply-college').value.trim(),
       year_of_study: $('#apply-year').value,
+      track: $('#apply-track').value,
       note: $('#apply-note').value.trim() || '(none)',
       submitted_at: new Date().toISOString()
     };

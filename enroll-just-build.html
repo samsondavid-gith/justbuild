@@ -643,6 +643,7 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
       college: $('#apply-college').value.trim(),
       year_of_study: $('#apply-year').value,
       track: $('#apply-track').value,
+      track_label: ({foundation: 'Foundation', ventures: 'Ventures', unsure: 'Not sure yet'})[$('#apply-track').value] || '',
       note: $('#apply-note').value.trim() || '(none)',
       submitted_at: new Date().toISOString()
     };

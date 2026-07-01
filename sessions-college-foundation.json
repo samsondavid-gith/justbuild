@@ -289,36 +289,44 @@
   ],
   "ideas": [
     {
-      "id": "invoice-triage",
+      "id": "invoice-processing",
       "page": 1,
-      "name": "Invoice Triage",
-      "for_whom": "You, if finance or FinOps is your world",
-      "problem": "Accounts payable processes hundreds of invoices; the risky ones hide in the pile.",
-      "what_app_does": "Extracts each invoice's key fields, flags anything needing human approval by a hard rule, and prioritises the rest for payment."
+      "name": "Invoice Processing",
+      "for_whom": "You, if Finance or FinOps is your world.",
+      "input": "Supplier invoices",
+      "agent1": "Extract invoice details",
+      "agent2": "Validate against purchase orders, policy and duplicates",
+      "agent3": "Prepare approval recommendation or flag exceptions"
     },
     {
-      "id": "ticket-triage",
+      "id": "it-support-tickets",
       "page": 1,
-      "name": "Support Ticket Triage",
-      "for_whom": "You, if customer support is your world",
-      "problem": "A support queue mixes trivial and urgent; the loudest ticket is rarely the most important.",
-      "what_app_does": "Reads each ticket, scores impact and urgency with evidence, and auto-escalates anything touching money or legal."
+      "name": "IT Support Tickets",
+      "for_whom": "You, if IT Operations or Technology is your world.",
+      "input": "Employee support tickets",
+      "agent1": "Extract issue details",
+      "agent2": "Classify priority and recommend resolution",
+      "agent3": "Draft response and route to the correct support team"
     },
     {
-      "id": "expense-checker",
+      "id": "sales-lead-qualification",
       "page": 1,
-      "name": "Expense Claim Checker",
-      "for_whom": "You, if finance or audit is your world",
-      "problem": "Expense claims are rubber-stamped or randomly sampled; policy breaches slip through.",
-      "what_app_does": "Extracts each claim's details, flags policy violations by hard rule, and ranks the rest for a quick human review."
+      "name": "Sales Lead Qualification",
+      "for_whom": "You, if Sales or Business Development is your world.",
+      "input": "Inbound sales enquiries",
+      "agent1": "Extract customer information and requirements",
+      "agent2": "Score and prioritise the opportunity",
+      "agent3": "Generate personalised follow-up and assign next action"
     },
     {
-      "id": "access-review",
+      "id": "contract-review",
       "page": 1,
-      "name": "IT Access Request Reviewer",
-      "for_whom": "You, if IT or security is your world",
-      "problem": "Access and permission requests pile up, and the risky ones get rubber-stamped to clear the queue.",
-      "what_app_does": "Reads each request, checks who wants what against policy, flags anything sensitive for a human to approve, and clears the low-risk ones."
+      "name": "Contract Review",
+      "for_whom": "You, if Legal, Compliance or Procurement is your world.",
+      "input": "Contracts and agreements",
+      "agent1": "Extract key clauses and obligations",
+      "agent2": "Identify risks and missing provisions",
+      "agent3": "Generate an executive summary and recommended actions"
     }
   ]
 }

@@ -2449,18 +2449,21 @@
   .bb-item.bb-clickable:hover .bb-dot { border-color: var(--accent); }
 
   /* ===== Projection typography: bigger, readable from the back of the room ===== */
-  /* Idea palette -> 2x2 big cards */
+  /* Idea palette -> 2x2 big cards; five-row pipeline tuned to fit same height */
   .ideas-grid { grid-template-columns: repeat(2, 1fr) !important; grid-template-rows: repeat(2, 1fr) !important; gap: clamp(14px, 2.2vh, 24px) !important; }
   .ideas-screen-title { font-size: clamp(30px, 4.6vh, 48px) !important; max-width: 42ch !important; }
   .ideas-screen-sub { font-size: clamp(15px, 2vh, 21px) !important; max-width: 70ch !important; }
   .ideas-screen-eyebrow { font-size: clamp(12px, 1.4vh, 14px) !important; }
-  .idea-card { padding: clamp(18px, 2.8vh, 30px) clamp(20px, 2.6vh, 32px) !important; border-radius: 12px !important; }
-  .idea-card-num { font-size: clamp(11px, 1.4vh, 13.5px) !important; margin-bottom: 6px !important; color: var(--accent) !important; }
-  .idea-card-name { font-size: clamp(23px, 3.4vh, 34px) !important; margin-bottom: clamp(10px, 1.7vh, 18px) !important; line-height: 1.08 !important; }
-  .idea-card-row { margin-bottom: clamp(8px, 1.4vh, 15px) !important; }
-  .idea-card-label { font-size: clamp(10px, 1.2vh, 12.5px) !important; letter-spacing: 0.16em !important; margin-bottom: 3px !important; }
-  .idea-card-value { font-size: clamp(14.5px, 2vh, 20px) !important; line-height: 1.42 !important; }
-  .fit-viewport .idea-card-value { -webkit-line-clamp: 4 !important; }
+  .idea-card { padding: clamp(16px, 2.3vh, 24px) clamp(18px, 2.2vh, 26px) !important; border-radius: 12px !important; }
+  .idea-card-num { font-size: clamp(10.5px, 1.3vh, 13px) !important; margin-bottom: 5px !important; color: var(--accent) !important; }
+  .idea-card-name { font-size: clamp(21px, 2.9vh, 30px) !important; margin-bottom: clamp(9px, 1.4vh, 14px) !important; line-height: 1.08 !important; }
+  .idea-card-row { margin-bottom: clamp(5px, 0.95vh, 10px) !important; }
+  .idea-card-label { font-size: clamp(9.5px, 1.05vh, 11.5px) !important; letter-spacing: 0.16em !important; margin-bottom: 2px !important; }
+  .idea-card-value { font-size: clamp(13.5px, 1.75vh, 17px) !important; line-height: 1.36 !important; }
+  .fit-viewport .idea-card-value { -webkit-line-clamp: 2 !important; }
+  /* agent rows: subtle left accent so Input -> A1 -> A2 -> A3 reads as one pipeline */
+  .idea-card-agent { border-left: 2px solid var(--accent-soft) !important; padding-left: 10px !important; margin-left: 1px !important; }
+  .idea-card-agent .idea-card-label { color: var(--accent) !important; opacity: 0.85; }
   /* Build steps -> bigger */
   .build-list { gap: clamp(14px, 2.2vh, 24px) !important; }
   .build-item::before { font-size: clamp(24px, 3.2vh, 32px) !important; }
@@ -3204,7 +3207,7 @@ function renderCurrent() {
     const activePage = Number(window.__ideaSetActive || defaultPage);
     $("#topbar-eyebrow").textContent = "IDEATE";
     $("#topbar-title").textContent = "Build your own agent";
-    $("#topbar-section").textContent = `${(IDEAS||[]).length} agent use-cases`;
+    $("#topbar-section").textContent = `${(IDEAS||[]).length} enterprise AI agents`;
     updateProgress();
   }
 
@@ -3633,8 +3636,8 @@ function renderIdeaCards() {
     <div class="ideas-screen">
       <div class="ideas-screen-header">
         <div class="ideas-screen-eyebrow">Pick one &middot; ${pagesPresent.length > 1 ? ("Set " + activePage + " of " + pagesPresent.length) : "Your palette"}</div>
-        <h1 class="ideas-screen-title">Four agent use-cases. <em>Pick the one from your world.</em></h1>
-        <p class="ideas-screen-sub">Each is the exact same three-agent design, pointed at a different job. Pick the one closest to your world and make it yours.</p>
+        <h1 class="ideas-screen-title">Four enterprise AI agents. <em>Pick the one closest to your world.</em></h1>
+        <p class="ideas-screen-sub">Each follows the same three-agent architecture. Only the business problem changes. Choose one and build it end-to-end.</p>
         <div class="idea-set-switcher">${switcher}</div>
       </div>
       <div class="ideas-grid">
@@ -3647,12 +3650,20 @@ function renderIdeaCards() {
               <div class="idea-card-value">${escapeHtml(idea.for_whom)}</div>
             </div>
             <div class="idea-card-row">
-              <div class="idea-card-label">Problem</div>
-              <div class="idea-card-value">${escapeHtml(idea.problem)}</div>
+              <div class="idea-card-label">Input</div>
+              <div class="idea-card-value">${escapeHtml(idea.input)}</div>
             </div>
-            <div class="idea-card-row">
-              <div class="idea-card-label">What the app does</div>
-              <div class="idea-card-value">${escapeHtml(idea.what_app_does)}</div>
+            <div class="idea-card-row idea-card-agent">
+              <div class="idea-card-label">Agent 1</div>
+              <div class="idea-card-value">${escapeHtml(idea.agent1)}</div>
+            </div>
+            <div class="idea-card-row idea-card-agent">
+              <div class="idea-card-label">Agent 2</div>
+              <div class="idea-card-value">${escapeHtml(idea.agent2)}</div>
+            </div>
+            <div class="idea-card-row idea-card-agent">
+              <div class="idea-card-label">Agent 3</div>
+              <div class="idea-card-value">${escapeHtml(idea.agent3)}</div>
             </div>
           </div>
         `).join('')}

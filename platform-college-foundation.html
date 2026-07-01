@@ -2785,7 +2785,7 @@ const CONCEPT_MODULES = {
       {"kicker":"AGENT 3 · WATCH OUT","headline":"Watch out: the *auto-send.*","lead":"It is tempting to let it fire the email itself. Don't.","wrong":"Agent emails the manager the instant it finishes.","right":"Agent drafts; the note waits for your one click.","bubble":"Never <b>auto-send.</b>"},
 
       {"kicker":"THE HANDSHAKE","diagram":"contract","headline":"What makes three agents *one* pipeline.","lead":"Agent 1's output shape is exactly Agent 2's input shape. Agree the fields once, and the whole thing clicks together.","bubble":"One shape. <b>One contract.</b>"},
-      {"kicker":"THE PAYOFF","headline":"You can now draw the whole agent, *no code.*","lead":"Three boxes, the steps inside each, the why behind every choice, and the guardrails. When we open Colab next, the code is just this picture, typed out.","artifact":"your three-agent design on one page, before any code.","bubble":"Draw it first. <b>Then build.</b>"},
+      {"kicker":"THE PAYOFF","diagram":"pipelinefull","headline":"You can now draw the *whole agent.*","lead":"Three agents, the data flowing between them, and a human at the end. When we open Colab next, the code is just this picture, typed out.","artifact":"your three-agent design on one page, before any code.","bubble":"Draw it first. <b>Then build.</b>"},
       {"lens":"opener","mascot":"butterfly","headline":"Design first. *Then* the code is easy.","sub":"You just designed a real agent with nothing but a marker and clear thinking. The notebook next is only this design, made to run.","bubble":"Design it. <b>Then run it.</b>"}
     ]
   },
@@ -3454,6 +3454,7 @@ function _box(x,y,w,h,label,stroke){
 }
 function _cap(cx,y,txt,color){return '<text x="'+cx+'" y="'+y+'" text-anchor="middle" fill="'+(color||'#8A8A8A')+'" font-family="Inter,sans-serif" font-size="12.5" letter-spacing="0.04em">'+_esc(txt)+'</text>';}
 function _arrow(x1,x2,y){return '<line x1="'+x1+'" y1="'+y+'" x2="'+(x2-8)+'" y2="'+y+'" stroke="#C17D2A" stroke-width="2.2" marker-end="url(#ah)"/>';}
+function _larrow(x1,x2,y,lbl){var s=_arrow(x1,x2,y);if(lbl){s+='<text x="'+((x1+x2)/2)+'" y="'+(y-12)+'" text-anchor="middle" fill="#C8C8C8" font-family="Inter,sans-serif" font-size="12.5" font-style="italic">'+_esc(lbl)+'</text>';}return s;}
 function _harrow(x,y1,y2){return '<line x1="'+x+'" y1="'+y1+'" x2="'+x+'" y2="'+(y2-8)+'" stroke="#C17D2A" stroke-width="2.2" marker-end="url(#ah)"/>';}
 function _step(x,y,w,h,n,label){
   var cx=x+w/2, lines=String(label).split('|');
@@ -3474,6 +3475,15 @@ function _three(inLbl,inCap,brain,brainCap,outLbl,outCap,outStroke){
 }
 function renderDiagram(name){
   switch(name){
+    case 'pipelinefull': {
+      var y=64,h=78,w=168,xs=[8,214,420,626,824],i='';
+      i+=_box(xs[0],y,w,h,'Resumes','#3A3A3A')+_cap(xs[0]+w/2,y+h+22,'25 PDFs');
+      i+=_larrow(xs[0]+w,xs[1],y+h/2,'files')+_box(xs[1],y,w,h,'Ingest &|Extract','#C17D2A')+_cap(xs[1]+w/2,y+h+22,'AGENT 1','#C17D2A');
+      i+=_larrow(xs[1]+w,xs[2],y+h/2,'facts')+_box(xs[2],y,w,h,'Judge &|Prioritise','#C17D2A')+_cap(xs[2]+w/2,y+h+22,'AGENT 2','#C17D2A');
+      i+=_larrow(xs[2]+w,xs[3],y+h/2,'ranked')+_box(xs[3],y,w,h,'Communicate','#C17D2A')+_cap(xs[3]+w/2,y+h+22,'AGENT 3','#C17D2A');
+      i+=_larrow(xs[3]+w,xs[4],y+h/2,'draft')+_box(xs[4],y,w,h,'Human','#6FBF8B')+_cap(xs[4]+w/2,y+h+22,'SENDS','#6FBF8B');
+      return _svg('1000 188',i);
+    }
     case 'pipeline': {
       var y=52,h=78,w=168,xs=[8,214,420,626,824],i='';
       i+=_box(xs[0],y,w,h,'Resumes','#3A3A3A')+_cap(xs[0]+w/2,y+h+22,'25 PDFs');

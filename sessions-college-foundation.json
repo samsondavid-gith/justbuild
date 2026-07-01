@@ -3,9 +3,9 @@
     "title": "JUST BUILD",
     "subtitle": "Foundation",
     "edition": "agent-foundation",
-    "session_count": 8,
+    "session_count": 9,
     "day1_start": "9:00",
-    "day1_end": "17:00",
+    "day1_end": "16:00",
     "day2_start": "9:00",
     "day2_end": "16:30",
     "cohort_label": "C1",
@@ -17,9 +17,10 @@
       "Mechanics",
       "Design",
       "Build",
-      "Valuenomics"
+      "Valuenomics",
+      "What Next"
     ],
-    "platform_url": "justbuild.orangecaterpillar.com/platform-agent-foundation",
+    "platform_url": "justbuild.orangecaterpillar.com/platform-college-foundation",
     "prompts_url": "justbuild.orangecaterpillar.com/prompts-agent",
     "oc_application_url": "justbuild.orangecaterpillar.com/apply"
   },
@@ -31,7 +32,7 @@
       "build": [],
       "test_output": [],
       "output_capture": null,
-      "break_after": true,
+      "break_after": false,
       "break_duration_minutes": 10,
       "phase": "day",
       "session_type": "build",
@@ -43,7 +44,7 @@
       "end_time": "9:45",
       "duration_minutes": 45,
       "stage": "Agents",
-      "set_the_stage": "Open with the practitioner's view. Before a single line of code, we answer the questions a working professional actually asks: what is an agent, where does it help, where does it fall down, and how do we keep it safe.\n\nWalk the room through the slides. They are built to land one idea at a time, with a wrong way and a right way for each. Pause on the risks and the human-in-the-loop slide; that is the grown-up part of the conversation.\n\nBy the end, the room should be able to say in one sentence what an agent reads, decides, and produces, and name the one place it could quietly go wrong."
+      "set_the_stage": "We open with the practitioner's view. Before we touch any code, we answer the questions a working professional actually asks: what is an agent, where does it help, where does it fall down, and how do we keep it safe.\n\nI'll walk you through these slides one idea at a time, with a wrong way and a right way for each. We'll slow down on the risks and on keeping a human in the loop; that is the grown-up part of this conversation.\n\nBy the end, you should be able to say in one sentence what an agent reads, decides, and produces, and name the one place it could quietly go wrong."
     },
     {
       "questions": [],
@@ -52,7 +53,7 @@
       "build": [],
       "test_output": [],
       "output_capture": null,
-      "break_after": true,
+      "break_after": false,
       "break_duration_minutes": 10,
       "phase": "day",
       "session_type": "build",
@@ -61,10 +62,10 @@
       "day": 1,
       "title": "The Humanics of AI",
       "start_time": "9:45",
-      "end_time": "10:30",
-      "duration_minutes": 45,
+      "end_time": "10:45",
+      "duration_minutes": 60,
       "stage": "Humanics",
-      "set_the_stage": "This is the thinking layer. The best agent-builders are not the fastest typists; they are the clearest thinkers. We teach three habits: first principles, systems thinking, and problem framing.\n\nThe goal is not abstract. Every habit points straight at the recruitment build coming next. Breaking a task into atoms, seeing the whole pipe, and framing a sharp question are exactly what makes the agent easy to design.\n\nLand it: think clearly first, and the code writes itself."
+      "set_the_stage": "This is the thinking layer, and it is where the real skill lives. The best agent-builders are not the fastest typists; they are the clearest thinkers. We'll work through first principles, systems thinking, decomposition, and how to define what good even means.\n\nNone of this is abstract. Every habit here points straight at the recruitment agent we build next. Breaking a task into atoms, seeing the whole pipe, and framing a sharp question are exactly what will make that agent easy to design.\n\nTake these seriously and the build becomes the easy part. The clear thinking is what you'll carry into every agent you ever make."
     },
     {
       "questions": [],
@@ -73,7 +74,7 @@
       "build": [],
       "test_output": [],
       "output_capture": null,
-      "break_after": true,
+      "break_after": false,
       "break_duration_minutes": 10,
       "phase": "day",
       "session_type": "build",
@@ -81,11 +82,11 @@
       "number": 3,
       "day": 1,
       "title": "The Mechanics of AI",
-      "start_time": "10:45",
-      "end_time": "11:30",
+      "start_time": "11:00",
+      "end_time": "11:45",
       "duration_minutes": 45,
       "stage": "Mechanics",
-      "set_the_stage": "Now the building blocks, kept ruthlessly simple: a model (text in, text out), a prompt (your instructions), structured output (neat data, not prose), and a key (just a password).\n\nThen the anatomy every agent shares, input to brain to output, and the move that makes real agents work: decomposition into three single-purpose agents that hand clean data down the line.\n\nThis module is the bridge from idea to build. Keep it tight and concrete; resist the urge to explain tokens or transformers."
+      "set_the_stage": "Now the building blocks, kept deliberately simple: a model (text in, text out), a prompt (your instructions), structured output (neat data, not prose), and a key (just a password).\n\nThen the anatomy every agent shares, input to brain to output, and the one move that makes real agents work: splitting the job into three single-purpose agents that hand clean data down the line.\n\nThis is our bridge from idea to build. I'll keep it tight and concrete, and resist the urge to go down any rabbit holes about how models work inside."
     },
     {
       "questions": [],
@@ -93,16 +94,16 @@
       "prompts": [],
       "build": [
         {
-          "title": "Hand out the pack",
-          "description": "Give each student the 25-resume PDF and the one-page job description. No laptops open yet."
+          "title": "I'll hand out the pack",
+          "description": "You'll each get the 25-resume PDF and the one-page job description. Keep your laptops closed for now."
         },
         {
-          "title": "Rank by hand, timed",
-          "description": "Pick the top 5 to interview, one line of reasoning each. Start a visible 15-minute timer. Write down your own time."
+          "title": "Rank by hand, and time it",
+          "description": "Pick your top 5 to interview, with one line of reasoning each. I'll put a 15-minute timer on the screen. Write down how long it actually takes you."
         },
         {
-          "title": "Surface the steps",
-          "description": "Ask three students how they did it. Draw the shared steps on the board: read, pull the key facts, compare to the JD, rank, recommend. These become the agent design."
+          "title": "We'll surface the steps together",
+          "description": "A few of you will walk us through how you did it, and we'll draw the shared steps on the board: read, pull the key facts, compare to the JD, rank, recommend. Those steps become our agent design."
         }
       ],
       "test_output": [],
@@ -115,11 +116,11 @@
       "number": 4,
       "day": 1,
       "title": "The Recruitment Challenge",
-      "start_time": "11:30",
+      "start_time": "11:45",
       "end_time": "13:00",
-      "duration_minutes": 90,
+      "duration_minutes": 75,
       "stage": "Design",
-      "set_the_stage": "The problem: here are 25 resumes and one job description. Recommend the top 5 to interview. Every student does it by hand first, no AI, and times themselves.\n\nThis is not busywork. The by-hand attempt creates two things we need later: a real 'before' number to measure the agent against, and a felt understanding of the actual steps, read, pull facts, compare to the JD, rank, hand over.\n\nMost will not finish all 25 in the time. That is the point. Let the room feel the load the agent is about to lift."
+      "set_the_stage": "Here is your problem: 25 resumes and one job description. Recommend the top 5 to interview. You'll do it by hand first, with no AI, and time yourselves.\n\nThis is not busywork. Doing it by hand gives us two things we need later: a real 'before' number to measure the agent against, and a felt sense of the actual steps, read, pull facts, compare to the JD, rank, hand over.\n\nMost of you will not finish all 25 in the time. That is exactly the point. Feel the load, because that is the load the agent is about to lift for you."
     },
     {
       "questions": [],
@@ -128,24 +129,24 @@
       "build": [
         {
           "title": "Agent 1, Ingest and Extract",
-          "description": "Takes the resume files and returns clean, structured facts for each candidate: name, years, skills, tools, evidence of impact. This is the contract the next agent depends on."
+          "description": "It takes the resume files and returns clean, structured facts for each candidate: name, years, skills, tools, evidence of impact. This is the contract the next agent depends on."
         },
         {
           "title": "Agent 2, Judge and Prioritise",
-          "description": "Takes those facts, scores them against the JD rubric with evidence for each score, applies any hard rules in code, and returns a ranked top 5."
+          "description": "It takes those facts, scores them against the JD rubric with evidence for each score, applies any hard rules in code, and returns a ranked top 5."
         },
         {
           "title": "Agent 3, Communicate",
-          "description": "Takes the top 5 and drafts a clear recommendation to the hiring manager. It drafts; the human reads and sends. Never auto-send."
+          "description": "It takes the top 5 and drafts a clear recommendation to the hiring manager. It drafts; you read and send. Never auto-send."
         },
         {
-          "title": "Draw the contract",
-          "description": "Make the handshake explicit: Agent 1's output shape is exactly Agent 2's input shape. Fix the fields once and the pipeline holds."
+          "title": "We'll draw the contract",
+          "description": "We make the handshake explicit: Agent 1's output shape is exactly Agent 2's input shape. Fix the fields once and the pipeline holds."
         }
       ],
       "test_output": [],
       "output_capture": null,
-      "break_after": true,
+      "break_after": false,
       "break_duration_minutes": 10,
       "phase": "day",
       "session_type": "build",
@@ -157,7 +158,7 @@
       "end_time": "15:30",
       "duration_minutes": 90,
       "stage": "Design",
-      "set_the_stage": "Turn the board into a design, still no code. First state the pure logic: ingest the resumes, extract the key information, build a rubric from the JD, compare, prioritise the top 5, and communicate them to the hiring manager.\n\nThen map that logic onto the agent anatomy and split it into three single-purpose agents. Students should leave this session able to draw the whole solution on paper before they ever touch Colab.\n\nHold the line on the human gate: Agent 3 drafts the note; a person sends it."
+      "set_the_stage": "Now we turn the board into a design, still with no code. First we'll state the pure logic: ingest the resumes, extract the key information, build a rubric from the JD, compare, prioritise the top 5, and communicate them to the hiring manager.\n\nThen we map that logic onto the agent anatomy and split it into three single-purpose agents. By the end of this session you should be able to draw the whole solution on paper before we ever open Colab.\n\nWe'll hold the line on one rule: Agent 3 drafts the note; a human sends it. The agent recommends, you decide."
     },
     {
       "questions": [],
@@ -166,28 +167,28 @@
       "build": [
         {
           "title": "Pre-flight",
-          "description": "Run the setup cells top to bottom: install, paste key, engine, load the 25 resumes and the JD. Look for the green confirmations."
+          "description": "I'll run the setup cells top to bottom: install, paste key, engine, load the 25 resumes and the JD. Watch for the green confirmations."
         },
         {
-          "title": "Run Agent 1",
-          "description": "Extract structured facts from all 25 resumes. Watch messy documents become a clean table."
+          "title": "Agent 1 runs",
+          "description": "We extract structured facts from all 25 resumes and watch messy documents become a clean table."
         },
         {
-          "title": "Run Agent 2",
-          "description": "Score against the rubric with evidence, apply the hard rule, and reveal the ranked top 5."
+          "title": "Agent 2 runs",
+          "description": "We score against the rubric with evidence, apply the hard rule, and reveal the ranked top 5."
         },
         {
-          "title": "Run Agent 3",
-          "description": "Draft the recommendation to the hiring manager. Read it aloud. Do not send: that is the human's call."
+          "title": "Agent 3 runs",
+          "description": "We draft the recommendation to the hiring manager and read it aloud. We do not send it: that stays your call."
         },
         {
-          "title": "Validate",
-          "description": "Lay the agent's 5 next to the by-hand 5. Discuss the overlap and the differences. This is how you learn to trust an agent."
+          "title": "We validate together",
+          "description": "We lay the agent's 5 next to your by-hand 5 and talk through the overlap and the differences. This is how you learn to trust an agent."
         }
       ],
       "test_output": [],
       "output_capture": null,
-      "break_after": true,
+      "break_after": false,
       "break_duration_minutes": 10,
       "phase": "day",
       "session_type": "build",
@@ -199,7 +200,7 @@
       "end_time": "10:30",
       "duration_minutes": 90,
       "stage": "Build",
-      "set_the_stage": "Now the facilitator builds the physical implementation live, in a Google Colab notebook, running it step by step on the real 25 resumes. This uses the paid demo key so it never stalls in front of the room.\n\nNarrate every cell back to the design on the board: this cell is Agent 1 extracting, this cell is Agent 2 judging, this cell drafts for the human. The code should feel like the obvious transcription of a design they already understand.\n\nClose the loop on validation: compare the agent's top 5 to the room's by-hand top 5 from yesterday. Where they agree, where they differ, and why."
+      "set_the_stage": "Now I'll build the real thing in front of you, live, in a Google Colab notebook, running it step by step on the actual 25 resumes. I'm using the paid demo key so it never stalls while you're watching.\n\nWatch me narrate every cell back to the design on the board: this cell is Agent 1 extracting, this cell is Agent 2 judging, this one drafts for the human. The code should feel like the obvious transcription of a design you already understand.\n\nAt the end we close the loop on trust: we compare the agent's top 5 to the top 5 you picked by hand yesterday. Where they agree, where they differ, and why."
     },
     {
       "questions": [],
@@ -212,10 +213,10 @@
         },
         {
           "title": "Change only the marked lines",
-          "description": "Swap the documents, the extract fields, the rubric, and the hard rule. Everything else stays exactly as it is."
+          "description": "You'll swap the documents, the extract fields, the rubric, and the hard rule. Everything else stays exactly as it is."
         },
         {
-          "title": "Run on the fallback",
+          "title": "Run it on the fallback",
           "description": "Leave the fallback switch on. It runs on saved results so nothing blocks you. Flip it off only if you want to go live on your own key."
         },
         {
@@ -237,22 +238,13 @@
       "end_time": "13:00",
       "duration_minutes": 135,
       "stage": "Build",
-      "set_the_stage": "Hand the notebook to the students. They pick one use-case from the palette, from finops, support, sales, and more, and configure the exact same three-agent design for it. Only the marked lines change.\n\nThis run defaults to the fallback switch, so it works with zero friction even if the free tier hiccups. Name that out loud: you already learned the live key this morning; this run is about the pattern, not the plumbing. The live path is one flip away for anyone who wants it.\n\nThe point is ownership. When a finance student watches the same machine triage invoices, or a support student watches it sort tickets, the pattern lands in a world they care about."
+      "set_the_stage": "Now I'll hand over the notebook to you. You'll pick one use-case from the palette, from finops, support, sales, and more, and configure the exact same three-agent design for it. You only change the marked lines.\n\nThis run defaults to the fallback switch, so it works with zero friction even if the free tier hiccups. I'll say it plainly: you already learned the live key this morning, so this run is about the pattern, not the plumbing. The live path is one flip away if you want it.\n\nThe point here is ownership. When you watch the same machine work on a problem from your own world, that is when it truly clicks."
     },
     {
       "questions": [],
       "hmv": [],
       "prompts": [],
-      "build": [
-        {
-          "title": "Tell the story",
-          "description": "Each student writes their one-line outcome: the by-hand time, the agent time, and the job it does. That is the interview answer."
-        },
-        {
-          "title": "Find three piles",
-          "description": "List three piles of similar documents in your world that this same design could sort. That is where your next agent lives."
-        }
-      ],
+      "build": [],
       "test_output": [],
       "output_capture": null,
       "break_after": false,
@@ -264,10 +256,40 @@
       "day": 2,
       "title": "The Valuenomics of AI",
       "start_time": "14:00",
-      "end_time": "16:30",
-      "duration_minutes": 150,
+      "end_time": "15:15",
+      "duration_minutes": 75,
       "stage": "Valuenomics",
-      "set_the_stage": "Close with value. A working agent is not the prize; the outcome is. We trace the chain from data to insight to narrative to influence to outcome, and show how the same shape unlocks value across domains.\n\nThen widen the toolbox: beyond screen-and-rank, the patterns of extract-and-summarise, monitor-and-alert, draft-and-refine, and answer-over-your-docs, so students leave seeing agents everywhere.\n\nEnd on the honest, defensible story each student can tell a recruiter: a real agent, built for their world, measured against their own by-hand baseline."
+      "set_the_stage": "Now we talk value. A working agent is not the prize; the outcome is. We'll trace the chain from data to insight to narrative to influence to outcome, and see how the same shape unlocks value across domains.\n\nThen we'll widen the toolbox beyond the screen-and-rank agent you built, into the other patterns you'll meet out there, each with a place it genuinely wins.\n\nThe thread running through all of it: the honest, defensible story you can tell a recruiter, built on a real agent and a real number you measured yourself."
+    },
+    {
+      "questions": [],
+      "hmv": [],
+      "prompts": [],
+      "build": [
+        {
+          "title": "Name your next agent",
+          "description": "Pick one boring, repeated, judgement-based task in your own life and commit to building an agent for it this week."
+        },
+        {
+          "title": "Start your portfolio",
+          "description": "Save every agent you build, each with its before-and-after number. That folder is your proof, and it grows from today."
+        }
+      ],
+      "test_output": [],
+      "output_capture": null,
+      "break_after": false,
+      "break_duration_minutes": 10,
+      "phase": "day",
+      "session_type": "build",
+      "id": "9",
+      "number": 9,
+      "day": 2,
+      "title": "What Next",
+      "start_time": "15:15",
+      "end_time": "16:30",
+      "duration_minutes": 75,
+      "stage": "What Next",
+      "set_the_stage": "We close on the road ahead. You walked in curious and you leave able to build; this session is about what you do with that.\n\nWe'll talk about how to spot opportunities, how to keep building, how to turn this into something real, placements, freelance, even a venture, and the mindset that outlasts any single tool.\n\nEnd it on one concrete commitment: the one agent each of you will build this week. Momentum from here is everything."
     }
   ],
   "ideas": [

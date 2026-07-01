@@ -2418,6 +2418,10 @@
   .fit-viewport .concept-ba-card p { font-size: clamp(12.5px,0.6vw+0.55vh,15px) !important; line-height:1.45 !important; }
   .fit-viewport .concept-body p { font-size: clamp(14px,0.7vw+0.7vh,18px); }
   .fit-viewport .concept-artifact { margin-top: min(8px,1.2vh) !important; padding: clamp(7px,1vh,10px) 16px !important; }
+  /* Clickable build-progress bar */
+  .bb-item.bb-clickable { cursor:pointer; transition: color .12s ease, opacity .12s ease; }
+  .bb-item.bb-clickable:hover { color: var(--accent); opacity:1; }
+  .bb-item.bb-clickable:hover .bb-dot { border-color: var(--accent); }
 </style>
 <!-- CONCEPT MODULE (HMV teaching slides) -->
 <style>
@@ -2721,14 +2725,21 @@ const CONCEPT_MODULES = {
   "humanics": {
     "before_session": "2", "stage_number": "02", "stage_name": "Humanics",
     "slides": [
-      {"lens":"opener","headline":"Before the tool, the *thinking.*","sub":"You cannot automate what you cannot think through. This is the clear-thinking layer: five moves that turn a fuzzy task into one a machine can do.","chips":["Break it to *atoms*","See the *whole pipe*","Ask a *sharp question*","Define *good*","Plan for the *slip*"]},
+      {"lens":"opener","headline":"Before the tool, the *thinking.*","sub":"You cannot automate what you cannot think through. This is the clear-thinking layer, and it is where the real skill lives. Master these habits and every agent you ever build gets easier.","chips":["Break it to *atoms*","See the *whole system*","Define *good*, measurably","Weigh the *trade-offs*","Plan for the *mess*"]},
       {"kicker":"FIRST PRINCIPLES","headline":"Break the job down to its *atoms.*","lead":"'Shortlist resumes' is too big to build. 'Read, pull six facts, score against four criteria, rank' is a set of atoms you can hand straight to a machine.","wrong":"'Automate recruiting.' (too big to build)","right":"'Read, extract six facts, score, rank.' (atoms)","bubble":"Break it to <b>atoms.</b>"},
+      {"kicker":"FIRST PRINCIPLES","headline":"Keep asking *why* until it stops.","lead":"Why shortlist? To interview fewer, better people. Why these criteria? Because they predict the job. Dig until you hit the real reason, then build for that, not the surface request.","bubble":"Dig to the <b>real why.</b>"},
       {"kicker":"SYSTEMS THINKING","headline":"See the *whole pipe,* not one clever step.","lead":"Each step feeds the next. A brilliant judging step fed by a sloppy extract still fails. Design the chain, not the one clever trick in the middle.","wrong":"'My judging prompt is genius.' (but fed junk)","right":"'Every stage hands clean data to the next.'","bubble":"Garbage in. <b>Garbage ranked.</b>"},
+      {"kicker":"SYSTEMS THINKING","headline":"Every choice has a *ripple.*","lead":"Weight experience too hard and you quietly reject brilliant fresh talent. Think one step past the obvious: what does this rule do to the cases I am not even looking at?","bubble":"Mind the <b>ripple.</b>"},
       {"kicker":"PROBLEM FRAMING","headline":"A sharp *question* beats a clever answer.","lead":"Frame it as 'which 5 of these 25, and why' and the build becomes obvious. A vague goal only ever builds a vague thing.","wrong":"'Make hiring better with AI.'","right":"'From 25 resumes and one JD, return the top 5, with evidence.'","bubble":"Frame it sharp. <b>Build it easy.</b>"},
       {"kicker":"DEFINE GOOD","headline":"Decide what *good* looks like, first.","lead":"If you cannot say what a strong shortlist is, no agent can make one for you. Name the bar before you build the thing meant to clear it.","wrong":"'I will know a good hire when I see it.'","right":"'Good = three years hands-on, a real tool, proof of impact.'","bubble":"Name 'good' <b>first.</b>"},
+      {"kicker":"DEFINE GOOD","headline":"Make 'good' something you can *measure.*","lead":"'A strong candidate' is a feeling. 'Scores seven or more on hands-on skill, with a cited example' is a test. Turn your judgement into something checkable.","bubble":"Feelings don't scale. <b>Tests do.</b>"},
+      {"kicker":"TRADE-OFFS","headline":"Every agent trades *one mistake for another.*","lead":"Cast a wide net and you interview some weak ones. Cast a tight net and you miss some strong ones. There is no perfect line, only the one you choose on purpose.","wrong":"'It should just be right.'","right":"'I would rather over-include; a missed star costs more than a wasted interview.'","bubble":"Pick your <b>mistake.</b>"},
+      {"kicker":"EDGE CASES","headline":"Trust is won on the *weird 10%.*","lead":"Any agent handles the clean, ordinary case. The blank resume, the career-changer, the odd format: how it behaves there is what decides whether you can actually rely on it.","bubble":"The weird case <b>is the test.</b>"},
+      {"kicker":"COST OF WRONG","headline":"Weigh what each mistake *actually costs.*","lead":"A wrong shortlist wastes an hour. A wrong medical flag or a wrong payment is a different universe. Match your guardrails to the cost of being wrong, not just to how likely it is.","bubble":"Big cost? <b>Big guardrail.</b>"},
       {"kicker":"INPUTS AND OUTPUTS","headline":"Think in *something in, something out.*","lead":"Every step is one thing in and one thing out. Write each step that way and the design very nearly draws itself.","artifact":"each step written as in, to out.","bubble":"In. Out. <b>That's a step.</b>"},
-      {"kicker":"PLAN FOR THE SLIP","headline":"Assume the model *will* slip.","lead":"Ask for evidence on every claim. Try the blank resume and the odd format on purpose. Build for the bad case, not only the happy one.","wrong":"'It will probably be fine.'","right":"'What happens on the messy one?'","bubble":"Plan for the <b>slip.</b>"},
-      {"lens":"opener","mascot":"butterfly","headline":"Think clearly, and the *code writes itself.*","sub":"Atoms, the whole pipe, a sharp question, a clear bar, and a plan for failure. Do this thinking well and the build becomes the easy part.","bubble":"Clear thinking. <b>Clean agent.</b>"}
+      {"kicker":"PLAN FOR THE SLIP","headline":"Run a *premortem* before you build.","lead":"Imagine it is next month and the agent embarrassed you. What went wrong? Ask for evidence on every claim, try the messy inputs on purpose, and design for the bad day, not the good one.","wrong":"'It will probably be fine.'","right":"'What happens on the messy one, and how do I catch it?'","bubble":"Assume the <b>bad day.</b>"},
+      {"kicker":"ITERATE","headline":"Your first design is a *guess,* not gospel.","lead":"Build it, watch it fail somewhere, fix that one thing, and repeat. Clear thinking gets you a strong first guess; honest iteration turns it into a good agent.","bubble":"First try is a <b>hypothesis.</b>"},
+      {"lens":"opener","mascot":"butterfly","headline":"Think clearly, and the *code writes itself.*","sub":"Atoms, the whole system, a measurable bar, the trade-offs, the edge cases, and a plan for the mess. Do this thinking well and building becomes the easy part.","bubble":"Clear thinking. <b>Clean agent.</b>"}
     ]
   },
   "mechanics": {
@@ -2749,7 +2760,7 @@ const CONCEPT_MODULES = {
   "valuenomics": {
     "before_session": "8", "stage_number": "06", "stage_name": "Valuenomics",
     "slides": [
-      {"lens":"opener","headline":"A working agent is not the prize. The *outcome* is.","sub":"This last hour is about value: turning a built thing into a result, seeing the pattern across domains, meeting other agent patterns, and knowing where your journey goes from here.","chips":["Data to *outcome*","Value *patterns* everywhere","*Other* agent patterns","Your *journey* from here"]},
+      {"lens":"opener","headline":"A working agent is not the prize. The *outcome* is.","sub":"This session is about value: turning a built thing into a result, seeing the pattern across domains, and meeting the other agent patterns you will use out there.","chips":["Data to *outcome*","Value *patterns* everywhere","*Other* agent patterns","*Responsible* value"]},
       {"kicker":"STEP 1 · INSIGHT","headline":"Raw output is not value. The *insight* is.","lead":"'Here are 25 scores' is data. 'These three are clearly strongest, and here is why' is insight. The agent gives you the first; you find the second.","wrong":"A dump of 25 rows.","right":"'Three stand out on hands-on skill.'","bubble":"Data is cheap. <b>Insight sells.</b>"},
       {"kicker":"STEP 2 · NARRATIVE","headline":"Wrap the number in a *story.*","lead":"'It ranks resumes' is forgettable. 'It cut first-pass screening from two hours to two minutes' sticks. Same fact, one is simply told well.","wrong":"'My agent processes documents.'","right":"'A two-hour chore, now two minutes.'","bubble":"A number in a <b>story.</b>"},
       {"kicker":"STEP 3 · INFLUENCE","headline":"A story with *proof* moves people.","lead":"Show the by-hand time, the after, and the evidence. Proof is what makes a recruiter, a manager, or a panel actually act on what you say.","wrong":"'Trust me, it works.'","right":"'Here is the baseline, the run, and the matching picks.'","bubble":"Proof <b>moves</b> people."},
@@ -2762,11 +2773,28 @@ const CONCEPT_MODULES = {
       {"kicker":"PATTERN · DRAFT & REFINE","headline":"A strong *first draft,* every time.","lead":"Give it the facts and a purpose, get back a solid draft to edit instead of a blank page. Replies, reports, posts, proposals.","artifact":"where it wins: repetitive writing with a human final say.","bubble":"Never a <b>blank page.</b>"},
       {"kicker":"PATTERN · ANSWER FROM YOUR DOCS","headline":"Ask your *own* documents a question.","lead":"Point it at your policies, manuals, or notes and get grounded answers with sources, instead of a generic guess from the open web.","artifact":"where it wins: knowledge trapped in long internal docs.","bubble":"Your docs, <b>answering back.</b>"},
       {"kicker":"PATTERN · RESEARCH & COMPILE","headline":"Many small steps, *one* clean brief.","lead":"Break a big question into steps, gather from several places, and assemble a tidy summary. The agent that plans, not just answers.","artifact":"where it wins: questions no single document answers.","bubble":"It plans. <b>Then it answers.</b>"},
-      {"kicker":"YOUR JOURNEY · NEXT","headline":"You have the *shape.* Now go *wider.*","lead":"You can already read a task, split it into agents, and build. From here, growth is simply picking a new pattern and a new domain, and running the loop again.","bubble":"New pattern. <b>New domain.</b>"},
-      {"kicker":"YOUR JOURNEY · DEEPER","headline":"Level up *one* piece at a time.","lead":"Add memory so it remembers. Add a tool so it can look things up. Chain agents so one hands to the next. Learn each when a real project needs it, not before.","bubble":"One piece <b>at a time.</b>"},
-      {"kicker":"YOUR JOURNEY · PORTFOLIO","headline":"Every agent you build is *proof.*","lead":"Keep them. A folder of small, working agents across domains, each with a before-and-after number, is a portfolio no marks sheet can match.","artifact":"your first three agents, saved with their numbers.","bubble":"Build. Keep. <b>Show.</b>"},
-      {"kicker":"YOUR JOURNEY · MINDSET","headline":"Stay loyal to the *problem,* not the tool.","lead":"Tools will change every few months. The habit that lasts: find a real pile of work, describe the worker, guard it, check it, and ship it.","wrong":"'I learned one tool.'","right":"'I learned how to think about agents.'","bubble":"Love the <b>problem.</b>"},
-      {"lens":"opener","mascot":"butterfly","headline":"From a pile of files to an *outcome you can prove.*","sub":"Data to insight to narrative to influence to outcome. A toolbox of patterns. And a way of thinking that outlives any single tool. That is Just Build Foundation.","bubble":"Build the agent. <b>Prove the outcome.</b>"}
+      {"kicker":"RESPONSIBLE VALUE","headline":"Value that lasts is *value you can defend.*","lead":"Fair criteria, evidence kept, a human on the big calls. The trustworthy agent is the one that survives scrutiny, and it is the one people keep using.","wrong":"'It is fast, ship it.'","right":"'It is fast, fair, and shows its work.'","bubble":"Fast, fair, <b>defensible.</b>"},
+      {"lens":"opener","mascot":"butterfly","headline":"From a pile of files to an *outcome you can prove.*","sub":"Data to insight to narrative to influence to outcome. A toolbox of patterns, each with a place it wins. That is how a built thing becomes real value.","bubble":"Build the agent. <b>Prove the outcome.</b>"}
+    ]
+  },
+  "whatnext": {
+    "before_session": "9", "stage_number": "07", "stage_name": "What Next",
+    "slides": [
+      {"lens":"opener","headline":"You can build agents now. *Here is where that takes you.*","sub":"This last stretch is about the road ahead: how to spot opportunities, how to keep building, how to turn this into something real, and the mindset that outlasts any tool.","chips":["Spot *opportunities*","Keep *building*","Make it *real*","The *mindset*"]},
+      {"kicker":"THE SKILL YOU HAVE","headline":"You can turn a *task* into a *worker.*","lead":"That is rarer than it sounds. Most people still see AI as a chat box. You now look at any repetitive, judgement-based task and think: I could build an agent for that.","bubble":"You see agents <b>everywhere</b> now."},
+      {"kicker":"SPOT OPPORTUNITIES","headline":"Look for the *boring, repeated* work.","lead":"The best agent ideas are unglamorous: the report someone rebuilds every Monday, the inbox someone sorts by hand, the list someone re-checks. Boring and repeated is gold.","artifact":"one boring, repeated task near you, worth an agent.","bubble":"Boring + repeated = <b>opportunity.</b>"},
+      {"kicker":"SPOT OPPORTUNITIES","headline":"Follow the *pain,* not the hype.","lead":"Do not build the flashiest agent. Build the one that removes a real, felt annoyance for a real person. Pain is a far better compass than the latest trend.","wrong":"'Let me build something with the newest model.'","right":"'Let me remove the thing my uncle complains about every week.'","bubble":"Chase the <b>pain.</b>"},
+      {"kicker":"KEEP BUILDING","headline":"Build *ten small* agents, not one perfect one.","lead":"Range beats polish early. Ten small working agents across ten tasks will teach you more, and show more, than one you endlessly refine.","bubble":"Ten small &gt; <b>one perfect.</b>"},
+      {"kicker":"KEEP BUILDING","headline":"Every build, add *one* new piece.","lead":"This build taught you structured output. Next, add a hard rule. Then memory. Then a tool. Then chaining. Grow your toolkit one project at a time, driven by need.","artifact":"the one new thing your next agent will add.","bubble":"One new piece <b>each time.</b>"},
+      {"kicker":"LEVEL UP","headline":"The next frontiers, in *plain words.*","lead":"Memory: it remembers past runs. Tools: it can search, calculate, or call an API. Planning: it breaks a big task into steps on its own. Learn each when a real project asks for it.","bubble":"Memory. Tools. <b>Planning.</b>"},
+      {"kicker":"MAKE IT REAL · PORTFOLIO","headline":"Your agents are your *portfolio.*","lead":"A folder of small working agents, each with a before-and-after number, beats a marks sheet. It is proof you can do the work, before anyone has to hire you.","artifact":"your first three agents, saved with their numbers.","bubble":"Proof &gt; <b>promises.</b>"},
+      {"kicker":"MAKE IT REAL · PLACEMENTS","headline":"Walk into the interview with a *demo.*","lead":"When they ask what you can do with AI, you do not answer, you open your laptop and show a working agent you built for a real task. That wins rooms.","bubble":"Show, don't <b>tell.</b>"},
+      {"kicker":"MAKE IT REAL · EARN","headline":"This skill *pays,* sooner than you think.","lead":"Small businesses drown in repetitive work and cannot hire engineers. A student who can build a triage or screening agent for them is genuinely valuable. Freelance, intern, or start something.","bubble":"This skill <b>earns.</b>"},
+      {"kicker":"WHERE IT IS GOING","headline":"Agents are becoming *normal,* fast.","lead":"In a year or two, 'I built an agent for that' will be as ordinary as 'I made a spreadsheet for that'. Being early and fluent is a real head start. Use it.","bubble":"Early and fluent <b>wins.</b>"},
+      {"kicker":"THE MINDSET","headline":"Stay loyal to the *problem,* not the tool.","lead":"Models and tools will change every few months. The durable skill is the thinking: find the pile, describe the worker, guard it, check it, ship it.","wrong":"'I learned one tool.'","right":"'I learned how to think about agents.'","bubble":"Love the <b>problem.</b>"},
+      {"kicker":"THE MINDSET","headline":"Bias toward *shipping.*","lead":"A rough agent that runs and saves someone ten minutes beats a perfect one still in your head. Build, ship, learn, repeat. That loop is the whole career.","bubble":"Ship it. Then <b>improve it.</b>"},
+      {"kicker":"YOUR FIRST STEP","headline":"Pick *one* task this week. Build it.","lead":"Do not wait to feel ready. Choose one boring, repeated, judgement-based task in your life this week, and point the three-agent design straight at it. That is how it begins.","artifact":"the one agent you will build this week.","bubble":"Start <b>this week.</b>"},
+      {"lens":"opener","mascot":"butterfly","headline":"You came in *curious.* You leave able to *build.*","sub":"From 'what is an agent' to a working agent of your own, a way to think, and a road ahead. This is only the foundation. Now go and build the rest.","bubble":"This is the <b>foundation.</b> Go build."}
     ]
   }
 };
@@ -3218,21 +3246,29 @@ function renderBuildbar(screen) {
   if (!bar) return;
   const st = buildbarState(screen);
   if (!st) { bar.classList.add("hidden"); return; }
-  const items = ["Agents","Humanics","Mechanics","Challenge","Design","Build","Value"];
+  const stages = (WORKSHOP && WORKSHOP.stages) ? WORKSHOP.stages : [];
+  const curStage = screen.session ? screen.session.stage : null;
+  const curIdx = stages.indexOf(curStage);
   let html = '<span class="bb-title">BUILD PROGRESS</span><div class="bb-track">';
-  items.forEach(function (name, idx) {
-    let cls = "bb-item";
-    if (idx < st.done) cls += " done";
-    else if (idx === st.current) cls += " current";
-    const mark = (idx < st.done) ? "\u2713" : "";
+  stages.forEach(function (name, idx) {
+    let cls = "bb-item bb-clickable";
+    if (curIdx > -1 && idx < curIdx) cls += " done";
+    else if (idx === curIdx) cls += " current";
+    const mark = (curIdx > -1 && idx < curIdx) ? "\u2713" : "";
     if (idx > 0) html += '<span class="bb-sep"></span>';
-    html += '<span class="' + cls + '"><span class="bb-dot">' + mark + '</span>' + name + '</span>';
+    html += '<span class="' + cls + '" data-stage="' + name.replace(/"/g, "") + '"><span class="bb-dot">' + mark + '</span>' + name + '</span>';
   });
   html += '</div>';
   bar.innerHTML = html;
   bar.classList.remove("hidden");
+  bar.querySelectorAll(".bb-item[data-stage]").forEach(function (elm) {
+    elm.onclick = function () {
+      const stg = elm.getAttribute("data-stage");
+      const targetIdx = SCREENS.findIndex(function (s) { return s.session && s.session.stage === stg; });
+      if (targetIdx > -1) jumpToScreen(targetIdx);
+    };
+  });
 }
-
 function updateProgress() {
   const screen = SCREENS[currentScreenIdx];
   if (!screen.session) return;
@@ -3329,7 +3365,7 @@ function renderJourneyMap() {
         <div class="fo-st"><div class="fo-st-num">03</div><div class="fo-st-name">MECHANICS</div><div class="fo-st-desc">The building blocks</div></div>
         <div class="fo-st"><div class="fo-st-num">04</div><div class="fo-st-name">DESIGN</div><div class="fo-st-desc">Three-agent design</div></div>
         <div class="fo-st"><div class="fo-st-num">05</div><div class="fo-st-name">BUILD</div><div class="fo-st-desc">Live in Colab</div></div>
-        <div class="fo-st"><div class="fo-st-num">06</div><div class="fo-st-name">VALUE</div><div class="fo-st-desc">Outcomes and patterns</div></div>
+        <div class="fo-st"><div class="fo-st-num">06</div><div class="fo-st-name">VALUE + NEXT</div><div class="fo-st-desc">Outcomes and the road ahead</div></div>
       </div>
       <div class="fo-j-tl">
         <div class="fo-tl-label">FROM DAY ONE TO MINI DEMO DAY</div>
@@ -4042,7 +4078,7 @@ function renderWorkshopComplete() {
           <li><strong>03</strong> The three-agent design</li>
           <li><strong>04</strong> By-hand baseline and measured gain</li>
           <li><strong>05</strong> The Colab notebook</li>
-          <li><strong>06</strong> Your interview story</li>
+          <li><strong>06</strong> Your interview story and next steps</li>
         </ul>
       </div>
 

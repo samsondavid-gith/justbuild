@@ -95,7 +95,7 @@
       "build": [
         {
           "title": "Get the pack: 25 resumes + the JD",
-          "instructions": "Download both PDFs and open them side by side. Resumes: justbuild.orangecaterpillar.com/foundation-material/Resumes.pdf  .  Job description: justbuild.orangecaterpillar.com/foundation-material/Job_Description.pdf . Printed copies are on your desks too."
+          "instructions": "Download both PDFs and open them side by side. Resumes: justbuild.orangecaterpillar.com/foundation-material/recruitment/Resumes.pdf  .  Job description: justbuild.orangecaterpillar.com/foundation-material/recruitment/Job_Description.pdf . Printed copies are on your desks too."
         },
         {
           "title": "Rank by hand, and time it",
@@ -120,7 +120,7 @@
       "end_time": "13:00",
       "duration_minutes": 75,
       "stage": "Design",
-      "set_the_stage": "Here is your problem: 25 resumes and one job description. Recommend the top 5 to interview. You'll do it by hand first, with no AI, and time yourselves.\n\nGrab the pack first. Download the resumes and the job description from justbuild.orangecaterpillar.com/foundation-material, open them side by side, and read the JD before you judge anyone.\n\nThis is not busywork. Doing it by hand gives us two things we need later: a real 'before' number to measure the agent against, and a felt sense of the actual steps, read, pull facts, compare to the JD, rank, hand over.\n\nMost of you will not finish all 25 in the time. That is exactly the point. Feel the load, because that is the load the agent is about to lift for you."
+      "set_the_stage": "Here is your problem: 25 resumes and one job description. Recommend the top 5 to interview. You'll do it by hand first, with no AI, and time yourselves.\n\nGrab the pack first. Download the resumes and the job description from justbuild.orangecaterpillar.com/foundation-material/recruitment, open them side by side, and read the JD before you judge anyone.\n\nThis is not busywork. Doing it by hand gives us two things we need later: a real 'before' number to measure the agent against, and a felt sense of the actual steps, read, pull facts, compare to the JD, rank, hand over.\n\nMost of you will not finish all 25 in the time. That is exactly the point. Feel the load, because that is the load the agent is about to lift for you."
     },
     {
       "questions": [],

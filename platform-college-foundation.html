@@ -2449,21 +2449,23 @@
   .bb-item.bb-clickable:hover .bb-dot { border-color: var(--accent); }
 
   /* ===== Projection typography: bigger, readable from the back of the room ===== */
-  /* Idea palette -> 2x2 big cards; five-row pipeline tuned to fit same height */
-  .ideas-grid { grid-template-columns: repeat(2, 1fr) !important; grid-template-rows: repeat(2, 1fr) !important; gap: clamp(14px, 2.2vh, 24px) !important; }
-  .ideas-screen-title { font-size: clamp(30px, 4.6vh, 48px) !important; max-width: 42ch !important; }
-  .ideas-screen-sub { font-size: clamp(15px, 2vh, 21px) !important; max-width: 70ch !important; }
-  .ideas-screen-eyebrow { font-size: clamp(12px, 1.4vh, 14px) !important; }
-  .idea-card { padding: clamp(16px, 2.3vh, 24px) clamp(18px, 2.2vh, 26px) !important; border-radius: 12px !important; }
-  .idea-card-num { font-size: clamp(10.5px, 1.3vh, 13px) !important; margin-bottom: 5px !important; color: var(--accent) !important; }
-  .idea-card-name { font-size: clamp(21px, 2.9vh, 30px) !important; margin-bottom: clamp(9px, 1.4vh, 14px) !important; line-height: 1.08 !important; }
-  .idea-card-row { margin-bottom: clamp(5px, 0.95vh, 10px) !important; }
-  .idea-card-label { font-size: clamp(9.5px, 1.05vh, 11.5px) !important; letter-spacing: 0.16em !important; margin-bottom: 2px !important; }
-  .idea-card-value { font-size: clamp(13.5px, 1.75vh, 17px) !important; line-height: 1.36 !important; }
-  .fit-viewport .idea-card-value { -webkit-line-clamp: 2 !important; }
-  /* agent rows: subtle left accent so Input -> A1 -> A2 -> A3 reads as one pipeline */
-  .idea-card-agent { border-left: 2px solid var(--accent-soft) !important; padding-left: 10px !important; margin-left: 1px !important; }
-  .idea-card-agent .idea-card-label { color: var(--accent) !important; opacity: 0.85; }
+  /* Idea palette -> 2x2 cards, compact single-line pipeline that always fits */
+  .ideas-screen { padding: 4px 0 !important; }
+  .ideas-screen-header { margin-bottom: clamp(8px, 1.4vh, 16px) !important; }
+  .ideas-grid { grid-template-columns: repeat(2, 1fr) !important; grid-template-rows: repeat(2, 1fr) !important; gap: clamp(12px, 1.8vh, 20px) !important; }
+  .ideas-screen-title { font-size: clamp(26px, 3.9vh, 40px) !important; max-width: 44ch !important; margin-bottom: clamp(5px, 0.8vh, 10px) !important; }
+  .ideas-screen-sub { font-size: clamp(13px, 1.6vh, 17px) !important; max-width: 80ch !important; }
+  .ideas-screen-eyebrow { font-size: clamp(11px, 1.3vh, 13px) !important; margin-bottom: clamp(6px, 0.9vh, 10px) !important; }
+  .idea-card { padding: clamp(14px, 1.9vh, 22px) clamp(16px, 2vh, 24px) !important; border-radius: 12px !important; justify-content: flex-start !important; }
+  .idea-card-num { font-size: clamp(10px, 1.25vh, 12.5px) !important; margin-bottom: 4px !important; color: var(--accent) !important; }
+  .idea-card-name { font-size: clamp(20px, 2.7vh, 29px) !important; margin-bottom: clamp(8px, 1.2vh, 13px) !important; line-height: 1.06 !important; }
+  .idea-fw { font-size: clamp(13px, 1.65vh, 16.5px) !important; line-height: 1.35 !important; color: var(--text-soft) !important; margin-bottom: clamp(9px, 1.4vh, 15px) !important; }
+  .idea-fw-k { font-family: var(--mono) !important; font-size: 0.72em !important; letter-spacing: 0.14em !important; text-transform: uppercase !important; color: var(--text-muted) !important; margin-right: 9px !important; }
+  .idea-pipe { display: flex !important; flex-direction: column !important; gap: clamp(5px, 0.9vh, 10px) !important; border-left: 2px solid var(--accent-soft) !important; padding-left: clamp(12px, 1.4vh, 16px) !important; }
+  .ic-step { display: flex !important; gap: 12px !important; align-items: baseline !important; }
+  .ic-step .ic-k { font-family: var(--mono) !important; font-size: clamp(9.5px, 1.15vh, 11.5px) !important; letter-spacing: 0.1em !important; text-transform: uppercase !important; color: var(--text-muted) !important; flex: 0 0 auto !important; width: clamp(52px, 6.2vh, 68px) !important; }
+  .ic-step .ic-v { font-size: clamp(13px, 1.65vh, 17px) !important; line-height: 1.32 !important; color: var(--text) !important; }
+  .ic-step.ic-agent .ic-k { color: var(--accent) !important; }
   /* Build steps -> bigger */
   .build-list { gap: clamp(14px, 2.2vh, 24px) !important; }
   .build-item::before { font-size: clamp(24px, 3.2vh, 32px) !important; }
@@ -2847,8 +2849,8 @@ const CONCEPT_MODULES = {
       {"kicker":"THE API KEY · CARE","headline":"Keep the key *private.*","lead":"A key is like a house key: fine in your pocket, dangerous on a noticeboard. Never paste it into a chat, a screenshot, or a shared doc.","wrong":"Paste your key into a message or a slide.","right":"Keep it private; if it ever leaks, revoke it and generate a new one.","bubble":"Private. <b>Always.</b>"},
       {"kicker":"FREE VS PAID","headline":"The *free* key works, until everyone leans on it.","lead":"A free Gemini key has tight limits: only so many calls a minute, and it shares capacity with the whole world. A paid, billing-enabled key raises those limits and gives you priority. Same model, steadier access.","bubble":"Same brain. <b>Steadier line.</b>"},
       {"kicker":"WHAT GOES WRONG","headline":"Live AI *fails in ordinary ways.* Here's the menu.","lead":"Build against a real model in a room of thirty and you will meet these. They are normal, not a sign you broke something. The skill is staying calm when one appears.","chips":["*429* &mdash; too many requests, slow down","*503* &mdash; model busy, try again","*model not found* &mdash; it was renamed","*key error* &mdash; bad or missing key"]},
-      {"kicker":"THE OC BRAIN","headline":"So we built a safety net: *the OC Brain.*","lead":"The OC Brain is one switch in the notebook. Flip it on and, instead of every call fighting for Gemini's live capacity, the notebook serves correct, pre-computed results for the exact same 25 resumes. The lesson never stops for an error code.","bubble":"Rules, not luck. <b>Keep moving.</b>"},
-      {"kicker":"HOW THE OC BRAIN WORKS","headline":"It's *not another AI.* It's a *fallback.*","lead":"When live Gemini answers, we use the real thing. When it rate-limits or stalls, the OC Brain steps in with saved answers we generated earlier, in the identical shape. You still see the real output; you just don't wait on a busy server.","wrong":"'A second, smarter AI that never fails.'","right":"'A rule-based safety net with correct saved results.'","bubble":"Honest fallback. <b>No magic.</b>"},
+      {"kicker":"THE OC BRAIN","headline":"When the network wobbles, *the OC Brain holds the line.*","lead":"Live AI leans on a busy, shared server that will sometimes make you wait. The OC Brain is the layer we built so that never becomes your problem: one quiet switch, and the room keeps moving at full pace, on the very same 25 resumes.","bubble":"It just <b>keeps going.</b>"},
+      {"kicker":"UNDER THE OC BRAIN","headline":"Real when it can be. *Ready when it can't.*","lead":"When Gemini answers, you see the live model, exactly as built. When it stalls, the OC Brain carries the very same result through, in the identical shape, so the thread never breaks. Same output, none of the waiting.","wrong":"A second, cleverer AI that quietly never fails.","right":"A resilience layer, prepared in advance, so the room never stalls.","bubble":"Seamless by <b>design.</b>"},
       {"kicker":"WHAT YOU'LL SEE","diagram":"pipeline","headline":"Messy files becoming a *clean, ranked answer.*","lead":"Watch for three moments: raw resumes turning into a tidy table (Agent 1), a ranked top five each with a reason (Agent 2), and a drafted recommendation you approve or reject (Agent 3).","bubble":"Watch the <b>three moments.</b>"},
       {"kicker":"YOUR PART","headline":"Follow the *flow,* not every character.","lead":"I will run the cells. You track the story: what went in, what each agent decided, and where the human stays in control. If an error pops up, we flip the OC Brain and keep the thread.","bubble":"Follow the <b>flow.</b>"},
       {"lens":"opener","mascot":"butterfly","headline":"Now we open the *notebook.*","sub":"Screens down, eyes up. I'll share the Colab link and drive. Watch the three agents work on the exact 25 resumes you just ranked by hand.","bubble":"Here we go. <b>Let's build.</b>"}
@@ -3662,25 +3664,12 @@ function renderIdeaCards() {
           <div class="idea-card">
             <div class="idea-card-num">Idea ${String(idx + 1).padStart(2, '0')}</div>
             <div class="idea-card-name">${escapeHtml(idea.name)}</div>
-            <div class="idea-card-row">
-              <div class="idea-card-label">For whom</div>
-              <div class="idea-card-value">${escapeHtml(idea.for_whom)}</div>
-            </div>
-            <div class="idea-card-row">
-              <div class="idea-card-label">Input</div>
-              <div class="idea-card-value">${escapeHtml(idea.input)}</div>
-            </div>
-            <div class="idea-card-row idea-card-agent">
-              <div class="idea-card-label">Agent 1</div>
-              <div class="idea-card-value">${escapeHtml(idea.agent1)}</div>
-            </div>
-            <div class="idea-card-row idea-card-agent">
-              <div class="idea-card-label">Agent 2</div>
-              <div class="idea-card-value">${escapeHtml(idea.agent2)}</div>
-            </div>
-            <div class="idea-card-row idea-card-agent">
-              <div class="idea-card-label">Agent 3</div>
-              <div class="idea-card-value">${escapeHtml(idea.agent3)}</div>
+            <div class="idea-fw"><span class="idea-fw-k">For whom</span>${escapeHtml(idea.for_whom)}</div>
+            <div class="idea-pipe">
+              <div class="ic-step"><span class="ic-k">Input</span><span class="ic-v">${escapeHtml(idea.input)}</span></div>
+              <div class="ic-step ic-agent"><span class="ic-k">Agent 1</span><span class="ic-v">${escapeHtml(idea.agent1)}</span></div>
+              <div class="ic-step ic-agent"><span class="ic-k">Agent 2</span><span class="ic-v">${escapeHtml(idea.agent2)}</span></div>
+              <div class="ic-step ic-agent"><span class="ic-k">Agent 3</span><span class="ic-v">${escapeHtml(idea.agent3)}</span></div>
             </div>
           </div>
         `).join('')}

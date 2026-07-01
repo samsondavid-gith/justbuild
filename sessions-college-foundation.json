@@ -289,14 +289,6 @@
   ],
   "ideas": [
     {
-      "id": "recruitment-screener",
-      "page": 1,
-      "name": "Recruitment Screener",
-      "for_whom": "You, if HR or campus placements is your world",
-      "problem": "A recruiter drowns in 200 resumes per role and skims the first 20 by gut feel.",
-      "what_app_does": "Extracts facts from every resume, scores them against the JD rubric with evidence, and returns a ranked shortlist to interview."
-    },
-    {
       "id": "invoice-triage",
       "page": 1,
       "name": "Invoice Triage",
@@ -313,14 +305,6 @@
       "what_app_does": "Reads each ticket, scores impact and urgency with evidence, and auto-escalates anything touching money or legal."
     },
     {
-      "id": "lead-scorer",
-      "page": 1,
-      "name": "Lead Scorer",
-      "for_whom": "You, if sales or growth is your world",
-      "problem": "Reps chase every inbound lead equally and waste the week on poor-fit ones.",
-      "what_app_does": "Extracts each lead's signals, scores fit against your ideal-customer rubric, and ranks who to call first."
-    },
-    {
       "id": "expense-checker",
       "page": 1,
       "name": "Expense Claim Checker",
@@ -329,28 +313,12 @@
       "what_app_does": "Extracts each claim's details, flags policy violations by hard rule, and ranks the rest for a quick human review."
     },
     {
-      "id": "incident-triage",
+      "id": "access-review",
       "page": 1,
-      "name": "Incident Report Triage",
-      "for_whom": "You, if operations or safety is your world",
-      "problem": "Incident reports pile up and the serious ones are not read first.",
-      "what_app_does": "Reads each report, scores severity with evidence, and pushes the critical ones to the top with a reason."
-    },
-    {
-      "id": "application-screener",
-      "page": 1,
-      "name": "Application Screener",
-      "for_whom": "You, if admissions or programs is your world",
-      "problem": "A program gets far more applications than it can read carefully.",
-      "what_app_does": "Extracts each application's facts, scores them against the selection rubric with evidence, and returns a shortlist."
-    },
-    {
-      "id": "feedback-prioritiser",
-      "page": 1,
-      "name": "Feedback Prioritiser",
-      "for_whom": "You, if product or CX is your world",
-      "problem": "Hundreds of reviews and survey verbatims arrive; the churn-risk signals are buried.",
-      "what_app_does": "Reads each piece of feedback, scores it by churn risk and theme, and ranks what to act on this week."
+      "name": "IT Access Request Reviewer",
+      "for_whom": "You, if IT or security is your world",
+      "problem": "Access and permission requests pile up, and the risky ones get rubber-stamped to clear the queue.",
+      "what_app_does": "Reads each request, checks who wants what against policy, flags anything sensitive for a human to approve, and clears the low-risk ones."
     }
   ]
 }

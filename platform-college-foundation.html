@@ -2447,6 +2447,31 @@
   .bb-item.bb-clickable { cursor:pointer; transition: color .12s ease, opacity .12s ease; }
   .bb-item.bb-clickable:hover { color: var(--accent); opacity:1; }
   .bb-item.bb-clickable:hover .bb-dot { border-color: var(--accent); }
+
+  /* ===== Projection typography: bigger, readable from the back of the room ===== */
+  /* Idea palette -> 2x2 big cards */
+  .ideas-grid { grid-template-columns: repeat(2, 1fr) !important; grid-template-rows: repeat(2, 1fr) !important; gap: clamp(14px, 2.2vh, 24px) !important; }
+  .ideas-screen-title { font-size: clamp(30px, 4.6vh, 48px) !important; max-width: 42ch !important; }
+  .ideas-screen-sub { font-size: clamp(15px, 2vh, 21px) !important; max-width: 70ch !important; }
+  .ideas-screen-eyebrow { font-size: clamp(12px, 1.4vh, 14px) !important; }
+  .idea-card { padding: clamp(18px, 2.8vh, 30px) clamp(20px, 2.6vh, 32px) !important; border-radius: 12px !important; }
+  .idea-card-num { font-size: clamp(11px, 1.4vh, 13.5px) !important; margin-bottom: 6px !important; color: var(--accent) !important; }
+  .idea-card-name { font-size: clamp(23px, 3.4vh, 34px) !important; margin-bottom: clamp(10px, 1.7vh, 18px) !important; line-height: 1.08 !important; }
+  .idea-card-row { margin-bottom: clamp(8px, 1.4vh, 15px) !important; }
+  .idea-card-label { font-size: clamp(10px, 1.2vh, 12.5px) !important; letter-spacing: 0.16em !important; margin-bottom: 3px !important; }
+  .idea-card-value { font-size: clamp(14.5px, 2vh, 20px) !important; line-height: 1.42 !important; }
+  .fit-viewport .idea-card-value { -webkit-line-clamp: 4 !important; }
+  /* Build steps -> bigger */
+  .build-list { gap: clamp(14px, 2.2vh, 24px) !important; }
+  .build-item::before { font-size: clamp(24px, 3.2vh, 32px) !important; }
+  .build-item h3 { font-size: clamp(20px, 2.7vh, 27px) !important; margin-bottom: 6px !important; }
+  .build-item p { font-size: clamp(15px, 2vh, 20px) !important; line-height: 1.5 !important; }
+  .fit-viewport .build-item h3 { font-size: clamp(19px, 1.4vw+0.8vh, 26px) !important; }
+  .fit-viewport .build-item p { font-size: clamp(14.5px, 0.9vw+0.7vh, 19px) !important; }
+  .build-link-label { font-size: clamp(11px, 1.3vh, 13.5px) !important; }
+  .build-link-url { font-size: clamp(15px, 2vh, 20px) !important; }
+  .label { font-size: clamp(12px, 1.4vh, 14px) !important; letter-spacing: 0.2em !important; }
+
 </style>
 <!-- CONCEPT MODULE (HMV teaching slides) -->
 <style>
@@ -3179,7 +3204,7 @@ function renderCurrent() {
     const activePage = Number(window.__ideaSetActive || defaultPage);
     $("#topbar-eyebrow").textContent = "IDEATE";
     $("#topbar-title").textContent = "Build your own agent";
-    $("#topbar-section").textContent = `8 idea cards · Set ${activePage} of 3`;
+    $("#topbar-section").textContent = `${(IDEAS||[]).length} agent use-cases`;
     updateProgress();
   }
 
@@ -3608,7 +3633,7 @@ function renderIdeaCards() {
     <div class="ideas-screen">
       <div class="ideas-screen-header">
         <div class="ideas-screen-eyebrow">Pick one &middot; ${pagesPresent.length > 1 ? ("Set " + activePage + " of " + pagesPresent.length) : "Your palette"}</div>
-        <h1 class="ideas-screen-title">Eight agent use-cases. <em>Pick the one from your world.</em></h1>
+        <h1 class="ideas-screen-title">Four agent use-cases. <em>Pick the one from your world.</em></h1>
         <p class="ideas-screen-sub">Each is the exact same three-agent design, pointed at a different job. Pick the one closest to your world and make it yours.</p>
         <div class="idea-set-switcher">${switcher}</div>
       </div>

@@ -2418,6 +2418,11 @@
   .fit-viewport .concept-ba-card p { font-size: clamp(12.5px,0.6vw+0.55vh,15px) !important; line-height:1.45 !important; }
   .fit-viewport .concept-body p { font-size: clamp(14px,0.7vw+0.7vh,18px); }
   .fit-viewport .concept-artifact { margin-top: min(8px,1.2vh) !important; padding: clamp(7px,1vh,10px) 16px !important; }
+  /* Design-logic diagrams */
+  .concept-diagram { margin: 2px 0 14px; }
+  .concept-diagram svg { width:100%; height:auto; max-height:44vh; display:block; }
+  .fit-viewport .concept-diagram { margin: min(2px,0.4vh) 0 min(10px,1.4vh); }
+  .fit-viewport .concept-diagram svg { max-height: min(42vh, 340px); }
   /* Clickable build-progress bar */
   .bb-item.bb-clickable { cursor:pointer; transition: color .12s ease, opacity .12s ease; }
   .bb-item.bb-clickable:hover { color: var(--accent); opacity:1; }
@@ -2755,6 +2760,33 @@ const CONCEPT_MODULES = {
       {"kicker":"THE THREE AGENTS","headline":"Ingest, then *judge,* then communicate.","lead":"Agent 1 turns resumes into facts. Agent 2 scores those facts against the JD and ranks. Agent 3 drafts the note for a human to send.","artifact":"the three agents, and what each takes and returns.","bubble":"Extract. Judge. <b>Communicate.</b>"},
       {"kicker":"THE CONTRACT","headline":"Agent 1's output is Agent 2's *input.*","lead":"The clean facts are the handshake between them. Agree the fields once, and the whole pipeline holds together without surprises.","wrong":"'Each agent just does its own thing.'","right":"'They share one agreed shape of data.'","bubble":"One shape. <b>One contract.</b>"},
       {"lens":"opener","mascot":"butterfly","headline":"Four ideas, three agents, *one pipeline.*","sub":"Model, prompt, neat output, key. Split the work into extract, judge, communicate. That is genuinely everything you need to build a real agent.","bubble":"Simple parts. <b>Real agent.</b>"}
+    ]
+  },
+  "design": {
+    "before_session": "5", "stage_number": "04", "stage_name": "Design",
+    "slides": [
+      {"lens":"opener","headline":"Design the Agent's *Logic.*","sub":"Before any code, we design the thinking. We'll build all three agents on the board, step by step: what goes in, what happens inside, and what must never break.","chips":["The *whole* pipeline","Agent 1: *extract*","Agent 2: *judge*","Agent 3: *communicate*"]},
+      {"kicker":"THE WHOLE PIPELINE","diagram":"pipeline","headline":"Three small workers, *in a line.*","lead":"Resumes become facts, facts become a ranked five, the five become a drafted note a human sends. Each box does exactly one job.","bubble":"Three workers. <b>One line.</b>"},
+      {"kicker":"THE SHARED RULE","headline":"Each agent does *one* job, and hands off *clean.*","lead":"The secret to a pipeline that holds: every agent has a single purpose and passes tidy, agreed data to the next. One job in, one clean thing out.","bubble":"One job. <b>Clean handoff.</b>"},
+
+      {"kicker":"AGENT 1 · THE SHAPE","diagram":"agent1","headline":"Agent 1 turns *messy files* into *clean facts.*","lead":"It takes the raw resumes and returns the same tidy set of facts for every candidate. Messy in, tidy out.","bubble":"Messy in. <b>Tidy out.</b>"},
+      {"kicker":"AGENT 1 · THE STEPS","diagram":"agent1steps","headline":"Inside Agent 1: *three* small steps.","lead":"Open each file, pull the fields you decided matter, and return them in one fixed shape, the same fields every time.","bubble":"Same fields, <b>every time.</b>"},
+      {"kicker":"AGENT 1 · THE WHY","headline":"Why extract *before* judging?","lead":"A judge needs facts, not paragraphs. Turning every resume into the same tidy shape first is what makes fair, repeatable scoring even possible.","bubble":"Facts first. <b>Then judge.</b>"},
+      {"kicker":"AGENT 1 · WATCH OUT","headline":"Watch out: the *missing* field.","lead":"Some resumes will not have what you asked for. Decide now what happens then.","wrong":"Silently leave it blank and let the score wobble.","right":"Mark it 'not found' so the judge, and you, can see the gap.","bubble":"Name the <b>gap.</b>"},
+
+      {"kicker":"AGENT 2 · THE SHAPE","diagram":"agent2","headline":"Agent 2 turns *facts* into a *ranking.*","lead":"It takes the clean facts and returns a ranked top five, each with the evidence behind its score.","bubble":"Facts in. <b>Ranking out.</b>"},
+      {"kicker":"AGENT 2 · THE STEPS","diagram":"agent2steps","headline":"Inside Agent 2: *four* small steps.","lead":"Turn the JD into a rubric, score each candidate against it with a cited reason, apply any hard rule, then rank and keep the top five.","bubble":"Score. Rule. <b>Rank.</b>"},
+      {"kicker":"AGENT 2 · THE WHY","headline":"Why *evidence* with every score?","lead":"A number alone you cannot trust or defend. A score with the line it came from is checkable, arguable, and fair. Evidence turns a guess into a judgement.","bubble":"No evidence, <b>no trust.</b>"},
+      {"kicker":"AGENT 2 · WATCH OUT","headline":"Watch out: *bias* hiding in the rubric.","lead":"Your criteria quietly decide who rises. Choose them on purpose.","wrong":"'Top college' as a criterion, quietly ranking privilege.","right":"'Evidence of real impact', which anyone can show.","bubble":"Check the <b>criteria.</b>"},
+      {"kicker":"AGENT 2 · THE HARD RULE","headline":"Some calls belong to *code,* not the model.","lead":"Anything that must never bend, a mandatory certification, a firm cutoff, goes in a line of code, not a prompt. The model judges; code enforces.","bubble":"AI judges. <b>Code enforces.</b>"},
+
+      {"kicker":"AGENT 3 · THE SHAPE","diagram":"agent3","headline":"Agent 3 turns a *shortlist* into a *draft.*","lead":"It takes the top five and drafts a clear note to the hiring manager. Then it stops. A human reads and sends.","bubble":"It drafts. <b>You send.</b>"},
+      {"kicker":"AGENT 3 · THE WHY","headline":"Why draft, and then *stop*?","lead":"The moment an agent sends on its own, a small mistake becomes a real one in someone's inbox. Drafting keeps all the speed and removes the danger.","bubble":"Speed, minus the <b>danger.</b>"},
+      {"kicker":"AGENT 3 · WATCH OUT","headline":"Watch out: the *auto-send.*","lead":"It is tempting to let it fire the email itself. Don't.","wrong":"Agent emails the manager the instant it finishes.","right":"Agent drafts; the note waits for your one click.","bubble":"Never <b>auto-send.</b>"},
+
+      {"kicker":"THE HANDSHAKE","diagram":"contract","headline":"What makes three agents *one* pipeline.","lead":"Agent 1's output shape is exactly Agent 2's input shape. Agree the fields once, and the whole thing clicks together.","bubble":"One shape. <b>One contract.</b>"},
+      {"kicker":"THE PAYOFF","headline":"You can now draw the whole agent, *no code.*","lead":"Three boxes, the steps inside each, the why behind every choice, and the guardrails. When we open Colab next, the code is just this picture, typed out.","artifact":"your three-agent design on one page, before any code.","bubble":"Draw it first. <b>Then build.</b>"},
+      {"lens":"opener","mascot":"butterfly","headline":"Design first. *Then* the code is easy.","sub":"You just designed a real agent with nothing but a marker and clear thinking. The notebook next is only this design, made to run.","bubble":"Design it. <b>Then run it.</b>"}
     ]
   },
   "valuenomics": {
@@ -3410,6 +3442,84 @@ function conceptEm(s) {
   return String(s || "").replace(/\*([^*]+)\*/g, "<em>$1</em>");
 }
 
+function _ah(){return '<defs><marker id="ah" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#C17D2A"/></marker></defs>';}
+function _svg(vb,inner){return '<svg viewBox="0 0 '+vb+'" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">'+_ah()+inner+'</svg>';}
+function _esc(t){return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+function _box(x,y,w,h,label,stroke){
+  stroke=stroke||'#3A3A3A'; var sw=(stroke==='#3A3A3A')?1.5:2.5, cx=x+w/2, cy=y+h/2, lines=String(label).split('|');
+  var s='<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="12" fill="#1C1C1C" stroke="'+stroke+'" stroke-width="'+sw+'"/>';
+  if(lines.length===1){s+='<text x="'+cx+'" y="'+(cy+6)+'" text-anchor="middle" fill="#F0F0F0" font-family="Inter,sans-serif" font-size="17" font-weight="600">'+_esc(lines[0])+'</text>';}
+  else{s+='<text x="'+cx+'" y="'+(cy-5)+'" text-anchor="middle" fill="#F0F0F0" font-family="Inter,sans-serif" font-size="16" font-weight="600">'+_esc(lines[0])+'</text><text x="'+cx+'" y="'+(cy+16)+'" text-anchor="middle" fill="#F0F0F0" font-family="Inter,sans-serif" font-size="16" font-weight="600">'+_esc(lines[1])+'</text>';}
+  return s;
+}
+function _cap(cx,y,txt,color){return '<text x="'+cx+'" y="'+y+'" text-anchor="middle" fill="'+(color||'#8A8A8A')+'" font-family="Inter,sans-serif" font-size="12.5" letter-spacing="0.04em">'+_esc(txt)+'</text>';}
+function _arrow(x1,x2,y){return '<line x1="'+x1+'" y1="'+y+'" x2="'+(x2-8)+'" y2="'+y+'" stroke="#C17D2A" stroke-width="2.2" marker-end="url(#ah)"/>';}
+function _harrow(x,y1,y2){return '<line x1="'+x+'" y1="'+y1+'" x2="'+x+'" y2="'+(y2-8)+'" stroke="#C17D2A" stroke-width="2.2" marker-end="url(#ah)"/>';}
+function _step(x,y,w,h,n,label){
+  var cx=x+w/2, lines=String(label).split('|');
+  var s='<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="11" fill="#1C1C1C" stroke="#3A3A3A" stroke-width="1.5"/>';
+  s+='<circle cx="'+(x+24)+'" cy="'+(y+24)+'" r="13" fill="#C17D2A"/><text x="'+(x+24)+'" y="'+(y+28.5)+'" text-anchor="middle" fill="#0A0A0A" font-family="Inter,sans-serif" font-size="14" font-weight="700">'+n+'</text>';
+  if(lines.length===1){s+='<text x="'+cx+'" y="'+(y+h/2+18)+'" text-anchor="middle" fill="#E8E8E8" font-family="Inter,sans-serif" font-size="14.5" font-weight="500">'+_esc(lines[0])+'</text>';}
+  else{s+='<text x="'+cx+'" y="'+(y+h/2+8)+'" text-anchor="middle" fill="#E8E8E8" font-family="Inter,sans-serif" font-size="14" font-weight="500">'+_esc(lines[0])+'</text><text x="'+cx+'" y="'+(y+h/2+27)+'" text-anchor="middle" fill="#E8E8E8" font-family="Inter,sans-serif" font-size="14" font-weight="500">'+_esc(lines[1])+'</text>';}
+  return s;
+}
+function _three(inLbl,inCap,brain,brainCap,outLbl,outCap,outStroke){
+  var y=44,h=88,w=236,xs=[12,332,652],i='';
+  i+=_box(xs[0],y,w,h,inLbl,'#3A3A3A')+_cap(xs[0]+w/2,y+h+24,inCap);
+  i+=_arrow(xs[0]+w,xs[1],y+h/2);
+  i+=_box(xs[1],y,w,h,brain,'#C17D2A')+_cap(xs[1]+w/2,y+h+24,brainCap,'#C17D2A');
+  i+=_arrow(xs[1]+w,xs[2],y+h/2);
+  i+=_box(xs[2],y,w,h,outLbl,outStroke||'#3A3A3A')+_cap(xs[2]+w/2,y+h+24,outCap,(outStroke==='#6FBF8B')?'#6FBF8B':'#8A8A8A');
+  return _svg('900 172',i);
+}
+function renderDiagram(name){
+  switch(name){
+    case 'pipeline': {
+      var y=52,h=78,w=168,xs=[8,214,420,626,824],i='';
+      i+=_box(xs[0],y,w,h,'Resumes','#3A3A3A')+_cap(xs[0]+w/2,y+h+22,'25 PDFs');
+      i+=_arrow(xs[0]+w,xs[1],y+h/2)+_box(xs[1],y,w,h,'Ingest &|Extract','#C17D2A')+_cap(xs[1]+w/2,y+h+22,'AGENT 1','#C17D2A');
+      i+=_arrow(xs[1]+w,xs[2],y+h/2)+_box(xs[2],y,w,h,'Judge &|Prioritise','#C17D2A')+_cap(xs[2]+w/2,y+h+22,'AGENT 2','#C17D2A');
+      i+=_arrow(xs[2]+w,xs[3],y+h/2)+_box(xs[3],y,w,h,'Communicate','#C17D2A')+_cap(xs[3]+w/2,y+h+22,'AGENT 3','#C17D2A');
+      i+=_arrow(xs[3]+w,xs[4],y+h/2)+_box(xs[4],y,w,h,'Human','#6FBF8B')+_cap(xs[4]+w/2,y+h+22,'SENDS','#6FBF8B');
+      return _svg('1000 176',i);
+    }
+    case 'anatomy':  return _three('Something|in','input','The model|(LLM)','the worker','Something|out','output');
+    case 'agent1':   return _three('Resumes','raw files','Ingest &|Extract','the worker','Clean facts','per candidate');
+    case 'agent2':   return _three('Clean facts','from Agent 1','Judge &|Prioritise','the worker','Ranked|top 5','with evidence');
+    case 'agent3':   return _three('Top 5','candidates','Draft the|note','the worker','Draft →|human sends','human gate','#6FBF8B');
+    case 'agent1steps': {
+      var y=20,h=86,w=290,xs=[12,335,658],i='';
+      i+=_step(xs[0],y,w,h,'1','Open each|resume');
+      i+=_arrow(xs[0]+w,xs[1],y+h/2)+_step(xs[1],y,w,h,'2','Pull the|chosen fields');
+      i+=_arrow(xs[1]+w,xs[2],y+h/2)+_step(xs[2],y,w,h,'3','Return one|clean shape');
+      return _svg('960 130',i);
+    }
+    case 'agent2steps': {
+      var y=20,h=86,w=216,xs=[10,254,498,742],i='';
+      i+=_step(xs[0],y,w,h,'1','Turn JD into|a rubric');
+      i+=_arrow(xs[0]+w,xs[1],y+h/2)+_step(xs[1],y,w,h,'2','Score each|with evidence');
+      i+=_arrow(xs[1]+w,xs[2],y+h/2)+_step(xs[2],y,w,h,'3','Apply the|hard rule');
+      i+=_arrow(xs[2]+w,xs[3],y+h/2)+_step(xs[3],y,w,h,'4','Rank, take|top 5');
+      return _svg('980 130',i);
+    }
+    case 'contract': {
+      var i='', fields=['name','years','skills[ ]','tools[ ]','impact'];
+      function fieldbox(x,title,stroke){
+        var s='<rect x="'+x+'" y="34" width="316" height="184" rx="12" fill="#1C1C1C" stroke="'+stroke+'" stroke-width="2"/>';
+        s+='<text x="'+(x+24)+'" y="64" fill="'+stroke+'" font-family="Inter,sans-serif" font-size="13" font-weight="700" letter-spacing="0.08em">'+title+'</text>';
+        for(var k=0;k<fields.length;k++){ s+='<text x="'+(x+24)+'" y="'+(96+k*26)+'" fill="#D8D8D8" font-family="JetBrains Mono,monospace" font-size="15">'+fields[k]+'</text>'; }
+        return s;
+      }
+      i+=fieldbox(24,'AGENT 1 · OUTPUT','#C17D2A');
+      i+=fieldbox(560,'AGENT 2 · INPUT','#C17D2A');
+      i+='<text x="450" y="128" text-anchor="middle" fill="#6FBF8B" font-family="Inter,sans-serif" font-size="34" font-weight="700">=</text>';
+      i+='<text x="450" y="158" text-anchor="middle" fill="#8A8A8A" font-family="Inter,sans-serif" font-size="12.5">same shape</text>';
+      return _svg('900 244',i);
+    }
+    default: return '';
+  }
+}
+
 function renderConcept(screen) {
   const sl = screen.slide || {};
   if (sl.lens === "opener") {
@@ -3434,6 +3544,7 @@ function renderConcept(screen) {
     body += `</div>`;
   }
   (sl.paras || []).forEach(function(p){ body += `<p>${conceptEm(p)}</p>`; });
+  if (sl.diagram) body = '<div class="concept-diagram">' + renderDiagram(sl.diagram) + '</div>' + body;
   const kicker = sl.kicker || sl.practice || "";
   return `
     <div class="concept-slide">

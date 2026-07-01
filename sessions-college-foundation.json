@@ -126,24 +126,7 @@
       "questions": [],
       "hmv": [],
       "prompts": [],
-      "build": [
-        {
-          "title": "Agent 1, Ingest and Extract",
-          "description": "It takes the resume files and returns clean, structured facts for each candidate: name, years, skills, tools, evidence of impact. This is the contract the next agent depends on."
-        },
-        {
-          "title": "Agent 2, Judge and Prioritise",
-          "description": "It takes those facts, scores them against the JD rubric with evidence for each score, applies any hard rules in code, and returns a ranked top 5."
-        },
-        {
-          "title": "Agent 3, Communicate",
-          "description": "It takes the top 5 and drafts a clear recommendation to the hiring manager. It drafts; you read and send. Never auto-send."
-        },
-        {
-          "title": "We'll draw the contract",
-          "description": "We make the handshake explicit: Agent 1's output shape is exactly Agent 2's input shape. Fix the fields once and the pipeline holds."
-        }
-      ],
+      "build": [],
       "test_output": [],
       "output_capture": null,
       "break_after": false,
@@ -153,12 +136,12 @@
       "id": "5",
       "number": 5,
       "day": 1,
-      "title": "Design the Agents (No Code)",
+      "title": "Design the Agent's Logic",
       "start_time": "14:00",
       "end_time": "15:30",
       "duration_minutes": 90,
       "stage": "Design",
-      "set_the_stage": "Now we turn the board into a design, still with no code. First we'll state the pure logic: ingest the resumes, extract the key information, build a rubric from the JD, compare, prioritise the top 5, and communicate them to the hiring manager.\n\nThen we map that logic onto the agent anatomy and split it into three single-purpose agents. By the end of this session you should be able to draw the whole solution on paper before we ever open Colab.\n\nWe'll hold the line on one rule: Agent 3 drafts the note; a human sends it. The agent recommends, you decide."
+      "set_the_stage": "Now we design the thinking of the agent, on the board, before we open Colab. We'll walk through all three agents one at a time: what goes in, what happens inside, why each choice is made, and what to watch out for.\n\nFor each agent you'll see its shape drawn out, then the steps inside it, then the reasoning, then the one thing that must never break. By the end of this session, you can draw the whole solution yourself.\n\nThe build session next won't teach you anything new; it just makes this design run. Design it clearly here, and the code becomes the easy part."
     },
     {
       "questions": [],

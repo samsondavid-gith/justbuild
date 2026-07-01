@@ -4279,7 +4279,7 @@ function refreshJumpMenu() {
       case "concept":
         return scr.slide && scr.slide.lens === "opener"
           ? "Overview"
-          : (scr.slide ? scr.slide.lens.charAt(0).toUpperCase() + scr.slide.lens.slice(1) : "Concept");
+          : (scr.slide ? (scr.slide.kicker || scr.slide.practice || "Concept") : "Concept");
       case "session-start": return "Begin";
       case "stage": return "Set the stage";
       case "step": return `${scr.code || ""} ${scr.step ? scr.step.title : ""}`.trim();

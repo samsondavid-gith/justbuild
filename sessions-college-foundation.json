@@ -94,16 +94,16 @@
       "prompts": [],
       "build": [
         {
-          "title": "I'll hand out the pack",
-          "description": "You'll each get the 25-resume PDF and the one-page job description. Keep your laptops closed for now."
+          "title": "Get the pack: 25 resumes + the JD",
+          "instructions": "Download both PDFs and open them side by side. Resumes: justbuild.orangecaterpillar.com/foundation-material/Resumes.pdf  .  Job description: justbuild.orangecaterpillar.com/foundation-material/Job_Description.pdf . Printed copies are on your desks too."
         },
         {
           "title": "Rank by hand, and time it",
-          "description": "Pick your top 5 to interview, with one line of reasoning each. I'll put a 15-minute timer on the screen. Write down how long it actually takes you."
+          "instructions": "Read the JD, then pick your top 5 to interview, with one line of reasoning each. I'll put a 15-minute timer on the screen. Write down how long it actually takes you."
         },
         {
           "title": "We'll surface the steps together",
-          "description": "A few of you will walk us through how you did it, and we'll draw the shared steps on the board: read, pull the key facts, compare to the JD, rank, recommend. Those steps become our agent design."
+          "instructions": "A few of you will walk us through how you did it, and we'll draw the shared steps on the board: read, pull the key facts, compare to the JD, rank, recommend. Those steps become our agent design."
         }
       ],
       "test_output": [],
@@ -120,7 +120,7 @@
       "end_time": "13:00",
       "duration_minutes": 75,
       "stage": "Design",
-      "set_the_stage": "Here is your problem: 25 resumes and one job description. Recommend the top 5 to interview. You'll do it by hand first, with no AI, and time yourselves.\n\nThis is not busywork. Doing it by hand gives us two things we need later: a real 'before' number to measure the agent against, and a felt sense of the actual steps, read, pull facts, compare to the JD, rank, hand over.\n\nMost of you will not finish all 25 in the time. That is exactly the point. Feel the load, because that is the load the agent is about to lift for you."
+      "set_the_stage": "Here is your problem: 25 resumes and one job description. Recommend the top 5 to interview. You'll do it by hand first, with no AI, and time yourselves.\n\nGrab the pack first. Download the resumes and the job description from justbuild.orangecaterpillar.com/foundation-material, open them side by side, and read the JD before you judge anyone.\n\nThis is not busywork. Doing it by hand gives us two things we need later: a real 'before' number to measure the agent against, and a felt sense of the actual steps, read, pull facts, compare to the JD, rank, hand over.\n\nMost of you will not finish all 25 in the time. That is exactly the point. Feel the load, because that is the load the agent is about to lift for you."
     },
     {
       "questions": [],
@@ -150,23 +150,23 @@
       "build": [
         {
           "title": "Pre-flight",
-          "description": "I'll run the setup cells top to bottom: install, paste key, engine, load the 25 resumes and the JD. Watch for the green confirmations."
+          "instructions": "I'll run the setup cells top to bottom: install, paste key, engine, load the 25 resumes and the JD. Watch for the green confirmations."
         },
         {
           "title": "Agent 1 runs",
-          "description": "We extract structured facts from all 25 resumes and watch messy documents become a clean table."
+          "instructions": "We extract structured facts from all 25 resumes and watch messy documents become a clean table."
         },
         {
           "title": "Agent 2 runs",
-          "description": "We score against the rubric with evidence, apply the hard rule, and reveal the ranked top 5."
+          "instructions": "We score against the rubric with evidence, apply the hard rule, and reveal the ranked top 5."
         },
         {
           "title": "Agent 3 runs",
-          "description": "We draft the recommendation to the hiring manager and read it aloud. We do not send it: that stays your call."
+          "instructions": "We draft the recommendation to the hiring manager and read it aloud. We do not send it: that stays your call."
         },
         {
           "title": "We validate together",
-          "description": "We lay the agent's 5 next to your by-hand 5 and talk through the overlap and the differences. This is how you learn to trust an agent."
+          "instructions": "We lay the agent's 5 next to your by-hand 5 and talk through the overlap and the differences. This is how you learn to trust an agent."
         }
       ],
       "test_output": [],
@@ -192,19 +192,19 @@
       "build": [
         {
           "title": "Pick from the palette",
-          "description": "Choose the use-case closest to your world. Same three agents, different job."
+          "instructions": "Choose the use-case closest to your world. Same three agents, different job."
         },
         {
           "title": "Change only the marked lines",
-          "description": "You'll swap the documents, the extract fields, the rubric, and the hard rule. Everything else stays exactly as it is."
+          "instructions": "You'll swap the documents, the extract fields, the rubric, and the hard rule. Everything else stays exactly as it is."
         },
         {
           "title": "Run it on the fallback",
-          "description": "Leave the fallback switch on. It runs on saved results so nothing blocks you. Flip it off only if you want to go live on your own key."
+          "instructions": "Leave the fallback switch on. It runs on saved results so nothing blocks you. Flip it off only if you want to go live on your own key."
         },
         {
           "title": "Defend one choice",
-          "description": "Pair up and justify one design choice to another pair: why that criterion, why that weight, why that hard rule. Building is shallow; defending is deep."
+          "instructions": "Pair up and justify one design choice to another pair: why that criterion, why that weight, why that hard rule. Building is shallow; defending is deep."
         }
       ],
       "test_output": [],
@@ -251,11 +251,11 @@
       "build": [
         {
           "title": "Name your next agent",
-          "description": "Pick one boring, repeated, judgement-based task in your own life and commit to building an agent for it this week."
+          "instructions": "Pick one boring, repeated, judgement-based task in your own life and commit to building an agent for it this week."
         },
         {
           "title": "Start your portfolio",
-          "description": "Save every agent you build, each with its before-and-after number. That folder is your proof, and it grows from today."
+          "instructions": "Save every agent you build, each with its before-and-after number. That folder is your proof, and it grows from today."
         }
       ],
       "test_output": [],

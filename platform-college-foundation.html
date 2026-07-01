@@ -2466,6 +2466,14 @@
   .ic-step .ic-k { font-family: var(--mono) !important; font-size: clamp(9.5px, 1.15vh, 11.5px) !important; letter-spacing: 0.1em !important; text-transform: uppercase !important; color: var(--text-muted) !important; flex: 0 0 auto !important; width: clamp(52px, 6.2vh, 68px) !important; }
   .ic-step .ic-v { font-size: clamp(13px, 1.65vh, 17px) !important; line-height: 1.32 !important; color: var(--text) !important; }
   .ic-step.ic-agent .ic-k { color: var(--accent) !important; }
+  /* Error-reference rows on concept slides */
+  .concept-errs { display:flex; flex-direction:column; gap: clamp(8px,1.5vh,15px); margin-top: clamp(10px,1.7vh,20px); max-width: 66ch; }
+  .concept-err { display:flex; gap: clamp(12px,1.4vw,20px); align-items:flex-start; }
+  .concept-err-code { font-family: var(--mono); font-weight:700; font-size: clamp(16px,2.2vh,23px); color: var(--accent); background: rgba(193,125,42,0.10); border:1px solid var(--accent-soft); border-radius:8px; padding: clamp(4px,0.7vh,8px) clamp(8px,0.9vw,13px); flex:0 0 auto; min-width: clamp(58px,6vw,84px); text-align:center; line-height:1.1; }
+  .concept-err-txt { min-width:0; }
+  .concept-err-m { font-size: clamp(14px,1.9vh,20px); color: var(--text); line-height:1.34; }
+  .concept-err-m em { color: var(--accent); font-style:normal; font-weight:600; }
+  .concept-err-a { font-size: clamp(12.5px,1.6vh,16.5px); color: var(--text-soft); line-height:1.34; margin-top:2px; }
   /* Build steps -> bigger */
   .build-list { gap: clamp(14px, 2.2vh, 24px) !important; }
   .build-item::before { font-size: clamp(24px, 3.2vh, 32px) !important; }
@@ -2848,7 +2856,8 @@ const CONCEPT_MODULES = {
       {"kicker":"THE API KEY","headline":"An API key is *your password to the AI.*","lead":"The notebook does not contain the model. It phones Google's Gemini over the internet. The key proves the call is yours, and Google counts your usage against it. No key, no answers.","bubble":"It's a key. <b>Treat it like one.</b>"},
       {"kicker":"THE API KEY · CARE","headline":"Keep the key *private.*","lead":"A key is like a house key: fine in your pocket, dangerous on a noticeboard. Never paste it into a chat, a screenshot, or a shared doc.","wrong":"Paste your key into a message or a slide.","right":"Keep it private; if it ever leaks, revoke it and generate a new one.","bubble":"Private. <b>Always.</b>"},
       {"kicker":"FREE VS PAID","headline":"The *free* key works, until everyone leans on it.","lead":"A free Gemini key has tight limits: only so many calls a minute, and it shares capacity with the whole world. A paid, billing-enabled key raises those limits and gives you priority. Same model, steadier access.","bubble":"Same brain. <b>Steadier line.</b>"},
-      {"kicker":"WHAT GOES WRONG","headline":"Live AI *fails in ordinary ways.* Here's the menu.","lead":"Build against a real model in a room of thirty and you will meet these. They are normal, not a sign you broke something. The skill is staying calm when one appears.","chips":["*429* &mdash; too many requests, slow down","*503* &mdash; model busy, try again","*model not found* &mdash; it was renamed","*key error* &mdash; bad or missing key"]},
+      {"kicker":"WHEN IT'S THE SERVER","headline":"A *5xx* code means Google's side, not yours.","lead":"These appear when Google's shared servers are busy. Nothing in your code is wrong. You wait a moment, or you let the OC Brain carry on.","rows":[{"code":"503","means":"*Overloaded.* The model is temporarily busy right now.","act":"Wait a few seconds and run the cell again."},{"code":"500","means":"*Internal error.* A hiccup on Google's servers.","act":"Same fix: pause, then retry."}],"bubble":"5xx? <b>Wait it out.</b>"},
+      {"kicker":"WHEN IT'S YOUR SIDE","headline":"A *4xx* code means your key, quota, or model name.","lead":"These are about your account and your request, not Google being busy. Once you know which one it is, most are quick to handle.","rows":[{"code":"429","means":"*Free tier spent.* Too many calls a minute, or the day's free allowance is used up (Google tightened the free tier in Dec 2025).","act":"Wait for the daily reset, or switch to a paid key. Retrying at once won't help once the day's quota is gone."},{"code":"404","means":"*Model renamed.* The model name was retired or changed.","act":"Point the notebook at the current model name."},{"code":"400","means":"*Key or billing.* Key missing or invalid, or billing not enabled for your region.","act":"Re-paste the key; enable billing if your region needs it."}]},
       {"kicker":"THE OC BRAIN","headline":"When the network wobbles, *the OC Brain holds the line.*","lead":"Live AI leans on a busy, shared server that will sometimes make you wait. The OC Brain is the layer we built so that never becomes your problem: one quiet switch, and the room keeps moving at full pace, on the very same 25 resumes.","bubble":"It just <b>keeps going.</b>"},
       {"kicker":"UNDER THE OC BRAIN","headline":"Real when it can be. *Ready when it can't.*","lead":"When Gemini answers, you see the live model, exactly as built. When it stalls, the OC Brain carries the very same result through, in the identical shape, so the thread never breaks. Same output, none of the waiting.","wrong":"A second, cleverer AI that quietly never fails.","right":"A resilience layer, prepared in advance, so the room never stalls.","bubble":"Seamless by <b>design.</b>"},
       {"kicker":"WHAT YOU'LL SEE","diagram":"pipeline","headline":"Messy files becoming a *clean, ranked answer.*","lead":"Watch for three moments: raw resumes turning into a tidy table (Agent 1), a ranked top five each with a reason (Agent 2), and a drafted recommendation you approve or reject (Agent 3).","bubble":"Watch the <b>three moments.</b>"},
@@ -3621,6 +3630,11 @@ function renderConcept(screen) {
     body += `</div>`;
   }
   (sl.paras || []).forEach(function(p){ body += `<p>${conceptEm(p)}</p>`; });
+  if (sl.rows) {
+    body += '<div class="concept-errs">' + sl.rows.map(function(r){
+      return '<div class="concept-err"><span class="concept-err-code">' + escapeHtml(r.code) + '</span><div class="concept-err-txt"><div class="concept-err-m">' + conceptEm(r.means) + '</div><div class="concept-err-a">' + conceptEm(r.act) + '</div></div></div>';
+    }).join('') + '</div>';
+  }
   if (sl.diagram) body = '<div class="concept-diagram">' + renderDiagram(sl.diagram) + '</div>' + body;
   const kicker = sl.kicker || sl.practice || "";
   return `

@@ -2,1868 +2,338 @@
   "workshop": {
     "title": "JUST BUILD",
     "subtitle": "Foundation",
-    "edition": "college-foundation",
+    "edition": "agent-foundation",
     "session_count": 8,
-    "day1_start": "8:00",
+    "day1_start": "9:00",
     "day1_end": "17:00",
     "day2_start": "9:00",
-    "day2_end": "17:00",
+    "day2_end": "16:30",
     "cohort_label": "C1",
     "cohort_size": 30,
     "cohort_idea_page": 1,
     "stages": [
-      "Ideation",
-      "App",
-      "Website",
-      "Chatbot",
-      "Brochure",
-      "Video",
-      "Pitch deck",
-      "Demo Day"
+      "Agents",
+      "Humanics",
+      "Mechanics",
+      "Design",
+      "Build",
+      "Valuenomics"
     ],
-    "platform_url": "justbuild.orangecaterpillar.com/platform-college-foundation",
-    "prompts_url": "justbuild.orangecaterpillar.com/prompts-college",
+    "platform_url": "justbuild.orangecaterpillar.com/platform-agent-foundation",
+    "prompts_url": "justbuild.orangecaterpillar.com/prompts-agent",
     "oc_application_url": "justbuild.orangecaterpillar.com/apply"
   },
   "sessions": [
     {
       "questions": [],
       "hmv": [],
-      "prompts": [
-        {
-          "number": 1,
-          "title": "Pressure-test your idea",
-          "tool": "Perplexity (perplexity.ai)",
-          "desc": "An honest mentor stress-tests your chosen idea across eight checks and ends with a build, change, or swap verdict.",
-          "content": "I am a college student in India. Over the next two days I am going to build a small, real venture for one real person, using AI tools to build all of it (a simple web app, a website, and more). To be clear, this is not 'an AI product.' AI is just how I build it fast. The venture has to stand on its own by solving a real problem for a real person.\n\nPressure-test my venture idea like a sharp, honest mentor, not a cheerleader. Search the real web for evidence where you can, give sources, use rupees and real Indian examples, and say clearly when something is a guess.\n\nMy idea:\n- The one specific person it is for (a real human, not 'students' or 'people'): [...]\n- The exact moment the problem bites them: [...]\n- What they do today instead: [...]\n- What I will build for that person, in one plain sentence: [...]\n- My way in for this idea (access, a skill, a relationship, a family business): [...]\n\nWork through all eight, specific to my exact person and to India:\n\n1. IS THE PROBLEM REAL. Find evidence that people like this person actually face this problem (forum posts, articles, Reddit, news, anything real). Then give me 3 blunt questions I can ask my person that reveal real pain, about what they did last time, not whether they 'would use an app.'\n\n2. WHO ALREADY SOLVES THIS. Search and name 3 to 5 real things solving this in India today (apps, websites, local services, or the plain manual workaround), with links. For each: what they get right, and the one gap my small local version could own.\n\n3. MY UNFAIR ADVANTAGE. Look at my way in above. Is it a real advantage for this exact idea, or wishful thinking? Tell me honestly how much it is worth, and name one thing I could do with it that a stranger could not.\n\n4. CAN I BUILD IT WITH AI IN TWO DAYS. I will build one simple web page with AI tools, with no backend, no payment gateway, no live tracking, and no app store. What is the smallest version that still solves the core problem? Tell me what to build, what to fake or do by hand, and what to cut.\n\n5. THE MONEY ON ONE CUSTOMER. For one customer, one use: what would they realistically pay, and what does it cost ME to deliver (materials, delivery, my own time) in rupees? If the maths does not work on one customer, say so. (Building it with AI is nearly free. I mean the real-world cost of running the venture.)\n\n6. WHY NOW. What has changed that makes this doable for a student today and not three years ago? If 'why now' is weak, tell me.\n\n7. THE FIRST TEN CUSTOMERS. Given my person and my way in, where do the first ten real customers come from, and how do they hear about it this week without paid ads? If I have no realistic path to ten people, say so plainly.\n\n8. THE RISKIEST ASSUMPTION. The single belief that, if it is wrong, kills this venture. And the fastest way I could test it today with real people, not by guessing.\n\nEnd with a 3-line verdict: build it as-is, build it if I change one thing (which), or swap it for a sharper version of the same idea. Be honest. I would rather hear it now than on Demo Day."
-        },
-        {
-          "number": 2,
-          "title": "Build your ideation board",
-          "tool": "Gemini (gemini.google.com)",
-          "desc": "Turns the validation output into one ideation board: sticky-note zones, a verdict, your founder's bet, and a visual mind map.",
-          "content": "I just had my venture idea pressure-tested. Below is the full mentor analysis. Turn it into a single ideation board I can use as my working canvas, laid out like sticky notes on a brainstorm board.\n\nHere is my analysis to work from:\n[paste the entire output from the previous validation prompt]\n\nBuild the board like this. Use my real venture details, keep every sticky note to six words or fewer, be concrete, and use rupees. If the analysis is missing something, make a sensible best guess and mark it with a (guess) tag.\n\nCENTER: my venture in one line (the person, plus what I build for them).\n\nThen these labelled zones, each as a small cluster of sticky notes:\n1. THE PERSON: who they are, the exact moment, the pain in their words.\n2. WHAT THEY DO TODAY: the current workaround and what it costs them.\n3. WHO ELSE AND MY GAP: the main alternatives, and the one gap I own.\n4. MY UNFAIR ADVANTAGE: my way in that a stranger does not have.\n5. WHAT I AM BUILDING: the one core thing my v1 does, in 2 to 3 notes.\n6. CUT OR FAKE FOR NOW: what I do by hand or leave out of v1.\n7. THE MONEY ON ONE ORDER: price in, cost out, what is left.\n8. WHY NOW: the one change that makes this possible today.\n9. FIRST TEN CUSTOMERS: where they come from and how they hear about it.\n10. RISKIEST ASSUMPTION: the belief that could kill it, and my test for today.\n\nThen one VERDICT sticky: build as-is, change one thing (which), or sharpen.\n\nThen my FOUNDER'S BET as one bold line: 'I am betting that [my person] will [the key action, for example pay 50 to lock an order] because [the reason]. If I am wrong about [the riskiest assumption], this fails.' Fill it with my real details.\n\nAfter the board, give me the same thing as a Mermaid mindmap inside a code block (start it with the word mindmap), with short node labels, so I can paste it into any tool that draws a visual mind map."
-        }
-      ],
+      "prompts": [],
       "build": [],
       "test_output": [],
       "output_capture": null,
       "break_after": true,
       "break_duration_minutes": 10,
-      "phase": "weekend",
+      "phase": "day",
+      "session_type": "build",
       "id": "1",
       "number": 1,
-      "session_type": "build",
       "day": 1,
-      "title": "Ideation",
-      "start_time": "8:30",
-      "end_time": "10:00",
-      "duration_minutes": 90,
-      "stage": "Ideation",
-      "set_the_stage": "Find the one idea worth your two days. Theory first, then pick from the menu, validate it, and turn it into a working ideation board."
-    },
-    {
-      "questions": [],
-      "hmv": [],
-      "prompts": [
-        {
-          "number": 1,
-          "title": "Build your ordering app",
-          "tool": "Gemini (gemini.google.com) or Claude (claude.ai)",
-          "desc": "Builds the complete order-and-store layer as a single index.html.",
-          "content": "Build me a complete, working ordering app as a single file called index.html. I am a beginner, so write all of it for me and make it look clean, modern, and trustworthy, like a real ordering app.\n\nHard rules, follow all of them:\n- One single file: HTML, CSS, and JavaScript all in one index.html. No separate files, no frameworks that need installing, no build step.\n- Plain HTML, CSS, and JavaScript only. You may use one Google Font and inline SVG icons. Nothing else external.\n- No backend, no server, no database, no login, and no API keys of any kind.\n- Save all orders in the browser using localStorage, so an order stays saved after the page is closed and reopened.\n- Mobile-first. It must look and work great on a small phone, with big tap-friendly buttons.\n\nMy venture:\n- Name: [VENTURE NAME, e.g. Daily Dabba]\n- Tagline: [ONE LINE, e.g. Fresh home-style tiffins, delivered daily]\n- Main colour: [a colour or hex, e.g. warm saffron #EFA02B]\n- What I sell (each becomes a card with a name, one short line, and a price in rupees): [LIST 3 TO 6 ITEMS, e.g. Veg Thali, 'dal, sabzi, 4 rotis, rice', 80]\n- How the customer gets it: [e.g. delivered to your hostel by 1 pm]\n- At checkout, collect: [WHAT YOU NEED, e.g. name, phone, hostel and room, delivery day]\n\nWhat the app must do:\n1. Show my items as clean cards with name, description, price, and an Add button with a quantity.\n2. A simple bag that shows what they picked and the total in rupees.\n3. A checkout step that collects the details I listed, with a payment choice of Cash on delivery.\n4. When they tap Place order: create an order with a unique order number (like #DD-1047), the date and time, the items and quantities, the total, the customer's details, and a status of Placed. Save this order in localStorage.\n5. A confirmation screen that looks like a receipt, with the order number and all details.\n6. A My orders view that reads from localStorage and lists all past orders with their number, items, total, and current status.\n\nGive me the full index.html in one code block I can copy, and a short plain-English list of what it does. Do not explain the code line by line."
-        },
-        {
-          "number": 2,
-          "title": "Add tracking and the owner screen",
-          "tool": "Gemini / Claude",
-          "desc": "Adds the status timeline and the private owner-advance screen.",
-          "content": "Here is my current app: [PASTE YOUR CURRENT index.html] (or, if you are in the same chat, write: use the latest version you gave me)\n\nAdd two things. Keep everything that already works, keep it a single index.html file, keep it client-side only with localStorage and no backend, and keep it mobile-first.\n\n1. A status timeline for each order. Every order moves through four stages in order: Placed, Preparing, Out for delivery, Delivered. On the track view, show the order's current stage as a clear visual timeline or progress bar, like the screen people see on food delivery apps. Save the current stage in localStorage with the order.\n2. A private owner screen, reached by adding #owner to the web address, with no login. It lists every saved order with its number, customer, items, total, and current stage, and gives each order an Advance button that moves it one stage forward, stopping at Delivered. After the owner advances an order, the customer's track view shows the new stage when they refresh.\n\nGive me the full updated index.html in one code block, and one line on how I open the owner screen."
-        },
-        {
-          "number": 3,
-          "title": "Tweak one thing",
-          "tool": "Gemini / Claude",
-          "desc": "Reuse for every small change, one at a time.",
-          "content": "Here is my current app: [PASTE YOUR CURRENT index.html] (or, in the same chat: use the latest version you gave me)\n\nMake exactly this one change, and nothing else: [DESCRIBE ONE CHANGE, e.g. make the order number larger and show the delivery day on the receipt]\n\nKeep everything else exactly as it works now. Keep it a single index.html file, client-side only, localStorage only, no backend. Give me the full updated index.html in one code block."
-        },
-        {
-          "number": 4,
-          "title": "Fix what broke",
-          "tool": "Gemini / Claude",
-          "desc": "Use whenever something does not work.",
-          "content": "Here is my current app: [PASTE YOUR CURRENT index.html] (or, in the same chat: use the latest version you gave me)\n\nSomething is not working. Here are the details:\n- What I did: [e.g. I tapped Place order]\n- What I expected: [e.g. a confirmation with an order number]\n- What actually happened: [e.g. nothing happened]\n- Any red error message: [PASTE IT, or write none. If you cannot find one, just describe what happened.]\n\nFind what is causing this and fix it. Keep it a single index.html file, client-side only, localStorage only, no backend and no API keys. Give me the full corrected index.html in one code block, and one plain line telling me what was wrong."
-        }
-      ],
-      "build": [],
-      "test_output": [],
-      "output_capture": "Your live app link (the netlify.app address) and a screen recording of the full order loop.",
-      "break_after": true,
-      "break_duration_minutes": 45,
-      "phase": "weekend",
-      "id": "2",
-      "number": 2,
-      "session_type": "build",
-      "day": 1,
-      "title": "App",
-      "start_time": "10:10",
-      "end_time": "12:10",
-      "duration_minutes": 120,
-      "stage": "App",
-      "set_the_stage": "Build the heart of your venture: a working app where a customer places an order, it is saved, and you move it along by hand. Built with AI, hosted free, live on a phone.",
-      "procedure": {
-        "sections": [
-          {
-            "id": "A",
-            "name": "Set up your two tools",
-            "note": "You need exactly two free tools. If any old guide tells you to install VS Code, GitHub, or a database, ignore it. Two tools, no card, that is all.",
-            "steps": [
-              {
-                "title": "Set up your AI builder",
-                "body": "This is where every line of your app's code comes from.",
-                "detail": [
-                  "Go to the site and sign in free with Google or email. No card needed.",
-                  "Pick one and stay in the same chat all session, so it remembers your app as you build."
-                ],
-                "tool": "Gemini (gemini.google.com)"
-              },
-              {
-                "title": "Set up Netlify",
-                "body": "This is where your app goes live on the real internet, with its own web address, by drag and drop.",
-                "detail": [
-                  "Click Sign up and create a free account with Google or email. No card needed.",
-                  "Stop there once you are signed in. You deploy at Section B."
-                ],
-                "tool": "Netlify (netlify.com)"
-              },
-              {
-                "title": "Know what you do NOT need",
-                "body": "Keep the stack tiny on purpose.",
-                "detail": [
-                  "No database. Your orders save inside the browser itself.",
-                  "No login. Anyone with the link can use it.",
-                  "No payment gateway. You take money in person or on delivery.",
-                  "No VS Code, no GitHub, no command line. Just your AI builder and Netlify."
-                ]
-              }
-            ]
-          },
-          {
-            "id": "B",
-            "name": "Build layer 1: the order page that stores orders",
-            "note": "First build the heart, a page where a customer picks something, places an order, and that order is saved. You will test it before adding anything else.",
-            "steps": [
-              {
-                "title": "Run the App master prompt",
-                "body": "The AI writes one complete index.html: your menu, the order flow, a confirmation with an order number and time, and the saving of each order into the browser.",
-                "detail": [
-                  "Open the prompts page on your laptop and copy the App master prompt.",
-                  "Paste it into your AI builder. Replace every bracket with your real venture: your offerings, their prices, your brand name, and your colours.",
-                  "Send it."
-                ],
-                "tool": "Gemini / Claude",
-                "prompt_ref": 1
-              },
-              {
-                "title": "Read what it made",
-                "body": "You do not need to understand the code. Just check it claims to do the basics: show your items, let a customer order, and save the order.",
-                "detail": [
-                  "Skim the AI's reply. It will tell you what it built.",
-                  "If something important is missing, tell the AI in plain words (there is no place to enter the customer's phone number) and it will fix it."
-                ]
-              },
-              {
-                "title": "Save the code as one file",
-                "body": "Everything for your app lives in one folder.",
-                "detail": [
-                  "In the AI's reply, click Copy on the code block. If your AI tool offers a download as .html, use that instead.",
-                  "Paste it into a plain text editor and save the file as exactly index.html. On Mac TextEdit, first choose Format then Make Plain Text.",
-                  "Put that file in a new folder named after your venture."
-                ]
-              },
-              {
-                "title": "Go live on Netlify right now",
-                "body": "Going live now is what makes order-saving reliable and lets you test on a phone.",
-                "detail": [
-                  "In Netlify, choose Add new site, then Deploy manually (the drag-and-drop area).",
-                  "Drag your venture folder onto it. In under a minute Netlify gives you a live address like yourname.netlify.app.",
-                  "Open it. Your app is now live on the real internet."
-                ],
-                "tool": "Netlify (netlify.com)"
-              }
-            ]
-          },
-          {
-            "id": "C",
-            "name": "Test the store: place a real order",
-            "note": "Before adding anything, prove the heart works. An order placed, and an order that survives.",
-            "steps": [
-              {
-                "title": "Open your live app on your phone",
-                "body": "This is the real thing, on the device your customer will use.",
-                "detail": [
-                  "Type your netlify.app address into your phone's browser, or scan it as a QR.",
-                  "Do not use incognito or private mode. It forgets everything the moment it closes."
-                ],
-                "tool": "Netlify (netlify.com)"
-              },
-              {
-                "title": "Place a test order",
-                "body": "That is your first transaction.",
-                "detail": [
-                  "Browse your offerings, pick one, fill in your own name and phone, and tap Place order.",
-                  "You should see a confirmation with an order number and the time."
-                ]
-              },
-              {
-                "title": "Prove it was stored",
-                "body": "That is your order, saved in the browser, surviving a full close.",
-                "detail": [
-                  "Close the tab completely. Reopen your netlify.app address.",
-                  "Go to the orders or track view. Your order should still be there, with its number and status.",
-                  "If it vanished, you are in incognito or storage is off, so switch to a normal tab and try again."
-                ]
-              }
-            ]
-          },
-          {
-            "id": "D",
-            "name": "Build layer 2: tracking and the owner screen",
-            "note": "Now add the two things that make it feel like a real venture: a page where the customer tracks status, and a private screen where you, the owner, move an order along by hand.",
-            "steps": [
-              {
-                "title": "Save your working copy first",
-                "body": "If the next change breaks something, you have a version that works to fall back to.",
-                "detail": [
-                  "Your layer-1 app works, so protect it. Keep the current index.html safe (Netlify also keeps your last deploy, so you can always roll back)."
-                ]
-              },
-              {
-                "title": "Run the tracking-and-owner prompt",
-                "body": "It tells the AI to add a status timeline (Placed, Preparing, Out for delivery, Delivered) to the track view, and a separate owner screen with an Advance button.",
-                "detail": [
-                  "In the same chat, copy and run the tracking-and-owner prompt.",
-                  "The AI returns the updated index.html. Copy it."
-                ],
-                "tool": "Gemini / Claude",
-                "prompt_ref": 2
-              },
-              {
-                "title": "Update your file and redeploy",
-                "body": "It replaces the live version in seconds, same address.",
-                "detail": [
-                  "Replace your saved index.html with the new code (same filename, same folder).",
-                  "In Netlify, open your site's Deploys and drag the updated folder on."
-                ],
-                "tool": "Netlify (netlify.com)"
-              },
-              {
-                "title": "Test the full loop on your phone",
-                "body": "You just ran an order through your own little operations desk, by hand, no automation. That is the venture working.",
-                "detail": [
-                  "As the customer: place an order, then open the track view. It should show Placed.",
-                  "As the owner: open the owner screen, find that order, tap Advance. The status moves to Preparing.",
-                  "Back as the customer: refresh the track view. It should now read Preparing."
-                ]
-              }
-            ]
-          },
-          {
-            "id": "E",
-            "name": "Make it feel like a real transaction",
-            "note": "Small touches turn a form into a receipt. Make one change at a time.",
-            "steps": [
-              {
-                "title": "Check the transaction details are there",
-                "body": "If any are missing or look off, note exactly which one.",
-                "detail": [
-                  "Each order should show: an order number, the date and time, the items and quantity, the total in rupees, and a payment line such as Pay on delivery."
-                ]
-              },
-              {
-                "title": "Tweak one thing at a time",
-                "body": "One change, test, then the next. Never pile five changes into one prompt.",
-                "detail": [
-                  "Use the tweak prompt for one change at a time, for example make the order number bigger and add the delivery date.",
-                  "After each change: copy the new file, replace index.html, redeploy on Netlify, and look at the live site."
-                ],
-                "tool": "Gemini / Claude",
-                "prompt_ref": 3
-              }
-            ]
-          },
-          {
-            "id": "F",
-            "name": "Test like a customer, and fix what breaks",
-            "note": "Find the problems here, before a real person does.",
-            "steps": [
-              {
-                "title": "Run the full journey twice",
-                "body": "Test it the way real people will.",
-                "detail": [
-                  "On your phone, go all the way through: browse, order, get the confirmation, track it, advance it as owner, see it update. Then do it again with a different item.",
-                  "Ask a friend to open your link on their phone and place an order too."
-                ]
-              },
-              {
-                "title": "If anything is off, use the fix-it prompt",
-                "body": "Repeat until the full loop works.",
-                "detail": [
-                  "Do not panic. Copy the fix-it prompt.",
-                  "Tell the AI exactly what you did, what you expected, and what actually happened. If a button does nothing, open the page menu and copy any red error text it shows, and paste your current file.",
-                  "The AI returns a corrected file. Replace, redeploy on Netlify, and test again."
-                ],
-                "tool": "Gemini / Claude",
-                "prompt_ref": 4
-              },
-              {
-                "title": "The floor (hard checkpoint)",
-                "body": "Finishing and demoing matters more than hand-building every line. No negotiation, just move on.",
-                "detail": [
-                  "If your app is still not working and time is short, take the prebuilt fallback app now, paste your brand name and colours into its config block, and deploy that."
-                ]
-              }
-            ]
-          },
-          {
-            "id": "G",
-            "name": "You are live",
-            "note": "You built and launched a working orders app, powered by AI, with no database and no server.",
-            "steps": [
-              {
-                "title": "Declare success and save your link",
-                "body": "This is your portfolio piece and your demo.",
-                "detail": [
-                  "Your app is live, takes real orders, stores them, lets customers track them, and lets you advance them by hand.",
-                  "Copy your netlify.app link and keep it."
-                ]
-              },
-              {
-                "title": "Make your demo backup",
-                "body": "So if the venue wifi fails on demo day, you still have proof it works.",
-                "detail": [
-                  "Record a short screen capture of the full loop on your phone (order, track, advance, update)."
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "questions": [],
-      "hmv": [],
-      "prompts": [
-        {
-          "number": 1,
-          "title": "Build your website",
-          "tool": "ChatGPT (chatgpt.com)",
-          "desc": "Builds the complete single-page site, with the Order button wired to your app and a keyless WhatsApp button.",
-          "content": "Build me a complete one-page website as a single file called index.html. I am a beginner, so write all of it for me and make it clean, modern, and trustworthy, like a real small-business site.\n\nHard rules, follow all of them:\n- One single file: HTML, CSS, and JavaScript all in one index.html. No separate files, no frameworks, no build step.\n- Plain HTML, CSS, and JavaScript only. You may use one Google Font and inline SVG icons. Nothing else external.\n- No backend, no server, no database, no login, no API keys, and no contact form.\n- Mobile-first. It must look and work great on a small phone, with big tap-friendly buttons.\n- One scrolling page only, not multiple pages.\n\nMy venture:\n- Name: [VENTURE NAME, e.g. Daily Dabba]\n- Main colour: [a colour or hex, e.g. warm saffron #EFA02B]\n- The 5-second line (what I do and for whom): [ONE LINE, e.g. Fresh home-style tiffins, delivered to your hostel by 1 pm]\n- The visitor's problem I open with: [ONE LINE, e.g. Tired of greasy mess food every single day?]\n- What they get (the outcome, in plain words): [e.g. A fresh, home-cooked lunch you actually look forward to]\n- 3 benefit lines: [e.g. Cooked fresh daily / Delivered to your room / Pay on delivery]\n- Photos I will put in the same folder (use these exact filenames): [e.g. hero.jpg, thali1.jpg]\n- My real name and one line of trust: [e.g. Cooked by Asha aunty in her own kitchen for 12 years]\n- My order app link (the main button opens this in a new tab): [PASTE YOUR APP netlify.app LINK]\n- My WhatsApp number and a ready message: [e.g. 919876543210, message: Hi, I saw your site and want to order]\n\nBuild the page with these parts, top to bottom:\n1. A hero: the 5-second line as a big headline, a short subline, and one main button that says Order now and opens my app link in a new tab.\n2. A short section that opens with the visitor's problem, then the outcome they get.\n3. The 3 benefits as simple cards or rows.\n4. A trust section with my photo (use hero.jpg), my name, and my line of trust.\n5. A simple How it works in 2 or 3 steps.\n6. A footer with a WhatsApp button that opens a chat with my number and my ready message already typed.\n\nGive me the full index.html in one code block I can copy, and a short plain-English list of what it includes. Do not explain the code line by line."
-        },
-        {
-          "number": 2,
-          "title": "Tweak one thing",
-          "tool": "ChatGPT",
-          "desc": "Reuse for every small change, one at a time, including pointing the Order button or setting WhatsApp.",
-          "content": "Here is my current website: [PASTE YOUR CURRENT index.html] (or, in the same chat: use the latest version you gave me)\n\nMake exactly this one change, and nothing else: [DESCRIBE ONE CHANGE, e.g. make the Order now button open this link in a new tab: my-app.netlify.app / or: change the headline to ... / or: swap the hero photo to thali2.jpg]\n\nKeep everything else exactly as it works now. Keep it a single index.html file, client-side only, no backend, no form, mobile-first. Give me the full updated index.html in one code block."
-        },
-        {
-          "number": 3,
-          "title": "Fix what broke",
-          "tool": "ChatGPT",
-          "desc": "Use whenever something does not work, a broken photo is the most common one.",
-          "content": "Here is my current website: [PASTE YOUR CURRENT index.html] (or, in the same chat: use the latest version you gave me)\n\nSomething is not working. Here are the details:\n- What I did: [e.g. I opened the live site on my phone]\n- What I expected: [e.g. my photo to show in the hero]\n- What actually happened: [e.g. a broken-image icon appears]\n- Any red error message: [PASTE IT, or write none. If you cannot find one, just describe what happened.]\n\nNote: if a photo is broken, it is usually because the filename in the page does not exactly match the image file in my folder. My image files are named: [LIST THE EXACT FILENAMES, e.g. hero.jpg, thali1.jpg]\n\nFind what is causing this and fix it. Keep it a single index.html file, client-side only, no backend, no API keys. Give me the full corrected index.html in one code block, and one plain line telling me what was wrong."
-        }
-      ],
-      "build": [],
-      "test_output": [],
-      "output_capture": "Your live website link (the netlify.app address), with the Order button opening your app and a working WhatsApp button.",
-      "break_after": true,
-      "break_duration_minutes": 10,
-      "phase": "weekend",
-      "id": "3",
-      "number": 3,
-      "session_type": "build",
-      "day": 1,
-      "title": "Website",
-      "start_time": "12:55",
-      "end_time": "14:25",
-      "duration_minutes": 90,
-      "stage": "Website",
-      "set_the_stage": "Your app is the shop, your website is the front door. One scrolling page that makes a stranger trust you and tap one button into your app.",
-      "procedure": {
-        "sections": [
-          {
-            "id": "A",
-            "name": "Get ready: the different tool and your real materials",
-            "note": "A website is mostly real words and real photos. Get them onto your laptop before you prompt.",
-            "steps": [
-              {
-                "title": "Open ChatGPT",
-                "body": "Splitting the work across two tools keeps you inside each one's free daily limit.",
-                "detail": [
-                  "Sign in free with Google or email. No card.",
-                  "Use ChatGPT for the website even though you used Gemini or Claude for the app. (If you built the app in ChatGPT, use Gemini or Claude here instead. The rule is just: a different tool than your app.)",
-                  "Stay in one chat for the whole website."
-                ],
-                "tool": "ChatGPT (chatgpt.com)"
-              },
-              {
-                "title": "Get your photos off your phone and onto your laptop",
-                "body": "Move 2 or 3 of your product photos to your laptop now.",
-                "detail": [
-                  "Easiest ways: send them to yourself on WhatsApp and download from WhatsApp Web, or email them to yourself, or use a cable.",
-                  "Save them somewhere you can find, like your Desktop.",
-                  "No good photos? Use the provided placeholder images from the floor pack instead."
-                ]
-              },
-              {
-                "title": "Write down your text bits",
-                "body": "Have your words ready before you prompt.",
-                "detail": [
-                  "Venture name and your 5-second line (what you do and for whom).",
-                  "Your offer in plain words, as the outcome the customer gets.",
-                  "Your app's live link, the netlify.app address from the App session.",
-                  "Your WhatsApp number in the correct format: country code first, no plus sign, no spaces. For India that is 91 then your 10 digits, like 919876543210."
-                ]
-              }
-            ]
-          },
-          {
-            "id": "B",
-            "name": "Build the page with one prompt",
-            "note": "One prompt builds your whole single-page site. After that, every change is one small thing at a time.",
-            "steps": [
-              {
-                "title": "Run the Website master prompt",
-                "body": "ChatGPT writes one index.html.",
-                "detail": [
-                  "Copy the Website master prompt from the prompts page, paste it into ChatGPT.",
-                  "Fill every blank with your materials. For the photos, decide their names now and use those exact names in the prompt, like hero.jpg and thali1.jpg.",
-                  "Send it."
-                ],
-                "tool": "ChatGPT (chatgpt.com)",
-                "prompt_ref": 1
-              },
-              {
-                "title": "Read what it made",
-                "body": "If something is missing, say so in plain words and it redoes it.",
-                "detail": [
-                  "Check the reply mentions the parts you need: a clear top line, your offer, places for your photos, an Order button, and a WhatsApp button."
-                ]
-              },
-              {
-                "title": "Save the code as index.html (do this carefully, it is the step that trips most people)",
-                "body": "Save it the careful way so it does not secretly become a .txt.",
-                "detail": [
-                  "In ChatGPT, hover over the code block and click the Copy button.",
-                  "On Windows: open Notepad. Paste. Click File, then Save As. Find the box Save as type and change it to All Files. Set Encoding to UTF-8. In the file name box type the name inside quotes: \"index.html\". The quotes stop Notepad from secretly adding .txt. Click Save.",
-                  "On Mac: open TextEdit. First click Format, then Make Plain Text. Paste. Click File, then Save. Name it index.html. If it asks about an extension, choose to use .html, not .txt. Click Save.",
-                  "Make a new folder named venture-website and put this file inside it. Keep it separate from your app folder."
-                ]
-              }
-            ]
-          },
-          {
-            "id": "C",
-            "name": "Put in your real photos and words",
-            "note": "This is the step that makes a site look real instead of fake.",
-            "steps": [
-              {
-                "title": "Move your photos into the folder and rename them",
-                "body": "The name in the folder must match the name in the page exactly, or the photo will not show.",
-                "detail": [
-                  "Drag your 2 or 3 photos from your Desktop into the venture-website folder, next to index.html.",
-                  "Rename each to match exactly what you put in the prompt. On Windows: if you cannot see the .jpg ending, open the folder, click the View menu, and tick File name extensions. Then right-click a photo, choose Rename, and type hero.jpg (keep the .jpg). On Mac: click the photo's name once, wait, type hero.jpg, press Enter.",
-                  "Use simple names with no spaces and no capital letters."
-                ]
-              },
-              {
-                "title": "Replace every placeholder word",
-                "body": "Make it real.",
-                "detail": [
-                  "Read the page top to bottom. Replace any filler or lorem ipsum with your real words, real prices, and real delivery details."
-                ]
-              }
-            ]
-          },
-          {
-            "id": "D",
-            "name": "Wire the two buttons",
-            "note": "Your site is the front door. One button into your shop, one to you.",
-            "steps": [
-              {
-                "title": "Point the Order button at your app",
-                "body": "This connects the front door to the shop you built in the App session.",
-                "detail": [
-                  "Tell ChatGPT: Make the Order now button open this link in a new tab, and paste your app's netlify.app link."
-                ],
-                "tool": "ChatGPT (chatgpt.com)",
-                "prompt_ref": 2
-              },
-              {
-                "title": "Set up the WhatsApp button",
-                "body": "No form, no backend. It just opens WhatsApp into a chat with you.",
-                "detail": [
-                  "Tell ChatGPT: Make the WhatsApp button open a chat with the number 919876543210 (use your real number, country code first, no plus, no spaces), with this message already typed: Hi, I saw your website and want to order."
-                ]
-              }
-            ]
-          },
-          {
-            "id": "E",
-            "name": "Go live on Netlify",
-            "note": "Putting it online is free, so do it now and test the real thing.",
-            "steps": [
-              {
-                "title": "Deploy the website folder",
-                "body": "In under a minute Netlify gives you a second live address, separate from your app. That is your website link.",
-                "detail": [
-                  "Go to app.netlify.com and sign in.",
-                  "Click Add new site, then Deploy manually. A page opens with a box that says drag and drop your folder here. (If you cannot find it, go straight to app.netlify.com/drop.)",
-                  "Drag your whole venture-website folder (with index.html and your photos inside) onto that box."
-                ],
-                "tool": "Netlify (netlify.com)"
-              },
-              {
-                "title": "Open it on your phone and check everything",
-                "body": "Check it on the real device.",
-                "detail": [
-                  "Type the website address into your phone, or scan it. Do not use incognito.",
-                  "Check: clear within five seconds, photos actually load, the Order button opens your app, the WhatsApp button opens a real chat with the message ready."
-                ]
-              }
-            ]
-          },
-          {
-            "id": "F",
-            "name": "Test, refine, and fix",
-            "note": "Find the rough spots before a stranger does.",
-            "steps": [
-              {
-                "title": "Run the 5-second test on a friend",
-                "body": "If they hesitate, your top line or button is not clear enough.",
-                "detail": [
-                  "Show them the live site for five seconds, then ask: what do we do, and what would you tap?",
-                  "Fix wording one change at a time with the tweak prompt, then redeploy and look again."
-                ]
-              },
-              {
-                "title": "If something breaks, use the fix-it prompt",
-                "body": "A broken photo is the most common one.",
-                "detail": [
-                  "To give ChatGPT your current file: open your index.html in Notepad or TextEdit, press Ctrl+A (Windows) or Cmd+A (Mac) to select all, Ctrl+C or Cmd+C to copy, and paste it into ChatGPT. Or, if you are in the same chat, just write use the latest version you gave me.",
-                  "Tell it exactly what you did, expected, and what happened.",
-                  "It returns a corrected file. Save it over your old index.html the same careful way as B3."
-                ],
-                "tool": "ChatGPT (chatgpt.com)",
-                "prompt_ref": 3
-              },
-              {
-                "title": "Redeploy your changes",
-                "body": "It replaces the live version in seconds, same address.",
-                "detail": [
-                  "Open your site in Netlify, click the Deploys tab, and drag your updated venture-website folder onto the drop area there."
-                ],
-                "tool": "Netlify (netlify.com)"
-              },
-              {
-                "title": "The floor (hard checkpoint)",
-                "body": "Finishing and demoing beats hand-building every line. No negotiation.",
-                "detail": [
-                  "If the site still is not working and time is short, take the prebuilt website fallback, paste your name, colour, tagline, one photo, your app link, and your WhatsApp number into its config block, and deploy that."
-                ]
-              }
-            ]
-          },
-          {
-            "id": "G",
-            "name": "You are live with two connected links",
-            "note": "You now have a front door and a shop, joined together.",
-            "steps": [
-              {
-                "title": "Save both links",
-                "body": "Both are live, and the website's Order button opens the app.",
-                "detail": [
-                  "Your website (the front door) and your app (the shop) are both live. Save both addresses."
-                ]
-              },
-              {
-                "title": "Make your demo backup",
-                "body": "This is your wifi-failure backup for demo day.",
-                "detail": [
-                  "Screen-record the journey on your phone: land on the site, tap Order and watch the app open, tap WhatsApp and watch the chat open."
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "questions": [],
-      "hmv": [],
-      "prompts": [
-        {
-          "number": 1,
-          "title": "Add your chatbot",
-          "tool": "ChatGPT (or Gemini / Claude if ChatGPT is at its limit)",
-          "desc": "Adds the scripted, keyless bot to your existing website. Tweaks and fixes reuse the Website tweak and fix-it prompts.",
-          "content": "Add a simple chatbot to my existing website. Here is my current website: [PASTE YOUR CURRENT index.html] (or, in the same chat: use the latest version of my website you gave me)\n\nHard rules, follow all of them:\n- Keep everything on my website exactly as it works now. Just add the chatbot to it.\n- Keep it one single index.html file. No separate files, no frameworks, no build step.\n- The chatbot must be fully scripted. It only ever replies with the answers I give you below. It must NOT use any AI, any chatbot service, any API key, or any server. Plain JavaScript only, written inside the page.\n- Mobile-first, and match the look and colours of my existing site.\n\nMy bot:\n- Name: [BOT NAME, e.g. Dabba Didi]\n- Greeting it shows first: [ONE LINE, e.g. Hi, I'm Dabba Didi! Ask me anything about today's tiffin.]\n- My questions and answers (reply with the exact answer when the customer asks something like the question):\n  1. Q: [e.g. Do you deliver to my hostel?]  A: [e.g. Yes! Free delivery to all hostels near campus, by 1 pm.]\n  2. Q: [...]  A: [...]\n  3. Q: [...]  A: [...]\n  4. Q: [...]  A: [...]\n  5. Q: [...]  A: [...]\n  (add up to 7)\n- Fallback when it does not understand: [ONE LINE, e.g. I'm not sure about that one! Message us on WhatsApp and we'll help.]\n- My WhatsApp for the fallback: [NUMBER, country code first, no plus, no spaces, e.g. 919876543210]\n\nWhat to build:\n1. A small chat bubble button fixed in the bottom corner of every screen. Tapping it opens a small chat panel, and tapping again closes it.\n2. When the panel opens, the bot shows its greeting, then my questions as tappable buttons.\n3. Tapping a question button shows my exact answer for it.\n4. There is also a text box where the customer can type. Match their typed words to the closest of my questions and show that answer.\n5. If nothing matches, show my fallback line with a WhatsApp button that opens a chat with my number and a short ready message.\n6. The whole thing only ever says the greeting, the answers, and the fallback I gave. It never makes anything up.\n\nGive me the full updated index.html in one code block I can copy, and one plain line on where the chat bubble appears. Do not explain the code line by line."
-        }
-      ],
-      "build": [],
-      "test_output": [],
-      "output_capture": "Your live website with the working scripted chatbot, and a screen recording of it answering a question.",
-      "break_after": true,
-      "break_duration_minutes": 10,
-      "phase": "weekend",
-      "id": "4",
-      "number": 4,
-      "session_type": "build",
-      "day": 1,
-      "title": "Chatbot",
-      "start_time": "14:35",
-      "end_time": "15:05",
-      "duration_minutes": 30,
-      "stage": "Chatbot",
-      "set_the_stage": "Add a scripted, keyless chatbot to your website that answers your real customer questions in your own brand voice. No AI, no key, no bill. The payoff: ask it a question and watch it answer.",
-      "procedure": {
-        "sections": [
-          {
-            "id": "A",
-            "name": "Write your bot before you build it",
-            "note": "A scripted bot is only as good as what you write. Do the writing first and the build is quick. This is the part only you can do.",
-            "steps": [
-              {
-                "title": "Name your bot and write its greeting",
-                "body": "A named helper feels friendly, a blank box feels empty.",
-                "detail": [
-                  "Pick a short, friendly name in your brand voice, like Dabba Didi or Tree Buddy.",
-                  "Write the one line it says first, like Hi, I'm Dabba Didi! Ask me anything about today's tiffin."
-                ]
-              },
-              {
-                "title": "List your top 5 to 7 real questions",
-                "body": "Real questions only, not ones you wish they asked.",
-                "detail": [
-                  "Write the questions customers actually ask, in the words they would use: Do you deliver to my hostel? What is today's menu? How much is it? How do I pay? Is it veg? How do I order?"
-                ]
-              },
-              {
-                "title": "Write the perfect answer to each, in your voice",
-                "body": "Warm, like a WhatsApp reply.",
-                "detail": [
-                  "One or two warm lines per answer, with your real details. For example: Yes! Free delivery to all hostels near campus, by 1 pm every day."
-                ]
-              },
-              {
-                "title": "Write your fallback line and have your WhatsApp ready",
-                "body": "A scripted bot cannot answer everything, and that is fine.",
-                "detail": [
-                  "One friendly line for when the bot does not know something, pointing to WhatsApp: I'm not sure about that one! Message us on WhatsApp and we'll sort it out.",
-                  "Write your WhatsApp number in the right format: country code first, no plus, no spaces, like 919876543210."
-                ]
-              },
-              {
-                "title": "Keep this whole list open",
-                "body": "You will paste them into the prompt next.",
-                "detail": [
-                  "Keep your name, greeting, question-and-answer pairs, fallback, and number in a notes app or on paper."
-                ]
-              }
-            ]
-          },
-          {
-            "id": "B",
-            "name": "Build the bot into your website",
-            "note": "You are adding the bot to the website you already built, not making a new file.",
-            "steps": [
-              {
-                "title": "Open your website chat in ChatGPT",
-                "body": "So it still remembers your site.",
-                "detail": [
-                  "Go back to the ChatGPT chat where you built your website.",
-                  "Cannot find that chat? Open a new chat. You will paste your website file in the next step."
-                ],
-                "tool": "ChatGPT (chatgpt.com)"
-              },
-              {
-                "title": "Give ChatGPT your current website file",
-                "body": "It needs your current site to add the bot to it.",
-                "detail": [
-                  "If you are in the same chat as your website, simply write: Use the latest version of my website you gave me.",
-                  "If you are in a new chat: open your index.html. Right-click the file, choose Open with, and pick Notepad (Windows) or TextEdit (Mac). Press Ctrl+A (Windows) or Cmd+A (Mac) to select all, then Ctrl+C or Cmd+C to copy. Paste it into ChatGPT."
-                ]
-              },
-              {
-                "title": "Run the Chatbot master prompt",
-                "body": "Fill in your bot from Section A.",
-                "detail": [
-                  "Copy the Chatbot master prompt from the prompts page and paste it in.",
-                  "Fill in your bot name, greeting, your question-and-answer pairs from Section A, your fallback line, and your WhatsApp number.",
-                  "Send it."
-                ],
-                "tool": "ChatGPT (chatgpt.com)",
-                "prompt_ref": 1
-              },
-              {
-                "title": "Read what it made",
-                "body": "If a question is missing, tell it in plain words and it will add it.",
-                "detail": [
-                  "ChatGPT returns your full website file with a small chat bubble added in the corner.",
-                  "Check it mentions: a chat bubble that opens, buttons for your questions, that it answers only from your script, and a fallback to WhatsApp."
-                ]
-              }
-            ]
-          },
-          {
-            "id": "C",
-            "name": "Save the updated file (carefully)",
-            "note": "This replaces your website file with the new one that has the bot inside it. Save it the careful way so it does not become a .txt.",
-            "steps": [
-              {
-                "title": "Copy the new code",
-                "body": "Get the new file out of ChatGPT.",
-                "detail": [
-                  "Hover over the code block in ChatGPT and click Copy."
-                ]
-              },
-              {
-                "title": "Save over your website file",
-                "body": "Replace the old index.html in your venture-website folder.",
-                "detail": [
-                  "On Windows: open Notepad, paste, click File then Save As. Set Save as type to All Files. Set Encoding to UTF-8. Type the name in quotes: \"index.html\". Save it into your venture-website folder and replace the old index.html.",
-                  "On Mac: open TextEdit, click Format then Make Plain Text, paste, click File then Save, name it index.html, choose to use .html not .txt, and replace the old file in your venture-website folder."
-                ]
-              },
-              {
-                "title": "Check the folder is still complete",
-                "body": "Nothing else changes.",
-                "detail": [
-                  "The venture-website folder should still hold your index.html plus your photo files."
-                ]
-              }
-            ]
-          },
-          {
-            "id": "D",
-            "name": "Put it live",
-            "note": "Update the same site, same address.",
-            "steps": [
-              {
-                "title": "Redeploy on Netlify",
-                "body": "Your live site updates at the same address, now with the bot.",
-                "detail": [
-                  "Sign in and open your website site.",
-                  "Click the Deploys tab. Drag your whole venture-website folder onto the drop area there.",
-                  "In a few seconds your live site updates."
-                ],
-                "tool": "Netlify (netlify.com)"
-              }
-            ]
-          },
-          {
-            "id": "E",
-            "name": "Test your bot (the payoff)",
-            "note": "This is the fun part. Go talk to your bot.",
-            "steps": [
-              {
-                "title": "Open your live website on your phone",
-                "body": "On the real device.",
-                "detail": [
-                  "Type your website address into your phone's browser. Do not use incognito."
-                ]
-              },
-              {
-                "title": "Find the chat bubble and open it",
-                "body": "Your bot should greet you by name.",
-                "detail": [
-                  "Look in the bottom corner for the chat bubble and tap it."
-                ]
-              },
-              {
-                "title": "Tap each question button",
-                "body": "Confirm each answer is correct and sounds like you.",
-                "detail": [
-                  "Tap each of your question buttons one by one."
-                ]
-              },
-              {
-                "title": "Type a question in your own words",
-                "body": "This is the moment: your bot just answered, in your voice, on your live site.",
-                "detail": [
-                  "Type one of your real questions the way a customer would, and watch it answer."
-                ]
-              },
-              {
-                "title": "Test the fallback",
-                "body": "Confirm the way out works.",
-                "detail": [
-                  "Type something random it does not know. Confirm it gives your friendly WhatsApp fallback, and that tapping it opens a WhatsApp chat with you."
-                ]
-              }
-            ]
-          },
-          {
-            "id": "F",
-            "name": "Tweak and fix",
-            "note": "One change at a time, then save and redeploy. Tweaks and fixes reuse the Website tweak and fix-it prompts, since the bot lives in the same website file.",
-            "steps": [
-              {
-                "title": "Change an answer or add a question",
-                "body": "Reuse the Website tweak prompt.",
-                "detail": [
-                  "In the same chat, say exactly one change, like Change the delivery answer to: we deliver to North Campus only, or Add a question: do you have Jain food? Answer: Yes, just tell us when you order.",
-                  "Save the new file the careful way (Section C) and redeploy (Section D)."
-                ],
-                "tool": "ChatGPT (chatgpt.com)"
-              },
-              {
-                "title": "If the bubble will not open or a button breaks",
-                "body": "Reuse the Website fix-it prompt.",
-                "detail": [
-                  "Tell ChatGPT what you did, what you expected, and what happened. Use use the latest version you gave me, or paste your file.",
-                  "Save the corrected file and redeploy."
-                ],
-                "tool": "ChatGPT (chatgpt.com)"
-              },
-              {
-                "title": "The floor (hard checkpoint)",
-                "body": "Finishing and demoing beats hand-building every line. No negotiation.",
-                "detail": [
-                  "If the bot still will not work and time is short, take the prebuilt website-with-bot fallback, paste your bot name, greeting, question-and-answer pairs, and WhatsApp number into its config block, and deploy that."
-                ]
-              }
-            ]
-          },
-          {
-            "id": "G",
-            "name": "The win",
-            "note": "Name it out loud. This one deserves a moment.",
-            "steps": [
-              {
-                "title": "Say what just happened",
-                "body": "Facilitator names the achievement.",
-                "detail": [
-                  "You wrote a chatbot, and it answered a real question in your own brand voice, on your live website, with no key and no bill. You did that."
-                ]
-              },
-              {
-                "title": "Make your demo backup",
-                "body": "Your wifi-failure backup for demo day.",
-                "detail": [
-                  "Screen-record opening the bubble, tapping a button, and typing a question to get an answer."
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "questions": [],
-      "hmv": [],
-      "prompts": [
-        {
-          "number": 1,
-          "title": "Build your brochure",
-          "tool": "Claude (claude.ai)",
-          "desc": "Builds the complete one-page flyer with a QR to your live website.",
-          "content": "Build me a single-page brochure as one file called brochure.html. I am a beginner, so write all of it and make it look beautiful, modern, and trustworthy, like a flyer I would be proud to forward on WhatsApp.\n\nHard rules:\n- One single file: HTML and CSS in one brochure.html. No frameworks, no build step.\n- Plain HTML and CSS only. One Google Font is fine.\n- It is a static one-page flyer. No buttons that need to work, no orders, no login, no database.\n- Make it portrait shape, like a phone screen or an A4 flyer, so it looks good as a forwarded image and prints cleanly on one page with no scrolling.\n- Use my one photo by its exact filename.\n\nMy brochure:\n- Venture name: [e.g. Asha's Tiffins]\n- Main colour: [e.g. warm saffron #EFA02B]\n- Hero line, the one big message: [e.g. Fresh home-style tiffins, delivered daily]\n- The offer in one line: [e.g. 80 a day, free delivery to all campus hostels]\n- 3 short benefit lines: [e.g. Cooked fresh every morning / Veg and non-veg / Pay on delivery]\n- My photo file, in the same folder: [e.g. hero.jpg]\n- My name and contact to show: [e.g. Asha, WhatsApp 919876543210]\n- A QR code that opens my website: [PASTE YOUR WEBSITE netlify.app LINK]\n\nBuild it like this:\n1. My photo as a strong visual, with the venture name and hero line on it or beside it.\n2. The offer, big and clear.\n3. The 3 benefits as simple lines or small icons.\n4. My name and WhatsApp contact, clearly visible.\n5. A QR code in a corner that, when scanned, opens my website link. Use a reliable free method so it shows up as an image.\n6. Everything on one page, no scrolling, so it captures as one clean image.\n\nGive me the full brochure.html in one code block I can copy, and one plain line on how to save it as an image or PDF. Do not explain the code line by line."
-        }
-      ],
-      "build": [],
-      "test_output": [],
-      "output_capture": "Your brochure saved as an image or PDF, with a QR to your live website.",
-      "break_after": true,
-      "break_duration_minutes": 10,
-      "phase": "weekend",
-      "id": "5",
-      "number": 5,
-      "session_type": "build",
-      "day": 2,
-      "title": "Brochure",
+      "title": "Agents in the Real World",
       "start_time": "9:00",
       "end_time": "9:45",
       "duration_minutes": 45,
-      "stage": "Brochure",
-      "set_the_stage": "One forwardable picture that sells for you. A single brochure.html built in Claude, exported to an image or PDF, with a QR back to your live site.",
-      "procedure": {
-        "sections": [
-          {
-            "id": "A",
-            "name": "Get your words, photo, and site link ready",
-            "note": "You already made most of this. Pull it together first.",
-            "steps": [
-              {
-                "title": "Pull your words from what you already built",
-                "body": "Reuse your existing work.",
-                "detail": [
-                  "From your ideation board and website: your hero line, your one-line offer, three short benefits, and your name."
-                ]
-              },
-              {
-                "title": "Pick your one best photo and put it on your laptop",
-                "body": "One strong, bright, real photo of your product.",
-                "detail": [
-                  "Move it to your laptop by WhatsApp-to-self, email, or cable.",
-                  "Rename it simply, no spaces, like hero.jpg. (On Windows, turn on View then File name extensions first so you can see the .jpg.)"
-                ]
-              },
-              {
-                "title": "Keep your website link handy",
-                "body": "The brochure's QR code will point to it.",
-                "detail": [
-                  "Copy your website's netlify.app link."
-                ]
-              }
-            ]
-          },
-          {
-            "id": "B",
-            "name": "Build the brochure in Claude",
-            "note": "The simplest build of the workshop.",
-            "steps": [
-              {
-                "title": "Open Claude",
-                "body": "This is a fresh tool today, so you have full free room here.",
-                "detail": [
-                  "Sign in free."
-                ],
-                "tool": "Claude (claude.ai)"
-              },
-              {
-                "title": "Run the Brochure master prompt",
-                "body": "Claude writes one brochure.html.",
-                "detail": [
-                  "Copy the Brochure master prompt, paste into Claude, and fill every blank: name, colour, hero line, offer, three benefits, your photo's filename, your name and WhatsApp, and your website link for the QR.",
-                  "Send it."
-                ],
-                "tool": "Claude (claude.ai)",
-                "prompt_ref": 1
-              },
-              {
-                "title": "Read what it made",
-                "body": "If anything is missing, say so and it redoes it.",
-                "detail": [
-                  "Check the reply describes a one-page flyer with your photo, hero line, offer, benefits, contact, and a QR."
-                ]
-              }
-            ]
-          },
-          {
-            "id": "C",
-            "name": "Save the file and add your photo",
-            "note": "Save it the careful way so it does not become a .txt.",
-            "steps": [
-              {
-                "title": "Save the code as brochure.html (the careful way)",
-                "body": "Put it in a new folder named brochure.",
-                "detail": [
-                  "Click Copy on Claude's code block.",
-                  "Windows: open Notepad, paste, File then Save As, set Save as type to All Files, type \"brochure.html\" in quotes, Save.",
-                  "Mac: open TextEdit, Format then Make Plain Text, paste, File then Save, name it brochure.html, use .html not .txt."
-                ]
-              },
-              {
-                "title": "Put your photo in the same folder",
-                "body": "The name must match exactly what you put in the prompt.",
-                "detail": [
-                  "Drag your hero.jpg into the brochure folder, next to brochure.html."
-                ]
-              }
-            ]
-          },
-          {
-            "id": "D",
-            "name": "See it and make a shareable file",
-            "note": "Turn the page into a file you can forward and print.",
-            "steps": [
-              {
-                "title": "Open the brochure",
-                "body": "Check the photo shows, the words are right, and the QR appears.",
-                "detail": [
-                  "Double-click brochure.html. It opens in your browser."
-                ]
-              },
-              {
-                "title": "Turn it into an image or PDF",
-                "body": "This file is what you forward and print.",
-                "detail": [
-                  "PDF: press Ctrl+P (Windows) or Cmd+P (Mac), choose Save as PDF, and save.",
-                  "Image: take a clean screenshot. Windows: press Win+Shift+S and drag over the brochure. Mac: press Cmd+Shift+4 and drag over the brochure."
-                ]
-              },
-              {
-                "title": "Test the QR",
-                "body": "It should offer to open your website.",
-                "detail": [
-                  "Open your phone camera and point it at the QR on your screen. If the QR did not appear at all, go to the tweak and fix section."
-                ]
-              }
-            ]
-          },
-          {
-            "id": "E",
-            "name": "Tweak and fix (in Claude)",
-            "note": "One change at a time.",
-            "steps": [
-              {
-                "title": "Change one thing at a time",
-                "body": "Save the new file the careful way and reopen it.",
-                "detail": [
-                  "Tell Claude one change, like make the hero line bigger or change the offer to 70 a day."
-                ],
-                "tool": "Claude (claude.ai)"
-              },
-              {
-                "title": "Fix a broken photo or QR",
-                "body": "Common fixes.",
-                "detail": [
-                  "Broken photo: it is almost always a name mismatch. Tell Claude your exact filename and have it match it.",
-                  "QR not showing: ask Claude to use a different free QR method. If it still fails, generate a QR yourself at any free QR-code website using your website link, download that QR image into the brochure folder, and tell Claude to use that filename."
-                ],
-                "tool": "Claude (claude.ai)"
-              }
-            ]
-          },
-          {
-            "id": "F",
-            "name": "Share it, and the win",
-            "note": "Get it out into the world.",
-            "steps": [
-              {
-                "title": "Send it out",
-                "body": "Spread it.",
-                "detail": [
-                  "Forward your brochure image or PDF on WhatsApp, post it on Instagram, and print a few copies to put up."
-                ]
-              },
-              {
-                "title": "The win",
-                "body": "Name the achievement.",
-                "detail": [
-                  "You made a forwardable brochure that carries your venture and links straight back to your live shop, all in one file, for free."
-                ]
-              },
-              {
-                "title": "The floor (hard checkpoint)",
-                "body": "Finishing beats hand-building. No negotiation.",
-                "detail": [
-                  "If it will not come together and time is short, take the prebuilt brochure fallback, paste your name, offer, photo, contact, and website link into its config, export, and you are done."
-                ]
-              },
-              {
-                "title": "Demo backup",
-                "body": "Your shareable proof for demo day.",
-                "detail": [
-                  "Keep the exported PDF or image saved. (Optional: drag the brochure folder onto Netlify if you want the brochure to also have its own web link.)"
-                ]
-              }
-            ]
-          }
-        ]
-      }
+      "stage": "Agents",
+      "set_the_stage": "Open with the practitioner's view. Before a single line of code, we answer the questions a working professional actually asks: what is an agent, where does it help, where does it fall down, and how do we keep it safe.\n\nWalk the room through the slides. They are built to land one idea at a time, with a wrong way and a right way for each. Pause on the risks and the human-in-the-loop slide; that is the grown-up part of the conversation.\n\nBy the end, the room should be able to say in one sentence what an agent reads, decides, and produces, and name the one place it could quietly go wrong."
     },
     {
       "questions": [],
       "hmv": [],
-      "prompts": [
-        {
-          "number": 1,
-          "title": "Write your walkthrough script",
-          "tool": "Gemini (gemini.google.com)",
-          "desc": "Produces a say-and-show script for your recording.",
-          "content": "I am a college student with a small venture. I built a live website, an order app, and a chatbot, all working. I want to record a short screen-and-voice walkthrough video, about 90 seconds, showing my product working in my own voice. Write me the script.\n\nMy venture:\n- Name: [e.g. Daily Dabba]\n- The problem I solve, in one line: [e.g. hostel students are tired of greasy mess food]\n- What I will show on screen, in order: [e.g. open the website, tap Order, place an order, show the order number, open Track, advance the order as owner, open the chatbot and ask a question]\n- My one call to action at the end: [e.g. scan the QR or WhatsApp me to order today]\n\nWrite the script in two columns:\n- SAY: exactly what I say out loud, in simple warm spoken English, in my own friendly voice, not salesy.\n- SHOW: what I click or point to on screen as I say each line.\n\nRules:\n- Open with a 3-second hook about the problem or the promise, not \"hi, my name is.\"\n- Keep the whole thing under 150 words so it fits in about 90 seconds.\n- Tell it as a little story: problem, my product, watch it work, how to get it.\n- End with my one call to action.\n- Use short spoken sentences I can say easily, and mark natural pause points.\n\nGive me the script in a clear SAY and SHOW format I can glance at while recording."
-        },
-        {
-          "number": 2,
-          "title": "Tighten the script",
-          "tool": "Gemini",
-          "desc": "Use only if your script runs too long.",
-          "content": "Here is my walkthrough script: [PASTE YOUR SCRIPT]\n\nIt runs too long. Cut it to under 130 words and about 75 seconds. Keep the hook, the proof of it working, and the call to action, and remove anything that is not essential. Keep the same SAY and SHOW format."
-        }
-      ],
-      "build": [],
-      "test_output": [],
-      "output_capture": "Your marketing video: a shareable Loom link and a downloaded copy as backup.",
-      "break_after": true,
-      "break_duration_minutes": 10,
-      "phase": "weekend",
-      "id": "6",
-      "number": 6,
-      "session_type": "build",
-      "day": 2,
-      "title": "Video",
-      "start_time": "9:55",
-      "end_time": "10:55",
-      "duration_minutes": 60,
-      "stage": "Video",
-      "set_the_stage": "Show your thing actually work. A 90-second screen-and-voice walkthrough of your live product, scripted in Gemini and recorded in Loom.",
-      "procedure": {
-        "sections": [
-          {
-            "id": "A",
-            "name": "Write your script with AI",
-            "note": "A script is what turns a nervous ramble into one clean take.",
-            "steps": [
-              {
-                "title": "Open Gemini",
-                "body": "Day 2 has fresh free limits, and the script is a light task.",
-                "detail": [
-                  "Open Gemini and sign in free."
-                ],
-                "tool": "Gemini (gemini.google.com)"
-              },
-              {
-                "title": "Run the Video Script prompt",
-                "body": "Gemini writes a roughly 90-second script in two columns: what you SAY and what you SHOW.",
-                "detail": [
-                  "Fill the blanks: your venture, the problem, the exact flow you will show, and your one call to action."
-                ],
-                "tool": "Gemini (gemini.google.com)",
-                "prompt_ref": 1
-              },
-              {
-                "title": "Make it sound like you",
-                "body": "Keep it under about 150 words so it fits in 90 seconds.",
-                "detail": [
-                  "Read it aloud. Trim anything that does not sound like how you actually talk.",
-                  "If it runs too long, use the tighten prompt to cut it under about 75 seconds."
-                ],
-                "tool": "Gemini (gemini.google.com)",
-                "prompt_ref": 2
-              },
-              {
-                "title": "Keep the script where you can glance at it",
-                "body": "Do not read it word for word like a robot.",
-                "detail": [
-                  "Open it on your phone or print it, so you can glance while recording."
-                ]
-              }
-            ]
-          },
-          {
-            "id": "B",
-            "name": "Set up Loom (do this carefully, it is new to you)",
-            "note": "The Loom Chrome extension works only in Google Chrome, not Firefox or Safari, so everyone records in Chrome, including Mac users.",
-            "steps": [
-              {
-                "title": "Use Google Chrome",
-                "body": "The Loom extension is Chrome only.",
-                "detail": [
-                  "Open Chrome. If you are on a Mac, still use Chrome, not Safari."
-                ]
-              },
-              {
-                "title": "Install the Loom extension",
-                "body": "Be sure it is the official one, not a copy.",
-                "detail": [
-                  "Go to the Chrome Web Store (type chrome.google.com/webstore), search Loom, and look for the official extension with the purple Loom logo published by Loom, then click Add to Chrome and confirm with Add extension."
-                ],
-                "tool": "Loom (loom.com)"
-              },
-              {
-                "title": "Pin it so you can find it",
-                "body": "Now the Loom icon sits next to your address bar.",
-                "detail": [
-                  "Click the Extensions icon, the puzzle piece, at the top-right of Chrome, find Loom, and click the pin icon so it stays visible in your toolbar."
-                ]
-              },
-              {
-                "title": "Make a free account",
-                "body": "No card needed.",
-                "detail": [
-                  "Click the Loom icon, then click Sign up for free and continue with Google or email."
-                ]
-              },
-              {
-                "title": "Give Loom permission to record (this is where people get stuck)",
-                "body": "If you skip the Mac step, your recording comes out black or silent.",
-                "detail": [
-                  "When Chrome asks, click Allow for the microphone, camera, and screen-sharing prompts.",
-                  "On Mac, there is an extra step macOS forces: open System Settings, then Privacy and Security, then Screen Recording, and switch on Google Chrome. In the same Privacy and Security area, open Microphone and switch on Chrome too. Then quit Chrome fully and reopen it.",
-                  "On Windows, there is no system setting to change. Chrome itself will ask what to share when you start."
-                ]
-              }
-            ]
-          },
-          {
-            "id": "C",
-            "name": "Prepare your screen and product",
-            "note": "A stray popup ruins the take.",
-            "steps": [
-              {
-                "title": "Open your live product in one clean tab",
-                "body": "Have the links ready.",
-                "detail": [
-                  "Open your live website and app in a single browser tab."
-                ]
-              },
-              {
-                "title": "Clean the screen and silence everything",
-                "body": "Turn on Do Not Disturb so nothing pops up.",
-                "detail": [
-                  "Close all other tabs and apps. Hide the bookmarks bar.",
-                  "Windows: open notification settings and switch on Do Not Disturb or Focus. Mac: open Control Centre, click Focus, choose Do Not Disturb."
-                ]
-              },
-              {
-                "title": "Remove anything private",
-                "body": "Keep it professional.",
-                "detail": [
-                  "Make sure no personal messages, emails, or private info are visible on screen. Set the browser zoom so everything is easy to read."
-                ]
-              }
-            ]
-          },
-          {
-            "id": "D",
-            "name": "Rehearse once",
-            "note": "One dry run saves ten retakes.",
-            "steps": [
-              {
-                "title": "Do one dry run, no recording",
-                "body": "If it is over 90 seconds, trim a line or two.",
-                "detail": [
-                  "Read the script while clicking through the flow. Time it."
-                ]
-              },
-              {
-                "title": "Check your mic",
-                "body": "Confirm your voice is clear and not too quiet.",
-                "detail": [
-                  "Start a test recording, say one line, stop, and play it back."
-                ]
-              }
-            ]
-          },
-          {
-            "id": "E",
-            "name": "Record in one take (every click)",
-            "note": "Your live site is open in one clean tab, notifications are off, and your script is beside you.",
-            "steps": [
-              {
-                "title": "Open the Loom recorder",
-                "body": "A small recording panel opens.",
-                "detail": [
-                  "Click the pinned Loom icon in your Chrome toolbar."
-                ]
-              },
-              {
-                "title": "Choose what to record",
-                "body": "Pick Current Tab, which keeps it clean and shows only your site.",
-                "detail": [
-                  "Choose what to capture: Full Screen, Window, or Current Tab."
-                ]
-              },
-              {
-                "title": "Set camera and microphone",
-                "body": "For the simplest result, turn the camera off (Screen only).",
-                "detail": [
-                  "Toggle your camera on or off, and select your microphone.",
-                  "Watch the audio indicator. Say a word and check it moves. If it does not move, choose a different microphone from the list."
-                ]
-              },
-              {
-                "title": "Start recording",
-                "body": "This box is from Chrome, not Loom, and only appears once.",
-                "detail": [
-                  "Click Start Recording. A short 3, 2, 1 countdown plays.",
-                  "Chrome may then pop up its own Choose what to share box. Pick your tab or screen and click Share."
-                ]
-              },
-              {
-                "title": "Know where the controls are",
-                "body": "You can ignore it while you talk.",
-                "detail": [
-                  "A small floating control bar appears at the edge of your screen, usually the bottom-left, with pause, restart, delete, and a stop button."
-                ]
-              },
-              {
-                "title": "Do the walkthrough slowly",
-                "body": "Speak in your own voice.",
-                "detail": [
-                  "Start with your hook line. Then walk the happy path you tested: browse, place an order, show the order number, open Track, advance it as the owner, then open the chatbot and ask it a question.",
-                  "Pause between steps so each action lands. End with your one call to action."
-                ]
-              },
-              {
-                "title": "Stop the recording",
-                "body": "Loom opens your video in a new browser tab and takes a few seconds to process it.",
-                "detail": [
-                  "Click the stop button on the floating control bar."
-                ]
-              },
-              {
-                "title": "One good take",
-                "body": "A small stumble is fine.",
-                "detail": [
-                  "Do not re-record ten times. If you truly fumbled, use delete or restart on the control bar and go once more."
-                ]
-              }
-            ]
-          },
-          {
-            "id": "F",
-            "name": "Get your link, trim it, and save a copy",
-            "note": "Make it start strong and keep an offline copy.",
-            "steps": [
-              {
-                "title": "Wait for it to process",
-                "body": "Your video lives at a link automatically.",
-                "detail": [
-                  "After you stop, Loom opens your video page and processes for a few seconds."
-                ]
-              },
-              {
-                "title": "Trim the dead air",
-                "body": "This makes it start strong.",
-                "detail": [
-                  "Open the trim or edit tool on the video page, drag the start handle to just before your hook, and the end handle to just after your call to action, then save."
-                ]
-              },
-              {
-                "title": "Copy the share link",
-                "body": "Paste it somewhere safe.",
-                "detail": [
-                  "Click Share or Copy link at the top of the video page."
-                ]
-              },
-              {
-                "title": "Make sure anyone can view it",
-                "body": "So judges and customers can open it without a Loom account.",
-                "detail": [
-                  "In the Share settings, set the link so anyone with the link can view, not private."
-                ]
-              },
-              {
-                "title": "Download a copy for your demo backup",
-                "body": "Your offline backup.",
-                "detail": [
-                  "On the video page, open the three-dot menu and choose Download to save the video file. If your free plan does not offer download, your share link is your main copy."
-                ]
-              },
-              {
-                "title": "If Loom fails, use the built-in recorder",
-                "body": "Each saves a video file you can trim in Photos (Windows) or QuickTime (Mac).",
-                "detail": [
-                  "Windows: press Win plus G to open Game Bar and record, or use the Snipping Tool's record button. Keep the mic on.",
-                  "Mac: press Cmd plus Shift plus 5, click Options, choose your Microphone, then Record.",
-                  "Or your phone: use the built-in screen recorder with the mic on and walk your live site."
-                ]
-              }
-            ]
-          },
-          {
-            "id": "G",
-            "name": "Share it, and the win",
-            "note": "Put your proof to work.",
-            "steps": [
-              {
-                "title": "The win",
-                "body": "Your strongest piece of proof.",
-                "detail": [
-                  "You have a real marketing video: your screen, your voice, your live venture working."
-                ]
-              },
-              {
-                "title": "Put it to work",
-                "body": "Reuse it everywhere.",
-                "detail": [
-                  "Add the link to your website (Watch how it works), send it to customers, and use it in your pitch."
-                ]
-              },
-              {
-                "title": "Demo backup",
-                "body": "So demo day does not depend on wifi or Loom loading.",
-                "detail": [
-                  "Keep a downloaded copy of the video file."
-                ]
-              },
-              {
-                "title": "The floor (hard checkpoint)",
-                "body": "Finishing beats perfect. No negotiation.",
-                "detail": [
-                  "If recording keeps failing or time is short, do the simplest version: screen-record on your phone with your voice, in one take, walking your live site."
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "questions": [],
-      "hmv": [],
-      "prompts": [
-        {
-          "number": 1,
-          "title": "Draft your ten slides",
-          "tool": "Claude (claude.ai)",
-          "desc": "Turns your existing work into ten-slide content.",
-          "content": "I am a college student pitching my small venture at a demo day. Help me write the content for a ten-slide pitch deck. Here is everything I already have: [PASTE YOUR IDEATION BOARD AND FOUNDER'S BET]\n\nAlso use these:\n- Venture name and one-line description: [...]\n- My live website link: [...]\n- My live app link: [...]\n- My walkthrough video link: [...]\n- Real traction so far (orders, sign-ups, anyone who paid): [...]\n- My one ask for the audience: [...]\n\nWrite the content for exactly these ten slides, one or two short lines each, in big simple words, no paragraphs:\n1. Title: venture name, one line on what it does, my name.\n2. Problem: the real pain, told through one person.\n3. Solution: my one-line answer.\n4. Product: what it does and how, in a line.\n5. Demo: a line pointing to my live app and video.\n6. Who it is for: my customer and where the first ten come from.\n7. The money: what one order earns and costs, the simple maths.\n8. Proof: the real traction so far, however small.\n9. Why now and why me: what changed, and my unfair advantage.\n10. The ask: my one clear ask.\n\nKeep every slide to a few punchy, honest words. Give it to me as a numbered list, slide by slide."
-        },
-        {
-          "number": 2,
-          "title": "Build the deck",
-          "tool": "Claude",
-          "desc": "Turns the ten slides into an HTML deck.",
-          "content": "Build me a pitch deck as a single self-contained file called deck.html. I am a beginner, so write all of it and make it look clean, modern, and professional.\n\nHard rules:\n- One single file: HTML, CSS, and JavaScript in one deck.html. No frameworks that need installing, no build step.\n- Plain HTML, CSS, and JavaScript only. One Google Font is fine.\n- Exactly ten slides, one idea each, with big readable words and plenty of space, not paragraphs.\n- I move between slides with the right and left arrow keys and the spacebar.\n- It must look good full-screen on a laptop.\n- It must print cleanly to PDF with one slide per page, so I can save a backup.\n- Use my one brand colour and one clean font on every slide.\n- Use my screenshot images by their exact filenames.\n\nMy brand:\n- Venture name: [...]\n- Main colour: [...]\n- Screenshot files in the same folder: [e.g. app1.png]\n\nMy ten slides of content: [PASTE THE TEN-SLIDE CONTENT FROM THE PREVIOUS PROMPT]\n\nOn the Product and Demo slides, also show my screenshot, add my live app link with a QR code to it, and my video link. Use a reliable free method for the QR so it shows as an image.\n\nGive me the full deck.html in one code block I can copy, and one plain line on how to present it full-screen and how to save it as a PDF. Do not explain the code line by line."
-        },
-        {
-          "number": 3,
-          "title": "Tweak one thing",
-          "tool": "Claude",
-          "desc": "One change at a time.",
-          "content": "Here is my current deck: [PASTE YOUR deck.html] (or, in the same chat: use the latest version you gave me)\n\nMake exactly this one change, and nothing else: [DESCRIBE ONE CHANGE, e.g. make slide 2 bigger, or add the order screenshot to slide 4]\n\nKeep it a single deck.html file, ten slides, arrow-key navigation, print-friendly with one slide per page, same brand colour and font. Give me the full updated deck.html in one code block."
-        }
-      ],
-      "build": [],
-      "test_output": [],
-      "output_capture": "Your pitch deck as deck.html and a PDF backup, with your live product screenshots and links.",
-      "break_after": true,
-      "break_duration_minutes": 25,
-      "phase": "weekend",
-      "id": "7",
-      "number": 7,
-      "session_type": "build",
-      "day": 2,
-      "title": "Pitch deck",
-      "start_time": "11:05",
-      "end_time": "12:35",
-      "duration_minutes": 90,
-      "stage": "Pitch deck",
-      "set_the_stage": "Your story in ten slides, built to earn belief and end on one ask. An HTML deck in Claude you present full-screen and save as a PDF backup.",
-      "procedure": {
-        "sections": [
-          {
-            "id": "A",
-            "name": "Gather your ten slides of content",
-            "note": "You are not starting from scratch. You already made all of this.",
-            "steps": [
-              {
-                "title": "Lay out the ten slides",
-                "body": "Using the proven order, write one or two short lines for each.",
-                "detail": [
-                  "Title, problem, solution, product, demo, who it is for, the money, proof, why now and why you, the ask."
-                ]
-              },
-              {
-                "title": "Pull from what you built",
-                "body": "Prompt 1 below can draft all ten for you from your ideation board.",
-                "detail": [
-                  "Have ready: your venture name and one-liner, the problem through one person, your solution line, your live app and website links, your Loom video link, your one-order maths, any real traction (orders, sign-ups, anyone who paid), your why-now and unfair advantage, and your one ask."
-                ]
-              }
-            ]
-          },
-          {
-            "id": "B",
-            "name": "Take your screenshots",
-            "note": "Show the real thing.",
-            "steps": [
-              {
-                "title": "Capture your live product",
-                "body": "Take a clean screenshot of the best screen, like a placed order showing its number.",
-                "detail": [
-                  "Windows: press Win plus Shift plus S, drag over the area, then paste into Paint and save as a .png. Or press Win plus PrtScn to save straight to Pictures, then Screenshots.",
-                  "Mac: press Cmd plus Shift plus 4, drag over the area, and it saves a .png to your Desktop."
-                ]
-              },
-              {
-                "title": "Name them simply",
-                "body": "No spaces.",
-                "detail": [
-                  "Rename each to something simple, like app1.png. (On Windows, turn on View then File name extensions so you can see the .png.)"
-                ]
-              }
-            ]
-          },
-          {
-            "id": "C",
-            "name": "Build the deck in Claude",
-            "note": "Same flow as everything else.",
-            "steps": [
-              {
-                "title": "Open Claude",
-                "body": "Day 2, fresh caps.",
-                "detail": [
-                  "Sign in free."
-                ],
-                "tool": "Claude (claude.ai)"
-              },
-              {
-                "title": "Draft the ten slides if you need help",
-                "body": "Edit so they sound like you.",
-                "detail": [
-                  "If writing the ten slides feels hard, run this prompt first. Paste your ideation board and details, and Claude drafts all ten, one line each."
-                ],
-                "tool": "Claude (claude.ai)",
-                "prompt_ref": 1
-              },
-              {
-                "title": "Build the deck",
-                "body": "Claude builds a self-contained deck.html.",
-                "detail": [
-                  "Run this prompt. Paste your ten slides of content, your brand colour, your screenshot filenames, and your links."
-                ],
-                "tool": "Claude (claude.ai)",
-                "prompt_ref": 2
-              },
-              {
-                "title": "Read what it made",
-                "body": "If a slide is off, say so.",
-                "detail": [
-                  "Check it has ten slides, your content, moves with the arrow keys, and is print-friendly."
-                ]
-              }
-            ]
-          },
-          {
-            "id": "D",
-            "name": "Save the deck and screenshots",
-            "note": "Save the careful way.",
-            "steps": [
-              {
-                "title": "Save the code as deck.html (the careful way)",
-                "body": "Put it in a new folder named pitch-deck.",
-                "detail": [
-                  "Copy Claude's code block.",
-                  "Windows: open Notepad, paste, File then Save As, set Save as type to All Files, type \"deck.html\" in quotes, Save.",
-                  "Mac: open TextEdit, Format then Make Plain Text, paste, File then Save, name it deck.html, use .html not .txt."
-                ]
-              },
-              {
-                "title": "Put your screenshots in the same folder",
-                "body": "Named exactly as in the prompt.",
-                "detail": [
-                  "Drag your app1.png (and any others) into the pitch-deck folder."
-                ]
-              }
-            ]
-          },
-          {
-            "id": "E",
-            "name": "Open and present it full-screen",
-            "note": "Check it the way you will show it.",
-            "steps": [
-              {
-                "title": "Open the deck",
-                "body": "It opens in Chrome.",
-                "detail": [
-                  "Double-click deck.html."
-                ]
-              },
-              {
-                "title": "Go full-screen",
-                "body": "Fill the screen.",
-                "detail": [
-                  "Windows: press F11. Mac: press Control plus Command plus F."
-                ]
-              },
-              {
-                "title": "Move through the slides",
-                "body": "Click through all ten to check them.",
-                "detail": [
-                  "Press the right arrow or spacebar to go forward, the left arrow to go back."
-                ]
-              },
-              {
-                "title": "If a screenshot is broken",
-                "body": "It is almost always a filename mismatch.",
-                "detail": [
-                  "Fix it with the tweak in the practice and fix section."
-                ]
-              }
-            ]
-          },
-          {
-            "id": "F",
-            "name": "Export to PDF and optionally host",
-            "note": "The PDF is your wifi-failure safety net.",
-            "steps": [
-              {
-                "title": "Save a PDF backup (your wifi-failure safety net)",
-                "body": "Keep this file.",
-                "detail": [
-                  "Press Ctrl plus P (Windows) or Cmd plus P (Mac), choose Save as PDF, check each slide is on its own page, and save."
-                ]
-              },
-              {
-                "title": "Optional: host it for a link",
-                "body": "Not required, the PDF is your backup.",
-                "detail": [
-                  "If you want to share the deck as a URL, drag the pitch-deck folder onto Netlify, the same way as your app."
-                ],
-                "tool": "Netlify (netlify.com)"
-              }
-            ]
-          },
-          {
-            "id": "G",
-            "name": "Practice, fix, and the win",
-            "note": "The slides support you, you talk the detail.",
-            "steps": [
-              {
-                "title": "Practice the pitch out loud",
-                "body": "Three to five minutes, ending on your ask.",
-                "detail": [
-                  "Run through the deck speaking your pitch."
-                ]
-              },
-              {
-                "title": "Tweak or fix one thing at a time",
-                "body": "A broken image is a name mismatch.",
-                "detail": [
-                  "For any change or a broken screenshot, tell Claude one change, save the new file the careful way, and reopen."
-                ],
-                "tool": "Claude (claude.ai)",
-                "prompt_ref": 3
-              },
-              {
-                "title": "The win",
-                "body": "You are ready.",
-                "detail": [
-                  "You have a real pitch deck telling your story, with your live product as proof, ready to present and saved as a backup."
-                ]
-              },
-              {
-                "title": "The floor (hard checkpoint)",
-                "body": "Finishing and pitching beats polish.",
-                "detail": [
-                  "If the deck will not build or time is short, take the prebuilt deck template, paste your ten lines, one screenshot, and your links into its config, export the PDF, and you are ready."
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "questions": [],
-      "hmv": [],
-      "prompts": [
-        {
-          "number": 1,
-          "title": "Write your 3-minute demo script",
-          "tool": "Claude (claude.ai)",
-          "desc": "An optional helper that turns your deck and founder's bet into a tight spoken open for your pitch.",
-          "content": "Here is my pitch deck content and my founder's bet: [PASTE]. Write me a spoken three-minute demo script in four beats: (1) 30 seconds on one real person, their problem, and the one thing I built for them; (2) a single line to hand off to my two-minute demo video; (3) 15 seconds on how it makes money; (4) 15 seconds on the one thing I want the room to remember. Warm, spoken, plain English, no jargon."
-        }
-      ],
+      "prompts": [],
       "build": [],
       "test_output": [],
       "output_capture": null,
+      "break_after": true,
+      "break_duration_minutes": 10,
+      "phase": "day",
+      "session_type": "build",
+      "id": "2",
+      "number": 2,
+      "day": 1,
+      "title": "The Humanics of AI",
+      "start_time": "9:45",
+      "end_time": "10:30",
+      "duration_minutes": 45,
+      "stage": "Humanics",
+      "set_the_stage": "This is the thinking layer. The best agent-builders are not the fastest typists; they are the clearest thinkers. We teach three habits: first principles, systems thinking, and problem framing.\n\nThe goal is not abstract. Every habit points straight at the recruitment build coming next. Breaking a task into atoms, seeing the whole pipe, and framing a sharp question are exactly what makes the agent easy to design.\n\nLand it: think clearly first, and the code writes itself."
+    },
+    {
+      "questions": [],
+      "hmv": [],
+      "prompts": [],
+      "build": [],
+      "test_output": [],
+      "output_capture": null,
+      "break_after": true,
+      "break_duration_minutes": 10,
+      "phase": "day",
+      "session_type": "build",
+      "id": "3",
+      "number": 3,
+      "day": 1,
+      "title": "The Mechanics of AI",
+      "start_time": "10:45",
+      "end_time": "11:30",
+      "duration_minutes": 45,
+      "stage": "Mechanics",
+      "set_the_stage": "Now the building blocks, kept ruthlessly simple: a model (text in, text out), a prompt (your instructions), structured output (neat data, not prose), and a key (just a password).\n\nThen the anatomy every agent shares, input to brain to output, and the move that makes real agents work: decomposition into three single-purpose agents that hand clean data down the line.\n\nThis module is the bridge from idea to build. Keep it tight and concrete; resist the urge to explain tokens or transformers."
+    },
+    {
+      "questions": [],
+      "hmv": [],
+      "prompts": [],
+      "build": [
+        {
+          "title": "Hand out the pack",
+          "description": "Give each student the 25-resume PDF and the one-page job description. No laptops open yet."
+        },
+        {
+          "title": "Rank by hand, timed",
+          "description": "Pick the top 5 to interview, one line of reasoning each. Start a visible 15-minute timer. Write down your own time."
+        },
+        {
+          "title": "Surface the steps",
+          "description": "Ask three students how they did it. Draw the shared steps on the board: read, pull the key facts, compare to the JD, rank, recommend. These become the agent design."
+        }
+      ],
+      "test_output": [],
+      "output_capture": null,
+      "break_after": true,
+      "break_duration_minutes": 45,
+      "phase": "day",
+      "session_type": "build",
+      "id": "4",
+      "number": 4,
+      "day": 1,
+      "title": "The Recruitment Challenge",
+      "start_time": "11:30",
+      "end_time": "13:00",
+      "duration_minutes": 90,
+      "stage": "Design",
+      "set_the_stage": "The problem: here are 25 resumes and one job description. Recommend the top 5 to interview. Every student does it by hand first, no AI, and times themselves.\n\nThis is not busywork. The by-hand attempt creates two things we need later: a real 'before' number to measure the agent against, and a felt understanding of the actual steps, read, pull facts, compare to the JD, rank, hand over.\n\nMost will not finish all 25 in the time. That is the point. Let the room feel the load the agent is about to lift."
+    },
+    {
+      "questions": [],
+      "hmv": [],
+      "prompts": [],
+      "build": [
+        {
+          "title": "Agent 1, Ingest and Extract",
+          "description": "Takes the resume files and returns clean, structured facts for each candidate: name, years, skills, tools, evidence of impact. This is the contract the next agent depends on."
+        },
+        {
+          "title": "Agent 2, Judge and Prioritise",
+          "description": "Takes those facts, scores them against the JD rubric with evidence for each score, applies any hard rules in code, and returns a ranked top 5."
+        },
+        {
+          "title": "Agent 3, Communicate",
+          "description": "Takes the top 5 and drafts a clear recommendation to the hiring manager. It drafts; the human reads and sends. Never auto-send."
+        },
+        {
+          "title": "Draw the contract",
+          "description": "Make the handshake explicit: Agent 1's output shape is exactly Agent 2's input shape. Fix the fields once and the pipeline holds."
+        }
+      ],
+      "test_output": [],
+      "output_capture": null,
+      "break_after": true,
+      "break_duration_minutes": 10,
+      "phase": "day",
+      "session_type": "build",
+      "id": "5",
+      "number": 5,
+      "day": 1,
+      "title": "Design the Agents (No Code)",
+      "start_time": "14:00",
+      "end_time": "15:30",
+      "duration_minutes": 90,
+      "stage": "Design",
+      "set_the_stage": "Turn the board into a design, still no code. First state the pure logic: ingest the resumes, extract the key information, build a rubric from the JD, compare, prioritise the top 5, and communicate them to the hiring manager.\n\nThen map that logic onto the agent anatomy and split it into three single-purpose agents. Students should leave this session able to draw the whole solution on paper before they ever touch Colab.\n\nHold the line on the human gate: Agent 3 drafts the note; a person sends it."
+    },
+    {
+      "questions": [],
+      "hmv": [],
+      "prompts": [],
+      "build": [
+        {
+          "title": "Pre-flight",
+          "description": "Run the setup cells top to bottom: install, paste key, engine, load the 25 resumes and the JD. Look for the green confirmations."
+        },
+        {
+          "title": "Run Agent 1",
+          "description": "Extract structured facts from all 25 resumes. Watch messy documents become a clean table."
+        },
+        {
+          "title": "Run Agent 2",
+          "description": "Score against the rubric with evidence, apply the hard rule, and reveal the ranked top 5."
+        },
+        {
+          "title": "Run Agent 3",
+          "description": "Draft the recommendation to the hiring manager. Read it aloud. Do not send: that is the human's call."
+        },
+        {
+          "title": "Validate",
+          "description": "Lay the agent's 5 next to the by-hand 5. Discuss the overlap and the differences. This is how you learn to trust an agent."
+        }
+      ],
+      "test_output": [],
+      "output_capture": null,
+      "break_after": true,
+      "break_duration_minutes": 10,
+      "phase": "day",
+      "session_type": "build",
+      "id": "6",
+      "number": 6,
+      "day": 2,
+      "title": "Build It Live",
+      "start_time": "9:00",
+      "end_time": "10:30",
+      "duration_minutes": 90,
+      "stage": "Build",
+      "set_the_stage": "Now the facilitator builds the physical implementation live, in a Google Colab notebook, running it step by step on the real 25 resumes. This uses the paid demo key so it never stalls in front of the room.\n\nNarrate every cell back to the design on the board: this cell is Agent 1 extracting, this cell is Agent 2 judging, this cell drafts for the human. The code should feel like the obvious transcription of a design they already understand.\n\nClose the loop on validation: compare the agent's top 5 to the room's by-hand top 5 from yesterday. Where they agree, where they differ, and why."
+    },
+    {
+      "questions": [],
+      "hmv": [],
+      "prompts": [],
+      "build": [
+        {
+          "title": "Pick from the palette",
+          "description": "Choose the use-case closest to your world. Same three agents, different job."
+        },
+        {
+          "title": "Change only the marked lines",
+          "description": "Swap the documents, the extract fields, the rubric, and the hard rule. Everything else stays exactly as it is."
+        },
+        {
+          "title": "Run on the fallback",
+          "description": "Leave the fallback switch on. It runs on saved results so nothing blocks you. Flip it off only if you want to go live on your own key."
+        },
+        {
+          "title": "Defend one choice",
+          "description": "Pair up and justify one design choice to another pair: why that criterion, why that weight, why that hard rule. Building is shallow; defending is deep."
+        }
+      ],
+      "test_output": [],
+      "output_capture": null,
+      "break_after": true,
+      "break_duration_minutes": 45,
+      "phase": "day",
+      "session_type": "build",
+      "id": "7",
+      "number": 7,
+      "day": 2,
+      "title": "Build Your Own Agent",
+      "start_time": "10:45",
+      "end_time": "13:00",
+      "duration_minutes": 135,
+      "stage": "Build",
+      "set_the_stage": "Hand the notebook to the students. They pick one use-case from the palette, from finops, support, sales, and more, and configure the exact same three-agent design for it. Only the marked lines change.\n\nThis run defaults to the fallback switch, so it works with zero friction even if the free tier hiccups. Name that out loud: you already learned the live key this morning; this run is about the pattern, not the plumbing. The live path is one flip away for anyone who wants it.\n\nThe point is ownership. When a finance student watches the same machine triage invoices, or a support student watches it sort tickets, the pattern lands in a world they care about."
+    },
+    {
+      "questions": [],
+      "hmv": [],
+      "prompts": [],
+      "build": [
+        {
+          "title": "Tell the story",
+          "description": "Each student writes their one-line outcome: the by-hand time, the agent time, and the job it does. That is the interview answer."
+        },
+        {
+          "title": "Find three piles",
+          "description": "List three piles of similar documents in your world that this same design could sort. That is where your next agent lives."
+        }
+      ],
+      "test_output": [],
+      "output_capture": null,
       "break_after": false,
-      "break_duration_minutes": 0,
-      "phase": "weekend",
+      "break_duration_minutes": 10,
+      "phase": "day",
+      "session_type": "build",
       "id": "8",
       "number": 8,
-      "session_type": "demo_day",
       "day": 2,
-      "title": "Demo Day",
-      "start_time": "13:00",
+      "title": "The Valuenomics of AI",
+      "start_time": "14:00",
       "end_time": "16:30",
-      "duration_minutes": 210,
-      "stage": "Demo Day",
-      "set_the_stage": "Every student stands up and shows a real, working thing. Three minutes each, in four beats: the problem and your solution, your demo video playing, how it makes money, and the one thing you are taking away. Play your downloaded video so the wifi cannot break your demo. Everyone scores every presenter on the sheet provided, physical or digital. Scores are tallied while the whole room takes the SWISH test again."
+      "duration_minutes": 150,
+      "stage": "Valuenomics",
+      "set_the_stage": "Close with value. A working agent is not the prize; the outcome is. We trace the chain from data to insight to narrative to influence to outcome, and show how the same shape unlocks value across domains.\n\nThen widen the toolbox: beyond screen-and-rank, the patterns of extract-and-summarise, monitor-and-alert, draft-and-refine, and answer-over-your-docs, so students leave seeing agents everywhere.\n\nEnd on the honest, defensible story each student can tell a recruiter: a real agent, built for their world, measured against their own by-hand baseline."
     }
   ],
   "ideas": [
     {
-      "id": "rent-a-tree",
+      "id": "recruitment-screener",
       "page": 1,
-      "name": "Rent a Tree",
-      "for_whom": "You, if your family or a relative has a farm",
-      "problem": "Farmers earn 30% of retail; families can't find a trusted direct source for fruit.",
-      "what_app_does": "Book a tree for the season, get photo updates on WhatsApp, produce delivered when ripe."
+      "name": "Recruitment Screener",
+      "for_whom": "You, if HR or campus placements is your world",
+      "problem": "A recruiter drowns in 200 resumes per role and skims the first 20 by gut feel.",
+      "what_app_does": "Extracts facts from every resume, scores them against the JD rubric with evidence, and returns a ranked shortlist to interview."
     },
     {
-      "id": "tiffin-choice",
+      "id": "invoice-triage",
       "page": 1,
-      "name": "Tiffin Choice",
-      "for_whom": "You, if you cook well and could feed 30 office-goers nearby",
-      "problem": "Customers don't know the weekly menu; the cook doesn't know who wants what.",
-      "what_app_does": "Shows next week's menu, regulars pick their dishes, choices go to the cook on WhatsApp."
+      "name": "Invoice Triage",
+      "for_whom": "You, if finance or FinOps is your world",
+      "problem": "Accounts payable processes hundreds of invoices; the risky ones hide in the pile.",
+      "what_app_does": "Extracts each invoice's key fields, flags anything needing human approval by a hard rule, and prioritises the rest for payment."
     },
     {
-      "id": "mehendi-bookings",
+      "id": "ticket-triage",
       "page": 1,
-      "name": "Mehendi Bookings",
-      "for_whom": "You, if you do mehendi, or a friend who does events",
-      "problem": "Brides message five artists for a week; slow repliers lose the booking.",
-      "what_app_does": "Portfolio by style and price; a dated booking request lands on WhatsApp to confirm."
+      "name": "Support Ticket Triage",
+      "for_whom": "You, if customer support is your world",
+      "problem": "A support queue mixes trivial and urgent; the loudest ticket is rarely the most important.",
+      "what_app_does": "Reads each ticket, scores impact and urgency with evidence, and auto-escalates anything touching money or legal."
     },
     {
-      "id": "makeup-enquiry",
+      "id": "lead-scorer",
       "page": 1,
-      "name": "Makeup Enquiry",
-      "for_whom": "You, if you do makeup, or a friend who freelances",
-      "problem": "A 15K-75K booking, but brides compare artists for a week with no clear info.",
-      "what_app_does": "Portfolio by occasion; a guided questionnaire sends a full enquiry to WhatsApp."
+      "name": "Lead Scorer",
+      "for_whom": "You, if sales or growth is your world",
+      "problem": "Reps chase every inbound lead equally and waste the week on poor-fit ones.",
+      "what_app_does": "Extracts each lead's signals, scores fit against your ideal-customer rubric, and ranks who to call first."
     },
     {
-      "id": "jewellery-curator",
+      "id": "expense-checker",
       "page": 1,
-      "name": "Jewellery Curator",
-      "for_whom": "You, if you know a goldsmith, lac-maker, or silver craftsman",
-      "problem": "Buyers moving online want curated pieces with stories, not generic catalogues.",
-      "what_app_does": "Pieces by occasion with the maker's story; custom orders reach the goldsmith on WhatsApp."
+      "name": "Expense Claim Checker",
+      "for_whom": "You, if finance or audit is your world",
+      "problem": "Expense claims are rubber-stamped or randomly sampled; policy breaches slip through.",
+      "what_app_does": "Extracts each claim's details, flags policy violations by hard rule, and ranks the rest for a quick human review."
     },
     {
-      "id": "alteration-service",
+      "id": "incident-triage",
       "page": 1,
-      "name": "Alteration Service",
-      "for_whom": "You, if you know a tailor, or your mother sews well",
-      "problem": "Women buy clothes online and need alterations; tailors don't pick up and deliver.",
-      "what_app_does": "Browse pricing, book a pickup, send photos on WhatsApp, get it back altered."
+      "name": "Incident Report Triage",
+      "for_whom": "You, if operations or safety is your world",
+      "problem": "Incident reports pile up and the serious ones are not read first.",
+      "what_app_does": "Reads each report, scores severity with evidence, and pushes the critical ones to the top with a reason."
     },
     {
-      "id": "exam-prep",
+      "id": "application-screener",
       "page": 1,
-      "name": "Exam Prep",
-      "for_whom": "You, if you are strong in one school subject",
-      "problem": "Group tuitions are generic; platforms like Vedantu cost 50K-2L and are too broad.",
-      "what_app_does": "Your subject, a 12-24 week plan, recent results; parents book a trial, pay offline."
+      "name": "Application Screener",
+      "for_whom": "You, if admissions or programs is your world",
+      "problem": "A program gets far more applications than it can read carefully.",
+      "what_app_does": "Extracts each application's facts, scores them against the selection rubric with evidence, and returns a shortlist."
     },
     {
-      "id": "hostel-laundry",
+      "id": "feedback-prioritiser",
       "page": 1,
-      "name": "Hostel Laundry",
-      "for_whom": "You, if you live in a hostel or PG and can collect, wash, and return",
-      "problem": "Students hate laundry; the local dhobi is unreliable and clothes get lost.",
-      "what_app_does": "Order by room and pickup time; track Picked up, Washing, Ready, Returned; pay on return."
-    },
-    {
-      "id": "neighbourhood-bakery",
-      "page": 2,
-      "name": "Neighbourhood Bakery",
-      "for_whom": "You, if you bake well, or a relative who bakes for friends",
-      "problem": "Custom orders for birthdays and festivals get lost in WhatsApp chat history.",
-      "what_app_does": "Bake catalogue with prices; custom orders use a form and arrive clean on WhatsApp."
-    },
-    {
-      "id": "tutoring-slots",
-      "page": 2,
-      "name": "Tutoring Slots",
-      "for_whom": "You, if you tutor Class 5-10 students, or a friend who does",
-      "problem": "Parents make many calls to book; tutors waste evenings confirming slots.",
-      "what_app_does": "Subjects and open slots; parents request a free trial, sent to WhatsApp to confirm."
-    },
-    {
-      "id": "plant-catalogue",
-      "page": 2,
-      "name": "Plant Catalogue",
-      "for_whom": "You, if you grow plants, or know an aunty with a nursery",
-      "problem": "Apartment dwellers want plants but kill them by picking wrong for their light.",
-      "what_app_does": "Plants with a light and care filter; pick by your light, order, founder delivers."
-    },
-    {
-      "id": "direct-dairy",
-      "page": 2,
-      "name": "Direct Dairy",
-      "for_whom": "You, if your family or a relative has a small dairy farm",
-      "problem": "Families pay 80-120/L for branded milk; the farmer gets 40/L from wholesalers.",
-      "what_app_does": "See the farm; start a weekly subscription on WhatsApp; fixed route, pay offline."
-    },
-    {
-      "id": "handicraft-brand",
-      "page": 2,
-      "name": "Handicraft Brand",
-      "for_whom": "You, if you've visited a craft cluster (Channapatna, Molela)",
-      "problem": "Buyers want Indian-aesthetic decor; FabIndia is sterile, IKEA misses the language.",
-      "what_app_does": "Curated decor with the artisan's story; new pieces monthly; order, founder ships."
-    },
-    {
-      "id": "hyperlocal-wash",
-      "page": 2,
-      "name": "Hyperlocal Wash",
-      "for_whom": "You, if you can hire two boys and serve one apartment complex",
-      "problem": "Residents pay 1K-2.5K/month for bad car washes; no reliable complex-scale service.",
-      "what_app_does": "One complex subscribes monthly, sees the schedule, gets 'car done' on WhatsApp."
-    },
-    {
-      "id": "two-wheeler-service",
-      "page": 2,
-      "name": "Two-Wheeler Service",
-      "for_whom": "You, if a relative runs a bike or scooter repair shop",
-      "problem": "Customers drop their bike and have no clarity on what was done or the cost.",
-      "what_app_does": "Submit the problem and urgency; mechanic sends the bill and photos before pickup."
-    },
-    {
-      "id": "pre-loved-kids",
-      "page": 2,
-      "name": "Outgrown",
-      "for_whom": "You, if you can collect gently-used kids' clothes from parents nearby",
-      "problem": "Kids outgrow clothes in months; parents have nowhere trusted to buy used ones.",
-      "what_app_does": "A catalogue by size and brand; parents order, you check and hand over, keep a margin."
-    },
-    {
-      "id": "pet-sitter",
-      "page": 3,
-      "name": "Pet Sitter",
-      "for_whom": "You, if you love pets and have weekend time",
-      "problem": "Working couples can't find someone trustworthy and nearby to walk or feed their pet.",
-      "what_app_does": "Your profile and slots; owners book on WhatsApp, get a photo update after each visit."
-    },
-    {
-      "id": "fest-photographer",
-      "page": 3,
-      "name": "Fest Photographer",
-      "for_whom": "You, if photography is your hobby and you own a decent camera",
-      "problem": "Fest organisers hire pricey pros or whoever they know; no reliable student option.",
-      "what_app_does": "Portfolio, packages, and weekend slots; organisers send a booking request to WhatsApp."
-    },
-    {
-      "id": "saree-curator",
-      "page": 3,
-      "name": "Saree Curator",
-      "for_whom": "You, if you have taste in sarees and a wholesaler contact",
-      "problem": "Women want curated sarees; online shows thousands, Instagram sellers are unreliable.",
-      "what_app_does": "Curated by region, occasion, or weave with weaver stories; order, founder ships."
-    },
-    {
-      "id": "block-print-brand",
-      "page": 3,
-      "name": "Block Print Brand",
-      "for_whom": "You, if you've visited Bagru, Sanganer, or a printing cluster",
-      "problem": "Buyers want authentic block prints; FabIndia is corporate, resellers unreliable.",
-      "what_app_does": "Curated block-printed clothes and home goods with the cluster's story; monthly drops."
-    },
-    {
-      "id": "home-pickle",
-      "page": 3,
-      "name": "Home Pickle",
-      "for_whom": "You, if your mother or grandmother makes legendary pickles",
-      "problem": "Industrial pickles killed the home taste; no trusted small home-maker to buy from.",
-      "what_app_does": "Range with recipe stories; order jars or monthly boxes on WhatsApp, shipped to you."
-    },
-    {
-      "id": "festival-catering",
-      "page": 3,
-      "name": "Festival Catering",
-      "for_whom": "You, if you or your family cook well for groups",
-      "problem": "Big caterers refuse under 50 people; small functions have nowhere to turn.",
-      "what_app_does": "Menus by function and per-head price; pick, set dietary needs, lock the date on WhatsApp."
-    },
-    {
-      "id": "poultry-direct",
-      "page": 3,
-      "name": "Poultry Direct",
-      "for_whom": "You, if your family or a relative raises poultry",
-      "problem": "Families pay 80-120/dozen for unverifiable 'free-range' eggs; the farmer gets 30.",
-      "what_app_does": "See the farm; subscribe to weekly egg delivery on WhatsApp; planned route, pay offline."
-    },
-    {
-      "id": "senior-travel",
-      "page": 3,
-      "name": "Senior Travel",
-      "for_whom": "You, if you like planning trips or have an elderly relative who travels",
-      "problem": "Seniors have budgets but big agencies treat them as generic tourists.",
-      "what_app_does": "Curated small-group senior tours; browse and request on WhatsApp, founder handles it."
+      "name": "Feedback Prioritiser",
+      "for_whom": "You, if product or CX is your world",
+      "problem": "Hundreds of reviews and survey verbatims arrive; the churn-risk signals are buried.",
+      "what_app_does": "Reads each piece of feedback, scores it by churn risk and theme, and ranks what to act on this week."
     }
   ]
 }

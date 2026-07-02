@@ -1,0 +1,687 @@
+{
+  "generated_for": "Sales Ops · Lead Qualification",
+  "policy": {
+    "product": "A workflow-automation platform for business teams.",
+    "weights": {
+      "need_match": 0.35,
+      "authority": 0.2,
+      "budget": 0.2,
+      "timeline": 0.15,
+      "company_size": 0.1
+    },
+    "band_thresholds": {
+      "Hot": ">=75 with a decision-maker and a near-term timeline",
+      "Warm": ">=55",
+      "Nurture": ">=35",
+      "Disqualify": "<35 or not a genuine lead"
+    },
+    "hard_rule": "Anything that is not a genuine buying enquiry, a job application, a vendor pitch, a student or research request, is Disqualified no matter how it scores. Nothing is contacted automatically; the agent drafts and a human sends."
+  },
+  "rubric": {
+    "weights": {
+      "need_match": 0.35,
+      "authority": 0.2,
+      "budget": 0.2,
+      "timeline": 0.15,
+      "company_size": 0.1
+    },
+    "points": {
+      "need_match": {
+        "strong": 10,
+        "some": 6,
+        "weak": 3,
+        "none": 0
+      },
+      "authority": {
+        "exec": 10,
+        "manager": 7,
+        "champion": 5,
+        "unknown": 2
+      },
+      "budget": {
+        "stated": 10,
+        "unclear": 5,
+        "none": 1
+      },
+      "timeline": {
+        "now": 10,
+        "quarter": 7,
+        "exploring": 4,
+        "none": 1
+      },
+      "company_size": {
+        "enterprise": 10,
+        "mid": 7,
+        "smb": 4,
+        "unknown": 3
+      }
+    }
+  },
+  "routing_table": [
+    {
+      "band": "Hot",
+      "owner": "Account Executive",
+      "next_action": "Call within 1 business day"
+    },
+    {
+      "band": "Warm",
+      "owner": "Sales Development (SDR)",
+      "next_action": "Follow up within 2 business days"
+    },
+    {
+      "band": "Nurture",
+      "owner": "Marketing Nurture",
+      "next_action": "Add to the nurture track; revisit in 30 days"
+    },
+    {
+      "band": "Disqualify",
+      "owner": "Do not pursue",
+      "next_action": "Send a polite decline or take no action"
+    }
+  ],
+  "leads": [
+    {
+      "lead_id": "LEAD-5001",
+      "company": "Meridian Logistics",
+      "extract": {
+        "lead_id": "LEAD-5001",
+        "company": "Meridian Logistics",
+        "contact": "Karan Malhotra",
+        "role": "VP Operations",
+        "seniority": "exec",
+        "company_size": "enterprise",
+        "budget": "stated",
+        "need_match": "strong",
+        "timeline": "now",
+        "spam": false,
+        "summary": "Automate our order workflows now"
+      },
+      "score": 100.0,
+      "band": "Hot",
+      "owner": "Account Executive",
+      "next_action": "Call within 1 business day",
+      "evidence": "Strong fit, a decision-maker, and a near-term timeline.",
+      "followup": "Hi Karan, thanks for reaching out. Automating order-processing at your scale is exactly what our platform is built for. I'd love to set up a call this week to map your workflows and show a tailored demo. Are you free Thursday or Friday?"
+    },
+    {
+      "lead_id": "LEAD-5004",
+      "company": "Nimbus Software",
+      "extract": {
+        "lead_id": "LEAD-5004",
+        "company": "Nimbus Software",
+        "contact": "Rahul Nair",
+        "role": "Director of Ops",
+        "seniority": "exec",
+        "company_size": "mid",
+        "budget": "stated",
+        "need_match": "strong",
+        "timeline": "now",
+        "spam": false,
+        "summary": "Ready to buy, automate onboarding"
+      },
+      "score": 97.0,
+      "band": "Hot",
+      "owner": "Account Executive",
+      "next_action": "Call within 1 business day",
+      "evidence": "Strong fit, a decision-maker, and a near-term timeline.",
+      "followup": "Hi Rahul, thanks, onboarding automation is a strong fit for our platform. I'll prepare a tailored demo and a rollout timeline for a call this week. Does tomorrow work?"
+    },
+    {
+      "lead_id": "LEAD-5003",
+      "company": "Continental Foods",
+      "extract": {
+        "lead_id": "LEAD-5003",
+        "company": "Continental Foods",
+        "contact": "Sunita Rao",
+        "role": "COO",
+        "seniority": "exec",
+        "company_size": "enterprise",
+        "budget": "unclear",
+        "need_match": "strong",
+        "timeline": "now",
+        "spam": false,
+        "summary": "Urgent: automate approvals"
+      },
+      "score": 90.0,
+      "band": "Hot",
+      "owner": "Account Executive",
+      "next_action": "Call within 1 business day",
+      "evidence": "Strong fit, a decision-maker, and a near-term timeline.",
+      "followup": "Hi Sunita, thank you, this is squarely what we do. I can bring pricing options and a rollout plan to a call this week so you can move quickly. What time works?"
+    },
+    {
+      "lead_id": "LEAD-5002",
+      "company": "Brightpath Retail",
+      "extract": {
+        "lead_id": "LEAD-5002",
+        "company": "Brightpath Retail",
+        "contact": "Anjali Verma",
+        "role": "Operations Manager",
+        "seniority": "manager",
+        "company_size": "mid",
+        "budget": "stated",
+        "need_match": "strong",
+        "timeline": "quarter",
+        "spam": false,
+        "summary": "Workflow automation this quarter"
+      },
+      "score": 86.5,
+      "band": "Hot",
+      "owner": "Account Executive",
+      "next_action": "Call within 1 business day",
+      "evidence": "Strong fit, a decision-maker, and a near-term timeline.",
+      "followup": "Hi Anjali, great timing. We help retail ops teams like yours automate back-office workflows. I can walk you through a fit assessment this week and share pricing for a Q rollout. When suits you?"
+    },
+    {
+      "lead_id": "LEAD-5005",
+      "company": "Apex Manufacturing",
+      "extract": {
+        "lead_id": "LEAD-5005",
+        "company": "Apex Manufacturing",
+        "contact": "Vikram Shah",
+        "role": "Plant Operations Manager",
+        "seniority": "manager",
+        "company_size": "enterprise",
+        "budget": "stated",
+        "need_match": "some",
+        "timeline": "quarter",
+        "spam": false,
+        "summary": "Q rollout, some workflows"
+      },
+      "score": 75.5,
+      "band": "Hot",
+      "owner": "Account Executive",
+      "next_action": "Call within 1 business day",
+      "evidence": "Strong fit, a decision-maker, and a near-term timeline.",
+      "followup": "Hi Vikram, thanks for reaching out. We can definitely help with maintenance-request workflows. Let's set up a scoping call this week to confirm fit and share pricing for a Q rollout."
+    },
+    {
+      "lead_id": "LEAD-5008",
+      "company": "Zenith Global",
+      "extract": {
+        "lead_id": "LEAD-5008",
+        "company": "Zenith Global",
+        "contact": "Arjun Reddy",
+        "role": "Chief Operating Officer",
+        "seniority": "exec",
+        "company_size": "enterprise",
+        "budget": "stated",
+        "need_match": "strong",
+        "timeline": "exploring",
+        "spam": false,
+        "summary": "Researching for later"
+      },
+      "score": 91.0,
+      "band": "Warm",
+      "owner": "Sales Development (SDR)",
+      "next_action": "Follow up within 2 business days",
+      "evidence": "Strong profile, but no near-term timeline yet.",
+      "followup": ""
+    },
+    {
+      "lead_id": "LEAD-5009",
+      "company": "Harbor Health",
+      "extract": {
+        "lead_id": "LEAD-5009",
+        "company": "Harbor Health",
+        "contact": "(not provided)",
+        "role": "(none given)",
+        "seniority": "unknown",
+        "company_size": "mid",
+        "budget": "stated",
+        "need_match": "strong",
+        "timeline": "now",
+        "spam": false,
+        "summary": "Automate patient intake now"
+      },
+      "score": 81.0,
+      "band": "Warm",
+      "owner": "Sales Development (SDR)",
+      "next_action": "Follow up within 2 business days",
+      "evidence": "Strong profile, but no named decision-maker yet.",
+      "followup": ""
+    },
+    {
+      "lead_id": "LEAD-5007",
+      "company": "Lotus Boutique",
+      "extract": {
+        "lead_id": "LEAD-5007",
+        "company": "Lotus Boutique",
+        "contact": "Priya Menon",
+        "role": "Store Operations Manager",
+        "seniority": "manager",
+        "company_size": "smb",
+        "budget": "stated",
+        "need_match": "some",
+        "timeline": "now",
+        "spam": false,
+        "summary": "Small team, automate now"
+      },
+      "score": 74.0,
+      "band": "Warm",
+      "owner": "Sales Development (SDR)",
+      "next_action": "Follow up within 2 business days",
+      "evidence": "A promising lead worth a direct follow-up.",
+      "followup": ""
+    },
+    {
+      "lead_id": "LEAD-5006",
+      "company": "Coastal Traders",
+      "extract": {
+        "lead_id": "LEAD-5006",
+        "company": "Coastal Traders",
+        "contact": "Neha Kapoor",
+        "role": "Operations Manager",
+        "seniority": "manager",
+        "company_size": "mid",
+        "budget": "unclear",
+        "need_match": "strong",
+        "timeline": "exploring",
+        "spam": false,
+        "summary": "Exploring automation options"
+      },
+      "score": 72.0,
+      "band": "Warm",
+      "owner": "Sales Development (SDR)",
+      "next_action": "Follow up within 2 business days",
+      "evidence": "A promising lead worth a direct follow-up.",
+      "followup": ""
+    },
+    {
+      "lead_id": "LEAD-5011",
+      "company": "Delta Freight",
+      "extract": {
+        "lead_id": "LEAD-5011",
+        "company": "Delta Freight",
+        "contact": "Sanjay Gupta",
+        "role": "Logistics Manager",
+        "seniority": "manager",
+        "company_size": "mid",
+        "budget": "none",
+        "need_match": "strong",
+        "timeline": "quarter",
+        "spam": false,
+        "summary": "Interested, no budget yet"
+      },
+      "score": 68.5,
+      "band": "Warm",
+      "owner": "Sales Development (SDR)",
+      "next_action": "Follow up within 2 business days",
+      "evidence": "A promising lead worth a direct follow-up.",
+      "followup": ""
+    },
+    {
+      "lead_id": "LEAD-5012",
+      "company": "Willow Media",
+      "extract": {
+        "lead_id": "LEAD-5012",
+        "company": "Willow Media",
+        "contact": "Ritika Sharma",
+        "role": "Content Coordinator",
+        "seniority": "champion",
+        "company_size": "mid",
+        "budget": "unclear",
+        "need_match": "strong",
+        "timeline": "exploring",
+        "spam": false,
+        "summary": "Early interest"
+      },
+      "score": 68.0,
+      "band": "Warm",
+      "owner": "Sales Development (SDR)",
+      "next_action": "Follow up within 2 business days",
+      "evidence": "A promising lead worth a direct follow-up.",
+      "followup": ""
+    },
+    {
+      "lead_id": "LEAD-5010",
+      "company": "Sunrise Startups",
+      "extract": {
+        "lead_id": "LEAD-5010",
+        "company": "Sunrise Startups",
+        "contact": "Farhan Ali",
+        "role": "Growth Analyst",
+        "seniority": "champion",
+        "company_size": "smb",
+        "budget": "unclear",
+        "need_match": "some",
+        "timeline": "quarter",
+        "spam": false,
+        "summary": "Might fit us this quarter"
+      },
+      "score": 55.5,
+      "band": "Warm",
+      "owner": "Sales Development (SDR)",
+      "next_action": "Follow up within 2 business days",
+      "evidence": "A promising lead worth a direct follow-up.",
+      "followup": ""
+    },
+    {
+      "lead_id": "LEAD-5019",
+      "company": "Cedar Textiles",
+      "extract": {
+        "lead_id": "LEAD-5019",
+        "company": "Cedar Textiles",
+        "contact": "Kavya Nair",
+        "role": "Process Analyst",
+        "seniority": "champion",
+        "company_size": "smb",
+        "budget": "unclear",
+        "need_match": "some",
+        "timeline": "none",
+        "spam": false,
+        "summary": "Interested, no timeline"
+      },
+      "score": 46.5,
+      "band": "Nurture",
+      "owner": "Marketing Nurture",
+      "next_action": "Add to the nurture track; revisit in 30 days",
+      "evidence": "Some interest, but not sales-ready yet.",
+      "followup": ""
+    },
+    {
+      "lead_id": "LEAD-5014",
+      "company": "Green Fields Co",
+      "extract": {
+        "lead_id": "LEAD-5014",
+        "company": "Green Fields Co",
+        "contact": "(not provided)",
+        "role": "(none given)",
+        "seniority": "unknown",
+        "company_size": "smb",
+        "budget": "unclear",
+        "need_match": "some",
+        "timeline": "exploring",
+        "spam": false,
+        "summary": "Comparing tools"
+      },
+      "score": 45.0,
+      "band": "Nurture",
+      "owner": "Marketing Nurture",
+      "next_action": "Add to the nurture track; revisit in 30 days",
+      "evidence": "Some interest, but not sales-ready yet.",
+      "followup": ""
+    },
+    {
+      "lead_id": "LEAD-5017",
+      "company": "Skyline Events",
+      "extract": {
+        "lead_id": "LEAD-5017",
+        "company": "Skyline Events",
+        "contact": "Nisha Rao",
+        "role": "Events Coordinator",
+        "seniority": "champion",
+        "company_size": "smb",
+        "budget": "unclear",
+        "need_match": "weak",
+        "timeline": "quarter",
+        "spam": false,
+        "summary": "Possibly this quarter"
+      },
+      "score": 45.0,
+      "band": "Nurture",
+      "owner": "Marketing Nurture",
+      "next_action": "Add to the nurture track; revisit in 30 days",
+      "evidence": "Some interest, but not sales-ready yet.",
+      "followup": ""
+    },
+    {
+      "lead_id": "LEAD-5013",
+      "company": "Pebble Cafe",
+      "extract": {
+        "lead_id": "LEAD-5013",
+        "company": "Pebble Cafe",
+        "contact": "Amit Joshi",
+        "role": "Owner",
+        "seniority": "champion",
+        "company_size": "smb",
+        "budget": "none",
+        "need_match": "some",
+        "timeline": "exploring",
+        "spam": false,
+        "summary": "Just looking"
+      },
+      "score": 43.0,
+      "band": "Nurture",
+      "owner": "Marketing Nurture",
+      "next_action": "Add to the nurture track; revisit in 30 days",
+      "evidence": "Some interest, but not sales-ready yet.",
+      "followup": ""
+    },
+    {
+      "lead_id": "LEAD-5015",
+      "company": "Orbit Consulting",
+      "extract": {
+        "lead_id": "LEAD-5015",
+        "company": "Orbit Consulting",
+        "contact": "Deepa Iyer",
+        "role": "Consultant",
+        "seniority": "champion",
+        "company_size": "mid",
+        "budget": "none",
+        "need_match": "weak",
+        "timeline": "quarter",
+        "spam": false,
+        "summary": "Maybe this quarter"
+      },
+      "score": 40.0,
+      "band": "Nurture",
+      "owner": "Marketing Nurture",
+      "next_action": "Add to the nurture track; revisit in 30 days",
+      "evidence": "Some interest, but not sales-ready yet.",
+      "followup": ""
+    },
+    {
+      "lead_id": "LEAD-5018",
+      "company": "Pinnacle Corp",
+      "extract": {
+        "lead_id": "LEAD-5018",
+        "company": "Pinnacle Corp",
+        "contact": "(not provided)",
+        "role": "(none given)",
+        "seniority": "unknown",
+        "company_size": "mid",
+        "budget": "none",
+        "need_match": "some",
+        "timeline": "exploring",
+        "spam": false,
+        "summary": "Some interest, early"
+      },
+      "score": 40.0,
+      "band": "Nurture",
+      "owner": "Marketing Nurture",
+      "next_action": "Add to the nurture track; revisit in 30 days",
+      "evidence": "Some interest, but not sales-ready yet.",
+      "followup": ""
+    },
+    {
+      "lead_id": "LEAD-5016",
+      "company": "Maple Retail",
+      "extract": {
+        "lead_id": "LEAD-5016",
+        "company": "Maple Retail",
+        "contact": "Rohan Das",
+        "role": "Team Lead",
+        "seniority": "manager",
+        "company_size": "smb",
+        "budget": "none",
+        "need_match": "weak",
+        "timeline": "exploring",
+        "spam": false,
+        "summary": "Light interest"
+      },
+      "score": 36.5,
+      "band": "Nurture",
+      "owner": "Marketing Nurture",
+      "next_action": "Add to the nurture track; revisit in 30 days",
+      "evidence": "Some interest, but not sales-ready yet.",
+      "followup": ""
+    },
+    {
+      "lead_id": "LEAD-5025",
+      "company": "Vague Ventures",
+      "extract": {
+        "lead_id": "LEAD-5025",
+        "company": "Vague Ventures",
+        "contact": "(none given)",
+        "role": "(none given)",
+        "seniority": "unknown",
+        "company_size": "smb",
+        "budget": "unclear",
+        "need_match": "none",
+        "timeline": "exploring",
+        "spam": false,
+        "summary": "Not clear"
+      },
+      "score": 24.0,
+      "band": "Disqualify",
+      "owner": "Do not pursue",
+      "next_action": "Send a polite decline or take no action",
+      "evidence": "Weak fit, no clear need or timeline.",
+      "followup": ""
+    },
+    {
+      "lead_id": "LEAD-5021",
+      "company": "Tiny Shop",
+      "extract": {
+        "lead_id": "LEAD-5021",
+        "company": "Tiny Shop",
+        "contact": "Raj Kumar",
+        "role": "(none given)",
+        "seniority": "unknown",
+        "company_size": "smb",
+        "budget": "none",
+        "need_match": "weak",
+        "timeline": "none",
+        "spam": false,
+        "summary": "Barely relevant"
+      },
+      "score": 22.0,
+      "band": "Disqualify",
+      "owner": "Do not pursue",
+      "next_action": "Send a polite decline or take no action",
+      "evidence": "Weak fit, no clear need or timeline.",
+      "followup": ""
+    },
+    {
+      "lead_id": "LEAD-5020",
+      "company": "Unknown",
+      "extract": {
+        "lead_id": "LEAD-5020",
+        "company": "Unknown",
+        "contact": "(none given)",
+        "role": "(none given)",
+        "seniority": "unknown",
+        "company_size": "smb",
+        "budget": "none",
+        "need_match": "none",
+        "timeline": "none",
+        "spam": false,
+        "summary": "General question"
+      },
+      "score": 11.5,
+      "band": "Disqualify",
+      "owner": "Do not pursue",
+      "next_action": "Send a polite decline or take no action",
+      "evidence": "Weak fit, no clear need or timeline.",
+      "followup": ""
+    },
+    {
+      "lead_id": "LEAD-5022",
+      "company": "(job seeker)",
+      "extract": {
+        "lead_id": "LEAD-5022",
+        "company": "(job seeker)",
+        "contact": "Amanpreet Singh",
+        "role": "Job applicant",
+        "seniority": "unknown",
+        "company_size": "unknown",
+        "budget": "none",
+        "need_match": "none",
+        "timeline": "none",
+        "spam": true,
+        "summary": "Looking for a job"
+      },
+      "score": 10.5,
+      "band": "Disqualify",
+      "owner": "Do not pursue",
+      "next_action": "Send a polite decline or take no action",
+      "evidence": "Not a genuine sales lead.",
+      "followup": ""
+    },
+    {
+      "lead_id": "LEAD-5023",
+      "company": "RankBoost SEO",
+      "extract": {
+        "lead_id": "LEAD-5023",
+        "company": "RankBoost SEO",
+        "contact": "Marketing Team",
+        "role": "Vendor",
+        "seniority": "unknown",
+        "company_size": "unknown",
+        "budget": "none",
+        "need_match": "none",
+        "timeline": "none",
+        "spam": true,
+        "summary": "We can boost your rankings"
+      },
+      "score": 10.5,
+      "band": "Disqualify",
+      "owner": "Do not pursue",
+      "next_action": "Send a polite decline or take no action",
+      "evidence": "Not a genuine sales lead.",
+      "followup": ""
+    },
+    {
+      "lead_id": "LEAD-5024",
+      "company": "University Project",
+      "extract": {
+        "lead_id": "LEAD-5024",
+        "company": "University Project",
+        "contact": "Sara Fernandes",
+        "role": "Student",
+        "seniority": "unknown",
+        "company_size": "unknown",
+        "budget": "none",
+        "need_match": "none",
+        "timeline": "none",
+        "spam": true,
+        "summary": "Student project request"
+      },
+      "score": 10.5,
+      "band": "Disqualify",
+      "owner": "Do not pursue",
+      "next_action": "Send a polite decline or take no action",
+      "evidence": "Not a genuine sales lead.",
+      "followup": ""
+    }
+  ],
+  "queue": [
+    "LEAD-5001",
+    "LEAD-5004",
+    "LEAD-5003",
+    "LEAD-5002",
+    "LEAD-5005",
+    "LEAD-5008",
+    "LEAD-5009",
+    "LEAD-5007",
+    "LEAD-5006",
+    "LEAD-5011",
+    "LEAD-5012",
+    "LEAD-5010",
+    "LEAD-5019",
+    "LEAD-5014",
+    "LEAD-5017",
+    "LEAD-5013",
+    "LEAD-5015",
+    "LEAD-5018",
+    "LEAD-5016",
+    "LEAD-5025",
+    "LEAD-5021",
+    "LEAD-5020",
+    "LEAD-5022",
+    "LEAD-5023",
+    "LEAD-5024"
+  ],
+  "draft": "Subject: Lead qualification handover - Hot: 5, Warm: 7, Nurture: 7, Disqualify: 6\n\nHi,\n\nI have qualified all 25 inbound enquiries. Nothing has been contacted, the follow-ups below are drafts for you to review and send.\n\nHOT - follow-up drafted, assign to an AE (5):\n  - LEAD-5001  Meridian Logistics (Karan Malhotra, VP Operations)  score 100.0  ->  Account Executive  [Call within 1 business day]\n      Suggested follow-up: Hi Karan, thanks for reaching out. Automating order-processing at your scale is exactly what our platform is built for. I'd love to set up a call this week to map your workflows and show a tailored demo. Are you free Thursday or Friday?\n  - LEAD-5004  Nimbus Software (Rahul Nair, Director of Ops)  score 97.0  ->  Account Executive  [Call within 1 business day]\n      Suggested follow-up: Hi Rahul, thanks, onboarding automation is a strong fit for our platform. I'll prepare a tailored demo and a rollout timeline for a call this week. Does tomorrow work?\n  - LEAD-5003  Continental Foods (Sunita Rao, COO)  score 90.0  ->  Account Executive  [Call within 1 business day]\n      Suggested follow-up: Hi Sunita, thank you, this is squarely what we do. I can bring pricing options and a rollout plan to a call this week so you can move quickly. What time works?\n  - LEAD-5002  Brightpath Retail (Anjali Verma, Operations Manager)  score 86.5  ->  Account Executive  [Call within 1 business day]\n      Suggested follow-up: Hi Anjali, great timing. We help retail ops teams like yours automate back-office workflows. I can walk you through a fit assessment this week and share pricing for a Q rollout. When suits you?\n  - LEAD-5005  Apex Manufacturing (Vikram Shah, Plant Operations Manager)  score 75.5  ->  Account Executive  [Call within 1 business day]\n      Suggested follow-up: Hi Vikram, thanks for reaching out. We can definitely help with maintenance-request workflows. Let's set up a scoping call this week to confirm fit and share pricing for a Q rollout.\n\nTHE REST OF THE PIPELINE, best first:\n  Warm        LEAD-5008  Zenith Global  score 91.0  ->  Sales Development (SDR)  [Follow up within 2 business days]\n  Warm        LEAD-5009  Harbor Health  score 81.0  ->  Sales Development (SDR)  [Follow up within 2 business days]\n  Warm        LEAD-5007  Lotus Boutique  score 74.0  ->  Sales Development (SDR)  [Follow up within 2 business days]\n  Warm        LEAD-5006  Coastal Traders  score 72.0  ->  Sales Development (SDR)  [Follow up within 2 business days]\n  Warm        LEAD-5011  Delta Freight  score 68.5  ->  Sales Development (SDR)  [Follow up within 2 business days]\n  Warm        LEAD-5012  Willow Media  score 68.0  ->  Sales Development (SDR)  [Follow up within 2 business days]\n  Warm        LEAD-5010  Sunrise Startups  score 55.5  ->  Sales Development (SDR)  [Follow up within 2 business days]\n  Nurture     LEAD-5019  Cedar Textiles  score 46.5  ->  Marketing Nurture  [Add to the nurture track; revisit in 30 days]\n  Nurture     LEAD-5014  Green Fields Co  score 45.0  ->  Marketing Nurture  [Add to the nurture track; revisit in 30 days]\n  Nurture     LEAD-5017  Skyline Events  score 45.0  ->  Marketing Nurture  [Add to the nurture track; revisit in 30 days]\n  Nurture     LEAD-5013  Pebble Cafe  score 43.0  ->  Marketing Nurture  [Add to the nurture track; revisit in 30 days]\n  Nurture     LEAD-5015  Orbit Consulting  score 40.0  ->  Marketing Nurture  [Add to the nurture track; revisit in 30 days]\n  Nurture     LEAD-5018  Pinnacle Corp  score 40.0  ->  Marketing Nurture  [Add to the nurture track; revisit in 30 days]\n  Nurture     LEAD-5016  Maple Retail  score 36.5  ->  Marketing Nurture  [Add to the nurture track; revisit in 30 days]\n  Disqualify  LEAD-5025  Vague Ventures  score 24.0  ->  Do not pursue  [Send a polite decline or take no action]\n  Disqualify  LEAD-5021  Tiny Shop  score 22.0  ->  Do not pursue  [Send a polite decline or take no action]\n  Disqualify  LEAD-5020  Unknown  score 11.5  ->  Do not pursue  [Send a polite decline or take no action]\n  Disqualify  LEAD-5022  (job seeker)  score 10.5  ->  Do not pursue  [Send a polite decline or take no action]\n  Disqualify  LEAD-5023  RankBoost SEO  score 10.5  ->  Do not pursue  [Send a polite decline or take no action]\n  Disqualify  LEAD-5024  University Project  score 10.5  ->  Do not pursue  [Send a polite decline or take no action]\n\nPlease review the drafted follow-ups and the assignments, and send what you approve. I will not contact anyone without your sign-off.\n\nThanks,\nSales development agent"
+}

@@ -2951,17 +2951,17 @@ function buildScreenSequence() {
     const phase = session.phase;
     const day = String(session.day);
 
-    // Day 2 morning welcome — first session of Day 2 of the weekend
+    // Day 2 morning welcome, first session of Day 2 of the weekend
     if (phase === "weekend" && day === "2" && prevDay !== "2") {
       SCREENS.push({ type: "day2-checkin" });
     }
 
-    // Office-hours phase opener — appears once, before the first week of office hours
+    // Office-hours phase opener, appears once, before the first week of office hours
     if (phase === "office_hours" && prevPhase !== "office_hours") {
       SCREENS.push({ type: "phase-break", to: "office_hours" });
     }
 
-    // Demo Day opener — appears once, before the Demo Day session
+    // Demo Day opener, appears once, before the Demo Day session
     if (phase === "demo_day" && prevPhase !== "demo_day") {
       SCREENS.push({ type: "phase-break", to: "demo_day" });
     }
@@ -2990,7 +2990,7 @@ function buildScreenSequence() {
 
     SCREENS.push({ type: "stage", session });
 
-    // Idea cards screen — appears once, inside Session 1 (Pick your idea), right after the
+    // Idea cards screen, appears once, inside Session 1 (Pick your idea), right after the
     // stage-setting, mirroring the school flow. Shows 8 ideas from the active set; the
     // founder picks one and personalises it in this same session.
     if (session.id === "7") {
@@ -3110,7 +3110,7 @@ function buildScreenSequence() {
 
     SCREENS.push({ type: "session-end", session });
 
-    // End-of-Day-1 interlude — fires after the last session of Day 1 in the weekend phase
+    // End-of-Day-1 interlude, fires after the last session of Day 1 in the weekend phase
     const nextSession = SESSIONS[idx + 1];
     const isLastOfDay1 = phase === "weekend" && day === "1"
       && (!nextSession || String(nextSession.day) !== "1" || nextSession.phase !== "weekend");
@@ -3393,7 +3393,7 @@ function renderFounderWelcome() {
       <div class="founder-split-text">
         <div class="hero-eyebrow">Just Build Foundation</div>
         <h1 class="founder-headline">In two days, you build your own <em>team of AI agents.</em></h1>
-        <p class="founder-sub">This morning, &ldquo;AI agent&rdquo; is a vague phrase. By tomorrow evening you will have built a working team of three agents &mdash; one that <em>reads</em>, one that <em>judges</em>, one that <em>communicates</em> &mdash; run it on a real hiring task, then rebuilt it for a field <em>you</em> choose. You will understand every moving part and be able to explain and defend it. No prior coding. Just build.</p>
+        <p class="founder-sub">This morning, &ldquo;AI agent&rdquo; is a vague phrase. By tomorrow evening you will have built a working team of three agents, one that <em>reads</em>, one that <em>judges</em>, one that <em>communicates</em>, run it on a real hiring task, then rebuilt it for a field <em>you</em> choose. You will understand every moving part and be able to explain and defend it. No prior coding. Just build.</p>
         <div class="founder-pillars" style="margin-top:22px;font-family:var(--mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);opacity:.85;">Agents &middot; Humanics &middot; Mechanics &middot; Design &middot; Build &middot; Value</div>
       </div>
     </div>
@@ -3405,21 +3405,21 @@ function renderTwoDoors() {
     <div class="wl-screen">
       <div class="wl-eyebrow">Why this puts you ahead</div>
       <h1 class="wl-title">When placements come, you are first among equals.</h1>
-      <p class="wl-sub">Everyone in the room will say they &ldquo;know AI.&rdquo; You will have built a working multi-agent system, understood it, and shipped it &mdash; the edge that decides who a recruiter remembers.</p>
+      <p class="wl-sub">Everyone in the room will say they &ldquo;know AI.&rdquo; You will have built a working multi-agent system, understood it, and shipped it, the edge that decides who a recruiter remembers.</p>
 
       <div class="fo-outcomes">
         <div class="fo-outcome">
           <div class="fo-outcome-num">1</div>
           <div>
             <div class="fo-outcome-h">A system you can demo, not just describe.</div>
-            <div class="fo-outcome-p">The three-agent recruitment screener &mdash; built live, reconfigured for your own field, run on real data. Open it in the interview and show it working.</div>
+            <div class="fo-outcome-p">The three-agent recruitment screener, built live, reconfigured for your own field, run on real data. Open it in the interview and show it working.</div>
           </div>
         </div>
         <div class="fo-outcome">
           <div class="fo-outcome-num">2</div>
           <div>
             <div class="fo-outcome-h">The answers to the questions they ask.</div>
-            <div class="fo-outcome-p">What agents are and are not, where they help, where they fail, and where a human must stay in the loop &mdash; exactly what interviewers probe for.</div>
+            <div class="fo-outcome-p">What agents are and are not, where they help, where they fail, and where a human must stay in the loop, exactly what interviewers probe for.</div>
           </div>
         </div>
         <div class="fo-outcome">
@@ -3474,7 +3474,7 @@ function renderToolsLandscape() {
     { h: "The screen sets the pace", p: "You follow along on your own laptop, in your own Google Colab notebook. The whole room moves together, one step at a time, and nobody is left behind." },
     { h: "You change lines, not write code", p: "You never face a blank page. You read a working design and edit clearly marked lines. The design carries the weight; you make the decisions." },
     { h: "One change at a time", p: "Build and test in small steps, and check every agent against the answer you first worked out by hand. That is how you know it is any good." },
-    { h: "The OC Brain is your safety net", p: "When the live model is busy or the free tier hits a limit, the OC Brain &mdash; a prepared resilience layer &mdash; carries the same result through. You never stall, you always finish, and you keep everything you build." },
+    { h: "The OC Brain is your safety net", p: "When the live model is busy or the free tier hits a limit, the OC Brain, a prepared resilience layer, carries the same result through. You never stall, you always finish, and you keep everything you build." },
   ];
   const pCards = principles.map(function (p, i) {
     return '<div class="principle-big"><div class="principle-big-num">' + (i+1) + '</div><div><div class="principle-big-h">' + p.h + '</div><div class="principle-big-p">' + p.p + '</div></div></div>';
@@ -3483,7 +3483,7 @@ function renderToolsLandscape() {
     <div class="wl-screen">
       <div class="wl-eyebrow">How you will work</div>
       <h1 class="wl-title">You design it. The AI builds it. The OC Brain backs it.</h1>
-      <p class="wl-sub">You are the designer and the decision-maker; the AI does the typing. And when the live tools stumble, a prepared safety net &mdash; the OC Brain &mdash; keeps the whole room moving. Four things stay true the entire two days.</p>
+      <p class="wl-sub">You are the designer and the decision-maker; the AI does the typing. And when the live tools stumble, a prepared safety net, the OC Brain, keeps the whole room moving. Four things stay true the entire two days.</p>
       <div class="principles-big">${pCards}</div>
     </div>
   `;
@@ -3691,7 +3691,7 @@ function renderHousekeeping() {
     <div class="wl-screen">
       <div class="wl-eyebrow">The two days</div>
       <h1 class="wl-title">How the two days flow.</h1>
-      <p class="wl-sub">Nine short sessions, in person, carry you from understanding agents to building your own &mdash; and proving it works on real data.</p>
+      <p class="wl-sub">Nine short sessions, in person, carry you from understanding agents to building your own, and proving it works on real data.</p>
 
       <div class="flow-rail">
         <div class="flow-lane">
@@ -3782,14 +3782,14 @@ function renderPortfolioReveal() {
   // Define the portfolio artifacts. Eight items: AI app, website, audio, founder video,
   // brochure, chatbot, agent, demo day recording.
   const artifacts = [
-    { label: "AI App",        note: "Your live product",                placeholder: "yourname.netlify.app" },
-    { label: "Website",       note: "Three-page marketing site",         placeholder: "yourname.carrd.co" },
-    { label: "Audio",         note: "60 seconds of your voice",          placeholder: "embedded on your site" },
-    { label: "Founder Video", note: "90 seconds on LinkedIn",            placeholder: "linkedin.com/posts/..." },
-    { label: "Brochure",      note: "One-page PDF, downloadable",        placeholder: "linked from your site" },
-    { label: "Chatbot",       note: "Always-on support",                 placeholder: "embedded on your site" },
-    { label: "Agent",         note: "Automation that runs alone",        placeholder: "make.com scenario" },
-    { label: "Demo Day",      note: "3-minute recording, in this room",  placeholder: "the strongest thing in the portfolio" },
+    { label: "AI App",       note: "Your live product",               placeholder: "yourname.netlify.app" },
+    { label: "Website",      note: "Three-page marketing site",        placeholder: "yourname.carrd.co" },
+    { label: "Audio",        note: "60 seconds of your voice",         placeholder: "embedded on your site" },
+    { label: "Founder Video", note: "90 seconds on LinkedIn",           placeholder: "linkedin.com/posts/..." },
+    { label: "Brochure",     note: "One-page PDF, downloadable",       placeholder: "linked from your site" },
+    { label: "Chatbot",      note: "Always-on support",                placeholder: "embedded on your site" },
+    { label: "Agent",        note: "Automation that runs alone",       placeholder: "make.com scenario" },
+    { label: "Demo Day",     note: "3-minute recording, in this room", placeholder: "the strongest thing in the portfolio" },
   ];
 
   const cards = artifacts.map((a, i) => `
@@ -4152,7 +4152,7 @@ function renderOfficeHours(s) {
     </div>
   ` : "";
 
-  // Prompts preview block — shows step titles only as a roadmap of what's next.
+  // Prompts preview block, shows step titles only as a roadmap of what's next.
   // Skipped when the session uses a step-by-step procedure (the steps are the roadmap).
   const promptsBlock = (!s.procedure && (s.prompts || []).length > 0) ? `
     <div class="oh-section">
@@ -4324,7 +4324,7 @@ function attachHandlers(screen) {
   const startBtn = $("#start-btn");
   if (startBtn) startBtn.onclick = next;
 
-  // Idea set switcher pills — let facilitator (or anyone) flip between Set 1/2/3
+  // Idea set switcher pills, let facilitator (or anyone) flip between Set 1/2/3
   document.querySelectorAll(".idea-set-pill").forEach(pill => {
     pill.onclick = () => {
       const set = parseInt(pill.dataset.set, 10);
@@ -4815,9 +4815,12 @@ initAuth();
   .farrow { flex:0 0 auto; align-self:center; width: clamp(12px,1.5vw,26px); height:2px; background:var(--accent-soft); position:relative; }
   .farrow::after { content:''; position:absolute; right:-1px; top:-3px; border-left:7px solid var(--accent-soft); border-top:4px solid transparent; border-bottom:4px solid transparent; }
   @media (max-width: 900px){ .flow-lane { flex-direction:column; gap:10px; } .flow-track { flex-wrap:wrap; } }
-  /* Outcome cards: a touch tighter so four fit */
-  .fo-outcomes { gap: clamp(12px,1.8vh,20px) !important; }
-  .fo-outcome-p { line-height:1.4; }
+  /* Outcome cards: compact so four fit one screen without scrolling */
+  .fo-outcomes { gap: clamp(9px,1.3vh,14px) !important; margin-top: clamp(4px,0.8vh,10px) !important; }
+  .fo-outcome { padding: clamp(11px,1.7vh,18px) clamp(16px,1.4vw,24px) !important; gap: clamp(12px,1.2vw,18px) !important; }
+  .fo-outcome-num { width: 30px !important; height: 30px !important; }
+  .fo-outcome-h { font-size: clamp(15px,1.5vw,20px) !important; margin-bottom: 3px !important; }
+  .fo-outcome-p { font-size: clamp(12px,1.15vw,15px) !important; line-height: 1.38 !important; }
   /* ===== Projection typography: bigger, readable from the back of the room ===== */
   /* Idea palette -> 2x2 cards, compact single-line pipeline that always fits */
   .ideas-screen { padding: 4px 0 !important; }

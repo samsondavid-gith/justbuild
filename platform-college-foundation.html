@@ -2812,7 +2812,7 @@ const CONCEPT_MODULES = {
   "notebook": {
     "before_session": "6", "stage_number": "05", "stage_name": "Build",
     "slides": [
-      {"lens":"opener","headline":"Before we open the notebook, know *what you're looking at.*","sub":"We're about to run the three-agent design live in a Colab notebook. Two minutes of orientation so nothing on the screen is a mystery, and nothing can derail us.","chips":["What a *notebook* is","The *API key*","*Free* vs *paid*","The *OC Brain* safety net"]},
+      {"lens":"opener","headline":"Before we open the notebook, know *what you're looking at.*","sub":"We're about to run the three-agent design live in a Colab notebook. Two minutes of orientation so nothing on the screen is a mystery, and nothing can derail us.","chips":["What a *notebook* is","The *API key*","*Free* vs *paid*","The *OC Brain* resilience layer"]},
       {"kicker":"THE NOTEBOOK","headline":"A notebook is *code you run one block at a time.*","lead":"Google Colab runs Python in your browser, nothing to install. It is a stack of labelled cells. Press play on a cell, it runs, and the result appears right underneath. We go top to bottom.","bubble":"Read it. Run it. <b>Watch it.</b>"},
       {"kicker":"YOUR JOB IN THE NOTEBOOK","headline":"You *run* and *read.* You don't write from a blank page.","lead":"The design you just drew on the board is already typed out. You will change a few clearly marked lines, press play, and read what comes back. That is the entire loop.","wrong":"'I must understand every line to use it.'","right":"'I run the blocks in order and read the output.'","bubble":"Run, read, <b>repeat.</b>"},
       {"kicker":"THE API KEY","headline":"An API key is *your password to the AI.*","lead":"The notebook does not contain the model. It phones Google's Gemini over the internet. The key proves the call is yours, and Google counts your usage against it. No key, no answers.","bubble":"It's a key. <b>Treat it like one.</b>"},
@@ -3474,7 +3474,7 @@ function renderToolsLandscape() {
     { h: "The screen sets the pace", p: "You follow along on your own laptop, in your own Google Colab notebook. The whole room moves together, one step at a time, and nobody is left behind." },
     { h: "You change lines, not write code", p: "You never face a blank page. You read a working design and edit clearly marked lines. The design carries the weight; you make the decisions." },
     { h: "One change at a time", p: "Build and test in small steps, and check every agent against the answer you first worked out by hand. That is how you know it is any good." },
-    { h: "The OC Brain is your safety net", p: "When the live model is busy or the free tier hits a limit, the OC Brain, a prepared resilience layer, carries the same result through. You never stall, you always finish, and you keep everything you build." },
+    { h: "The OC Brain holds the line", p: "Beneath everything runs the OC Brain, our resilience layer, prepared in advance. When the network wobbles or a limit bites, it quietly carries the same result through, and the room never breaks stride. Real when it can be. Ready when it can't." },
   ];
   const pCards = principles.map(function (p, i) {
     return '<div class="principle-big"><div class="principle-big-num">' + (i+1) + '</div><div><div class="principle-big-h">' + p.h + '</div><div class="principle-big-p">' + p.p + '</div></div></div>';
@@ -3483,7 +3483,7 @@ function renderToolsLandscape() {
     <div class="wl-screen">
       <div class="wl-eyebrow">How you will work</div>
       <h1 class="wl-title">You design it. The AI builds it. The OC Brain backs it.</h1>
-      <p class="wl-sub">You are the designer and the decision-maker; the AI does the typing. And when the live tools stumble, a prepared safety net, the OC Brain, keeps the whole room moving. Four things stay true the entire two days.</p>
+      <p class="wl-sub">You are the designer and the decision-maker; the AI does the typing. And when the live tools stumble, a resilience layer called the OC Brain keeps the whole room moving. Four things stay true the entire two days.</p>
       <div class="principles-big">${pCards}</div>
     </div>
   `;
@@ -4815,12 +4815,17 @@ initAuth();
   .farrow { flex:0 0 auto; align-self:center; width: clamp(12px,1.5vw,26px); height:2px; background:var(--accent-soft); position:relative; }
   .farrow::after { content:''; position:absolute; right:-1px; top:-3px; border-left:7px solid var(--accent-soft); border-top:4px solid transparent; border-bottom:4px solid transparent; }
   @media (max-width: 900px){ .flow-lane { flex-direction:column; gap:10px; } .flow-track { flex-wrap:wrap; } }
-  /* Outcome cards: compact so four fit one screen without scrolling */
-  .fo-outcomes { gap: clamp(9px,1.3vh,14px) !important; margin-top: clamp(4px,0.8vh,10px) !important; }
-  .fo-outcome { padding: clamp(11px,1.7vh,18px) clamp(16px,1.4vw,24px) !important; gap: clamp(12px,1.2vw,18px) !important; }
-  .fo-outcome-num { width: 30px !important; height: 30px !important; }
-  .fo-outcome-h { font-size: clamp(15px,1.5vw,20px) !important; margin-bottom: 3px !important; }
-  .fo-outcome-p { font-size: clamp(12px,1.15vw,15px) !important; line-height: 1.38 !important; }
+  /* Dense 4-card screens (outcomes + how-the-room-works): fit one screen, no scroll */
+  .fo-outcomes { gap: clamp(8px,1.1vh,12px) !important; margin-top: clamp(4px,0.7vh,9px) !important; }
+  .fo-outcome { padding: clamp(10px,1.5vh,15px) clamp(15px,1.3vw,22px) !important; gap: clamp(11px,1.1vw,16px) !important; }
+  .fo-outcome-num { width: 29px !important; height: 29px !important; }
+  .fo-outcome-h { font-size: clamp(15px,1.45vw,19px) !important; margin-bottom: 2px !important; }
+  .fo-outcome-p { font-size: clamp(12px,1.1vw,14.5px) !important; line-height: 1.36 !important; }
+  .principles-big { gap: clamp(10px,1.5vh,18px) !important; margin-top: clamp(6px,1vh,14px) !important; }
+  .principle-big { padding: clamp(12px,1.9vh,20px) clamp(15px,1.4vw,24px) !important; gap: clamp(11px,1.1vw,16px) !important; }
+  .principle-big-num { width: 32px !important; height: 32px !important; font-size: 15px !important; }
+  .principle-big-h { font-size: clamp(16px,1.6vw,21px) !important; margin-bottom: clamp(3px,0.6vh,6px) !important; }
+  .principle-big-p { font-size: clamp(12.5px,1.25vw,15px) !important; line-height: 1.4 !important; }
   /* ===== Projection typography: bigger, readable from the back of the room ===== */
   /* Idea palette -> 2x2 cards, compact single-line pipeline that always fits */
   .ideas-screen { padding: 4px 0 !important; }

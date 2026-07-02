@@ -309,44 +309,44 @@
   ],
   "ideas": [
     {
-      "id": "invoice-processing",
+      "id": "finops-invoicing",
       "page": 1,
-      "name": "Invoice Processing",
-      "for_whom": "You, if Finance or FinOps is your world.",
+      "name": "FinOps · Invoicing",
+      "for_whom": "You, if FinOps or Finance is your world.",
       "input": "Supplier invoices",
-      "agent1": "Extract invoice details",
-      "agent2": "Validate against purchase orders, policy and duplicates",
-      "agent3": "Prepare approval recommendation or flag exceptions"
+      "agent1": "Extract the invoice details",
+      "agent2": "Check against purchase orders, policy and duplicates",
+      "agent3": "Draft an approval recommendation, or flag exceptions for a human"
     },
     {
-      "id": "it-support-tickets",
+      "id": "customer-ops-requests",
       "page": 1,
-      "name": "IT Support Tickets",
-      "for_whom": "You, if IT Operations or Technology is your world.",
-      "input": "Employee support tickets",
-      "agent1": "Extract issue details",
-      "agent2": "Classify priority and recommend resolution",
-      "agent3": "Draft response and route to the correct support team"
+      "name": "Customer Ops · Customer Requests",
+      "for_whom": "You, if Customer Ops or Support is your world.",
+      "input": "Incoming customer messages",
+      "agent1": "Extract the customer's issue and intent",
+      "agent2": "Classify by type and urgency, and prioritise",
+      "agent3": "Draft a reply and route to the right team, behind a human check"
     },
     {
-      "id": "sales-lead-qualification",
+      "id": "it-ops-triage",
       "page": 1,
-      "name": "Sales Lead Qualification",
-      "for_whom": "You, if Sales or Business Development is your world.",
+      "name": "IT Ops · Ticket Triage",
+      "for_whom": "You, if IT Operations is your world.",
+      "input": "Employee IT tickets",
+      "agent1": "Extract the reported fault and system",
+      "agent2": "Classify priority and likely cause, and prioritise",
+      "agent3": "Draft first-response steps and route to the right IT team"
+    },
+    {
+      "id": "sales-ops-leads",
+      "page": 1,
+      "name": "Sales Ops · Lead Qualification",
+      "for_whom": "You, if Sales Ops or Revenue is your world.",
       "input": "Inbound sales enquiries",
-      "agent1": "Extract customer information and requirements",
+      "agent1": "Extract the prospect's needs and fit signals",
       "agent2": "Score and prioritise the opportunity",
-      "agent3": "Generate personalised follow-up and assign next action"
-    },
-    {
-      "id": "contract-review",
-      "page": 1,
-      "name": "Contract Review",
-      "for_whom": "You, if Legal, Compliance or Procurement is your world.",
-      "input": "Contracts and agreements",
-      "agent1": "Extract key clauses and obligations",
-      "agent2": "Identify risks and missing provisions",
-      "agent3": "Generate an executive summary and recommended actions"
+      "agent3": "Draft a personalised follow-up and assign the next action"
     }
   ]
 }

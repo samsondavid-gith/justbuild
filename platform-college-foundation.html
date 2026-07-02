@@ -2448,6 +2448,12 @@
   .bb-item.bb-clickable:hover { color: var(--accent); opacity:1; }
   .bb-item.bb-clickable:hover .bb-dot { border-color: var(--accent); }
 
+  /* ===== Progress bar: fit all 9 steps, never scroll ===== */
+  .buildbar { overflow-x: hidden; gap: 16px; padding: 9px 24px; }
+  .bb-item { font-size: 10px; padding: 0 6px; gap: 6px; }
+  .bb-dot { width: 13px; height: 13px; }
+  .bb-sep { min-width: 6px; }
+  @media (max-width: 1180px){ .bb-title { display:none; } .bb-item { font-size: 9px; padding: 0 4px; } .bb-sep { min-width: 4px; } }
   /* ===== Projection typography: bigger, readable from the back of the room ===== */
   /* Idea palette -> 2x2 cards, compact single-line pipeline that always fits */
   .ideas-screen { padding: 4px 0 !important; }

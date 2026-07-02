@@ -194,6 +194,7 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
   .enroll-nav-link {
     display: block; padding: 0.34rem 0.65rem; font-size: 0.84rem; line-height: 1.3;
     color: #6b6357; text-decoration: none; border-left: 2px solid transparent;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     transition: color 0.12s ease, border-color 0.12s ease;
   }
   .enroll-nav-link:hover { color: #1A1A1A; }
@@ -315,7 +316,7 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
 
     <!-- HOW YOU THINK WHILE BUILDING -->
     <div class="divider-block">
-      <div class="eyebrow eyebrow-with-dash">Humanics. Mechanics. Valuenomics.</div>
+      <div class="eyebrow eyebrow-with-dash" data-nav="Way of thinking">Humanics. Mechanics. Valuenomics.</div>
       <h2 class="headline headline-italic">A way of thinking that outlasts the tools.</h2>
       <p class="prose prose-italic">Most AI training teaches what to click. We teach how to think, so when the tools change next year, you still know what to build.</p>
 
@@ -346,7 +347,7 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
 
     <!-- CREDIBILITY -->
     <div class="divider-block">
-      <div class="eyebrow">Learn from someone who's actually done it</div>
+      <div class="eyebrow" data-nav="Who leads it">Learn from someone who's actually done it</div>
       <div class="cred-block">
         <div class="cred-content">
           <h3 class="cred-headline">Samson David</h3>
@@ -741,7 +742,7 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
     Array.prototype.forEach.call(info.children, function (block) {
       var eyebrow = block.querySelector(':scope > .eyebrow');
       if (!eyebrow) return;
-      var label = (eyebrow.textContent || '').trim();
+      var label = (eyebrow.getAttribute('data-nav') || eyebrow.textContent || '').trim();
       if (!label) return;
       if (!block.id) block.id = 'enroll-sec-' + (++autoId);
       items.push({ id: block.id, label: label });

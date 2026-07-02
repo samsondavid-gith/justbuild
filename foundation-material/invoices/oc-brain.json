@@ -1,0 +1,808 @@
+{
+  "generated_for": "FinOps · Invoicing",
+  "policy": {
+    "auto_approve_threshold": 100000,
+    "gst_rate": 0.18,
+    "amount_tolerance_pct": 2,
+    "currency": "INR",
+    "required_fields": [
+      "invoice number",
+      "date",
+      "vendor",
+      "GSTIN",
+      "total"
+    ],
+    "hard_rule": "Auto-approve only if the invoice matches an OPEN purchase order, the vendor matches, the amount is within 2% of the PO, it is not a duplicate, all required fields are present, GST is 18%, and the total is Rs 1,00,000 or less. Otherwise route to a human with the reason."
+  },
+  "po_register": [
+    {
+      "po": "PO-1001",
+      "vendor": "Sharma Traders Pvt Ltd",
+      "item": "Office chairs (20 units)",
+      "amount": 80000,
+      "status": "OPEN"
+    },
+    {
+      "po": "PO-1002",
+      "vendor": "Verma Office Supplies",
+      "item": "A4 paper and stationery",
+      "amount": 62000,
+      "status": "OPEN"
+    },
+    {
+      "po": "PO-1003",
+      "vendor": "Kadam Stationers",
+      "item": "Printer cartridges",
+      "amount": 45000,
+      "status": "OPEN"
+    },
+    {
+      "po": "PO-1004",
+      "vendor": "Deccan Hardware Co",
+      "item": "Tools and fittings",
+      "amount": 71000,
+      "status": "OPEN"
+    },
+    {
+      "po": "PO-1005",
+      "vendor": "Orbit Print Solutions",
+      "item": "Brochure printing",
+      "amount": 38000,
+      "status": "OPEN"
+    },
+    {
+      "po": "PO-1006",
+      "vendor": "Ganga Electricals",
+      "item": "LED lighting",
+      "amount": 56000,
+      "status": "OPEN"
+    },
+    {
+      "po": "PO-1007",
+      "vendor": "Metro Packaging Pvt Ltd",
+      "item": "Packaging boxes",
+      "amount": 64000,
+      "status": "OPEN"
+    },
+    {
+      "po": "PO-1008",
+      "vendor": "Zenith Furniture Pvt Ltd",
+      "item": "Workstations",
+      "amount": 52000,
+      "status": "OPEN"
+    },
+    {
+      "po": "PO-1009",
+      "vendor": "Nimbus Cloud Services Pvt Ltd",
+      "item": "Annual cloud hosting",
+      "amount": 200000,
+      "status": "OPEN"
+    },
+    {
+      "po": "PO-1010",
+      "vendor": "BluePeak Software LLP",
+      "item": "Software licences",
+      "amount": 60000,
+      "status": "OPEN"
+    },
+    {
+      "po": "PO-1011",
+      "vendor": "Deccan Hardware Co",
+      "item": "Steel racks (10 units)",
+      "amount": 50000,
+      "status": "OPEN"
+    },
+    {
+      "po": "PO-1012",
+      "vendor": "Kadam Stationers",
+      "item": "Office supplies",
+      "amount": 40000,
+      "status": "OPEN"
+    },
+    {
+      "po": "PO-1015",
+      "vendor": "Pearl Catering Services",
+      "item": "Event catering",
+      "amount": 41000,
+      "status": "OPEN"
+    },
+    {
+      "po": "PO-1016",
+      "vendor": "Sunrise Facilities Pvt Ltd",
+      "item": "Housekeeping (monthly)",
+      "amount": 69000,
+      "status": "OPEN"
+    },
+    {
+      "po": "PO-1017",
+      "vendor": "Orbit Print Solutions",
+      "item": "Banner printing",
+      "amount": 47000,
+      "status": "OPEN"
+    },
+    {
+      "po": "PO-1018",
+      "vendor": "Ganga Electricals",
+      "item": "Wiring and fixtures",
+      "amount": 53000,
+      "status": "OPEN"
+    },
+    {
+      "po": "PO-1019",
+      "vendor": "Metro Packaging Pvt Ltd",
+      "item": "Custom cartons",
+      "amount": 60000,
+      "status": "OPEN"
+    },
+    {
+      "po": "PO-1020",
+      "vendor": "Sharma Traders Pvt Ltd",
+      "item": "Conference tables",
+      "amount": 70000,
+      "status": "CLOSED"
+    },
+    {
+      "po": "PO-1021",
+      "vendor": "Contoso Analytics Inc",
+      "item": "Analytics subscription",
+      "amount": 100000,
+      "status": "OPEN"
+    },
+    {
+      "po": "PO-1022",
+      "vendor": "TechnoServe Systems Pvt Ltd",
+      "item": "IT annual maintenance",
+      "amount": 90000,
+      "status": "OPEN"
+    },
+    {
+      "po": "PO-1023",
+      "vendor": "Verma Office Supplies",
+      "item": "Furniture",
+      "amount": 50000,
+      "status": "OPEN"
+    }
+  ],
+  "invoices": [
+    {
+      "invoice_number": "INV-2001",
+      "vendor": "Sharma Traders Pvt Ltd",
+      "extract": {
+        "invoice_number": "INV-2001",
+        "vendor": "Sharma Traders Pvt Ltd",
+        "date": "05 Jun 2026",
+        "gstin": "27ABCDE1234F1Z5",
+        "po_referenced": "PO-1001",
+        "currency": "INR",
+        "subtotal": 80000,
+        "gst": 14400,
+        "total": 94400
+      },
+      "decision": "Auto-approve",
+      "reasons": [],
+      "matched_po": "PO-1001"
+    },
+    {
+      "invoice_number": "INV-2002",
+      "vendor": "Verma Office Supplies",
+      "extract": {
+        "invoice_number": "INV-2002",
+        "vendor": "Verma Office Supplies",
+        "date": "06 Jun 2026",
+        "gstin": "27ABCDE1234F1Z5",
+        "po_referenced": "PO-1002",
+        "currency": "INR",
+        "subtotal": 62000,
+        "gst": 11160,
+        "total": 73160
+      },
+      "decision": "Auto-approve",
+      "reasons": [],
+      "matched_po": "PO-1002"
+    },
+    {
+      "invoice_number": "INV-2003",
+      "vendor": "Kadam Stationers",
+      "extract": {
+        "invoice_number": "INV-2003",
+        "vendor": "Kadam Stationers",
+        "date": "07 Jun 2026",
+        "gstin": "27ABCDE1234F1Z5",
+        "po_referenced": "PO-1003",
+        "currency": "INR",
+        "subtotal": 45000,
+        "gst": 8100,
+        "total": 53100
+      },
+      "decision": "Auto-approve",
+      "reasons": [],
+      "matched_po": "PO-1003"
+    },
+    {
+      "invoice_number": "INV-2004",
+      "vendor": "Deccan Hardware Co",
+      "extract": {
+        "invoice_number": "INV-2004",
+        "vendor": "Deccan Hardware Co",
+        "date": "07 Jun 2026",
+        "gstin": "27ABCDE1234F1Z5",
+        "po_referenced": "PO-1004",
+        "currency": "INR",
+        "subtotal": 71000,
+        "gst": 12780,
+        "total": 83780
+      },
+      "decision": "Auto-approve",
+      "reasons": [],
+      "matched_po": "PO-1004"
+    },
+    {
+      "invoice_number": "INV-2005",
+      "vendor": "Orbit Print Solutions",
+      "extract": {
+        "invoice_number": "INV-2005",
+        "vendor": "Orbit Print Solutions",
+        "date": "08 Jun 2026",
+        "gstin": "27ABCDE1234F1Z5",
+        "po_referenced": "PO-1005",
+        "currency": "INR",
+        "subtotal": 38000,
+        "gst": 6840,
+        "total": 44840
+      },
+      "decision": "Auto-approve",
+      "reasons": [],
+      "matched_po": "PO-1005"
+    },
+    {
+      "invoice_number": "INV-2006",
+      "vendor": "Ganga Electricals",
+      "extract": {
+        "invoice_number": "INV-2006",
+        "vendor": "Ganga Electricals",
+        "date": "09 Jun 2026",
+        "gstin": "27ABCDE1234F1Z5",
+        "po_referenced": "PO-1006",
+        "currency": "INR",
+        "subtotal": 56800,
+        "gst": 10224,
+        "total": 67024
+      },
+      "decision": "Auto-approve",
+      "reasons": [],
+      "matched_po": "PO-1006"
+    },
+    {
+      "invoice_number": "INV-2007",
+      "vendor": "Metro Packaging Pvt Ltd",
+      "extract": {
+        "invoice_number": "INV-2007",
+        "vendor": "Metro Packaging Pvt Ltd",
+        "date": "10 Jun 2026",
+        "gstin": "27ABCDE1234F1Z5",
+        "po_referenced": "PO-1007",
+        "currency": "INR",
+        "subtotal": 64000,
+        "gst": 11520,
+        "total": 75520
+      },
+      "decision": "Auto-approve",
+      "reasons": [],
+      "matched_po": "PO-1007"
+    },
+    {
+      "invoice_number": "INV-2008",
+      "vendor": "Zenith Furniture Pvt Ltd",
+      "extract": {
+        "invoice_number": "INV-2008",
+        "vendor": "Zenith Furniture Pvt Ltd",
+        "date": "10 Jun 2026",
+        "gstin": "27ABCDE1234F1Z5",
+        "po_referenced": "PO-1008",
+        "currency": "INR",
+        "subtotal": 52000,
+        "gst": 9360,
+        "total": 61360
+      },
+      "decision": "Auto-approve",
+      "reasons": [],
+      "matched_po": "PO-1008"
+    },
+    {
+      "invoice_number": "INV-2009",
+      "vendor": "Nimbus Cloud Services Pvt Ltd",
+      "extract": {
+        "invoice_number": "INV-2009",
+        "vendor": "Nimbus Cloud Services Pvt Ltd",
+        "date": "11 Jun 2026",
+        "gstin": "27ABCDE1234F1Z5",
+        "po_referenced": "PO-1009",
+        "currency": "INR",
+        "subtotal": 200000,
+        "gst": 36000,
+        "total": 236000
+      },
+      "decision": "Review",
+      "reasons": [
+        "Total exceeds the Rs 100,000 auto-approve limit; needs senior sign-off."
+      ],
+      "matched_po": "PO-1009"
+    },
+    {
+      "invoice_number": "INV-2010",
+      "vendor": "BluePeak Software LLP",
+      "extract": {
+        "invoice_number": "INV-2010",
+        "vendor": "BluePeak Software LLP",
+        "date": "11 Jun 2026",
+        "gstin": "27ABCDE1234F1Z5",
+        "po_referenced": "PO-1010",
+        "currency": "INR",
+        "subtotal": 65000,
+        "gst": 11700,
+        "total": 76700
+      },
+      "decision": "Review",
+      "reasons": [
+        "Amount is 8% off PO PO-1010 (Rs 60,000); limit is 2%."
+      ],
+      "matched_po": "PO-1010"
+    },
+    {
+      "invoice_number": "INV-2011",
+      "vendor": "Deccan Hardware Co",
+      "extract": {
+        "invoice_number": "INV-2011",
+        "vendor": "Deccan Hardware Co",
+        "date": "12 Jun 2026",
+        "gstin": "27ABCDE1234F1Z5",
+        "po_referenced": "PO-1011",
+        "currency": "INR",
+        "subtotal": 65000,
+        "gst": 11700,
+        "total": 76700
+      },
+      "decision": "Review",
+      "reasons": [
+        "Amount is 30% off PO PO-1011 (Rs 50,000); limit is 2%."
+      ],
+      "matched_po": "PO-1011"
+    },
+    {
+      "invoice_number": "INV-2012",
+      "vendor": "Alpine Consulting Services",
+      "extract": {
+        "invoice_number": "INV-2012",
+        "vendor": "Alpine Consulting Services",
+        "date": "12 Jun 2026",
+        "gstin": "27ABCDE1234F1Z5",
+        "po_referenced": null,
+        "currency": "INR",
+        "subtotal": 48000,
+        "gst": 8640,
+        "total": 56640
+      },
+      "decision": "Review",
+      "reasons": [
+        "No purchase order referenced."
+      ],
+      "matched_po": null
+    },
+    {
+      "invoice_number": "INV-2013",
+      "vendor": "Prime Logistics India",
+      "extract": {
+        "invoice_number": "INV-2013",
+        "vendor": "Prime Logistics India",
+        "date": "13 Jun 2026",
+        "gstin": "27ABCDE1234F1Z5",
+        "po_referenced": "PO-9999",
+        "currency": "INR",
+        "subtotal": 52000,
+        "gst": 9360,
+        "total": 61360
+      },
+      "decision": "Review",
+      "reasons": [
+        "PO PO-9999 is not in the register."
+      ],
+      "matched_po": null
+    },
+    {
+      "invoice_number": "INV-2014",
+      "vendor": "Verma Supplies",
+      "extract": {
+        "invoice_number": "INV-2014",
+        "vendor": "Verma Supplies",
+        "date": "13 Jun 2026",
+        "gstin": "27ABCDE1234F1Z5",
+        "po_referenced": "PO-1012",
+        "currency": "INR",
+        "subtotal": 40000,
+        "gst": 7200,
+        "total": 47200
+      },
+      "decision": "Review",
+      "reasons": [
+        "Vendor does not match PO PO-1012 (Kadam Stationers)."
+      ],
+      "matched_po": "PO-1012"
+    },
+    {
+      "invoice_number": "INV-2015",
+      "vendor": "Kadam Stationers",
+      "extract": {
+        "invoice_number": "INV-2015",
+        "vendor": "Kadam Stationers",
+        "date": "14 Jun 2026",
+        "gstin": "27ABCDE1234F1Z5",
+        "po_referenced": "PO-1003",
+        "currency": "INR",
+        "subtotal": 45000,
+        "gst": 8100,
+        "total": 53100
+      },
+      "decision": "Review",
+      "reasons": [
+        "Looks like a duplicate of an earlier invoice (same vendor and amount)."
+      ],
+      "matched_po": "PO-1003"
+    },
+    {
+      "invoice_number": "INV-2016",
+      "vendor": "Orbit Print Solutions",
+      "extract": {
+        "invoice_number": "INV-2016",
+        "vendor": "Orbit Print Solutions",
+        "date": null,
+        "gstin": "27ABCDE1234F1Z5",
+        "po_referenced": "PO-1017",
+        "currency": "INR",
+        "subtotal": 47000,
+        "gst": 8460,
+        "total": 55460
+      },
+      "decision": "Review",
+      "reasons": [
+        "Missing required field(s): date."
+      ],
+      "matched_po": "PO-1017"
+    },
+    {
+      "invoice_number": "INV-2017",
+      "vendor": "Ganga Electricals",
+      "extract": {
+        "invoice_number": "INV-2017",
+        "vendor": "Ganga Electricals",
+        "date": "15 Jun 2026",
+        "gstin": null,
+        "po_referenced": "PO-1018",
+        "currency": "INR",
+        "subtotal": 53000,
+        "gst": 9540,
+        "total": 62540
+      },
+      "decision": "Review",
+      "reasons": [
+        "Missing required field(s): GSTIN."
+      ],
+      "matched_po": "PO-1018"
+    },
+    {
+      "invoice_number": "INV-2018",
+      "vendor": "Metro Packaging Pvt Ltd",
+      "extract": {
+        "invoice_number": "INV-2018",
+        "vendor": "Metro Packaging Pvt Ltd",
+        "date": "15 Jun 2026",
+        "gstin": "27ABCDE1234F1Z5",
+        "po_referenced": "PO-1019",
+        "currency": "INR",
+        "subtotal": 60000,
+        "gst": 6000,
+        "total": 66000
+      },
+      "decision": "Review",
+      "reasons": [
+        "GST is not 18% of the subtotal (expected Rs 10,800)."
+      ],
+      "matched_po": "PO-1019"
+    },
+    {
+      "invoice_number": "INV-2019",
+      "vendor": "Sharma Traders Pvt Ltd",
+      "extract": {
+        "invoice_number": "INV-2019",
+        "vendor": "Sharma Traders Pvt Ltd",
+        "date": "16 Jun 2026",
+        "gstin": "27ABCDE1234F1Z5",
+        "po_referenced": "PO-1020",
+        "currency": "INR",
+        "subtotal": 70000,
+        "gst": 12600,
+        "total": 82600
+      },
+      "decision": "Review",
+      "reasons": [
+        "PO PO-1020 is closed (already fully invoiced)."
+      ],
+      "matched_po": "PO-1020"
+    },
+    {
+      "invoice_number": "INV-2020",
+      "vendor": "BluePeak Software LLP",
+      "extract": {
+        "invoice_number": "INV-2020",
+        "vendor": "BluePeak Software LLP",
+        "date": "16 Jun 2026",
+        "gstin": "27ABCDE1234F1Z5",
+        "po_referenced": "PO-1010",
+        "currency": "INR",
+        "subtotal": -15000,
+        "gst": -2700,
+        "total": -17700
+      },
+      "decision": "Review",
+      "reasons": [
+        "Credit note / negative amount; a human must handle this."
+      ],
+      "matched_po": "PO-1010"
+    },
+    {
+      "invoice_number": "INV-2021",
+      "vendor": "Contoso Analytics Inc",
+      "extract": {
+        "invoice_number": "INV-2021",
+        "vendor": "Contoso Analytics Inc",
+        "date": "17 Jun 2026",
+        "gstin": "27ABCDE1234F1Z5",
+        "po_referenced": "PO-1021",
+        "currency": "USD",
+        "subtotal": 1200,
+        "gst": 216,
+        "total": 1416
+      },
+      "decision": "Review",
+      "reasons": [
+        "Invoice is in a foreign currency; policy requires INR."
+      ],
+      "matched_po": "PO-1021"
+    },
+    {
+      "invoice_number": "INV-2022",
+      "vendor": "TechnoServe Systems Pvt Ltd",
+      "extract": {
+        "invoice_number": "INV-2022",
+        "vendor": "TechnoServe Systems Pvt Ltd",
+        "date": "18 Jun 2026",
+        "gstin": "27ABCDE1234F1Z5",
+        "po_referenced": "PO-1022",
+        "currency": "INR",
+        "subtotal": 90000,
+        "gst": 16200,
+        "total": 106200
+      },
+      "decision": "Review",
+      "reasons": [
+        "Total exceeds the Rs 100,000 auto-approve limit; needs senior sign-off."
+      ],
+      "matched_po": "PO-1022"
+    },
+    {
+      "invoice_number": "INV-2023",
+      "vendor": "Pearl Catering Services",
+      "extract": {
+        "invoice_number": "INV-2023",
+        "vendor": "Pearl Catering Services",
+        "date": "18 Jun 2026",
+        "gstin": "27ABCDE1234F1Z5",
+        "po_referenced": "PO-1015",
+        "currency": "INR",
+        "subtotal": 41000,
+        "gst": 7380,
+        "total": 48380
+      },
+      "decision": "Auto-approve",
+      "reasons": [],
+      "matched_po": "PO-1015"
+    },
+    {
+      "invoice_number": "INV-2024",
+      "vendor": "Sunrise Facilities",
+      "extract": {
+        "invoice_number": "INV-2024",
+        "vendor": "Sunrise Facilities",
+        "date": "19 Jun 2026",
+        "gstin": "27ABCDE1234F1Z5",
+        "po_referenced": "PO-1016",
+        "currency": "INR",
+        "subtotal": 69000,
+        "gst": 12420,
+        "total": 81420
+      },
+      "decision": "Auto-approve",
+      "reasons": [],
+      "matched_po": "PO-1016"
+    },
+    {
+      "invoice_number": "INV-2002",
+      "vendor": "Verma Office Supplies",
+      "extract": {
+        "invoice_number": "INV-2002",
+        "vendor": "Verma Office Supplies",
+        "date": "19 Jun 2026",
+        "gstin": "27ABCDE1234F1Z5",
+        "po_referenced": "PO-1023",
+        "currency": "INR",
+        "subtotal": 50000,
+        "gst": 9000,
+        "total": 59000
+      },
+      "decision": "Review",
+      "reasons": [
+        "Duplicate invoice number (INV-2002 already submitted)."
+      ],
+      "matched_po": "PO-1023"
+    }
+  ],
+  "approve_list": [
+    {
+      "invoice_number": "INV-2001",
+      "vendor": "Sharma Traders Pvt Ltd",
+      "total": 94400
+    },
+    {
+      "invoice_number": "INV-2002",
+      "vendor": "Verma Office Supplies",
+      "total": 73160
+    },
+    {
+      "invoice_number": "INV-2003",
+      "vendor": "Kadam Stationers",
+      "total": 53100
+    },
+    {
+      "invoice_number": "INV-2004",
+      "vendor": "Deccan Hardware Co",
+      "total": 83780
+    },
+    {
+      "invoice_number": "INV-2005",
+      "vendor": "Orbit Print Solutions",
+      "total": 44840
+    },
+    {
+      "invoice_number": "INV-2006",
+      "vendor": "Ganga Electricals",
+      "total": 67024
+    },
+    {
+      "invoice_number": "INV-2007",
+      "vendor": "Metro Packaging Pvt Ltd",
+      "total": 75520
+    },
+    {
+      "invoice_number": "INV-2008",
+      "vendor": "Zenith Furniture Pvt Ltd",
+      "total": 61360
+    },
+    {
+      "invoice_number": "INV-2023",
+      "vendor": "Pearl Catering Services",
+      "total": 48380
+    },
+    {
+      "invoice_number": "INV-2024",
+      "vendor": "Sunrise Facilities",
+      "total": 81420
+    }
+  ],
+  "review_list": [
+    {
+      "invoice_number": "INV-2009",
+      "vendor": "Nimbus Cloud Services Pvt Ltd",
+      "reasons": [
+        "Total exceeds the Rs 100,000 auto-approve limit; needs senior sign-off."
+      ]
+    },
+    {
+      "invoice_number": "INV-2010",
+      "vendor": "BluePeak Software LLP",
+      "reasons": [
+        "Amount is 8% off PO PO-1010 (Rs 60,000); limit is 2%."
+      ]
+    },
+    {
+      "invoice_number": "INV-2011",
+      "vendor": "Deccan Hardware Co",
+      "reasons": [
+        "Amount is 30% off PO PO-1011 (Rs 50,000); limit is 2%."
+      ]
+    },
+    {
+      "invoice_number": "INV-2012",
+      "vendor": "Alpine Consulting Services",
+      "reasons": [
+        "No purchase order referenced."
+      ]
+    },
+    {
+      "invoice_number": "INV-2013",
+      "vendor": "Prime Logistics India",
+      "reasons": [
+        "PO PO-9999 is not in the register."
+      ]
+    },
+    {
+      "invoice_number": "INV-2014",
+      "vendor": "Verma Supplies",
+      "reasons": [
+        "Vendor does not match PO PO-1012 (Kadam Stationers)."
+      ]
+    },
+    {
+      "invoice_number": "INV-2015",
+      "vendor": "Kadam Stationers",
+      "reasons": [
+        "Looks like a duplicate of an earlier invoice (same vendor and amount)."
+      ]
+    },
+    {
+      "invoice_number": "INV-2016",
+      "vendor": "Orbit Print Solutions",
+      "reasons": [
+        "Missing required field(s): date."
+      ]
+    },
+    {
+      "invoice_number": "INV-2017",
+      "vendor": "Ganga Electricals",
+      "reasons": [
+        "Missing required field(s): GSTIN."
+      ]
+    },
+    {
+      "invoice_number": "INV-2018",
+      "vendor": "Metro Packaging Pvt Ltd",
+      "reasons": [
+        "GST is not 18% of the subtotal (expected Rs 10,800)."
+      ]
+    },
+    {
+      "invoice_number": "INV-2019",
+      "vendor": "Sharma Traders Pvt Ltd",
+      "reasons": [
+        "PO PO-1020 is closed (already fully invoiced)."
+      ]
+    },
+    {
+      "invoice_number": "INV-2020",
+      "vendor": "BluePeak Software LLP",
+      "reasons": [
+        "Credit note / negative amount; a human must handle this."
+      ]
+    },
+    {
+      "invoice_number": "INV-2021",
+      "vendor": "Contoso Analytics Inc",
+      "reasons": [
+        "Invoice is in a foreign currency; policy requires INR."
+      ]
+    },
+    {
+      "invoice_number": "INV-2022",
+      "vendor": "TechnoServe Systems Pvt Ltd",
+      "reasons": [
+        "Total exceeds the Rs 100,000 auto-approve limit; needs senior sign-off."
+      ]
+    },
+    {
+      "invoice_number": "INV-2002",
+      "vendor": "Verma Office Supplies",
+      "reasons": [
+        "Duplicate invoice number (INV-2002 already submitted)."
+      ]
+    }
+  ],
+  "draft": "Subject: Invoice run - 10 clear to pay, 15 for your review\n\nHi,\n\nI have checked all 25 supplier invoices against the approval policy and the purchase-order register. A summary is below. Nothing has been paid, these are recommendations only.\n\nCLEAR TO PAY (10) - matched an open PO, correct vendor, within tolerance, GST correct, under the Rs 1,00,000 limit:\n  - INV-2001  Sharma Traders Pvt Ltd  Rs 94,400\n  - INV-2002  Verma Office Supplies  Rs 73,160\n  - INV-2003  Kadam Stationers  Rs 53,100\n  - INV-2004  Deccan Hardware Co  Rs 83,780\n  - INV-2005  Orbit Print Solutions  Rs 44,840\n  - INV-2006  Ganga Electricals  Rs 67,024\n  - INV-2007  Metro Packaging Pvt Ltd  Rs 75,520\n  - INV-2008  Zenith Furniture Pvt Ltd  Rs 61,360\n  - INV-2023  Pearl Catering Services  Rs 48,380\n  - INV-2024  Sunrise Facilities  Rs 81,420\n\nFOR YOUR REVIEW (15) - held for a human, with the reason:\n  - INV-2009  Nimbus Cloud Services Pvt Ltd  ->  Total exceeds the Rs 100,000 auto-approve limit; needs senior sign-off.\n  - INV-2010  BluePeak Software LLP  ->  Amount is 8% off PO PO-1010 (Rs 60,000); limit is 2%.\n  - INV-2011  Deccan Hardware Co  ->  Amount is 30% off PO PO-1011 (Rs 50,000); limit is 2%.\n  - INV-2012  Alpine Consulting Services  ->  No purchase order referenced.\n  - INV-2013  Prime Logistics India  ->  PO PO-9999 is not in the register.\n  - INV-2014  Verma Supplies  ->  Vendor does not match PO PO-1012 (Kadam Stationers).\n  - INV-2015  Kadam Stationers  ->  Looks like a duplicate of an earlier invoice (same vendor and amount).\n  - INV-2016  Orbit Print Solutions  ->  Missing required field(s): date.\n  - INV-2017  Ganga Electricals  ->  Missing required field(s): GSTIN.\n  - INV-2018  Metro Packaging Pvt Ltd  ->  GST is not 18% of the subtotal (expected Rs 10,800).\n  - INV-2019  Sharma Traders Pvt Ltd  ->  PO PO-1020 is closed (already fully invoiced).\n  - INV-2020  BluePeak Software LLP  ->  Credit note / negative amount; a human must handle this.\n  - INV-2021  Contoso Analytics Inc  ->  Invoice is in a foreign currency; policy requires INR.\n  - INV-2022  TechnoServe Systems Pvt Ltd  ->  Total exceeds the Rs 100,000 auto-approve limit; needs senior sign-off.\n  - INV-2002  Verma Office Supplies  ->  Duplicate invoice number (INV-2002 already submitted).\n\nPlease confirm the payments you approve. I will not release anything without your sign-off.\n\nThanks,\nAccounts Payable agent"
+}

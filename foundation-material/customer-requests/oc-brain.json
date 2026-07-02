@@ -1,0 +1,621 @@
+{
+  "generated_for": "Customer Ops · Customer Requests",
+  "policy": {
+    "priorities": [
+      "Urgent",
+      "High",
+      "Normal",
+      "Low"
+    ],
+    "hard_rule": "Any message that threatens legal action, a regulator, a chargeback, or going public is treated as Urgent and routed to the Escalations team, whatever else it says. Nothing is auto-sent; the agent drafts a reply and a human approves it.",
+    "priority_guide": {
+      "Urgent": "A legal or public threat, a VIP at risk of leaving, or a VIP with a hard deadline.",
+      "High": "A customer at risk of leaving, an angry customer, a high-value customer, or a time-sensitive request.",
+      "Normal": "A standard request that needs a look-up or an action.",
+      "Low": "A simple enquiry or how-to that a short answer will settle."
+    }
+  },
+  "routing_table": [
+    {
+      "category": "Billing",
+      "team": "Billing"
+    },
+    {
+      "category": "Orders & Delivery",
+      "team": "Fulfilment"
+    },
+    {
+      "category": "Returns & Refunds",
+      "team": "Returns"
+    },
+    {
+      "category": "Account & Access",
+      "team": "Account Support"
+    },
+    {
+      "category": "Product Issue",
+      "team": "Technical Support"
+    },
+    {
+      "category": "Cancellation",
+      "team": "Retention"
+    },
+    {
+      "category": "General Enquiry",
+      "team": "Frontline Support"
+    }
+  ],
+  "sla_table": [
+    {
+      "priority": "Urgent",
+      "target": "Respond within 1 hour"
+    },
+    {
+      "priority": "High",
+      "target": "Respond within 4 hours"
+    },
+    {
+      "priority": "Normal",
+      "target": "Respond within 1 business day"
+    },
+    {
+      "priority": "Low",
+      "target": "Respond within 2 business days"
+    }
+  ],
+  "messages": [
+    {
+      "reference": "CR-4003",
+      "customer": "Anita Desai",
+      "extract": {
+        "reference": "CR-4003",
+        "customer": "Anita Desai",
+        "category": "Cancellation",
+        "sentiment": "frustrated",
+        "churn_risk": true,
+        "vip": true,
+        "legal_or_public": false,
+        "time_sensitive": false,
+        "is_simple_enquiry": false,
+        "summary": "Contract at risk"
+      },
+      "priority": "Urgent",
+      "team": "Retention",
+      "sla": "Respond within 1 hour",
+      "evidence": "VIP customer at risk of leaving.",
+      "suggested_reply": "Hi Anita, thank you for being a long-standing partner. I have flagged this to our Retention team as urgent and a specialist will contact you today to resolve the integration issue."
+    },
+    {
+      "reference": "CR-4004",
+      "customer": "Vivek Anand",
+      "extract": {
+        "reference": "CR-4004",
+        "customer": "Vivek Anand",
+        "category": "Orders & Delivery",
+        "sentiment": "frustrated",
+        "churn_risk": false,
+        "vip": true,
+        "legal_or_public": false,
+        "time_sensitive": true,
+        "is_simple_enquiry": false,
+        "summary": "Replacement before my event"
+      },
+      "priority": "Urgent",
+      "team": "Fulfilment",
+      "sla": "Respond within 1 hour",
+      "evidence": "VIP with a hard deadline.",
+      "suggested_reply": "Hi Vivek, as a Premier member your express order is prioritised. Our Fulfilment team is confirming tomorrow's delivery timing and will update you within the hour."
+    },
+    {
+      "reference": "CR-4001",
+      "customer": "Ritu Malhotra",
+      "extract": {
+        "reference": "CR-4001",
+        "customer": "Ritu Malhotra",
+        "category": "Billing",
+        "sentiment": "angry",
+        "churn_risk": false,
+        "vip": false,
+        "legal_or_public": true,
+        "time_sensitive": false,
+        "is_simple_enquiry": false,
+        "summary": "Overcharged again"
+      },
+      "priority": "Urgent",
+      "team": "Escalations",
+      "sla": "Respond within 1 hour",
+      "evidence": "Legal or public threat; escalated to Urgent and routed to Escalations.",
+      "suggested_reply": "Hi Ritu, I am very sorry about the repeated overcharges. I have escalated this as a priority and we will confirm the corrected charge and a resolution to you today."
+    },
+    {
+      "reference": "CR-4002",
+      "customer": "Sameer Kapoor",
+      "extract": {
+        "reference": "CR-4002",
+        "customer": "Sameer Kapoor",
+        "category": "Product Issue",
+        "sentiment": "angry",
+        "churn_risk": false,
+        "vip": false,
+        "legal_or_public": true,
+        "time_sensitive": false,
+        "is_simple_enquiry": false,
+        "summary": "Faulty product"
+      },
+      "priority": "Urgent",
+      "team": "Escalations",
+      "sla": "Respond within 1 hour",
+      "evidence": "Legal or public threat; escalated to Urgent and routed to Escalations.",
+      "suggested_reply": "Hi Sameer, I am sorry the product arrived faulty. I have escalated this so we can arrange a full refund and confirm the next steps with you today."
+    },
+    {
+      "reference": "CR-4007",
+      "customer": "Priyanka Rao",
+      "extract": {
+        "reference": "CR-4007",
+        "customer": "Priyanka Rao",
+        "category": "Account & Access",
+        "sentiment": "calm",
+        "churn_risk": false,
+        "vip": true,
+        "legal_or_public": false,
+        "time_sensitive": false,
+        "is_simple_enquiry": false,
+        "summary": "Upgrade our plan"
+      },
+      "priority": "High",
+      "team": "Account Support",
+      "sla": "Respond within 4 hours",
+      "evidence": "High-value customer.",
+      "suggested_reply": ""
+    },
+    {
+      "reference": "CR-4011",
+      "customer": "Deepa Shetty",
+      "extract": {
+        "reference": "CR-4011",
+        "customer": "Deepa Shetty",
+        "category": "Product Issue",
+        "sentiment": "frustrated",
+        "churn_risk": false,
+        "vip": true,
+        "legal_or_public": false,
+        "time_sensitive": false,
+        "is_simple_enquiry": false,
+        "summary": "Recurring bug"
+      },
+      "priority": "High",
+      "team": "Technical Support",
+      "sla": "Respond within 4 hours",
+      "evidence": "High-value customer.",
+      "suggested_reply": ""
+    },
+    {
+      "reference": "CR-4005",
+      "customer": "Neha Bansal",
+      "extract": {
+        "reference": "CR-4005",
+        "customer": "Neha Bansal",
+        "category": "Cancellation",
+        "sentiment": "frustrated",
+        "churn_risk": true,
+        "vip": false,
+        "legal_or_public": false,
+        "time_sensitive": false,
+        "is_simple_enquiry": false,
+        "summary": "Thinking of leaving"
+      },
+      "priority": "High",
+      "team": "Retention",
+      "sla": "Respond within 4 hours",
+      "evidence": "Customer at risk of leaving.",
+      "suggested_reply": ""
+    },
+    {
+      "reference": "CR-4009",
+      "customer": "Meera Joshi",
+      "extract": {
+        "reference": "CR-4009",
+        "customer": "Meera Joshi",
+        "category": "Cancellation",
+        "sentiment": "frustrated",
+        "churn_risk": true,
+        "vip": false,
+        "legal_or_public": false,
+        "time_sensitive": false,
+        "is_simple_enquiry": false,
+        "summary": "Not seeing value"
+      },
+      "priority": "High",
+      "team": "Retention",
+      "sla": "Respond within 4 hours",
+      "evidence": "Customer at risk of leaving.",
+      "suggested_reply": ""
+    },
+    {
+      "reference": "CR-4006",
+      "customer": "Rohit Sinha",
+      "extract": {
+        "reference": "CR-4006",
+        "customer": "Rohit Sinha",
+        "category": "Billing",
+        "sentiment": "angry",
+        "churn_risk": false,
+        "vip": false,
+        "legal_or_public": false,
+        "time_sensitive": false,
+        "is_simple_enquiry": false,
+        "summary": "Charged twice"
+      },
+      "priority": "High",
+      "team": "Billing",
+      "sla": "Respond within 4 hours",
+      "evidence": "Angry customer; needs a fast, careful reply.",
+      "suggested_reply": ""
+    },
+    {
+      "reference": "CR-4008",
+      "customer": "Karan Bhatia",
+      "extract": {
+        "reference": "CR-4008",
+        "customer": "Karan Bhatia",
+        "category": "Orders & Delivery",
+        "sentiment": "frustrated",
+        "churn_risk": false,
+        "vip": false,
+        "legal_or_public": false,
+        "time_sensitive": true,
+        "is_simple_enquiry": false,
+        "summary": "Wedding gift delayed"
+      },
+      "priority": "High",
+      "team": "Fulfilment",
+      "sla": "Respond within 4 hours",
+      "evidence": "Time-sensitive request.",
+      "suggested_reply": ""
+    },
+    {
+      "reference": "CR-4010",
+      "customer": "Arjun Pillai",
+      "extract": {
+        "reference": "CR-4010",
+        "customer": "Arjun Pillai",
+        "category": "Returns & Refunds",
+        "sentiment": "angry",
+        "churn_risk": false,
+        "vip": false,
+        "legal_or_public": false,
+        "time_sensitive": false,
+        "is_simple_enquiry": false,
+        "summary": "Refund still not here"
+      },
+      "priority": "High",
+      "team": "Returns",
+      "sla": "Respond within 4 hours",
+      "evidence": "Angry customer; needs a fast, careful reply.",
+      "suggested_reply": ""
+    },
+    {
+      "reference": "CR-4012",
+      "customer": "Sana Verma",
+      "extract": {
+        "reference": "CR-4012",
+        "customer": "Sana Verma",
+        "category": "Orders & Delivery",
+        "sentiment": "calm",
+        "churn_risk": false,
+        "vip": false,
+        "legal_or_public": false,
+        "time_sensitive": false,
+        "is_simple_enquiry": false,
+        "summary": "Where is my order"
+      },
+      "priority": "Normal",
+      "team": "Fulfilment",
+      "sla": "Respond within 1 business day",
+      "evidence": "Standard request.",
+      "suggested_reply": ""
+    },
+    {
+      "reference": "CR-4013",
+      "customer": "Imran Sheikh",
+      "extract": {
+        "reference": "CR-4013",
+        "customer": "Imran Sheikh",
+        "category": "Returns & Refunds",
+        "sentiment": "calm",
+        "churn_risk": false,
+        "vip": false,
+        "legal_or_public": false,
+        "time_sensitive": false,
+        "is_simple_enquiry": false,
+        "summary": "Refund for returned item"
+      },
+      "priority": "Normal",
+      "team": "Returns",
+      "sla": "Respond within 1 business day",
+      "evidence": "Standard request.",
+      "suggested_reply": ""
+    },
+    {
+      "reference": "CR-4014",
+      "customer": "Latha Menon",
+      "extract": {
+        "reference": "CR-4014",
+        "customer": "Latha Menon",
+        "category": "Billing",
+        "sentiment": "calm",
+        "churn_risk": false,
+        "vip": false,
+        "legal_or_public": false,
+        "time_sensitive": false,
+        "is_simple_enquiry": false,
+        "summary": "Copy of invoice"
+      },
+      "priority": "Normal",
+      "team": "Billing",
+      "sla": "Respond within 1 business day",
+      "evidence": "Standard request.",
+      "suggested_reply": ""
+    },
+    {
+      "reference": "CR-4015",
+      "customer": "Gaurav Nanda",
+      "extract": {
+        "reference": "CR-4015",
+        "customer": "Gaurav Nanda",
+        "category": "Account & Access",
+        "sentiment": "frustrated",
+        "churn_risk": false,
+        "vip": false,
+        "legal_or_public": false,
+        "time_sensitive": false,
+        "is_simple_enquiry": false,
+        "summary": "Cannot log in"
+      },
+      "priority": "Normal",
+      "team": "Account Support",
+      "sla": "Respond within 1 business day",
+      "evidence": "Standard request.",
+      "suggested_reply": ""
+    },
+    {
+      "reference": "CR-4016",
+      "customer": "Pooja Reddy",
+      "extract": {
+        "reference": "CR-4016",
+        "customer": "Pooja Reddy",
+        "category": "Product Issue",
+        "sentiment": "calm",
+        "churn_risk": false,
+        "vip": false,
+        "legal_or_public": false,
+        "time_sensitive": false,
+        "is_simple_enquiry": false,
+        "summary": "Device will not connect"
+      },
+      "priority": "Normal",
+      "team": "Technical Support",
+      "sla": "Respond within 1 business day",
+      "evidence": "Standard request.",
+      "suggested_reply": ""
+    },
+    {
+      "reference": "CR-4017",
+      "customer": "Nikhil Jain",
+      "extract": {
+        "reference": "CR-4017",
+        "customer": "Nikhil Jain",
+        "category": "Orders & Delivery",
+        "sentiment": "calm",
+        "churn_risk": false,
+        "vip": false,
+        "legal_or_public": false,
+        "time_sensitive": false,
+        "is_simple_enquiry": false,
+        "summary": "Change delivery address"
+      },
+      "priority": "Normal",
+      "team": "Fulfilment",
+      "sla": "Respond within 1 business day",
+      "evidence": "Standard request.",
+      "suggested_reply": ""
+    },
+    {
+      "reference": "CR-4018",
+      "customer": "Sneha Kulkarni",
+      "extract": {
+        "reference": "CR-4018",
+        "customer": "Sneha Kulkarni",
+        "category": "Billing",
+        "sentiment": "calm",
+        "churn_risk": false,
+        "vip": false,
+        "legal_or_public": false,
+        "time_sensitive": false,
+        "is_simple_enquiry": false,
+        "summary": "Update card on file"
+      },
+      "priority": "Normal",
+      "team": "Billing",
+      "sla": "Respond within 1 business day",
+      "evidence": "Standard request.",
+      "suggested_reply": ""
+    },
+    {
+      "reference": "CR-4019",
+      "customer": "Ravi Menon",
+      "extract": {
+        "reference": "CR-4019",
+        "customer": "Ravi Menon",
+        "category": "Returns & Refunds",
+        "sentiment": "calm",
+        "churn_risk": false,
+        "vip": false,
+        "legal_or_public": false,
+        "time_sensitive": false,
+        "is_simple_enquiry": false,
+        "summary": "Damaged part"
+      },
+      "priority": "Normal",
+      "team": "Returns",
+      "sla": "Respond within 1 business day",
+      "evidence": "Standard request.",
+      "suggested_reply": ""
+    },
+    {
+      "reference": "CR-4020",
+      "customer": "Aisha Khan",
+      "extract": {
+        "reference": "CR-4020",
+        "customer": "Aisha Khan",
+        "category": "General Enquiry",
+        "sentiment": "calm",
+        "churn_risk": false,
+        "vip": false,
+        "legal_or_public": false,
+        "time_sensitive": false,
+        "is_simple_enquiry": true,
+        "summary": "How to track an order"
+      },
+      "priority": "Low",
+      "team": "Frontline Support",
+      "sla": "Respond within 2 business days",
+      "evidence": "Simple enquiry; a templated answer will do.",
+      "suggested_reply": ""
+    },
+    {
+      "reference": "CR-4021",
+      "customer": "Tarun Gupta",
+      "extract": {
+        "reference": "CR-4021",
+        "customer": "Tarun Gupta",
+        "category": "General Enquiry",
+        "sentiment": "calm",
+        "churn_risk": false,
+        "vip": false,
+        "legal_or_public": false,
+        "time_sensitive": false,
+        "is_simple_enquiry": true,
+        "summary": "Support hours"
+      },
+      "priority": "Low",
+      "team": "Frontline Support",
+      "sla": "Respond within 2 business days",
+      "evidence": "Simple enquiry; a templated answer will do.",
+      "suggested_reply": ""
+    },
+    {
+      "reference": "CR-4022",
+      "customer": "Farida Ali",
+      "extract": {
+        "reference": "CR-4022",
+        "customer": "Farida Ali",
+        "category": "General Enquiry",
+        "sentiment": "calm",
+        "churn_risk": false,
+        "vip": false,
+        "legal_or_public": false,
+        "time_sensitive": false,
+        "is_simple_enquiry": true,
+        "summary": "International shipping"
+      },
+      "priority": "Low",
+      "team": "Frontline Support",
+      "sla": "Respond within 2 business days",
+      "evidence": "Simple enquiry; a templated answer will do.",
+      "suggested_reply": ""
+    },
+    {
+      "reference": "CR-4023",
+      "customer": "Mohit Sethi",
+      "extract": {
+        "reference": "CR-4023",
+        "customer": "Mohit Sethi",
+        "category": "General Enquiry",
+        "sentiment": "calm",
+        "churn_risk": false,
+        "vip": false,
+        "legal_or_public": false,
+        "time_sensitive": false,
+        "is_simple_enquiry": true,
+        "summary": "Unsubscribe from emails"
+      },
+      "priority": "Low",
+      "team": "Frontline Support",
+      "sla": "Respond within 2 business days",
+      "evidence": "Simple enquiry; a templated answer will do.",
+      "suggested_reply": ""
+    },
+    {
+      "reference": "CR-4024",
+      "customer": "Kavya Nair",
+      "extract": {
+        "reference": "CR-4024",
+        "customer": "Kavya Nair",
+        "category": "General Enquiry",
+        "sentiment": "calm",
+        "churn_risk": false,
+        "vip": false,
+        "legal_or_public": false,
+        "time_sensitive": false,
+        "is_simple_enquiry": true,
+        "summary": "Thank you"
+      },
+      "priority": "Low",
+      "team": "Frontline Support",
+      "sla": "Respond within 2 business days",
+      "evidence": "Simple enquiry; a templated answer will do.",
+      "suggested_reply": ""
+    },
+    {
+      "reference": "CR-4025",
+      "customer": "Alok Mishra",
+      "extract": {
+        "reference": "CR-4025",
+        "customer": "Alok Mishra",
+        "category": "General Enquiry",
+        "sentiment": "calm",
+        "churn_risk": false,
+        "vip": false,
+        "legal_or_public": false,
+        "time_sensitive": false,
+        "is_simple_enquiry": true,
+        "summary": "Spec question before buying"
+      },
+      "priority": "Low",
+      "team": "Frontline Support",
+      "sla": "Respond within 2 business days",
+      "evidence": "Simple enquiry; a templated answer will do.",
+      "suggested_reply": ""
+    }
+  ],
+  "queue": [
+    "CR-4003",
+    "CR-4004",
+    "CR-4001",
+    "CR-4002",
+    "CR-4007",
+    "CR-4011",
+    "CR-4005",
+    "CR-4009",
+    "CR-4006",
+    "CR-4008",
+    "CR-4010",
+    "CR-4012",
+    "CR-4013",
+    "CR-4014",
+    "CR-4015",
+    "CR-4016",
+    "CR-4017",
+    "CR-4018",
+    "CR-4019",
+    "CR-4020",
+    "CR-4021",
+    "CR-4022",
+    "CR-4023",
+    "CR-4024",
+    "CR-4025"
+  ],
+  "draft": "Subject: Support queue handover - Urgent: 4, High: 7, Normal: 8, Low: 6\n\nHi,\n\nI have triaged all 25 customer messages. Nothing has been sent, the replies below are drafts for you to review and send.\n\nURGENT - reply drafted, awaiting your send (4):\n  - CR-4003  Anita Desai  ->  Retention  [Respond within 1 hour]  - VIP customer at risk of leaving.\n      Suggested reply: Hi Anita, thank you for being a long-standing partner. I have flagged this to our Retention team as urgent and a specialist will contact you today to resolve the integration issue.\n  - CR-4004  Vivek Anand  ->  Fulfilment  [Respond within 1 hour]  - VIP with a hard deadline.\n      Suggested reply: Hi Vivek, as a Premier member your express order is prioritised. Our Fulfilment team is confirming tomorrow's delivery timing and will update you within the hour.\n  - CR-4001  Ritu Malhotra  ->  Escalations  [Respond within 1 hour]  - Legal or public threat; escalated to Urgent and routed to Escalations.\n      Suggested reply: Hi Ritu, I am very sorry about the repeated overcharges. I have escalated this as a priority and we will confirm the corrected charge and a resolution to you today.\n  - CR-4002  Sameer Kapoor  ->  Escalations  [Respond within 1 hour]  - Legal or public threat; escalated to Urgent and routed to Escalations.\n      Suggested reply: Hi Sameer, I am sorry the product arrived faulty. I have escalated this so we can arrange a full refund and confirm the next steps with you today.\n\nTHE REST OF THE QUEUE, worst first:\n  High    CR-4007  Priyanka Rao  ->  Account Support  [Respond within 4 hours]\n  High    CR-4011  Deepa Shetty  ->  Technical Support  [Respond within 4 hours]\n  High    CR-4005  Neha Bansal  ->  Retention  [Respond within 4 hours]\n  High    CR-4009  Meera Joshi  ->  Retention  [Respond within 4 hours]\n  High    CR-4006  Rohit Sinha  ->  Billing  [Respond within 4 hours]\n  High    CR-4008  Karan Bhatia  ->  Fulfilment  [Respond within 4 hours]\n  High    CR-4010  Arjun Pillai  ->  Returns  [Respond within 4 hours]\n  Normal  CR-4012  Sana Verma  ->  Fulfilment  [Respond within 1 business day]\n  Normal  CR-4013  Imran Sheikh  ->  Returns  [Respond within 1 business day]\n  Normal  CR-4014  Latha Menon  ->  Billing  [Respond within 1 business day]\n  Normal  CR-4015  Gaurav Nanda  ->  Account Support  [Respond within 1 business day]\n  Normal  CR-4016  Pooja Reddy  ->  Technical Support  [Respond within 1 business day]\n  Normal  CR-4017  Nikhil Jain  ->  Fulfilment  [Respond within 1 business day]\n  Normal  CR-4018  Sneha Kulkarni  ->  Billing  [Respond within 1 business day]\n  Normal  CR-4019  Ravi Menon  ->  Returns  [Respond within 1 business day]\n  Low     CR-4020  Aisha Khan  ->  Frontline Support  [Respond within 2 business days]\n  Low     CR-4021  Tarun Gupta  ->  Frontline Support  [Respond within 2 business days]\n  Low     CR-4022  Farida Ali  ->  Frontline Support  [Respond within 2 business days]\n  Low     CR-4023  Mohit Sethi  ->  Frontline Support  [Respond within 2 business days]\n  Low     CR-4024  Kavya Nair  ->  Frontline Support  [Respond within 2 business days]\n  Low     CR-4025  Alok Mishra  ->  Frontline Support  [Respond within 2 business days]\n\nPlease review the drafted replies and the routing, and send what you approve. I will not send anything without your sign-off.\n\nThanks,\nCustomer support agent"
+}

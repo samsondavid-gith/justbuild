@@ -1,0 +1,596 @@
+{
+  "generated_for": "IT Ops · Ticket Triage",
+  "policy": {
+    "priorities": [
+      "P1",
+      "P2",
+      "P3",
+      "P4"
+    ],
+    "hard_rule": "Any ticket reporting phishing, malware, or a suspected breach is P1 and routed to Security Operations, whatever else it says. Nothing is auto-resolved or auto-actioned; the agent drafts and a human acts.",
+    "priority_guide": {
+      "P1": "Company-wide outage, a security report, a whole team unable to work, or a VIP fully blocked.",
+      "P2": "A team affected with a workaround, a single user fully blocked, or a VIP affected.",
+      "P3": "A single user with a workaround or minor impact.",
+      "P4": "Routine service requests (equipment, software, access, how-to)."
+    }
+  },
+  "routing_table": [
+    {
+      "category": "Access",
+      "team": "Identity & Access"
+    },
+    {
+      "category": "Email",
+      "team": "Messaging"
+    },
+    {
+      "category": "Hardware",
+      "team": "Desktop Support"
+    },
+    {
+      "category": "Network",
+      "team": "Network Operations"
+    },
+    {
+      "category": "Software",
+      "team": "Application Support"
+    },
+    {
+      "category": "Security",
+      "team": "Security Operations"
+    },
+    {
+      "category": "Telephony",
+      "team": "Unified Comms"
+    }
+  ],
+  "sla_table": [
+    {
+      "priority": "P1",
+      "target": "Respond within 15 minutes"
+    },
+    {
+      "priority": "P2",
+      "target": "Respond within 1 hour"
+    },
+    {
+      "priority": "P3",
+      "target": "Respond within 4 hours"
+    },
+    {
+      "priority": "P4",
+      "target": "Respond within 1 business day"
+    }
+  ],
+  "tickets": [
+    {
+      "ticket_id": "INC-3004",
+      "requester": "Meera Iyer",
+      "extract": {
+        "ticket_id": "INC-3004",
+        "requester": "Meera Iyer",
+        "department": "Office of the CFO",
+        "category": "Hardware",
+        "scope": "single",
+        "work_stopped": true,
+        "security": false,
+        "vip": true,
+        "is_request": false,
+        "summary": "CFO laptop will not power on before board meeting"
+      },
+      "priority": "P1",
+      "team": "Desktop Support",
+      "sla": "Respond within 15 minutes",
+      "evidence": "VIP fully blocked."
+    },
+    {
+      "ticket_id": "INC-3001",
+      "requester": "Priya Nair",
+      "extract": {
+        "ticket_id": "INC-3001",
+        "requester": "Priya Nair",
+        "department": "Sales",
+        "category": "Email",
+        "scope": "company",
+        "work_stopped": true,
+        "security": false,
+        "vip": false,
+        "is_request": false,
+        "summary": "No one can send or receive email"
+      },
+      "priority": "P1",
+      "team": "Messaging",
+      "sla": "Respond within 15 minutes",
+      "evidence": "Company-wide outage."
+    },
+    {
+      "ticket_id": "INC-3002",
+      "requester": "Rahul Verma",
+      "extract": {
+        "ticket_id": "INC-3002",
+        "requester": "Rahul Verma",
+        "department": "Operations",
+        "category": "Network",
+        "scope": "team",
+        "work_stopped": true,
+        "security": false,
+        "vip": false,
+        "is_request": false,
+        "summary": "Whole sales floor has no network"
+      },
+      "priority": "P1",
+      "team": "Network Operations",
+      "sla": "Respond within 15 minutes",
+      "evidence": "A whole team cannot work."
+    },
+    {
+      "ticket_id": "INC-3003",
+      "requester": "Anjali Gupta",
+      "extract": {
+        "ticket_id": "INC-3003",
+        "requester": "Anjali Gupta",
+        "department": "Finance",
+        "category": "Email",
+        "scope": "single",
+        "work_stopped": false,
+        "security": true,
+        "vip": false,
+        "is_request": false,
+        "summary": "Odd email asking for my password"
+      },
+      "priority": "P1",
+      "team": "Security Operations",
+      "sla": "Respond within 15 minutes",
+      "evidence": "Security report; escalated to P1 and routed to Security Operations."
+    },
+    {
+      "ticket_id": "INC-3005",
+      "requester": "Sunil Rao",
+      "extract": {
+        "ticket_id": "INC-3005",
+        "requester": "Sunil Rao",
+        "department": "Finance",
+        "category": "Security",
+        "scope": "single",
+        "work_stopped": false,
+        "security": true,
+        "vip": false,
+        "is_request": false,
+        "summary": "Pop-ups and strange programs on my PC"
+      },
+      "priority": "P1",
+      "team": "Security Operations",
+      "sla": "Respond within 15 minutes",
+      "evidence": "Security report; escalated to P1 and routed to Security Operations."
+    },
+    {
+      "ticket_id": "INC-3007",
+      "requester": "Deepak Sharma",
+      "extract": {
+        "ticket_id": "INC-3007",
+        "requester": "Deepak Sharma",
+        "department": "Human Resources",
+        "category": "Access",
+        "scope": "single",
+        "work_stopped": false,
+        "security": false,
+        "vip": true,
+        "is_request": false,
+        "summary": "Head of HR cannot open the shared drive"
+      },
+      "priority": "P2",
+      "team": "Identity & Access",
+      "sla": "Respond within 1 hour",
+      "evidence": "VIP affected; a workaround exists."
+    },
+    {
+      "ticket_id": "INC-3011",
+      "requester": "Vikram Nair",
+      "extract": {
+        "ticket_id": "INC-3011",
+        "requester": "Vikram Nair",
+        "department": "Office of the CEO",
+        "category": "Telephony",
+        "scope": "single",
+        "work_stopped": false,
+        "security": false,
+        "vip": true,
+        "is_request": false,
+        "summary": "CEO desk phone has no dial tone"
+      },
+      "priority": "P2",
+      "team": "Unified Comms",
+      "sla": "Respond within 1 hour",
+      "evidence": "VIP affected; a workaround exists."
+    },
+    {
+      "ticket_id": "INC-3006",
+      "requester": "Kavita Nair",
+      "extract": {
+        "ticket_id": "INC-3006",
+        "requester": "Kavita Nair",
+        "department": "Finance",
+        "category": "Software",
+        "scope": "team",
+        "work_stopped": false,
+        "security": false,
+        "vip": false,
+        "is_request": false,
+        "summary": "ERP errors across the finance team"
+      },
+      "priority": "P2",
+      "team": "Application Support",
+      "sla": "Respond within 1 hour",
+      "evidence": "A team is affected; a workaround exists."
+    },
+    {
+      "ticket_id": "INC-3008",
+      "requester": "Neha Joshi",
+      "extract": {
+        "ticket_id": "INC-3008",
+        "requester": "Neha Joshi",
+        "department": "Support",
+        "category": "Network",
+        "scope": "team",
+        "work_stopped": false,
+        "security": false,
+        "vip": false,
+        "is_request": false,
+        "summary": "VPN very slow for the remote team"
+      },
+      "priority": "P2",
+      "team": "Network Operations",
+      "sla": "Respond within 1 hour",
+      "evidence": "A team is affected; a workaround exists."
+    },
+    {
+      "ticket_id": "INC-3010",
+      "requester": "Sridevi Rao",
+      "extract": {
+        "ticket_id": "INC-3010",
+        "requester": "Sridevi Rao",
+        "department": "Payroll",
+        "category": "Software",
+        "scope": "team",
+        "work_stopped": false,
+        "security": false,
+        "vip": false,
+        "is_request": false,
+        "summary": "Payroll software licence expired"
+      },
+      "priority": "P2",
+      "team": "Application Support",
+      "sla": "Respond within 1 hour",
+      "evidence": "A team is affected; a workaround exists."
+    },
+    {
+      "ticket_id": "INC-3009",
+      "requester": "Arjun Menon",
+      "extract": {
+        "ticket_id": "INC-3009",
+        "requester": "Arjun Menon",
+        "department": "Operations",
+        "category": "Access",
+        "scope": "single",
+        "work_stopped": true,
+        "security": false,
+        "vip": false,
+        "is_request": false,
+        "summary": "Locked out of the core system, deadline today"
+      },
+      "priority": "P2",
+      "team": "Identity & Access",
+      "sla": "Respond within 1 hour",
+      "evidence": "User fully blocked, no workaround."
+    },
+    {
+      "ticket_id": "INC-3012",
+      "requester": "Sana Khan",
+      "extract": {
+        "ticket_id": "INC-3012",
+        "requester": "Sana Khan",
+        "department": "Marketing",
+        "category": "Email",
+        "scope": "single",
+        "work_stopped": false,
+        "security": false,
+        "vip": false,
+        "is_request": false,
+        "summary": "Outlook keeps crashing"
+      },
+      "priority": "P3",
+      "team": "Messaging",
+      "sla": "Respond within 4 hours",
+      "evidence": "Single user, minor impact with a workaround."
+    },
+    {
+      "ticket_id": "INC-3013",
+      "requester": "Rohit Das",
+      "extract": {
+        "ticket_id": "INC-3013",
+        "requester": "Rohit Das",
+        "department": "Design",
+        "category": "Hardware",
+        "scope": "single",
+        "work_stopped": false,
+        "security": false,
+        "vip": false,
+        "is_request": false,
+        "summary": "Second monitor flickering"
+      },
+      "priority": "P3",
+      "team": "Desktop Support",
+      "sla": "Respond within 4 hours",
+      "evidence": "Single user, minor impact with a workaround."
+    },
+    {
+      "ticket_id": "INC-3014",
+      "requester": "Leena Pillai",
+      "extract": {
+        "ticket_id": "INC-3014",
+        "requester": "Leena Pillai",
+        "department": "Sales",
+        "category": "Network",
+        "scope": "single",
+        "work_stopped": false,
+        "security": false,
+        "vip": false,
+        "is_request": false,
+        "summary": "WiFi drops at my desk"
+      },
+      "priority": "P3",
+      "team": "Network Operations",
+      "sla": "Respond within 4 hours",
+      "evidence": "Single user, minor impact with a workaround."
+    },
+    {
+      "ticket_id": "INC-3015",
+      "requester": "Manish Gupta",
+      "extract": {
+        "ticket_id": "INC-3015",
+        "requester": "Manish Gupta",
+        "department": "Finance",
+        "category": "Software",
+        "scope": "single",
+        "work_stopped": false,
+        "security": false,
+        "vip": false,
+        "is_request": false,
+        "summary": "Report export fails in the app"
+      },
+      "priority": "P3",
+      "team": "Application Support",
+      "sla": "Respond within 4 hours",
+      "evidence": "Single user, minor impact with a workaround."
+    },
+    {
+      "ticket_id": "INC-3016",
+      "requester": "Divya Rao",
+      "extract": {
+        "ticket_id": "INC-3016",
+        "requester": "Divya Rao",
+        "department": "Projects",
+        "category": "Access",
+        "scope": "single",
+        "work_stopped": false,
+        "security": false,
+        "vip": false,
+        "is_request": false,
+        "summary": "Lost access to a folder I normally use"
+      },
+      "priority": "P3",
+      "team": "Identity & Access",
+      "sla": "Respond within 4 hours",
+      "evidence": "Single user, minor impact with a workaround."
+    },
+    {
+      "ticket_id": "INC-3017",
+      "requester": "Farah Ali",
+      "extract": {
+        "ticket_id": "INC-3017",
+        "requester": "Farah Ali",
+        "department": "Administration",
+        "category": "Hardware",
+        "scope": "single",
+        "work_stopped": false,
+        "security": false,
+        "vip": false,
+        "is_request": false,
+        "summary": "Printer jams on the 3rd floor"
+      },
+      "priority": "P3",
+      "team": "Desktop Support",
+      "sla": "Respond within 4 hours",
+      "evidence": "Single user, minor impact with a workaround."
+    },
+    {
+      "ticket_id": "INC-3018",
+      "requester": "Karan Mehta",
+      "extract": {
+        "ticket_id": "INC-3018",
+        "requester": "Karan Mehta",
+        "department": "Support",
+        "category": "Telephony",
+        "scope": "single",
+        "work_stopped": false,
+        "security": false,
+        "vip": false,
+        "is_request": false,
+        "summary": "Softphone audio is choppy"
+      },
+      "priority": "P3",
+      "team": "Unified Comms",
+      "sla": "Respond within 4 hours",
+      "evidence": "Single user, minor impact with a workaround."
+    },
+    {
+      "ticket_id": "INC-3019",
+      "requester": "Nisha Verma",
+      "extract": {
+        "ticket_id": "INC-3019",
+        "requester": "Nisha Verma",
+        "department": "Legal",
+        "category": "Email",
+        "scope": "single",
+        "work_stopped": false,
+        "security": false,
+        "vip": false,
+        "is_request": false,
+        "summary": "Mailbox almost full"
+      },
+      "priority": "P3",
+      "team": "Messaging",
+      "sla": "Respond within 4 hours",
+      "evidence": "Single user, minor impact with a workaround."
+    },
+    {
+      "ticket_id": "INC-3020",
+      "requester": "Aditya Kulkarni",
+      "extract": {
+        "ticket_id": "INC-3020",
+        "requester": "Aditya Kulkarni",
+        "department": "Engineering",
+        "category": "Hardware",
+        "scope": "single",
+        "work_stopped": false,
+        "security": false,
+        "vip": false,
+        "is_request": false,
+        "summary": "Laptop has become very slow"
+      },
+      "priority": "P3",
+      "team": "Desktop Support",
+      "sla": "Respond within 4 hours",
+      "evidence": "Single user, minor impact with a workaround."
+    },
+    {
+      "ticket_id": "INC-3021",
+      "requester": "Pooja Sharma",
+      "extract": {
+        "ticket_id": "INC-3021",
+        "requester": "Pooja Sharma",
+        "department": "Human Resources",
+        "category": "Hardware",
+        "scope": "single",
+        "work_stopped": false,
+        "security": false,
+        "vip": false,
+        "is_request": true,
+        "summary": "New monitor for a new joiner"
+      },
+      "priority": "P4",
+      "team": "Desktop Support",
+      "sla": "Respond within 1 business day",
+      "evidence": "Routine service request."
+    },
+    {
+      "ticket_id": "INC-3022",
+      "requester": "Ravi Kumar",
+      "extract": {
+        "ticket_id": "INC-3022",
+        "requester": "Ravi Kumar",
+        "department": "Design",
+        "category": "Software",
+        "scope": "single",
+        "work_stopped": false,
+        "security": false,
+        "vip": false,
+        "is_request": true,
+        "summary": "Install Photoshop"
+      },
+      "priority": "P4",
+      "team": "Application Support",
+      "sla": "Respond within 1 business day",
+      "evidence": "Routine service request."
+    },
+    {
+      "ticket_id": "INC-3023",
+      "requester": "Sneha Iyer",
+      "extract": {
+        "ticket_id": "INC-3023",
+        "requester": "Sneha Iyer",
+        "department": "Marketing",
+        "category": "Email",
+        "scope": "single",
+        "work_stopped": false,
+        "security": false,
+        "vip": false,
+        "is_request": true,
+        "summary": "Access to the marketing shared mailbox"
+      },
+      "priority": "P4",
+      "team": "Messaging",
+      "sla": "Respond within 1 business day",
+      "evidence": "Routine service request."
+    },
+    {
+      "ticket_id": "INC-3024",
+      "requester": "Amit Shah",
+      "extract": {
+        "ticket_id": "INC-3024",
+        "requester": "Amit Shah",
+        "department": "Sales",
+        "category": "Email",
+        "scope": "single",
+        "work_stopped": false,
+        "security": false,
+        "vip": false,
+        "is_request": true,
+        "summary": "How to set up email on my phone"
+      },
+      "priority": "P4",
+      "team": "Messaging",
+      "sla": "Respond within 1 business day",
+      "evidence": "Routine service request."
+    },
+    {
+      "ticket_id": "INC-3025",
+      "requester": "Geeta Nair",
+      "extract": {
+        "ticket_id": "INC-3025",
+        "requester": "Geeta Nair",
+        "department": "Administration",
+        "category": "Hardware",
+        "scope": "single",
+        "work_stopped": false,
+        "security": false,
+        "vip": false,
+        "is_request": true,
+        "summary": "Spare keyboard for the meeting room"
+      },
+      "priority": "P4",
+      "team": "Desktop Support",
+      "sla": "Respond within 1 business day",
+      "evidence": "Routine service request."
+    }
+  ],
+  "queue": [
+    "INC-3004",
+    "INC-3001",
+    "INC-3002",
+    "INC-3003",
+    "INC-3005",
+    "INC-3007",
+    "INC-3011",
+    "INC-3006",
+    "INC-3008",
+    "INC-3010",
+    "INC-3009",
+    "INC-3012",
+    "INC-3013",
+    "INC-3014",
+    "INC-3015",
+    "INC-3016",
+    "INC-3017",
+    "INC-3018",
+    "INC-3019",
+    "INC-3020",
+    "INC-3021",
+    "INC-3022",
+    "INC-3023",
+    "INC-3024",
+    "INC-3025"
+  ],
+  "draft": "Subject: Triage handover - P1: 5, P2: 6, P3: 9, P4: 5\n\nHi,\n\nI have triaged all 25 tickets in the queue. Nothing has been resolved or actioned, these are recommendations for you to confirm and assign.\n\nHANDLE NOW - P1 (5):\n  - INC-3004  Meera Iyer (Office of the CFO)  ->  Desktop Support  [Respond within 15 minutes]  - VIP fully blocked.\n  - INC-3001  Priya Nair (Sales)  ->  Messaging  [Respond within 15 minutes]  - Company-wide outage.\n  - INC-3002  Rahul Verma (Operations)  ->  Network Operations  [Respond within 15 minutes]  - A whole team cannot work.\n  - INC-3003  Anjali Gupta (Finance)  ->  Security Operations  [Respond within 15 minutes]  - Security report; escalated to P1 and routed to Security Operations.\n  - INC-3005  Sunil Rao (Finance)  ->  Security Operations  [Respond within 15 minutes]  - Security report; escalated to P1 and routed to Security Operations.\n\nTHE REST OF THE QUEUE, worst first:\n  P2  INC-3007  Deepak Sharma  ->  Identity & Access  [Respond within 1 hour]\n  P2  INC-3011  Vikram Nair  ->  Unified Comms  [Respond within 1 hour]\n  P2  INC-3006  Kavita Nair  ->  Application Support  [Respond within 1 hour]\n  P2  INC-3008  Neha Joshi  ->  Network Operations  [Respond within 1 hour]\n  P2  INC-3010  Sridevi Rao  ->  Application Support  [Respond within 1 hour]\n  P2  INC-3009  Arjun Menon  ->  Identity & Access  [Respond within 1 hour]\n  P3  INC-3012  Sana Khan  ->  Messaging  [Respond within 4 hours]\n  P3  INC-3013  Rohit Das  ->  Desktop Support  [Respond within 4 hours]\n  P3  INC-3014  Leena Pillai  ->  Network Operations  [Respond within 4 hours]\n  P3  INC-3015  Manish Gupta  ->  Application Support  [Respond within 4 hours]\n  P3  INC-3016  Divya Rao  ->  Identity & Access  [Respond within 4 hours]\n  P3  INC-3017  Farah Ali  ->  Desktop Support  [Respond within 4 hours]\n  P3  INC-3018  Karan Mehta  ->  Unified Comms  [Respond within 4 hours]\n  P3  INC-3019  Nisha Verma  ->  Messaging  [Respond within 4 hours]\n  P3  INC-3020  Aditya Kulkarni  ->  Desktop Support  [Respond within 4 hours]\n  P4  INC-3021  Pooja Sharma  ->  Desktop Support  [Respond within 1 business day]\n  P4  INC-3022  Ravi Kumar  ->  Application Support  [Respond within 1 business day]\n  P4  INC-3023  Sneha Iyer  ->  Messaging  [Respond within 1 business day]\n  P4  INC-3024  Amit Shah  ->  Messaging  [Respond within 1 business day]\n  P4  INC-3025  Geeta Nair  ->  Desktop Support  [Respond within 1 business day]\n\nPlease confirm the priorities and routing. I will not action anything without your sign-off.\n\nThanks,\nIT triage agent"
+}

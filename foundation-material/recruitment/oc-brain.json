@@ -1,0 +1,570 @@
+{
+  "generated_for": "JustBuild Foundation recruitment pack - 25 resumes vs NimbusPay Backend Engineer JD",
+  "rubric": {
+    "python_depth": 0.35,
+    "production_impact": 0.3,
+    "data_and_apis": 0.2,
+    "stability": 0.15
+  },
+  "hard_rule": "3+ years backend Python AND cloud experience; otherwise flag for a human",
+  "candidates": [
+    {
+      "id": "aarav-sharma",
+      "name": "Aarav Sharma",
+      "title": "Senior Backend Engineer",
+      "extract": {
+        "python_years": 6,
+        "backend_python_years": 6,
+        "cloud": "AWS",
+        "relational_db": "PostgreSQL",
+        "rest_api": true
+      },
+      "scores": {
+        "python_depth": 9,
+        "production_impact": 9,
+        "data_and_apis": 9,
+        "stability": 8
+      },
+      "total": 88.5,
+      "hard_rule_pass": true,
+      "flag": null,
+      "evidence": "Backend engineer with six years building payment and API services in Python. Owns systems end to end."
+    },
+    {
+      "id": "emily-carter",
+      "name": "Emily Carter",
+      "title": "Backend Engineer",
+      "extract": {
+        "python_years": 5,
+        "backend_python_years": 5,
+        "cloud": "GCP",
+        "relational_db": "PostgreSQL",
+        "rest_api": true
+      },
+      "scores": {
+        "python_depth": 9,
+        "production_impact": 9,
+        "data_and_apis": 9,
+        "stability": 8
+      },
+      "total": 88.5,
+      "hard_rule_pass": true,
+      "flag": null,
+      "evidence": "Python backend engineer, five years, strong on APIs, data, and cloud. Ships and owns."
+    },
+    {
+      "id": "rohan-mehta",
+      "name": "Rohan Mehta",
+      "title": "Backend Engineer",
+      "extract": {
+        "python_years": 4,
+        "backend_python_years": 4,
+        "cloud": "AWS",
+        "relational_db": "MySQL",
+        "rest_api": true
+      },
+      "scores": {
+        "python_depth": 9,
+        "production_impact": 9,
+        "data_and_apis": 9,
+        "stability": 8
+      },
+      "total": 88.5,
+      "hard_rule_pass": true,
+      "flag": null,
+      "evidence": "Four years of hands-on Python backend work with real production ownership and cloud."
+    },
+    {
+      "id": "mei-lin-tan",
+      "name": "Mei Lin Tan",
+      "title": "Senior Software Engineer",
+      "extract": {
+        "python_years": 7,
+        "backend_python_years": 7,
+        "cloud": "AWS",
+        "relational_db": "PostgreSQL",
+        "rest_api": true
+      },
+      "scores": {
+        "python_depth": 9,
+        "production_impact": 9,
+        "data_and_apis": 9,
+        "stability": 8
+      },
+      "total": 88.5,
+      "hard_rule_pass": true,
+      "flag": null,
+      "evidence": "Seven years across backend Python and data platforms, with clear production impact."
+    },
+    {
+      "id": "daniel-okafor",
+      "name": "Daniel Okafor",
+      "title": "Backend Engineer",
+      "extract": {
+        "python_years": 5,
+        "backend_python_years": 5,
+        "cloud": "Azure",
+        "relational_db": "PostgreSQL",
+        "rest_api": true
+      },
+      "scores": {
+        "python_depth": 9,
+        "production_impact": 9,
+        "data_and_apis": 9,
+        "stability": 8
+      },
+      "total": 88.5,
+      "hard_rule_pass": true,
+      "flag": null,
+      "evidence": "Five years building reliable Python APIs for high-volume consumer apps, cloud-native."
+    },
+    {
+      "id": "ananya-iyer",
+      "name": "Ananya Iyer",
+      "title": "Backend Engineer",
+      "extract": {
+        "python_years": 4,
+        "backend_python_years": 4,
+        "cloud": "GCP",
+        "relational_db": "PostgreSQL",
+        "rest_api": true
+      },
+      "scores": {
+        "python_depth": 9,
+        "production_impact": 9,
+        "data_and_apis": 9,
+        "stability": 8
+      },
+      "total": 88.5,
+      "hard_rule_pass": true,
+      "flag": null,
+      "evidence": "Backend developer, four years, Python and data-heavy APIs with measurable wins."
+    },
+    {
+      "id": "priya-nair",
+      "name": "Priya Nair",
+      "title": "Backend Engineer",
+      "extract": {
+        "python_years": 4,
+        "backend_python_years": 4,
+        "cloud": "none",
+        "relational_db": "PostgreSQL",
+        "rest_api": true
+      },
+      "scores": {
+        "python_depth": 8,
+        "production_impact": 7,
+        "data_and_apis": 8,
+        "stability": 8
+      },
+      "total": 77.0,
+      "hard_rule_pass": false,
+      "flag": "No cloud experience - fails the hard rule",
+      "evidence": "Strong Python and API engineer. Deep on databases; limited cloud so far."
+    },
+    {
+      "id": "carlos-mendoza",
+      "name": "Carlos Mendoza",
+      "title": "Software Engineer",
+      "extract": {
+        "python_years": 6,
+        "backend_python_years": 6,
+        "cloud": "AWS",
+        "relational_db": "MySQL",
+        "rest_api": true
+      },
+      "scores": {
+        "python_depth": 8,
+        "production_impact": 7,
+        "data_and_apis": 8,
+        "stability": 3
+      },
+      "total": 69.5,
+      "hard_rule_pass": true,
+      "flag": null,
+      "evidence": "Six years in Python, strong impact, but a run of short stints."
+    },
+    {
+      "id": "vikram-reddy",
+      "name": "Vikram Reddy",
+      "title": "Backend Engineer",
+      "extract": {
+        "python_years": 5,
+        "backend_python_years": 5,
+        "cloud": "AWS",
+        "relational_db": "PostgreSQL",
+        "rest_api": true
+      },
+      "scores": {
+        "python_depth": 8,
+        "production_impact": 4,
+        "data_and_apis": 8,
+        "stability": 8
+      },
+      "total": 68.0,
+      "hard_rule_pass": true,
+      "flag": null,
+      "evidence": "Five years Python backend. Very strong build skills, thinner on measurable impact."
+    },
+    {
+      "id": "aisha-abdullah",
+      "name": "Aisha Abdullah",
+      "title": "Backend Engineer",
+      "extract": {
+        "python_years": 4,
+        "backend_python_years": 4,
+        "cloud": "AWS",
+        "relational_db": "MongoDB (NoSQL)",
+        "rest_api": true
+      },
+      "scores": {
+        "python_depth": 8,
+        "production_impact": 7,
+        "data_and_apis": 3,
+        "stability": 8
+      },
+      "total": 67.0,
+      "hard_rule_pass": true,
+      "flag": null,
+      "evidence": "Solid Python API engineer with cloud, but no relational database depth (mostly NoSQL)."
+    },
+    {
+      "id": "sofia-rossi",
+      "name": "Sofia Rossi",
+      "title": "Backend Engineer",
+      "extract": {
+        "python_years": 5,
+        "backend_python_years": 5,
+        "cloud": "GCP",
+        "relational_db": "PostgreSQL",
+        "rest_api": true
+      },
+      "scores": {
+        "python_depth": 8,
+        "production_impact": 4,
+        "data_and_apis": 8,
+        "stability": 8
+      },
+      "total": 68.0,
+      "hard_rule_pass": true,
+      "flag": null,
+      "evidence": "Five years, strong Python and cloud; most impact numbers are team-level, not owned."
+    },
+    {
+      "id": "karthik-rao",
+      "name": "Karthik Rao",
+      "title": "Backend Engineer",
+      "extract": {
+        "python_years": 3,
+        "backend_python_years": 3,
+        "cloud": "AWS",
+        "relational_db": "PostgreSQL",
+        "rest_api": true
+      },
+      "scores": {
+        "python_depth": 7,
+        "production_impact": 6,
+        "data_and_apis": 8,
+        "stability": 7
+      },
+      "total": 69.0,
+      "hard_rule_pass": true,
+      "flag": null,
+      "evidence": "Three years, right on the bar. Real Python + cloud, still growing ownership."
+    },
+    {
+      "id": "neha-gupta",
+      "name": "Neha Gupta",
+      "title": "Software Engineer",
+      "extract": {
+        "python_years": 2,
+        "backend_python_years": 2,
+        "cloud": "none",
+        "relational_db": "MySQL",
+        "rest_api": true
+      },
+      "scores": {
+        "python_depth": 6,
+        "production_impact": 4,
+        "data_and_apis": 6,
+        "stability": 6
+      },
+      "total": 54.0,
+      "hard_rule_pass": false,
+      "flag": "Under 3 yrs - below the hard bar",
+      "evidence": "Two years, capable Python developer, still early on production ownership."
+    },
+    {
+      "id": "lucas-silva",
+      "name": "Lucas Silva",
+      "title": "Backend Developer",
+      "extract": {
+        "python_years": 3,
+        "backend_python_years": 3,
+        "cloud": "none",
+        "relational_db": "SQLite",
+        "rest_api": true
+      },
+      "scores": {
+        "python_depth": 6,
+        "production_impact": 3,
+        "data_and_apis": 5,
+        "stability": 7
+      },
+      "total": 50.5,
+      "hard_rule_pass": false,
+      "flag": "No cloud experience - fails the hard rule",
+      "evidence": "Three years Python, mostly internal tools; limited cloud and API scale."
+    },
+    {
+      "id": "fatima-khan",
+      "name": "Fatima Khan",
+      "title": "Backend Engineer",
+      "extract": {
+        "python_years": 4,
+        "backend_python_years": 4,
+        "cloud": "AWS",
+        "relational_db": "MySQL",
+        "rest_api": true
+      },
+      "scores": {
+        "python_depth": 7,
+        "production_impact": 5,
+        "data_and_apis": 7,
+        "stability": 7
+      },
+      "total": 64.0,
+      "hard_rule_pass": true,
+      "flag": null,
+      "evidence": "Four years Python and APIs; solid, evidence of impact is modest."
+    },
+    {
+      "id": "james-whitfield",
+      "name": "James Whitfield",
+      "title": "Software Engineer",
+      "extract": {
+        "python_years": 4,
+        "backend_python_years": 4,
+        "cloud": "AWS",
+        "relational_db": "PostgreSQL",
+        "rest_api": false
+      },
+      "scores": {
+        "python_depth": 5,
+        "production_impact": 4,
+        "data_and_apis": 7,
+        "stability": 7
+      },
+      "total": 54.0,
+      "hard_rule_pass": true,
+      "flag": null,
+      "evidence": "Full-stack leaning, four years; backend Python is a part of the role, not the core."
+    },
+    {
+      "id": "divya-pillai",
+      "name": "Divya Pillai",
+      "title": "Backend Engineer",
+      "extract": {
+        "python_years": 3,
+        "backend_python_years": 3,
+        "cloud": "none",
+        "relational_db": "PostgreSQL",
+        "rest_api": true
+      },
+      "scores": {
+        "python_depth": 8,
+        "production_impact": 7,
+        "data_and_apis": 8,
+        "stability": 8
+      },
+      "total": 77.0,
+      "hard_rule_pass": false,
+      "flag": "No cloud experience - fails the hard rule",
+      "evidence": "Three years Python; strong on databases, cloud is only just starting."
+    },
+    {
+      "id": "liam-o-brien",
+      "name": "Liam O'Brien",
+      "title": "Frontend Engineer",
+      "extract": {
+        "python_years": 5,
+        "backend_python_years": 0,
+        "cloud": "none",
+        "relational_db": "none",
+        "rest_api": false
+      },
+      "scores": {
+        "python_depth": 1,
+        "production_impact": 2,
+        "data_and_apis": 2,
+        "stability": 8
+      },
+      "total": 25.5,
+      "hard_rule_pass": false,
+      "flag": "No cloud experience - fails the hard rule",
+      "evidence": "Five years front-end. Deep React, minimal backend Python."
+    },
+    {
+      "id": "sneha-deshpande",
+      "name": "Sneha Deshpande",
+      "title": "QA Automation Engineer",
+      "extract": {
+        "python_years": 4,
+        "backend_python_years": 1,
+        "cloud": "none",
+        "relational_db": "none",
+        "rest_api": true
+      },
+      "scores": {
+        "python_depth": 3,
+        "production_impact": 3,
+        "data_and_apis": 5,
+        "stability": 7
+      },
+      "total": 40.0,
+      "hard_rule_pass": false,
+      "flag": "No cloud experience - fails the hard rule",
+      "evidence": "Four years in test automation, writes Python for tests, not backend services."
+    },
+    {
+      "id": "yuki-tanaka",
+      "name": "Yuki Tanaka",
+      "title": "Data Analyst",
+      "extract": {
+        "python_years": 3,
+        "backend_python_years": 1,
+        "cloud": "none",
+        "relational_db": "none",
+        "rest_api": false
+      },
+      "scores": {
+        "python_depth": 3,
+        "production_impact": 3,
+        "data_and_apis": 5,
+        "stability": 7
+      },
+      "total": 40.0,
+      "hard_rule_pass": false,
+      "flag": "No cloud experience - fails the hard rule",
+      "evidence": "Three years in analytics. Python for data, not for building services."
+    },
+    {
+      "id": "omar-haddad",
+      "name": "Omar Haddad",
+      "title": "DevOps Engineer",
+      "extract": {
+        "python_years": 5,
+        "backend_python_years": 2,
+        "cloud": "AWS",
+        "relational_db": "none",
+        "rest_api": false
+      },
+      "scores": {
+        "python_depth": 3,
+        "production_impact": 4,
+        "data_and_apis": 3,
+        "stability": 8
+      },
+      "total": 40.5,
+      "hard_rule_pass": false,
+      "flag": "Under 3 yrs backend Python - fails the hard rule",
+      "evidence": "Five years DevOps and cloud. Strong AWS, scripts in Python, does not build product APIs."
+    },
+    {
+      "id": "grace-mwangi",
+      "name": "Grace Mwangi",
+      "title": "Junior Backend Engineer",
+      "extract": {
+        "python_years": 1,
+        "backend_python_years": 1,
+        "cloud": "none",
+        "relational_db": "PostgreSQL",
+        "rest_api": true
+      },
+      "scores": {
+        "python_depth": 5,
+        "production_impact": 5,
+        "data_and_apis": 7,
+        "stability": 5
+      },
+      "total": 54.0,
+      "hard_rule_pass": false,
+      "flag": "Career-changer, ~1 yr - below the bar but promising",
+      "evidence": "Career-changer from teaching. One year of Python backend after an intensive bootcamp; fast learner, strong projects."
+    },
+    {
+      "id": "aditya-kulkarni",
+      "name": "Aditya Kulkarni",
+      "title": "Principal Engineer",
+      "extract": {
+        "python_years": 12,
+        "backend_python_years": 12,
+        "cloud": "AWS",
+        "relational_db": "PostgreSQL",
+        "rest_api": true
+      },
+      "scores": {
+        "python_depth": 9,
+        "production_impact": 9,
+        "data_and_apis": 9,
+        "stability": 8
+      },
+      "total": 88.5,
+      "hard_rule_pass": true,
+      "flag": "Likely over-qualified - confirm interest and level",
+      "evidence": "Twelve years, deep Python and architecture. Very senior; likely over-qualified and expensive for this role."
+    },
+    {
+      "id": "hannah-schmidt",
+      "name": "Hannah Schmidt",
+      "title": "Backend Engineer",
+      "extract": {
+        "python_years": 4,
+        "backend_python_years": 4,
+        "cloud": "AWS",
+        "relational_db": "PostgreSQL",
+        "rest_api": true
+      },
+      "scores": {
+        "python_depth": 8,
+        "production_impact": 7,
+        "data_and_apis": 8,
+        "stability": 3
+      },
+      "total": 69.5,
+      "hard_rule_pass": true,
+      "flag": "Tenure unknown - dates missing; confirm history",
+      "evidence": "Clearly strong Python and cloud, but the resume gives almost no dates or tenure detail."
+    },
+    {
+      "id": "arjun-menon",
+      "name": "Arjun Menon",
+      "title": "Self-taught Backend Developer",
+      "extract": {
+        "python_years": 3,
+        "backend_python_years": 3,
+        "cloud": "AWS",
+        "relational_db": "PostgreSQL",
+        "rest_api": true
+      },
+      "scores": {
+        "python_depth": 8,
+        "production_impact": 7,
+        "data_and_apis": 8,
+        "stability": 7
+      },
+      "total": 75.5,
+      "hard_rule_pass": true,
+      "flag": null,
+      "evidence": "No formal CS degree. Self-taught, three years of strong open-source and freelance Python APIs."
+    }
+  ],
+  "top5": [
+    "Mei Lin Tan",
+    "Aarav Sharma",
+    "Daniel Okafor",
+    "Emily Carter",
+    "Ananya Iyer"
+  ],
+  "draft": "To: Hiring Manager\nSubject: Backend Engineer (Python & APIs) - recommended shortlist\n\nHi,\n\nI screened all 25 applicants against the job description and the weighted rubric\n(Python depth 35%, production impact 30%, data & APIs 20%, stability 15%), and applied\nthe hard rule: 3+ years of backend Python AND cloud experience.\n\nRecommended for interview (top 5):\n  1. Mei Lin Tan - Senior Software Engineer (score 88.5/100). Seven years across backend Python and data platforms, with clear production impact.\n  2. Aarav Sharma - Senior Backend Engineer (score 88.5/100). Backend engineer with six years building payment and API services in Python. Owns systems end to end.\n  3. Daniel Okafor - Backend Engineer (score 88.5/100). Five years building reliable Python APIs for high-volume consumer apps, cloud-native.\n  4. Emily Carter - Backend Engineer (score 88.5/100). Python backend engineer, five years, strong on APIs, data, and cloud. Ships and owns.\n  5. Ananya Iyer - Backend Engineer (score 88.5/100). Backend developer, four years, Python and data-heavy APIs with measurable wins.\n\nFlagged for your judgement (11): candidates who missed the hard rule, are\nover-qualified, or have gaps in their history. I have not dropped them - they are listed\nin the notebook for you to review.\n\nThis is a recommendation, not a decision. Nothing has been sent to any candidate.\nTell me which five to invite and I'll prepare the outreach.\n\n- Recruitment agent (draft for your approval)"
+}

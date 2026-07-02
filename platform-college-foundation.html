@@ -3381,8 +3381,8 @@ function renderBuildbar(screen) {
   if (!bar) return;
   const st = buildbarState(screen);
   if (!st) { bar.classList.add("hidden"); return; }
-  const stages = (WORKSHOP && WORKSHOP.stages) ? WORKSHOP.stages : [];
-  const curStage = screen.session ? screen.session.stage : null;
+  const stages = (WORKSHOP && WORKSHOP.steps) ? WORKSHOP.steps : ((WORKSHOP && WORKSHOP.stages) ? WORKSHOP.stages : []);
+  const curStage = screen.session ? (screen.session.nav || screen.session.stage) : null;
   const curIdx = stages.indexOf(curStage);
   let html = '<span class="bb-title">BUILD PROGRESS</span><div class="bb-track">';
   stages.forEach(function (name, idx) {
@@ -3399,7 +3399,7 @@ function renderBuildbar(screen) {
   bar.querySelectorAll(".bb-item[data-stage]").forEach(function (elm) {
     elm.onclick = function () {
       const stg = elm.getAttribute("data-stage");
-      const targetIdx = SCREENS.findIndex(function (s) { return s.session && s.session.stage === stg; });
+      const targetIdx = SCREENS.findIndex(function (s) { return s.session && (s.session.nav || s.session.stage) === stg; });
       if (targetIdx > -1) jumpToScreen(targetIdx);
     };
   });

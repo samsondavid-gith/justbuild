@@ -2474,6 +2474,13 @@
   .concept-err-m { font-size: clamp(14px,1.9vh,20px); color: var(--text); line-height:1.34; }
   .concept-err-m em { color: var(--accent); font-style:normal; font-weight:600; }
   .concept-err-a { font-size: clamp(12.5px,1.6vh,16.5px); color: var(--text-soft); line-height:1.34; margin-top:2px; }
+  /* Numbered setup steps on concept slides */
+  .concept-steps { list-style:none; counter-reset: st; display:flex; flex-direction:column; gap: clamp(8px,1.5vh,15px); margin: clamp(10px,1.7vh,20px) 0 0; padding:0; max-width: 70ch; }
+  .concept-step { counter-increment: st; position:relative; padding-left: clamp(40px,4.2vw,52px); min-height: clamp(26px,3vh,32px); }
+  .concept-step::before { content: counter(st); position:absolute; left:0; top:0; font-family:var(--mono); font-weight:700; font-size: clamp(13px,1.7vh,17px); color:var(--accent); background:rgba(193,125,42,0.10); border:1px solid var(--accent-soft); border-radius:8px; width: clamp(26px,3vh,32px); height: clamp(26px,3vh,32px); display:flex; align-items:center; justify-content:center; }
+  .concept-step-t { font-size: clamp(15px,2vh,20px); color: var(--text); line-height:1.36; }
+  .concept-step-t em { color: var(--accent); font-style:normal; font-weight:600; }
+  .concept-step-d { display:block; font-size: clamp(12.5px,1.6vh,16px); color: var(--text-soft); line-height:1.34; margin-top:2px; }
   /* Build steps -> bigger */
   .build-list { gap: clamp(14px, 2.2vh, 24px) !important; }
   .build-item::before { font-size: clamp(24px, 3.2vh, 32px) !important; }
@@ -2863,6 +2870,17 @@ const CONCEPT_MODULES = {
       {"kicker":"WHAT YOU'LL SEE","diagram":"pipeline","headline":"Messy files becoming a *clean, ranked answer.*","lead":"Watch for three moments: raw resumes turning into a tidy table (Agent 1), a ranked top five each with a reason (Agent 2), and a drafted recommendation you approve or reject (Agent 3).","bubble":"Watch the <b>three moments.</b>"},
       {"kicker":"YOUR PART","headline":"Follow the *flow,* not every character.","lead":"I will run the cells. You track the story: what went in, what each agent decided, and where the human stays in control. If an error pops up, we flip the OC Brain and keep the thread.","bubble":"Follow the <b>flow.</b>"},
       {"lens":"opener","mascot":"butterfly","headline":"Now we open the *notebook.*","sub":"Screens down, eyes up. I'll share the Colab link and drive. Watch the three agents work on the exact 25 resumes you just ranked by hand.","bubble":"Here we go. <b>Let's build.</b>"}
+    ]
+  },
+  "setup": {
+    "before_session": "7", "stage_number": "05", "stage_name": "Build",
+    "slides": [
+      {"lens":"opener","headline":"Before you build your own, set up in *two minutes.*","sub":"You'll run the notebook yourself now. There is almost nothing to install - you just need a free key, and even that is optional. Here is the whole setup.","chips":["A *Google account*","*Nothing* to install","A free *Gemini key*","Run it in *Colab*"]},
+      {"kicker":"NOTHING TO INSTALL","headline":"Your laptop stays *clean.*","lead":"Colab runs Python and every library in Google's cloud, inside your browser. No Python, no downloads, no setup on your machine. All you need is a Google account, a browser, and internet.","wrong":"Install Python, pip and libraries on your laptop.","right":"Open a browser. Google's cloud does the rest.","bubble":"Browser in. <b>That's it.</b>"},
+      {"kicker":"STEP 1 . YOUR FREE KEY","headline":"Get your free Gemini key.","steps":["Open *aistudio.google.com* and sign in with your Google account.","Accept the terms if you are asked.","In the left sidebar, click *Get API key*.","Click *Create API key*, and let it make a new project.","Copy the code that starts with *AIza* - that is your key."]},
+      {"kicker":"THE KEY . CARE","headline":"Free to use, and *yours to guard.*","lead":"No credit card and no billing - the free tier is plenty for today. But the key is like a password.","wrong":"Paste your key into a chat, a screenshot, or a shared doc.","right":"Keep it to yourself; if it ever leaks, delete it and make a new one.","bubble":"Free. <b>And private.</b>"},
+      {"kicker":"STEP 2 . RUN IT","headline":"Open the notebook and run it.","steps":["Open the Colab link (scan the code) and click *Copy to Drive*.","Click *Connect* and wait for the green tick.","Run the cells top to bottom; watch for the green checks.","On the config cell, keep *Live Gemini* and paste your key when the hidden box asks.","No key? Set *Switch to OC Brain* and run with nothing to paste."]},
+      {"kicker":"IF IT HICCUPS","headline":"Stuck on a code? *Flip the switch.*","lead":"You already know these - 429 busy, 503 overloaded. If the free tier wobbles, set the notebook to the OC Brain and keep building. Live or OC Brain, you see the same pattern work on your own use-case.","bubble":"Never stuck. <b>Keep building.</b>"}
     ]
   },
   "valuenomics": {
@@ -3634,6 +3652,13 @@ function renderConcept(screen) {
     body += '<div class="concept-errs">' + sl.rows.map(function(r){
       return '<div class="concept-err"><span class="concept-err-code">' + escapeHtml(r.code) + '</span><div class="concept-err-txt"><div class="concept-err-m">' + conceptEm(r.means) + '</div><div class="concept-err-a">' + conceptEm(r.act) + '</div></div></div>';
     }).join('') + '</div>';
+  }
+  if (sl.steps) {
+    body += '<ol class="concept-steps">' + sl.steps.map(function(s){
+      var t = (typeof s === 'string') ? s : (s.title || '');
+      var d = (typeof s === 'object' && s.detail) ? '<span class="concept-step-d">' + conceptEm(s.detail) + '</span>' : '';
+      return '<li class="concept-step"><span class="concept-step-t">' + conceptEm(t) + '</span>' + d + '</li>';
+    }).join('') + '</ol>';
   }
   if (sl.diagram) body = '<div class="concept-diagram">' + renderDiagram(sl.diagram) + '</div>' + body;
   const kicker = sl.kicker || sl.practice || "";

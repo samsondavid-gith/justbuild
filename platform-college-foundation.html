@@ -3600,12 +3600,6 @@ function renderConcept(screen) {
   let body = "";
   if (sl.lead) body += `<p class="concept-lead">${conceptEm(sl.lead)}</p>`;
   const _w = sl.wrong || sl.bad, _g = sl.right || sl.good;
-  if (_w || _g) {
-    body += `<div class="concept-ba">`;
-    if (_w) body += `<div class="concept-ba-card concept-bad"><div class="concept-ba-label">The wrong way</div><p>${_w}</p></div>`;
-    if (_g) body += `<div class="concept-ba-card concept-good"><div class="concept-ba-label">The right way</div><p>${_g}</p></div>`;
-    body += `</div>`;
-  }
   (sl.paras || []).forEach(function(p){ body += `<p>${conceptEm(p)}</p>`; });
   if (sl.rows) {
     body += '<div class="concept-errs">' + sl.rows.map(function(r){
@@ -3618,6 +3612,12 @@ function renderConcept(screen) {
       var d = (typeof s === 'object' && s.detail) ? '<span class="concept-step-d">' + conceptEm(s.detail) + '</span>' : '';
       return '<li class="concept-step"><span class="concept-step-t">' + conceptEm(t) + '</span>' + d + '</li>';
     }).join('') + '</ol>';
+  }
+  if (_w || _g) {
+    body += `<div class="concept-ba">`;
+    if (_w) body += `<div class="concept-ba-card concept-bad"><div class="concept-ba-label">The wrong way</div><p>${_w}</p></div>`;
+    if (_g) body += `<div class="concept-ba-card concept-good"><div class="concept-ba-label">The right way</div><p>${_g}</p></div>`;
+    body += `</div>`;
   }
   if (sl.qrs) {
     body += '<div class="concept-qrs">' + sl.qrs.map(function(q){

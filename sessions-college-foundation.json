@@ -43,7 +43,7 @@
    "build": [],
    "test_output": [],
    "output_capture": null,
-   "break_after": false,
+   "break_after": true,
    "break_duration_minutes": 10,
    "phase": "day",
    "session_type": "build",

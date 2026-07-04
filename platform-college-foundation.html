@@ -2506,6 +2506,20 @@
   .fo-big-n { font-family:var(--serif); font-weight:700; font-size:clamp(28px,4.2vh,44px); color:var(--accent); line-height:1; opacity:0.9; }
   .fo-big-h { font-family:var(--serif); font-weight:700; font-size:clamp(17px,2.3vh,23px); color:var(--text); margin-top:6px; line-height:1.12; }
   .fo-big-p { font-size:clamp(12.5px,1.5vh,15px); color:var(--text-soft); line-height:1.5; margin-top:7px; }
+  /* ---- Placement slide in concept style (upfront) ---- */
+  .td-place { text-align:left !important; max-width:1120px; align-items:flex-start !important; }
+  .td-place .wl-eyebrow, .td-place .wl-title, .td-place .wl-sub { text-align:left; margin-left:0; margin-right:0; }
+  .td-place .wl-sub { max-width:66ch; }
+  .td-steps { margin-top:clamp(18px,2.8vh,32px); display:flex; flex-direction:column; gap:clamp(13px,1.9vh,22px); max-width:68ch; }
+  .td-step { display:flex; gap:15px; align-items:flex-start; }
+  .td-n { flex:0 0 auto; width:clamp(30px,3.4vh,38px); height:clamp(30px,3.4vh,38px); border-radius:9px; background:rgba(193,125,42,0.10); border:1px solid var(--accent-soft); color:var(--accent); font-family:var(--mono); font-weight:700; font-size:clamp(14px,1.7vh,17px); display:flex; align-items:center; justify-content:center; }
+  .td-t { font-size:clamp(17px,2.1vh,21px); color:var(--text); font-weight:600; line-height:1.2; }
+  .td-d { font-size:clamp(13px,1.6vh,15.5px); color:var(--text-soft); line-height:1.4; margin-top:3px; }
+  .td-cat { position:fixed; right:clamp(16px,3.5vw,56px); bottom:86px; width:clamp(130px,14vw,190px); z-index:5; }
+  .td-cat img { width:100%; display:block; filter:drop-shadow(0 8px 24px rgba(0,0,0,0.55)); }
+  .td-bubble { position:absolute; right:0; bottom:calc(100% + 14px); background:#fff; color:#1A1A1A; font-size:13.5px; line-height:1.45; padding:11px 14px; border-radius:13px; width:max-content; max-width:230px; box-shadow:0 8px 24px rgba(0,0,0,0.45); }
+  .td-bubble b { color:var(--accent); }
+  .td-bubble::after { content:""; position:absolute; right:30px; bottom:-7px; border:7px solid transparent; border-top-color:#fff; border-bottom:0; }
   .concept-example { border-left: 3px solid var(--accent); background: var(--accent-soft); padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 4px 0 18px; }
   .concept-example p { font-size: 16px; line-height: 1.55; color: var(--text); font-style: italic; margin: 0; }
   .concept-artifact { display: inline-flex; align-items: baseline; gap: 10px; border: 1px dashed var(--line-strong); border-radius: 999px; padding: 9px 18px; margin-top: 8px; align-self: flex-start; }
@@ -2882,7 +2896,7 @@ const CONCEPT_MODULES = {
       {"kicker":"TOOLS TO EXPLORE","headline":"Go *play* with these","lead":"You already know the two that matter most. Keep them open, and add a few more to your bench.","steps":[{"title":"AI Studio and Colab","detail":"the key and the notebook you used today; your fastest way to build"},{"title":"The chat assistants","detail":"Gemini, ChatGPT, Claude: use them to think, plan, and write code with you"},{"title":"No-code builders","detail":"tools that wire up agents and automations without writing much code"}],"bubble":"Keep the bench <b>full.</b>"},
       {"kicker":"STAY CURRENT","headline":"This field moves *every month*","lead":"What you learned is durable, but the tools change fast. A little attention keeps you ahead of everyone who looks away.","steps":[{"title":"Follow a few builders","detail":"a handful of good voices beats a firehose of hype"},{"title":"Join a community","detail":"a group that actually builds; you learn fastest around other builders"},{"title":"Try the new thing","detail":"when a model or tool drops, spend an hour with it, do not just read about it"}],"bubble":"Look away, <b>fall behind.</b>"},
       {"kicker":"GO DEEPER","headline":"From one agent to *systems*","lead":"Today you built one agent on one document. The next layers open up fast once you are comfortable.","steps":[{"title":"More steps, more tools","detail":"agents that call other tools, chain longer, and do more per run"},{"title":"Answer from your own data","detail":"point an agent at your documents and ask it questions"},{"title":"Evaluate at scale","detail":"grow your golden set into a real test suite as your agents grow"}],"bubble":"One agent now. <b>Systems next.</b>"},
-      {"kicker":"IN THE INTERVIEW","headline":"You just got *ahead* of the room","lead":"Every graduate this year will say they 'know AI'. You are one of the few who has built, run and measured a working agent. In a placement interview, that is the difference between talking and showing.","steps":[{"title":"Show, do not tell","detail":"open your agent and run it live; a working build beats any buzzword"},{"title":"Answer what they probe","detail":"what agents are, where they fail, where a human stays in the loop, you have lived it"},{"title":"Proof, not claims","detail":"a measured before-and-after and a real project while others only describe"}],"bubble":"They talk about AI. <b>You built it.</b>"},
+      {"kicker":"IN PLACEMENTS","headline":"You *are* first among equals now","lead":"Remember the promise from day one? You have done it. You built, ran, operated and measured a working agent. In a placement interview, that is what sets you apart from a room that only talks about AI.","steps":[{"title":"You can show, not tell","detail":"open your agent and run it live; a working build beats any buzzword"},{"title":"You have the answers","detail":"what agents are, where they fail, where a human stays in the loop, you have lived it"},{"title":"You have proof","detail":"a measured before-and-after and a real project while others only describe"}],"bubble":"They talked about AI. <b>You built it.</b>"},
       {"lens":"opener","mascot":"butterfly","headline":"You came in *curious.* You leave a *builder.*","bubble":"Now go build something <b>that matters.</b>"}
     ]
   },
@@ -2997,11 +3011,6 @@ async function loadSessions() {
 function buildScreenSequence() {
   SCREENS = [];
 
-  // Welcome layer
-  SCREENS.push({ type: "founder-welcome" });
-  SCREENS.push({ type: "housekeeping" });
-  SCREENS.push({ type: "tools-landscape" });
-  SCREENS.push({ type: "two-doors" });
 
   // Track phase transitions so we can insert interludes between them
   let prevPhase = null;
@@ -3030,6 +3039,14 @@ function buildScreenSequence() {
 
     // Set-the-stage comes first: it introduces the section, then the concept slides teach it.
     SCREENS.push({ type: "stage", session });
+
+    // Open with Welcome + Set the stage, then run the intro layer (founder, how you work, placements).
+    if (session.id === "0") {
+      SCREENS.push({ type: "founder-welcome" });
+      SCREENS.push({ type: "housekeeping" });
+      SCREENS.push({ type: "tools-landscape" });
+      SCREENS.push({ type: "two-doors" });
+    }
 
     // (Idea-cards palette removed: students already choose their agent in the
     // "Choose What Agent You Will Build" session, so re-showing it here is redundant.)
@@ -3165,7 +3182,7 @@ function buildScreenSequence() {
       SCREENS.push({ type: "output-capture", session });
     }
 
-    SCREENS.push({ type: "session-end", session });
+    if (session.id !== "0") SCREENS.push({ type: "session-end", session });
 
     // End-of-Day-1 interlude, fires after the last session of Day 1 in the weekend phase
     const nextSession = SESSIONS[idx + 1];
@@ -3462,7 +3479,6 @@ function renderFounderWelcome() {
         <h1 class="founder-headline">In two days, you build your own <em>team of AI agents.</em></h1>
         <p class="founder-sub">This morning, &ldquo;AI agent&rdquo; is a vague phrase. Over two days you will build a working team of three agents, one that <em>reads</em>, one that <em>judges</em>, one that <em>communicates</em>, run it on a real hiring task, rebuild it for a field <em>you</em> choose, then learn to <em>operate</em> it and measure what it is <em>worth</em>. You will understand every moving part and be able to explain and defend it. No prior coding. Just build.</p>
         <div class="founder-pillars" style="margin-top:22px;font-family:var(--mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);opacity:.85;">Agents &middot; Humanics &middot; Design &middot; Build &middot; Operate &middot; Value</div>
-        <div class="button-row" style="margin-top:26px;"><button class="btn btn-primary" id="start-btn">Begin →</button></div>
       </div>
     </div>
   `;
@@ -3470,17 +3486,16 @@ function renderFounderWelcome() {
 
 function renderTwoDoors() {
   return `
-    <div class="wl-screen">
-      <div class="wl-eyebrow">Why this puts you ahead</div>
-      <h1 class="wl-title">When placements come, you are <em>first among equals.</em></h1>
-      <p class="wl-sub">Everyone in the room will say they &ldquo;know AI.&rdquo; You will have built, run, operated and measured a working multi-agent system, the edge that decides who a recruiter remembers.</p>
-
-      <div class="fo-grid">
-        <div class="fo-big"><div class="fo-big-n">01</div><div class="fo-big-h">Show, don't tell</div><div class="fo-big-p">Open your agent in the interview and run it. A live build beats any buzzword.</div></div>
-        <div class="fo-big"><div class="fo-big-n">02</div><div class="fo-big-h">You have the answers</div><div class="fo-big-p">What agents are, where they fail, where a human stays in the loop. You have lived every one.</div></div>
-        <div class="fo-big"><div class="fo-big-n">03</div><div class="fo-big-h">A method that travels</div><div class="fo-big-p">Design, build, test, in small steps. It works on any task an employer throws at you.</div></div>
-        <div class="fo-big"><div class="fo-big-n">04</div><div class="fo-big-h">Proof, not claims</div><div class="fo-big-p">A measured before-and-after and a real project. While others talk, you point to what you built.</div></div>
+    <div class="wl-screen td-place">
+      <div class="wl-eyebrow" style="color:var(--accent);">In placements</div>
+      <h1 class="wl-title">You will be <em>first among equals.</em></h1>
+      <p class="wl-sub">By tomorrow evening you will have built, run, operated and measured a working AI agent. When placements come, that is what will set you apart from a room that only &ldquo;knows AI.&rdquo;</p>
+      <div class="td-steps">
+        <div class="td-step"><span class="td-n">1</span><div><div class="td-t">You will show, not tell</div><div class="td-d">open a working agent in the interview and run it live; a build beats any buzzword</div></div></div>
+        <div class="td-step"><span class="td-n">2</span><div><div class="td-t">You will have the answers</div><div class="td-d">what agents are, where they fail, where a human stays in the loop, lived not memorised</div></div></div>
+        <div class="td-step"><span class="td-n">3</span><div><div class="td-t">You will have proof</div><div class="td-d">a measured before-and-after and a real project, while others only describe</div></div></div>
       </div>
+      <div class="td-cat"><div class="td-bubble">They will talk about AI. <b>You will have built it.</b></div><img src="funny-caterpillar.png" alt="" onerror="this.style.display='none'"></div>
     </div>
   `;
 }

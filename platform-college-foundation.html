@@ -3477,7 +3477,7 @@ function renderFounderWelcome() {
       <div class="founder-split-text">
         <div class="hero-eyebrow">Just Build Foundation</div>
         <h1 class="founder-headline">In two days, you build your own <em>team of AI agents.</em></h1>
-        <p class="founder-sub">This morning, &ldquo;AI agent&rdquo; is a vague phrase. Over two days you will build a working team of three agents, one that <em>reads</em>, one that <em>judges</em>, one that <em>communicates</em>, run it on a real hiring task, rebuild it for a field <em>you</em> choose, then learn to <em>operate</em> it and measure what it is <em>worth</em>. You will understand every moving part and be able to explain and defend it. No prior coding. Just build.</p>
+        <p class="founder-sub">This morning, &ldquo;AI agent&rdquo; is a vague phrase. Over two days you go the whole way: do a real hiring task <em>by hand</em>, design a team of three agents, one that <em>reads</em>, one that <em>judges</em>, one that <em>communicates</em>, build and run it live, rebuild it for a field <em>you</em> choose, then <em>operate</em> it like production and measure what it is <em>worth</em>. You leave able to explain and defend every moving part. No prior coding. Just build.</p>
         <div class="founder-pillars" style="margin-top:22px;font-family:var(--mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);opacity:.85;">Agents &middot; Humanics &middot; Design &middot; Build &middot; Operate &middot; Value</div>
       </div>
     </div>
@@ -3769,41 +3769,14 @@ function renderIdeaCards() {
 function renderHousekeeping() {
   return `
     <div class="wl-screen">
-      <div class="wl-eyebrow">The two days</div>
-      <h1 class="wl-title">How the two days flow.</h1>
-      <p class="wl-sub">Short, in-person sessions across two days carry you from understanding agents to building, operating, and valuing your own.</p>
-
-      <div class="flow-rail">
-        <div class="flow-lane">
-          <div class="flow-lane-tag">Day 1<span>Understand, then build</span></div>
-          <div class="flow-track">
-            <div class="fnode"><span class="fnode-n">01</span><span class="fnode-t">Agents</span><span class="fnode-d">in the real world</span></div>
-            <span class="farrow"></span>
-            <div class="fnode"><span class="fnode-n">02</span><span class="fnode-t">Humanics</span><span class="fnode-d">think it through</span></div>
-            <span class="farrow"></span>
-            <div class="fnode"><span class="fnode-n">03</span><span class="fnode-t">Recruit by hand</span><span class="fnode-d">set your baseline</span></div>
-            <span class="farrow"></span>
-            <div class="fnode"><span class="fnode-n">04</span><span class="fnode-t">Design the logic</span><span class="fnode-d">the three-agent design</span></div>
-            <span class="farrow"></span>
-            <div class="fnode"><span class="fnode-n">05</span><span class="fnode-t">Watch it run</span><span class="fnode-d">live in Colab</span></div>
-          </div>
-        </div>
-        <div class="flow-lane">
-          <div class="flow-lane-tag">Day 2<span>Build, operate, value</span></div>
-          <div class="flow-track">
-            <div class="fnode"><span class="fnode-n">06</span><span class="fnode-t">Choose</span><span class="fnode-d">your own agent</span></div>
-            <span class="farrow"></span>
-            <div class="fnode"><span class="fnode-n">07</span><span class="fnode-t">Build your own</span><span class="fnode-d">your field, your data</span></div>
-            <span class="farrow"></span>
-            <div class="fnode"><span class="fnode-n">08</span><span class="fnode-t">Operate</span><span class="fnode-d">keep it good</span></div>
-            <span class="farrow"></span>
-            <div class="fnode"><span class="fnode-n">09</span><span class="fnode-t">Valuenomics</span><span class="fnode-d">what it is worth</span></div>
-            <span class="farrow"></span>
-            <div class="fnode"><span class="fnode-n">10</span><span class="fnode-t">Takeaways</span><span class="fnode-d">you teach the room</span></div>
-            <span class="farrow"></span>
-            <div class="fnode"><span class="fnode-n">11</span><span class="fnode-t">What next</span><span class="fnode-d">keep building</span></div>
-          </div>
-        </div>
+      <div class="wl-eyebrow" style="color:var(--accent);">How this is designed</div>
+      <h1 class="wl-title">Built to make you a <em>builder</em>, not a spectator.</h1>
+      <p class="wl-sub">This is not a lecture about AI. Four deliberate choices carry you from watching to building, operating, and proving a real agent.</p>
+      <div class="fo-grid">
+        <div class="fo-big"><div class="fo-big-n">01</div><div class="fo-big-h">One real thread</div><div class="fo-big-p">One real task, screening 25 resumes, carried the whole way: by hand, design, build, run, operate, value. No scattered toy examples.</div></div>
+        <div class="fo-big"><div class="fo-big-n">02</div><div class="fo-big-h">By hand, before by machine</div><div class="fo-big-p">You do the task yourself first, so you own the definition of &ldquo;good&rdquo; before you ever automate it.</div></div>
+        <div class="fo-big"><div class="fo-big-n">03</div><div class="fo-big-h">Think before you build</div><div class="fo-big-p">Frame, decompose and define success before any code. The build is easy; the thinking is the job.</div></div>
+        <div class="fo-big"><div class="fo-big-n">04</div><div class="fo-big-h">Build and operate, then value</div><div class="fo-big-p">Anyone can demo. You learn to keep it good in the real world, and to prove what it is worth.</div></div>
       </div>
     </div>
   `;

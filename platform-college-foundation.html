@@ -2479,10 +2479,7 @@
   .concept-caselet { --accent: #9B87E8; --accent-soft: rgba(155,135,232,0.22); }
   .concept-caselet .concept-lens-name { color: var(--accent); }
   .concept-caselet .concept-step::before { background: rgba(155,135,232,0.12); }
-  .caselet-badge { display: inline-block; align-self: flex-start; font-family: var(--mono); font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; font-weight: 700; color: #14121C; background: #9B87E8; border-radius: 6px; padding: 5px 13px; margin-bottom: 16px; }
-  .concept-caselet .concept-body { background: rgba(155,135,232,0.06); border: 1px solid rgba(155,135,232,0.18); border-radius: 14px; padding: 16px 20px; }
-  .fit-viewport .caselet-badge { margin-bottom: min(12px,1.5vh); padding: 4px 12px; }
-  .fit-viewport .concept-caselet .concept-body { padding: min(12px,1.5vh) 18px; }
+  .caselet-badge { display: inline-block; font-family: var(--mono); font-size: 10px; letter-spacing: 0.20em; text-transform: uppercase; font-weight: 700; color: #14121C; background: #9B87E8; border-radius: 5px; padding: 3px 9px; }
   .concept-example { border-left: 3px solid var(--accent); background: var(--accent-soft); padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 4px 0 18px; }
   .concept-example p { font-size: 16px; line-height: 1.55; color: var(--text); font-style: italic; margin: 0; }
   .concept-artifact { display: inline-flex; align-items: baseline; gap: 10px; border: 1px dashed var(--line-strong); border-radius: 999px; padding: 9px 18px; margin-top: 8px; align-self: flex-start; }
@@ -3653,11 +3650,10 @@ function renderConcept(screen) {
   if (sl.diagram) body = '<div class="concept-diagram">' + renderDiagram(sl.diagram) + '</div>' + body;
   const kicker = sl.kicker || sl.practice || "";
   const caseletCls = sl.caselet ? " concept-caselet" : "";
-  const caseletBadge = sl.caselet ? `<div class="caselet-badge">${escapeHtml(typeof sl.caselet === "string" ? sl.caselet : "Caselet")}</div>` : "";
+  const caseletBadge = sl.caselet ? `<span class="caselet-badge">${escapeHtml(typeof sl.caselet === "string" ? sl.caselet : "Caselet")}</span>` : "";
   return `
     <div class="concept-slide${caseletCls}">
-      ${caseletBadge}
-      ${kicker ? `<div class="concept-lens-tag"><span class="concept-lens-dot" style="background:var(--accent)"></span><span class="concept-lens-name">${escapeHtml(kicker)}</span></div>` : ""}
+      ${kicker ? `<div class="concept-lens-tag">${caseletBadge}<span class="concept-lens-dot" style="background:var(--accent)"></span><span class="concept-lens-name">${escapeHtml(kicker)}</span></div>` : caseletBadge}
       <h1 class="concept-headline">${conceptEm(sl.headline)}</h1>
       <div class="concept-body">${body}</div>
       ${sl.qr ? '<div class="concept-qr-float"><div class="concept-qr-box">' + sl.qr.svg + '</div><div class="concept-qr-label">' + conceptEm(sl.qr.label) + '</div><div class="concept-qr-url">' + escapeHtml(sl.qr.url) + '</div></div>' : ''}

@@ -339,16 +339,7 @@
    "questions": [],
    "hmv": [],
    "prompts": [],
-   "build": [
-    {
-     "title": "Name your next agent",
-     "instructions": "Pick one boring, repeated, judgement-based task in your own life and commit to building an agent for it this week."
-    },
-    {
-     "title": "Start your portfolio",
-     "instructions": "Save every agent you build, each with its before-and-after number. That folder is your proof, and it grows from today."
-    }
-   ],
+   "build": [],
    "test_output": [],
    "output_capture": null,
    "break_after": false,

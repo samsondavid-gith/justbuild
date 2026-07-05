@@ -3691,9 +3691,9 @@ const CONCEPT_MODULES = {
     "stage_name": "What Next",
     "slides": [
       {"lens": "opener", "headline": "You did not just learn. You *built a business.*", "sub": "In two days you went from an idea to a live app, a site, a video, a bot, and a pitch. Here is how you keep it alive."},
-      {"practice": "Ship it for real", "headline": "Send your live link to *ten people* tonight.", "lead": "A project nobody uses is a demo. A project ten strangers try is a business starting.", "wrong": "'I will share it once it is perfect.' (it never gets shared)", "right": "'Here is my live link, try it and tell me what breaks.' (real feedback, tonight)", "artifact": "Ten people, one link, real reactions.", "bubble": "Perfect later. <b>Shared tonight.</b>"},
-      {"practice": "Keep building", "headline": "The skill fades if you *don't use it.*", "lead": "You now know how to turn an idea into a working thing with AI. Use it every week, or lose it.", "wrong": "'That was a fun workshop.' (and then never build again)", "right": "'What is the next small thing I can build this week?' (the habit that compounds)", "artifact": "One small build a week.", "bubble": "Use it. <b>Or lose it.</b>"},
-      {"practice": "Where this goes", "headline": "A workshop project can become a *real venture.*", "lead": "What you built is a seed. With real users and a little persistence, a two-day project can become something that pays.", "wrong": "'It was just for the workshop.' (a seed you never plant)", "right": "'Let me get my first ten real users and see.' (a seed in the ground)", "artifact": "Your first ten real users.", "bubble": "A seed, <b>planted.</b>"},
+      {"practice": "Ship it for real", "headline": "Send your live link to *ten people* tonight.", "lead": "A project nobody uses is a demo. A project ten strangers try is a business starting.", "wrong": "'I will share it once it is perfect.' (it never gets shared)", "right": "'Here is my live link, try it and tell me what breaks.' (real feedback, tonight)", "artifact": "Ten people, one link, real reactions.", "bubble": "Perfect later. <b>Shared tonight.</b>", "lens": "valuenomics"},
+      {"practice": "Keep building", "headline": "The skill fades if you *don't use it.*", "lead": "You now know how to turn an idea into a working thing with AI. Use it every week, or lose it.", "wrong": "'That was a fun workshop.' (and then never build again)", "right": "'What is the next small thing I can build this week?' (the habit that compounds)", "artifact": "One small build a week.", "bubble": "Use it. <b>Or lose it.</b>", "lens": "valuenomics"},
+      {"practice": "Where this goes", "headline": "A workshop project can become a *real venture.*", "lead": "What you built is a seed. With real users and a little persistence, a two-day project can become something that pays.", "wrong": "'It was just for the workshop.' (a seed you never plant)", "right": "'Let me get my first ten real users and see.' (a seed in the ground)", "artifact": "Your first ten real users.", "bubble": "A seed, <b>planted.</b>", "lens": "valuenomics"},
       {"lens": "opener", "headline": "You came in with an idea. You leave with a *business.*", "sub": "Most people only ever talk about starting something. You have built one. Now go make it real."}
     ]
   }
@@ -5231,7 +5231,7 @@ function refreshJumpMenu() {
       case "concept":
         return scr.slide && scr.slide.lens === "opener"
           ? "Overview"
-          : (scr.slide ? scr.slide.lens.charAt(0).toUpperCase() + scr.slide.lens.slice(1) : "Concept");
+          : (scr.slide ? ((scr.slide.lens || scr.slide.practice || "Concept").charAt(0).toUpperCase() + (scr.slide.lens || scr.slide.practice || "Concept").slice(1)) : "Concept");
       case "session-start": return "Begin";
       case "stage": return "Set the stage";
       case "step": return `${scr.code || ""} ${scr.step ? scr.step.title : ""}`.trim();

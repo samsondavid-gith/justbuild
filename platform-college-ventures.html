@@ -2558,6 +2558,9 @@
   .buildbar.hidden { display:none; }
   .bb-title { font-family:var(--mono); font-size:10px; letter-spacing:0.16em; color:var(--text-muted); white-space:nowrap; }
   .bb-track { display:flex; align-items:center; flex:1 1 auto; min-width:0; }
+  .bb-rows { display:flex; flex-direction:column; gap:5px; flex:1 1 auto; min-width:0; }
+  .bb-row { display:flex; align-items:center; gap:10px; min-width:0; }
+  .bb-day { font-family:var(--mono); font-size:9px; letter-spacing:0.14em; color:var(--accent); white-space:nowrap; width:46px; flex:0 0 auto; opacity:0.85; }
   .bb-item { display:flex; align-items:center; gap:7px; font-family:var(--mono); font-size:11px; letter-spacing:0.05em; white-space:nowrap; padding:0 12px; color:var(--text-muted); }
   .bb-dot { width:15px; height:15px; border-radius:50%; border:1.5px solid var(--line-strong); display:inline-flex; align-items:center; justify-content:center; font-size:9px; color:#fff; flex:0 0 auto; }
   .bb-item.done { color:var(--text-soft); }
@@ -2855,7 +2858,7 @@ const CONCEPT_MODULES = {
   "app": {
     "before_session": "2",
     "stage_number": "02",
-    "stage_name": "App",
+    "stage_name": "Web App",
     "slides": [
       {
         "lens": "opener",
@@ -3021,7 +3024,7 @@ const CONCEPT_MODULES = {
   "website": {
     "before_session": "3",
     "stage_number": "03",
-    "stage_name": "Website",
+    "stage_name": "Branding",
     "slides": [
       {
         "lens": "opener",
@@ -3350,176 +3353,10 @@ const CONCEPT_MODULES = {
       }
     ]
   },
-  "brochure": {
-    "before_session": "5",
-    "stage_number": "05",
-    "stage_name": "Brochure",
-    "slides": [
-      {
-        "lens": "opener",
-        "headline": "A brochure is one *forwardable* picture that sells for you.",
-        "sub": "A single image someone can glance at, get instantly, and forward to ten friends. Not a document, a magnet.",
-        "wrong": "I'll make a 3-page PDF with all our details.",
-        "right": "One striking image, one offer, one way to reach me, built to be forwarded."
-      },
-      {
-        "lens": "humanics",
-        "practice": "The one-glance test",
-        "headline": "It is seen for *one second,* while scrolling.",
-        "lead": "A brochure is caught mid-scroll on WhatsApp. If it does not land in one glance, it is gone.",
-        "wrong": "Five paragraphs and three photos crammed in. (nobody reads it)",
-        "right": "A big photo, the offer in five words, done. (lands instantly)",
-        "artifact": "a brochure that delivers its message in a single glance.",
-        "prop": "glass",
-        "bubble": "Land it in <b>one glance.</b>"
-      },
-      {
-        "lens": "humanics",
-        "practice": "Works with no context",
-        "headline": "It gets *forwarded,* so it must make sense alone.",
-        "lead": "Your brochure travels to people who never saw your site. It must explain itself with zero context.",
-        "wrong": "\"Click the link above to know more.\" (there is no above when forwarded)",
-        "right": "What, who, and how to reach you, all on the image itself. (self-contained)",
-        "artifact": "a brochure that fully explains itself to a total stranger.",
-        "prop": "glass",
-        "bubble": "It must explain <b>itself.</b>"
-      },
-      {
-        "lens": "humanics",
-        "practice": "Don't cram",
-        "headline": "One hero line, one offer. *Cut the rest.*",
-        "lead": "The urge is to put everything on it. Resist. One clear message and one offer beat a wall of features.",
-        "wrong": "Menu, prices, story, timings, 5 offers, social links, all at once. (cluttered)",
-        "right": "Fresh tiffins, 80 a day, free hostel delivery. That is the whole brochure. (one offer)",
-        "artifact": "a single hero message and one offer, nothing competing.",
-        "prop": "glass",
-        "bubble": "One message. <b>Cut the rest.</b>"
-      },
-      {
-        "lens": "humanics",
-        "practice": "The photo sells",
-        "headline": "One *delicious* photo does the selling.",
-        "lead": "People feel before they read. A warm, real photo of your actual product creates the want.",
-        "wrong": "A blurry, dark photo, or a fake stock image. (no appetite)",
-        "right": "A bright, real photo of the actual thali, steam and all. (instant want)",
-        "artifact": "one strong, real photo that makes people want it.",
-        "prop": "glass",
-        "bubble": "One great photo <b>sells.</b>"
-      },
-      {
-        "lens": "humanics",
-        "practice": "Trust on a flyer",
-        "headline": "A name and a number make it *real.*",
-        "lead": "A forwarded image with no name or contact feels like spam. Realness turns it into a trusted offer.",
-        "wrong": "A pretty image with no name and no contact. (feels fake)",
-        "right": "Asha's Tiffins, her photo, and a WhatsApp number right there. (trusted)",
-        "artifact": "your name, a real photo, and a real contact on the brochure.",
-        "prop": "glass",
-        "bubble": "A name and a number. <b>Real.</b>"
-      },
-      {
-        "lens": "humanics",
-        "practice": "Tell them what to do",
-        "headline": "Show *one* way to act, big and clear.",
-        "lead": "A glance should end with an obvious next move. One thing, not five.",
-        "wrong": "Call, WhatsApp, visit site, follow, email. (too many)",
-        "right": "Scan to order, with a QR and one line under it. (one move)",
-        "artifact": "one clear next step, like a QR or a WhatsApp number.",
-        "prop": "glass",
-        "bubble": "One clear thing to <b>do.</b>"
-      },
-      {
-        "lens": "mechanics",
-        "practice": "The simplest build of all",
-        "headline": "This is the *easiest* thing you build today.",
-        "lead": "A brochure is one still page, no buttons to wire, no orders to store. If the app and site went fine, this is a breeze. If they did not, this is your guaranteed win.",
-        "wrong": "Treating it like another complex app. (overthinking)",
-        "right": "One page, one image, a few lines. Built and done fast. (relaxed)",
-        "artifact": "a single static page, the lowest-risk build of the workshop.",
-        "prop": "hat",
-        "bubble": "Easiest build <b>all day.</b>"
-      },
-      {
-        "lens": "mechanics",
-        "practice": "The photo you already know",
-        "headline": "Drop your *one photo* in the folder, by name.",
-        "lead": "Same move as your website: put the photo file in the folder and use its exact name.",
-        "wrong": "Wondering why the photo shows as a broken icon. (name mismatch)",
-        "right": "hero.jpg in the folder, hero.jpg in the page. It shows. (matched)",
-        "artifact": "your one photo in the folder, named to match the page.",
-        "prop": "hat",
-        "bubble": "Same name, folder <b>and page.</b>"
-      },
-      {
-        "lens": "mechanics",
-        "practice": "Link the paper to the live site",
-        "headline": "A *QR code* turns paper into a tap.",
-        "lead": "Your brochure is static, but a QR sends anyone straight to your live website to order.",
-        "wrong": "A printed flyer with no way to reach the site. (dead end)",
-        "right": "A QR in the corner that opens my website when scanned. (paper to live)",
-        "artifact": "a QR code on the brochure that opens your live site.",
-        "prop": "hat",
-        "bubble": "A QR turns paper into a <b>tap.</b>"
-      },
-      {
-        "lens": "mechanics",
-        "practice": "Turn it into a shareable file",
-        "headline": "Save it as a *picture or PDF* to forward.",
-        "lead": "To share on WhatsApp or print it, turn the page into a file with print-to-PDF or a clean screenshot.",
-        "wrong": "Trying to forward a website link as if it were a flyer. (not an image)",
-        "right": "Print to PDF, or screenshot, then forward the image. (ready to share)",
-        "artifact": "your brochure saved as an image or PDF, ready to forward.",
-        "prop": "hat",
-        "bubble": "Save it as an <b>image to forward.</b>"
-      },
-      {
-        "lens": "valuenomics",
-        "practice": "Your cheapest marketing",
-        "headline": "A brochure's whole job is to get *forwarded.*",
-        "lead": "Every time someone forwards your image, you reach a new person for free. Design it to be shared.",
-        "wrong": "A flyer so dull nobody would pass it on. (goes nowhere)",
-        "right": "An image good enough that one happy person sends it to ten. (spreads)",
-        "artifact": "a brochure people actually want to forward.",
-        "prop": "coin",
-        "bubble": "Built to get <b>forwarded.</b>"
-      },
-      {
-        "lens": "valuenomics",
-        "practice": "Images travel further",
-        "headline": "People forward *images* far more than links.",
-        "lead": "A link looks like an ad and gets ignored. A nice image gets opened, shown, and passed on.",
-        "wrong": "Just sending a bare website link in the group. (ignored)",
-        "right": "Sending the brochure image, which people open and forward. (travels)",
-        "artifact": "a shareable image, because it spreads where a link dies.",
-        "prop": "coin",
-        "bubble": "Images travel. <b>Links die.</b>"
-      },
-      {
-        "lens": "valuenomics",
-        "practice": "Make once, share forever",
-        "headline": "Make it *once.* Share it *forever,* for free.",
-        "lead": "Once it is a file, you can send it to thousands, print it, stick it on a board, all for nothing.",
-        "wrong": "Paying for printed pamphlets before you have customers. (wasted money)",
-        "right": "One free image I send, post, and print as much as I want. (infinite, free)",
-        "artifact": "one file you can share, post, and print without limit.",
-        "prop": "coin",
-        "bubble": "Make once. Share <b>forever.</b>"
-      },
-      {
-        "lens": "opener",
-        "mascot": "butterfly",
-        "headline": "One image, forwarded ten times. *Ten new customers.*",
-        "sub": "A single picture that lands in a glance, makes people want it, and travels on its own. That is a brochure that works.",
-        "wrong": "A heavy PDF nobody opens or shares.",
-        "right": "One image people glance at, want, and forward.",
-        "bubble": "One image. <b>Ten new customers.</b>"
-      }
-    ]
-  },
   "video": {
     "before_session": "6",
     "stage_number": "06",
-    "stage_name": "Video",
+    "stage_name": "Branding",
     "slides": [
       {
         "lens": "opener",
@@ -3847,6 +3684,18 @@ const CONCEPT_MODULES = {
         "bubble": "Ten slides. One story. <b>One ask.</b>"
       }
     ]
+  },
+  "close": {
+    "before_session": "9",
+    "stage_number": "",
+    "stage_name": "What Next",
+    "slides": [
+      {"lens": "opener", "headline": "You did not just learn. You *built a business.*", "sub": "In two days you went from an idea to a live app, a site, a video, a bot, and a pitch. Here is how you keep it alive."},
+      {"practice": "Ship it for real", "headline": "Send your live link to *ten people* tonight.", "lead": "A project nobody uses is a demo. A project ten strangers try is a business starting.", "wrong": "'I will share it once it is perfect.' (it never gets shared)", "right": "'Here is my live link, try it and tell me what breaks.' (real feedback, tonight)", "artifact": "Ten people, one link, real reactions.", "bubble": "Perfect later. <b>Shared tonight.</b>"},
+      {"practice": "Keep building", "headline": "The skill fades if you *don't use it.*", "lead": "You now know how to turn an idea into a working thing with AI. Use it every week, or lose it.", "wrong": "'That was a fun workshop.' (and then never build again)", "right": "'What is the next small thing I can build this week?' (the habit that compounds)", "artifact": "One small build a week.", "bubble": "Use it. <b>Or lose it.</b>"},
+      {"practice": "Where this goes", "headline": "A workshop project can become a *real venture.*", "lead": "What you built is a seed. With real users and a little persistence, a two-day project can become something that pays.", "wrong": "'It was just for the workshop.' (a seed you never plant)", "right": "'Let me get my first ten real users and see.' (a seed in the ground)", "artifact": "Your first ten real users.", "bubble": "A seed, <b>planted.</b>"},
+      {"lens": "opener", "headline": "You came in with an idea. You leave with a *business.*", "sub": "Most people only ever talk about starting something. You have built one. Now go make it real."}
+    ]
   }
 };
 let SCREENS = [];             // flat array of all screens with metadata
@@ -3921,17 +3770,17 @@ function buildScreenSequence() {
     const phase = session.phase;
     const day = String(session.day);
 
-    // Day 2 morning welcome — first session of Day 2 of the weekend
+    // Day 2 morning welcome, first session of Day 2 of the weekend
     if (phase === "weekend" && day === "2" && prevDay !== "2") {
       SCREENS.push({ type: "day2-checkin" });
     }
 
-    // Office-hours phase opener — appears once, before the first week of office hours
+    // Office-hours phase opener, appears once, before the first week of office hours
     if (phase === "office_hours" && prevPhase !== "office_hours") {
       SCREENS.push({ type: "phase-break", to: "office_hours" });
     }
 
-    // Demo Day opener — appears once, before the Demo Day session
+    // Demo Day opener, appears once, before the Demo Day session
     if (phase === "demo_day" && prevPhase !== "demo_day") {
       SCREENS.push({ type: "phase-break", to: "demo_day" });
     }
@@ -3960,7 +3809,7 @@ function buildScreenSequence() {
 
     SCREENS.push({ type: "stage", session });
 
-    // Idea cards screen — appears once, inside Session 1 (Pick your idea), right after the
+    // Idea cards screen, appears once, inside Session 1 (Pick your idea), right after the
     // stage-setting, mirroring the school flow. Shows 8 ideas from the active set; the
     // founder picks one and personalises it in this same session.
     if (session.id === "1") {
@@ -4080,7 +3929,7 @@ function buildScreenSequence() {
 
     SCREENS.push({ type: "session-end", session });
 
-    // End-of-Day-1 interlude — fires after the last session of Day 1 in the weekend phase
+    // End-of-Day-1 interlude, fires after the last session of Day 1 in the weekend phase
     const nextSession = SESSIONS[idx + 1];
     const isLastOfDay1 = phase === "weekend" && day === "1"
       && (!nextSession || String(nextSession.day) !== "1" || nextSession.phase !== "weekend");
@@ -4297,17 +4146,28 @@ function renderBuildbar(screen) {
   if (!bar) return;
   const st = buildbarState(screen);
   if (!st) { bar.classList.add("hidden"); return; }
-  const items = ["Idea Board","App","Website","Chatbot","Brochure","Video","Pitch"];
-  let html = '<span class="bb-title">BUILD PROGRESS</span><div class="bb-track">';
-  items.forEach(function (name, idx) {
-    let cls = "bb-item";
-    if (idx < st.done) cls += " done";
-    else if (idx === st.current) cls += " current";
-    const mark = (idx < st.done) ? "\u2713" : "";
-    if (idx > 0) html += '<span class="bb-sep"></span>';
-    html += '<span class="' + cls + '"><span class="bb-dot">' + mark + '</span>' + name + '</span>';
+  const curStage = screen.session ? (screen.session.nav || screen.session.stage) : null;
+  const dayNavs = { 1: [], 2: [] };
+  SESSIONS.forEach(function (s) {
+    const nav = s.nav || s.stage;
+    const day = Number(s.day) || 1;
+    if (dayNavs[day] && dayNavs[day].indexOf(nav) === -1) dayNavs[day].push(nav);
   });
-  html += '</div>';
+  const flat = dayNavs[1].concat(dayNavs[2]);
+  const curIdx = flat.indexOf(curStage);
+  function bbRow(navs, label) {
+    let h = '<div class="bb-row"><span class="bb-day">' + label + '</span><div class="bb-track">';
+    navs.forEach(function (name) {
+      const gi = flat.indexOf(name);
+      let cls = "bb-item";
+      if (curIdx > -1 && gi < curIdx) cls += " done";
+      else if (gi === curIdx) cls += " current";
+      const mark = (curIdx > -1 && gi < curIdx) ? "\u2713" : "";
+      h += '<span class="' + cls + '"><span class="bb-dot">' + mark + '</span>' + name + '</span>';
+    });
+    return h + '</div></div>';
+  }
+  let html = '<span class="bb-title">BUILD PROGRESS</span><div class="bb-rows">' + bbRow(dayNavs[1], "DAY 1") + bbRow(dayNavs[2], "DAY 2") + '</div>';
   bar.innerHTML = html;
   bar.classList.remove("hidden");
 }
@@ -5003,7 +4863,7 @@ function renderOfficeHours(s) {
     </div>
   ` : "";
 
-  // Prompts preview block — shows step titles only as a roadmap of what's next.
+  // Prompts preview block, shows step titles only as a roadmap of what's next.
   // Skipped when the session uses a step-by-step procedure (the steps are the roadmap).
   const promptsBlock = (!s.procedure && (s.prompts || []).length > 0) ? `
     <div class="oh-section">
@@ -5176,7 +5036,7 @@ function attachHandlers(screen) {
   const startBtn = $("#start-btn");
   if (startBtn) startBtn.onclick = next;
 
-  // Idea set switcher pills — let facilitator (or anyone) flip between Set 1/2/3
+  // Idea set switcher pills, let facilitator (or anyone) flip between Set 1/2/3
   document.querySelectorAll(".idea-set-pill").forEach(pill => {
     pill.onclick = () => {
       const set = parseInt(pill.dataset.set, 10);

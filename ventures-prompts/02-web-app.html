@@ -1,0 +1,53 @@
+<style>
+  :root{--bg:#14120E;--card:#1c1a15;--line:#2c2820;--text:#efe9dd;--soft:#b8b0a0;--accent:#C0551F;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace;--serif:Georgia,'Times New Roman',serif;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--serif);line-height:1.55;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:820px;margin:0 auto;padding:48px 22px 90px;}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);}
+  h1{font-size:clamp(28px,5vw,42px);font-style:italic;font-weight:700;line-height:1.08;margin:.25em 0 .1em;}
+  .meta{font-family:var(--mono);font-size:12.5px;color:var(--soft);letter-spacing:.03em;margin-bottom:6px;}
+  .meta b{color:var(--accent);font-weight:700}
+  h2{font-family:var(--serif);font-style:italic;font-size:22px;margin:38px 0 10px;color:var(--text);}
+  p{color:var(--soft);font-size:16px;} p.lead{color:var(--text);font-size:17px;}
+  ol,ul{color:var(--soft);font-size:15.5px;} li{margin:6px 0;} li b{color:var(--text);}
+  .promptcard{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:0 12px 12px 0;padding:18px 20px 16px;margin:16px 0;}
+  .promptcard .label{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:flex;justify-content:space-between;align-items:center;gap:12px;}
+  .prompt{font-family:var(--mono);font-size:14px;line-height:1.6;color:var(--text);white-space:pre-wrap;margin-top:12px;}
+  .copybtn{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;background:var(--accent);color:#140f08;border:0;border-radius:7px;padding:7px 13px;cursor:pointer;font-weight:700;}
+  .copybtn.done{background:#3a7d34;color:#fff;}
+  .note{background:rgba(192,85,31,.08);border:1px solid rgba(192,85,31,.25);border-radius:10px;padding:12px 16px;font-size:14px;color:var(--text);margin:18px 0;}
+  .foot{margin-top:54px;border-top:1px solid var(--line);padding-top:14px;font-family:var(--mono);font-size:11.5px;color:var(--soft);letter-spacing:.05em;}
+  .foot a{color:var(--accent);text-decoration:none;}
+  .nav{font-family:var(--mono);font-size:12px;letter-spacing:.05em;margin-bottom:26px;}
+  .nav a{color:var(--soft);text-decoration:none;} .nav a:hover{color:var(--accent);}
+</style>
+<script>
+function copyPrompt(btn){
+  const t=btn.closest('.promptcard').querySelector('.prompt').innerText;
+  navigator.clipboard.writeText(t).then(function(){
+    const o=btn.textContent; btn.textContent='Copied ✓'; btn.classList.add('done');
+    setTimeout(function(){btn.textContent=o; btn.classList.remove('done');},1800);
+  });
+}
+</script>
+
+<div class="wrap">
+<div class="nav"><a href="index.html">All prompts</a>  &nbsp;·&nbsp;  <a href="01-ideation.html">&larr; Prev</a>  &nbsp;·&nbsp;  <a href="03-website.html">Next &rarr;</a></div>
+<div class="eyebrow">Build · Web App &nbsp;·&nbsp; 2 of 6</div>
+<h1>Build the app itself.</h1>
+<div class="meta">Session 3 · 120 min &nbsp;|&nbsp; Model: <b>Claude-style app builder</b> - the strongest code model of the two days</div>
+<p class="lead">This is the one code-heavy build. Replace every [bracket] with your own idea, then feed the builder ONE step at a time - do not paste it all at once. Test each step before the next.</p>
+<div class="promptcard"><div class="label"><span>The destination prompt (your app, end to end)</span><button class="copybtn" onclick="copyPrompt(this)">Copy</button></div><div class="prompt">Build me a simple, mobile-first web app for [my business, e.g. &quot;Sunday tiffin subscriptions for PG students&quot;]. It must have a SERVER and a DATABASE so data is saved, and I need a link I can open and share.
+
+It does four things, in order:
+1. CATALOG - a home page showing my items from the database: each with a name, one image, a price, and a one-line description. [list 3-5 of my items].
+2. CHOOSE &amp; CONFIGURE - tapping an item opens a page to pick options and quantity [e.g. size: half/full, spice: mild/hot], with the total updating live.
+3. PAY (STUB) - a checkout that collects name + phone, shows the total, and a &quot;Pay now&quot; button that does NOT take real money - it just marks the order Paid and saves it. Show a note: &quot;Demo payment - no money is charged.&quot;
+4. TRACK - after paying, show an order number, and a &quot;Track my order&quot; page where a user types the number and sees status: Received -&gt; Preparing -&gt; Ready.
+
+Keep it clean and simple, one clear button per screen, works on a basic phone. Fill it with my real items, not placeholder text.</div></div>
+<h2>How to use it</h2>
+<ol><li><b>Catalog first.</b> Ask only for the catalog page from your database. Test: do all items show, readable on a phone?</li><li><b>Choose & configure.</b> "When I tap an item, let me pick [options] and a quantity, show the running total." Test one item.</li><li><b>Pay stub + save.</b> "Add checkout: name, phone, total, a Pay button that marks the order Paid and saves it - no real money." Place a full order.</li><li><b>Track.</b> "Show an order number, add a Track page that looks it up: Received -> Preparing -> Ready." Copy a number and test it.</li><li><b>Fill it for real</b>, one clean design pass, then <b>save a copy</b> of the working version.</li></ol>
+<div class="note"><b>Never put a secret in the page</b> (anyone can read it) - today there is none, because payment is a stub. <b>Trust, then verify:</b> the model is confidently wrong sometimes; test every step.</div>
+<div class="foot">Just Build Ventures &nbsp;·&nbsp; <a href="https://justbuild.orangecaterpillar.com/ventures-prompts/platform-college-ventures/ventures-prompts">justbuild.orangecaterpillar.com/ventures-prompts/platform-college-ventures/ventures-prompts</a></div>
+</div>

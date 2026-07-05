@@ -2677,9 +2677,9 @@
    Just Build  /  Workshop Platform
    ============================================ */
 
-let WORKSHOP = null;          // sessions-college-foundation.json workshop block
+let WORKSHOP = null;          // sessions-college-ventures.json workshop block
 let SESSIONS = [];            // sessions array
-let IDEAS = [];               // ideas array (top-level of sessions-college-foundation.json)
+let IDEAS = [];               // ideas array (top-level of sessions-college-ventures.json)
 
 // ---- Concept modules: HMV teaching slides inserted before a stage's sessions ----
 const CONCEPT_PROPS = {
@@ -3731,7 +3731,7 @@ const fmt = (s) => {
 /* ----- Load sessions.json ----- */
 async function loadSessions() {
   try {
-    const res = await fetch("./sessions-college-foundation.json", { cache: "no-cache" });
+    const res = await fetch("./sessions-college-ventures.json", { cache: "no-cache" });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
     WORKSHOP = data.workshop;
@@ -3742,9 +3742,9 @@ async function loadSessions() {
   } catch (err) {
     $("#stage").innerHTML = `
       <div class="error">
-        <h2>Could not load sessions-college-foundation.json</h2>
-        <p>Make sure <code>sessions-college-foundation.json</code> sits next to <code>platform-college-foundation.html</code>.</p>
-        <p style="margin-top:16px; font-size:14px;">If you opened this file directly with a double-click, your browser blocks local fetches. Run a local server with <code>python3 -m http.server</code> in the same folder, then open <code>http://localhost:8000/platform-college-foundation.html</code>.</p>
+        <h2>Could not load sessions-college-ventures.json</h2>
+        <p>Make sure <code>sessions-college-ventures.json</code> sits next to <code>platform-college-ventures.html</code>.</p>
+        <p style="margin-top:16px; font-size:14px;">If you opened this file directly with a double-click, your browser blocks local fetches. Run a local server with <code>python3 -m http.server</code> in the same folder, then open <code>http://localhost:8000/platform-college-ventures.html</code>.</p>
         <p style="margin-top:24px; opacity:0.5; font-size:12px;">${err.message}</p>
       </div>`;
   }

@@ -21,8 +21,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-
 <style>
 :root {
   --bg-primary: #F5F0E8;
@@ -358,274 +356,22 @@ input, textarea, select { font-family: inherit; font-size: inherit; }
     <div class="apply-intro">
       <div class="eyebrow">Waitlist · 2026</div>
       <h2 class="headline">Enrolment for the 2026 cohorts is not open yet.</h2>
-      <p class="prose">We will announce dates, location, and fees for the 2026 First Build cohorts in the coming weeks. If you want to be considered before public enrolment opens, leave your information here. When the cohorts go live, your parents will hear from us first.</p>
-      <hr class="section-rule">
+      <p class="prose">We will announce dates, location, and fees for the 2026 First Build cohorts in the coming weeks. If you want to be considered before public enrolment opens, register your interest and we will be in touch. When the cohorts go live, your parents will hear from us first.</p>
     </div>
-
-    <form id="waitlist-form" novalidate>
-
-      <!-- STUDENT DETAILS -->
-      <div class="field-row">
-        <div class="field">
-          <label for="apply-firstname" class="field-label">Your first name</label>
-          <input type="text" id="apply-firstname" name="firstname" class="field-input" required autocomplete="given-name">
-          <p class="field-error hidden" data-error-for="apply-firstname">Please tell us your first name.</p>
-        </div>
-        <div class="field">
-          <label for="apply-lastname" class="field-label">Your last name</label>
-          <input type="text" id="apply-lastname" name="lastname" class="field-input" required autocomplete="family-name">
-          <p class="field-error hidden" data-error-for="apply-lastname">Please tell us your last name.</p>
-        </div>
-      </div>
-
-      <div class="field">
-        <label for="apply-email" class="field-label">Your email address</label>
-        <p class="field-hint">We will write to your parents primarily. Your email is so you can also stay in the loop.</p>
-        <input type="email" id="apply-email" name="email" class="field-input" required autocomplete="email">
-        <p class="field-prefill-note hidden" id="email-prefill-note">Is this the right email?</p>
-        <p class="field-error hidden" data-error-for="apply-email">Please enter a valid email address.</p>
-      </div>
-
-      <div class="field">
-        <label for="apply-class" class="field-label">Class (current)</label>
-        <select id="apply-class" name="class_grade" class="field-select" required>
-          <option value="">Select one</option>
-          <option value="8">Class 8</option>
-          <option value="9">Class 9</option>
-          <option value="10">Class 10</option>
-          <option value="11">Class 11</option>
-        </select>
-        <p class="field-error hidden" data-error-for="apply-class">Please pick your class.</p>
-      </div>
-
-      <div class="field">
-        <label for="apply-school" class="field-label">School name</label>
-        <input type="text" id="apply-school" name="school_name" class="field-input" required>
-        <p class="field-error hidden" data-error-for="apply-school">Please tell us your school.</p>
-      </div>
-
-      <div class="field">
-        <label for="apply-city" class="field-label">City<span class="field-label-optional">(optional)</span></label>
-        <input type="text" id="apply-city" name="city" class="field-input" placeholder="Bangalore" autocomplete="address-level2">
-      </div>
-
-      <!-- PARENT DETAILS (required) -->
-      <h3 class="field-group-heading">Parent or guardian details</h3>
-      <p class="field-group-sub">Required because the program involves a Demo Day with parents present and minor students.</p>
-
-      <div class="field">
-        <label for="apply-parent-name" class="field-label">Parent or guardian name</label>
-        <input type="text" id="apply-parent-name" name="parent_name" class="field-input" required>
-        <p class="field-error hidden" data-error-for="apply-parent-name">Please tell us your parent's name.</p>
-      </div>
-
-      <div class="field">
-        <label for="apply-parent-email" class="field-label">Parent or guardian email</label>
-        <input type="email" id="apply-parent-email" name="parent_email" class="field-input" required>
-        <p class="field-error hidden" data-error-for="apply-parent-email">Please enter a valid email for your parent.</p>
-      </div>
-
-      <div class="field">
-        <label for="apply-parent-phone" class="field-label">Parent or guardian phone</label>
-        <p class="field-hint">Include country code, like +91 9845112345.</p>
-        <input type="tel" id="apply-parent-phone" name="parent_phone" class="field-input" required placeholder="+91 9845112345">
-        <p class="field-error hidden" data-error-for="apply-parent-phone">Please enter a valid number with country code, starting with +.</p>
-      </div>
-
-      <!-- ABOUT YOU (optional) -->
-      <div class="field">
-        <label for="apply-note" class="field-label">One line about you<span class="field-label-optional">(optional)</span></label>
-        <textarea id="apply-note" name="note" class="field-textarea" placeholder="What kind of thing you might want to build, or anything else worth us knowing."></textarea>
-      </div>
 
       <div class="divider-block">
         <div class="eyebrow">What happens next</div>
-        <p class="prose">We read every entry.</p>
+        <p class="prose">We read every registration.</p>
         <p class="prose">When 2026 enrolment opens, waitlist parents are written to first.</p>
         <p class="prose">We do not share your information.</p>
       </div>
 
       <div class="submit-block">
-        <p class="submit-error hidden" id="submit-error"></p>
-        <button type="submit" class="btn btn-primary btn-full" id="submit-btn">Join the waitlist</button>
+        <a href="https://oc-platform.onrender.com/swish/interest.html" class="btn btn-primary btn-full">Register your interest</a>
       </div>
 
-    </form>
-
   </div>
 </section>
-
-<section class="section-confirmation hidden" id="section-confirmation">
-  <div class="container">
-    <div class="eyebrow">Submitted</div>
-    <h2 class="headline">You are on the list.</h2>
-    <p class="prose-lead">When the 2026 First Build cohorts are announced, we will write to your parents before the page goes public.</p>
-    <p class="prose prose-italic">If you have a question in the meantime, your parents can email us directly.</p>
-    <div class="confirm-cta">
-      <a href="mailto:hello@orangecaterpillar.com?subject=Question%20about%20the%20First%20Build%20waitlist" class="btn btn-dark btn-full">Email us at hello@orangecaterpillar.com</a>
-    </div>
-  </div>
-</section>
-
-<script>
-(function () {
-  'use strict';
-
-  const WORKSHOP_NAME = 'First Build';
-  const EMAILJS_PUBLIC_KEY = '4oFdVRvbVQ8mQHUnZ';
-  const EMAILJS_SERVICE_ID = 'service_w32avyy';
-
-  const ENROLL_ENDPOINT = 'https://swish.orangecaterpillar.com/api/enroll';
-  function recordEnrollment(params) {
-    // Best-effort: also store the enrollment in the SWISH analytics DB. The
-    // EmailJS email stays the primary confirmation path, so any failure here
-    // is silent and never blocks the applicant.
-    try {
-      fetch(ENROLL_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(params),
-        keepalive: true
-      }).catch(function () {});
-    } catch (e) {}
-  }
-
-  const EMAILJS_WAITLIST_TEMPLATE_ID = 'template_dxrfj69';
-
-  function isEmailJSConfigured() {
-    return !!(EMAILJS_PUBLIC_KEY && EMAILJS_SERVICE_ID && EMAILJS_WAITLIST_TEMPLATE_ID && EMAILJS_WAITLIST_TEMPLATE_ID.indexOf('REPLACE') === -1);
-  }
-  if (EMAILJS_PUBLIC_KEY && typeof emailjs !== 'undefined') { emailjs.init(EMAILJS_PUBLIC_KEY); }
-
-  function $(sel) { return document.querySelector(sel); }
-
-  function prefillEmailFromURL() {
-    const params = new URLSearchParams(window.location.search);
-    const email = params.get('email');
-    if (email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      const emailField = $('#apply-email');
-      if (emailField) {
-        emailField.value = email;
-        $('#email-prefill-note').classList.remove('hidden');
-      }
-    }
-  }
-
-  function showError(key) {
-    const el = document.querySelector('[data-error-for="' + key + '"]');
-    if (el) el.classList.remove('hidden');
-    const input = document.getElementById(key);
-    if (input) input.classList.add('has-error');
-  }
-  function hideError(key) {
-    const el = document.querySelector('[data-error-for="' + key + '"]');
-    if (el) el.classList.add('hidden');
-    const input = document.getElementById(key);
-    if (input) input.classList.remove('has-error');
-  }
-
-  function validateForm() {
-    let firstErrorEl = null;
-    const fail = function (key) {
-      showError(key);
-      if (!firstErrorEl) firstErrorEl = document.querySelector('[data-error-for="' + key + '"]') || document.getElementById(key);
-    };
-
-    if (!$('#apply-firstname').value.trim()) fail('apply-firstname');
-    if (!$('#apply-lastname').value.trim()) fail('apply-lastname');
-    const email = $('#apply-email').value.trim();
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) fail('apply-email');
-    if (!$('#apply-class').value) fail('apply-class');
-    if (!$('#apply-school').value.trim()) fail('apply-school');
-    if (!$('#apply-parent-name').value.trim()) fail('apply-parent-name');
-    const parentEmail = $('#apply-parent-email').value.trim();
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(parentEmail)) fail('apply-parent-email');
-    const parentPhone = $('#apply-parent-phone').value.trim().replace(/[\s\-()]/g, '');
-    if (!/^\+\d{8,15}$/.test(parentPhone)) fail('apply-parent-phone');
-
-    if (firstErrorEl) {
-      firstErrorEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      return false;
-    }
-    return true;
-  }
-
-  function wireLiveErrorClearing() {
-    const ids = ['apply-firstname', 'apply-lastname', 'apply-email', 'apply-class', 'apply-school', 'apply-parent-name', 'apply-parent-email', 'apply-parent-phone'];
-    ids.forEach(function (id) {
-      const el = document.getElementById(id);
-      if (!el) return;
-      const evt = (el.tagName === 'SELECT') ? 'change' : 'input';
-      el.addEventListener(evt, function () { hideError(id); });
-    });
-  }
-
-  function buildWaitlistParams() {
-    const firstname = $('#apply-firstname').value.trim();
-    const lastname = $('#apply-lastname').value.trim();
-    return {
-      workshop: WORKSHOP_NAME,
-      firstname: firstname,
-      lastname: lastname,
-      full_name: (firstname + ' ' + lastname).trim(),
-      email: $('#apply-email').value.trim(),
-      phone: '(not collected)',
-      city: $('#apply-city').value.trim() || '(not provided)',
-      class_grade: $('#apply-class').value,
-      school_name: $('#apply-school').value.trim(),
-      parent_name: $('#apply-parent-name').value.trim(),
-      parent_email: $('#apply-parent-email').value.trim(),
-      parent_phone: $('#apply-parent-phone').value.trim(),
-      note: $('#apply-note').value.trim() || '(none)',
-      submitted_at: new Date().toISOString()
-    };
-  }
-
-  async function submitWaitlist(e) {
-    e.preventDefault();
-    $('#submit-error').classList.add('hidden');
-    if (!validateForm()) return;
-
-    const submitBtn = $('#submit-btn');
-    submitBtn.disabled = true;
-    const originalText = submitBtn.textContent;
-    submitBtn.textContent = 'Submitting…';
-
-    const params = buildWaitlistParams();
-    recordEnrollment(params);
-
-    try {
-      if (isEmailJSConfigured()) {
-        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_WAITLIST_TEMPLATE_ID, params);
-      } else {
-        console.info('EmailJS waitlist template not configured. Waitlist data:', params);
-        await new Promise(function (r) { setTimeout(r, 400); });
-      }
-      showConfirmation();
-    } catch (err) {
-      console.error('Waitlist submission failed:', err);
-      submitBtn.disabled = false;
-      submitBtn.textContent = originalText;
-      const errorEl = $('#submit-error');
-      errorEl.textContent = 'Something went wrong. Please try again. If the problem continues email us at hello@orangecaterpillar.com.';
-      errorEl.classList.remove('hidden');
-    }
-  }
-
-  function showConfirmation() {
-    $('#section-apply').classList.add('hidden');
-    $('#section-confirmation').classList.remove('hidden');
-    setTimeout(function () { $('#section-confirmation').scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 50);
-  }
-
-  document.addEventListener('DOMContentLoaded', function () {
-    prefillEmailFromURL();
-    wireLiveErrorClearing();
-    $('#waitlist-form').addEventListener('submit', submitWaitlist);
-  });
-
-})();
-</script>
 
 <!-- PAGE SECTION NAV (jump-to) -->
 <script>
